@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GIIS.Tanzania.WCF", "GIIS.Tanzania.WCF\GIIS.Tanzania.WCF.csproj", "{9A92CA0A-5B83-4E9D-8EDD-BB59683F9A98}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication2", "ConsoleApplication2\ConsoleApplication2.csproj", "{E1E4DD45-AC2D-4CF3-8BA5-351FCC7E51C7}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9A92CA0A-5B83-4E9D-8EDD-BB59683F9A98} = {9A92CA0A-5B83-4E9D-8EDD-BB59683F9A98}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 3
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://dorianadelija.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = GIIS.Tanzania.WCF\\GIIS.Tanzania.WCF.csproj
+		SccProjectName1 = GIIS.Tanzania.WCF
+		SccLocalPath1 = GIIS.Tanzania.WCF
+		SccProjectUniqueName2 = ConsoleApplication2\\ConsoleApplication2.csproj
+		SccProjectName2 = ConsoleApplication2
+		SccLocalPath2 = ConsoleApplication2
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9A92CA0A-5B83-4E9D-8EDD-BB59683F9A98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A92CA0A-5B83-4E9D-8EDD-BB59683F9A98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A92CA0A-5B83-4E9D-8EDD-BB59683F9A98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A92CA0A-5B83-4E9D-8EDD-BB59683F9A98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1E4DD45-AC2D-4CF3-8BA5-351FCC7E51C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1E4DD45-AC2D-4CF3-8BA5-351FCC7E51C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1E4DD45-AC2D-4CF3-8BA5-351FCC7E51C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1E4DD45-AC2D-4CF3-8BA5-351FCC7E51C7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

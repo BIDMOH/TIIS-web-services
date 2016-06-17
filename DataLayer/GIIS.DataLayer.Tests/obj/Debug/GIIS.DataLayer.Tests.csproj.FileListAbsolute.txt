@@ -1,0 +1,1 @@
+C:\Users\user\Desktop\tiis-DataLayer\GIIS.DataLayer.Tests\obj\Debug\GIIS.DataLayer.Tests.csprojResolveAssemblyReference.cache

@@ -1,0 +1,10 @@
+C:\Users\Doriana\Documents\Visual Studio 2012\Projects\GIIS.API\GIIS_API\GIIS_API\GIIS.Tanzania.WCF\bin\GIIS.Tanzania.WCF.dll
+C:\Users\Doriana\Documents\Visual Studio 2012\Projects\GIIS.API\GIIS_API\GIIS_API\GIIS.Tanzania.WCF\bin\GIIS.Tanzania.WCF.pdb
+C:\Users\Doriana\Documents\Visual Studio 2012\Projects\GIIS.API\GIIS_API\GIIS_API\GIIS.Tanzania.WCF\bin\GIIS.DataLayer.dll
+C:\Users\Doriana\Documents\Visual Studio 2012\Projects\GIIS.API\GIIS_API\GIIS_API\GIIS.Tanzania.WCF\bin\Mono.Security.dll
+C:\Users\Doriana\Documents\Visual Studio 2012\Projects\GIIS.API\GIIS_API\GIIS_API\GIIS.Tanzania.WCF\bin\Npgsql.dll
+C:\Users\Doriana\Documents\Visual Studio 2012\Projects\GIIS.API\GIIS_API\GIIS_API\GIIS.Tanzania.WCF\obj\Debug\GIIS.Tanzania.WCF.csprojResolveAssemblyReference.cache
+C:\Users\Doriana\Documents\Visual Studio 2012\Projects\GIIS.API\GIIS_API\GIIS_API\GIIS.Tanzania.WCF\obj\Debug\GIIS.Tanzania.WCF.dll
+C:\Users\Doriana\Documents\Visual Studio 2012\Projects\GIIS.API\GIIS_API\GIIS_API\GIIS.Tanzania.WCF\obj\Debug\GIIS.Tanzania.WCF.pdb
+C:\Users\Doriana\Documents\Visual Studio 2012\Projects\GIIS.API\GIIS_API\GIIS_API\GIIS.Tanzania.WCF\bin\GIIS.BusinessLogic.dll
+C:\Users\user\Desktop\tiiswebservices-d5e5f476ab643acb17faf1e8de4adfe3c3a9415b\GIIS.Tanzania.WCF\obj\Debug\GIIS.Tanzania.WCF.csprojResolveAssemblyReference.cache

@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="GIIS.Tanzania.WCF.UserManagement" CodeBehind="UserManagement.svc.cs" %>

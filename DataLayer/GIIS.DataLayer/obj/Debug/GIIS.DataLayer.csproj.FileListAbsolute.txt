@@ -1,0 +1,7 @@
+C:\Users\user\Desktop\tiis-DataLayer\GIIS.DataLayer\bin\Debug\GIIS.DataLayer.dll
+C:\Users\user\Desktop\tiis-DataLayer\GIIS.DataLayer\bin\Debug\GIIS.DataLayer.pdb
+C:\Users\user\Desktop\tiis-DataLayer\GIIS.DataLayer\bin\Debug\Mono.Security.dll
+C:\Users\user\Desktop\tiis-DataLayer\GIIS.DataLayer\bin\Debug\Npgsql.dll
+C:\Users\user\Desktop\tiis-DataLayer\GIIS.DataLayer\obj\Debug\GIIS.DataLayer.csprojResolveAssemblyReference.cache
+C:\Users\user\Desktop\tiis-DataLayer\GIIS.DataLayer\obj\Debug\GIIS.DataLayer.dll
+C:\Users\user\Desktop\tiis-DataLayer\GIIS.DataLayer\obj\Debug\GIIS.DataLayer.pdb
