@@ -12,7 +12,7 @@
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
- //******************************************************************************
+//******************************************************************************
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +22,9 @@ using System.Text;
 
 using GIIS.DataLayer;
 using System.Globalization;
+using System.Net;
+using System.IO;
+using System.ServiceModel.Web;
 
 namespace GIIS.Tanzania.WCF
 {
@@ -29,6 +32,75 @@ namespace GIIS.Tanzania.WCF
     // NOTE: In order to launch WCF Test Client for testing this service, please select ChildManagement.svc or ChildManagement.svc.cs at the Solution Explorer and start debugging.
     public class ChildManagement : IChildManagement
     {
+
+        public string sampleGCMTest(string message , string regId)
+        {
+
+            string stringregIds = null;
+            List<string> regIDs = new List<string>();
+            
+            //string[] ids = regId.Split(new char[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] ids = regId.Split(',');
+            for (int i = 0; i < ids.Length; i++) {
+                string value = ids[i].Trim();
+                regIDs.Add(value);
+            }
+            
+            //Here I add the registrationID that I used in Method #1 to regIDs
+            regIDs.Add(regId);
+
+            //Then I use 
+            stringregIds = string.Join("\",\"", regIDs);
+            //To Join the values (if ever there are more than 1) with quotes and commas for the Json format below
+
+            try
+            {
+                string GoogleAppID = "AIzaSyBgsthTTTiunMtHV5XT1Im6bl17i5rGR94";
+                var SENDER_ID = "967487253557";
+                var value = message;
+                WebRequest tRequest;
+                tRequest = WebRequest.Create("https://android.googleapis.com/gcm/send");
+                tRequest.Method = "post";
+                tRequest.ContentType = "application/json";
+                tRequest.Headers.Add(string.Format("Authorization: key={0}", GoogleAppID));
+
+                tRequest.Headers.Add(string.Format("Sender: id={0}", SENDER_ID));
+
+                string postData = "{\"collapse_key\":\"score_update\",\"time_to_live\":108,\"delay_while_idle\":true,\"data\": { \"message\" : " + "\"" + value + "\",\"time\": " + "\"" + System.DateTime.Now.ToString() + "\"},\"registration_ids\":[\"" + stringregIds + "\"]}";
+
+                Byte[] byteArray = Encoding.UTF8.GetBytes(postData);
+                tRequest.ContentLength = byteArray.Length;
+
+                Stream dataStream = tRequest.GetRequestStream();
+                dataStream.Write(byteArray, 0, byteArray.Length);
+                dataStream.Close();
+
+                WebResponse tResponse = tRequest.GetResponse();
+
+                dataStream = tResponse.GetResponseStream();
+
+                StreamReader tReader = new StreamReader(dataStream);
+
+                String sResponseFromServer = tReader.ReadToEnd();
+
+                HttpWebResponse httpResponse = (HttpWebResponse)tResponse;
+                string statusCode = httpResponse.StatusCode.ToString();
+
+                tReader.Close();
+                dataStream.Close();
+                tResponse.Close();
+
+                return sResponseFromServer;
+            }
+            catch
+            {
+                //throw new WebFaultException<string>("Error", HttpStatusCode.ServiceUnavailable);
+                return "error sending data to GCM server. Service unavailable";
+            }
+
+            
+        }
+
         public IntReturnValue RegisterChildWithoutAppointments(string barcodeId, string firstname1, string lastname1, DateTime birthdate, bool gender,
             int healthFacilityId, int birthplaceId, int domicileId, string address, string phone, string motherFirstname,
             string motherLastname, string notes, int userId, DateTime modifiedOn)
