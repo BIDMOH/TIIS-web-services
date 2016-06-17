@@ -44,12 +44,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="GIIS.BusinessLogic">
+    <Reference Include="GIIS.BusinessLogic, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\DataLayer\GIIS.BusinessLogic\bin\Debug\GIIS.BusinessLogic.dll</HintPath>
     </Reference>
     <Reference Include="GIIS.DataLayer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\tiis-DataLayer\GIIS.DataLayer\bin\Debug\GIIS.DataLayer.dll</HintPath>
+      <HintPath>..\..\DataLayer\GIIS.DataLayer\bin\Debug\GIIS.DataLayer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Mono.Security">

@@ -17,3 +17,5 @@ C:\Users\user\Documents\tiis-services-and-datalayer\Services\GIIS.Tanzania.WCF\b
 C:\Users\user\Documents\tiis-services-and-datalayer\Services\GIIS.Tanzania.WCF\bin\GIIS.BusinessLogic.xml
 C:\Users\user\Documents\tiis-services-and-datalayer\Services\GIIS.Tanzania.WCF\obj\Debug\GIIS.Tanzania.WCF.dll
 C:\Users\user\Documents\tiis-services-and-datalayer\Services\GIIS.Tanzania.WCF\obj\Debug\GIIS.Tanzania.WCF.pdb
+C:\Users\user\Documents\tiis-services-and-datalayer\Services\GIIS.Tanzania.WCF\bin\GIIS.DataLayer.dll
+C:\Users\user\Documents\tiis-services-and-datalayer\Services\GIIS.Tanzania.WCF\bin\GIIS.DataLayer.pdb

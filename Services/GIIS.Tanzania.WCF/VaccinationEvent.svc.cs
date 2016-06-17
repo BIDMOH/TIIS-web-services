@@ -489,6 +489,25 @@ namespace GIIS.Tanzania.WCF
             return veeList;
         }
 
+
+        public List<List<string>> GetDefaultersWithDates()
+        {
+            DataTable dt = GIIS.DataLayer.VaccinationEvent.GetDefaultersWithModifiedOn();
+
+            List<List<string>> veeList = new List<List<string>>();
+            foreach (DataRow dr in dt.Rows)
+            {
+                List<string> vee = new List<string>();
+                vee.Add(dr[0].ToString());
+                vee.Add(dr[1].ToString());
+
+                veeList.Add(vee);
+            }
+
+            return veeList;
+        }
+
+
         private int GetActualChildId(int childId)
         {
             ChildMerges cm = ChildMerges.GetChildMergesBySubsumedId(childId);

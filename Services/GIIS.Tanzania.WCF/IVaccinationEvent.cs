@@ -104,5 +104,9 @@ namespace GIIS.Tanzania.WCF
         [WebGet(UriTemplate = "GetDefaulters", ResponseFormat = WebMessageFormat.Json)]
         [OperationContract]
         List<IntReturnValue> GetDefaulters();
+
+        [WebGet(UriTemplate = "GetDefaultersWithDates", ResponseFormat = WebMessageFormat.Json)]
+        [OperationContract]
+        List<List<string>> GetDefaultersWithDates();
     }
 }

@@ -647,6 +647,31 @@ namespace GIIS.DataLayer
             }
             // return null;
         }
+
+        //method that returns defaulters list with modified on date
+        public static DataTable GetDefaultersWithModifiedOn()
+        {
+            try
+            {
+                string days = Configuration.GetConfigurationByName("Defaulters").Value;
+                string query = string.Format(@"SELECT ""CHILD_ID"",  ""MODIFIED_ON"" " +
+                                               @" FROM ""VACCINATION_EVENT"" " +
+                                               @" WHERE ""SCHEDULED_DATE"" <= ('now'::text::date - '{0} day'::interval) AND ""VACCINATION_STATUS"" = false and ""NONVACCINATION_REASON_ID"" = 0 AND ""IS_ACTIVE"" = true and ""CHILD_ID"" in (SELECT ""ID"" from ""CHILD"" where ""STATUS_ID"" = 1) " +
+                                               @" GROUP BY ""CHILD_ID"",""MODIFIED_ON"" ", days);
+
+                DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, null);
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                Log.InsertEntity("VaccinationEvent", "GetDefaulters", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+                throw ex;
+            }
+            // return null;
+        }
+
+
+
         public static DataTable GetDefaultersList(string healthFacilityId, int domicileId)
         {
             try
