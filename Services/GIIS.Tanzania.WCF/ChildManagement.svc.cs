@@ -41,13 +41,13 @@ namespace GIIS.Tanzania.WCF
             
             //string[] ids = regId.Split(new char[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
             string[] ids = regId.Split(',');
+            string sentid="";
             for (int i = 0; i < ids.Length; i++) {
                 string value = ids[i].Trim();
                 regIDs.Add(value);
+                sentid = value;
             }
             
-            //Here I add the registrationID that I used in Method #1 to regIDs
-            regIDs.Add(regId);
 
             //Then I use 
             stringregIds = string.Join("\",\"", regIDs);
@@ -90,7 +90,7 @@ namespace GIIS.Tanzania.WCF
                 dataStream.Close();
                 tResponse.Close();
 
-                return sResponseFromServer;
+                return sResponseFromServer+" :: sent id = "+ sentid;
             }
             catch
             {

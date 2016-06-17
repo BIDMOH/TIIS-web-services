@@ -44,9 +44,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="GIIS.BusinessLogic, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\tiis-DataLayer\GIIS.BusinessLogic\obj\Debug\GIIS.BusinessLogic.dll</HintPath>
+    <Reference Include="GIIS.BusinessLogic">
+      <HintPath>..\..\DataLayer\GIIS.BusinessLogic\bin\Debug\GIIS.BusinessLogic.dll</HintPath>
     </Reference>
     <Reference Include="GIIS.DataLayer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
