@@ -507,22 +507,32 @@ namespace GIIS.Tanzania.WCF
             return veeList;
         }
 
-        public List<List<string>> GetHfidOfModifiedChild(int childId)
+        public List<string> GetHfidOfModifiedChild(int childId)
         {
             DataTable dt = GIIS.DataLayer.VaccinationEvent.GetHfidsOfModifiedChild(childId);
 
-            List<List<string>> veeList = new List<List<string>>();
+			string hfids = "";
             foreach (DataRow dr in dt.Rows)
             {
-                List<string> vee = new List<string>();
-                vee.Add("health_facility_id");
-                vee.Add(dr[0].ToString());
+				hfids=hfids+dr[0].ToString()+",";
 
-                veeList.Add(vee);
             }
 
-            return veeList;
+			return GetGcmIds(hfids);
         }
+
+		public List<string> GetGcmIds(string healthFacilityIdsList)
+		{
+			DataTable dt = GIIS.DataLayer.VaccinationEvent.GetGcmIdsOfModifiedChild(healthFacilityIdsList);
+			List<string> gcmIdsList = new List<string>();
+			foreach (DataRow dr in dt.Rows)
+			{
+				gcmIdsList.Add(dr[0].ToString());
+			}
+
+			return gcmIdsList;
+		}
+
 
         private int GetActualChildId(int childId)
         {

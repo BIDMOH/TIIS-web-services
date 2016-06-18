@@ -738,6 +738,26 @@ namespace GIIS.DataLayer
            
         }
 
+		public static DataTable GetGcmIds(string [] hfids)
+		{
+			try
+			{
+				string query = @"SELECT ""GCM_USERS"".""GCM_ID"" FROM ""GCM_USERS""  WHERE ""GCM_USERS"".""HEALTH_FACILITY_ID"" ANY(" + hfids + ")";
+
+
+				DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, null);
+				return dt;
+			}
+			catch (Exception ex)
+			{
+				Log.InsertEntity("VaccinationEvent", "GetGcmIds", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+				throw ex;
+				//  return null;
+			}
+
+		}
+
+
         public static int DeleteByChild(int id)
         {
             try
