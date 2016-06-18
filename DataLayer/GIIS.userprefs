@@ -1,0 +1,25 @@
+﻿<Properties StartupItem="HIESync/GIIS.HIESync.csproj">
+  <MonoDevelop.Ide.Workbench>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="GIIS" expanded="True">
+            <Node name="GIIS.DataLayer" expanded="True">
+              <Node name="User.cs" selected="True" />
+            </Node>
+            <Node name="GIIS.HIESync" expanded="True">
+              <Node name="Control" expanded="True" />
+              <Node name="Data" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.GIIS.HIESync PreferredExecutionTarget="MonoDevelop.Default" />
+</Properties>

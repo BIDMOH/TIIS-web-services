@@ -12,7 +12,7 @@
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
- //******************************************************************************
+//******************************************************************************
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,16 +23,16 @@ using System.Text;
 
 namespace GIIS.Tanzania.WCF
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IUserManagement" in both code and config file together.
-    [ServiceContract]
-    public interface IUserManagement
-    {
-        [WebGet(UriTemplate = "GetUser?username={username}&password={password}", ResponseFormat = WebMessageFormat.Json)]
-        [OperationContract]
-        GIIS.DataLayer.User GetUser(string username, string password);
+	// NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IUserManagement" in both code and config file together.
+	[ServiceContract]
+	public interface IUserManagement
+	{
+		[WebGet(UriTemplate = "GetUser?username={username}&password={password}&gcmID={gcmID}", ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		GIIS.DataLayer.User GetUser(string username, string password, string gcmID);
 
-        [WebGet(UriTemplate = "GetUsersByHealthFacilityId?hf_id={hf_id}", ResponseFormat = WebMessageFormat.Json)]
-        [OperationContract]
-        ICollection<GIIS.DataLayer.User> GetUsersByHealthFacilityId(int hf_id);
-    }
+		[WebGet(UriTemplate = "GetUsersByHealthFacilityId?hf_id={hf_id}", ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		ICollection<GIIS.DataLayer.User> GetUsersByHealthFacilityId(int hf_id);
+	}
 }

@@ -12,7 +12,7 @@
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
- //******************************************************************************
+//******************************************************************************
 using GIIS.DataLayer;
 using System;
 using System.Collections.Generic;
@@ -23,25 +23,25 @@ using System.Text;
 
 namespace GIIS.Tanzania.WCF
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "UserManagement" in code, svc and config file together.
-    // NOTE: In order to launch WCF Test Client for testing this service, please select UserManagement.svc or UserManagement.svc.cs at the Solution Explorer and start debugging.
-    public class UserManagement : IUserManagement
-    {
-        public User GetUser(string username, string password)
-        {
-            User user = User.GetDataByUsernameAndPassword(username, password);
-            user.Isloggedin = true;
-            user.PrevLogin = user.Lastlogin;
-            user.Lastlogin = DateTime.Now;
-            User.Update(user);
+	// NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "UserManagement" in code, svc and config file together.
+	// NOTE: In order to launch WCF Test Client for testing this service, please select UserManagement.svc or UserManagement.svc.cs at the Solution Explorer and start debugging.
+	public class UserManagement : IUserManagement
+	{
+		public User GetUser(string username, string password, string gcmId)
+		{
+			User user = User.GetDataByUsernameAndPassword(username, password, gcmId);
+			user.Isloggedin = true;
+			user.PrevLogin = user.Lastlogin;
+			user.Lastlogin = DateTime.Now;
+			User.Update(user);
 
-            return user;
-        }
+			return user;
+		}
 
-        public ICollection<User> GetUsersByHealthFacilityId(int hf_id)
-        {
-            ICollection<User> userList = User.GetUsersByHealthFacilityId(hf_id);
-            return userList;
-        }
-    }
+		public ICollection<User> GetUsersByHealthFacilityId(int hf_id)
+		{
+			ICollection<User> userList = User.GetUsersByHealthFacilityId(hf_id);
+			return userList;
+		}
+	}
 }
