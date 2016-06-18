@@ -714,6 +714,30 @@ namespace GIIS.DataLayer
             return null;
         }
 
+
+
+
+        public static DataTable GetHfidsOfModifiedChild(int childId)
+        {
+            try
+            {
+
+                // string query = @"SELECT USER.""VACCINATION_EVENT"" FROM ""USER"" INNER JOIN ""VACCINATION_EVENT"" ON USER.""ID"" = VACCINATION_EVENT.""MODIFIED_BY""  WHERE  VACCINATION_EVENT.""CHILD_ID"" =" +childId+ @"  GROUP BY USER.""HEALTH_FACILITY_ID"" ";
+                string query = @"SELECT ""USER"".""HEALTH_FACILITY_ID"" FROM ""USER"" INNER JOIN ""VACCINATION_EVENT"" ON ""USER"".""ID"" = ""VACCINATION_EVENT"".""MODIFIED_BY"" WHERE ""VACCINATION_EVENT"".""CHILD_ID"" =" + childId + @"  GROUP BY ""USER"".""HEALTH_FACILITY_ID"" ";
+
+
+                DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, null);
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                Log.InsertEntity("VaccinationEvent", "GEtHfidsOdModifiedChild", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+                throw ex;
+              //  return null;
+            }
+           
+        }
+
         public static int DeleteByChild(int id)
         {
             try

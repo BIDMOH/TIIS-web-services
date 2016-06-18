@@ -108,5 +108,9 @@ namespace GIIS.Tanzania.WCF
         [WebGet(UriTemplate = "GetDefaultersWithDates", ResponseFormat = WebMessageFormat.Json)]
         [OperationContract]
         List<List<string>> GetDefaultersWithDates();
+
+        [WebGet(UriTemplate = "GetHfidOfModifiedChild?childId={childId}", ResponseFormat = WebMessageFormat.Json)]
+        [OperationContract]
+        List<List<string>> GetHfidOfModifiedChild(int childId);
     }
 }
