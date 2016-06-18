@@ -511,17 +511,19 @@ namespace GIIS.Tanzania.WCF
         {
             DataTable dt = GIIS.DataLayer.VaccinationEvent.GetHfidsOfModifiedChild(childId);
 
-			string hfids = "";
+			string [] hfids = new string[dt.Rows.Count];
+			int count = 0;
             foreach (DataRow dr in dt.Rows)
             {
-				hfids=hfids+dr[0].ToString()+",";
+				hfids[count]=dr[0].ToString();
+				count++;
 
             }
 
 			return GetGcmIds(hfids);
         }
 
-		public List<string> GetGcmIds(string healthFacilityIdsList)
+		public List<string> GetGcmIds(string[] healthFacilityIdsList)
 		{
 			DataTable dt = GIIS.DataLayer.VaccinationEvent.GetGcmIdsOfModifiedChild(healthFacilityIdsList);
 			List<string> gcmIdsList = new List<string>();
