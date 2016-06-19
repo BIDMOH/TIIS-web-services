@@ -45,7 +45,7 @@ namespace GIIS.Tanzania.WCF
             {
                 string encodedBasicAuth = basicAuth.Replace("Basic ", "");
                 string[] decoded = Encoding.UTF8.GetString(Convert.FromBase64String(encodedBasicAuth)).Split(':');
-                string userName = decoded[0], password = decoded[1];
+				string userName = decoded[0], password = decoded[1];
 
                 if (String.IsNullOrEmpty(userName) || String.IsNullOrEmpty(password))
                     throw new ArgumentNullException();
@@ -54,7 +54,6 @@ namespace GIIS.Tanzania.WCF
                 if (user == null || !user.IsActive)
                 {
                     WebOperationContext.Current.OutgoingResponse.StatusCode = System.Net.HttpStatusCode.Unauthorized;
-
                     return false;
                 }
                 else

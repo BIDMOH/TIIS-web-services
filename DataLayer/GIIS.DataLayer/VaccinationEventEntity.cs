@@ -738,19 +738,26 @@ namespace GIIS.DataLayer
            
         }
 
-		public static DataTable GetGcmIds(string [] hfids)
+		public static DataTable GetGcmIds(string hfids)
 		{
 			try
 			{
-				string query = @"SELECT ""GCM_USERS"".""GCM_ID"" FROM ""GCM_USERS""  WHERE ""GCM_USERS"".""HEALTH_FACILITY_ID"" ANY(" + hfids + ")";
+				string query = @"SELECT ""GCM_USERS"".""GCM_ID"" FROM ""GCM_USERS""  WHERE ""GCM_USERS"".""HEALTH_FACILITY_ID""  = ANY(CAST( string_to_array(@hfids, ',' ) AS INTEGER[] ))";
 
 
-				DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, null);
+				List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
+				{
+				   new NpgsqlParameter("@hfids", DbType.String) { Value = hfids }
+				};
+
+
+				DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, parameters);
+
 				return dt;
 			}
 			catch (Exception ex)
 			{
-				Log.InsertEntity("VaccinationEvent", "GetGcmIds", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+				Log.InsertEntity("VaccinationEvent", "GetGcmIds", 4, ex.StackTrace.Replace("'", ""), hfids+ex.Message.Replace("'", ""));
 				throw ex;
 				//  return null;
 			}

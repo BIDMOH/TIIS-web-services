@@ -507,35 +507,6 @@ namespace GIIS.Tanzania.WCF
             return veeList;
         }
 
-        public List<string> GetHfidOfModifiedChild(int childId)
-        {
-            DataTable dt = GIIS.DataLayer.VaccinationEvent.GetHfidsOfModifiedChild(childId);
-
-			string [] hfids = new string[dt.Rows.Count];
-			int count = 0;
-            foreach (DataRow dr in dt.Rows)
-            {
-				hfids[count]=dr[0].ToString();
-				count++;
-
-            }
-
-			return GetGcmIds(hfids);
-        }
-
-		public List<string> GetGcmIds(string[] healthFacilityIdsList)
-		{
-			DataTable dt = GIIS.DataLayer.VaccinationEvent.GetGcmIdsOfModifiedChild(healthFacilityIdsList);
-			List<string> gcmIdsList = new List<string>();
-			foreach (DataRow dr in dt.Rows)
-			{
-				gcmIdsList.Add(dr[0].ToString());
-			}
-
-			return gcmIdsList;
-		}
-
-
         private int GetActualChildId(int childId)
         {
             ChildMerges cm = ChildMerges.GetChildMergesBySubsumedId(childId);
@@ -544,5 +515,16 @@ namespace GIIS.Tanzania.WCF
 
             return childId;
         }
+
+		private string TrimLastCharacter(string str)
+		{
+			if (string.IsNullOrEmpty(str))
+			{
+				return str;
+			}
+			else {
+				return str.TrimEnd(str[str.Length - 1]);
+			}
+		}
     }
 }

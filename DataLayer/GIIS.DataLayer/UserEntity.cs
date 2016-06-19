@@ -66,7 +66,7 @@ namespace GIIS.DataLayer
 			}
 		}
 
-		public static User GetDataByUsernameAndPassword(string username, string password, string gcmid)
+		public static User GetDataByUsernameAndPasswordWithGcmId(string username, string password, string gcmid)
 		{
 			try
 			{
@@ -95,12 +95,37 @@ namespace GIIS.DataLayer
 			}
 		}
 
+		public static User GetDataByUsernameAndPassword(string username, string password)
+		{
+			try
+			{
+
+				User user = GetByUsername(username);
+				if (user != null)
+				{
+					if (Helper.VerifyHash(password, user.Password))
+						return user;
+					else
+						return null;
+				}
+				else
+					return null;
+
+			}
+			catch (Exception ex)
+			{
+				Log.InsertEntity("User", "GetDataByUsernameAndPassword", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+				throw ex;
+
+			}
+		}
+
 		public static void checkAndUpdateGcmTable(string gcmID, int healthFacilityId)
 		{
 
 			try
 			{
-				string query = string.Format("SELECT HEALTH_FACILITY_ID FROM \"GCM_USERS\" " + "WHERE \"GCM_ID\" = @gcmID ");
+				string query = @"SELECT ""GCM_USERS"".""HEALTH_FACILITY_ID"" FROM ""GCM_USERS"" WHERE ""GCM_ID"" = @gcmID";
 
 				List<Npgsql.NpgsqlParameter> parameters = new List<NpgsqlParameter>()
 				{
@@ -109,31 +134,47 @@ namespace GIIS.DataLayer
 
 				int hfid = 0;
 				DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, parameters);
-				foreach (DataRow row in dt.Rows)
+
+				if (dt.Rows.Count > 0)
 				{
-					try
+					foreach (DataRow row in dt.Rows)
 					{
-						hfid = Helper.ConvertToInt(row["HEALTH_FACILITY_ID"]);
+						try
+						{
+							hfid = Helper.ConvertToInt(row["HEALTH_FACILITY_ID"]);
+						}
+						catch (Exception ex)
+						{
+							Log.InsertEntity("User", "checkAndUpdateGcmTable", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+							throw ex;
+						}
 					}
-					catch (Exception ex)
+
+					if (hfid != healthFacilityId && hfid != 0)
 					{
-						Log.InsertEntity("User", "checkAndUpdateGcmTable", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
-						throw ex;
+						//Update the gcmID with the new health facilithy ID
+						string updateQuery = @"UPDATE ""GCM_USERS"" SET ""HEALTH_FACILITY_ID"" = @healthFacilityId WHERE ""GCM_ID"" = @gcmId";
+
+						List<Npgsql.NpgsqlParameter> Updateparameters = new List<NpgsqlParameter>(){
+								new NpgsqlParameter("@healthFacilityId", DbType.Int32) { Value = healthFacilityId },
+								new NpgsqlParameter("@gcmId", DbType.String) { Value = gcmID }
+							};
+						int rowAffected = DBManager.ExecuteNonQueryCommand(updateQuery, CommandType.Text, Updateparameters);
+						AuditTable.InsertEntity("User", gcmID, 3, DateTime.Now, 1);
 					}
+				}
+				else {
+					string insertQuery = @"INSERT INTO ""GCM_USERS"" (""GCM_ID"", ""HEALTH_FACILITY_ID"") VALUES (@gcmId, @healthFacilityId) returning ""GCM_ID"" ";
+					List<Npgsql.NpgsqlParameter> insertParameters = new List<NpgsqlParameter>()
+					{
+					new NpgsqlParameter("@gcmId", DbType.String)  { Value = gcmID },
+						new NpgsqlParameter("@healthFacilityId", DbType.Int32)  { Value = healthFacilityId }
+					};
+
+					object id = DBManager.ExecuteScalarCommand(insertQuery, CommandType.Text, insertParameters);
+					AuditTable.InsertEntity("User", id.ToString(), 1, DateTime.Now, 1);
 				}
 
-				if (hfid != healthFacilityId && hfid != 0)
-				{
-					//Update the gcmID with the new health facilithy ID
-					string updateQuery = @"UPDATE ""GCM_USERS"" SET ""HEALTH_FACILITY_ID"" = @HealthFacilityId WHERE ""GCM_ID"" = @gcmId";
-					List<Npgsql.NpgsqlParameter> Updateparameters = new List<NpgsqlParameter>()
-					{
-						new NpgsqlParameter("@HealthFacilityId", DbType.Int32) { Value = healthFacilityId },
-						new NpgsqlParameter("@gcmId", DbType.String) { Value = gcmID }
-					};
-					int rowAffected = DBManager.ExecuteNonQueryCommand(updateQuery, CommandType.Text, Updateparameters);
-					AuditTable.InsertEntity("GCM_ID", gcmID, 3, DateTime.Now, 1);
-				}
 
 			}
 			catch (Exception ex)

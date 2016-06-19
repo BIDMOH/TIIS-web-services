@@ -27,9 +27,20 @@ namespace GIIS.Tanzania.WCF
 	// NOTE: In order to launch WCF Test Client for testing this service, please select UserManagement.svc or UserManagement.svc.cs at the Solution Explorer and start debugging.
 	public class UserManagement : IUserManagement
 	{
-		public User GetUser(string username, string password, string gcmId)
+		public User GetUserWithGcm(string username, string password, string gcmId)
 		{
-			User user = User.GetDataByUsernameAndPassword(username, password, gcmId);
+			User user = User.GetDataByUsernameAndPasswordWithGcmId(username, password, gcmId);
+			user.Isloggedin = true;
+			user.PrevLogin = user.Lastlogin;
+			user.Lastlogin = DateTime.Now;
+			User.Update(user);
+
+			return user;
+		}
+
+		public User GetUser(string username, string password)
+		{
+			User user = User.GetDataByUsernameAndPassword(username, password);
 			user.Isloggedin = true;
 			user.PrevLogin = user.Lastlogin;
 			user.Lastlogin = DateTime.Now;

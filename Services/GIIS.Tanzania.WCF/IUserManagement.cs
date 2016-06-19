@@ -27,9 +27,13 @@ namespace GIIS.Tanzania.WCF
 	[ServiceContract]
 	public interface IUserManagement
 	{
-		[WebGet(UriTemplate = "GetUser?username={username}&password={password}&gcmID={gcmID}", ResponseFormat = WebMessageFormat.Json)]
+		[WebGet(UriTemplate = "GetUserWithGcm?username={username}&password={password}&gcmID={gcmID}", ResponseFormat = WebMessageFormat.Json)]
 		[OperationContract]
-		GIIS.DataLayer.User GetUser(string username, string password, string gcmID);
+		GIIS.DataLayer.User GetUserWithGcm(string username, string password, string gcmID);
+
+		[WebGet(UriTemplate = "GetUser?username={username}&password={password}", ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		GIIS.DataLayer.User GetUser(string username, string password);
 
 		[WebGet(UriTemplate = "GetUsersByHealthFacilityId?hf_id={hf_id}", ResponseFormat = WebMessageFormat.Json)]
 		[OperationContract]

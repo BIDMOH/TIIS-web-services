@@ -1,0 +1,36 @@
+﻿<Properties StartupItem="GIIS.Tanzania.WCF/GIIS.Tanzania.WCF.csproj">
+  <MonoDevelop.Ide.Workbench ActiveDocument="GIIS.Tanzania.WCF/IChildManagement.cs">
+    <Files>
+      <File FileName="GIIS.Tanzania.WCF/VaccinationEvent.svc.cs" Line="17" Column="34" />
+      <File FileName="GIIS.Tanzania.WCF/UserManagement.svc.cs" Line="37" Column="4" />
+      <File FileName="GIIS.Tanzania.WCF/IUserManagement.cs" Line="33" Column="3" />
+      <File FileName="GIIS.Tanzania.WCF/IVaccinationEvent.cs" Line="110" Column="53" />
+      <File FileName="GIIS.Tanzania.WCF/ChildManagement.svc.cs" Line="42" Column="58" />
+      <File FileName="GIIS.Tanzania.WCF/IChildManagement.cs" Line="171" Column="48" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="GIIS.Tanzania.WCF" expanded="True">
+            <Node name="GIIS.Tanzania.WCF" expanded="True">
+              <Node name="References" expanded="True" />
+              <Node name="ChildManagement.svc" expanded="True" />
+              <Node name="IChildManagement.cs" selected="True" />
+              <Node name="UserManagement.svc" expanded="True" />
+              <Node name="VaccinationEvent.svc" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.GIIS.Tanzania.WCF PreferredExecutionTarget="MonoDevelop.Default" />
+  <DisabledProjects>
+    <String>ConsoleApplication2/ConsoleApplication2.csproj</String>
+  </DisabledProjects>
+</Properties>

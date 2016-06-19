@@ -4,9 +4,6 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>
-    </ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{9A92CA0A-5B83-4E9D-8EDD-BB59683F9A98}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
@@ -44,20 +41,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="GIIS.BusinessLogic, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\DataLayer\GIIS.BusinessLogic\bin\Debug\GIIS.BusinessLogic.dll</HintPath>
-    </Reference>
-    <Reference Include="GIIS.DataLayer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\DataLayer\GIIS.DataLayer\bin\Debug\GIIS.DataLayer.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Mono.Security">
       <HintPath>..\..\tiis-DataLayer\GIIS.BusinessLogic\bin\Release\Mono.Security.dll</HintPath>
-    </Reference>
-    <Reference Include="Npgsql">
-      <HintPath>..\..\tiis-DataLayer\GIIS.BusinessLogic\bin\Release\Npgsql.dll</HintPath>
     </Reference>
     <Reference Include="System.IdentityModel" />
     <Reference Include="System.identitymodel.services" />
@@ -79,6 +65,15 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="Npgsql">
+      <HintPath>..\..\..\..\Downloads\tiis-datalayer\GIIS.BusinessLogic\bin\Debug\Npgsql.dll</HintPath>
+    </Reference>
+    <Reference Include="GIIS.BusinessLogic">
+      <HintPath>..\..\..\..\Downloads\tiis-datalayer\GIIS.BusinessLogic\bin\Debug\GIIS.BusinessLogic.dll</HintPath>
+    </Reference>
+    <Reference Include="GIIS.DataLayer">
+      <HintPath>..\..\DataLayer\GIIS.DataLayer\bin\Debug\GIIS.DataLayer.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="AgeDefinitionManagement.svc" />
@@ -223,6 +218,11 @@
         </WebProjectProperties>
       </FlavorProperties>
     </VisualStudio>
+    <MonoDevelop>
+      <Properties>
+        <XspParameters Port="8080" Address="127.0.0.1" SslMode="None" SslProtocol="Default" KeyType="None" CertFile="" KeyFile="" PasswordOptions="None" Password="" Verbose="True" />
+      </Properties>
+    </MonoDevelop>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

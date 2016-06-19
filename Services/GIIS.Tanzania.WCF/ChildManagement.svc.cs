@@ -25,6 +25,7 @@ using System.Globalization;
 using System.Net;
 using System.IO;
 using System.ServiceModel.Web;
+using System.Data;
 
 namespace GIIS.Tanzania.WCF
 {
@@ -33,21 +34,13 @@ namespace GIIS.Tanzania.WCF
     public class ChildManagement : IChildManagement
     {
 
-        public string sampleGCMTest(string message , string regId)
+        public string BroadcastChildUpdates(int childId)
         {
 
+
+
+			List<string> regIDs = GetGcmIdsToSendDataModifiedChild(childId);
             string stringregIds = null;
-            List<string> regIDs = new List<string>();
-            
-            //string[] ids = regId.Split(new char[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
-            string[] ids = regId.Split(',');
-            string sentid="";
-            for (int i = 0; i < ids.Length; i++) {
-                string value = ids[i].Trim();
-                regIDs.Add(value);
-                sentid = value;
-            }
-            
 
             //Then I use 
             stringregIds = string.Join("\",\"", regIDs);
@@ -57,7 +50,7 @@ namespace GIIS.Tanzania.WCF
             {
                 string GoogleAppID = "AIzaSyBgsthTTTiunMtHV5XT1Im6bl17i5rGR94";
                 var SENDER_ID = "967487253557";
-                var value = message;
+				var value = childId.ToString();
                 WebRequest tRequest;
                 tRequest = WebRequest.Create("https://android.googleapis.com/gcm/send");
                 tRequest.Method = "post";
@@ -90,7 +83,7 @@ namespace GIIS.Tanzania.WCF
                 dataStream.Close();
                 tResponse.Close();
 
-                return sResponseFromServer+" :: sent id = "+ sentid;
+                return sResponseFromServer;
             }
             catch
             {
@@ -100,6 +93,34 @@ namespace GIIS.Tanzania.WCF
 
             
         }
+
+
+		public List<string> GetGcmIdsToSendDataModifiedChild(int childId)
+		{
+			DataTable dt = GIIS.DataLayer.VaccinationEvent.GetHfidsOfModifiedChild(childId);
+
+			string hfids = "";
+			foreach (DataRow dr in dt.Rows)
+			{
+				hfids = hfids + dr[0].ToString() + ",";
+
+			}
+			//added a null value inorder to prevent the array from ending with ,
+			hfids = hfids + "-1";
+			return GetGcmIds(hfids);
+		}
+
+		public List<string> GetGcmIds(string healthFacilityIdsList)
+		{
+			DataTable dt = GIIS.DataLayer.VaccinationEvent.GetGcmIds(healthFacilityIdsList);
+			List<string> gcmIdsList = new List<string>();
+			foreach (DataRow dr in dt.Rows)
+			{
+				gcmIdsList.Add(dr[0].ToString());
+			}
+
+			return gcmIdsList;
+		}
 
         public IntReturnValue RegisterChildWithoutAppointments(string barcodeId, string firstname1, string lastname1, DateTime birthdate, bool gender,
             int healthFacilityId, int birthplaceId, int domicileId, string address, string phone, string motherFirstname,
