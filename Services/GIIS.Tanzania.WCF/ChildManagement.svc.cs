@@ -197,6 +197,7 @@ namespace GIIS.Tanzania.WCF
             {
                 //add appointments
                 VaccinationAppointment.InsertVaccinationsForChild(childInserted, userId);
+				BroadcastChildUpdates(childInserted);
             }
 
             IntReturnValue irv = new IntReturnValue();
@@ -294,6 +295,7 @@ namespace GIIS.Tanzania.WCF
                     }
 
                 }
+				BroadcastChildUpdates(childId);
             }
 
             IntReturnValue irv = new IntReturnValue();
