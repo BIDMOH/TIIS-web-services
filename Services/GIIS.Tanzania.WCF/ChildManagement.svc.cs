@@ -40,7 +40,8 @@ namespace GIIS.Tanzania.WCF
 
 
 			List<string> regIDs = GetGcmIdsToSendDataModifiedChild(childId);
-            string stringregIds = null;
+            
+			string stringregIds = null;
 
             //Then I use 
             stringregIds = string.Join("\",\"", regIDs);
