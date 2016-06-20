@@ -738,6 +738,28 @@ namespace GIIS.DataLayer
            
         }
 
+		public static DataTable GetHfidsOfChild(int childId)
+		{
+			try
+			{
+
+				// string query = @"SELECT USER.""VACCINATION_EVENT"" FROM ""USER"" INNER JOIN ""VACCINATION_EVENT"" ON USER.""ID"" = VACCINATION_EVENT.""MODIFIED_BY""  WHERE  VACCINATION_EVENT.""CHILD_ID"" =" +childId+ @"  GROUP BY USER.""HEALTH_FACILITY_ID"" ";
+				string query = @"SELECT ""VACCINATION_EVENT"".""HEALTH_FACILITY_ID"" FROM ""VACCINATION_EVENT""  WHERE ""VACCINATION_EVENT"".""CHILD_ID"" =" + childId + @"  GROUP BY ""VACCINATION_EVENT"".""HEALTH_FACILITY_ID"" ";
+
+
+				DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, null);
+				return dt;
+			}
+			catch (Exception ex)
+			{
+				Log.InsertEntity("VaccinationEvent", "GEtHfidsOdModifiedChild", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+				throw ex;
+				//  return null;
+			}
+
+		}
+
+
 		public static DataTable GetGcmIds(string hfids)
 		{
 			try

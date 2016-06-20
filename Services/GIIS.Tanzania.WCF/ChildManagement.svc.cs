@@ -105,8 +105,13 @@ namespace GIIS.Tanzania.WCF
 				hfids = hfids + dr[0].ToString() + ",";
 
 			}
-			//added a null value inorder to prevent the array from ending with ,
-			hfids = hfids + "-1";
+
+			DataTable dt1 = GIIS.DataLayer.VaccinationEvent.GetHfidsOfChild(childId); 
+			foreach (DataRow dr1 in dt1.Rows)
+			{
+				hfids = hfids + dr1[0].ToString();
+
+			}
 			return GetGcmIds(hfids);
 		}
 

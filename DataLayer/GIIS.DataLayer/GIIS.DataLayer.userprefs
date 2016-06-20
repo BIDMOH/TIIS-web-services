@@ -1,22 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workbench ActiveDocument="UserEntity.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="VaccinationEventEntity.cs">
     <Files>
       <File FileName="Actions.cs" Line="20" Column="7" />
       <File FileName="UserEntity.cs" Line="171" Column="60" />
-      <File FileName="VaccinationEventEntity.cs" Line="211" Column="14" />
+      <File FileName="VaccinationEventEntity.cs" Line="747" Column="101" />
       <File FileName="User.cs" Line="154" Column="2" />
     </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State name="__root__">
-          <Node name="GIIS.DataLayer" expanded="True">
-            <Node name="GIIS.DataLayer" expanded="True" selected="True">
-              <Node name="References" expanded="True" />
-            </Node>
-          </Node>
-        </State>
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
