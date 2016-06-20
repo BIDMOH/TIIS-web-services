@@ -1,0 +1,5 @@
+/Development/ASP/Backend/tiis-services-and-datalayer/DataLayer/GIIS.BusinessLogic/obj/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/Development/ASP/Backend/tiis-services-and-datalayer/DataLayer/GIIS.BusinessLogic/obj/Debug/GIIS.BusinessLogic.Lib.Npgsql.dll
+/Development/ASP/Backend/tiis-services-and-datalayer/DataLayer/GIIS.BusinessLogic/bin/Debug/Mono.Security.dll
+/Development/ASP/Backend/tiis-services-and-datalayer/DataLayer/GIIS.BusinessLogic/bin/Debug/Npgsql.dll
+/Development/ASP/Backend/tiis-services-and-datalayer/DataLayer/GIIS.BusinessLogic/bin/Debug/GIIS.DataLayer.dll
