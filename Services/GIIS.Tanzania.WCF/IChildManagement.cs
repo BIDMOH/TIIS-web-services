@@ -168,8 +168,8 @@ namespace GIIS.Tanzania.WCF
 		List<string> GetGcmIdsToSendDataModifiedChild(int childId);
 
 		//contract for a test GCM function
-		[WebGet(UriTemplate = "BroadcastChildUpdates?childId={childId}", ResponseFormat = WebMessageFormat.Json)]
+		[WebGet(UriTemplate = "BroadcastChildUpdates?childId={childId}&regId={regId}", ResponseFormat = WebMessageFormat.Json)]
 		[OperationContract]
-		string BroadcastChildUpdates(int childId);
+		string BroadcastChildUpdates(int childId, string regId);
     }
 }

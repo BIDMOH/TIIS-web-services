@@ -33,6 +33,7 @@ namespace GIIS.Tanzania.WCF
     // NOTE: In order to launch WCF Test Client for testing this service, please select ChildManagement.svc or ChildManagement.svc.cs at the Solution Explorer and start debugging.
     public class ChildManagement : IChildManagement
     {
+		
 
         public string BroadcastChildUpdates(int childId)
         {

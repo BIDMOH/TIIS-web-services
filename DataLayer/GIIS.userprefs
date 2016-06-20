@@ -3,14 +3,8 @@
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="GIIS" expanded="True">
-            <Node name="GIIS.DataLayer" expanded="True">
-              <Node name="User.cs" selected="True" />
-            </Node>
-            <Node name="GIIS.HIESync" expanded="True">
-              <Node name="Control" expanded="True" />
-              <Node name="Data" expanded="True" />
-            </Node>
+          <Node name="GIIS" expanded="True" selected="True">
+            <Node name="GIIS.DataLayer" expanded="True" />
           </Node>
         </State>
       </Pad>
@@ -21,5 +15,8 @@
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.ItemProperties.GIIS.HIESync PreferredExecutionTarget="MonoDevelop.Default" />
+  <DisabledProjects>
+    <String>HIESync/GIIS.HIESync.csproj</String>
+    <String>GIIS.BusinessLogic.Test/GIIS.BusinessLogic.Test.csproj</String>
+  </DisabledProjects>
 </Properties>
