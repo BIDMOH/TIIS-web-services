@@ -446,9 +446,9 @@ namespace GIIS.DataLayer
             }
         }
 
-        public static List<Child> GetPagedChildList(int statusId, DateTime birthdateFrom, DateTime birthdateTo, string firstname1, string lastname1,
-            string idFields, string healthFacilityId, int birthplaceId, int communityId, int domicileId,
-            string motherFirstname, string motherLastname, string systemId, string barcodeId, string tempId,
+		public static List<Child> GetPagedChildList(int statusId, DateTime birthdateFrom, DateTime birthdateTo, string firstname1, string lastname1,
+			string idFields, string healthFacilityId, int birthplaceId, int communityId, int domicileId,
+													string motherFirstname, string motherLastname, string mothersHivStatus, string mothersTT2Status, string systemId, string barcodeId, string tempId,
             ref int maximumRows, ref int startRowIndex)
         {
             try
@@ -471,6 +471,11 @@ namespace GIIS.DataLayer
 
                                 + @" AND ( UPPER(""MOTHER_FIRSTNAME"") LIKE @MotherFirstname or @MotherFirstname is null or @MotherFirstname = '%%' )"
                                 + @" AND ( UPPER(""MOTHER_LASTNAME"") LIKE @MotherLastname or @MotherLastname is null or @MotherLastname = '%%' )"
+
+								+ @" AND ( UPPER(""MOTHER_HIV_STATUS"") LIKE @mothersHivStatus or @mothersHivStatus is null or @mothersHivStatus = '%%' )"
+								+ @" AND ( UPPER(""MOTHER_TT2_STATUS"") LIKE @mothersTT2Status or @mothersTT2Status is null or @mothersTT2Status = '%%' )"
+
+
                                 + @" AND ( UPPER(""IDENTIFICATION_NO1"") LIKE @IdFields OR UPPER(""IDENTIFICATION_NO2"") LIKE @IdFields OR UPPER(""IDENTIFICATION_NO3"") LIKE @IdFields or (@IdFields is null ) or @IdFields = '%%' )"
 
                                 + @" ORDER BY ""BIRTHDATE"" DESC,""LASTNAME1"" OFFSET @StartRowIndex LIMIT @MaximumRows;";
@@ -486,6 +491,10 @@ namespace GIIS.DataLayer
                     new NpgsqlParameter("@Lastname1", DbType.String) { Value = "%" + lastname1 + "%" },
                     new NpgsqlParameter("@MotherFirstname", DbType.String) { Value = "%" + motherFirstname + "%" },
                     new NpgsqlParameter("@MotherLastname", DbType.String) { Value = "%" + motherLastname + "%" },
+
+					new NpgsqlParameter("@mothersHivStatus", DbType.String) { Value = "%" + mothersHivStatus + "%" },
+					new NpgsqlParameter("@mothersTT2Status", DbType.String) { Value = "%" + mothersTT2Status + "%" },
+
                     new NpgsqlParameter("@IdFields", DbType.String) { Value = "%" + idFields + "%" },
                     new NpgsqlParameter("@SystemId", DbType.String) { Value = "%" + systemId + "%" },
                     new NpgsqlParameter("@BarcodeId", DbType.String) { Value = "%" + barcodeId + "%" },

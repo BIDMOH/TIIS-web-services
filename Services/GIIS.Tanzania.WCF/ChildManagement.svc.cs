@@ -164,183 +164,233 @@ namespace GIIS.Tanzania.WCF
             int healthFacilityId, int birthplaceId, int domicileId, string address, string phone, string motherFirstname,
             string motherLastname, string notes, int userId, DateTime modifiedOn)
         {
-            Child o = new Child();
 
-            o.Firstname1 = firstname1;
-            o.Lastname1 = lastname1;
+			string mothersHivStatus = "";
+			string mothersTT2Status = "";
+			return RegisterChildWithoutAppointmentsWithMothersHivStatusAndTT2VaccineStatus(barcodeId,firstname1,lastname1, birthdate, gender, healthFacilityId, birthplaceId, domicileId, address, phone, motherFirstname,
+																					motherLastname, mothersHivStatus, mothersTT2Status, notes, userId, modifiedOn);
 
-            o.Birthdate = birthdate;
-            o.Gender = gender;
-
-            o.HealthcenterId = healthFacilityId;
-            o.BirthplaceId = birthplaceId;
-            o.DomicileId = domicileId;
-
-            o.Address = address;
-            o.Phone = phone;
-            o.MotherFirstname = motherFirstname;
-            o.MotherLastname = motherLastname;
-            o.Notes = notes;
-            o.ModifiedOn = modifiedOn;
-            o.ModifiedBy = userId;
-
-            o.SystemId = DateTime.Now.ToString("yyMMddhhmmss");
-            o.BarcodeId = barcodeId;
-
-            o.StatusId = 1;
-
-            int childInserted = Child.Insert(o);
-
-            IntReturnValue irv = new IntReturnValue();
-            irv.id = childInserted;
-            return irv;
 
         }
+
+
+		public IntReturnValue RegisterChildWithoutAppointmentsWithMothersHivStatusAndTT2VaccineStatus(string barcodeId, string firstname1, string lastname1, DateTime birthdate, bool gender,
+			int healthFacilityId, int birthplaceId, int domicileId, string address, string phone, string motherFirstname, string motherLastname, string mothersHivStatus, string mothersTT2Status, string notes, int userId, DateTime modifiedOn)
+		{
+			Child o = new Child();
+
+			o.Firstname1 = firstname1;
+			o.Lastname1 = lastname1;
+
+			o.Birthdate = birthdate;
+			o.Gender = gender;
+
+			o.HealthcenterId = healthFacilityId;
+			o.BirthplaceId = birthplaceId;
+			o.DomicileId = domicileId;
+
+			o.Address = address;
+			o.Phone = phone;
+
+			o.MotherHivStatus = mothersHivStatus;
+			o.MotherTT2Status = mothersTT2Status;
+			o.MotherFirstname = motherFirstname;
+			o.MotherLastname = motherLastname;
+			o.Notes = notes;
+			o.ModifiedOn = modifiedOn;
+			o.ModifiedBy = userId;
+
+			o.SystemId = DateTime.Now.ToString("yyMMddhhmmss");
+			o.BarcodeId = barcodeId;
+
+			o.StatusId = 1;
+
+			int childInserted = Child.Insert(o);
+
+			IntReturnValue irv = new IntReturnValue();
+			irv.id = childInserted;
+			return irv;
+
+		}
+
 
         public IntReturnValue RegisterChildWithAppoitments(string barcodeId, string firstname1, string firstname2, string lastname1, DateTime birthdate, bool gender,
             int healthFacilityId, int birthplaceId, int domicileId, string address, string phone, string motherFirstname,
             string motherLastname, string notes, int userId, DateTime modifiedOn)
         {
-            Child o = new Child();
-
-            o.Firstname1 = firstname1;
-            o.Lastname1 = lastname1;
-            o.Firstname2 = firstname2;
-            o.Birthdate = birthdate;
-            o.Gender = gender;
-
-            //if (childExists(o.Lastname1, o.Gender, o.Birthdate))
-            //    return -1;
-
-            o.HealthcenterId = healthFacilityId;
-            o.BirthplaceId = birthplaceId;
-            o.DomicileId = domicileId;
-
-            o.Address = address;
-            o.Phone = phone;
-            o.MotherFirstname = motherFirstname;
-            o.MotherLastname = motherLastname;
-            o.Notes = notes;
-            o.ModifiedOn = modifiedOn;
-            o.ModifiedBy = userId;
-
-            o.SystemId = DateTime.Now.ToString("yyMMddhhmmss");
-            o.BarcodeId = barcodeId;
-            o.IsActive = true;
-            o.StatusId = 1;
-
-            int childInserted = Child.Insert(o);
-
-            if (childInserted > 0)
-            {
-                //add appointments
-                VaccinationAppointment.InsertVaccinationsForChild(childInserted, userId);
-				BroadcastChildUpdates(childInserted);
-            }
-
-            IntReturnValue irv = new IntReturnValue();
-            irv.id = childInserted;
-            return irv;
+			string mothersHivStatus = "";
+			string mothersTT2Status = "";
+			return RegisterChildWithAppoitmentsWithMothersHivStatusAndTT2VaccineStatus(barcodeId, firstname1, firstname2, lastname1, birthdate, gender, healthFacilityId, birthplaceId, domicileId, address, phone, motherFirstname,
+																					   motherLastname, mothersHivStatus, mothersTT2Status, notes, userId, modifiedOn);
         }
+
+
+		public IntReturnValue RegisterChildWithAppoitmentsWithMothersHivStatusAndTT2VaccineStatus(string barcodeId, string firstname1, string firstname2, string lastname1, DateTime birthdate, bool gender,
+		   int healthFacilityId, int birthplaceId, int domicileId, string address, string phone, string motherFirstname,
+		                                                                                          string motherLastname, string mothersHivStatus, string mothersTT2Status, string notes, int userId, DateTime modifiedOn)
+		{
+			Child o = new Child();
+
+			o.Firstname1 = firstname1;
+			o.Lastname1 = lastname1;
+			o.Firstname2 = firstname2;
+			o.Birthdate = birthdate;
+			o.Gender = gender;
+
+			//if (childExists(o.Lastname1, o.Gender, o.Birthdate))
+			//    return -1;
+
+			o.HealthcenterId = healthFacilityId;
+			o.BirthplaceId = birthplaceId;
+			o.DomicileId = domicileId;
+
+			o.Address = address;
+			o.Phone = phone;
+			o.MotherFirstname = motherFirstname;
+			o.MotherLastname = motherLastname;
+			o.Notes = notes;
+			o.ModifiedOn = modifiedOn;
+			o.ModifiedBy = userId;
+
+
+			o.MotherHivStatus = mothersHivStatus;
+			o.MotherTT2Status = mothersTT2Status;
+
+			o.SystemId = DateTime.Now.ToString("yyMMddhhmmss");
+			o.BarcodeId = barcodeId;
+			o.IsActive = true;
+			o.StatusId = 1;
+
+			int childInserted = Child.Insert(o);
+
+			if (childInserted > 0)
+			{
+				//add appointments
+				VaccinationAppointment.InsertVaccinationsForChild(childInserted, userId);
+				BroadcastChildUpdates(childInserted);
+			}
+
+			IntReturnValue irv = new IntReturnValue();
+			irv.id = childInserted;
+			return irv;
+		}
+
 
         public IntReturnValue UpdateChild(string barcode, string firstname1, string firstname2, string lastname1, DateTime birthdate, bool gender,
              int healthFacilityId, int birthplaceId, int domicileId, int statusId, string address, string phone, string motherFirstname,
              string motherLastname, string notes, int userId, int childId, DateTime modifiedOn)
         {
-           Child o = null;
-            int n;
-            int healthcenter = 0;
-            int datediff = Int32.MaxValue;
-           bool isNumeric = int.TryParse(childId.ToString(), out n);
-            if (isNumeric && childId != 0)
-                o = Child.GetChildById(childId);
-            else if (!string.IsNullOrEmpty(barcode))
-                 o = Child.GetChildByBarcode(barcode);
-         
-           if (o != null)
-           {
-               o.Firstname1 = firstname1;
-               o.Lastname1 = lastname1;
-               o.Firstname2 = firstname2;
-               
-               if (o.Birthdate != birthdate)
-                   datediff = birthdate.Subtract(o.Birthdate).Days;
-
-               o.Birthdate = birthdate;
-               o.Gender = gender;
-               
-               if (o.HealthcenterId != healthFacilityId)
-               {
-                   healthcenter = healthFacilityId;
-               }
-               o.HealthcenterId = healthFacilityId;
-               o.BirthplaceId = birthplaceId;
-               o.DomicileId = domicileId;
-               o.CommunityId = null;
-               o.StatusId = statusId;
-               o.Address = address;
-               o.Phone = phone;
-               o.MotherFirstname = motherFirstname;
-               o.MotherLastname = motherLastname;
-               o.Notes = notes;
-               o.ModifiedOn = modifiedOn; // DateTime.Now;
-               o.ModifiedBy = userId;
-               o.BarcodeId = barcode;
-           }
-            int childUpdated = Child.Update(o);
-
-            if (childUpdated > 0)
-            {
-                bool appstatus = true;
-                if (o.StatusId != 1)
-                    appstatus = false;
-
-                List<VaccinationAppointment> applist = VaccinationAppointment.GetVaccinationAppointmentsByChildNotModified(childId);
-                List<VaccinationAppointment> applistall = VaccinationAppointment.GetVaccinationAppointmentsByChild(childId);
-                if (!appstatus)
-                {
-                    foreach (VaccinationAppointment app in applist)
-                        VaccinationAppointment.Update(appstatus, app.Id);
-                }
-
-                if (healthcenter != 0)
-                {
-                    foreach (VaccinationAppointment app in applist)
-                    {
-                        VaccinationAppointment.Update(o.HealthcenterId, app.Id);
-                        GIIS.DataLayer.VaccinationEvent.Update(app.Id, o.HealthcenterId);
-                    }
-                }
-                if (datediff != Int32.MaxValue)
-                {
-                    bool done = false;
-                    foreach (VaccinationAppointment app in applistall)
-                    {
-                        GIIS.DataLayer.VaccinationEvent ve = GIIS.DataLayer.VaccinationEvent.GetVaccinationEventByAppointmentId(app.Id)[0];
-                        if (ve.VaccinationStatus || ve.NonvaccinationReasonId != 0)
-                        {
-                            done = true;
-                            break;
-                        }
-                    }
-
-                    foreach (VaccinationAppointment app in applist)
-                    {
-                        if (done)
-                            break;
-                        VaccinationAppointment.Update(app.ScheduledDate.AddDays(datediff), app.Id);
-                        GIIS.DataLayer.VaccinationEvent.Update(app.Id, app.ScheduledDate.AddDays(datediff));
-                    }
-
-                }
-				BroadcastChildUpdates(childId);
-            }
-
-            IntReturnValue irv = new IntReturnValue();
-            irv.id = childUpdated;
-            return irv;
+			string mothersHivStatus = "";
+			string mothersTT2Status = "";
+			return UpdateChildWithMothersHivStatusAndTT2VaccineStatus(barcode, firstname1, firstname2, lastname1, birthdate, gender, healthFacilityId, birthplaceId, domicileId, statusId, address, phone, motherFirstname, motherLastname, mothersHivStatus, mothersTT2Status, notes, userId, childId, modifiedOn);
 
         }
+
+
+		public IntReturnValue UpdateChildWithMothersHivStatusAndTT2VaccineStatus(string barcode, string firstname1, string firstname2, string lastname1, DateTime birthdate, bool gender,
+			 int healthFacilityId, int birthplaceId, int domicileId, int statusId, string address, string phone, string motherFirstname,
+		                                                                         string motherLastname, string mothersHivStatus, string mothersTT2Status, string notes, int userId, int childId, DateTime modifiedOn)
+		{
+			Child o = null;
+			int n;
+			int healthcenter = 0;
+			int datediff = Int32.MaxValue;
+			bool isNumeric = int.TryParse(childId.ToString(), out n);
+			if (isNumeric && childId != 0)
+				o = Child.GetChildById(childId);
+			else if (!string.IsNullOrEmpty(barcode))
+				o = Child.GetChildByBarcode(barcode);
+
+			if (o != null)
+			{
+				o.Firstname1 = firstname1;
+				o.Lastname1 = lastname1;
+				o.Firstname2 = firstname2;
+
+				if (o.Birthdate != birthdate)
+					datediff = birthdate.Subtract(o.Birthdate).Days;
+
+				o.Birthdate = birthdate;
+				o.Gender = gender;
+
+				if (o.HealthcenterId != healthFacilityId)
+				{
+					healthcenter = healthFacilityId;
+				}
+				o.HealthcenterId = healthFacilityId;
+				o.BirthplaceId = birthplaceId;
+				o.DomicileId = domicileId;
+				o.CommunityId = null;
+				o.StatusId = statusId;
+				o.Address = address;
+				o.Phone = phone;
+				o.MotherFirstname = motherFirstname;
+				o.MotherLastname = motherLastname;
+
+
+				o.MotherHivStatus = mothersHivStatus;
+				o.MotherTT2Status = mothersTT2Status;
+
+				o.Notes = notes;
+				o.ModifiedOn = modifiedOn; // DateTime.Now;
+				o.ModifiedBy = userId;
+				o.BarcodeId = barcode;
+			}
+			int childUpdated = Child.Update(o);
+
+			if (childUpdated > 0)
+			{
+				bool appstatus = true;
+				if (o.StatusId != 1)
+					appstatus = false;
+
+				List<VaccinationAppointment> applist = VaccinationAppointment.GetVaccinationAppointmentsByChildNotModified(childId);
+				List<VaccinationAppointment> applistall = VaccinationAppointment.GetVaccinationAppointmentsByChild(childId);
+				if (!appstatus)
+				{
+					foreach (VaccinationAppointment app in applist)
+						VaccinationAppointment.Update(appstatus, app.Id);
+				}
+
+				if (healthcenter != 0)
+				{
+					foreach (VaccinationAppointment app in applist)
+					{
+						VaccinationAppointment.Update(o.HealthcenterId, app.Id);
+						GIIS.DataLayer.VaccinationEvent.Update(app.Id, o.HealthcenterId);
+					}
+				}
+				if (datediff != Int32.MaxValue)
+				{
+					bool done = false;
+					foreach (VaccinationAppointment app in applistall)
+					{
+						GIIS.DataLayer.VaccinationEvent ve = GIIS.DataLayer.VaccinationEvent.GetVaccinationEventByAppointmentId(app.Id)[0];
+						if (ve.VaccinationStatus || ve.NonvaccinationReasonId != 0)
+						{
+							done = true;
+							break;
+						}
+					}
+
+					foreach (VaccinationAppointment app in applist)
+					{
+						if (done)
+							break;
+						VaccinationAppointment.Update(app.ScheduledDate.AddDays(datediff), app.Id);
+						GIIS.DataLayer.VaccinationEvent.Update(app.Id, app.ScheduledDate.AddDays(datediff));
+					}
+
+				}
+				BroadcastChildUpdates(childId);
+			}
+
+			IntReturnValue irv = new IntReturnValue();
+			irv.id = childUpdated;
+			return irv;
+
+		}
+
 
         public IntReturnValue RemoveChild(int id)
         {
@@ -401,6 +451,10 @@ namespace GIIS.Tanzania.WCF
             string idFields = null;
             string motherFirstname = null;
             string motherLastname = null;
+
+			string motherHivStatus = null;
+			string motherTT2Status = null;
+
             string systemId = null;
             string barcodeId = null;
             string tempId = null;
@@ -421,6 +475,14 @@ namespace GIIS.Tanzania.WCF
 
                 if (s1.ToLower().Contains("motherlastname"))
                     motherLastname = s1.Substring(s1.IndexOf('=') + 1).ToUpper();
+
+
+				if (s1.ToLower().Contains("mothersHivStatus"))
+					motherHivStatus = s1.Substring(s1.IndexOf('=') + 1).ToUpper();
+
+				if (s1.ToLower().Contains("mothersTT2Status"))
+					motherTT2Status = s1.Substring(s1.IndexOf('=') + 1).ToUpper();
+
 
                 //if (s1.ToLower().Contains("birthdate"))
                 //{
@@ -463,8 +525,7 @@ namespace GIIS.Tanzania.WCF
             int start = 0;
 
             List<Child> childList = Child.GetPagedChildList(statusId, birthdateFrom, birthdateTo, firstname1, lastname1, idFields,
-                healthFacilityId, birthplaceId, communityId, domicileId, motherFirstname, motherLastname, systemId, barcodeId, tempId,
-                ref max, ref start);
+			                                                healthFacilityId, birthplaceId, communityId, domicileId, motherFirstname, motherLastname, motherHivStatus,motherTT2Status, systemId, barcodeId, tempId,ref max, ref start);
             List<ChildResults> chlist = new List<ChildResults>();
             foreach (Child ch in childList)
             {
@@ -475,6 +536,10 @@ namespace GIIS.Tanzania.WCF
                 chr.BarcodeId = ch.BarcodeId;
                 chr.MotherFirstname = ch.MotherFirstname;
                 chr.MotherLastname = ch.MotherLastname;
+
+				chr.MothersHivStatus = ch.MotherHivStatus;
+				chr.MothersTT2Status = ch.MotherTT2Status;
+
                 chr.Gender = ch.Gender;
                 chr.Birthdate = ch.Birthdate;
                 chr.HealthcenterId = ch.Healthcenter.Name;

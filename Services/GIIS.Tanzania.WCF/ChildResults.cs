@@ -31,6 +31,8 @@ namespace GIIS.Tanzania.WCF
         public string DomicileId { get; set; }
         public string MotherFirstname { get; set; }
         public string MotherLastname { get; set; }
+		public string MothersHivStatus { get; set;}
+		public string MothersTT2Status { get; set; }
         public string BarcodeId { get; set; }
         public string Firstname2 { get; set; }
     }

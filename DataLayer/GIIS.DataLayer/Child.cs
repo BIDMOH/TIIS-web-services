@@ -45,8 +45,8 @@ namespace GIIS.DataLayer
         public string MotherId { get; set; }
         public string MotherFirstname { get; set; }
         public string MotherLastname { get; set; }
-		public Int32 MotherHivStatus { get; set; }
-		public Int32 MotherTT2Status { get; set;}
+		public string MotherHivStatus { get; set; }
+		public string MotherTT2Status { get; set;}
         public string FatherId { get; set; }
         public string FatherFirstname { get; set; }
         public string FatherLastname { get; set; }
@@ -359,8 +359,8 @@ new NpgsqlParameter("@Id", DbType.Int32) { Value = id }
                     o.Email = row["EMAIL"].ToString();
                     o.MotherId = row["MOTHER_ID"].ToString();
 
-					o.MotherHivStatus = Helper.ConvertToInt(row["MOTHER_HIV_STATUS"]);
-					o.MotherTT2Status = Helper.ConvertToInt(row["MOTHER_TT2_STATUS"]);
+					o.MotherHivStatus = row["MOTHER_HIV_STATUS"].ToString();
+					o.MotherTT2Status = row["MOTHER_TT2_STATUS"].ToString();
 
                     o.MotherFirstname = row["MOTHER_FIRSTNAME"].ToString();
                     o.MotherLastname = row["MOTHER_LASTNAME"].ToString();
@@ -418,8 +418,8 @@ new NpgsqlParameter("@Id", DbType.Int32) { Value = id }
                     o.MotherId = row["MOTHER_ID"].ToString();
 
 
-					o.MotherHivStatus = Helper.ConvertToInt(row["MOTHER_HIV_STATUS"]);
-					o.MotherTT2Status = Helper.ConvertToInt(row["MOTHER_TT2_STATUS"]);
+					o.MotherHivStatus = row["MOTHER_HIV_STATUS"].ToString();
+					o.MotherTT2Status = row["MOTHER_TT2_STATUS"].ToString();
 
                     o.MotherFirstname = row["MOTHER_FIRSTNAME"].ToString();
                     o.MotherLastname = row["MOTHER_LASTNAME"].ToString();
