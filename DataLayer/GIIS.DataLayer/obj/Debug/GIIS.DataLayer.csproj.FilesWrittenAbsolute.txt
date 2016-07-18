@@ -7,3 +7,9 @@
 /Users/user/Workspace/tiis-services-and-datalayer/DataLayer/GIIS.DataLayer/obj/Debug/GIIS.DataLayer.dll
 /Users/user/Workspace/tiis-services-and-datalayer/DataLayer/GIIS.DataLayer/obj/Debug/GIIS.DataLayer.dll.mdb
 /Users/user/Workspace/tiis-services-and-datalayer/DataLayer/GIIS.DataLayer/bin/Debug/Npgsql.dll
+/Users/user/Workspace/TIIS-web-services/DataLayer/GIIS.DataLayer/obj/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/Users/user/Workspace/TIIS-web-services/DataLayer/GIIS.DataLayer/bin/Debug/GIIS.DataLayer.dll.mdb
+/Users/user/Workspace/TIIS-web-services/DataLayer/GIIS.DataLayer/bin/Debug/GIIS.DataLayer.dll
+/Users/user/Workspace/TIIS-web-services/DataLayer/GIIS.DataLayer/obj/Debug/GIIS.DataLayer.dll
+/Users/user/Workspace/TIIS-web-services/DataLayer/GIIS.DataLayer/obj/Debug/GIIS.DataLayer.dll.mdb
+/Users/user/Workspace/TIIS-web-services/DataLayer/GIIS.DataLayer/bin/Debug/Npgsql.dll

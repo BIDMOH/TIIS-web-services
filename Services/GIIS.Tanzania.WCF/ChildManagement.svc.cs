@@ -97,6 +97,16 @@ namespace GIIS.Tanzania.WCF
         }
 
 
+		public string BroadcastChildUpdatesWithBarcodeId(string barcodeId)
+		{
+
+			Child c = GIIS.DataLayer.Child.GetChildByBarcode(barcodeId);
+			int childId = c.Id;
+
+			return BroadcastChildUpdates(childId);
+		}
+
+
 		public List<string> GetGcmIdsToSendDataModifiedChild(int childId)
 		{
 			DataTable dt = GIIS.DataLayer.VaccinationEvent.GetHfidsOfModifiedChild(childId);

@@ -12,3 +12,11 @@
 /Development/ASP/Backend/tiis-services-and-datalayer/Services/GIIS.Tanzania.WCF/bin/Npgsql.dll
 /Development/ASP/Backend/tiis-services-and-datalayer/Services/GIIS.Tanzania.WCF/bin/GIIS.BusinessLogic.dll
 /Development/ASP/Backend/tiis-services-and-datalayer/Services/GIIS.Tanzania.WCF/bin/GIIS.DataLayer.dll
+/Users/user/Workspace/TIIS-web-services/Services/GIIS.Tanzania.WCF/obj/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/Users/user/Workspace/TIIS-web-services/Services/GIIS.Tanzania.WCF/obj/Debug/GIIS.Tanzania.WCF.dll
+/Users/user/Workspace/TIIS-web-services/Services/GIIS.Tanzania.WCF/obj/Debug/GIIS.Tanzania.WCF.dll.mdb
+/Users/user/Workspace/TIIS-web-services/Services/GIIS.Tanzania.WCF/bin/Npgsql.dll
+/Users/user/Workspace/TIIS-web-services/Services/GIIS.Tanzania.WCF/bin/GIIS.BusinessLogic.dll
+/Users/user/Workspace/TIIS-web-services/Services/GIIS.Tanzania.WCF/bin/GIIS.DataLayer.dll
+/Users/user/Workspace/TIIS-web-services/Services/GIIS.Tanzania.WCF/bin/GIIS.Tanzania.WCF.dll.mdb
+/Users/user/Workspace/TIIS-web-services/Services/GIIS.Tanzania.WCF/bin/GIIS.Tanzania.WCF.dll

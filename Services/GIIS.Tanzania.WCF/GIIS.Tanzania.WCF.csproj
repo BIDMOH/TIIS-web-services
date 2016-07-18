@@ -46,10 +46,8 @@
       <HintPath>..\..\tiis-DataLayer\GIIS.BusinessLogic\bin\Release\Mono.Security.dll</HintPath>
     </Reference>
     <Reference Include="System.IdentityModel" />
-    <Reference Include="System.identitymodel.services" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
-    <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
