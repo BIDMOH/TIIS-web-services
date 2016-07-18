@@ -26,6 +26,7 @@ using System.Net;
 using System.IO;
 using System.ServiceModel.Web;
 using System.Data;
+using Newtonsoft.Json.Linq;
 
 namespace GIIS.Tanzania.WCF
 {
@@ -85,6 +86,20 @@ namespace GIIS.Tanzania.WCF
                 dataStream.Close();
                 tResponse.Close();
 
+
+				JObject o = JObject.Parse(sResponseFromServer);
+				JArray a = (JArray)o["results"];
+				int counter = a.Count;
+				for (int i = 0; i < counter; i++)
+				{
+					if (a[i]["registration_id"] != null)
+					{
+						updateGcmId((string)a[i]["registration_id"],regIDs.ElementAt(i));
+					}
+
+				}
+
+
                 return sResponseFromServer;
             }
             catch
@@ -96,6 +111,12 @@ namespace GIIS.Tanzania.WCF
             
         }
 
+		public void updateGcmId(string cannonicalId, string gcmId)
+		{
+
+			GIIS.DataLayer.User.updateGcmId(cannonicalId,gcmId);
+
+		}
 
 		public string BroadcastChildUpdatesWithBarcodeId(string barcodeId)
 		{

@@ -1,19 +1,20 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workbench ActiveDocument="Child.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="UserEntity.cs">
     <Files>
       <File FileName="Actions.cs" Line="20" Column="7" />
-      <File FileName="UserEntity.cs" Line="171" Column="60" />
-      <File FileName="VaccinationEventEntity.cs" Line="747" Column="101" />
+      <File FileName="UserEntity.cs" Line="124" Column="33" />
+      <File FileName="VaccinationEventEntity.cs" Line="794" Column="17" />
       <File FileName="User.cs" Line="154" Column="2" />
       <File FileName="ChildEntity.cs" Line="27" Column="28" />
       <File FileName="Child.cs" Line="24" Column="31" />
+      <File FileName="UserRole.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="GIIS.DataLayer" expanded="True">
             <Node name="GIIS.DataLayer" expanded="True">
-              <Node name="Child.cs" selected="True" />
+              <Node name="UserEntity.cs" selected="True" />
             </Node>
           </Node>
         </State>

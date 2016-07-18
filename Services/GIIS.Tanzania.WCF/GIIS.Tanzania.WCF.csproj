@@ -72,6 +72,9 @@
     <Reference Include="GIIS.DataLayer">
       <HintPath>..\..\DataLayer\GIIS.DataLayer\bin\Debug\GIIS.DataLayer.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>bin\Newtonsoft.Json.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="AgeDefinitionManagement.svc" />

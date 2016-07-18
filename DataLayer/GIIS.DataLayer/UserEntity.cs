@@ -120,6 +120,59 @@ namespace GIIS.DataLayer
 			}
 		}
 
+
+		public static void updateGcmId(string cannonicalId, string gcmID)
+		{
+
+			try
+			{
+				string query = @"SELECT ""GCM_USERS"".""GCM_ID"" FROM ""GCM_USERS"" WHERE ""GCM_ID"" = @cannonicalId";
+
+				List<Npgsql.NpgsqlParameter> parameters = new List<NpgsqlParameter>()
+				{
+					new NpgsqlParameter("@cannonicalId", DbType.String) { Value = cannonicalId }
+				};
+
+				DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, parameters);
+
+				if (dt.Rows.Count > 0)
+				{
+					//DELETE GCMID because the cannonical id already exists
+					string insertQuery = @"DELETE FROM ""GCM_USERS""  WHERE ""GCM_ID"" = @gcmId";
+					List<Npgsql.NpgsqlParameter> deleteParameters = new List<NpgsqlParameter>()
+					{
+						new NpgsqlParameter("@gcmId", DbType.String)  { Value = gcmID }
+					};
+
+					object id = DBManager.ExecuteScalarCommand(insertQuery, CommandType.Text, deleteParameters);
+					AuditTable.InsertEntity("User", id.ToString(), 1, DateTime.Now, 1);
+
+				}else 
+				{
+
+					//Update the GCMID because the cannonical id doesnot exists
+					string updateQuery = @"UPDATE ""GCM_USERS"" SET ""GCM_ID"" = @cannonicalId WHERE ""GCM_ID"" = @gcmId";
+
+					List<Npgsql.NpgsqlParameter> Updateparameters = new List<NpgsqlParameter>(){
+								new NpgsqlParameter("@cannonicalId", DbType.String) { Value = cannonicalId },
+								new NpgsqlParameter("@gcmId", DbType.String) { Value = gcmID }
+							};
+					DBManager.ExecuteNonQueryCommand(updateQuery, CommandType.Text, Updateparameters);
+					AuditTable.InsertEntity("User", gcmID, 3, DateTime.Now, 1);
+
+				}
+
+
+			}
+			catch (Exception ex)
+			{
+				Log.InsertEntity("User", "checkAndUpdateGcmTable", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+				throw ex;
+			}
+
+		}
+
+
 		public static void checkAndUpdateGcmTable(string gcmID, int healthFacilityId)
 		{
 
