@@ -424,12 +424,15 @@ namespace GIIS.Tanzania.WCF
             string idFields = null;
             string motherFirstname = null;
             string motherLastname = null;
+			string mothersHivStatus = null;
+			string mothersTT2Status = null;
+
             string systemId = null;
             string barcodeId = null;
             string tempId = null;
 
             List<Child> childList = Child.GetPagedChildList(statusId, birthdateFrom, birthdateTo, firstname1, lastname1, idFields,
-                healthFacilityId.ToString(), birthplaceId, communityId, domicileId, motherFirstname, motherLastname, systemId, barcodeId, tempId,
+                healthFacilityId.ToString(), birthplaceId, communityId, domicileId, motherFirstname, motherLastname,mothersHivStatus, mothersTT2Status, systemId, barcodeId, tempId,
                 ref max, ref start);
 
             return childList;
@@ -823,7 +826,7 @@ namespace GIIS.Tanzania.WCF
             return ceList;
         }
 
-        public List<ChildEntity> SearchByNameAndMother(string firstname1, string lastname1, string motherfirstname, string motherlastname)
+		public List<ChildEntity> SearchByNameAndMother(string firstname1, string lastname1, string motherfirstname, string motherlastname, string mothersHivStatus, string mothersTT2Status)
         {
             int max = Int32.MaxValue;
             int start = 0;
@@ -844,7 +847,7 @@ namespace GIIS.Tanzania.WCF
             int healthFacilityId = 0;
 
             List<Child> childList = Child.GetPagedChildList(statusId, birthdateFrom, birthdateTo, firstname1, lastname1, idFields,
-                healthFacilityId.ToString(), birthplaceId, communityId, domicileId, motherfirstname, motherlastname, systemId, barcodeId, tempId,
+                healthFacilityId.ToString(), birthplaceId, communityId, domicileId, motherfirstname, motherlastname,mothersHivStatus,mothersTT2Status, systemId, barcodeId, tempId,
                 ref max, ref start);
 
             return GetChildrenWithAppointmentAndEvents(childList);
@@ -865,6 +868,9 @@ namespace GIIS.Tanzania.WCF
 
             string motherfirstname = null;
             string motherlastname = null;
+			string mothersHivStatus = null;
+			string mothersTT2Status = null;
+
             string idFields = null;
             string systemId = null;
             string barcodeId = null;
@@ -873,7 +879,7 @@ namespace GIIS.Tanzania.WCF
             string healthFacilityId = "";
 
             List<Child> childList = Child.GetPagedChildList(statusId, birthdateFrom, birthdateTo, firstname1, lastname1, idFields,
-                healthFacilityId, birthplaceId, communityId, domicileId, motherfirstname, motherlastname, systemId, barcodeId, tempId,
+                healthFacilityId, birthplaceId, communityId, domicileId, motherfirstname, motherlastname,mothersHivStatus, mothersTT2Status, systemId, barcodeId, tempId,
                 ref max, ref start);
 
             return GetChildrenWithAppointmentAndEvents(childList);
@@ -891,6 +897,13 @@ namespace GIIS.Tanzania.WCF
             string lastname1 = null;
             string motherfirstname = null;
             string motherlastname = null;
+
+			string mothersHivStatus = null;
+			string mothersTT2Status = null;
+
+
+
+
             string idFields = null;
             string systemId = null;
             string barcodeId = null;
@@ -899,7 +912,7 @@ namespace GIIS.Tanzania.WCF
             int healthFacilityId = 0;
 
             List<Child> childList = Child.GetPagedChildList(statusId, birthdatefrom, birthdateto, firstname1, lastname1, idFields,
-                healthFacilityId.ToString(), birthplaceid, communityId, domicileid, motherfirstname, motherlastname, systemId, barcodeId, tempId,
+                healthFacilityId.ToString(), birthplaceid, communityId, domicileid, motherfirstname, motherlastname,mothersHivStatus,mothersTT2Status, systemId, barcodeId, tempId,
                 ref max, ref start);
 
             return GetChildrenWithAppointmentAndEvents(childList);

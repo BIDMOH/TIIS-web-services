@@ -66,7 +66,7 @@ namespace GIIS.Tanzania.WCF
             string motherLastname, string notes, int userId, int childId, DateTime modifiedOn);
 
 
-		[WebGet(UriTemplate = @"UpdateChild?barcode={barcode}&firstname1={firstname1}&lastname1={lastname1}&birthdate={birthdate}&gender={gender}&healthFacilityId={healthFacilityId}&birthplaceId={birthplaceId}&domicileId={domicileId}&statusid={statusid}&address={address}&phone={phone}&motherFirstname={motherFirstname}&motherLastname={motherLastname}&mothersHivStatus={mothersHivStatus}&mothersTT2Status={mothersTT2Status}&notes={notes}&userId={userId}&childId={childId}&firstname2={firstname2}&modifiedOn={modifiedOn}", ResponseFormat = WebMessageFormat.Json)]
+		[WebGet(UriTemplate = @"UpdateChildWithMothersHivStatusAndTT2VaccineStatus?barcode={barcode}&firstname1={firstname1}&lastname1={lastname1}&birthdate={birthdate}&gender={gender}&healthFacilityId={healthFacilityId}&birthplaceId={birthplaceId}&domicileId={domicileId}&statusid={statusid}&address={address}&phone={phone}&motherFirstname={motherFirstname}&motherLastname={motherLastname}&mothersHivStatus={mothersHivStatus}&mothersTT2Status={mothersTT2Status}&notes={notes}&userId={userId}&childId={childId}&firstname2={firstname2}&modifiedOn={modifiedOn}", ResponseFormat = WebMessageFormat.Json)]
 		[OperationContract]
 		IntReturnValue UpdateChildWithMothersHivStatusAndTT2VaccineStatus(string barcode, string firstname1, string firstname2, string lastname1, DateTime birthdate, bool gender,
 			int healthFacilityId, int birthplaceId, int domicileId, int statusId, string address, string phone, string motherFirstname,
@@ -125,9 +125,9 @@ namespace GIIS.Tanzania.WCF
         [OperationContract]
         List<ChildEntity> SearchByTempId(string tempid);
 
-        [WebGet(UriTemplate = "SearchByNameAndMother?firstname1={firstname1}&lastname1={lastname1}&motherfirstname={motherfirstname}&motherlastname={motherlastname}", ResponseFormat = WebMessageFormat.Json)]
+		[WebGet(UriTemplate = "SearchByNameAndMother?firstname1={firstname1}&lastname1={lastname1}&motherfirstname={motherfirstname}&motherlastname={motherlastname}&mothersHivStatus={mothersHivStatus}&mothersTT2Status={mothersTT2Status}", ResponseFormat = WebMessageFormat.Json)]
         [OperationContract]
-        List<ChildEntity> SearchByNameAndMother(string firstname1, string lastname1, string motherfirstname, string motherlastname);
+		List<ChildEntity> SearchByNameAndMother(string firstname1, string lastname1, string motherfirstname, string motherlastname,string mothersHivStatus,string mothersTT2Status);
 
         [WebGet(UriTemplate = "SearchByName?firstname1={firstname1}&lastname1={lastname1}", ResponseFormat = WebMessageFormat.Json)]
         [OperationContract]

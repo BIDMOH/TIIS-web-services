@@ -1,21 +1,14 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workbench ActiveDocument="ChildEntity.cs">
     <Files>
-      <File FileName="Actions.cs" Line="20" Column="7" />
-      <File FileName="UserEntity.cs" Line="124" Column="33" />
-      <File FileName="VaccinationEventEntity.cs" Line="794" Column="17" />
-      <File FileName="User.cs" Line="154" Column="2" />
-      <File FileName="ChildEntity.cs" Line="451" Column="110" />
-      <File FileName="Child.cs" Line="363" Column="26" />
-      <File FileName="UserRole.cs" Line="1" Column="1" />
+      <File FileName="ChildEntity.cs" Line="451" Column="84" />
+      <File FileName="Child.cs" Line="350" Column="71" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="GIIS.DataLayer" expanded="True">
-            <Node name="GIIS.DataLayer" expanded="True">
-              <Node name="ChildEntity.cs" selected="True" />
-            </Node>
+            <Node name="GIIS.DataLayer" expanded="True" selected="True" />
           </Node>
         </State>
       </Pad>
@@ -23,9 +16,7 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/user/Workspace/TIIS-web-services/DataLayer/GIIS.DataLayer/ChildEntity.cs" line="452" column="1" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

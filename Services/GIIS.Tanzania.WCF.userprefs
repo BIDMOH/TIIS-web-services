@@ -1,7 +1,7 @@
 ﻿<Properties StartupItem="GIIS.Tanzania.WCF/GIIS.Tanzania.WCF.csproj">
   <MonoDevelop.Ide.Workbench ActiveDocument="GIIS.Tanzania.WCF/ChildManagement.svc.cs">
     <Files>
-      <File FileName="GIIS.Tanzania.WCF/ChildManagement.svc.cs" Line="528" Column="157" />
+      <File FileName="GIIS.Tanzania.WCF/ChildManagement.svc.cs" Line="527" Column="60" />
       <File FileName="GIIS.Tanzania.WCF/IChildManagement.cs" Line="54" Column="439" />
       <File FileName="GIIS.Tanzania.WCF/ChildResults.cs" Line="35" Column="46" />
     </Files>
