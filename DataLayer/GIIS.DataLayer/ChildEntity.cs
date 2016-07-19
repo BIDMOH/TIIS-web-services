@@ -236,10 +236,10 @@ namespace GIIS.DataLayer
         {
             try
             {
-                string query = String.Format(@"SELECT ""CHILD"".""ID"", ""SYSTEM_ID"", ""FIRSTNAME1"", ""FIRSTNAME2"", ""LASTNAME1"", ""LASTNAME2"", 
+                string query = String.Format(@"SELECT ""CHILD"".""ID"", ""SYSTEM_ID"",""CHILD_CUMULATIVE_SN"",""CHILD_REGISTRY_YEAR"", ""FIRSTNAME1"", ""FIRSTNAME2"", ""LASTNAME1"", ""LASTNAME2"", 
                                ""BIRTHDATE"", ""GENDER"", ""HEALTHCENTER_ID"", ""BIRTHPLACE_ID"", ""COMMUNITY_ID"", 
                                ""DOMICILE_ID"", ""STATUS_ID"", ""ADDRESS"", ""PHONE"", ""MOBILE"", ""EMAIL"", 
-                               ""MOTHER_ID"", ""MOTHER_FIRSTNAME"", ""MOTHER_LASTNAME"", ""FATHER_ID"", 
+                               ""MOTHER_ID"", ""MOTHER_FIRSTNAME"", ""MOTHER_LASTNAME"",""MOTHER_HIV_STATUS"",""MOTHER_TT2_STATUS"", ""FATHER_ID"", 
                                ""FATHER_FIRSTNAME"", ""FATHER_LASTNAME"", ""CARETAKER_ID"", ""CARETAKER_FIRSTNAME"", 
                                ""CARETAKER_LASTNAME"", ""NONVACCINATION_REASON"".""NAME"" as ""NOTES"", ""CHILD"".""IS_ACTIVE"", ""CHILD"".""MODIFIED_ON"", ""CHILD"".""MODIFIED_BY"", 
                                ""IDENTIFICATION_NO1"", ""IDENTIFICATION_NO2"", ""IDENTIFICATION_NO3"", ""BARCODE_ID"", ""TEMP_ID""

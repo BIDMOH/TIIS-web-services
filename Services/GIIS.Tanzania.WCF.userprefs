@@ -1,20 +1,20 @@
 ﻿<Properties StartupItem="GIIS.Tanzania.WCF/GIIS.Tanzania.WCF.csproj">
-  <MonoDevelop.Ide.Workbench ActiveDocument="GIIS.Tanzania.WCF/ChildManagement.svc.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="GIIS.Tanzania.WCF/IHealthFacilityManagement.cs">
     <Files>
-      <File FileName="GIIS.Tanzania.WCF/ChildManagement.svc.cs" Line="527" Column="60" />
-      <File FileName="GIIS.Tanzania.WCF/IChildManagement.cs" Line="54" Column="439" />
-      <File FileName="GIIS.Tanzania.WCF/ChildResults.cs" Line="35" Column="46" />
+      <File FileName="GIIS.Tanzania.WCF/ChildManagement.svc.cs" Line="370" Column="58" />
+      <File FileName="../DataLayer/GIIS.DataLayer/HealthFacilityEntity.cs" Line="381" Column="61" />
+      <File FileName="GIIS.Tanzania.WCF/HealthFacilityManagement.svc.cs" Line="52" Column="14" />
+      <File FileName="GIIS.Tanzania.WCF/IHealthFacilityManagement.cs" Line="46" Column="90" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="GIIS.Tanzania.WCF" expanded="True">
-            <Node name="GIIS.Tanzania.WCF" expanded="True">
-              <Node name="References" expanded="True" />
-              <Node name="ChildManagement.svc" expanded="True">
-                <Node name="ChildManagement.svc.cs" selected="True" />
-              </Node>
+            <Node name="GIIS.Tanzania.WCF" expanded="True" selected="True">
+              <Node name="ChildManagement.svc" expanded="True" />
+              <Node name="HealthFacilityManagement.svc" expanded="True" />
               <Node name="UserManagement.svc" expanded="True" />
+              <Node name="VaccinationEvent.svc" expanded="True" />
             </Node>
           </Node>
         </State>
@@ -24,8 +24,8 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
-      <Breakpoint file="/Users/user/Workspace/TIIS-web-services/Services/GIIS.Tanzania.WCF/IChildManagement.cs" line="55" column="1" />
-      <Breakpoint file="/Users/user/Workspace/TIIS-web-services/Services/GIIS.Tanzania.WCF/IChildManagement.cs" line="70" column="1" />
+      <Breakpoint file="/Users/user/Workspace/TIIS-web-services/Services/GIIS.Tanzania.WCF/IChildManagement.cs" line="54" column="536" />
+      <Breakpoint file="/Users/user/Workspace/TIIS-web-services/Services/GIIS.Tanzania.WCF/IChildManagement.cs" line="39" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

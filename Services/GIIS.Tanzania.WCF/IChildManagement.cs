@@ -36,11 +36,11 @@ namespace GIIS.Tanzania.WCF
 
 
 
-		[WebGet(UriTemplate = @"RegisterChildWithoutAppointmentsWithMothersHivStatusAndTT2VaccineStatus?barcodeid={barcodeid}&firstname1={firstname1}&lastname1={lastname1}&birthdate={birthdate}&gender={gender}&healthFacilityId={healthFacilityId}&birthplaceId={birthplaceId}&domicileId={domicileId}&address={address}&phone={phone}&motherFirstname={motherFirstname}&motherLastname={motherLastname}&mothersHivStatus={mothersHivStatus}&mothersTT2Status={mothersTT2Status}&notes={notes}&userId={userId}&modifiedOn={modifiedOn}", ResponseFormat = WebMessageFormat.Json)]
+		[WebGet(UriTemplate = @"RegisterChildWithoutAppointmentsWithMothersHivStatusAndTT2VaccineStatus?barcodeid={barcodeid}&firstname1={firstname1}&lastname1={lastname1}&birthdate={birthdate}&gender={gender}&healthFacilityId={healthFacilityId}&birthplaceId={birthplaceId}&domicileId={domicileId}&address={address}&phone={phone}&motherFirstname={motherFirstname}&motherLastname={motherLastname}&mothersHivStatus={mothersHivStatus}&mothersTT2Status={mothersTT2Status}&notes={notes}&userId={userId}&modifiedOn={modifiedOn}&childCumulativeSn={childCumulativeSn}&childRegistryYear={childRegistryYear}", ResponseFormat = WebMessageFormat.Json)]
 		[OperationContract]
 		IntReturnValue RegisterChildWithoutAppointmentsWithMothersHivStatusAndTT2VaccineStatus(string barcodeId, string firstname1, string lastname1, DateTime birthdate, bool gender,
 			int healthFacilityId, int birthplaceId, int domicileId, string address, string phone, string motherFirstname,
-			string motherLastname,string mothersHivStatus, string mothersTT2Status, string notes, int userId, DateTime modifiedOn);
+			string motherLastname,string mothersHivStatus, string mothersTT2Status, int childCumulativeSn, int childRegistryYear, string notes, int userId, DateTime modifiedOn);
 
 
     
@@ -51,11 +51,11 @@ namespace GIIS.Tanzania.WCF
             string motherLastname, string notes, int userId, DateTime modifiedOn);
 
 
-		[WebGet(UriTemplate = @"RegisterChildWithAppoitmentsWithMothersHivStatusAndTT2VaccineStatus?barcodeid={barcodeid}&firstname1={firstname1}&lastname1={lastname1}&birthdate={birthdate}&gender={gender}&healthFacilityId={healthFacilityId}&birthplaceId={birthplaceId}&domicileId={domicileId}&address={address}&phone={phone}&motherFirstname={motherFirstname}&motherLastname={motherLastname}&mothersHivStatus={mothersHivStatus}&mothersTT2Status={mothersTT2Status}&notes={notes}&userId={userId}&modifiedOn={modifiedOn}&firstname2={firstname2}", ResponseFormat = WebMessageFormat.Json)]
+		[WebGet(UriTemplate = @"RegisterChildWithAppoitmentsWithMothersHivStatusAndTT2VaccineStatus?barcodeid={barcodeid}&firstname1={firstname1}&lastname1={lastname1}&birthdate={birthdate}&gender={gender}&healthFacilityId={healthFacilityId}&birthplaceId={birthplaceId}&domicileId={domicileId}&address={address}&phone={phone}&motherFirstname={motherFirstname}&motherLastname={motherLastname}&mothersHivStatus={mothersHivStatus}&mothersTT2Status={mothersTT2Status}&notes={notes}&userId={userId}&modifiedOn={modifiedOn}&firstname2={firstname2}&childCumulativeSn={childCumulativeSn}&childRegistryYear={childRegistryYear}", ResponseFormat = WebMessageFormat.Json)]
 		[OperationContract]
 		IntReturnValue RegisterChildWithAppoitmentsWithMothersHivStatusAndTT2VaccineStatus(string barcodeId, string firstname1, string firstname2, string lastname1, DateTime birthdate, bool gender,
 			int healthFacilityId, int birthplaceId, int domicileId, string address, string phone, string motherFirstname,
-			string motherLastname,string mothersHivStatus, string mothersTT2Status, string notes, int userId, DateTime modifiedOn);
+			string motherLastname,string mothersHivStatus, string mothersTT2Status,int childCumulativeSn,int childRegistryYear, string notes, int userId, DateTime modifiedOn);
 
 
 
@@ -66,11 +66,11 @@ namespace GIIS.Tanzania.WCF
             string motherLastname, string notes, int userId, int childId, DateTime modifiedOn);
 
 
-		[WebGet(UriTemplate = @"UpdateChildWithMothersHivStatusAndTT2VaccineStatus?barcode={barcode}&firstname1={firstname1}&lastname1={lastname1}&birthdate={birthdate}&gender={gender}&healthFacilityId={healthFacilityId}&birthplaceId={birthplaceId}&domicileId={domicileId}&statusid={statusid}&address={address}&phone={phone}&motherFirstname={motherFirstname}&motherLastname={motherLastname}&mothersHivStatus={mothersHivStatus}&mothersTT2Status={mothersTT2Status}&notes={notes}&userId={userId}&childId={childId}&firstname2={firstname2}&modifiedOn={modifiedOn}", ResponseFormat = WebMessageFormat.Json)]
+		[WebGet(UriTemplate = @"UpdateChildWithMothersHivStatusAndTT2VaccineStatus?barcode={barcode}&firstname1={firstname1}&lastname1={lastname1}&birthdate={birthdate}&gender={gender}&healthFacilityId={healthFacilityId}&birthplaceId={birthplaceId}&domicileId={domicileId}&statusid={statusid}&address={address}&phone={phone}&motherFirstname={motherFirstname}&motherLastname={motherLastname}&mothersHivStatus={mothersHivStatus}&mothersTT2Status={mothersTT2Status}&notes={notes}&userId={userId}&childId={childId}&firstname2={firstname2}&modifiedOn={modifiedOn}&mothersHivStatus={mothersHivStatus}&mothersTT2Status={mothersTT2Status}&notes={notes}&userId={userId}&modifiedOn={modifiedOn}&childCumulativeSn={childCumulativeSn}&childRegistryYear={childRegistryYear}", ResponseFormat = WebMessageFormat.Json)]
 		[OperationContract]
 		IntReturnValue UpdateChildWithMothersHivStatusAndTT2VaccineStatus(string barcode, string firstname1, string firstname2, string lastname1, DateTime birthdate, bool gender,
 			int healthFacilityId, int birthplaceId, int domicileId, int statusId, string address, string phone, string motherFirstname,
-			string motherLastname,string mothersHivStatus, string mothersTT2Status, string notes, int userId, int childId, DateTime modifiedOn);
+			string motherLastname,string mothersHivStatus, string mothersTT2Status, int childCumulativeSn, int childRegistryYear, string notes, int userId, int childId, DateTime modifiedOn);
 
 
         [WebGet(UriTemplate = "RemoveChild?id={id}", ResponseFormat = WebMessageFormat.Json)]

@@ -38,6 +38,8 @@ namespace GIIS.DataLayer
         public Int32? CommunityId { get; set; }
         public Int32? DomicileId { get; set; }
         public Int32 StatusId { get; set; }
+		public Int32 ChildCumulativeSn { get; set; }
+		public Int32 ChildRegistryYear { get; set; }
         public string Address { get; set; }
         public string Phone { get; set; }
         public string Mobile { get; set; }
@@ -180,7 +182,7 @@ namespace GIIS.DataLayer
         {
             try
             {
-                string query = @"INSERT INTO ""CHILD"" (""SYSTEM_ID"", ""FIRSTNAME1"", ""FIRSTNAME2"", ""LASTNAME1"", ""LASTNAME2"", ""BIRTHDATE"", ""GENDER"", ""HEALTHCENTER_ID"", ""BIRTHPLACE_ID"", ""COMMUNITY_ID"", ""DOMICILE_ID"", ""STATUS_ID"", ""ADDRESS"", ""PHONE"", ""MOBILE"", ""EMAIL"", ""MOTHER_ID"", ""MOTHER_HIV_STATUS"", ""MOTHER_TT2_STATUS"" , ""MOTHER_FIRSTNAME"", ""MOTHER_LASTNAME"", ""FATHER_ID"", ""FATHER_FIRSTNAME"", ""FATHER_LASTNAME"", ""CARETAKER_ID"", ""CARETAKER_FIRSTNAME"", ""CARETAKER_LASTNAME"", ""NOTES"", ""IS_ACTIVE"", ""MODIFIED_ON"", ""MODIFIED_BY"", ""IDENTIFICATION_NO1"", ""IDENTIFICATION_NO2"", ""IDENTIFICATION_NO3"", ""BARCODE_ID"", ""TEMP_ID"") VALUES (@SystemId, @Firstname1, @Firstname2, @Lastname1, @Lastname2, @Birthdate, @Gender, @HealthcenterId, @BirthplaceId, @CommunityId, @DomicileId, @StatusId, @Address, @Phone, @Mobile, @Email, @MotherId,@MotherHivStatus,@MotherTT2Status,@MotherFirstname, @MotherLastname, @FatherId, @FatherFirstname, @FatherLastname, @CaretakerId, @CaretakerFirstname, @CaretakerLastname, @Notes, @IsActive, @ModifiedOn, @ModifiedBy, @IdentificationNo1, @IdentificationNo2, @IdentificationNo3, @BarcodeId, @TempId) returning ""ID"" ";
+                string query = @"INSERT INTO ""CHILD"" (""SYSTEM_ID"",""CHILD_CUMULATIVE_SN"",""CHILD_REGISTRATION_YEAR"",""FIRSTNAME1"", ""FIRSTNAME2"", ""LASTNAME1"", ""LASTNAME2"", ""BIRTHDATE"", ""GENDER"", ""HEALTHCENTER_ID"", ""BIRTHPLACE_ID"", ""COMMUNITY_ID"", ""DOMICILE_ID"", ""STATUS_ID"", ""ADDRESS"", ""PHONE"", ""MOBILE"", ""EMAIL"", ""MOTHER_ID"", ""MOTHER_HIV_STATUS"", ""MOTHER_TT2_STATUS"" , ""MOTHER_FIRSTNAME"", ""MOTHER_LASTNAME"", ""FATHER_ID"", ""FATHER_FIRSTNAME"", ""FATHER_LASTNAME"", ""CARETAKER_ID"", ""CARETAKER_FIRSTNAME"", ""CARETAKER_LASTNAME"", ""NOTES"", ""IS_ACTIVE"", ""MODIFIED_ON"", ""MODIFIED_BY"", ""IDENTIFICATION_NO1"", ""IDENTIFICATION_NO2"", ""IDENTIFICATION_NO3"", ""BARCODE_ID"", ""TEMP_ID"") VALUES (@SystemId, @ChildCumulativeSn, @ChildRegistryYear, @Firstname1, @Firstname2, @Lastname1, @Lastname2, @Birthdate, @Gender, @HealthcenterId, @BirthplaceId, @CommunityId, @DomicileId, @StatusId, @Address, @Phone, @Mobile, @Email, @MotherId,@MotherHivStatus,@MotherTT2Status,@MotherFirstname, @MotherLastname, @FatherId, @FatherFirstname, @FatherLastname, @CaretakerId, @CaretakerFirstname, @CaretakerLastname, @Notes, @IsActive, @ModifiedOn, @ModifiedBy, @IdentificationNo1, @IdentificationNo2, @IdentificationNo3, @BarcodeId, @TempId) returning ""ID"" ";
                 List<Npgsql.NpgsqlParameter> parameters = new List<NpgsqlParameter>(){
 					new NpgsqlParameter("@SystemId", DbType.String)  { Value = o.SystemId },
 					new NpgsqlParameter("@Firstname1", DbType.String)  { Value = (object)o.Firstname1 ?? DBNull.Value },
@@ -200,8 +202,11 @@ namespace GIIS.DataLayer
 					new NpgsqlParameter("@Email", DbType.String)  { Value = (object)o.Email ?? DBNull.Value },
 					new NpgsqlParameter("@MotherId", DbType.String)  { Value = (object)o.MotherId ?? DBNull.Value },
 
-						new NpgsqlParameter("@MotherHivStatus",DbType.Int32){Value = (object)o.MotherHivStatus ?? DBNull.Value},
-						new NpgsqlParameter("@MotherTT2Status",DbType.Int32){Value = (object)o.MotherTT2Status ?? DBNull.Value},
+					new NpgsqlParameter("@MotherHivStatus",DbType.String){Value = (object)o.MotherHivStatus ?? DBNull.Value},
+					new NpgsqlParameter("@MotherTT2Status",DbType.String){Value = (object)o.MotherTT2Status ?? DBNull.Value},
+
+					new NpgsqlParameter("@ChildCumulativeSn",DbType.Int32){Value = (object)o.ChildCumulativeSn ?? DBNull.Value},
+					new NpgsqlParameter("@ChildRegistryYear",DbType.Int32){Value = (object)o.ChildRegistryYear ?? DBNull.Value},
 
 					new NpgsqlParameter("@MotherFirstname", DbType.String)  { Value = (object)o.MotherFirstname ?? DBNull.Value },
 					new NpgsqlParameter("@MotherLastname", DbType.String)  { Value = (object)o.MotherLastname ?? DBNull.Value },
@@ -237,7 +242,7 @@ namespace GIIS.DataLayer
         {
             try
             {
-                string query = @"UPDATE ""CHILD"" SET ""ID"" = @Id, ""SYSTEM_ID"" = @SystemId, ""FIRSTNAME1"" = @Firstname1, ""FIRSTNAME2"" = @Firstname2, ""LASTNAME1"" = @Lastname1, ""LASTNAME2"" = @Lastname2, ""BIRTHDATE"" = @Birthdate, ""GENDER"" = @Gender, ""HEALTHCENTER_ID"" = @HealthcenterId, ""BIRTHPLACE_ID"" = @BirthplaceId, ""COMMUNITY_ID"" = @CommunityId, ""DOMICILE_ID"" = @DomicileId, ""STATUS_ID"" = @StatusId, ""ADDRESS"" = @Address, ""PHONE"" = @Phone, ""MOBILE"" = @Mobile, ""EMAIL"" = @Email, ""MOTHER_ID"" = @MotherId, ""MOTHER_HIV_STATUS"" = @MotherHivStatus, ""MOTHER_TT2_STATUS"" = @MotherTT2Status,""MOTHER_FIRSTNAME"" = @MotherFirstname, ""MOTHER_LASTNAME"" = @MotherLastname, ""FATHER_ID"" = @FatherId, ""FATHER_FIRSTNAME"" = @FatherFirstname, ""FATHER_LASTNAME"" = @FatherLastname, ""CARETAKER_ID"" = @CaretakerId, ""CARETAKER_FIRSTNAME"" = @CaretakerFirstname, ""CARETAKER_LASTNAME"" = @CaretakerLastname, ""NOTES"" = @Notes, ""IS_ACTIVE"" = @IsActive, ""MODIFIED_ON"" = @ModifiedOn, ""MODIFIED_BY"" = @ModifiedBy, ""IDENTIFICATION_NO1"" = @IdentificationNo1, ""IDENTIFICATION_NO2"" = @IdentificationNo2, ""IDENTIFICATION_NO3"" = @IdentificationNo3, ""BARCODE_ID"" = @BarcodeId, ""TEMP_ID"" = @TempId WHERE ""ID"" = @Id ";
+                string query = @"UPDATE ""CHILD"" SET ""ID"" = @Id, ""SYSTEM_ID"" = @SystemId, ""CHILD_CUMULATIVE_SN"" = @ChildCumulativeSn, ""CHILD_REGISTRY_YEAR"" = @ChildRegistryYear,  ""FIRSTNAME1"" = @Firstname1, ""FIRSTNAME2"" = @Firstname2, ""LASTNAME1"" = @Lastname1, ""LASTNAME2"" = @Lastname2, ""BIRTHDATE"" = @Birthdate, ""GENDER"" = @Gender, ""HEALTHCENTER_ID"" = @HealthcenterId, ""BIRTHPLACE_ID"" = @BirthplaceId, ""COMMUNITY_ID"" = @CommunityId, ""DOMICILE_ID"" = @DomicileId, ""STATUS_ID"" = @StatusId, ""ADDRESS"" = @Address, ""PHONE"" = @Phone, ""MOBILE"" = @Mobile, ""EMAIL"" = @Email, ""MOTHER_ID"" = @MotherId, ""MOTHER_HIV_STATUS"" = @MotherHivStatus, ""MOTHER_TT2_STATUS"" = @MotherTT2Status,""MOTHER_FIRSTNAME"" = @MotherFirstname, ""MOTHER_LASTNAME"" = @MotherLastname, ""FATHER_ID"" = @FatherId, ""FATHER_FIRSTNAME"" = @FatherFirstname, ""FATHER_LASTNAME"" = @FatherLastname, ""CARETAKER_ID"" = @CaretakerId, ""CARETAKER_FIRSTNAME"" = @CaretakerFirstname, ""CARETAKER_LASTNAME"" = @CaretakerLastname, ""NOTES"" = @Notes, ""IS_ACTIVE"" = @IsActive, ""MODIFIED_ON"" = @ModifiedOn, ""MODIFIED_BY"" = @ModifiedBy, ""IDENTIFICATION_NO1"" = @IdentificationNo1, ""IDENTIFICATION_NO2"" = @IdentificationNo2, ""IDENTIFICATION_NO3"" = @IdentificationNo3, ""BARCODE_ID"" = @BarcodeId, ""TEMP_ID"" = @TempId WHERE ""ID"" = @Id ";
                 List<Npgsql.NpgsqlParameter> parameters = new List<NpgsqlParameter>(){
 					new NpgsqlParameter("@SystemId", DbType.String)  { Value = o.SystemId },
 					new NpgsqlParameter("@Firstname1", DbType.String)  { Value = (object)o.Firstname1 ?? DBNull.Value },
@@ -258,8 +263,11 @@ namespace GIIS.DataLayer
 					new NpgsqlParameter("@MotherId", DbType.String)  { Value = (object)o.MotherId ?? DBNull.Value },
 
 
-						new NpgsqlParameter("@MotherHivStatus",DbType.Int32){Value = (object)o.MotherHivStatus ?? DBNull.Value},
-						new NpgsqlParameter("@MotherTT2Status",DbType.Int32){Value = (object)o.MotherTT2Status ?? DBNull.Value},
+					new NpgsqlParameter("@MotherHivStatus",DbType.String){Value = (object)o.MotherHivStatus ?? DBNull.Value},
+					new NpgsqlParameter("@MotherTT2Status",DbType.String){Value = (object)o.MotherTT2Status ?? DBNull.Value},
+
+					new NpgsqlParameter("@ChildCumulativeSn",DbType.Int32){Value = (object)o.ChildCumulativeSn ?? DBNull.Value},
+					new NpgsqlParameter("@ChildRegistryYear",DbType.Int32){Value = (object)o.ChildRegistryYear ?? DBNull.Value},
 
 					new NpgsqlParameter("@MotherFirstname", DbType.String)  { Value = (object)o.MotherFirstname ?? DBNull.Value },
 					new NpgsqlParameter("@MotherLastname", DbType.String)  { Value = (object)o.MotherLastname ?? DBNull.Value },
@@ -362,6 +370,9 @@ new NpgsqlParameter("@Id", DbType.Int32) { Value = id }
 					o.MotherHivStatus = row["MOTHER_HIV_STATUS"].ToString();
 					o.MotherTT2Status = row["MOTHER_TT2_STATUS"].ToString();
 
+					o.ChildCumulativeSn = Helper.ConvertToInt(row["CHILD_CUMULATIVE_SN"]);
+					o.ChildRegistryYear = Helper.ConvertToInt(row["CHILD_REGISTRY_YEAR"]);
+
                     o.MotherFirstname = row["MOTHER_FIRSTNAME"].ToString();
                     o.MotherLastname = row["MOTHER_LASTNAME"].ToString();
                     o.FatherId = row["FATHER_ID"].ToString();
@@ -421,7 +432,11 @@ new NpgsqlParameter("@Id", DbType.Int32) { Value = id }
 					o.MotherHivStatus = row["MOTHER_HIV_STATUS"].ToString();
 					o.MotherTT2Status = row["MOTHER_TT2_STATUS"].ToString();
 
-                    o.MotherFirstname = row["MOTHER_FIRSTNAME"].ToString();
+					o.ChildCumulativeSn = Helper.ConvertToInt(row["CHILD_CUMULATIVE_SN"]);
+					o.ChildRegistryYear = Helper.ConvertToInt(row["CHILD_REGISTRY_YEAR"]);
+
+
+					o.MotherFirstname = row["MOTHER_FIRSTNAME"].ToString();
                     o.MotherLastname = row["MOTHER_LASTNAME"].ToString();
                     o.FatherId = row["FATHER_ID"].ToString();
                     o.FatherFirstname = row["FATHER_FIRSTNAME"].ToString();

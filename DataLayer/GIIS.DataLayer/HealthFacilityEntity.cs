@@ -340,5 +340,144 @@ namespace GIIS.DataLayer
                 throw ex;
             }
         }
+
+
+		public static int GetCumulativeChildId(int healthFacilityId)
+		{
+
+			try
+			{
+				string query = @"SELECT * FROM ""HEALTH_FACILITY_CUMULATIVE_CHILD_REGISTRY_NO"" WHERE ""HEALTH_FACILITY_ID"" = @healthFacilityId ";
+
+				List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
+				{
+					new NpgsqlParameter("@healthFacilityId", DbType.String) { Value = healthFacilityId }
+				};
+
+				int cumulativeSn = 0;
+				DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, parameters);
+
+				if (dt.Rows.Count > 0)
+				{
+					foreach (DataRow row in dt.Rows)
+					{
+						if (Int32.Parse(row["REGISTRATION_YEAR"].ToString()) == Int32.Parse(DateTime.Now.Year.ToString()))
+						{
+
+							int no = Int32.Parse(row["CURRENT_CHILD_CUMULATIVE_NO"].ToString()) + 1;
+							string updateQuery = @"UPDATE ""HEALTH_FACILITY_CUMULATIVE_CHILD_REGISTRY_NO"" SET  ""CURRENT_CHILD_CUMULATIVE_NO"" = @cummulativeNo WHERE ""HEALTH_FACILITY_ID"" = @healthFacilityId";
+
+							List<Npgsql.NpgsqlParameter> Updateparameters = new List<NpgsqlParameter>(){
+								new NpgsqlParameter("@healthFacilityId", DbType.String) { Value = healthFacilityId },
+									new NpgsqlParameter("@cummulativeNo", DbType.Int32) { Value = no }
+								};
+							DBManager.ExecuteNonQueryCommand(updateQuery, CommandType.Text, Updateparameters);
+							AuditTable.InsertEntity("HealthFacility", "GetCumulativeChildId", 3, DateTime.Now, 1);
+
+
+							cumulativeSn = Int32.Parse(row["CURRENT_CHILD_CUMULATIVE_NO"].ToString());
+						}
+						else {
+							int year = Int32.Parse(DateTime.Now.Year.ToString());
+							int no = 2;
+							string updateQuery = @"UPDATE ""HEALTH_FACILITY_CUMULATIVE_CHILD_REGISTRY_NO"" SET ""REGISTRATION_YEAR"" = @year, ""CURRENT_CHILD_CUMULATIVE_NO"" = @cummulativeNo WHERE ""HEALTH_FACILITY_ID"" = @healthFacilityId";
+
+							List<Npgsql.NpgsqlParameter> Updateparameters = new List<NpgsqlParameter>(){
+								new NpgsqlParameter("@healthFacilityId", DbType.String) { Value = healthFacilityId },
+									new NpgsqlParameter("@year", DbType.Int32) { Value = year },
+									new NpgsqlParameter("@cummulativeNo", DbType.Int32) { Value = no }
+								};
+							DBManager.ExecuteNonQueryCommand(updateQuery, CommandType.Text, Updateparameters);
+							AuditTable.InsertEntity("HealthFacility", "GetCumulativeChildId", 3, DateTime.Now, 1);
+
+							cumulativeSn = 1;
+						}
+					}
+
+				}
+				else
+				{
+					int year = Int32.Parse(DateTime.Now.Year.ToString());
+					int no = 2;
+
+					string insertQuery = @"INSERT INTO ""HEALTH_FACILITY_CUMULATIVE_CHILD_REGISTRY_NO"" (""REGISTRATION_YEAR"",""CURRENT_CHILD_CUMULATIVE_NO"", ""HEALTH_FACILITY_ID"") VALUES (@year, @cummulativeNo, @healthFacilityId)";
+
+					List<Npgsql.NpgsqlParameter> insertParameters = new List<NpgsqlParameter>(){
+								new NpgsqlParameter("@healthFacilityId", DbType.String) { Value = healthFacilityId },
+									new NpgsqlParameter("@year", DbType.Int32) { Value = year },
+									new NpgsqlParameter("@cummulativeNo", DbType.Int32) { Value = no }
+								};
+					DBManager.ExecuteNonQueryCommand(insertQuery, CommandType.Text, insertParameters);
+					AuditTable.InsertEntity("HealthFacility", "GetCumulativeChildId", 4, DateTime.Now, 1);
+
+					cumulativeSn = 1;
+
+
+				}
+
+				return cumulativeSn;
+			}
+			catch (Exception ex)
+			{
+				Log.InsertEntity("Place", "GetHealthFacilityByList", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+				throw ex;
+			}
+		}
+
+
+
+		public static int updateHealthFacilityCumulativeChildSn(int healthFacilityId, int cumulativeChildSn)
+		{
+			try
+			{
+				int results = -999;
+				string query = @"SELECT * FROM ""HEALTH_FACILITY_CUMULATIVE_CHILD_REGISTRY_NO"" WHERE ""HEALTH_FACILITY_ID"" = @healthFacilityId ";
+
+				List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
+				{
+					new NpgsqlParameter("@healthFacilityId", DbType.String) { Value = healthFacilityId }
+				};
+
+				DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, parameters);
+
+				if (dt.Rows.Count > 0)
+				{
+					int year = Int32.Parse(DateTime.Now.Year.ToString());
+					string updateQuery = @"UPDATE ""HEALTH_FACILITY_CUMULATIVE_CHILD_REGISTRY_NO"" SET ""REGISTRATION_YEAR"" = @year, ""CURRENT_CHILD_CUMULATIVE_NO"" = @cummulativeNo WHERE ""HEALTH_FACILITY_ID"" = @healthFacilityId";
+
+					List<Npgsql.NpgsqlParameter> Updateparameters = new List<NpgsqlParameter>(){
+								new NpgsqlParameter("@healthFacilityId", DbType.String) { Value = healthFacilityId },
+									new NpgsqlParameter("@year", DbType.Int32) { Value = year },
+									new NpgsqlParameter("@cummulativeNo", DbType.Int32) { Value = cumulativeChildSn }
+								};
+					results = DBManager.ExecuteNonQueryCommand(updateQuery, CommandType.Text, Updateparameters);
+					AuditTable.InsertEntity("HealthFacility", "GetCumulativeChildId", 3, DateTime.Now, 1);
+
+				}
+				else
+				{
+					int year = Int32.Parse(DateTime.Now.Year.ToString());
+
+					string insertQuery = @"INSERT INTO ""HEALTH_FACILITY_CUMULATIVE_CHILD_REGISTRY_NO"" (""REGISTRATION_YEAR"",""CURRENT_CHILD_CUMULATIVE_NO"", ""HEALTH_FACILITY_ID"") VALUES (@year, @cummulativeNo, @healthFacilityId)";
+
+					List<Npgsql.NpgsqlParameter> insertParameters = new List<NpgsqlParameter>(){
+								new NpgsqlParameter("@healthFacilityId", DbType.String) { Value = healthFacilityId },
+									new NpgsqlParameter("@year", DbType.Int32) { Value = year },
+									new NpgsqlParameter("@cummulativeNo", DbType.Int32) { Value = cumulativeChildSn }
+								};
+					results = DBManager.ExecuteNonQueryCommand(insertQuery, CommandType.Text, insertParameters);
+					AuditTable.InsertEntity("HealthFacility", "updateHealthFacilityCumulativeChildId", 4, DateTime.Now, 1);
+
+				}
+				return results;
+			}
+			catch (Exception ex)
+			{
+				Log.InsertEntity("Place", "GetHealthFacilityByList", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+				throw ex;
+			}
+		}
+
+
     }
 }
