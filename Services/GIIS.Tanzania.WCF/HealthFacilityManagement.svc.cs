@@ -49,9 +49,14 @@ namespace GIIS.Tanzania.WCF
             return HealthFacility.GetHealthFacilityByList(hList);
         }
 
-		public int updateHealthFacilityCumulativeChildSn(int healthFacilityId, int cumulativeChildSn)
+		public int UpdateHealthFacilityCumulativeChildSn(int healthFacilityId, int cumulativeChildSn)
 		{
 			return GIIS.DataLayer.HealthFacility.updateHealthFacilityCumulativeChildSn(healthFacilityId, cumulativeChildSn);
+		}
+
+		public int GetCumulativeChildId(int healthFacilityId)
+		{
+			return GIIS.DataLayer.HealthFacility.GetCumulativeChildId(healthFacilityId);
 		}
 
     }

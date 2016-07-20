@@ -242,7 +242,7 @@ namespace GIIS.DataLayer
         {
             try
             {
-                string query = @"UPDATE ""CHILD"" SET ""ID"" = @Id, ""SYSTEM_ID"" = @SystemId, ""CHILD_CUMULATIVE_SN"" = @ChildCumulativeSn, ""CHILD_REGISTRY_YEAR"" = @ChildRegistryYear,  ""FIRSTNAME1"" = @Firstname1, ""FIRSTNAME2"" = @Firstname2, ""LASTNAME1"" = @Lastname1, ""LASTNAME2"" = @Lastname2, ""BIRTHDATE"" = @Birthdate, ""GENDER"" = @Gender, ""HEALTHCENTER_ID"" = @HealthcenterId, ""BIRTHPLACE_ID"" = @BirthplaceId, ""COMMUNITY_ID"" = @CommunityId, ""DOMICILE_ID"" = @DomicileId, ""STATUS_ID"" = @StatusId, ""ADDRESS"" = @Address, ""PHONE"" = @Phone, ""MOBILE"" = @Mobile, ""EMAIL"" = @Email, ""MOTHER_ID"" = @MotherId, ""MOTHER_HIV_STATUS"" = @MotherHivStatus, ""MOTHER_TT2_STATUS"" = @MotherTT2Status,""MOTHER_FIRSTNAME"" = @MotherFirstname, ""MOTHER_LASTNAME"" = @MotherLastname, ""FATHER_ID"" = @FatherId, ""FATHER_FIRSTNAME"" = @FatherFirstname, ""FATHER_LASTNAME"" = @FatherLastname, ""CARETAKER_ID"" = @CaretakerId, ""CARETAKER_FIRSTNAME"" = @CaretakerFirstname, ""CARETAKER_LASTNAME"" = @CaretakerLastname, ""NOTES"" = @Notes, ""IS_ACTIVE"" = @IsActive, ""MODIFIED_ON"" = @ModifiedOn, ""MODIFIED_BY"" = @ModifiedBy, ""IDENTIFICATION_NO1"" = @IdentificationNo1, ""IDENTIFICATION_NO2"" = @IdentificationNo2, ""IDENTIFICATION_NO3"" = @IdentificationNo3, ""BARCODE_ID"" = @BarcodeId, ""TEMP_ID"" = @TempId WHERE ""ID"" = @Id ";
+                string query = @"UPDATE ""CHILD"" SET ""ID"" = @Id, ""SYSTEM_ID"" = @SystemId, ""CHILD_CUMULATIVE_SN"" = @ChildCumulativeSn, ""CHILD_REGISTRATION_YEAR"" = @ChildRegistryYear,  ""FIRSTNAME1"" = @Firstname1, ""FIRSTNAME2"" = @Firstname2, ""LASTNAME1"" = @Lastname1, ""LASTNAME2"" = @Lastname2, ""BIRTHDATE"" = @Birthdate, ""GENDER"" = @Gender, ""HEALTHCENTER_ID"" = @HealthcenterId, ""BIRTHPLACE_ID"" = @BirthplaceId, ""COMMUNITY_ID"" = @CommunityId, ""DOMICILE_ID"" = @DomicileId, ""STATUS_ID"" = @StatusId, ""ADDRESS"" = @Address, ""PHONE"" = @Phone, ""MOBILE"" = @Mobile, ""EMAIL"" = @Email, ""MOTHER_ID"" = @MotherId, ""MOTHER_HIV_STATUS"" = @MotherHivStatus, ""MOTHER_TT2_STATUS"" = @MotherTT2Status,""MOTHER_FIRSTNAME"" = @MotherFirstname, ""MOTHER_LASTNAME"" = @MotherLastname, ""FATHER_ID"" = @FatherId, ""FATHER_FIRSTNAME"" = @FatherFirstname, ""FATHER_LASTNAME"" = @FatherLastname, ""CARETAKER_ID"" = @CaretakerId, ""CARETAKER_FIRSTNAME"" = @CaretakerFirstname, ""CARETAKER_LASTNAME"" = @CaretakerLastname, ""NOTES"" = @Notes, ""IS_ACTIVE"" = @IsActive, ""MODIFIED_ON"" = @ModifiedOn, ""MODIFIED_BY"" = @ModifiedBy, ""IDENTIFICATION_NO1"" = @IdentificationNo1, ""IDENTIFICATION_NO2"" = @IdentificationNo2, ""IDENTIFICATION_NO3"" = @IdentificationNo3, ""BARCODE_ID"" = @BarcodeId, ""TEMP_ID"" = @TempId WHERE ""ID"" = @Id ";
                 List<Npgsql.NpgsqlParameter> parameters = new List<NpgsqlParameter>(){
 					new NpgsqlParameter("@SystemId", DbType.String)  { Value = o.SystemId },
 					new NpgsqlParameter("@Firstname1", DbType.String)  { Value = (object)o.Firstname1 ?? DBNull.Value },
@@ -371,7 +371,7 @@ new NpgsqlParameter("@Id", DbType.Int32) { Value = id }
 					o.MotherTT2Status = row["MOTHER_TT2_STATUS"].ToString();
 
 					o.ChildCumulativeSn = Helper.ConvertToInt(row["CHILD_CUMULATIVE_SN"]);
-					o.ChildRegistryYear = Helper.ConvertToInt(row["CHILD_REGISTRY_YEAR"]);
+					o.ChildRegistryYear = Helper.ConvertToInt(row["CHILD_REGISTRATION_YEAR"]);
 
                     o.MotherFirstname = row["MOTHER_FIRSTNAME"].ToString();
                     o.MotherLastname = row["MOTHER_LASTNAME"].ToString();
@@ -433,7 +433,7 @@ new NpgsqlParameter("@Id", DbType.Int32) { Value = id }
 					o.MotherTT2Status = row["MOTHER_TT2_STATUS"].ToString();
 
 					o.ChildCumulativeSn = Helper.ConvertToInt(row["CHILD_CUMULATIVE_SN"]);
-					o.ChildRegistryYear = Helper.ConvertToInt(row["CHILD_REGISTRY_YEAR"]);
+					o.ChildRegistryYear = Helper.ConvertToInt(row["CHILD_REGISTRATION_YEAR"]);
 
 
 					o.MotherFirstname = row["MOTHER_FIRSTNAME"].ToString();

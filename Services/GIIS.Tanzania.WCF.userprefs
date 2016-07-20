@@ -1,16 +1,17 @@
 ﻿<Properties StartupItem="GIIS.Tanzania.WCF/GIIS.Tanzania.WCF.csproj">
-  <MonoDevelop.Ide.Workbench ActiveDocument="GIIS.Tanzania.WCF/IHealthFacilityManagement.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="GIIS.Tanzania.WCF/IChildManagement.cs">
     <Files>
       <File FileName="GIIS.Tanzania.WCF/ChildManagement.svc.cs" Line="370" Column="58" />
-      <File FileName="../DataLayer/GIIS.DataLayer/HealthFacilityEntity.cs" Line="381" Column="61" />
-      <File FileName="GIIS.Tanzania.WCF/HealthFacilityManagement.svc.cs" Line="52" Column="14" />
-      <File FileName="GIIS.Tanzania.WCF/IHealthFacilityManagement.cs" Line="46" Column="90" />
+      <File FileName="../DataLayer/GIIS.DataLayer/HealthFacilityEntity.cs" Line="345" Column="41" />
+      <File FileName="GIIS.Tanzania.WCF/HealthFacilityManagement.svc.cs" Line="57" Column="34" />
+      <File FileName="GIIS.Tanzania.WCF/IHealthFacilityManagement.cs" Line="48" Column="46" />
+      <File FileName="GIIS.Tanzania.WCF/IChildManagement.cs" Line="67" Column="530" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="GIIS.Tanzania.WCF" expanded="True">
-            <Node name="GIIS.Tanzania.WCF" expanded="True" selected="True">
+          <Node name="GIIS.Tanzania.WCF" expanded="True" selected="True">
+            <Node name="GIIS.Tanzania.WCF" expanded="True">
               <Node name="ChildManagement.svc" expanded="True" />
               <Node name="HealthFacilityManagement.svc" expanded="True" />
               <Node name="UserManagement.svc" expanded="True" />

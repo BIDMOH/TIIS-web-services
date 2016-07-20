@@ -43,6 +43,11 @@ namespace GIIS.Tanzania.WCF
 
 		[WebGet(UriTemplate = "UpdateHealthFacilityCumulativeChildSn?healthFacilityId={healthFacilityId}&cumulativeChildSn={cumulativeChildSn}", ResponseFormat = WebMessageFormat.Json)]
 		[OperationContract]
-		int updateHealthFacilityCumulativeChildSn(int healthFacilityId, int cumulativeChildSn);
+		int UpdateHealthFacilityCumulativeChildSn(int healthFacilityId, int cumulativeChildSn);
+
+		[WebGet(UriTemplate = "GetCumulativeChildId?healthFacilityId={healthFacilityId}", ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		int GetCumulativeChildId(int healthFacilityId);
+
     }
 }

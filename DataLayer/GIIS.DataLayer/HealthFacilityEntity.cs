@@ -351,7 +351,7 @@ namespace GIIS.DataLayer
 
 				List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
 				{
-					new NpgsqlParameter("@healthFacilityId", DbType.String) { Value = healthFacilityId }
+					new NpgsqlParameter("@healthFacilityId", DbType.Int32) { Value = healthFacilityId }
 				};
 
 				int cumulativeSn = 0;
@@ -368,7 +368,7 @@ namespace GIIS.DataLayer
 							string updateQuery = @"UPDATE ""HEALTH_FACILITY_CUMULATIVE_CHILD_REGISTRY_NO"" SET  ""CURRENT_CHILD_CUMULATIVE_NO"" = @cummulativeNo WHERE ""HEALTH_FACILITY_ID"" = @healthFacilityId";
 
 							List<Npgsql.NpgsqlParameter> Updateparameters = new List<NpgsqlParameter>(){
-								new NpgsqlParameter("@healthFacilityId", DbType.String) { Value = healthFacilityId },
+								new NpgsqlParameter("@healthFacilityId", DbType.Int32) { Value = healthFacilityId },
 									new NpgsqlParameter("@cummulativeNo", DbType.Int32) { Value = no }
 								};
 							DBManager.ExecuteNonQueryCommand(updateQuery, CommandType.Text, Updateparameters);
@@ -383,7 +383,7 @@ namespace GIIS.DataLayer
 							string updateQuery = @"UPDATE ""HEALTH_FACILITY_CUMULATIVE_CHILD_REGISTRY_NO"" SET ""REGISTRATION_YEAR"" = @year, ""CURRENT_CHILD_CUMULATIVE_NO"" = @cummulativeNo WHERE ""HEALTH_FACILITY_ID"" = @healthFacilityId";
 
 							List<Npgsql.NpgsqlParameter> Updateparameters = new List<NpgsqlParameter>(){
-								new NpgsqlParameter("@healthFacilityId", DbType.String) { Value = healthFacilityId },
+								new NpgsqlParameter("@healthFacilityId", DbType.Int32) { Value = healthFacilityId },
 									new NpgsqlParameter("@year", DbType.Int32) { Value = year },
 									new NpgsqlParameter("@cummulativeNo", DbType.Int32) { Value = no }
 								};
@@ -403,7 +403,7 @@ namespace GIIS.DataLayer
 					string insertQuery = @"INSERT INTO ""HEALTH_FACILITY_CUMULATIVE_CHILD_REGISTRY_NO"" (""REGISTRATION_YEAR"",""CURRENT_CHILD_CUMULATIVE_NO"", ""HEALTH_FACILITY_ID"") VALUES (@year, @cummulativeNo, @healthFacilityId)";
 
 					List<Npgsql.NpgsqlParameter> insertParameters = new List<NpgsqlParameter>(){
-								new NpgsqlParameter("@healthFacilityId", DbType.String) { Value = healthFacilityId },
+								new NpgsqlParameter("@healthFacilityId", DbType.Int32) { Value = healthFacilityId },
 									new NpgsqlParameter("@year", DbType.Int32) { Value = year },
 									new NpgsqlParameter("@cummulativeNo", DbType.Int32) { Value = no }
 								};
@@ -435,7 +435,7 @@ namespace GIIS.DataLayer
 
 				List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
 				{
-					new NpgsqlParameter("@healthFacilityId", DbType.String) { Value = healthFacilityId }
+					new NpgsqlParameter("@healthFacilityId", DbType.Int32) { Value = healthFacilityId }
 				};
 
 				DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, parameters);
@@ -446,7 +446,7 @@ namespace GIIS.DataLayer
 					string updateQuery = @"UPDATE ""HEALTH_FACILITY_CUMULATIVE_CHILD_REGISTRY_NO"" SET ""REGISTRATION_YEAR"" = @year, ""CURRENT_CHILD_CUMULATIVE_NO"" = @cummulativeNo WHERE ""HEALTH_FACILITY_ID"" = @healthFacilityId";
 
 					List<Npgsql.NpgsqlParameter> Updateparameters = new List<NpgsqlParameter>(){
-								new NpgsqlParameter("@healthFacilityId", DbType.String) { Value = healthFacilityId },
+								new NpgsqlParameter("@healthFacilityId", DbType.Int32) { Value = healthFacilityId },
 									new NpgsqlParameter("@year", DbType.Int32) { Value = year },
 									new NpgsqlParameter("@cummulativeNo", DbType.Int32) { Value = cumulativeChildSn }
 								};
@@ -461,7 +461,7 @@ namespace GIIS.DataLayer
 					string insertQuery = @"INSERT INTO ""HEALTH_FACILITY_CUMULATIVE_CHILD_REGISTRY_NO"" (""REGISTRATION_YEAR"",""CURRENT_CHILD_CUMULATIVE_NO"", ""HEALTH_FACILITY_ID"") VALUES (@year, @cummulativeNo, @healthFacilityId)";
 
 					List<Npgsql.NpgsqlParameter> insertParameters = new List<NpgsqlParameter>(){
-								new NpgsqlParameter("@healthFacilityId", DbType.String) { Value = healthFacilityId },
+								new NpgsqlParameter("@healthFacilityId", DbType.Int32) { Value = healthFacilityId },
 									new NpgsqlParameter("@year", DbType.Int32) { Value = year },
 									new NpgsqlParameter("@cummulativeNo", DbType.Int32) { Value = cumulativeChildSn }
 								};
