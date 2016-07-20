@@ -160,7 +160,7 @@ namespace GIIS.Tanzania.WCF
 			return gcmIdsList;
 		}
 
-        public IntReturnValue RegisterChildWithoutAppointments(string barcodeId, string firstname1, string lastname1, DateTime birthdate, bool gender,
+		public IntReturnValue RegisterChildWithoutAppointments(string barcodeId, string firstname1, string lastname1, DateTime birthdate, bool gender,
             int healthFacilityId, int birthplaceId, int domicileId, string address, string phone, string motherFirstname,
             string motherLastname, string notes, int userId, DateTime modifiedOn)
         {
@@ -200,7 +200,7 @@ namespace GIIS.Tanzania.WCF
 				o.ChildRegistryYear = childRegistryYear;
 			}
 			else {
-				o.ChildCumulativeSn = GIIS.DataLayer.HealthFacility.GetCumulativeChildId(healthFacilityId);
+				o.ChildCumulativeSn = GIIS.DataLayer.HealthFacility.GetAndIncrementCumulativeChildId(healthFacilityId);
 				o.ChildRegistryYear = Int32.Parse(DateTime.Now.Year.ToString());
 
 			}
@@ -227,7 +227,7 @@ namespace GIIS.Tanzania.WCF
 		}
 
 
-        public IntReturnValue RegisterChildWithAppoitments(string barcodeId, string firstname1, string firstname2, string lastname1, DateTime birthdate, bool gender,
+		public IntReturnValue RegisterChildWithAppoitments(string barcodeId, string firstname1, string firstname2, string lastname1, DateTime birthdate, bool gender,
             int healthFacilityId, int birthplaceId, int domicileId, string address, string phone, string motherFirstname,
             string motherLastname, string notes, int userId, DateTime modifiedOn)
         {
@@ -278,7 +278,7 @@ namespace GIIS.Tanzania.WCF
 				o.ChildRegistryYear = childRegistryYear;
 			}
 			else {
-				o.ChildCumulativeSn = GIIS.DataLayer.HealthFacility.GetCumulativeChildId(healthFacilityId);
+				o.ChildCumulativeSn = GIIS.DataLayer.HealthFacility.GetAndIncrementCumulativeChildId(healthFacilityId);
 				o.ChildRegistryYear = Int32.Parse(DateTime.Now.Year.ToString());
 
 			}
@@ -367,7 +367,7 @@ namespace GIIS.Tanzania.WCF
 					o.ChildRegistryYear = childRegistryYear;
 				}
 				else {
-					o.ChildCumulativeSn = GIIS.DataLayer.HealthFacility.GetCumulativeChildId(healthFacilityId);
+					o.ChildCumulativeSn = GIIS.DataLayer.HealthFacility.GetAndIncrementCumulativeChildId(healthFacilityId);
 					o.ChildRegistryYear = Int32.Parse(DateTime.Now.Year.ToString());
 
 				}

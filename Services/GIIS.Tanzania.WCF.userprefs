@@ -1,33 +1,13 @@
 ﻿<Properties StartupItem="GIIS.Tanzania.WCF/GIIS.Tanzania.WCF.csproj">
-  <MonoDevelop.Ide.Workbench ActiveDocument="GIIS.Tanzania.WCF/IChildManagement.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="GIIS.Tanzania.WCF/ChildManagement.svc.cs">
     <Files>
-      <File FileName="GIIS.Tanzania.WCF/ChildManagement.svc.cs" Line="370" Column="58" />
-      <File FileName="../DataLayer/GIIS.DataLayer/HealthFacilityEntity.cs" Line="345" Column="41" />
-      <File FileName="GIIS.Tanzania.WCF/HealthFacilityManagement.svc.cs" Line="57" Column="34" />
-      <File FileName="GIIS.Tanzania.WCF/IHealthFacilityManagement.cs" Line="48" Column="46" />
-      <File FileName="GIIS.Tanzania.WCF/IChildManagement.cs" Line="67" Column="530" />
+      <File FileName="GIIS.Tanzania.WCF/ChildManagement.svc.cs" Line="190" Column="40" />
+      <File FileName="GIIS.Tanzania.WCF/IChildManagement.cs" Line="56" Column="17" />
     </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State name="__root__">
-          <Node name="GIIS.Tanzania.WCF" expanded="True" selected="True">
-            <Node name="GIIS.Tanzania.WCF" expanded="True">
-              <Node name="ChildManagement.svc" expanded="True" />
-              <Node name="HealthFacilityManagement.svc" expanded="True" />
-              <Node name="UserManagement.svc" expanded="True" />
-              <Node name="VaccinationEvent.svc" expanded="True" />
-            </Node>
-          </Node>
-        </State>
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/user/Workspace/TIIS-web-services/Services/GIIS.Tanzania.WCF/IChildManagement.cs" line="54" column="536" />
-      <Breakpoint file="/Users/user/Workspace/TIIS-web-services/Services/GIIS.Tanzania.WCF/IChildManagement.cs" line="39" column="1" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.ItemProperties.GIIS.Tanzania.WCF PreferredExecutionTarget="MonoDevelop.Default" />

@@ -1,27 +1,16 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workbench ActiveDocument="Child.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="HealthFacilityEntity.cs">
     <Files>
       <File FileName="HealthFacility.cs" Line="19" Column="19" />
-      <File FileName="HealthFacilityEntity.cs" Line="464" Column="90" />
+      <File FileName="HealthFacilityEntity.cs" Line="419" Column="53" />
       <File FileName="UserEntity.cs" Line="221" Column="6" />
-      <File FileName="Child.cs" Line="245" Column="167" />
+      <File FileName="Child.cs" Line="254" Column="96" />
       <File FileName="ChildEntity.cs" Line="316" Column="30" />
     </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State name="__root__">
-          <Node name="GIIS.DataLayer" expanded="True" selected="True">
-            <Node name="GIIS.DataLayer" expanded="True" />
-          </Node>
-        </State>
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/user/Workspace/TIIS-web-services/DataLayer/GIIS.DataLayer/HealthFacilityEntity.cs" line="345" column="1" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

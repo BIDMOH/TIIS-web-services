@@ -30,7 +30,7 @@ namespace GIIS.Tanzania.WCF
     {
         [WebGet(UriTemplate = @"RegisterChildWithoutAppointments?barcodeid={barcodeid}&firstname1={firstname1}&lastname1={lastname1}&birthdate={birthdate}&gender={gender}&healthFacilityId={healthFacilityId}&birthplaceId={birthplaceId}&domicileId={domicileId}&address={address}&phone={phone}&motherFirstname={motherFirstname}&motherLastname={motherLastname}&notes={notes}&userId={userId}&modifiedOn={modifiedOn}", ResponseFormat = WebMessageFormat.Json)]
         [OperationContract]
-        IntReturnValue RegisterChildWithoutAppointments(string barcodeId, string firstname1, string lastname1, DateTime birthdate, bool gender,
+		IntReturnValue RegisterChildWithoutAppointments(string barcodeId, string firstname1, string lastname1, DateTime birthdate, bool gender,
             int healthFacilityId, int birthplaceId, int domicileId, string address, string phone, string motherFirstname,
             string motherLastname, string notes, int userId, DateTime modifiedOn);
 
@@ -46,7 +46,7 @@ namespace GIIS.Tanzania.WCF
     
         [WebGet(UriTemplate = @"RegisterChildWithAppoitments?barcodeid={barcodeid}&firstname1={firstname1}&lastname1={lastname1}&birthdate={birthdate}&gender={gender}&healthFacilityId={healthFacilityId}&birthplaceId={birthplaceId}&domicileId={domicileId}&address={address}&phone={phone}&motherFirstname={motherFirstname}&motherLastname={motherLastname}&notes={notes}&userId={userId}&modifiedOn={modifiedOn}&firstname2={firstname2}", ResponseFormat = WebMessageFormat.Json)]
         [OperationContract]
-        IntReturnValue RegisterChildWithAppoitments(string barcodeId, string firstname1, string firstname2, string lastname1, DateTime birthdate, bool gender,
+		IntReturnValue RegisterChildWithAppoitments(string barcodeId, string firstname1, string firstname2, string lastname1, DateTime birthdate, bool gender,
             int healthFacilityId, int birthplaceId, int domicileId, string address, string phone, string motherFirstname,
             string motherLastname, string notes, int userId, DateTime modifiedOn);
 
