@@ -258,15 +258,49 @@ namespace GIIS.DataLayer
             return null;
         }
 
+		public static string GetChildIdsFromHealthFacilities(int healthFacilityId)
+		{
+			try
+			{
+				string query = @"SELECT DISTINCT ""CHILD_ID"" FROM ""VACCINATION_EVENT"" WHERE ""HEALTH_FACILITY_ID"" = @HealthFacilityId";
+
+				List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
+				{
+					new NpgsqlParameter("@HealthFacilityId", DbType.Int32) { Value = healthFacilityId.ToString() }
+				};
+
+				DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, parameters);
+
+				string ids="";
+				foreach (DataRow dr in dt.Rows)
+				{
+					ids+=dr[0].ToString()+",";
+				}
+				ids += "0";
+
+				return ids;
+			}
+			catch (Exception ex)
+			{
+				Log.InsertEntity("Child", "GetChildByHealthFacilityId", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+				throw ex;
+			}
+		}
+
         public static List<Child> GetChildByHealthFacilityId(int healthFacilityId)
         {
+			string ids = GetChildIdsFromHealthFacilities(healthFacilityId);
+			int[] childIds = Array.ConvertAll(ids.Split(','), s => int.Parse(s));
+
+
             try
             {
-                string query = @"SELECT * FROM ""CHILD"" WHERE ""HEALTHCENTER_ID"" = @HealthFacilityId";
+                string query = @"SELECT * FROM ""CHILD"" WHERE ""ID"" = ANY(@ids)";
 
-                List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
-                {
-                    new NpgsqlParameter("@HealthFacilityId", DbType.Int32) { Value = healthFacilityId.ToString() }
+				List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
+				{
+					new NpgsqlParameter("@HealthFacilityId", DbType.Int32) { Value = healthFacilityId.ToString() },
+					new NpgsqlParameter("@ids", NpgsqlDbType.Array | NpgsqlDbType.Numeric){Value = childIds }
                 };
 
                 DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, parameters);
