@@ -40,7 +40,7 @@ namespace GIIS.Tanzania.WCF
 		[OperationContract]
 		IntReturnValue RegisterChildWithoutAppointmentsWithMothersHivStatusAndTT2VaccineStatus(string barcodeId, string firstname1, string lastname1, DateTime birthdate, bool gender,
 			int healthFacilityId, int birthplaceId, int domicileId, string address, string phone, string motherFirstname,
-			string motherLastname,string mothersHivStatus, string mothersTT2Status, int childCumulativeSn, int childRegistryYear, string notes, int userId, DateTime modifiedOn);
+		                                                                                       string motherLastname,string mothersHivStatus, string mothersTT2Status, string childCumulativeSn, string childRegistryYear, string notes, int userId, DateTime modifiedOn);
 
 
     
@@ -55,7 +55,7 @@ namespace GIIS.Tanzania.WCF
 		[OperationContract]
 		IntReturnValue RegisterChildWithAppoitmentsWithMothersHivStatusAndTT2VaccineStatus(string barcodeId, string firstname1, string firstname2, string lastname1, DateTime birthdate, bool gender,
 			int healthFacilityId, int birthplaceId, int domicileId, string address, string phone, string motherFirstname,
-			string motherLastname,string mothersHivStatus, string mothersTT2Status,int childCumulativeSn,int childRegistryYear, string notes, int userId, DateTime modifiedOn);
+		                                                                                   string motherLastname,string mothersHivStatus, string mothersTT2Status,string childCumulativeSn,string childRegistryYear, string notes, int userId, DateTime modifiedOn);
 
 
 
@@ -68,7 +68,7 @@ namespace GIIS.Tanzania.WCF
 		[OperationContract]
 		IntReturnValue UpdateChildWithMothersHivStatusAndTT2VaccineStatus(string barcode, string firstname1, string firstname2, string lastname1, DateTime birthdate, bool gender,
 			int healthFacilityId, int birthplaceId, int domicileId, int statusId, string address, string phone, string motherFirstname,
-			string motherLastname,string mothersHivStatus, string mothersTT2Status, int childCumulativeSn, int childRegistryYear, string notes, int userId, int childId, DateTime modifiedOn);
+		                                                                  string motherLastname,string mothersHivStatus, string mothersTT2Status, string childCumulativeSn, string childRegistryYear, string notes, int userId, int childId, DateTime modifiedOn);
 
 
         [WebGet(UriTemplate = "RemoveChild?id={id}", ResponseFormat = WebMessageFormat.Json)]

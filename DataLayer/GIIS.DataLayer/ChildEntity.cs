@@ -93,48 +93,7 @@ namespace GIIS.DataLayer
                 throw ex;
             }
         }
-        public static Child GetPersonIdentification1(string id)
-        {
-            try
-            {
-                string query = string.Format(@"SELECT * FROM ""CHILD"" WHERE ""IDENTIFICATION_NO1"" = '{0}' ", id);
-                DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, null);
-                return GetChildAsObject(dt);
-            }
-            catch (Exception ex)
-            {
-                Log.InsertEntity("Child", "GetPersonIdentification1", 1, ex.StackTrace, ex.Message);
-                throw ex;
-            }
-        }
-        public static Child GetPersonIdentification2(string id)
-        {
-            try
-            {
-                string query = string.Format(@"SELECT * FROM ""CHILD"" WHERE ""IDENTIFICATION_NO2"" = '{0}' ", id);
-                DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, null);
-                return GetChildAsObject(dt);
-            }
-            catch (Exception ex)
-            {
-                Log.InsertEntity("Child", "GetPersonIdentification2", 1, ex.StackTrace, ex.Message);
-                throw ex;
-            }
-        }
-        public static Child GetPersonIdentification3(string id)
-        {
-            try
-            {
-                string query = string.Format(@"SELECT * FROM ""CHILD"" WHERE ""IDENTIFICATION_NO3"" = '{0}' ", id);
-                DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, null);
-                return GetChildAsObject(dt);
-            }
-            catch (Exception ex)
-            {
-                Log.InsertEntity("Child", "GetPersonIdentification3", 1, ex.StackTrace, ex.Message);
-                throw ex;
-            }
-        }
+
         public static int GetLastChildHealthFacilityByYear(int healthfacility, int year)
         {
             try
@@ -238,11 +197,9 @@ namespace GIIS.DataLayer
             {
                 string query = String.Format(@"SELECT ""CHILD"".""ID"", ""SYSTEM_ID"",""CHILD_CUMULATIVE_SN"",""CHILD_REGISTRY_YEAR"", ""FIRSTNAME1"", ""FIRSTNAME2"", ""LASTNAME1"", ""LASTNAME2"", 
                                ""BIRTHDATE"", ""GENDER"", ""HEALTHCENTER_ID"", ""BIRTHPLACE_ID"", ""COMMUNITY_ID"", 
-                               ""DOMICILE_ID"", ""STATUS_ID"", ""ADDRESS"", ""PHONE"", ""MOBILE"", ""EMAIL"", 
-                               ""MOTHER_ID"", ""MOTHER_FIRSTNAME"", ""MOTHER_LASTNAME"",""MOTHER_HIV_STATUS"",""MOTHER_TT2_STATUS"", ""FATHER_ID"", 
+                               ""DOMICILE_ID"", ""STATUS_ID"", ""ADDRESS"", ""PHONE"", ""MOBILE"", ""EMAIL"", ""MOTHER_FIRSTNAME"", ""MOTHER_LASTNAME"",""MOTHER_HIV_STATUS"",""MOTHER_TT2_STATUS"", ""FATHER_ID"", 
                                ""FATHER_FIRSTNAME"", ""FATHER_LASTNAME"", ""CARETAKER_ID"", ""CARETAKER_FIRSTNAME"", 
-                               ""CARETAKER_LASTNAME"", ""NONVACCINATION_REASON"".""NAME"" as ""NOTES"", ""CHILD"".""IS_ACTIVE"", ""CHILD"".""MODIFIED_ON"", ""CHILD"".""MODIFIED_BY"", 
-                               ""IDENTIFICATION_NO1"", ""IDENTIFICATION_NO2"", ""IDENTIFICATION_NO3"", ""BARCODE_ID"", ""TEMP_ID""
+                               ""CARETAKER_LASTNAME"", ""NONVACCINATION_REASON"".""NAME"" as ""NOTES"", ""CHILD"".""IS_ACTIVE"", ""CHILD"".""MODIFIED_ON"", ""CHILD"".""MODIFIED_BY"", ""BARCODE_ID"", ""TEMP_ID""
                                 FROM ""CHILD"" inner join ""VACCINATION_EVENT"" on ""CHILD"".""ID"" = ""VACCINATION_EVENT"".""CHILD_ID"" LEFT JOIN ""NONVACCINATION_REASON"" ON ""VACCINATION_EVENT"".""NONVACCINATION_REASON_ID"" = ""NONVACCINATION_REASON"".""ID""
                                 WHERE ""CHILD"".""STATUS_ID"" = 1 and ""VACCINATION_STATUS"" = false {0}  ORDER BY ""BIRTHDATE"",""LASTNAME1"" OFFSET {1} LIMIT {2}", where, startRowIndex, maximumRows);
                 DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, null);
@@ -475,9 +432,6 @@ namespace GIIS.DataLayer
 								+ @" AND ( UPPER(""MOTHER_HIV_STATUS"") LIKE @mothersHivStatus or @mothersHivStatus is null or @mothersHivStatus = '%%' )"
 								+ @" AND ( UPPER(""MOTHER_TT2_STATUS"") LIKE @mothersTT2Status or @mothersTT2Status is null or @mothersTT2Status = '%%' )"
 
-
-                                + @" AND ( UPPER(""IDENTIFICATION_NO1"") LIKE @IdFields OR UPPER(""IDENTIFICATION_NO2"") LIKE @IdFields OR UPPER(""IDENTIFICATION_NO3"") LIKE @IdFields or (@IdFields is null ) or @IdFields = '%%' )"
-
                                 + @" ORDER BY ""BIRTHDATE"" DESC,""LASTNAME1"" OFFSET @StartRowIndex LIMIT @MaximumRows;";
 
                 if (healthFacilityId == null) { healthFacilityId = ""; };
@@ -542,7 +496,6 @@ namespace GIIS.DataLayer
 
                                 + @" AND ( UPPER(""MOTHER_FIRSTNAME"") LIKE @MotherFirstname or @MotherFirstname is null or @MotherFirstname = '%%' )"
                                 + @" AND ( UPPER(""MOTHER_LASTNAME"") LIKE @MotherLastname or @MotherLastname is null or @MotherLastname = '%%' )"
-                                + @" AND ( UPPER(""IDENTIFICATION_NO1"") LIKE @IdFields OR UPPER(""IDENTIFICATION_NO2"") LIKE @IdFields OR UPPER(""IDENTIFICATION_NO3"") LIKE @IdFields or (@IdFields is null ) or @IdFields = '%%' )"
                                 + @" ;";
 
                 if (healthFacilityId == null) { healthFacilityId = ""; };

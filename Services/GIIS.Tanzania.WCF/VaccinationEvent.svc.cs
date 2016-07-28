@@ -194,7 +194,7 @@ namespace GIIS.Tanzania.WCF
                         if (vaccineLotId > 0)
                         {
                             StockManagementLogic sml = new StockManagementLogic();
-                            GIIS.DataLayer.ItemTransaction it = sml.Vaccinate(o.HealthFacility, o);
+                            sml.Vaccinate(o.HealthFacility, o);
                         }
                     }
                 }
@@ -228,7 +228,7 @@ namespace GIIS.Tanzania.WCF
                         o.Notes = notes;
                         o.VaccinationStatus = vaccinationStatus;
                         o.NonvaccinationReasonId = nonvaccinationReasonId;
-                        NonvaccinationReason nvr = NonvaccinationReason.GetNonvaccinationReasonById(nonvaccinationReasonId);
+                        NonvaccinationReason.GetNonvaccinationReasonById(nonvaccinationReasonId);
                         o.ModifiedOn = modifiedOn;
                         o.ModifiedBy = userId;
 

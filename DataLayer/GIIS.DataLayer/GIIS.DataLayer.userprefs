@@ -1,11 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workbench ActiveDocument="HealthFacilityEntity.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="ChildEntity.cs">
     <Files>
-      <File FileName="HealthFacility.cs" Line="19" Column="19" />
-      <File FileName="HealthFacilityEntity.cs" Line="419" Column="53" />
-      <File FileName="UserEntity.cs" Line="221" Column="6" />
-      <File FileName="Child.cs" Line="254" Column="96" />
-      <File FileName="ChildEntity.cs" Line="316" Column="30" />
+      <File FileName="ChildEntity.cs" Line="482" Column="13" />
+      <File FileName="Child.cs" Line="233" Column="33" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

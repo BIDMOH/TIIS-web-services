@@ -167,8 +167,8 @@ namespace GIIS.Tanzania.WCF
 
 			string mothersHivStatus = "";
 			string mothersTT2Status = "";
-			int childCumulativeSn = 0;
-			int childRegistryYear = 0;
+			string childCumulativeSn = "";
+			string childRegistryYear = "";
 			return RegisterChildWithoutAppointmentsWithMothersHivStatusAndTT2VaccineStatus(barcodeId,firstname1,lastname1, birthdate, gender, healthFacilityId, birthplaceId, domicileId, address, phone, motherFirstname,
 																					motherLastname, mothersHivStatus, mothersTT2Status, childRegistryYear, childCumulativeSn,notes, userId, modifiedOn);
 
@@ -177,7 +177,7 @@ namespace GIIS.Tanzania.WCF
 
 
 		public IntReturnValue RegisterChildWithoutAppointmentsWithMothersHivStatusAndTT2VaccineStatus(string barcodeId, string firstname1, string lastname1, DateTime birthdate, bool gender,
-			int healthFacilityId, int birthplaceId, int domicileId, string address, string phone, string motherFirstname, string motherLastname, string mothersHivStatus, string mothersTT2Status, int childCumulativeSn, int childRegistryYear, string notes, int userId, DateTime modifiedOn)
+		                                                                                              int healthFacilityId, int birthplaceId, int domicileId, string address, string phone, string motherFirstname, string motherLastname, string mothersHivStatus, string mothersTT2Status, string childCumulativeSn, string childRegistryYear, string notes, int userId, DateTime modifiedOn)
 		{
 			Child o = new Child();
 
@@ -194,10 +194,10 @@ namespace GIIS.Tanzania.WCF
 			o.Address = address;
 			o.Phone = phone;
 
-			if (childCumulativeSn != 0 && childRegistryYear != 0)
+			if (!childCumulativeSn.Equals("") && childRegistryYear.Equals(""))
 			{
-				o.ChildCumulativeSn = childCumulativeSn;
-				o.ChildRegistryYear = childRegistryYear;
+				o.ChildCumulativeSn = Int32.Parse(childCumulativeSn);
+				o.ChildRegistryYear = Int32.Parse(childRegistryYear);
 			}
 			else {
 				o.ChildCumulativeSn = GIIS.DataLayer.HealthFacility.GetAndIncrementCumulativeChildId(healthFacilityId);
@@ -234,8 +234,8 @@ namespace GIIS.Tanzania.WCF
 			string mothersHivStatus = "";
 			string mothersTT2Status = "";
 
-			int childCumulativeSn = 0;
-			int childRegistryYear = 0;
+			string childCumulativeSn = "";
+			string childRegistryYear = "";
 			return RegisterChildWithAppoitmentsWithMothersHivStatusAndTT2VaccineStatus(barcodeId, firstname1, firstname2, lastname1, birthdate, gender, healthFacilityId, birthplaceId, domicileId, address, phone, motherFirstname,
 			                                                                           motherLastname, mothersHivStatus, mothersTT2Status,childCumulativeSn,childRegistryYear, notes, userId, modifiedOn);
         }
@@ -243,7 +243,7 @@ namespace GIIS.Tanzania.WCF
 
 		public IntReturnValue RegisterChildWithAppoitmentsWithMothersHivStatusAndTT2VaccineStatus(string barcodeId, string firstname1, string firstname2, string lastname1, DateTime birthdate, bool gender,
 		   int healthFacilityId, int birthplaceId, int domicileId, string address, string phone, string motherFirstname,
-		                                                                                          string motherLastname, string mothersHivStatus, string mothersTT2Status,int childCumulativeSn, int childRegistryYear, string notes, int userId, DateTime modifiedOn)
+		                                                                                          string motherLastname, string mothersHivStatus, string mothersTT2Status,string childCumulativeSn, string childRegistryYear, string notes, int userId, DateTime modifiedOn)
 		{
 			Child o = new Child();
 
@@ -272,10 +272,10 @@ namespace GIIS.Tanzania.WCF
 			o.MotherHivStatus = mothersHivStatus;
 			o.MotherTT2Status = mothersTT2Status;
 
-			if (childCumulativeSn != 0 && childRegistryYear != 0)
+			if (!childCumulativeSn.Equals("") && childRegistryYear.Equals(""))
 			{
-				o.ChildCumulativeSn = childCumulativeSn;
-				o.ChildRegistryYear = childRegistryYear;
+				o.ChildCumulativeSn = Int32.Parse(childCumulativeSn);
+				o.ChildRegistryYear = Int32.Parse(childRegistryYear);
 			}
 			else {
 				o.ChildCumulativeSn = GIIS.DataLayer.HealthFacility.GetAndIncrementCumulativeChildId(healthFacilityId);
@@ -310,8 +310,8 @@ namespace GIIS.Tanzania.WCF
         {
 			string mothersHivStatus = "";
 			string mothersTT2Status = "";
-			int childCumulativeSn = 0;
-			int childRegistryYear = 0;
+			string childCumulativeSn = "";
+			string childRegistryYear = "";
 			return UpdateChildWithMothersHivStatusAndTT2VaccineStatus(barcode, firstname1, firstname2, lastname1, birthdate, gender, healthFacilityId, birthplaceId, domicileId, statusId, address, phone, motherFirstname, motherLastname, mothersHivStatus, mothersTT2Status,childCumulativeSn, childRegistryYear, notes, userId, childId, modifiedOn);
 
         }
@@ -319,7 +319,7 @@ namespace GIIS.Tanzania.WCF
 
 		public IntReturnValue UpdateChildWithMothersHivStatusAndTT2VaccineStatus(string barcode, string firstname1, string firstname2, string lastname1, DateTime birthdate, bool gender,
 			 int healthFacilityId, int birthplaceId, int domicileId, int statusId, string address, string phone, string motherFirstname,
-		                                                                         string motherLastname, string mothersHivStatus, string mothersTT2Status,int childCumulativeSn, int childRegistryYear, string notes, int userId, int childId, DateTime modifiedOn)
+		                                                                         string motherLastname, string mothersHivStatus, string mothersTT2Status,string childCumulativeSn, string childRegistryYear, string notes, int userId, int childId, DateTime modifiedOn)
 		{
 			Child o = null;
 			int n;
@@ -361,15 +361,10 @@ namespace GIIS.Tanzania.WCF
 				o.MotherHivStatus = mothersHivStatus;
 				o.MotherTT2Status = mothersTT2Status;
 
-				if (childCumulativeSn != 0 && childRegistryYear != 0)
+				if (!childCumulativeSn.Equals("") && !childRegistryYear.Equals(""))
 				{
-					o.ChildCumulativeSn = childCumulativeSn;
-					o.ChildRegistryYear = childRegistryYear;
-				}
-				else {
-					o.ChildCumulativeSn = GIIS.DataLayer.HealthFacility.GetAndIncrementCumulativeChildId(healthFacilityId);
-					o.ChildRegistryYear = Int32.Parse(DateTime.Now.Year.ToString());
-
+					o.ChildCumulativeSn = Int32.Parse(childCumulativeSn);
+					o.ChildRegistryYear = Int32.Parse(childRegistryYear);
 				}
 
 				o.Notes = notes;
@@ -780,19 +775,7 @@ namespace GIIS.Tanzania.WCF
         {
             return (Child.GetPersonByLastnameBirthdateGender(lastname, birthdate, gender) != null);
         }
-        protected bool IdentificationNo1Exists(string id)
-        {
-            return (Child.GetPersonIdentification1(id) != null);
-        }
-        protected bool IdentificationNo2Exists(string id)
-        {
-            return (Child.GetPersonIdentification2(id) != null);
-        }
-        protected bool IdentificationNo3Exists(string id)
-        {
-            return (Child.GetPersonIdentification3(id) != null);
-        }
-
+       
         private List<GIIS.DataLayer.VaccinationEvent> GetVaccinationEvent(List<GIIS.DataLayer.VaccinationEvent> veList)
         {
             List<GIIS.DataLayer.VaccinationEvent> tmp = new List<GIIS.DataLayer.VaccinationEvent>();
