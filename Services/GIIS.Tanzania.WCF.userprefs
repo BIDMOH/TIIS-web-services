@@ -1,12 +1,9 @@
 ﻿<Properties StartupItem="GIIS.Tanzania.WCF/GIIS.Tanzania.WCF.csproj">
   <MonoDevelop.Ide.Workbench ActiveDocument="GIIS.Tanzania.WCF/ChildManagement.svc.cs">
     <Files>
-      <File FileName="GIIS.Tanzania.WCF/ChildManagement.svc.cs" Line="602" Column="69" />
-      <File FileName="GIIS.Tanzania.WCF/IChildManagement.cs" Line="1" Column="1" />
-      <File FileName="GIIS.Tanzania.WCF/UserManagement.svc.cs" Line="1" Column="1" />
-      <File FileName="GIIS.Tanzania.WCF/HealthFacilityManagement.svc.cs" Line="1" Column="1" />
-      <File FileName="GIIS.Tanzania.WCF/VaccinationEvent.svc.cs" Line="1" Column="1" />
-      <File FileName="GIIS.Tanzania.WCF/VaccinationEventEntity.cs" Line="1" Column="1" />
+      <File FileName="GIIS.Tanzania.WCF/ChildManagement.svc.cs" Line="766" Column="68" />
+      <File FileName="GIIS.Tanzania.WCF/ChildEntityTemp.cs" Line="27" Column="25" />
+      <File FileName="GIIS.Tanzania.WCF/ChildListEntitityTemp.cs" Line="19" Column="18" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
