@@ -181,6 +181,8 @@
     <Compile Include="VaccinationQueueManagement.svc.cs">
       <DependentUpon>VaccinationQueueManagement.svc</DependentUpon>
     </Compile>
+    <Compile Include="ChildEntityTemp.cs" />
+    <Compile Include="ChildListEntitityTemp.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -165,6 +165,8 @@
     <Compile Include="Weight.cs" />
     <Compile Include="WordTranslate.cs" />
     <Compile Include="WordTranslateEntity.cs" />
+    <Compile Include="ChildTemp.cs" />
+    <Compile Include="ChildEntityTemp.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Library\Mono.Security.dll" />

@@ -1,9 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workbench ActiveDocument="ChildEntity.cs">
     <Files>
-      <File FileName="ChildEntity.cs" Line="303" Column="75" />
-      <File FileName="Child.cs" Line="332" Column="37" />
-      <File FileName="HealthFacilityEntity.cs" Line="177" Column="62" />
+      <File FileName="ChildEntityTemp.cs" Line="28" Column="10" />
+      <File FileName="VaccinationEvent.cs" Line="32" Column="48" />
+      <File FileName="VaccinationEventEntity.cs" Line="727" Column="1" />
+      <File FileName="VaccinationQueueEntity.cs" Line="1" Column="1" />
+      <File FileName="ChildEntity.cs" Line="745" Column="101" />
+      <File FileName="Child.cs" Line="69" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

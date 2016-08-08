@@ -79,62 +79,13 @@ namespace GIIS.Tanzania.WCF
         [OperationContract]
         IntReturnValue DeleteChild(int id);
 
-        [WebGet(UriTemplate = "FindDublication?birthdateFlag={birthdateFlag}&firstnameFlag={firstnameFlag}&genderFlag={genderFlag}&healthFacilityId={healthFacilityId}", ResponseFormat = WebMessageFormat.Json)]
-        [OperationContract]
-        List<Child> FindDublication(bool birthdateFlag, bool firstnameFlag, bool genderFlag, int healthFacilityId);
+       
 
         [WebGet(UriTemplate = "Search?where={where}", ResponseFormat = WebMessageFormat.Json)]
         [OperationContract]
         List<ChildResults> Search(string where);
 
-        [WebGet(UriTemplate = "GetChildByHealthFacilityId?healthFacilityId={healthFacilityId}", ResponseFormat = WebMessageFormat.Json)]
-        [OperationContract]
-        List<Child> GetChildByHealthFacilityId(int healthFacilityId);
-
-        [WebGet(UriTemplate = "GetChildrenByHealthFacility?healthFacilityId={healthFacilityId}", ResponseFormat = WebMessageFormat.Json)]
-        [OperationContract]
-        List<ChildEntity> GetChildrenByHealthFacility(int healthFacilityId);
-
-        [WebGet(UriTemplate = "GetOnlyChildrenByHealthFacility?healthFacilityId={healthFacilityId}", ResponseFormat = WebMessageFormat.Json)]
-        [OperationContract]
-        List<Child> GetOnlyChildrenByHealthFacility(int healthFacilityId);
-
-        [WebGet(UriTemplate = "GetOnlyChildrenDataByHealthFacility?healthFacilityId={healthFacilityId}", ResponseFormat = WebMessageFormat.Json)]
-        [OperationContract]
-        ChildListEntity GetOnlyChildrenDataByHealthFacility(int healthFacilityId);
-
-        [WebGet(UriTemplate = "GetChildrenByHealthFacilitySinceLastLogin?idUser={idUser}", ResponseFormat = WebMessageFormat.Json)]
-        [OperationContract]
-        ChildListEntity GetChildrenByHealthFacilitySinceLastLogin(int idUser);
-
-        [WebGet(UriTemplate = "GetChildrenByHealthFacilityBeforeLastLogin?idUser={idUser}", ResponseFormat = WebMessageFormat.Json)]
-        [OperationContract]
-        ChildListEntity GetChildrenByHealthFacilityBeforeLastLogin(int idUser);
-
-        [WebGet(UriTemplate = "GetChildrenByHealthFacilityDayFirstLogin?idUser={idUser}", ResponseFormat = WebMessageFormat.Json)]
-        [OperationContract]
-        ChildListEntity GetChildrenByHealthFacilityDayFirstLogin(int idUser);
-
-        [WebGet(UriTemplate = "SearchByBarcode?barcodeId={barcodeId}", ResponseFormat = WebMessageFormat.Json)] 
-        [OperationContract]
-        List<ChildEntity> SearchByBarcode(string barcodeId);
-
-        [WebGet(UriTemplate = "SearchByTempId?tempid={tempid}", ResponseFormat = WebMessageFormat.Json)]
-        [OperationContract]
-        List<ChildEntity> SearchByTempId(string tempid);
-
-		[WebGet(UriTemplate = "SearchByNameAndMother?firstname1={firstname1}&lastname1={lastname1}&motherfirstname={motherfirstname}&motherlastname={motherlastname}&mothersHivStatus={mothersHivStatus}&mothersTT2Status={mothersTT2Status}", ResponseFormat = WebMessageFormat.Json)]
-        [OperationContract]
-		List<ChildEntity> SearchByNameAndMother(string firstname1, string lastname1, string motherfirstname, string motherlastname,string mothersHivStatus,string mothersTT2Status);
-
-        [WebGet(UriTemplate = "SearchByName?firstname1={firstname1}&lastname1={lastname1}", ResponseFormat = WebMessageFormat.Json)]
-        [OperationContract]
-        List<ChildEntity> SearchByName(string firstname1, string lastname1);
-
-        [WebGet(UriTemplate = "SearchByDate?birthdatefrom={birthdatefrom}&birthdateto={birthdateto}&birthplaceid={birthplaceid}&domicileid={domicileid}", ResponseFormat = WebMessageFormat.Json)]
-        [OperationContract]
-        List<ChildEntity> SearchByDate(DateTime birthdatefrom, DateTime birthdateto, int birthplaceid, int domicileid);
-
+        
         [WebGet(UriTemplate = "ChildExistsByLastnameAndBirthdateAndGender?lastname1={lastname1}&gender={gender}&birthdate={birthdate}", ResponseFormat = WebMessageFormat.Json)]
         [OperationContract]
         bool ChildExistsByLastnameAndBirthdateAndGender(string lastname1, string gender, DateTime birthdate);
@@ -143,9 +94,6 @@ namespace GIIS.Tanzania.WCF
         [OperationContract]
         bool ChildExistsByLastnameAndBirthdate(string lastname1, DateTime birthdate);
 
-        //[WebGet(UriTemplate = "ChildExistsByMotherAndBirthdate?motherFirstname={motherFirstname}&motherLastname={motherLastname}&birthdate={birthdate}", ResponseFormat = WebMessageFormat.Json)]
-        //[OperationContract]
-        //bool ChildExistsByMotherAndBirthdate(string motherFirstname, string motherLastname, DateTime birthdate);
 
         [WebGet(UriTemplate = "ChildExistsByMotherAndBirthdateAndGender?lastname1={lastname1}&motherFirstname={motherFirstname}&motherLastname={motherLastname}&gender={gender}&birthdate={birthdate}", ResponseFormat = WebMessageFormat.Json)]
         [OperationContract]
@@ -166,22 +114,6 @@ namespace GIIS.Tanzania.WCF
         [OperationContract]
         IntReturnValue RegisterChildWeightBarcode(string barcode, DateTime date, double weight, DateTime modifiedOn, int modifiedBy);
 
-        [WebGet(UriTemplate = "GetChildById?childid={childid}", ResponseFormat = WebMessageFormat.Json)]
-        [OperationContract]
-        List<ChildEntity> GetChildById(int childId);
-
-        [WebGet(UriTemplate = "GetChildByIdList?childIdList={childIdList}&userId={userId}", ResponseFormat = WebMessageFormat.Json)]
-        [OperationContract]
-        ChildListEntity GetChildByIdList(string childIdList, int userId);
-
-        [WebGet(UriTemplate = "GetChildByIdListSince?childIdList={childIdList}&userId={userId}", ResponseFormat = WebMessageFormat.Json)]
-        [OperationContract]
-        ChildListEntity GetChildByIdListSince(string childIdList, int userId);
-
-        [WebGet(UriTemplate = "GetChildByBarcodeList?childList={childList}", ResponseFormat = WebMessageFormat.Json)]
-        [OperationContract]
-        List<ChildEntity> GetChildByBarcodeList(string childList);
-
 
         [WebGet(UriTemplate = "GetWeight", ResponseFormat = WebMessageFormat.Json)]
         [OperationContract]
@@ -200,5 +132,142 @@ namespace GIIS.Tanzania.WCF
 		[WebGet(UriTemplate = "BroadcastChildUpdatesWithBarcodeId?barcodeId={barcodeId}", ResponseFormat = WebMessageFormat.Json)]
 		[OperationContract]
 		string BroadcastChildUpdatesWithBarcodeId(string barcodeId);
-    }
+
+		[WebGet(UriTemplate = "GetChildByIdListSince?childIdList={childIdList}&userId={userId}", ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		ChildListEntity GetChildByIdListSince(string childIdList, int userId);
+
+
+		[WebGet(UriTemplate = "GetOnlyChildrenByHealthFacility?healthFacilityId={healthFacilityId}", ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		List<Child> GetOnlyChildrenByHealthFacility(int healthFacilityId);
+
+
+		[WebGet(UriTemplate = "GetOnlyChildrenDataByHealthFacility?healthFacilityId={healthFacilityId}", ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		ChildListEntity GetOnlyChildrenDataByHealthFacility(int healthFacilityId);
+
+
+		[WebGet(UriTemplate = "GetChildByHealthFacilityId?healthFacilityId={healthFacilityId}", ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		List<Child> GetChildByHealthFacilityId(int healthFacilityId);
+
+		[WebGet(UriTemplate = "FindDublication?birthdateFlag={birthdateFlag}&firstnameFlag={firstnameFlag}&genderFlag={genderFlag}&healthFacilityId={healthFacilityId}", ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		List<Child> FindDublication(bool birthdateFlag, bool firstnameFlag, bool genderFlag, int healthFacilityId);
+
+		[WebGet(UriTemplate = "GetChildByIdV1?childid={childid}", ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		List<ChildEntity> GetChildById(int childId);
+
+
+
+
+
+
+
+		//============================================= Added a version code to the contracts so as to allow server to handle two different versions of the app=======================================================
+
+
+		[WebGet(UriTemplate = "GetChildrenByHealthFacilityV1?healthFacilityId={healthFacilityId}", ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		List<ChildEntity> GetChildrenByHealthFacility(int healthFacilityId);
+
+
+		[WebGet(UriTemplate = "GetChildrenByHealthFacilitySinceLastLoginV1?idUser={idUser}", ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		ChildListEntity GetChildrenByHealthFacilitySinceLastLogin(int idUser);
+
+		[WebGet(UriTemplate = "GetChildrenByHealthFacilityBeforeLastLoginV1?idUser={idUser}", ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		ChildListEntity GetChildrenByHealthFacilityBeforeLastLogin(int idUser);
+
+		[WebGet(UriTemplate = "GetChildrenByHealthFacilityDayFirstLoginV1?idUser={idUser}", ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		ChildListEntity GetChildrenByHealthFacilityDayFirstLogin(int idUser);
+
+		[WebGet(UriTemplate = "SearchByBarcodeV1?barcodeId={barcodeId}", ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		List<ChildEntity> SearchByBarcode(string barcodeId);
+
+
+		[WebGet(UriTemplate = "SearchByTempId?tempidV1={tempid}", ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		List<ChildEntity> SearchByTempId(string tempid);
+
+		[WebGet(UriTemplate = "SearchByNameAndMother?firstname1={firstname1}&lastname1={lastname1}&motherfirstname={motherfirstname}&motherlastname={motherlastname}&mothersHivStatus={mothersHivStatus}&mothersTT2Status={mothersTT2Status}", ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		List<ChildEntity> SearchByNameAndMother(string firstname1, string lastname1, string motherfirstname, string motherlastname, string mothersHivStatus, string mothersTT2Status);
+
+
+		[WebGet(UriTemplate = "SearchByName?firstname1={firstname1}&lastname1={lastname1}", ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		List<ChildEntity> SearchByName(string firstname1, string lastname1);
+
+
+		[WebGet(UriTemplate = "SearchByDate?birthdatefrom={birthdatefrom}&birthdateto={birthdateto}&birthplaceid={birthplaceid}&domicileid={domicileid}", ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		List<ChildEntity> SearchByDate(DateTime birthdatefrom, DateTime birthdateto, int birthplaceid, int domicileid);
+
+
+		[WebGet(UriTemplate = "GetChildByIdListV1?childIdList={childIdList}&userId={userId}", ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		ChildListEntity GetChildByIdList(string childIdList, int userId);
+
+
+		[WebGet(UriTemplate = "GetChildByBarcodeListV1?childList={childList}", ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		List<ChildEntity> GetChildByBarcodeList(string childList);
+
+
+
+
+
+
+
+
+
+
+		/**
+		 * All contracts below are used as a temporary fix for old applications to ensure that they work with the new server changes, in the long run these methods should be deleted 
+		 */
+
+		[WebGet(UriTemplate = "GetChildrenByHealthFacility?healthFacilityId={healthFacilityId}", ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		List<ChildEntityTemp> GetChildrenByHealthFacilityTemp(int healthFacilityId);
+
+
+		[WebGet(UriTemplate = "GetChildrenByHealthFacilitySinceLastLogin?idUser={idUser}", ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		ChildListEntityTemp GetChildrenByHealthFacilitySinceLastLoginTemp(int idUser);
+
+		[WebGet(UriTemplate = "GetChildrenByHealthFacilityBeforeLastLogin?idUser={idUser}", ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		ChildListEntityTemp GetChildrenByHealthFacilityBeforeLastLoginTemp(int idUser);
+
+
+		[WebGet(UriTemplate = "GetChildrenByHealthFacilityDayFirstLogin?idUser={idUser}", ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		ChildListEntityTemp GetChildrenByHealthFacilityDayFirstLoginTemp(int idUser);
+
+		[WebGet(UriTemplate = "SearchByBarcode?barcodeId={barcodeId}", ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		List<ChildEntityTemp> SearchByBarcodeTemp(string barcodeId);
+
+
+		[WebGet(UriTemplate = "GetChildById?childid={childid}", ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		List<ChildEntityTemp> GetChildByIdTemp(int childId);
+
+		[WebGet(UriTemplate = "GetChildByIdList?childIdList={childIdList}&userId={userId}", ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		ChildListEntityTemp GetChildByIdListTemp(string childIdList, int userId);
+
+
+		[WebGet(UriTemplate = "GetChildByBarcodeList?childList={childList}", ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		List<ChildEntityTemp> GetChildByBarcodeListTemp(string childList);
+
+
+	}
 }

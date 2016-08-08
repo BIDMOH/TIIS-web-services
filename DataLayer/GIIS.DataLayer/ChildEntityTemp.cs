@@ -22,9 +22,9 @@ using System.Text;
 
 namespace GIIS.DataLayer
 {
-    public partial class Child
+    public partial class ChildTemp
     {
-        public static Child GetChildByBarcode(string barcodeId)
+        public static ChildTemp GetChildByBarcode(string barcodeId)
         {
             try
             {
@@ -40,11 +40,11 @@ namespace GIIS.DataLayer
             }
             catch (Exception ex)
             {
-                Log.InsertEntity("Child", "GetChildByBarcode", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+                Log.InsertEntity("ChildTemp", "GetChildByBarcode", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
                 throw ex;
             }
         }
-        public static Child GetChildByTempId(string tempId)
+        public static ChildTemp GetChildByTempId(string tempId)
         {
             try
             {
@@ -60,12 +60,12 @@ namespace GIIS.DataLayer
             }
             catch (Exception ex)
             {
-                Log.InsertEntity("Child", "GetChildByTempId", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+                Log.InsertEntity("ChildTemp", "GetChildByTempId", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
                 throw ex;
             }
         }
 
-        public static Child GetPersonByLastnameBirthdate(string lastName, DateTime dtime)
+        public static ChildTemp GetPersonByLastnameBirthdate(string lastName, DateTime dtime)
         {
             try
             {
@@ -75,11 +75,11 @@ namespace GIIS.DataLayer
             }
             catch (Exception ex)
             {
-                Log.InsertEntity("Child", "GetPersonByLasnameBirthdateGender", 1, ex.StackTrace, ex.Message);
+                Log.InsertEntity("ChildTemp", "GetPersonByLasnameBirthdateGender", 1, ex.StackTrace, ex.Message);
                 throw ex;
             }
         }
-        public static Child GetPersonByLastnameBirthdateGender(string lastName, DateTime dtime, bool gender)
+        public static ChildTemp GetPersonByLastnameBirthdateGender(string lastName, DateTime dtime, bool gender)
         {
             try
             {
@@ -89,7 +89,7 @@ namespace GIIS.DataLayer
             }
             catch (Exception ex)
             {
-                Log.InsertEntity("Child", "GetPersonByLasnameBirthdateGender", 1, ex.StackTrace, ex.Message);
+                Log.InsertEntity("ChildTemp", "GetPersonByLasnameBirthdateGender", 1, ex.StackTrace, ex.Message);
                 throw ex;
             }
         }
@@ -107,12 +107,12 @@ namespace GIIS.DataLayer
             }
             catch (Exception ex)
             {
-                Log.InsertEntity("Child", "GetLastChildHealthFacilityByYear", 1, ex.StackTrace, ex.Message);
+                Log.InsertEntity("ChildTemp", "GetLastChildHealthFacilityByYear", 1, ex.StackTrace, ex.Message);
                 throw ex;
             }
         }
 
-        public static List<Child> GetImmunizedChildrenByLot(ref int maximumRows, ref int startRowIndex, int hfId, int itemlotid)
+        public static List<ChildTemp> GetImmunizedChildrenByLot(ref int maximumRows, ref int startRowIndex, int hfId, int itemlotid)
         {
             try
             {
@@ -123,7 +123,7 @@ namespace GIIS.DataLayer
             }
             catch (Exception ex)
             {
-                Log.InsertEntity("Child", "GetImmunizedChildrenByLot", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+                Log.InsertEntity("ChildTemp", "GetImmunizedChildrenByLot", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
                 throw ex;
             }
         }
@@ -140,12 +140,12 @@ namespace GIIS.DataLayer
             }
             catch (Exception ex)
             {
-                Log.InsertEntity("Child", "GetCountImmunizedChildrenByLot", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+                Log.InsertEntity("ChildTemp", "GetCountImmunizedChildrenByLot", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
                 throw ex;
             }
         }
 
-        public static List<Child> GetDuplications(bool birthdateFlag, bool firstnameFlag, bool genderFlag, int healthFacilityId)
+        public static List<ChildTemp> GetDuplications(bool birthdateFlag, bool firstnameFlag, bool genderFlag, int healthFacilityId)
         {
             try
             {
@@ -184,14 +184,14 @@ namespace GIIS.DataLayer
             }
             catch (Exception ex)
             {
-                Log.InsertEntity("Child", "GetDuplications", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+                Log.InsertEntity("ChildTemp", "GetDuplications", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
                 throw ex;
             }
 
             return null;
         }
 
-        public static List<Child> GetNotImmunizedChildren(ref int maximumRows, ref int startRowIndex, string where)
+        public static List<ChildTemp> GetNotImmunizedChildren(ref int maximumRows, ref int startRowIndex, string where)
         {
             try
             {
@@ -207,7 +207,7 @@ namespace GIIS.DataLayer
             }
             catch (Exception ex)
             {
-                Log.InsertEntity("Child", "GetNotImmunizedChildren", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+                Log.InsertEntity("ChildTemp", "GetNotImmunizedChildren", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
                 throw ex;
             }
         }
@@ -224,26 +224,26 @@ namespace GIIS.DataLayer
             }
             catch (Exception ex)
             {
-                Log.InsertEntity("Child", "GetCountNotImmunizedChildren", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+                Log.InsertEntity("ChildTemp", "GetCountNotImmunizedChildren", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
                 throw ex;
             }
         }
 
 
-        public static List<Child> GetChildListforSMSNotification(int healthcenterId, int currentMonth, int currentYear)
+        public static List<ChildTemp> GetChildListforSMSNotification(int healthcenterId, int currentMonth, int currentYear)
         {
             try
             {
                 if (healthcenterId != 0)
                 {
-                    List<Child> child = new List<Child>();
+                    List<ChildTemp> child = new List<ChildTemp>();
                     string query = string.Format("-- Get due data: vaccines of previous months that have status false: are not done " + Environment.NewLine + "-------------------------------------------------------------------------------------- " + Environment.NewLine + "SELECT DISTINCT \"VACCINATION_EVENT\".\"CHILD_ID\" FROM \"VACCINATION_APPOINTMENT\", \"VACCINATION_EVENT\" " + Environment.NewLine + "WHERE  \"VACCINATION_APPOINTMENT\".\"ID\" = \"VACCINATION_EVENT\".\"APPOINTMENT_ID\" " + Environment.NewLine + " AND  (\"VACCINATION_EVENT\".\"VACCINATION_STATUS\" = False) AND \"VACCINATION_APPOINTMENT\".\"IS_ACTIVE\" = True " + Environment.NewLine + " AND  ((EXTRACT(MONTH FROM \"VACCINATION_EVENT\".\"SCHEDULED_DATE\") < {0}   -- current month " + Environment.NewLine + " AND  EXTRACT(YEAR FROM \"VACCINATION_EVENT\".\"SCHEDULED_DATE\") = {1}) OR  EXTRACT(YEAR FROM \"VACCINATION_EVENT\".\"SCHEDULED_DATE\") < {1}) -- current year  " + Environment.NewLine + " AND \"VACCINATION_EVENT\".\"IS_ACTIVE\" = true AND \"VACCINATION_EVENT\".\"CHILD_ID\" in (SELECT \"ID\" from \"CHILD\" where \"STATUS_ID\" in (1,6) AND \"IS_ACTIVE\" = true) AND \"SCHEDULED_FACILITY_ID\" = {2} " + Environment.NewLine + "-------------------------------------------------------------------------------------- " + Environment.NewLine + "ORDER BY \"VACCINATION_EVENT\".\"CHILD_ID\" ", currentMonth, currentYear, healthcenterId);
 
                     DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, null);
 
                     foreach (DataRow dr in dt.Rows)
                     {
-                        Child objChild = new Child();
+                        ChildTemp objChild = new ChildTemp();
                         objChild = GetChildById(Convert.ToInt16(dr["CHILD_ID"]));
                         child.Add(objChild);
                     }
@@ -252,7 +252,7 @@ namespace GIIS.DataLayer
             }
             catch (Exception ex)
             {
-                Log.InsertEntity("Child", "GetMonthlyPlanChildListforNotification", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+                Log.InsertEntity("ChildTemp", "GetMonthlyPlanChildListforNotification", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
                 throw ex;
             }
             return null;
@@ -282,12 +282,12 @@ namespace GIIS.DataLayer
 			}
 			catch (Exception ex)
 			{
-				Log.InsertEntity("Child", "GetChildByHealthFacilityId", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+				Log.InsertEntity("ChildTemp", "GetChildByHealthFacilityId", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
 				throw ex;
 			}
 		}
 
-        public static List<Child> GetChildByHealthFacilityId(int healthFacilityId)
+        public static List<ChildTemp> GetChildByHealthFacilityId(int healthFacilityId)
         {
 			string ids = GetChildIdsFromHealthFacilities(healthFacilityId);
 			int[] childIds = Array.ConvertAll(ids.Split(','), s => int.Parse(s));
@@ -308,12 +308,12 @@ namespace GIIS.DataLayer
             }
             catch (Exception ex)
             {
-                Log.InsertEntity("Child", "GetChildByHealthFacilityId", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+                Log.InsertEntity("ChildTemp", "GetChildByHealthFacilityId", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
                 throw ex;
             }
         }
 
-        public static List<Child> GetChildByHealthFacilityIdForWebService(int healthFacilityId)
+        public static List<ChildTemp> GetChildByHealthFacilityIdForWebService(int healthFacilityId)
         {
             try
             {
@@ -332,12 +332,12 @@ namespace GIIS.DataLayer
             }
             catch (Exception ex)
             {
-                Log.InsertEntity("Child", "GetChildByHealthFacilityIdForWebService", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+                Log.InsertEntity("ChildTemp", "GetChildByHealthFacilityIdForWebService", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
                 throw ex;
             }
         }
 
-        public static List<Child> GetChildByHealthFacilityIdSinceLastLogin(int userId)
+        public static List<ChildTemp> GetChildByHealthFacilityIdSinceLastLogin(int userId)
         {
             try
             {
@@ -366,12 +366,12 @@ namespace GIIS.DataLayer
             }
             catch (Exception ex)
             {
-                Log.InsertEntity("Child", "GetChildByHealthFacilityIdSinceLastLogin", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+                Log.InsertEntity("ChildTemp", "GetChildByHealthFacilityIdSinceLastLogin", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
                 throw ex;
             }
         }
 
-        public static List<Child> GetChildByHealthFacilityIdBeforeLastLogin(int userId)
+        public static List<ChildTemp> GetChildByHealthFacilityIdBeforeLastLogin(int userId)
         {
 
             try
@@ -401,12 +401,12 @@ namespace GIIS.DataLayer
             }
             catch (Exception ex)
             {
-                Log.InsertEntity("Child", "GetChildByHealthFacilityIdBeforeLastLogin", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+                Log.InsertEntity("ChildTemp", "GetChildByHealthFacilityIdBeforeLastLogin", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
                 throw ex;
             }
         }
 
-        public static List<Child> GetChildByHealthFacilityIdDayFirstLogin(int userId)
+        public static List<ChildTemp> GetChildByHealthFacilityIdDayFirstLogin(int userId)
         {
 
             try
@@ -432,12 +432,12 @@ namespace GIIS.DataLayer
             }
             catch (Exception ex)
             {
-                Log.InsertEntity("Child", "GetChildByHealthFacilityIdBeforeLastLogin", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+                Log.InsertEntity("ChildTemp", "GetChildByHealthFacilityIdBeforeLastLogin", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
                 throw ex;
             }
         }
 
-		public static List<Child> GetPagedChildList(int statusId, DateTime birthdateFrom, DateTime birthdateTo, string firstname1, string lastname1,
+		public static List<ChildTemp> GetPagedChildList(int statusId, DateTime birthdateFrom, DateTime birthdateTo, string firstname1, string lastname1,
 			string idFields, string healthFacilityId, int birthplaceId, int communityId, int domicileId,
 													string motherFirstname, string motherLastname, string mothersHivStatus, string mothersTT2Status, string systemId, string barcodeId, string tempId,
             ref int maximumRows, ref int startRowIndex)
@@ -501,12 +501,12 @@ namespace GIIS.DataLayer
             }
             catch (Exception ex)
             {
-                Log.InsertEntity("Child", "GetPagedChildList", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+                Log.InsertEntity("ChildTemp", "GetPagedChildList", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
                 throw ex;
             }
         }
 
-		public static List<Child> GetPagedChildList(int statusId, DateTime birthdateFrom, DateTime birthdateTo, string firstname1, string lastname1,
+		public static List<ChildTemp> GetPagedChildList(int statusId, DateTime birthdateFrom, DateTime birthdateTo, string firstname1, string lastname1,
 			string idFields, string healthFacilityId, int birthplaceId, int communityId, int domicileId,
 													string motherFirstname, string motherLastname, string systemId, string barcodeId, string tempId,
 			ref int maximumRows, ref int startRowIndex)
@@ -562,7 +562,7 @@ namespace GIIS.DataLayer
 			}
 			catch (Exception ex)
 			{
-				Log.InsertEntity("Child", "GetPagedChildList", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+				Log.InsertEntity("ChildTemp", "GetPagedChildList", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
 				throw ex;
 			}
 		}
@@ -619,7 +619,7 @@ namespace GIIS.DataLayer
             }
             catch (Exception ex)
             {
-                Log.InsertEntity("Child", "GetCountChildList", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+                Log.InsertEntity("ChildTemp", "GetCountChildList", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
                 throw ex;
             }
         }
@@ -654,12 +654,12 @@ namespace GIIS.DataLayer
             }
             catch (Exception ex)
             {
-                Log.InsertEntity("Child", "ChildExists", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+                Log.InsertEntity("ChildTemp", "ChildExists", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
                 throw ex;
             }
         }
 
-        public static List<Child> GetChildByIdList(string childIdList, int userId)
+        public static List<ChildTemp> GetChildByIdList(string childIdList, int userId)
         {
             //tring[] childList = childIdList.Split(',');
 
@@ -690,12 +690,12 @@ namespace GIIS.DataLayer
             }
             catch (Exception ex)
             {
-                Log.InsertEntity("Child", "GetChildByIdList", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+                Log.InsertEntity("ChildTemp", "GetChildByIdList", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
                 throw ex;
             }
         }
 
-        public static List<Child> GetChildByIdListSince(string childIdList, int userId)
+        public static List<ChildTemp> GetChildByIdListSince(string childIdList, int userId)
         {
             //tring[] childList = childIdList.Split(',');
 
@@ -725,26 +725,9 @@ namespace GIIS.DataLayer
             }
             catch (Exception ex)
             {
-                Log.InsertEntity("Child", "GetChildByIdListSince", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+                Log.InsertEntity("ChildTemp", "GetChildByIdListSince", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
                 throw ex;
             }
         }
-
-		public static Child GetPersonIdentification1(string id)
-		{
-			//returns null because this fields have been removed from the database since they were not in use
-			return null;
-		}
-		public static Child GetPersonIdentification2(string id)
-		{
-			//returns null because this fields have been removed from the database since they were not in use
-			return null;
-		}
-		public static Child GetPersonIdentification3(string id)
-		{
-			//returns null because this fields have been removed from the database since they were not in use
-			return null;
-		}
-
     }
 }
