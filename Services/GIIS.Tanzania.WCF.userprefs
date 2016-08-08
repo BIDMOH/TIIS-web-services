@@ -1,9 +1,9 @@
 ﻿<Properties StartupItem="GIIS.Tanzania.WCF/GIIS.Tanzania.WCF.csproj">
   <MonoDevelop.Ide.Workbench ActiveDocument="GIIS.Tanzania.WCF/ChildManagement.svc.cs">
     <Files>
-      <File FileName="GIIS.Tanzania.WCF/ChildManagement.svc.cs" Line="766" Column="68" />
-      <File FileName="GIIS.Tanzania.WCF/ChildEntityTemp.cs" Line="27" Column="25" />
-      <File FileName="GIIS.Tanzania.WCF/ChildListEntitityTemp.cs" Line="19" Column="18" />
+      <File FileName="GIIS.Tanzania.WCF/ChildManagement.svc.cs" Line="133" Column="74" />
+      <File FileName="GIIS.Tanzania.WCF/IChildManagement.cs" Line="170" Column="1" />
+      <File FileName="GIIS.Tanzania.WCF/ChildEntityTemp.cs" Line="18" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

@@ -12,7 +12,10 @@
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
- //******************************************************************************
+//******************************************************************************
+
+//============================================= Added a version code to the contracts so as to allow server to handle two different versions of the app=======================================================
+
 
 using GIIS.DataLayer;
 using System;

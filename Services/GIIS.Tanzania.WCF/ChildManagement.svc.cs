@@ -758,30 +758,6 @@ namespace GIIS.Tanzania.WCF
             return ceList;
         }
 
-		/**
-		 * All methods named temp are used as a temporary fix for old applications to ensure that they work with the new server changes, in the long run these methods should be deleted 
-		 */
-		public List<ChildEntityTemp> GetChildrenByHealthFacilityTemp(int healthFacilityId)
-		{
-			List<ChildTemp> childList = ChildTemp.GetChildByHealthFacilityId(healthFacilityId);
-
-
-			List<ChildEntityTemp> ceList = new List<ChildEntityTemp>();
-
-			foreach (ChildTemp child in childList)
-			{
-				List<GIIS.DataLayer.VaccinationEvent> veList = GIIS.DataLayer.VaccinationEvent.GetChildVaccinationEvent(child.Id);
-				List<GIIS.DataLayer.VaccinationAppointment> vaList = GIIS.DataLayer.VaccinationAppointment.GetVaccinationAppointmentsByChild(child.Id);
-
-				ChildEntityTemp ce = new ChildEntityTemp();
-				ce.childEntity = child;
-				ce.vaList = vaList; // GetVaccinationAppointment(vaList);
-				ce.veList = veList; // GetVaccinationEvent(veList);
-				ceList.Add(ce);
-			}
-
-			return ceList;
-		}
 
 
         public List<Child> GetOnlyChildrenByHealthFacility(int healthFacilityId)
@@ -1389,5 +1365,260 @@ namespace GIIS.Tanzania.WCF
 
             return childId;
         }
-    }
+
+
+
+
+
+
+		/**
+		 * All methods containing temp in their names are used as a temporary fix for old applications to ensure that they work with the new server changes, in the long run these methods should be deleted 
+		 */
+		public List<ChildEntityTemp> GetChildrenByHealthFacilityTemp(int healthFacilityId)
+		{
+			List<ChildTemp> childList = ChildTemp.GetChildByHealthFacilityId(healthFacilityId);
+
+
+			List<ChildEntityTemp> ceList = new List<ChildEntityTemp>();
+
+			foreach (ChildTemp child in childList)
+			{
+				List<GIIS.DataLayer.VaccinationEvent> veList = GIIS.DataLayer.VaccinationEvent.GetChildVaccinationEvent(child.Id);
+				List<GIIS.DataLayer.VaccinationAppointment> vaList = GIIS.DataLayer.VaccinationAppointment.GetVaccinationAppointmentsByChild(child.Id);
+
+				ChildEntityTemp ce = new ChildEntityTemp();
+				ce.childEntity = child;
+				ce.vaList = vaList; // GetVaccinationAppointment(vaList);
+				ce.veList = veList; // GetVaccinationEvent(veList);
+				ceList.Add(ce);
+			}
+
+			return ceList;
+		}
+
+
+		public List<ChildTemp> SearchTemp(int statusId, DateTime birthdateFrom, DateTime birthdateTo, string firstname1, string lastname1, string otherId, int healthFacilityId,
+			int birthplaceId, int communityId, int domicileId, string address, string phone, string mobile)
+		{
+			int max = Int32.MaxValue;
+			int start = 0;
+
+			string idFields = null;
+			string motherFirstname = null;
+			string motherLastname = null;
+			string mothersHivStatus = null;
+			string mothersTT2Status = null;
+
+
+			string systemId = null;
+			string barcodeId = null;
+			string tempId = null;
+
+			List<ChildTemp> childList = ChildTemp.GetPagedChildList(statusId, birthdateFrom, birthdateTo, firstname1, lastname1, idFields,
+				healthFacilityId.ToString(), birthplaceId, communityId, domicileId, motherFirstname, motherLastname, mothersHivStatus, mothersTT2Status, systemId, barcodeId, tempId,
+				ref max, ref start);
+
+			return childList;
+		}
+
+
+		public ChildListEntityTemp GetChildrenByHealthFacilitySinceLastLoginTemp(int idUser)
+		{
+			if (idUser > 0)
+			{
+				User user = User.GetUserById(idUser);
+				ChildListEntityTemp cle = new ChildListEntityTemp();
+
+				List<ChildTemp> childList = ChildTemp.GetChildByHealthFacilityIdSinceLastLogin(idUser);
+				cle.childList = childList;
+
+				List<GIIS.DataLayer.VaccinationAppointment> vaList = GIIS.DataLayer.VaccinationAppointment.GetVaccinationAppointmentsByChild(user.Lastlogin, user.Id);
+				cle.vaList = vaList;
+
+				List<GIIS.DataLayer.VaccinationEvent> veList = GIIS.DataLayer.VaccinationEvent.GetChildVaccinationEvent(user.Lastlogin, user.Id);
+				cle.veList = veList;
+
+				//List<ChildEntity> ceList = new List<ChildEntity>();
+
+				//foreach (Child child in childList)
+				//{
+
+				//    ChildEntity ce = new ChildEntity();
+				//    ce.childEntity = child;
+				//    ce.vaList = vaList; // GetVaccinationAppointment(vaList);
+				//    ce.veList = veList; // GetVaccinationEvent(veList);
+				//    ceList.Add(ce);
+				//}
+
+				//return ceList;
+				return cle;
+			}
+			else
+				return null;
+		}
+
+
+		public ChildListEntityTemp GetChildrenByHealthFacilityBeforeLastLoginTemp(int idUser)
+		{
+			if (idUser > 0)
+			{
+				User user = User.GetUserById(idUser);
+				ChildListEntityTemp cle = new ChildListEntityTemp();
+
+				List<ChildTemp> childList = ChildTemp.GetChildByHealthFacilityIdBeforeLastLogin(idUser);
+				cle.childList = childList;
+
+				List<GIIS.DataLayer.VaccinationAppointment> vaList = GIIS.DataLayer.VaccinationAppointment.GetVaccinationAppointmentsByChildBefore(user.Lastlogin, user.PrevLogin, user.Id);
+				cle.vaList = vaList;
+
+				List<GIIS.DataLayer.VaccinationEvent> veList = GIIS.DataLayer.VaccinationEvent.GetChildVaccinationEventBefore(user.Lastlogin, user.PrevLogin, user.Id);
+				cle.veList = veList;
+				return cle;
+			}
+			else
+				return null;
+
+		}
+
+
+		public ChildListEntityTemp GetChildrenByHealthFacilityDayFirstLoginTemp(int idUser)
+		{
+			if (idUser > 0)
+			{
+				User user = User.GetUserById(idUser);
+				ChildListEntityTemp cle = new ChildListEntityTemp();
+
+				List<ChildTemp> childList = ChildTemp.GetChildByHealthFacilityIdDayFirstLogin(idUser);
+				cle.childList = childList;
+
+				List<GIIS.DataLayer.VaccinationAppointment> vaList = GIIS.DataLayer.VaccinationAppointment.GetVaccinationAppointmentsByChildDayFirstLogin(user.Lastlogin.AddDays(-1), user.Id);
+				cle.vaList = vaList;
+
+				List<GIIS.DataLayer.VaccinationEvent> veList = GIIS.DataLayer.VaccinationEvent.GetChildVaccinationEventDayFirstLogin(user.Lastlogin.AddDays(-1), user.Id);
+				cle.veList = veList;
+				return cle;
+			}
+			else
+				return null;
+		}
+
+
+
+		public List<ChildEntityTemp> SearchByBarcodeTemp(string barcodeId)
+		{
+			GIIS.DataLayer.ChildTemp child = GIIS.DataLayer.ChildTemp.GetChildByBarcode(barcodeId);
+
+			List<ChildEntityTemp> ceList = new List<ChildEntityTemp>();
+
+			if (child != null)
+			{
+				List<GIIS.DataLayer.VaccinationEvent> veList = GIIS.DataLayer.VaccinationEvent.GetChildVaccinationEvent(child.Id);
+				List<GIIS.DataLayer.VaccinationAppointment> vaList = GIIS.DataLayer.VaccinationAppointment.GetVaccinationAppointmentsByChild(child.Id);
+
+				ChildEntityTemp ce = new ChildEntityTemp();
+				ce.childEntity = child;
+				ce.vaList = vaList; // GetVaccinationAppointment(vaList);
+				ce.veList = veList; // GetVaccinationEvent(veList);
+				ceList.Add(ce);
+			}
+
+			return ceList;
+		}
+
+
+		public List<ChildEntityTemp> GetChildByIdTemp(int childId)
+		{
+			ChildTemp child = ChildTemp.GetChildById(childId);
+			List<ChildEntityTemp> ceList = new List<ChildEntityTemp>();
+
+			if (child != null)
+			{
+				List<GIIS.DataLayer.VaccinationEvent> veList = GIIS.DataLayer.VaccinationEvent.GetChildVaccinationEvent(child.Id);
+				List<GIIS.DataLayer.VaccinationAppointment> vaList = GIIS.DataLayer.VaccinationAppointment.GetVaccinationAppointmentsByChild(child.Id);
+
+				ChildEntityTemp ce = new ChildEntityTemp();
+				ce.childEntity = child;
+				ce.vaList = vaList; // GetVaccinationAppointment(vaList);
+				ce.veList = veList; // GetVaccinationEvent(veList);
+				ceList.Add(ce);
+			}
+
+			return ceList;
+
+		}
+
+		public ChildListEntityTemp GetChildByIdListTemp(string childIdList, int userId)
+		{
+			if (userId > 0)
+			{
+				User user = User.GetUserById(userId);
+				ChildListEntityTemp cle = new ChildListEntityTemp();
+
+				List<ChildTemp> childList = ChildTemp.GetChildByIdList(childIdList, userId);
+				cle.childList = childList;
+
+				List<GIIS.DataLayer.VaccinationAppointment> vaList = GIIS.DataLayer.VaccinationAppointment.GetVaccinationAppointmentsByChildBefore(childIdList, user.Lastlogin, user.PrevLogin, userId);
+				cle.vaList = vaList;
+
+				List<GIIS.DataLayer.VaccinationEvent> veList = GIIS.DataLayer.VaccinationEvent.GetChildVaccinationEventBefore(childIdList, user.Lastlogin, user.PrevLogin, user.Id);
+				cle.veList = veList;
+				return cle;
+			}
+			else
+				return null;
+		
+		}
+
+
+		public List<ChildEntityTemp> GetChildByBarcodeListTemp(string childList)
+		{
+
+			List<ChildEntityTemp> ceList = new List<ChildEntityTemp>();
+			List<ChildTemp> chList = new List<ChildTemp>();
+			string[] cList = childList.Split(',');
+			foreach (string s in cList)
+			{
+				ChildTemp c = ChildTemp.GetChildByBarcode(s);
+				chList.Add(c);
+			}
+			foreach (ChildTemp child in chList)
+			{
+				if (child != null)
+				{
+					List<GIIS.DataLayer.VaccinationEvent> veList = GIIS.DataLayer.VaccinationEvent.GetChildVaccinationEvent(child.Id);
+					List<GIIS.DataLayer.VaccinationAppointment> vaList = GIIS.DataLayer.VaccinationAppointment.GetVaccinationAppointmentsByChild(child.Id);
+
+					ChildEntityTemp ce = new ChildEntityTemp();
+					ce.childEntity = child;
+					ce.vaList = vaList;// GetVaccinationAppointment(vaList);
+					ce.veList = veList; // GetVaccinationEvent(veList);
+
+					ceList.Add(ce);
+				}
+			}
+
+			return ceList;
+		}
+
+
+		private List<ChildEntityTemp> GetChildrenWithAppointmentAndEventsTemp(List<ChildTemp> childList)
+		{
+			List<ChildEntityTemp> ceList = new List<ChildEntityTemp>();
+
+			foreach (ChildTemp child in childList)
+			{
+				List<GIIS.DataLayer.VaccinationEvent> veList = new List<DataLayer.VaccinationEvent>(); // GIIS.DataLayer.VaccinationEvent.GetChildVaccinationEvent(child.Id, child.ModifiedOn);
+				List<GIIS.DataLayer.VaccinationAppointment> vaList = new List<VaccinationAppointment>(); // GIIS.DataLayer.VaccinationAppointment.GetVaccinationAppointmentsByChild(child.Id, child.ModifiedOn);
+
+				ChildEntityTemp ce = new ChildEntityTemp();
+				ce.childEntity = child;
+				ce.vaList = GetVaccinationAppointment(vaList);
+				ce.veList = GetVaccinationEvent(veList);
+				ceList.Add(ce);
+			}
+
+			return ceList;
+		}
+
+	}
 }
