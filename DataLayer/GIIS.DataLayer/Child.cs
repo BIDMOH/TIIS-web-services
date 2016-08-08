@@ -60,6 +60,13 @@ namespace GIIS.DataLayer
         public Int32 ModifiedBy { get; set; }
         public string BarcodeId { get; set; }
         public string TempId { get; set; }
+
+
+		public string MotherId { get; set; }
+		public string IdentificationNo1 { get; set; }
+		public string IdentificationNo2 { get; set; }
+		public string IdentificationNo3 { get; set; }
+
         public string Name
         {
             get

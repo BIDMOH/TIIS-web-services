@@ -729,5 +729,22 @@ namespace GIIS.DataLayer
                 throw ex;
             }
         }
+
+		public static Child GetPersonIdentification1(string id)
+		{
+			//returns null because this fields have been removed from the database since they were not in use
+			return null;
+		}
+		public static Child GetPersonIdentification2(string id)
+		{
+			//returns null because this fields have been removed from the database since they were not in use
+			return null;
+		}
+		public static Child GetPersonIdentification3(string id)
+		{
+			//returns null because this fields have been removed from the database since they were not in use
+			return null;
+		}
+
     }
 }
