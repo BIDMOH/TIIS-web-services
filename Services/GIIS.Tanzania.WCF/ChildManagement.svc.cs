@@ -325,10 +325,11 @@ namespace GIIS.Tanzania.WCF
 			o.MotherHivStatus = mothersHivStatus;
 			o.MotherTT2Status = mothersTT2Status;
 
-			if (!childCumulativeSn.Equals("") && childRegistryYear.Equals(""))
+			if (!childCumulativeSn.Equals("") && !childRegistryYear.Equals(""))
 			{
 				o.ChildCumulativeSn = Int32.Parse(childCumulativeSn);
 				o.ChildRegistryYear = Int32.Parse(childRegistryYear);
+
 			}
 			else {
 				o.ChildCumulativeSn = GIIS.DataLayer.HealthFacility.GetAndIncrementCumulativeChildId(healthFacilityId);
