@@ -35,7 +35,10 @@ namespace GIIS.Tanzania.WCF
     public class ChildManagement : IChildManagement
     {
 		
-
+		/**
+		 * Method used to broadcast any child updates to other tablets within and outside catchment if they have a stored copy of the childs information
+		 * 
+		 **/
         public string BroadcastChildUpdates(int childId)
         {
 
@@ -111,6 +114,9 @@ namespace GIIS.Tanzania.WCF
             
         }
 
+		/**
+		 *Method used to update gcmIds with canonical ids received from google's GCM server 
+		 **/
 		public void updateGcmId(string cannonicalId, string gcmId)
 		{
 
@@ -118,6 +124,9 @@ namespace GIIS.Tanzania.WCF
 
 		}
 
+		/**
+		 * Broadcasting child updates based on a child's barcodeid
+		 **/
 		public string BroadcastChildUpdatesWithBarcodeId(string barcodeId)
 		{
 
@@ -127,7 +136,9 @@ namespace GIIS.Tanzania.WCF
 			return BroadcastChildUpdates(childId);
 		}
 
-
+		/**
+		 * Method for obtaining a list of health facilities gcm ids to push updates to
+		 **/
 		public List<string> GetGcmIdsToSendDataModifiedChild(int childId)
 		{
 			DataTable dt = GIIS.DataLayer.VaccinationEvent.GetHfidsOfModifiedChild(childId);

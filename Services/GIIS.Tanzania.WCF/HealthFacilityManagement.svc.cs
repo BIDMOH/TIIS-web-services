@@ -44,6 +44,12 @@ namespace GIIS.Tanzania.WCF
             return healthFacilityList;
         }
 
+        public List<HealthFacility> GetHealthFacilities()
+		{
+			List<HealthFacility> healthFacilityList = HealthFacility.GetHealthFacilityList();
+			return healthFacilityList;
+		}
+
         public List<HealthFacility> GetHealthFacilityByList(string hList)
         {
             return HealthFacility.GetHealthFacilityByList(hList);

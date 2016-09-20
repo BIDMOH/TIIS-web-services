@@ -36,6 +36,11 @@ namespace GIIS.Tanzania.WCF
         [OperationContract]
         List<HealthFacility> GetHealthFacilityById(int id);
 
+		[WebGet(UriTemplate = "GetHealthFacilities", ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		List<HealthFacility> GetHealthFacilities();
+
+
         [WebGet(UriTemplate = "GetHealthFacilityByList?hList={hList}", ResponseFormat = WebMessageFormat.Json)]
         [OperationContract]
         List<HealthFacility> GetHealthFacilityByList(string hList);
