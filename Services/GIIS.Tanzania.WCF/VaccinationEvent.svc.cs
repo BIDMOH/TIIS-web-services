@@ -217,7 +217,9 @@ namespace GIIS.Tanzania.WCF
                     int cId = GetActualChildId(child.Id);
 
                     GIIS.DataLayer.VaccinationEvent o = GIIS.DataLayer.VaccinationEvent.GetVaccinationEventByChildIdAndDoseId(cId, doseId);
-                    if (o != null && (!o.VaccinationStatus) && o.NonvaccinationReasonId == 0 && (vaccinationStatus || nonvaccinationReasonId > 0) )
+					GIIS.DataLayer.NonvaccinationReason nonVaccinationreason = GIIS.DataLayer.NonvaccinationReason.GetNonvaccinationReasonById(o.NonvaccinationReasonId);
+
+                    if (o != null && (!o.VaccinationStatus) && nonVaccinationreason.KeepChildDue && (vaccinationStatus || nonvaccinationReasonId > 0) )
                     {
                         o.VaccineLotId = vaccineLotId;
                         o.HealthFacilityId = healthFacilityId;
