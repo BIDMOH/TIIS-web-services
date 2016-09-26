@@ -304,10 +304,19 @@ namespace GIIS.Tanzania.WCF
 			return irv;
         }
 
-
 		public IntReturnValue RegisterChildWithAppoitmentsWithMothersHivStatusAndTT2VaccineStatus(string barcodeId, string firstname1, string firstname2, string lastname1, DateTime birthdate, bool gender,
 		   int healthFacilityId, int birthplaceId, int domicileId, string address, string phone, string motherFirstname,
-		                                                                                          string motherLastname, string mothersHivStatus, string mothersTT2Status,string childCumulativeSn, string childRegistryYear, string notes, int userId, DateTime modifiedOn)
+																								  string motherLastname, string mothersHivStatus, string mothersTT2Status, string childCumulativeSn, string childRegistryYear, string notes, int userId, DateTime modifiedOn)
+
+		{
+			int catchment = 1;
+			return RegisterChildWithAppoitmentsWithMothersHivStatusAndTT2VaccineStatusAndCatchment(barcodeId,firstname1,firstname2, lastname1, birthdate, gender,
+			                                                                                       healthFacilityId,  birthplaceId,  domicileId,  address,  phone,  motherFirstname, motherLastname,  mothersHivStatus,  mothersTT2Status,  childCumulativeSn, childRegistryYear, notes,  userId, modifiedOn,catchment);
+		}
+
+		public IntReturnValue RegisterChildWithAppoitmentsWithMothersHivStatusAndTT2VaccineStatusAndCatchment(string barcodeId, string firstname1, string firstname2, string lastname1, DateTime birthdate, bool gender,
+		   int healthFacilityId, int birthplaceId, int domicileId, string address, string phone, string motherFirstname,
+		                                                                                          string motherLastname, string mothersHivStatus, string mothersTT2Status,string childCumulativeSn, string childRegistryYear, string notes, int userId, DateTime modifiedOn, int catchment)
 		{
 			Child o = new Child();
 
@@ -336,16 +345,19 @@ namespace GIIS.Tanzania.WCF
 			o.MotherHivStatus = mothersHivStatus;
 			o.MotherTT2Status = mothersTT2Status;
 
-			if (!childCumulativeSn.Equals("") && !childRegistryYear.Equals(""))
+			if (catchment != -1)
 			{
-				o.ChildCumulativeSn = Int32.Parse(childCumulativeSn);
-				o.ChildRegistryYear = Int32.Parse(childRegistryYear);
+				if (childCumulativeSn!=null && childRegistryYear!=null && !childCumulativeSn.Equals("") && !childRegistryYear.Equals(""))
+				{
+					o.ChildCumulativeSn = Int32.Parse(childCumulativeSn);
+					o.ChildRegistryYear = Int32.Parse(childRegistryYear);
 
-			}
-			else {
-				o.ChildCumulativeSn = GIIS.DataLayer.HealthFacility.GetAndIncrementCumulativeChildId(healthFacilityId);
-				o.ChildRegistryYear = Int32.Parse(DateTime.Now.Year.ToString());
+				}
+				else {
+					o.ChildCumulativeSn = GIIS.DataLayer.HealthFacility.GetAndIncrementCumulativeChildId(healthFacilityId);
+					o.ChildRegistryYear = Int32.Parse(DateTime.Now.Year.ToString());
 
+				}
 			}
 
 
@@ -364,7 +376,7 @@ namespace GIIS.Tanzania.WCF
 			}
 
 			IntReturnValue irv = new IntReturnValue();
-			irv.id = childInserted;
+			irv.id = catchment;
 			return irv;
 		}
 
