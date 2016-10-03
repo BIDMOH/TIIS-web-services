@@ -206,7 +206,7 @@ namespace GIIS.Tanzania.WCF
 
         public IntReturnValue UpdateVaccinationEventBarcodeAndDoseId(string barcode, int doseId, int vaccineLotId, int healthFacilityId, DateTime vaccinationDate, string notes, bool vaccinationStatus, int nonvaccinationReasonId, int userId, DateTime modifiedOn)
         {
-            int i = -1;
+            int i = -99;
             if (!string.IsNullOrEmpty(barcode))
             {
                 GIIS.DataLayer.Child child = GIIS.DataLayer.Child.GetChildByBarcode(barcode);
@@ -230,28 +230,28 @@ namespace GIIS.Tanzania.WCF
 					}
 
 					if (o != null && (!o.VaccinationStatus) && nonVaccinationreason.KeepChildDue && (vaccinationStatus || nonvaccinationReasonId > 0))
-                    {
-                        o.VaccineLotId = vaccineLotId;
-                        o.HealthFacilityId = healthFacilityId;
-                        o.VaccinationDate = vaccinationDate;
-                        int datediff = 0;
-                        if (o.ScheduledDate != vaccinationDate)
-                            datediff = vaccinationDate.Subtract(o.ScheduledDate).Days;
-                        o.Notes = notes;
-                        o.VaccinationStatus = vaccinationStatus;
-                        o.NonvaccinationReasonId = nonvaccinationReasonId;
-                        NonvaccinationReason.GetNonvaccinationReasonById(nonvaccinationReasonId);
-                        o.ModifiedOn = modifiedOn;
-                        o.ModifiedBy = userId;
+					{
+						o.VaccineLotId = vaccineLotId;
+						o.HealthFacilityId = healthFacilityId;
+						o.VaccinationDate = vaccinationDate;
+						int datediff = 0;
+						if (o.ScheduledDate != vaccinationDate)
+							datediff = vaccinationDate.Subtract(o.ScheduledDate).Days;
+						o.Notes = notes;
+						o.VaccinationStatus = vaccinationStatus;
+						o.NonvaccinationReasonId = nonvaccinationReasonId;
+						NonvaccinationReason.GetNonvaccinationReasonById(nonvaccinationReasonId);
+						o.ModifiedOn = modifiedOn;
+						o.ModifiedBy = userId;
 
 
-                        VaccinationLogic vl = new VaccinationLogic();
-                        GIIS.DataLayer.VaccinationEvent ve = vl.UpdateVaccinationEvent(o.Id, vaccineLotId, vaccinationDate, healthFacilityId, vaccinationStatus, nonvaccinationReasonId, userId, modifiedOn);
-                        if (ve != null)
-                            i = 1;
-                    }
-                    else
-                        i = -2; // vaccination already given or not being modified by url
+						VaccinationLogic vl = new VaccinationLogic();
+						GIIS.DataLayer.VaccinationEvent ve = vl.UpdateVaccinationEvent(o.Id, vaccineLotId, vaccinationDate, healthFacilityId, vaccinationStatus, nonvaccinationReasonId, userId, modifiedOn);
+						if (ve != null)
+							i = 1;
+					}
+					else
+						i = -1; // vaccination not being modified by url
                 }
 
             }
