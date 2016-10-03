@@ -250,6 +250,10 @@ namespace GIIS.Tanzania.WCF
 						if (ve != null)
 							i = 1;
 					}
+					else if (o.VaccinationStatus)
+					{
+						i = 1; //vaccination already given 
+					}
 					else
 						i = -1; // vaccination not being modified by url
                 }
