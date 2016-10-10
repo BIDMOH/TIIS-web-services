@@ -255,7 +255,7 @@ namespace GIIS.Tanzania.WCF
 						i = 1; //vaccination already given 
 					}
 					else
-						i = -1; // vaccination not being modified by url
+						i = 0; // vaccination not being modified by url
                 }
 
             }
@@ -315,60 +315,63 @@ namespace GIIS.Tanzania.WCF
             if (!string.IsNullOrEmpty(barcodeId))
             {
                 GIIS.DataLayer.Child child = GIIS.DataLayer.Child.GetChildByBarcode(barcodeId);
-                //if barcode isnt found give -99
-                i = -99;
 
-                if (child != null)
-                {
-                    int cId = GetActualChildId(child.Id);
+				if (child != null)
+				{
+					i = 0;
+					int cId = GetActualChildId(child.Id);
 
-                    GIIS.DataLayer.VaccinationEvent ve = null;
-                    List<GIIS.DataLayer.Dose> dl = GIIS.DataLayer.Dose.GetDoseByVaccine(vaccineId);
-                    bool found = false;
-                    foreach (GIIS.DataLayer.Dose d in dl)
-                    {
-                        GIIS.DataLayer.VaccinationEvent o = GIIS.DataLayer.VaccinationEvent.GetVaccinationEventByChildIdAndDoseId(cId, d.Id);
-                        if (o.IsActive && (!o.VaccinationStatus) && o.NonvaccinationReasonId == 0)
-                        {
-                            found = true;
-                            ve = o;
-                        }
+					GIIS.DataLayer.VaccinationEvent ve = null;
+					List<GIIS.DataLayer.Dose> dl = GIIS.DataLayer.Dose.GetDoseByVaccine(vaccineId);
+					bool found = false;
+					foreach (GIIS.DataLayer.Dose d in dl)
+					{
+						GIIS.DataLayer.VaccinationEvent o = GIIS.DataLayer.VaccinationEvent.GetVaccinationEventByChildIdAndDoseId(cId, d.Id);
+						if (o.IsActive && (!o.VaccinationStatus) && o.NonvaccinationReasonId == 0)
+						{
+							found = true;
+							ve = o;
+						}
 
-                    }
-                    if (found && ve != null)
-                    {
-                        ve.VaccineLotId = vaccinelot;
-                        ve.HealthFacilityId = healthFacilityId;
-                        ve.VaccinationDate = vaccinationDate;
-                        int datediff = 0;
-                        if (ve.ScheduledDate != vaccinationDate)
-                            datediff = vaccinationDate.Subtract(ve.ScheduledDate).Days;
-                        ve.Notes = notes;
-                        ve.VaccinationStatus = vaccinationStatus;
-                        ve.NonvaccinationReasonId = nonvaccinationReasonId;
-                        NonvaccinationReason nvr = NonvaccinationReason.GetNonvaccinationReasonById(nonvaccinationReasonId);
-                        ve.ModifiedOn = DateTime.Now;
-                        ve.ModifiedBy = userId;
+					}
+					if (found && ve != null)
+					{
+						ve.VaccineLotId = vaccinelot;
+						ve.HealthFacilityId = healthFacilityId;
+						ve.VaccinationDate = vaccinationDate;
+						int datediff = 0;
+						if (ve.ScheduledDate != vaccinationDate)
+							datediff = vaccinationDate.Subtract(ve.ScheduledDate).Days;
+						ve.Notes = notes;
+						ve.VaccinationStatus = vaccinationStatus;
+						ve.NonvaccinationReasonId = nonvaccinationReasonId;
+						NonvaccinationReason nvr = NonvaccinationReason.GetNonvaccinationReasonById(nonvaccinationReasonId);
+						ve.ModifiedOn = DateTime.Now;
+						ve.ModifiedBy = userId;
 
-                        VaccinationLogic vl = new VaccinationLogic();
-                        GIIS.DataLayer.VaccinationEvent o = vl.UpdateVaccinationEvent(ve.Id, vaccinelot, vaccinationDate, healthFacilityId, vaccinationStatus, nonvaccinationReasonId, userId, DateTime.Now);
-                        if (o != null)
-                            i = 1;
-                        //i = GIIS.DataLayer.VaccinationEvent.Update(ve);
-                        //if (i > 0)
-                        //{
-                        //    if (vaccinationStatus || nvr.KeepChildDue == false)
-                        //    {
-                        //        UpdateNextDose(ve, datediff);
-                        //        if (vaccinelot > 0)
-                        //        {
-                        //            StockManagementLogic sml = new StockManagementLogic();
-                        //            GIIS.DataLayer.ItemTransaction it = sml.Vaccinate(ve.HealthFacility, ve);
-                        //        }
-                        //    }
-                        //}
-                    }
-                }
+						VaccinationLogic vl = new VaccinationLogic();
+						GIIS.DataLayer.VaccinationEvent o = vl.UpdateVaccinationEvent(ve.Id, vaccinelot, vaccinationDate, healthFacilityId, vaccinationStatus, nonvaccinationReasonId, userId, DateTime.Now);
+						if (o != null)
+							i = 1;
+						//i = GIIS.DataLayer.VaccinationEvent.Update(ve);
+						//if (i > 0)
+						//{
+						//    if (vaccinationStatus || nvr.KeepChildDue == false)
+						//    {
+						//        UpdateNextDose(ve, datediff);
+						//        if (vaccinelot > 0)
+						//        {
+						//            StockManagementLogic sml = new StockManagementLogic();
+						//            GIIS.DataLayer.ItemTransaction it = sml.Vaccinate(ve.HealthFacility, ve);
+						//        }
+						//    }
+						//}
+					}
+				}
+				else {
+					//if barcode isnt found give -99
+					i = -99;
+				}
             }
             IntReturnValue irv = new IntReturnValue();
             irv.id = i;
