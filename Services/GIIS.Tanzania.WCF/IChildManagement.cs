@@ -168,8 +168,21 @@ namespace GIIS.Tanzania.WCF
 		List<ChildEntity> GetChildById(int childId);
 
 
+		[WebGet(UriTemplate = "ScheduleOfNonScheduledVaccinationsForChildByBarcode?userId={userId}&barcode={barcode}", ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		IntReturnValue ScheduleOfNonScheduledVaccinationsForChildByBarcode(int userId, String barcode);
 
 
+
+
+		[WebGet(UriTemplate = "ScheduleOfNonScheduledVaccinationsForChildrenInFacility?userId={userId}&healthFacilityId={healthFacilityId}", ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		IntReturnValue ScheduleOfNonScheduledVaccinationsForChildrenInFacility(int healthFacilityId, int userId);
+
+
+		[WebGet(UriTemplate = "ScheduleOfNonScheduledVaccinationsForChildren?userId={userId}", ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		IntReturnValue ScheduleOfNonScheduledVaccinationsForChildren(int userId);
 
 
 

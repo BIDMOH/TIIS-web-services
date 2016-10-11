@@ -764,7 +764,7 @@ namespace GIIS.DataLayer
 		{
 			try
 			{
-				string query = @"SELECT ""GCM_USERS"".""GCM_ID"" FROM ""GCM_USERS""  WHERE ""GCM_USERS"".""HEALTH_FACILITY_ID""  = ANY(CAST( string_to_array(@hfids, ',' ) AS INTEGER[] ))";
+				string query = @"SELECT ""GCM_USERS"".""GCM_ID"" FROM ""GCM_USERS""  WHERE ""GCM_USERS"".""HEALTH_FACILITY_ID""  = ANY(CAST( string_to_array(@hfids, ',' ) AS BIGINT[] ))";
 
 
 				List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
@@ -780,8 +780,9 @@ namespace GIIS.DataLayer
 			catch (Exception ex)
 			{
 				Log.InsertEntity("VaccinationEvent", "GetGcmIds", 4, ex.StackTrace.Replace("'", ""), hfids+ex.Message.Replace("'", ""));
-				throw ex;
-				//  return null;
+				//throw ex;
+				DataTable dt = new DataTable();
+				  return dt;
 			}
 
 		}

@@ -146,16 +146,32 @@ namespace GIIS.Tanzania.WCF
 			string hfids = "";
 			foreach (DataRow dr in dt.Rows)
 			{
-				hfids = hfids + dr[0].ToString() + ",";
+				try
+				{
+					int id = Int32.Parse(dr[0].ToString());
+					hfids = hfids + id + ",";
+				}
+				catch (Exception e)
+				{
+					//error in parsing health facility id.
+				}
 
 			}
 
 			DataTable dt1 = GIIS.DataLayer.VaccinationEvent.GetHfidsOfChild(childId); 
 			foreach (DataRow dr1 in dt1.Rows)
 			{
-				hfids = hfids + dr1[0].ToString();
-
+				try
+				{
+					int id = Int32.Parse(dr1[0].ToString());
+					hfids = hfids + id + ",";
+				}
+				catch (Exception e)
+				{
+					//error in parsing health facility id.
+				}
 			}
+			hfids = hfids + "0";
 			return GetGcmIds(hfids);
 		}
 
@@ -377,6 +393,83 @@ namespace GIIS.Tanzania.WCF
 
 			IntReturnValue irv = new IntReturnValue();
 			irv.id = catchment;
+			return irv;
+		}
+
+		public IntReturnValue ScheduleOfNonScheduledVaccinationsForChildById(int userId, int childId)
+		{
+			Child o = Child.GetChildById(childId);
+			int i = -99;
+			if (o != null)
+			{
+				i = VaccinationAppointment.ScheduleOfNonScheduledVaccinationsForChild(o.Id, userId);
+				if (i > 0)
+				{
+					BroadcastChildUpdates(o.Id);
+				}
+			}
+			IntReturnValue irv = new IntReturnValue();
+			irv.id = i;
+			return irv;
+		}
+
+		public IntReturnValue ScheduleOfNonScheduledVaccinationsForChildByBarcode(int userId, String barcode)
+		{
+			Child o = Child.GetChildByBarcode(barcode);
+			int i = -99;
+			if (o != null)
+			{
+				i = VaccinationAppointment.ScheduleOfNonScheduledVaccinationsForChild(o.Id, userId);
+
+				if (i > 0)
+				{
+					BroadcastChildUpdates(o.Id);
+				}
+			}
+			IntReturnValue irv = new IntReturnValue();
+			irv.id = i;
+			return irv;
+		}
+
+		public IntReturnValue ScheduleOfNonScheduledVaccinationsForChildrenInFacility(int healthFacilityId, int userId)
+		{
+			List<Child> childList = Child.GetChildByHealthFacilityId(healthFacilityId);
+			int numberOfChildrenRecheduled = 0;
+			foreach (Child child in childList)
+			{
+				int i = ScheduleOfNonScheduledVaccinationsForChildById(userId, child.Id).id;
+				if (i > 0)
+				{
+					numberOfChildrenRecheduled++;
+				}
+			}
+
+			IntReturnValue irv = new IntReturnValue();
+			irv.id = numberOfChildrenRecheduled;
+			return irv;
+		}
+
+
+		public IntReturnValue ScheduleOfNonScheduledVaccinationsForChildren(int userId)
+		{
+			List<HealthFacility> healthFacilityList = HealthFacility.GetHealthFacilityList();
+			int numberOfChildrenRecheduled = 0;
+
+			foreach (HealthFacility healthfacility in healthFacilityList)
+			{
+				List<Child> childList = Child.GetChildByHealthFacilityId(healthfacility.Id);
+				foreach (Child child in childList)
+				{
+					int i = ScheduleOfNonScheduledVaccinationsForChildById(userId, child.Id).id;
+					if (i > 0)
+					{
+						numberOfChildrenRecheduled++;
+					}
+				}
+			}
+
+			IntReturnValue irv = new IntReturnValue();
+			irv.id = numberOfChildrenRecheduled;
 			return irv;
 		}
 

@@ -377,5 +377,75 @@ namespace GIIS.DataLayer
             }
             return -1;
         }
+
+		//Method used to trigger scheduling of child appointments and vaccination events for a child that were not previously scheduled and ingoring the scheduled appointments
+		public static int ScheduleOfNonScheduledVaccinationsForChild(int childId, int userId)
+		{
+			try
+			{
+				Child child = Child.GetChildById(childId);
+
+				List<Dose> vaccineDoseList = Dose.GetDosesByDates(child.Birthdate);
+				int rescheduleCount = 0;
+				foreach (Dose vaccineDose in vaccineDoseList)
+				{
+					VaccinationAppointment o = new VaccinationAppointment();
+					o.ChildId = childId;
+					o.ScheduledFacilityId = child.HealthcenterId;
+					o.ScheduledDate = child.Birthdate.AddDays(vaccineDose.AgeDefinition.Days);
+					o.Notes = String.Empty;
+					o.IsActive = true;
+					o.ModifiedOn = DateTime.Now;
+					o.ModifiedBy = userId;
+
+					string where = string.Format(" \"CHILD_ID\" = {0} AND \"SCHEDULED_DATE\" = '{1}' ", child.Id, o.ScheduledDate.ToString("yyyy-MM-dd"));
+					List<VaccinationAppointment> list = GetVaccinationAppointmentForList(where);
+					int count = list.Count;
+
+					if (count == 0)
+					{
+						// only insert the vaccination appointments that was not scheduled
+						int lastApp = Insert(o);
+						if (lastApp > 0)
+						{
+							VaccinationEvent ve = new VaccinationEvent();
+
+							ve.AppointmentId = lastApp;
+							ve.ChildId = childId;
+							ve.DoseId = vaccineDose.Id;
+							ve.HealthFacilityId = child.HealthcenterId;
+							ve.ScheduledDate = o.ScheduledDate;
+							ve.VaccinationDate = o.ScheduledDate;
+							ve.Notes = String.Empty;
+							ve.VaccinationStatus = false;
+							int dosenum = vaccineDose.DoseNumber - 1;
+
+							if (VaccinationEvent.OtherDose(vaccineDose.ScheduledVaccinationId, childId, dosenum) && dosenum > 0)
+								ve.IsActive = false;
+							else
+								ve.IsActive = true;
+							ve.ModifiedOn = DateTime.Now;
+							ve.ModifiedBy = userId;
+
+							int i = VaccinationEvent.Insert(ve);
+							if (!(i > 0))
+							{
+								VaccinationAppointment.DeleteByChild(childId);
+								Child.Delete(childId);
+								return 0;
+							}
+							rescheduleCount++;
+						}
+					}
+				}
+				return rescheduleCount;
+
+			}
+			catch (Exception ex)
+			{
+				Log.InsertEntity("VaccinationAppointment", "ScheduleOfNonScheduledVaccinationsForChild", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+				throw ex;
+			}
+		}
     }
 }
