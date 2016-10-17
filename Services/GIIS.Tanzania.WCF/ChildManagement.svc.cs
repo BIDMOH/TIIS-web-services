@@ -392,7 +392,7 @@ namespace GIIS.Tanzania.WCF
 			}
 
 			IntReturnValue irv = new IntReturnValue();
-			irv.id = catchment;
+			irv.id = childInserted;
 			return irv;
 		}
 
