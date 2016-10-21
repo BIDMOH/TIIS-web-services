@@ -67,6 +67,12 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="GIIS.DataLayer">
+      <HintPath>..\GIIS.DataLayer\bin\Debug\GIIS.DataLayer.dll</HintPath>
+    </Reference>
+    <Reference Include="Npgsql">
+      <HintPath>..\GIIS.DataLayer\bin\Debug\Npgsql.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Exceptions\IllegalStateException.cs" />
@@ -75,12 +81,6 @@
     <Compile Include="OrderStatusType.cs" />
     <Compile Include="StockManagementLogic.cs" />
     <Compile Include="VaccinationLogic.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\GIIS.DataLayer\GIIS.DataLayer.csproj">
-      <Project>{241f7080-2919-4084-ad56-dacfd85dd65e}</Project>
-      <Name>GIIS.DataLayer</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />

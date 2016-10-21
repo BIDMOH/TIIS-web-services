@@ -1,9 +1,19 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workbench ActiveDocument="OrderManagementLogic.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="VaccinationLogic.cs">
     <Files>
-      <File FileName="GIIS.BusinessLogic.licenseheader" Line="1" Column="1" />
-      <File FileName="OrderManagementLogic.cs" Line="1" Column="1" />
+      <File FileName="VaccinationLogic.cs" Line="107" Column="10" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="GIIS.BusinessLogic" expanded="True" selected="True">
+            <Node name="GIIS.BusinessLogic" expanded="True">
+              <Node name="Packages" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -334,39 +334,40 @@ namespace GIIS.Tanzania.WCF
 						}
 
 					}
-					if (found && ve != null)
-					{
-						ve.VaccineLotId = vaccinelot;
-						ve.HealthFacilityId = healthFacilityId;
-						ve.VaccinationDate = vaccinationDate;
-						int datediff = 0;
-						if (ve.ScheduledDate != vaccinationDate)
-							datediff = vaccinationDate.Subtract(ve.ScheduledDate).Days;
-						ve.Notes = notes;
-						ve.VaccinationStatus = vaccinationStatus;
-						ve.NonvaccinationReasonId = nonvaccinationReasonId;
-						NonvaccinationReason nvr = NonvaccinationReason.GetNonvaccinationReasonById(nonvaccinationReasonId);
-						ve.ModifiedOn = DateTime.Now;
-						ve.ModifiedBy = userId;
+					i = 4;
+					//if (found && ve != null)
+					//{
+					//	ve.VaccineLotId = vaccinelot;
+					//	ve.HealthFacilityId = healthFacilityId;
+					//	ve.VaccinationDate = vaccinationDate;
+					//	int datediff = 0;
+					//	if (ve.ScheduledDate != vaccinationDate)
+					//		datediff = vaccinationDate.Subtract(ve.ScheduledDate).Days;
+					//	ve.Notes = notes;
+					//	ve.VaccinationStatus = vaccinationStatus;
+					//	ve.NonvaccinationReasonId = nonvaccinationReasonId;
+					//	NonvaccinationReason nvr = NonvaccinationReason.GetNonvaccinationReasonById(nonvaccinationReasonId);
+					//	ve.ModifiedOn = DateTime.Now;
+					//	ve.ModifiedBy = userId;
 
-						VaccinationLogic vl = new VaccinationLogic();
-						GIIS.DataLayer.VaccinationEvent o = vl.UpdateVaccinationEvent(ve.Id, vaccinelot, vaccinationDate, healthFacilityId, vaccinationStatus, nonvaccinationReasonId, userId, DateTime.Now);
-						if (o != null)
-							i = 1;
-						//i = GIIS.DataLayer.VaccinationEvent.Update(ve);
-						//if (i > 0)
-						//{
-						//    if (vaccinationStatus || nvr.KeepChildDue == false)
-						//    {
-						//        UpdateNextDose(ve, datediff);
-						//        if (vaccinelot > 0)
-						//        {
-						//            StockManagementLogic sml = new StockManagementLogic();
-						//            GIIS.DataLayer.ItemTransaction it = sml.Vaccinate(ve.HealthFacility, ve);
-						//        }
-						//    }
-						//}
-					}
+					//	VaccinationLogic vl = new VaccinationLogic();
+					//	GIIS.DataLayer.VaccinationEvent o = vl.UpdateVaccinationEvent(ve.Id, vaccinelot, vaccinationDate, healthFacilityId, vaccinationStatus, nonvaccinationReasonId, userId, DateTime.Now);
+					//	if (o != null)
+					//		i = 1;
+					//	//i = GIIS.DataLayer.VaccinationEvent.Update(ve);
+					//	//if (i > 0)
+					//	//{
+					//	//    if (vaccinationStatus || nvr.KeepChildDue == false)
+					//	//    {
+					//	//        UpdateNextDose(ve, datediff);
+					//	//        if (vaccinelot > 0)
+					//	//        {
+					//	//            StockManagementLogic sml = new StockManagementLogic();
+					//	//            GIIS.DataLayer.ItemTransaction it = sml.Vaccinate(ve.HealthFacility, ve);
+					//	//        }
+					//	//    }
+					//	//}
+					//}
 				}
 				else {
 					//if barcode isnt found give -99

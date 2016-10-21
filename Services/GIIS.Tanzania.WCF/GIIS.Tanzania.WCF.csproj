@@ -63,17 +63,17 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="Npgsql">
-      <HintPath>..\..\..\..\Downloads\tiis-datalayer\GIIS.BusinessLogic\bin\Debug\Npgsql.dll</HintPath>
-    </Reference>
-    <Reference Include="GIIS.BusinessLogic">
-      <HintPath>..\..\..\..\Downloads\tiis-datalayer\GIIS.BusinessLogic\bin\Debug\GIIS.BusinessLogic.dll</HintPath>
-    </Reference>
     <Reference Include="GIIS.DataLayer">
       <HintPath>..\..\DataLayer\GIIS.DataLayer\bin\Debug\GIIS.DataLayer.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>bin\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="GIIS.BusinessLogic">
+      <HintPath>..\..\DataLayer\GIIS.BusinessLogic\bin\Debug\GIIS.BusinessLogic.dll</HintPath>
+    </Reference>
+    <Reference Include="Npgsql">
+      <HintPath>..\..\DataLayer\GIIS.DataLayer\bin\Debug\Npgsql.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

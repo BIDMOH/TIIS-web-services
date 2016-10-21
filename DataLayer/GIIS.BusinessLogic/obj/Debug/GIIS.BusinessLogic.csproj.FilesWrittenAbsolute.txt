@@ -3,3 +3,12 @@
 /Development/ASP/Backend/tiis-services-and-datalayer/DataLayer/GIIS.BusinessLogic/bin/Debug/Mono.Security.dll
 /Development/ASP/Backend/tiis-services-and-datalayer/DataLayer/GIIS.BusinessLogic/bin/Debug/Npgsql.dll
 /Development/ASP/Backend/tiis-services-and-datalayer/DataLayer/GIIS.BusinessLogic/bin/Debug/GIIS.DataLayer.dll
+/Users/coze/Workspace/TIIS-web-services/DataLayer/GIIS.BusinessLogic/obj/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/Users/coze/Workspace/TIIS-web-services/DataLayer/GIIS.BusinessLogic/bin/Debug/Mono.Security.dll
+/Users/coze/Workspace/TIIS-web-services/DataLayer/GIIS.BusinessLogic/bin/Debug/GIIS.DataLayer.dll
+/Users/coze/Workspace/TIIS-web-services/DataLayer/GIIS.BusinessLogic/bin/Debug/Npgsql.dll
+/Users/coze/Workspace/TIIS-web-services/DataLayer/GIIS.BusinessLogic/bin/Debug/GIIS.BusinessLogic.dll.config
+/Users/coze/Workspace/TIIS-web-services/DataLayer/GIIS.BusinessLogic/bin/Debug/GIIS.BusinessLogic.dll.mdb
+/Users/coze/Workspace/TIIS-web-services/DataLayer/GIIS.BusinessLogic/bin/Debug/GIIS.BusinessLogic.dll
+/Users/coze/Workspace/TIIS-web-services/DataLayer/GIIS.BusinessLogic/obj/Debug/GIIS.BusinessLogic.dll
+/Users/coze/Workspace/TIIS-web-services/DataLayer/GIIS.BusinessLogic/obj/Debug/GIIS.BusinessLogic.dll.mdb

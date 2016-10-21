@@ -1,9 +1,24 @@
 ﻿<Properties StartupConfiguration="{9A92CA0A-5B83-4E9D-8EDD-BB59683F9A98}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="GIIS.Tanzania.WCF/ChildManagement.svc.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="GIIS.Tanzania.WCF/VaccinationEvent.svc.cs">
     <Files>
-      <File FileName="GIIS.Tanzania.WCF/ChildManagement.svc.cs" Line="382" Column="22" />
+      <File FileName="GIIS.Tanzania.WCF/ChildManagement.svc.cs" Line="1068" Column="67" />
       <File FileName="GIIS.Tanzania.WCF/IChildManagement.cs" Line="178" Column="71" />
+      <File FileName="GIIS.Tanzania.WCF/VaccinationEvent.svc.cs" Line="23" Column="25" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="GIIS.Tanzania.WCF" expanded="True">
+            <Node name="GIIS.Tanzania.WCF" expanded="True">
+              <Node name="References" expanded="True" selected="True" />
+              <Node name="Library" expanded="True" />
+              <Node name="ChildManagement.svc" expanded="True" />
+              <Node name="VaccinationEvent.svc" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
