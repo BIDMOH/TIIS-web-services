@@ -78,6 +78,21 @@ namespace GIIS.DataLayer
             }
         }
 
+		public static List<HealthFacility> GetHealthFacilitiesWithoutDistrictCouncils()
+		{
+			try
+			{
+				string query = @"SELECT * FROM ""HEALTH_FACILITY"" WHERE ""IS_ACTIVE"" = true AND ""TYPE_ID"" = 3 ORDER BY ""NAME"";";
+				DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, null);
+				return GetHealthFacilityAsList(dt);
+			}
+			catch (Exception ex)
+			{
+				Log.InsertEntity("HealthFacility", "GetHealthFacilityList", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+				throw ex;
+			}
+		}
+
         public static DataTable GetHealthFacilityForList()
         {
             try
@@ -119,9 +134,9 @@ new NpgsqlParameter("@ParamValue", DbType.Int32) { Value = i }
             {
                 string query = @"SELECT * FROM ""HEALTH_FACILITY"" WHERE ""CODE"" = @ParamValue ";
                 List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
-{
-new NpgsqlParameter("@ParamValue", DbType.String) { Value = s }
-};
+				{
+					new NpgsqlParameter("@ParamValue", DbType.String) { Value = s }
+				};
                 DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, parameters);
                 AuditTable.InsertEntity("HealthFacility", string.Format("RecordId: {0}", s), 4, DateTime.Now, 1);
                 return GetHealthFacilityAsObject(dt);
@@ -139,9 +154,9 @@ new NpgsqlParameter("@ParamValue", DbType.String) { Value = s }
             {
                 string query = @"SELECT * FROM ""HEALTH_FACILITY"" WHERE ""NAME"" = @ParamValue ";
                 List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
-{
-new NpgsqlParameter("@ParamValue", DbType.String) { Value = s }
-};
+				{
+					new NpgsqlParameter("@ParamValue", DbType.String) { Value = s }
+				};
                 DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, parameters);
                 AuditTable.InsertEntity("HealthFacility", string.Format("RecordId: {0}", s), 4, DateTime.Now, 1);
                 return GetHealthFacilityAsObject(dt);
@@ -152,6 +167,178 @@ new NpgsqlParameter("@ParamValue", DbType.String) { Value = s }
                 throw ex;
             }
         }
+
+		public static int GetHealthFacilityVaccinations(string healthFacilityId,string doseId,DateTime fromTime,DateTime toTime)
+		{
+			try
+			{
+
+				string query = @"SELECT COUNT(DISTINCT(""VACCINATION_EVENT"".""ID"")) AS number
+                            FROM ""VACCINATION_EVENT"" 
+							INNER JOIN ""DOSE"" ON ""VACCINATION_EVENT"".""DOSE_ID""=""DOSE"".""ID"" 
+							INNER JOIN ""CHILD"" ON  ""VACCINATION_EVENT"".""CHILD_ID""=""CHILD"".""ID"" 
+								WHERE 
+									""DOSE"".""ID"" = @doseId
+		                            AND ""VACCINATION_EVENT"".""VACCINATION_STATUS"" = @vaccinationStatus
+		                            AND ""VACCINATION_EVENT"".""HEALTH_FACILITY_ID"" = @healthFacilityId
+		                            AND ""VACCINATION_EVENT"".""VACCINATION_DATE"" >= @fromTime
+		                            AND ""VACCINATION_EVENT"".""VACCINATION_DATE"" <=  @toTime";
+
+
+
+				List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
+				{
+					new NpgsqlParameter("@healthFacilityId", DbType.Int32) { Value = healthFacilityId },
+					new NpgsqlParameter("@doseId",   DbType.Int32) { Value = doseId },
+					new NpgsqlParameter("@fromTime", DbType.DateTime) { Value = fromTime },
+					new NpgsqlParameter("@toTime",   DbType.DateTime) { Value = toTime },
+					new NpgsqlParameter("@vaccinationStatus",   DbType.Boolean) { Value = true }
+				};
+
+				DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, parameters);
+
+				int count = 0;
+				foreach (DataRow row in dt.Rows)
+				{
+					count =  Helper.ConvertToInt(row["number"]);
+				}
+
+
+				return count;
+
+			}
+			catch (Exception ex)
+			{
+				Log.InsertEntity("HealthFacility", "GetHealthFacilityVaccinations", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+				throw ex;
+			}
+		}
+
+		public static int GetHealthFacilityVaccinationsByGenderAndCatchment(int healthFacilityId, int doseId, DateTime fromTime, DateTime toTime,bool gender,bool catchment)
+		{
+			try
+			{
+				string query = "";
+				if (catchment)
+				{
+					query = @"SELECT COUNT(DISTINCT(""VACCINATION_EVENT"".""ID"")) AS number
+                            FROM ""VACCINATION_EVENT"" 
+							INNER JOIN ""DOSE"" ON ""VACCINATION_EVENT"".""DOSE_ID""=""DOSE"".""ID"" 
+							INNER JOIN ""CHILD"" ON  ""VACCINATION_EVENT"".""CHILD_ID""=""CHILD"".""ID"" 
+								WHERE 
+									""DOSE"".""ID"" = @doseId
+									AND ""CHILD"".""GENDER"" = @gender
+									AND ""CHILD"".""HEALTHCENTER_ID"" <> @healthFacilityId
+		                            AND ""VACCINATION_EVENT"".""VACCINATION_STATUS"" = @vaccinationStatus
+									AND ""VACCINATION_EVENT"".""HEALTH_FACILITY_ID"" = @healthFacilityId
+		                            AND ""VACCINATION_EVENT"".""VACCINATION_DATE"" >= @fromTime 
+		                            AND ""VACCINATION_EVENT"".""VACCINATION_DATE"" <=  @toTime";
+				}
+				else {
+					query = @"SELECT COUNT(DISTINCT(""VACCINATION_EVENT"".""ID"")) AS number
+                            FROM ""VACCINATION_EVENT"" 
+							INNER JOIN ""DOSE"" ON ""VACCINATION_EVENT"".""DOSE_ID""=""DOSE"".""ID"" 
+							INNER JOIN ""CHILD"" ON  ""VACCINATION_EVENT"".""CHILD_ID""=""CHILD"".""ID"" 
+								WHERE 
+									""DOSE"".""ID"" = @doseId
+									AND ""CHILD"".""GENDER"" = @gender
+									AND ""CHILD"".""HEALTHCENTER_ID"" = @healthFacilityId
+		                            AND ""VACCINATION_EVENT"".""VACCINATION_STATUS"" = @vaccinationStatus
+									AND ""VACCINATION_EVENT"".""HEALTH_FACILITY_ID"" = @healthFacilityId
+		                            AND ""VACCINATION_EVENT"".""VACCINATION_DATE"" >= @fromTime 
+		                            AND ""VACCINATION_EVENT"".""VACCINATION_DATE"" <=  @toTime";
+				}
+
+				List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
+				{
+					new NpgsqlParameter("@healthFacilityId", DbType.Int32) { Value = healthFacilityId },
+					new NpgsqlParameter("@doseId",   DbType.Int32) { Value = doseId },
+					new NpgsqlParameter("@fromTime", DbType.DateTime) { Value = fromTime },
+					new NpgsqlParameter("@toTime",   DbType.DateTime) { Value = toTime },
+					new NpgsqlParameter("@vaccinationStatus",   DbType.Boolean) { Value = true },
+					new NpgsqlParameter("@gender",   DbType.Boolean) { Value = gender }
+				};
+
+				DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, parameters);
+
+				int count = 0;
+				foreach (DataRow row in dt.Rows)
+				{
+					count = Helper.ConvertToInt(row["number"]);
+				}
+
+
+				return count;
+
+			}
+			catch (Exception ex)
+			{
+				Log.InsertEntity("HealthFacility", "GetHealthFacilityVaccinationsByGenderAndCatchment", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+				throw ex;
+			}
+		}
+
+
+		public static int GetHealthFacilityVaccinationsByCatchment(int healthFacilityId, int doseId, DateTime fromTime, DateTime toTime, bool catchment)
+		{
+			try
+			{
+				string query = "";
+				if (catchment)
+				{
+					query = @"SELECT COUNT(DISTINCT(""VACCINATION_EVENT"".""ID"")) AS number
+                            FROM ""VACCINATION_EVENT"" 
+							INNER JOIN ""DOSE"" ON ""VACCINATION_EVENT"".""DOSE_ID""=""DOSE"".""ID"" 
+							INNER JOIN ""CHILD"" ON  ""VACCINATION_EVENT"".""CHILD_ID""=""CHILD"".""ID"" 
+								WHERE 
+									""DOSE"".""ID"" = @doseId
+									AND ""CHILD"".""HEALTHCENTER_ID"" <> @healthFacilityId
+		                            AND ""VACCINATION_EVENT"".""VACCINATION_STATUS"" = @vaccinationStatus
+									AND ""VACCINATION_EVENT"".""HEALTH_FACILITY_ID"" = @healthFacilityId
+		                            AND ""VACCINATION_EVENT"".""VACCINATION_DATE"" >= @fromTime 
+		                            AND ""VACCINATION_EVENT"".""VACCINATION_DATE"" <=  @toTime";
+				}
+				else {
+					query = @"SELECT COUNT(DISTINCT(""VACCINATION_EVENT"".""ID"")) AS number
+                            FROM ""VACCINATION_EVENT"" 
+							INNER JOIN ""DOSE"" ON ""VACCINATION_EVENT"".""DOSE_ID""=""DOSE"".""ID"" 
+							INNER JOIN ""CHILD"" ON  ""VACCINATION_EVENT"".""CHILD_ID""=""CHILD"".""ID"" 
+								WHERE 
+									""DOSE"".""ID"" = @doseId
+									AND ""CHILD"".""HEALTHCENTER_ID"" = @healthFacilityId
+		                            AND ""VACCINATION_EVENT"".""VACCINATION_STATUS"" = @vaccinationStatus
+									AND ""VACCINATION_EVENT"".""HEALTH_FACILITY_ID"" = @healthFacilityId
+		                            AND ""VACCINATION_EVENT"".""VACCINATION_DATE"" >= @fromTime 
+		                            AND ""VACCINATION_EVENT"".""VACCINATION_DATE"" <=  @toTime";
+				}
+
+				List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
+				{
+					new NpgsqlParameter("@healthFacilityId", DbType.Int32) { Value = healthFacilityId },
+					new NpgsqlParameter("@doseId",   DbType.Int32) { Value = doseId },
+					new NpgsqlParameter("@fromTime", DbType.DateTime) { Value = fromTime },
+					new NpgsqlParameter("@toTime",   DbType.DateTime) { Value = toTime },
+					new NpgsqlParameter("@vaccinationStatus",   DbType.Boolean) { Value = true },
+				};
+
+				DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, parameters);
+
+				int count = 0;
+				foreach (DataRow row in dt.Rows)
+				{
+					count = Helper.ConvertToInt(row["number"]);
+				}
+
+
+				return count;
+
+			}
+			catch (Exception ex)
+			{
+				Log.InsertEntity("HealthFacility", "GetHealthFacilityVaccinationsByGenderAndCatchment", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+				throw ex;
+			}
+		}
 
         #endregion
 

@@ -54,5 +54,14 @@ namespace GIIS.Tanzania.WCF
 		[OperationContract]
 		int GetCumulativeChildId(int healthFacilityId);
 
+
+		[WebGet(UriTemplate = "GetHealthFacilityVaccinations?healthFacilityId={healthFacilityId}&fromDate={fromDate}&toDate={toDate}", ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		HealthFacilityVaccinationsEntity GetHealthFacilityVaccinations(int healthFacilityId, DateTime fromDate, DateTime toDate);
+
+		[WebGet(UriTemplate = "GetHealthFacilitiesVaccinations?fromDate={fromDate}&toDate={toDate}", ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		List<HealthFacilityVaccinationsEntity> GetHealthFacilitiesVaccinations(DateTime fromDate, DateTime toDate);
+
     }
 }
