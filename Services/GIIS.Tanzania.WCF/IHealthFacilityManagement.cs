@@ -63,5 +63,22 @@ namespace GIIS.Tanzania.WCF
 		[OperationContract]
 		List<HealthFacilityVaccinationsEntity> GetHealthFacilitiesVaccinations(DateTime fromDate, DateTime toDate);
 
-    }
+
+
+
+		[WebGet(UriTemplate = "StoreHealthFacilityColdChain?healthFacilityId={healthFacilityId}&tempMax={tempMax}&tempMin={tempMin}&alarmHighTemp={alarmHighTemp}&alarmLowTemp={alarmLowTemp}&reportingMonth={reportingMonth}&reportingYear={reportingYear}&userId={userId}&modifiedOn={modifiedOn}", ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		IntReturnValue StoreHealthFacilityColdChain(int healthFacilityId, double tempMax, double tempMin, int alarmHighTemp, int alarmLowTemp, int reportingMonth, int reportingYear, int userId, DateTime modifiedOn);
+
+
+		[WebGet(UriTemplate = "GetHealthFacilityColdChain?healthFacilityId={healthFacilityId}&reportingMonth={reportingMonth}&reportingYear={reportingYear}", ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		List<HealthFacilityColdChain> GetHealthFacilityColdChain(int healthFacilityId, int reportingMonth, int reportingYear);
+
+
+		[WebGet(UriTemplate = "GetHealthFacilityColdChainAsList?healthFacilityId={healthFacilityId}", ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		List<HealthFacilityColdChain> GetHealthFacilityColdChainAsList(int healthFacilityId);
+
+	}
 }

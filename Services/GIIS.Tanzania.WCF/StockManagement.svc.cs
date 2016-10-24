@@ -33,36 +33,73 @@ namespace GIIS.Tanzania.WCF
             List<HealthFacilityBalance> currentStock = HealthFacilityBalance.GetHealthFacilityBalanceByHealthFacility(hfId);
 
             List<BalanceEntity> blist = new List<BalanceEntity>();
-            foreach (HealthFacilityBalance hb in currentStock)
-            {
 
-                  ItemManufacturer im = ItemManufacturer.GetItemManufacturerByGtin(hb.Gtin);
-                  
-                      BalanceEntity be = new BalanceEntity();
-                      //change hfcode to lotid
-                      be.Gtin = hb.Gtin;
-                      be.LotNumber = hb.LotNumber;
-                      be.Item = hb.GtinObject.ItemObject.Code;
-                      be.Balance = hb.Balance.ToString();
-                      ItemLot lot = ItemLot.GetItemLotByGtinAndLotNo(hb.Gtin, hb.LotNumber);
-                      if (lot != null)
-                      {
-                          be.ExpireDate = lot.ExpireDate;
-                          be.LotId = lot.Id.ToString();
-                      }
-                      be.Gtin_IsActive = im.IsActive;
-                      be.Lot_IsActive = lot.IsActive;
-                      GtinHfStockPolicy ghsp = GtinHfStockPolicy.GetGtinHfStockPolicyByHealthFacilityCodeAndGtin(hb.HealthFacilityCode, hb.Gtin);
-                      if (ghsp != null)
-                          be.ReorderQty = ghsp.SafetyStock.ToString();
-                      else
-                          be.ReorderQty = "0";
-                      blist.Add(be);
-                  
-            }
+			if (currentStock != null)
+			{
+				foreach (HealthFacilityBalance hb in currentStock)
+				{
+					ItemManufacturer im = ItemManufacturer.GetItemManufacturerByGtin(hb.Gtin);
+					BalanceEntity be = new BalanceEntity();
+					//change hfcode to lotid
+					be.Gtin = hb.Gtin;
+					be.LotNumber = hb.LotNumber;
+					be.Item = hb.GtinObject.ItemObject.Code;
+					be.Balance = hb.Balance.ToString();
+					ItemLot lot = ItemLot.GetItemLotByGtinAndLotNo(hb.Gtin, hb.LotNumber);
+					if (lot != null)
+					{
+						be.ExpireDate = lot.ExpireDate;
+						be.LotId = lot.Id.ToString();
+					}
+					be.Gtin_IsActive = im.IsActive;
+					be.Lot_IsActive = lot.IsActive;
+					GtinHfStockPolicy ghsp = GtinHfStockPolicy.GetGtinHfStockPolicyByHealthFacilityCodeAndGtin(hb.HealthFacilityCode, hb.Gtin);
+					if (ghsp != null)
+						be.ReorderQty = ghsp.SafetyStock.ToString();
+					else
+						be.ReorderQty = "0";
+					blist.Add(be);
+
+				}
+			}
 
             return blist;
         }
+
+
+		public List<HealthFacilityDoseBalanceEntity> GetCurrentStockByDose(int hfId)
+		{
+
+			List<HealthFacilityBalance> currentStock = HealthFacilityBalance.GetHealthFacilityBalanceByHealthFacility(hfId);
+			List<HealthFacilityDoseBalanceEntity> blist = new List<HealthFacilityDoseBalanceEntity>();
+
+			List<ScheduledVaccination> scheduledVaccines = ScheduledVaccination.GetScheduledVaccinationList();
+			foreach (ScheduledVaccination v in scheduledVaccines)
+			{
+				if (v.IsActive)
+				{
+					HealthFacilityDoseBalanceEntity balanceEntity = new HealthFacilityDoseBalanceEntity();
+					string antigen = v.Code;
+					balanceEntity.antigen = antigen;
+					foreach (HealthFacilityBalance hb in currentStock)
+					{
+						ItemLot lot = ItemLot.GetItemLotByGtinAndLotNo(hb.Gtin, hb.LotNumber);
+
+						if (antigen.Equals(hb.GtinObject.ItemObject.Code) && lot.ExpireDate>DateTime.Now)
+						{
+							balanceEntity.balance += hb.Balance;
+							balanceEntity.received += hb.Received;
+						}
+					}
+
+					blist.Add(balanceEntity);
+				}
+			}
+
+			return blist;
+		}
+
+
 
         public List<LotNumbers> GetItemLots()
         {

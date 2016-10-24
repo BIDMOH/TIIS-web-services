@@ -13,6 +13,8 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
  //******************************************************************************
+
+using GIIS.DataLayer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,23 +22,12 @@ using System.Web;
 
 namespace GIIS.Tanzania.WCF
 {
-    public class VaccinationsEntity
+    public class HealthFacilityDoseBalanceEntity
     {
-		public string antigen { get; set; }
-		public int dose { get; set; }
-		public int balance { get; set; }
-		public int serviceAreaMale { get; set; }
-		public int serviceAreaFemale { get; set; }
-		public int catchmentMale { get; set; }
-		public int catchmentFemale { get; set; }
-		public int serviceAreaCummulativeTotal { get; set; }
-		public int catchmentAreaCummulativeTotal { get; set; }
+        public string antigen { get; set; }
+		public double balance { get; set; }
+		public double received { get; set; }
+        
     }
 
-	public class HealthFacilityVaccinationsEntity
-	{
-		public List<VaccinationsEntity> healthFacilityVaccinations { get; set; }
-		public string healthFacilityName { get; set; }
-		public int healthFacilityId { get; set; }
-	}
 }

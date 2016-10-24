@@ -1,14 +1,14 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workbench ActiveDocument="VaccinationLogic.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="StockManagementLogic.cs">
     <Files>
-      <File FileName="VaccinationLogic.cs" Line="107" Column="10" />
+      <File FileName="StockManagementLogic.cs" Line="265" Column="22" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="GIIS.BusinessLogic" expanded="True" selected="True">
+          <Node name="GIIS.BusinessLogic" expanded="True">
             <Node name="GIIS.BusinessLogic" expanded="True">
-              <Node name="Packages" expanded="True" />
+              <Node name="StockManagementLogic.cs" selected="True" />
             </Node>
           </Node>
         </State>

@@ -167,6 +167,7 @@
     <Compile Include="WordTranslateEntity.cs" />
     <Compile Include="ChildTemp.cs" />
     <Compile Include="ChildEntityTemp.cs" />
+    <Compile Include="HealthFacilityColdChain.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Library\Mono.Security.dll" />

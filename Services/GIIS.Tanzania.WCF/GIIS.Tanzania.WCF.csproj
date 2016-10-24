@@ -184,6 +184,7 @@
     <Compile Include="ChildEntityTemp.cs" />
     <Compile Include="ChildListEntitityTemp.cs" />
     <Compile Include="HealthFacilitiesVaccinationsEntity.cs" />
+    <Compile Include="HealthFacilityDoseBalanceEntity.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

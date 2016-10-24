@@ -117,7 +117,7 @@ namespace GIIS.Tanzania.WCF
 		/**
 		 *Method used to update gcmIds with canonical ids received from google's GCM server 
 		 **/
-		public void updateGcmId(string cannonicalId, string gcmId)
+		public static void updateGcmId(string cannonicalId, string gcmId)
 		{
 
 			GIIS.DataLayer.User.updateGcmId(cannonicalId,gcmId);

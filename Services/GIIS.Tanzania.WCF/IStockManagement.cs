@@ -32,6 +32,12 @@ namespace GIIS.Tanzania.WCF
         [OperationContract]
         List<BalanceEntity> GetCurrentStockByLot(int hfId);
 
+
+		[WebGet(UriTemplate = "GetCurrentStockByDose?hfid={hfid}", ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		List<HealthFacilityDoseBalanceEntity> GetCurrentStockByDose(int hfId);
+
+
         [WebGet(UriTemplate = "GetItemLots", ResponseFormat = WebMessageFormat.Json)]
         [OperationContract]
         List<LotNumbers> GetItemLots();

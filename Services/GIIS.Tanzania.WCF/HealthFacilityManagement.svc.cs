@@ -20,6 +20,12 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using System.Data;
+using Newtonsoft.Json.Linq;
+using System.Globalization;
+using System.Net;
+using System.IO;
+using System.ServiceModel.Web;
 
 namespace GIIS.Tanzania.WCF
 {
@@ -74,8 +80,6 @@ namespace GIIS.Tanzania.WCF
 			foreach (HealthFacility healthFacility in healthFacilityList)
 			{
 				HealthFacilityVaccinationsEntity entity = new HealthFacilityVaccinationsEntity();
-
-
 				List<VaccinationsEntity> vaccinationsList = new List<VaccinationsEntity>();
 
 				List<Dose> doseList = Dose.GetDoseList();
@@ -94,6 +98,9 @@ namespace GIIS.Tanzania.WCF
 						DateTime cummulativeFrom = new DateTime(Int32.Parse(DateTime.Now.Year.ToString()), 1, 1);
 						vaccinationEntity.serviceAreaCummulativeTotal = GIIS.DataLayer.HealthFacility.GetHealthFacilityVaccinationsByCatchment(healthFacility.Id, d.Id, cummulativeFrom, toDate,  false);
 						vaccinationEntity.catchmentAreaCummulativeTotal = GIIS.DataLayer.HealthFacility.GetHealthFacilityVaccinationsByCatchment(healthFacility.Id, d.Id, cummulativeFrom, toDate,  true);
+
+
+
 
 						vaccinationsList.Add(vaccinationEntity);
 					}
@@ -141,6 +148,147 @@ namespace GIIS.Tanzania.WCF
 			entity.healthFacilityId = healthFacility.Id;
 			return entity;
 		}
+
+		public List<HealthFacilityColdChain> GetHealthFacilityColdChain(int healthFacilityId, int reportingMonth, int reportingYear)
+		{
+			List <HealthFacilityColdChain> coldChain = GIIS.DataLayer.HealthFacilityColdChain.GetHealthFacilityColdChain(healthFacilityId, reportingMonth,reportingYear);
+			return coldChain;
+		}
+
+		public List<HealthFacilityColdChain> GetHealthFacilityColdChainAsList(int healthFacilityId)
+		{
+			List<HealthFacilityColdChain> coldChain = GIIS.DataLayer.HealthFacilityColdChain.GetHealthFacilityColdChainAsList(healthFacilityId);
+			return coldChain;
+		}
+
+		public IntReturnValue StoreHealthFacilityColdChain(int healthFacilityId, double tempMax, double tempMin, int alarmHighTemp, int alarmLowTemp, int reportingMonth, int reportingYear,int userId, DateTime modifiedOn)
+		{
+			HealthFacilityColdChain coldChain = new HealthFacilityColdChain();
+
+			coldChain.HealthFacilityId = healthFacilityId;
+			coldChain.TempMax = tempMax;
+			coldChain.TempMin = tempMin;
+			coldChain.AlarmHighTemp = alarmHighTemp;
+			coldChain.AlarmLowTemp = alarmLowTemp;
+			coldChain.ReportedMonth = reportingMonth;
+			coldChain.ReportedYear = reportingYear;
+			coldChain.ModifiedOn = modifiedOn;
+			coldChain.ModifiedBy = userId;
+
+			int healthFacilityColdChainInserted;
+			List<HealthFacilityColdChain> coldChainList = GIIS.DataLayer.HealthFacilityColdChain.GetHealthFacilityColdChain(healthFacilityId, reportingMonth, reportingYear);
+
+			if (coldChainList == null || coldChainList.Count == 0)
+			{
+				healthFacilityColdChainInserted = HealthFacilityColdChain.Insert(coldChain);
+			}
+			else 
+			{
+				healthFacilityColdChainInserted = HealthFacilityColdChain.Update(coldChain);
+
+			}
+			BroadcastStoredHealthFacilityColdChain(healthFacilityId);
+			IntReturnValue irv = new IntReturnValue();
+			irv.id = healthFacilityColdChainInserted;
+			return irv;
+		}
+
+
+
+
+
+		/**
+		 * Method used to broadcast Stored HealthFacilityColdChains to other tablets within the same facility
+		 * 
+		 **/
+		public string BroadcastStoredHealthFacilityColdChain(int healthFacilityId)
+		{
+
+
+
+			List<string> regIDs = GetGcmIds(healthFacilityId.ToString());
+
+			string stringregIds = null;
+
+			//Then I use 
+			stringregIds = string.Join("\",\"", regIDs);
+			//To Join the values (if ever there are more than 1) with quotes and commas for the Json format below
+
+			try
+			{
+				string GoogleAppID = "AIzaSyBgsthTTTiunMtHV5XT1Im6bl17i5rGR94";
+				var SENDER_ID = "967487253557";
+				var value = "UpdateHealthFacilityColdChain";
+				WebRequest tRequest;
+				tRequest = WebRequest.Create("https://android.googleapis.com/gcm/send");
+				tRequest.Method = "post";
+				tRequest.ContentType = "application/json";
+				tRequest.Headers.Add(string.Format("Authorization: key={0}", GoogleAppID));
+
+				tRequest.Headers.Add(string.Format("Sender: id={0}", SENDER_ID));
+
+				string postData = "{\"collapse_key\":\"score_update\",\"time_to_live\":108,\"delay_while_idle\":true,\"data\": { \"message\" : " + "\"" + value + "\",\"time\": " + "\"" + System.DateTime.Now.ToString() + "\"},\"registration_ids\":[\"" + stringregIds + "\"]}";
+
+				Byte[] byteArray = Encoding.UTF8.GetBytes(postData);
+				tRequest.ContentLength = byteArray.Length;
+
+				Stream dataStream = tRequest.GetRequestStream();
+				dataStream.Write(byteArray, 0, byteArray.Length);
+				dataStream.Close();
+
+				WebResponse tResponse = tRequest.GetResponse();
+
+				dataStream = tResponse.GetResponseStream();
+
+				StreamReader tReader = new StreamReader(dataStream);
+
+				String sResponseFromServer = tReader.ReadToEnd();
+
+				HttpWebResponse httpResponse = (HttpWebResponse)tResponse;
+				httpResponse.StatusCode.ToString();
+
+				tReader.Close();
+				dataStream.Close();
+				tResponse.Close();
+
+
+				JObject o = JObject.Parse(sResponseFromServer);
+				JArray a = (JArray)o["results"];
+				int counter = a.Count;
+				for (int i = 0; i < counter; i++)
+				{
+					if (a[i]["registration_id"] != null)
+					{
+						ChildManagement.updateGcmId((string)a[i]["registration_id"], regIDs.ElementAt(i));
+					}
+
+				}
+
+
+				return sResponseFromServer;
+			}
+			catch
+			{
+				//throw new WebFaultException<string>("Error", HttpStatusCode.ServiceUnavailable);
+				return "error sending data to GCM server. Service unavailable";
+			}
+
+
+		}
+
+
+		public List<string> GetGcmIds(string healthFacilityId)
+		{
+			DataTable dt = GIIS.DataLayer.VaccinationEvent.GetGcmIds(healthFacilityId);
+			List<string> gcmIdsList = new List<string>();
+			foreach (DataRow dr in dt.Rows)
+			{
+				gcmIdsList.Add(dr[0].ToString());
+			}
+
+			return gcmIdsList;
+		}
+
 
 	}
 }
