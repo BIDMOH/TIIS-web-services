@@ -6,18 +6,6 @@
       <File FileName="GIIS.Tanzania.WCF/HealthFacilityManagement.svc.cs" Line="238" Column="94" />
       <File FileName="GIIS.Tanzania.WCF/IHealthFacilityManagement.cs" Line="74" Column="52" />
     </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State name="__root__">
-          <Node name="GIIS.Tanzania.WCF" expanded="True" selected="True">
-            <Node name="GIIS.Tanzania.WCF" expanded="True">
-              <Node name="HealthFacilityManagement.svc" expanded="True" />
-              <Node name="StockManagement.svc" expanded="True" />
-            </Node>
-          </Node>
-        </State>
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
