@@ -168,6 +168,9 @@
     <Compile Include="ChildTemp.cs" />
     <Compile Include="ChildEntityTemp.cs" />
     <Compile Include="HealthFacilityColdChain.cs" />
+    <Compile Include="HealthFacilityDeseaseSurvailance.cs" />
+    <Compile Include="HealthFacilityBcgOpv0AndTTVaccinations.cs" />
+    <Compile Include="HealthFacilityImmunizationSessions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Library\Mono.Security.dll" />

@@ -80,5 +80,19 @@ namespace GIIS.Tanzania.WCF
 		[OperationContract]
 		List<HealthFacilityColdChain> GetHealthFacilityColdChainAsList(int healthFacilityId);
 
+
+		[WebGet(UriTemplate = "StoreHealthFacilityDeseaseSurvailance?healthFacilityId={healthFacilityId}&feverMonthlyCases={feverMonthlyCases}&feverMonthlyDeaths={feverMonthlyDeaths}&AFPMonthlyCases={AFPMonthlyCases}&AFPDeaths={AFPDeaths}&neonatalTTCases={neonatalTTCases}&neonatalTTDeaths={neonatalTTDeaths}&reportingMonth={reportingMonth}&reportingYear={reportingYear}&userId={userId}&modifiedOn={modifiedOn}", ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		IntReturnValue StoreHealthFacilityDeseaseSurvailance(int healthFacilityId, int feverMonthlyCases, int feverMonthlyDeaths, int AFPMonthlyCases, int AFPDeaths, int neonatalTTCases, int neonatalTTDeaths, int reportingMonth, int reportingYear, int userId, DateTime modifiedOn);
+
+
+		[WebGet(UriTemplate = "GetHealthFacilityDeseaseSurvailance?healthFacilityId={healthFacilityId}&reportingMonth={reportingMonth}&reportingYear={reportingYear}", ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		List<HealthFacilityDeseaseSurvailance> GetHealthFacilityDeseaseSurvailance(int healthFacilityId, int reportingMonth, int reportingYear);
+
+
+		[WebGet(UriTemplate = "GetHealthFacilityDeseaseSurvailanceAsList?healthFacilityId={healthFacilityId}", ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		List<HealthFacilityDeseaseSurvailance> GetHealthFacilityDeseaseSurvailanceAsList(int healthFacilityId);
 	}
 }

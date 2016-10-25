@@ -187,12 +187,59 @@ namespace GIIS.Tanzania.WCF
 				healthFacilityColdChainInserted = HealthFacilityColdChain.Update(coldChain);
 
 			}
-			BroadcastStoredHealthFacilityColdChain(healthFacilityId);
+			BroadcastStoredHealthFacilityData(healthFacilityId,"UpdateHealthFacilityColdChain");
 			IntReturnValue irv = new IntReturnValue();
 			irv.id = healthFacilityColdChainInserted;
 			return irv;
 		}
 
+
+
+		public List<HealthFacilityDeseaseSurvailance> GetHealthFacilityDeseaseSurvailance(int healthFacilityId, int reportingMonth, int reportingYear)
+		{
+			List<HealthFacilityDeseaseSurvailance> deseaseSurvailance = GIIS.DataLayer.HealthFacilityDeseaseSurvailance.GetHealthFacilityDeseaseSurvailance(healthFacilityId, reportingMonth, reportingYear);
+			return deseaseSurvailance;
+		}
+
+		public List<HealthFacilityDeseaseSurvailance> GetHealthFacilityDeseaseSurvailanceAsList(int healthFacilityId)
+		{
+			List<HealthFacilityDeseaseSurvailance> deseaseSurvailance = GIIS.DataLayer.HealthFacilityDeseaseSurvailance.GetHealthFacilityDeseaseSurvailanceList(healthFacilityId);
+			return deseaseSurvailance;
+		}
+
+		public IntReturnValue StoreHealthFacilityDeseaseSurvailance(int healthFacilityId, int feverMonthlyCases, int feverMonthlyDeaths,int AFPMonthlyCases, int AFPDeaths, int neonatalTTCases, int neonatalTTDeaths, int reportingMonth, int reportingYear, int userId, DateTime modifiedOn)
+		{
+			HealthFacilityDeseaseSurvailance deseaseSurvailance = new HealthFacilityDeseaseSurvailance();
+
+			deseaseSurvailance.HealthFacilityId = healthFacilityId;
+			deseaseSurvailance.FeverMonthlyCases = feverMonthlyCases;
+			deseaseSurvailance.FeverMonthlyDeaths = feverMonthlyDeaths ;
+			deseaseSurvailance.AFPMonthlyCases = AFPMonthlyCases;
+			deseaseSurvailance.AFPDeaths = AFPDeaths;
+			deseaseSurvailance.NeonatalTTCases = neonatalTTCases;
+			deseaseSurvailance.NeonatalTTDeaths = neonatalTTDeaths;
+			deseaseSurvailance.ReportedMonth = reportingMonth;
+			deseaseSurvailance.ReportedYear = reportingYear;
+			deseaseSurvailance.ModifiedOn = modifiedOn;
+			deseaseSurvailance.ModifiedBy = userId;
+
+			int HealthFacilityDeseaseSurvailanceInserted;
+			List<HealthFacilityDeseaseSurvailance> deseaseSurvailanceList = GIIS.DataLayer.HealthFacilityDeseaseSurvailance.GetHealthFacilityDeseaseSurvailance(healthFacilityId, reportingMonth, reportingYear);
+
+			if (deseaseSurvailanceList == null || deseaseSurvailanceList.Count == 0)
+			{
+				HealthFacilityDeseaseSurvailanceInserted = HealthFacilityDeseaseSurvailance.Insert(deseaseSurvailance);
+			}
+			else
+			{
+				HealthFacilityDeseaseSurvailanceInserted = HealthFacilityDeseaseSurvailance.Update(deseaseSurvailance);
+
+			}
+			BroadcastStoredHealthFacilityData(healthFacilityId,"UpdateHealthFacilityDeseaseSurvailance");
+			IntReturnValue irv = new IntReturnValue();
+			irv.id = HealthFacilityDeseaseSurvailanceInserted;
+			return irv;
+		}
 
 
 
@@ -201,7 +248,7 @@ namespace GIIS.Tanzania.WCF
 		 * Method used to broadcast Stored HealthFacilityColdChains to other tablets within the same facility
 		 * 
 		 **/
-		public string BroadcastStoredHealthFacilityColdChain(int healthFacilityId)
+		public string BroadcastStoredHealthFacilityData(int healthFacilityId, string value)
 		{
 
 
@@ -218,7 +265,6 @@ namespace GIIS.Tanzania.WCF
 			{
 				string GoogleAppID = "AIzaSyBgsthTTTiunMtHV5XT1Im6bl17i5rGR94";
 				var SENDER_ID = "967487253557";
-				var value = "UpdateHealthFacilityColdChain";
 				WebRequest tRequest;
 				tRequest = WebRequest.Create("https://android.googleapis.com/gcm/send");
 				tRequest.Method = "post";
