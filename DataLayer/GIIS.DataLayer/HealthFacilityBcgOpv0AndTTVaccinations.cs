@@ -105,7 +105,7 @@ namespace GIIS.DataLayer
 		{
 			try
 			{
-				string query = @"INSERT INTO ""HEALTH_FACILITY_BCG_OPV0_TT_VACCINATIONS"" (""HEALTH_FACILITY_ID"",""DOSE_NAME"" ,""MALE_SERVICE_AREA"", ""FEMALE_SERVICE_AREA"", ""COVERAGE_SERVICE_AREA"",
+				string query = @"INSERT INTO ""HEALTH_FACILITY_BCG_OPV0_TT_VACCINATIONS"" (""HEALTH_FACILITY_ID"",""DOSE_ID"" ,""MALE_SERVICE_AREA"", ""FEMALE_SERVICE_AREA"", ""COVERAGE_SERVICE_AREA"",
 				""MALE_CATCHMENT_AREA"",""FEMALE_CATCHMENT_AREA"",""COVERAGE_CATCHMENT_AREA"",""COVERAGE_CATCHMENT_AND_SERVICE_AREA"", ""REPORTED_MONTH"",""REPORTED_YEAR"", ""MODIFIED_ON"",""MODIFIED_BY"") 
 				VALUES (@HealthFacilityId, @DoseId, @MaleServiceArea, @FemaleServiceArea, @CoverageServiceArea,
 				@MaleCatchmentArea, @FemaleCatchmentArea, @CoverageCatchmentArea, @CoverageCatchmentAndServiceArea, @ReportingMonth,@ReportingYear, @ModifiedOn, @ModifiedBy)";
@@ -140,7 +140,7 @@ namespace GIIS.DataLayer
 		{
 			try
 			{
-				string query = @"UPDATE ""HEALTH_FACILITY_BCG_OPV0_TT_VACCINATIONS"" SET  ""DOSE_NAME"" = @DoseId, ""MALE_SERVICE_AREA"" = @MaleServiceArea, ""FEMALE_SERVICE_AREA"" = @FemaleServiceArea,
+				string query = @"UPDATE ""HEALTH_FACILITY_BCG_OPV0_TT_VACCINATIONS"" SET  ""DOSE_ID"" = @DoseId, ""MALE_SERVICE_AREA"" = @MaleServiceArea, ""FEMALE_SERVICE_AREA"" = @FemaleServiceArea,
 				""COVERAGE_SERVICE_AREA"" = @CoverageServiceArea,""MALE_CATCHMENT_AREA"" = @MaleCatchmentArea, ""FEMALE_CATCHMENT_AREA"" = @FemaleCatchmentArea,
 				""COVERAGE_CATCHMENT_AREA"" = @CoverageCatchmentArea, ""COVERAGE_CATCHMENT_AND_SERVICE_AREA"" = @CoverageCatchmentAndServiceArea, ""MODIFIED_ON"" = @ModifiedOn, ""MODIFIED_BY"" = @ModifiedBy 
 				WHERE ""HEALTH_FACILITY_ID"" = @HealthFacilityId AND ""REPORTED_MONTH"" = @ReportingMonth AND  ""REPORTED_YEAR"" = @ReportingYear";
@@ -209,7 +209,7 @@ namespace GIIS.DataLayer
 					o.HealthFacilityId = Helper.ConvertToInt(row["HEALTH_FACILITY_ID"]);
 
 
-					o.DoseId = Helper.ConvertToInt(row["DOSE_NAME"]);
+					o.DoseId = Helper.ConvertToInt(row["DOSE_ID"]);
 					o.MaleServiceArea = Helper.ConvertToInt(row["MALE_SERVICE_AREA"]);
 					o.FemaleServiceArea = Helper.ConvertToInt(row["FEMALE_SERVICE_AREA"]);
 					o.CoverageServiceArea = Helper.ConvertToInt(row["COVERAGE_SERVICE_AREA"]);
@@ -246,7 +246,7 @@ namespace GIIS.DataLayer
 					o.HealthFacilityId = Helper.ConvertToInt(row["HEALTH_FACILITY_ID"]);
 
 
-					o.DoseId = Helper.ConvertToInt(row["DOSE_NAME"]);
+					o.DoseId = Helper.ConvertToInt(row["DOSE_ID"]);
 					o.MaleServiceArea = Helper.ConvertToInt(row["MALE_SERVICE_AREA"]);
 					o.FemaleServiceArea = Helper.ConvertToInt(row["FEMALE_SERVICE_AREA"]);
 					o.CoverageServiceArea = Helper.ConvertToInt(row["COVERAGE_SERVICE_AREA"]);
