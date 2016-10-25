@@ -243,6 +243,193 @@ namespace GIIS.Tanzania.WCF
 
 
 
+		public List<HealthFacilityImmunizationSessions> GetHealthFacilityImmunizationSessions(int healthFacilityId, int reportingMonth, int reportingYear)
+		{
+			List<HealthFacilityImmunizationSessions> immunizationSessions = GIIS.DataLayer.HealthFacilityImmunizationSessions.GetHealthFacilityImmunizationSessions(healthFacilityId, reportingMonth, reportingYear);
+			return immunizationSessions;
+		}
+
+		public List<HealthFacilityImmunizationSessions> GetHealthFacilityImmunizationSessionsAsList(int healthFacilityId)
+		{
+			List<HealthFacilityImmunizationSessions> immunizationSessions = GIIS.DataLayer.HealthFacilityImmunizationSessions.GetHealthFacilityImmunizationSessionsAsList(healthFacilityId);
+			return immunizationSessions;
+		}
+
+		public IntReturnValue StoreHealthFacilityImmunizationSessions(int healthFacilityId, int OutreachPlanned, string OtherMajorImmunizationActivities, int reportingMonth, int reportingYear, int userId, DateTime modifiedOn)
+		{
+			HealthFacilityImmunizationSessions deseaseSurvailance = new HealthFacilityImmunizationSessions();
+
+			deseaseSurvailance.HealthFacilityId = healthFacilityId;
+			deseaseSurvailance.OutreachPlanned = OutreachPlanned;
+			deseaseSurvailance.OtherMajorImmunizationActivities = OtherMajorImmunizationActivities;
+			deseaseSurvailance.ReportedMonth = reportingMonth;
+			deseaseSurvailance.ReportedYear = reportingYear;
+			deseaseSurvailance.ModifiedOn = modifiedOn;
+			deseaseSurvailance.ModifiedBy = userId;
+
+			int HealthFacilityImmunizationSessionsInserted;
+			List<HealthFacilityImmunizationSessions> immunizationSessionsList = GIIS.DataLayer.HealthFacilityImmunizationSessions.GetHealthFacilityImmunizationSessions(healthFacilityId, reportingMonth, reportingYear);
+
+			if (immunizationSessionsList == null || immunizationSessionsList.Count == 0)
+			{
+				HealthFacilityImmunizationSessionsInserted = HealthFacilityImmunizationSessions.Insert(deseaseSurvailance);
+			}
+			else
+			{
+				HealthFacilityImmunizationSessionsInserted = HealthFacilityImmunizationSessions.Update(deseaseSurvailance);
+
+			}
+			BroadcastStoredHealthFacilityData(healthFacilityId, "UpdateHealthFacilityImmunizationSessions");
+			IntReturnValue irv = new IntReturnValue();
+			irv.id = HealthFacilityImmunizationSessionsInserted;
+			return irv;
+		}
+
+
+		public List<HealthFacilityVitaminAStockBalance> GetHealthFacilityVitaminAStockBalance(int healthFacilityId, int reportingMonth, int reportingYear)
+		{
+			List<HealthFacilityVitaminAStockBalance> healthFacilitiesVitaminAStockBalance = GIIS.DataLayer.HealthFacilityVitaminAStockBalance.GetHealthFacilityVitaminAStockBalance(healthFacilityId, reportingMonth, reportingYear);
+			return healthFacilitiesVitaminAStockBalance;
+		}
+
+		public List<HealthFacilityVitaminAStockBalance> GetHealthFacilityVitaminAStockBalanceAsList(int healthFacilityId)
+		{
+			List<HealthFacilityVitaminAStockBalance> healthFacilitiesVitaminAStockBalance = GIIS.DataLayer.HealthFacilityVitaminAStockBalance.GetHealthFacilityVitaminAStockBalanceAsList(healthFacilityId);
+			return healthFacilitiesVitaminAStockBalance;
+		}
+
+		public IntReturnValue StoreHealthFacilityVitaminAStockBalance(int healthFacilityId,string VitaminName, int OpeningBalance, int Received, int StockInHand, int TotalAdministered, int wastage, int reportingMonth, int reportingYear, int userId, DateTime modifiedOn)
+		{
+			HealthFacilityVitaminAStockBalance vitaminAStockBalance = new HealthFacilityVitaminAStockBalance();
+
+			vitaminAStockBalance.HealthFacilityId = healthFacilityId;
+			vitaminAStockBalance.Wastage = wastage;
+			vitaminAStockBalance.VitaminName = VitaminName;
+			vitaminAStockBalance.Received = Received;
+			vitaminAStockBalance.StockInHand = StockInHand;
+			vitaminAStockBalance.TotalAdministered = TotalAdministered;
+			vitaminAStockBalance.ReportedMonth = reportingMonth;
+			vitaminAStockBalance.ReportedYear = reportingYear;
+			vitaminAStockBalance.ModifiedOn = modifiedOn;
+			vitaminAStockBalance.ModifiedBy = userId;
+
+
+			int previousMonth, previousMonthYear;
+
+			if (reportingMonth != 1)
+			{
+				previousMonth = reportingMonth - 1;
+				previousMonthYear = reportingYear;
+			}
+			else
+			{
+				previousMonth = 12;
+				previousMonthYear = reportingYear - 1;
+			}
+
+			HealthFacilityVitaminAStockBalance previousVitaminAStock = GIIS.DataLayer.HealthFacilityVitaminAStockBalance.GetHealthFacilityVitaminAStockBalanceByVitaminName(healthFacilityId, previousMonth, previousMonthYear, VitaminName);
+			if (previousVitaminAStock != null)
+			{
+				vitaminAStockBalance.OpeningBalance = previousVitaminAStock.StockInHand;
+			}
+			else {
+				vitaminAStockBalance.OpeningBalance = OpeningBalance;
+			}
+
+
+
+			int HealthFacilityVitaminAStockBalanceInserted;
+			List<HealthFacilityVitaminAStockBalance> vitaminAStockList = GIIS.DataLayer.HealthFacilityVitaminAStockBalance.GetHealthFacilityVitaminAStockBalance(healthFacilityId, reportingMonth, reportingYear);
+
+			if (vitaminAStockList == null || vitaminAStockList.Count == 0)
+			{
+				HealthFacilityVitaminAStockBalanceInserted = HealthFacilityVitaminAStockBalance.Insert(vitaminAStockBalance);
+			}
+			else
+			{
+				HealthFacilityVitaminAStockBalanceInserted = HealthFacilityVitaminAStockBalance.Update(vitaminAStockBalance);
+
+			}
+			BroadcastStoredHealthFacilityData(healthFacilityId, "UpdateHealthFacilityVitaminAStockBalance");
+			IntReturnValue irv = new IntReturnValue();
+			irv.id = HealthFacilityVitaminAStockBalanceInserted;
+			return irv;
+		}
+
+
+
+
+		public List<HealthFacilitySyringesAndSafetyBoxesStockBalance> GetHealthFacilitySyringesAndSafetyBoxesStockBalance(int healthFacilityId, int reportingMonth, int reportingYear)
+		{
+			List<HealthFacilitySyringesAndSafetyBoxesStockBalance> healthFacilitiesVitaminAStockBalance = GIIS.DataLayer.HealthFacilitySyringesAndSafetyBoxesStockBalance.GetHealthFacilitySyringesAndSafetyBoxesStockBalance(healthFacilityId, reportingMonth, reportingYear);
+			return healthFacilitiesVitaminAStockBalance;
+		}
+
+		public List<HealthFacilitySyringesAndSafetyBoxesStockBalance> GetHealthFacilitySyringesAndSafetyBoxesStockBalanceAsList(int healthFacilityId)
+		{
+			List<HealthFacilitySyringesAndSafetyBoxesStockBalance> healthFacilitiesVitaminAStockBalance = GIIS.DataLayer.HealthFacilitySyringesAndSafetyBoxesStockBalance.GetHealthFacilitySyringesAndSafetyBoxesStockBalanceAsList(healthFacilityId);
+			return healthFacilitiesVitaminAStockBalance;
+		}
+
+		public IntReturnValue StoreHealthFacilitySyringesAndSafetyBoxesStockBalance(int healthFacilityId, string ItemName, int OpeningBalance, int Received, int StockInHand, int Used, int wastage, int StockedOutDays, int reportingMonth, int reportingYear, int userId, DateTime modifiedOn)
+		{
+			HealthFacilitySyringesAndSafetyBoxesStockBalance syringesAndSafetyBoxesStockBalance = new HealthFacilitySyringesAndSafetyBoxesStockBalance();
+
+			syringesAndSafetyBoxesStockBalance.HealthFacilityId = healthFacilityId;
+			syringesAndSafetyBoxesStockBalance.Wastage = wastage;
+			syringesAndSafetyBoxesStockBalance.ItemName = ItemName;
+			syringesAndSafetyBoxesStockBalance.Received = Received;
+			syringesAndSafetyBoxesStockBalance.StockInHand = StockInHand;
+			syringesAndSafetyBoxesStockBalance.Used = Used;
+			syringesAndSafetyBoxesStockBalance.StockedOutDays = StockedOutDays;
+			syringesAndSafetyBoxesStockBalance.ReportedMonth = reportingMonth;
+			syringesAndSafetyBoxesStockBalance.ReportedYear = reportingYear;
+			syringesAndSafetyBoxesStockBalance.ModifiedOn = modifiedOn;
+			syringesAndSafetyBoxesStockBalance.ModifiedBy = userId;
+
+			int previousMonth, previousMonthYear;
+
+			if (reportingMonth != 1)
+			{
+				previousMonth = reportingMonth - 1;
+				previousMonthYear = reportingYear;
+			}
+			else
+			{
+				previousMonth = 12;
+				previousMonthYear = reportingYear - 1;
+			}
+
+			HealthFacilitySyringesAndSafetyBoxesStockBalance previousSyringesAndSafetyBoxesStock = GIIS.DataLayer.HealthFacilitySyringesAndSafetyBoxesStockBalance.HealthFacilitySyringesAndSafetyBoxesStockBalanceByItem(healthFacilityId, previousMonth, previousMonthYear, ItemName);
+			if (previousSyringesAndSafetyBoxesStock != null)
+			{
+				syringesAndSafetyBoxesStockBalance.OpeningBalance = previousSyringesAndSafetyBoxesStock.StockInHand;
+			}
+			else {
+				syringesAndSafetyBoxesStockBalance.OpeningBalance = OpeningBalance;
+			}
+
+
+
+			int HealthFacilitySyringesAndSafetyBoxesStockBalanceInserted;
+			List<HealthFacilitySyringesAndSafetyBoxesStockBalance> vitaminAStockList = GIIS.DataLayer.HealthFacilitySyringesAndSafetyBoxesStockBalance.GetHealthFacilitySyringesAndSafetyBoxesStockBalance(healthFacilityId, reportingMonth, reportingYear);
+
+			if (vitaminAStockList == null || vitaminAStockList.Count == 0)
+			{
+				HealthFacilitySyringesAndSafetyBoxesStockBalanceInserted = HealthFacilitySyringesAndSafetyBoxesStockBalance.Insert(syringesAndSafetyBoxesStockBalance);
+			}
+			else
+			{
+				HealthFacilitySyringesAndSafetyBoxesStockBalanceInserted = HealthFacilitySyringesAndSafetyBoxesStockBalance.Update(syringesAndSafetyBoxesStockBalance);
+
+			}
+			BroadcastStoredHealthFacilityData(healthFacilityId, "UpdateHealthFacilitySyringesAndSafetyBoxesStockBalance");
+			IntReturnValue irv = new IntReturnValue();
+			irv.id = HealthFacilitySyringesAndSafetyBoxesStockBalanceInserted;
+			return irv;
+		}
+
+
 
 		/**
 		 * Method used to broadcast Stored HealthFacilityColdChains to other tablets within the same facility

@@ -94,5 +94,51 @@ namespace GIIS.Tanzania.WCF
 		[WebGet(UriTemplate = "GetHealthFacilityDeseaseSurvailanceAsList?healthFacilityId={healthFacilityId}", ResponseFormat = WebMessageFormat.Json)]
 		[OperationContract]
 		List<HealthFacilityDeseaseSurvailance> GetHealthFacilityDeseaseSurvailanceAsList(int healthFacilityId);
+
+
+		[WebGet(UriTemplate = "StoreHealthFacilityImmunizationSessions?healthFacilityId={healthFacilityId}&OutreachPlanned={OutreachPlanned}&OtherMajorImmunizationActivities={OtherMajorImmunizationActivities}&reportingMonth={reportingMonth}&reportingYear={reportingYear}&userId={userId}&modifiedOn={modifiedOn}", ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		IntReturnValue StoreHealthFacilityImmunizationSessions(int healthFacilityId, int OutreachPlanned, string OtherMajorImmunizationActivities, int reportingMonth, int reportingYear, int userId, DateTime modifiedOn);
+
+		[WebGet(UriTemplate = "GetHealthFacilityImmunizationSessions?healthFacilityId={healthFacilityId}&reportingMonth={reportingMonth}&reportingYear={reportingYear}", ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		List<HealthFacilityImmunizationSessions> GetHealthFacilityImmunizationSessions(int healthFacilityId, int reportingMonth, int reportingYear);
+
+
+		[WebGet(UriTemplate = "GetHealthFacilityImmunizationSessionsAsList?healthFacilityId={healthFacilityId}", ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		List<HealthFacilityImmunizationSessions> GetHealthFacilityImmunizationSessionsAsList(int healthFacilityId);
+
+
+
+		[WebGet(UriTemplate = "StoreHealthFacilityVitaminAStockBalance?healthFacilityId={healthFacilityId}&VitaminName={VitaminName}&OpeningBalance={OpeningBalance}&Received={Received}&StockInHand={StockInHand}&TotalAdministered={TotalAdministered}&wastage={wastage}&reportingMonth={reportingMonth}&reportingYear={reportingYear}&userId={userId}&modifiedOn={modifiedOn}", ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		IntReturnValue StoreHealthFacilityVitaminAStockBalance(int healthFacilityId, string VitaminName, int OpeningBalance, int Received, int StockInHand, int TotalAdministered, int wastage, int reportingMonth, int reportingYear, int userId, DateTime modifiedOn);
+
+		[WebGet(UriTemplate = "GetHealthFacilityVitaminAStockBalance?healthFacilityId={healthFacilityId}&reportingMonth={reportingMonth}&reportingYear={reportingYear}", ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		List<HealthFacilityVitaminAStockBalance> GetHealthFacilityVitaminAStockBalance(int healthFacilityId, int reportingMonth, int reportingYear);
+
+
+		[WebGet(UriTemplate = "GetHealthFacilityVitaminAStockBalanceAsList?healthFacilityId={healthFacilityId}", ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		List<HealthFacilityVitaminAStockBalance> GetHealthFacilityVitaminAStockBalanceAsList(int healthFacilityId);
+
+
+
+
+		[WebGet(UriTemplate = "StoreHealthFacilitySyringesAndSafetyBoxesStockBalance?healthFacilityId={healthFacilityId}&ItemName={ItemName}&OpeningBalance={OpeningBalance}&Received={Received}&StockInHand={StockInHand}&Used={Used}&wastage={wastage}&StockedOutDays={StockedOutDays}&reportingMonth={reportingMonth}&reportingYear={reportingYear}&userId={userId}&modifiedOn={modifiedOn}", ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		IntReturnValue StoreHealthFacilitySyringesAndSafetyBoxesStockBalance(int healthFacilityId, string ItemName, int OpeningBalance, int Received, int StockInHand, int Used, int wastage, int StockedOutDays, int reportingMonth, int reportingYear, int userId, DateTime modifiedOn);
+
+		[WebGet(UriTemplate = "GetHealthFacilitySyringesAndSafetyBoxesStockBalance?healthFacilityId={healthFacilityId}&reportingMonth={reportingMonth}&reportingYear={reportingYear}", ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		List<HealthFacilitySyringesAndSafetyBoxesStockBalance> GetHealthFacilitySyringesAndSafetyBoxesStockBalance(int healthFacilityId, int reportingMonth, int reportingYear);
+
+
+		[WebGet(UriTemplate = "GetHealthFacilitySyringesAndSafetyBoxesStockBalanceAsList?healthFacilityId={healthFacilityId}", ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		List<HealthFacilitySyringesAndSafetyBoxesStockBalance> GetHealthFacilitySyringesAndSafetyBoxesStockBalanceAsList(int healthFacilityId);
+
 	}
 }

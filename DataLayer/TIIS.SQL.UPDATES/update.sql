@@ -62,7 +62,7 @@ BEGIN
 	    (
 	      "HEALTH_FACILITY_ID" integer NOT NULL,
 	      "OUTREACH_PLANNED" integer NOT NULL,
-	      "OTHER_MAJOR_IMMUNIZATION_ACTIVITIES" integer NOT NULL,
+	      "OTHER_MAJOR_IMMUNIZATION_ACTIVITIES" text NOT NULL,
 	      "REPORTED_MONTH" integer,
 	      "REPORTED_YEAR" integer,
 	      "MODIFIED_ON" date NOT NULL,
@@ -156,4 +156,3 @@ BEGIN
 $$ LANGUAGE plpgsql;
 
 select UPDATE_DB();
- 

@@ -55,6 +55,32 @@ namespace GIIS.DataLayer
 			}
 		}
 
+
+		public static HealthFacilitySyringesAndSafetyBoxesStockBalance HealthFacilitySyringesAndSafetyBoxesStockBalanceByItem(int healthFacilityId, int reportedMonth, int reportingYear, string itemName)
+		{
+			try
+			{
+
+				string query = @"SELECT * FROM ""HEALTH_FACILITY_SYRINGES_AND_SAFETY_BOXES"" WHERE ""HEALTH_FACILITY_ID"" = @healthFacilityId AND 
+				""REPORTED_MONTH"" = @reportedMonth AND ""REPORTED_YEAR"" = @reportedYear AND ""ITEM_NAME"" = @itemName ";
+				List<Npgsql.NpgsqlParameter> parameters = new List<NpgsqlParameter>()
+				{
+					new NpgsqlParameter("@healthFacilityId", DbType.Int32)  { Value = healthFacilityId },
+					new NpgsqlParameter("@reportedMonth", DbType.Int32)  { Value = reportedMonth },
+					new NpgsqlParameter("@reportedYear", DbType.Int32)  { Value = reportingYear },
+					new NpgsqlParameter("@itemName", DbType.String)  { Value = itemName }
+				};
+				DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, parameters);
+				return GetHealthFacilitySyringesAndSafetyBoxesStockBalance(dt);
+			}
+			catch (Exception ex)
+			{
+				Log.InsertEntity("HealthFacilitySyringesAndSafetyBoxesStockBalance", "GetHealthFacilitySyringesAndSafetyBoxesStockBalance", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+				throw ex;
+			}
+		}
+
+
 		public static List<HealthFacilitySyringesAndSafetyBoxesStockBalance> GetHealthFacilitySyringesAndSafetyBoxesStockBalance(int healthFacilityId, int reportedMonth, int reportingYear)
 		{
 			try
@@ -103,7 +129,7 @@ namespace GIIS.DataLayer
 		#endregion
 
 		#region CRUD
-		public static int Insert(HealthFacilitySyringesAndSafetyBoxesStockBalance vaccinations)
+		public static int Insert(HealthFacilitySyringesAndSafetyBoxesStockBalance balance)
 		{
 			try
 			{
@@ -113,21 +139,21 @@ namespace GIIS.DataLayer
 				@Wastage, @StockInHand, @StockedOutDays, @ReportingMonth,@ReportingYear, @ModifiedOn, @ModifiedBy)";
 				List<Npgsql.NpgsqlParameter> parameters = new List<NpgsqlParameter>()
 				{
-					new NpgsqlParameter("@HealthFacilityId", DbType.Int32)  { Value = vaccinations.HealthFacilityId },
-					new NpgsqlParameter("@ItemName", DbType.Double)  { Value = vaccinations.ItemName },
-					new NpgsqlParameter("@OpeningBalance", DbType.Double)  { Value = vaccinations.OpeningBalance},
-					new NpgsqlParameter("@Received", DbType.Double)  { Value = vaccinations.Received},
-					new NpgsqlParameter("@Used", DbType.Double)  { Value = vaccinations.Used},
-					new NpgsqlParameter("@Wastage", DbType.Int32)  { Value = (object)vaccinations.Wastage ?? DBNull.Value },
-					new NpgsqlParameter("@StockInHand", DbType.Int32)  { Value = (object)vaccinations.StockInHand ?? DBNull.Value  },
-					new NpgsqlParameter("@StockedOutDays", DbType.Int32)  { Value = (object)vaccinations.StockedOutDays ?? DBNull.Value  },
-					new NpgsqlParameter("@ReportingMonth", DbType.Int32)  { Value = vaccinations.ReportedMonth },
-					new NpgsqlParameter("@ReportingYear", DbType.Int32)  { Value = vaccinations.ReportedYear },
-					new NpgsqlParameter("@ModifiedOn", DbType.DateTime)  { Value = vaccinations.ModifiedOn },
-					new NpgsqlParameter("@ModifiedBy", DbType.Int32)  { Value = vaccinations.ModifiedBy }
+					new NpgsqlParameter("@HealthFacilityId", DbType.Int32)  { Value = balance.HealthFacilityId },
+					new NpgsqlParameter("@ItemName", DbType.String)  { Value = balance.ItemName },
+					new NpgsqlParameter("@OpeningBalance", DbType.Int32)  { Value = balance.OpeningBalance},
+					new NpgsqlParameter("@Received", DbType.Int32)  { Value = balance.Received},
+					new NpgsqlParameter("@Used", DbType.Int32)  { Value = balance.Used},
+					new NpgsqlParameter("@Wastage", DbType.Int32)  { Value = (object)balance.Wastage ?? DBNull.Value },
+					new NpgsqlParameter("@StockInHand", DbType.Int32)  { Value = (object)balance.StockInHand ?? DBNull.Value  },
+					new NpgsqlParameter("@StockedOutDays", DbType.Int32)  { Value = (object)balance.StockedOutDays ?? DBNull.Value  },
+					new NpgsqlParameter("@ReportingMonth", DbType.Int32)  { Value = balance.ReportedMonth },
+					new NpgsqlParameter("@ReportingYear", DbType.Int32)  { Value = balance.ReportedYear },
+					new NpgsqlParameter("@ModifiedOn", DbType.DateTime)  { Value = balance.ModifiedOn },
+					new NpgsqlParameter("@ModifiedBy", DbType.Int32)  { Value = balance.ModifiedBy }
 				};
 				DBManager.ExecuteScalarCommand(query, CommandType.Text, parameters);
-				AuditTable.InsertEntity("HealthFacilitySyringesAndSafetyBoxesStockBalance", "1", 1, DateTime.Now, vaccinations.ModifiedBy);
+				AuditTable.InsertEntity("HealthFacilitySyringesAndSafetyBoxesStockBalance", "1", 1, DateTime.Now, balance.ModifiedBy);
 				return 1;
 			}
 			catch (Exception ex)
@@ -137,7 +163,7 @@ namespace GIIS.DataLayer
 			return -1;
 		}
 
-		public static int Update(HealthFacilitySyringesAndSafetyBoxesStockBalance vaccinations)
+		public static int Update(HealthFacilitySyringesAndSafetyBoxesStockBalance balance)
 		{
 			try
 			{
@@ -148,22 +174,22 @@ namespace GIIS.DataLayer
 
 				List<Npgsql.NpgsqlParameter> parameters = new List<NpgsqlParameter>()
 				{
-					new NpgsqlParameter("@HealthFacilityId", DbType.Int32)  { Value = vaccinations.HealthFacilityId },
-					new NpgsqlParameter("@ItemName", DbType.Double)  { Value = vaccinations.ItemName },
-					new NpgsqlParameter("@OpeningBalance", DbType.Double)  { Value = vaccinations.OpeningBalance},
-					new NpgsqlParameter("@Received", DbType.Double)  { Value = vaccinations.Received},
-					new NpgsqlParameter("@Used", DbType.Double)  { Value = vaccinations.Used},
-					new NpgsqlParameter("@Wastage", DbType.Int32)  { Value = (object)vaccinations.Wastage ?? DBNull.Value },
-					new NpgsqlParameter("@StockInHand", DbType.Int32)  { Value = (object)vaccinations.StockInHand ?? DBNull.Value  },
-					new NpgsqlParameter("@StockedOutDays", DbType.Int32)  { Value = (object)vaccinations.StockedOutDays ?? DBNull.Value  },
-					new NpgsqlParameter("@ReportingMonth", DbType.Int32)  { Value = vaccinations.ReportedMonth },
-					new NpgsqlParameter("@ReportingYear", DbType.Int32)  { Value = vaccinations.ReportedYear },
-					new NpgsqlParameter("@ModifiedOn", DbType.DateTime)  { Value = vaccinations.ModifiedOn },
-					new NpgsqlParameter("@ModifiedBy", DbType.Int32)  { Value = vaccinations.ModifiedBy }
+					new NpgsqlParameter("@HealthFacilityId", DbType.Int32)  { Value = balance.HealthFacilityId },
+					new NpgsqlParameter("@ItemName", DbType.String)  { Value = balance.ItemName },
+					new NpgsqlParameter("@OpeningBalance", DbType.Int32)  { Value = balance.OpeningBalance},
+					new NpgsqlParameter("@Received", DbType.Int32)  { Value = balance.Received},
+					new NpgsqlParameter("@Used", DbType.Int32)  { Value = balance.Used},
+					new NpgsqlParameter("@Wastage", DbType.Int32)  { Value = (object)balance.Wastage ?? DBNull.Value },
+					new NpgsqlParameter("@StockInHand", DbType.Int32)  { Value = (object)balance.StockInHand ?? DBNull.Value  },
+					new NpgsqlParameter("@StockedOutDays", DbType.Int32)  { Value = (object)balance.StockedOutDays ?? DBNull.Value  },
+					new NpgsqlParameter("@ReportingMonth", DbType.Int32)  { Value = balance.ReportedMonth },
+					new NpgsqlParameter("@ReportingYear", DbType.Int32)  { Value = balance.ReportedYear },
+					new NpgsqlParameter("@ModifiedOn", DbType.DateTime)  { Value = balance.ModifiedOn },
+					new NpgsqlParameter("@ModifiedBy", DbType.Int32)  { Value = balance.ModifiedBy }
 				};
 
 				int rowAffected = DBManager.ExecuteNonQueryCommand(query, CommandType.Text, parameters);
-				AuditTable.InsertEntity("HealthFacilitySyringesAndSafetyBoxesStockBalance", vaccinations.HealthFacilityId.ToString(), 2, DateTime.Now, chain.ModifiedBy);
+				AuditTable.InsertEntity("HealthFacilitySyringesAndSafetyBoxesStockBalance", balance.HealthFacilityId.ToString(), 2, DateTime.Now, balance.ModifiedBy);
 				return rowAffected;
 			}
 			catch (Exception ex)

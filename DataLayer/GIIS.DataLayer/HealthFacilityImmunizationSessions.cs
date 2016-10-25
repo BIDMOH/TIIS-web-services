@@ -27,7 +27,7 @@ namespace GIIS.DataLayer
 		#region Properties
 		public Int32 HealthFacilityId { get; set; }
 		public Int32 OutreachPlanned { get; set; }
-		public Int32 OtherMajorImmunizationActivities { get; set; }
+		public string OtherMajorImmunizationActivities { get; set; }
 		public Int32 ReportedMonth { get; set; }
 		public Int32 ReportedYear { get; set; }
 		public DateTime ModifiedOn { get; set; }
@@ -107,8 +107,8 @@ namespace GIIS.DataLayer
 				List<Npgsql.NpgsqlParameter> parameters = new List<NpgsqlParameter>()
 				{
 					new NpgsqlParameter("@HealthFacilityId", DbType.Int32)  { Value = vaccinations.HealthFacilityId },
-					new NpgsqlParameter("@OutreachPlanned", DbType.Double)  { Value = vaccinations.OutreachPlanned },
-					new NpgsqlParameter("@OtherMajorImmunizationActivities", DbType.Double)  { Value = vaccinations.OtherMajorImmunizationActivities},
+					new NpgsqlParameter("@OutreachPlanned", DbType.Int32)  { Value = vaccinations.OutreachPlanned },
+					new NpgsqlParameter("@OtherMajorImmunizationActivities", DbType.String)  { Value = vaccinations.OtherMajorImmunizationActivities},
 					new NpgsqlParameter("@ReportingMonth", DbType.Int32)  { Value = vaccinations.ReportedMonth },
 					new NpgsqlParameter("@ReportingYear", DbType.Int32)  { Value = vaccinations.ReportedYear },
 					new NpgsqlParameter("@ModifiedOn", DbType.DateTime)  { Value = vaccinations.ModifiedOn },
@@ -136,8 +136,8 @@ namespace GIIS.DataLayer
 				List<Npgsql.NpgsqlParameter> parameters = new List<NpgsqlParameter>()
 				{
 					new NpgsqlParameter("@HealthFacilityId", DbType.Int32)  { Value = vaccinations.HealthFacilityId },
-					new NpgsqlParameter("@OutreachPlanned", DbType.Double)  { Value = vaccinations.OutreachPlanned },
-					new NpgsqlParameter("@OtherMajorImmunizationActivities", DbType.Double)  { Value = vaccinations.OtherMajorImmunizationActivities},
+					new NpgsqlParameter("@OutreachPlanned", DbType.Int32)  { Value = vaccinations.OutreachPlanned },
+					new NpgsqlParameter("@OtherMajorImmunizationActivities", DbType.String)  { Value = vaccinations.OtherMajorImmunizationActivities},
 					new NpgsqlParameter("@ReportingMonth", DbType.Int32)  { Value = vaccinations.ReportedMonth },
 					new NpgsqlParameter("@ReportingYear", DbType.Int32)  { Value = vaccinations.ReportedYear },
 					new NpgsqlParameter("@ModifiedOn", DbType.DateTime)  { Value = vaccinations.ModifiedOn },
@@ -189,7 +189,7 @@ namespace GIIS.DataLayer
 				{
 					HealthFacilityImmunizationSessions o = new HealthFacilityImmunizationSessions();
 					o.HealthFacilityId = Helper.ConvertToInt(row["HEALTH_FACILITY_ID"]);
-					o.OtherMajorImmunizationActivities = Helper.ConvertToInt(row["OTHER_MAJOR_IMMUNIZATION_ACTIVITIES"]);
+					o.OtherMajorImmunizationActivities = (row["OTHER_MAJOR_IMMUNIZATION_ACTIVITIES"]).ToString();
 					o.OutreachPlanned = Helper.ConvertToInt(row["OUTREACH_PLANNED"]);
 					o.ReportedMonth = Helper.ConvertToInt(row["REPORTED_MONTH"]);
 					o.ReportedYear = Helper.ConvertToInt(row["REPORTED_YEAR"]);
@@ -215,7 +215,7 @@ namespace GIIS.DataLayer
 				{
 					HealthFacilityImmunizationSessions o = new HealthFacilityImmunizationSessions();
 					o.HealthFacilityId = Helper.ConvertToInt(row["HEALTH_FACILITY_ID"]);
-					o.OtherMajorImmunizationActivities = Helper.ConvertToInt(row["OTHER_MAJOR_IMMUNIZATION_ACTIVITIES"]);
+					o.OtherMajorImmunizationActivities = (row["OTHER_MAJOR_IMMUNIZATION_ACTIVITIES"]).ToString();
 					o.OutreachPlanned = Helper.ConvertToInt(row["OUTREACH_PLANNED"]);
 					o.ReportedMonth = Helper.ConvertToInt(row["REPORTED_MONTH"]);
 					o.ReportedYear = Helper.ConvertToInt(row["REPORTED_YEAR"]);

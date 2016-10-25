@@ -112,10 +112,10 @@ namespace GIIS.DataLayer
 				List<Npgsql.NpgsqlParameter> parameters = new List<NpgsqlParameter>()
 				{
 					new NpgsqlParameter("@HealthFacilityId", DbType.Int32)  { Value = vaccinations.HealthFacilityId },
-					new NpgsqlParameter("@DoseId", DbType.Double)  { Value = vaccinations.DoseId },
-					new NpgsqlParameter("@MaleServiceArea", DbType.Double)  { Value = vaccinations.MaleServiceArea},
-					new NpgsqlParameter("@FemaleServiceArea", DbType.Double)  { Value = vaccinations.FemaleServiceArea},
-					new NpgsqlParameter("@CoverageServiceArea", DbType.Double)  { Value = vaccinations.CoverageServiceArea},
+					new NpgsqlParameter("@DoseId", DbType.Int32)  { Value = vaccinations.DoseId },
+					new NpgsqlParameter("@MaleServiceArea", DbType.Int32)  { Value = vaccinations.MaleServiceArea},
+					new NpgsqlParameter("@FemaleServiceArea", DbType.Int32)  { Value = vaccinations.FemaleServiceArea},
+					new NpgsqlParameter("@CoverageServiceArea", DbType.Int32)  { Value = vaccinations.CoverageServiceArea},
 					new NpgsqlParameter("@MaleCatchmentArea", DbType.Int32)  { Value = (object)vaccinations.MaleCatchmentArea ?? DBNull.Value },
 					new NpgsqlParameter("@FemaleCatchmentArea", DbType.Int32)  { Value = (object)vaccinations.FemaleCatchmentArea ?? DBNull.Value  },
 					new NpgsqlParameter("@CoverageCatchmentArea", DbType.Int32)  { Value = (object)vaccinations.CoverageCatchmentArea ?? DBNull.Value  },
@@ -148,10 +148,10 @@ namespace GIIS.DataLayer
 				List<Npgsql.NpgsqlParameter> parameters = new List<NpgsqlParameter>()
 				{
 					new NpgsqlParameter("@HealthFacilityId", DbType.Int32)  { Value = vaccinations.HealthFacilityId },
-					new NpgsqlParameter("@DoseId", DbType.Double)  { Value = vaccinations.DoseId },
-					new NpgsqlParameter("@MaleServiceArea", DbType.Double)  { Value = vaccinations.MaleServiceArea},
-					new NpgsqlParameter("@FemaleServiceArea", DbType.Double)  { Value = vaccinations.FemaleServiceArea},
-					new NpgsqlParameter("@CoverageServiceArea", DbType.Double)  { Value = vaccinations.CoverageServiceArea},
+					new NpgsqlParameter("@DoseId", DbType.Int32)  { Value = vaccinations.DoseId },
+					new NpgsqlParameter("@MaleServiceArea", DbType.Int32)  { Value = vaccinations.MaleServiceArea},
+					new NpgsqlParameter("@FemaleServiceArea", DbType.Int32)  { Value = vaccinations.FemaleServiceArea},
+					new NpgsqlParameter("@CoverageServiceArea", DbType.Int32)  { Value = vaccinations.CoverageServiceArea},
 					new NpgsqlParameter("@MaleCatchmentArea", DbType.Int32)  { Value = (object)vaccinations.MaleCatchmentArea ?? DBNull.Value },
 					new NpgsqlParameter("@FemaleCatchmentArea", DbType.Int32)  { Value = (object)vaccinations.FemaleCatchmentArea ?? DBNull.Value  },
 					new NpgsqlParameter("@CoverageCatchmentArea", DbType.Int32)  { Value = (object)vaccinations.CoverageCatchmentArea ?? DBNull.Value  },
@@ -163,7 +163,7 @@ namespace GIIS.DataLayer
 				};
 
 				int rowAffected = DBManager.ExecuteNonQueryCommand(query, CommandType.Text, parameters);
-				AuditTable.InsertEntity("HealthFacilityBcgOpv0AndTTVaccinations", vaccinations.HealthFacilityId.ToString(), 2, DateTime.Now, chain.ModifiedBy);
+				AuditTable.InsertEntity("HealthFacilityBcgOpv0AndTTVaccinations", vaccinations.HealthFacilityId.ToString(), 2, DateTime.Now, vaccinations.ModifiedBy);
 				return rowAffected;
 			}
 			catch (Exception ex)
