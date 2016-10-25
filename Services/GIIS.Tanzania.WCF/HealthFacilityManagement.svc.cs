@@ -339,9 +339,9 @@ namespace GIIS.Tanzania.WCF
 
 
 			int HealthFacilityVitaminAStockBalanceInserted;
-			List<HealthFacilityVitaminAStockBalance> vitaminAStockList = GIIS.DataLayer.HealthFacilityVitaminAStockBalance.GetHealthFacilityVitaminAStockBalance(healthFacilityId, reportingMonth, reportingYear);
+			HealthFacilityVitaminAStockBalance vitaminAStock = GIIS.DataLayer.HealthFacilityVitaminAStockBalance.GetHealthFacilityVitaminAStockBalanceByVitaminName(healthFacilityId, reportingMonth, reportingYear, VitaminName);
 
-			if (vitaminAStockList == null || vitaminAStockList.Count == 0)
+			if (vitaminAStock == null)
 			{
 				HealthFacilityVitaminAStockBalanceInserted = HealthFacilityVitaminAStockBalance.Insert(vitaminAStockBalance);
 			}
@@ -412,9 +412,9 @@ namespace GIIS.Tanzania.WCF
 
 
 			int HealthFacilitySyringesAndSafetyBoxesStockBalanceInserted;
-			List<HealthFacilitySyringesAndSafetyBoxesStockBalance> vitaminAStockList = GIIS.DataLayer.HealthFacilitySyringesAndSafetyBoxesStockBalance.GetHealthFacilitySyringesAndSafetyBoxesStockBalance(healthFacilityId, reportingMonth, reportingYear);
+			HealthFacilitySyringesAndSafetyBoxesStockBalance vitaminAStock = GIIS.DataLayer.HealthFacilitySyringesAndSafetyBoxesStockBalance.HealthFacilitySyringesAndSafetyBoxesStockBalanceByItem(healthFacilityId, reportingMonth, reportingYear, ItemName);
 
-			if (vitaminAStockList == null || vitaminAStockList.Count == 0)
+			if (vitaminAStock == null)
 			{
 				HealthFacilitySyringesAndSafetyBoxesStockBalanceInserted = HealthFacilitySyringesAndSafetyBoxesStockBalance.Insert(syringesAndSafetyBoxesStockBalance);
 			}
@@ -428,6 +428,64 @@ namespace GIIS.Tanzania.WCF
 			irv.id = HealthFacilitySyringesAndSafetyBoxesStockBalanceInserted;
 			return irv;
 		}
+
+
+
+		public List<HealthFacilityBcgOpv0AndTTVaccinations> GetHealthFacilityBcgOpv0AndTTVaccinations(int healthFacilityId, int reportingMonth, int reportingYear)
+		{
+			List<HealthFacilityBcgOpv0AndTTVaccinations> vaccinations = GIIS.DataLayer.HealthFacilityBcgOpv0AndTTVaccinations.GetHealthFacilityBcgOpv0AndTTVaccinations(healthFacilityId, reportingMonth, reportingYear);
+			return vaccinations;
+		}
+
+		public List<HealthFacilityBcgOpv0AndTTVaccinations> GetHealthFacilityBcgOpv0AndTTVaccinationsAsList(int healthFacilityId)
+		{
+			List<HealthFacilityBcgOpv0AndTTVaccinations> vaccinationsList = GIIS.DataLayer.HealthFacilityBcgOpv0AndTTVaccinations.GetHealthFacilityBcgOpv0AndTTVaccinationsAsList(healthFacilityId);
+			return vaccinationsList;
+		}
+
+		public IntReturnValue StoreHealthFacilityBcgOpv0AndTTVaccinations(int healthFacilityId, int DoseId, int MaleServiceArea, int MaleCatchmentArea, int FemaleServiceArea, int FemaleCatchmentArea, int CoverageServiceArea, int CoverageCatchmentArea, int reportingMonth, int reportingYear, int CoverageCatchmentAndServiceArea, int userId, DateTime modifiedOn)
+		{
+			HealthFacilityBcgOpv0AndTTVaccinations vaccinations = new HealthFacilityBcgOpv0AndTTVaccinations();
+
+			vaccinations.HealthFacilityId = healthFacilityId;
+
+			vaccinations.DoseId = DoseId;
+
+			vaccinations.MaleServiceArea = MaleServiceArea;
+			vaccinations.MaleCatchmentArea = MaleCatchmentArea;
+
+			vaccinations.FemaleServiceArea = FemaleServiceArea;
+			vaccinations.FemaleCatchmentArea = FemaleCatchmentArea;
+
+			vaccinations.CoverageServiceArea = CoverageServiceArea;
+			vaccinations.CoverageCatchmentArea = CoverageCatchmentArea;
+			vaccinations.CoverageCatchmentAndServiceArea = CoverageCatchmentAndServiceArea;
+
+
+			vaccinations.ReportedMonth = reportingMonth;
+			vaccinations.ReportedYear = reportingYear;
+			vaccinations.ModifiedOn = modifiedOn;
+			vaccinations.ModifiedBy = userId;
+
+
+			int HealthFacilityBcgOpv0AndTTVaccinationsInserted;
+			HealthFacilityBcgOpv0AndTTVaccinations vitaminAStockList = GIIS.DataLayer.HealthFacilityBcgOpv0AndTTVaccinations.GetHealthFacilityBcgOpv0AndTTVaccinationsPerDoseId(healthFacilityId, reportingMonth, reportingYear,DoseId);
+
+			if (vitaminAStockList == null)
+			{
+				HealthFacilityBcgOpv0AndTTVaccinationsInserted = HealthFacilityBcgOpv0AndTTVaccinations.Insert(vaccinations);
+			}
+			else
+			{
+				HealthFacilityBcgOpv0AndTTVaccinationsInserted = HealthFacilityBcgOpv0AndTTVaccinations.Update(vaccinations);
+
+			}
+			BroadcastStoredHealthFacilityData(healthFacilityId, "UpdateHealthFacilityBcgOpv0AndTTVaccinations");
+			IntReturnValue irv = new IntReturnValue();
+			irv.id = HealthFacilityBcgOpv0AndTTVaccinationsInserted;
+			return irv;
+		}
+
 
 
 

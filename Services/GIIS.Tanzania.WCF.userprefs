@@ -3,8 +3,8 @@
     <Files>
       <File FileName="GIIS.Tanzania.WCF/StockManagement.svc.cs" Line="91" Column="45" />
       <File FileName="GIIS.Tanzania.WCF/HealthFacilityDoseBalanceEntity.cs" Line="29" Column="25" />
-      <File FileName="GIIS.Tanzania.WCF/HealthFacilityManagement.svc.cs" Line="388" Column="1" />
-      <File FileName="GIIS.Tanzania.WCF/IHealthFacilityManagement.cs" Line="139" Column="83" />
+      <File FileName="GIIS.Tanzania.WCF/HealthFacilityManagement.svc.cs" Line="434" Column="53" />
+      <File FileName="GIIS.Tanzania.WCF/IHealthFacilityManagement.cs" Line="147" Column="349" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

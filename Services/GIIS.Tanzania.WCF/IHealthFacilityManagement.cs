@@ -140,5 +140,21 @@ namespace GIIS.Tanzania.WCF
 		[OperationContract]
 		List<HealthFacilitySyringesAndSafetyBoxesStockBalance> GetHealthFacilitySyringesAndSafetyBoxesStockBalanceAsList(int healthFacilityId);
 
+
+
+		[WebGet(UriTemplate = "StoreHealthFacilityBcgOpv0AndTTVaccinations?healthFacilityId={healthFacilityId}&DoseId={DoseId}&MaleServiceArea={MaleServiceArea}&MaleCatchmentArea={MaleCatchmentArea}&FemaleServiceArea={FemaleServiceArea}&FemaleCatchmentArea={FemaleCatchmentArea}&CoverageServiceArea={CoverageServiceArea}&CoverageCatchmentArea={CoverageCatchmentArea}&CoverageCatchmentAndServiceArea={CoverageCatchmentAndServiceArea}&reportingMonth={reportingMonth}&reportingYear={reportingYear}&userId={userId}&modifiedOn={modifiedOn}", ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		IntReturnValue StoreHealthFacilityBcgOpv0AndTTVaccinations(int healthFacilityId, int DoseId, int MaleServiceArea, int MaleCatchmentArea, int FemaleServiceArea, int FemaleCatchmentArea, int CoverageServiceArea, int CoverageCatchmentArea, int reportingMonth, int reportingYear, int CoverageCatchmentAndServiceArea, int userId, DateTime modifiedOn);
+
+		[WebGet(UriTemplate = "GetHealthFacilityBcgOpv0AndTTVaccinations?healthFacilityId={healthFacilityId}&reportingMonth={reportingMonth}&reportingYear={reportingYear}", ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		List<HealthFacilityBcgOpv0AndTTVaccinations> GetHealthFacilityBcgOpv0AndTTVaccinations(int healthFacilityId, int reportingMonth, int reportingYear);
+
+
+		[WebGet(UriTemplate = "GetHealthFacilityBcgOpv0AndTTVaccinationsAsList?healthFacilityId={healthFacilityId}", ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		List<HealthFacilityBcgOpv0AndTTVaccinations> GetHealthFacilityBcgOpv0AndTTVaccinationsAsList(int healthFacilityId);
+
+
 	}
 }
