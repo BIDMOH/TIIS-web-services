@@ -67,10 +67,9 @@ namespace GIIS.Tanzania.WCF
         }
 
 
-		public List<HealthFacilityDoseBalanceEntity> GetCurrentStockByDose(int hfId)
+		public List<HealthFacilityDoseBalanceEntity> GetCurrentStockByDose(int hfId, DateTime fromDate, DateTime toDate)
 		{
 
-			List<HealthFacilityBalance> currentStock = HealthFacilityBalance.GetHealthFacilityBalanceByHealthFacility(hfId);
 			List<HealthFacilityDoseBalanceEntity> blist = new List<HealthFacilityDoseBalanceEntity>();
 
 			List<ScheduledVaccination> scheduledVaccines = ScheduledVaccination.GetScheduledVaccinationList();
@@ -81,16 +80,12 @@ namespace GIIS.Tanzania.WCF
 					HealthFacilityDoseBalanceEntity balanceEntity = new HealthFacilityDoseBalanceEntity();
 					string antigen = v.Code;
 					balanceEntity.antigen = antigen;
-					foreach (HealthFacilityBalance hb in currentStock)
-					{
-						ItemLot lot = ItemLot.GetItemLotByGtinAndLotNo(hb.Gtin, hb.LotNumber);
-
-						if (antigen.Equals(hb.GtinObject.ItemObject.Code) && lot.ExpireDate>DateTime.Now)
-						{
-							balanceEntity.balance += hb.Balance;
-							balanceEntity.received += hb.Received;
-						}
-					}
+					balanceEntity.stockOnHand = HealthFacilityBalance.GetHealthFacilityBalanceByHealthFacilityIdAndDose(hfId, antigen);
+					balanceEntity.dosesReceived = HealthFacilityBalance.GetHealthFacilityReceivedDosesByHealthFacilityIdAndDose(hfId, antigen, fromDate, toDate);
+					balanceEntity.dosesDiscardedUnopened = HealthFacilityBalance.GetHealthFacilityDosesDiscardedUnoppened(hfId, antigen, fromDate, toDate);
+					balanceEntity.dosesDiscardedOpened = HealthFacilityBalance.GetHealthFacilityDosesDiscardedOpened(hfId, antigen, fromDate, toDate);
+					balanceEntity.childrenImmunized = HealthFacilityBalance.GetHealthFacilityImmunizedChildrenCountByDose(hfId, antigen, fromDate, toDate);
+					balanceEntity.openingBalance = balanceEntity.stockOnHand - HealthFacilityBalance.GetHealthFacilityDoseInAllTransactions(hfId, antigen, fromDate, toDate);
 
 					blist.Add(balanceEntity);
 				}

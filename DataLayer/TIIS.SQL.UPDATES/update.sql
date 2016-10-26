@@ -1,158 +1,315 @@
 -- RETURNS: THE MAJOR, MINOR AND RELEASE NUMBER OF THE DATABASE SCHEMA
+
 CREATE OR REPLACE FUNCTION GET_SCH_VER() RETURNS INTEGER AS
+
 $$
+
 BEGIN
+
 	RETURN 1;
+
 END;
+
 $$ LANGUAGE plpgsql;
+
+
+
+
 
 
 
 CREATE OR REPLACE FUNCTION UPDATE_DB() RETURNS VOID AS
+
 $$
+
 BEGIN
+
 	/**
+
 	 * Update: CR-001
+
 	 * Applies to: 1
+
 	 * Notes:
+
 	 *	- Adds new tables for monthly reports sent from mobile
+
 	 */
 
+
+
 	IF GET_SCH_VER() > 0 THEN
+
 	    CREATE TABLE IF NOT EXISTS public."HEALTH_FACILITY_DESEASE_SURVEILLANCE"
+
 	    (
+
 	      "HEALTH_FACILITY_ID" integer NOT NULL,
+
 	      "FEVER_MONTHLY_CASES" integer NOT NULL,
+
 	      "FEVER_DEATHS" integer NOT NULL,
+
 	      "AFP_MONTHLY_CASES" integer,
+
 	      "AFP_DEATHS" integer,
+
 	      "NEONATAL_TT_CASES" integer,
+
 	      "NEONATAL_TT_DEATHS" integer,
+
 	      "REPORTED_MONTH" integer,
+
 	      "REPORTED_YEAR" integer,
+
 	      "MODIFIED_ON" date NOT NULL,
+
 	      "MODIFIED_BY" integer NOT NULL,
+
 	      CONSTRAINT "HEALTH_FACILITY_DESEASE_SURVEILLANCE_pkey" PRIMARY KEY ("HEALTH_FACILITY_ID","REPORTED_MONTH","REPORTED_YEAR")
+
 	    )
+
 	    WITH (
+
 	      OIDS=FALSE
+
 	    );
+
+
+
 
 
 	    CREATE TABLE IF NOT EXISTS public."HEALTH_FACILITY_COLD_CHAIN"
+
 	    (
+
 	      "HEALTH_FACILITY_ID" integer NOT NULL,
+
 	      "TEMP_MAX" real NOT NULL,
+
 	      "TEMP_MIN" real NOT NULL,
+
 	      "ALARM_HIGH_TEMP" integer,
+
 	      "ALARM_LOW_TEMP" integer,
+
 	      "REPORTED_MONTH" integer,
+
 	      "REPORTED_YEAR" integer,
+
 	      "MODIFIED_ON" date NOT NULL,
+
 	      "MODIFIED_BY" integer NOT NULL,
+
 	      CONSTRAINT "HEALTH_FACILITY_COLD_CHAIN_pkey" PRIMARY KEY ("HEALTH_FACILITY_ID","REPORTED_MONTH","REPORTED_YEAR")
+
 	    )
+
 	    WITH (
+
 	      OIDS=FALSE
+
 	    );
+
+
+
+
 
 
 
 	    CREATE TABLE IF NOT EXISTS public."HEALTH_FACILITY_IMMUNIZATION_SESSIONS_AND_ACTIVITIES"
+
 	    (
+
 	      "HEALTH_FACILITY_ID" integer NOT NULL,
+
 	      "OUTREACH_PLANNED" integer NOT NULL,
+
 	      "OTHER_MAJOR_IMMUNIZATION_ACTIVITIES" text NOT NULL,
+
 	      "REPORTED_MONTH" integer,
+
 	      "REPORTED_YEAR" integer,
+
 	      "MODIFIED_ON" date NOT NULL,
+
 	      "MODIFIED_BY" integer NOT NULL,
+
 	      CONSTRAINT "HEALTH_FACILITY_IMMUNIZATION_SESSIONS_AND_ACTIVITIES_pkey" PRIMARY KEY ("HEALTH_FACILITY_ID","REPORTED_MONTH","REPORTED_YEAR")
+
 	    )
+
 	    WITH (
+
 	      OIDS=FALSE
+
 	    );
 
+
+
 	    CREATE TABLE IF NOT EXISTS public."HEALTH_FACILITY_BCG_OPV0_TT_VACCINATIONS"
+
 	    (
+
 	      "HEALTH_FACILITY_ID" integer NOT NULL,
+
 	      "DOSE_ID" integer NOT NULL,
+
 	      "MALE_SERVICE_AREA" integer NOT NULL,
+
 	      "FEMALE_SERVICE_AREA" integer,
+
 	      "TOTAL_SERVICE_AREA" integer,
+
 	      "COVERAGE_SERVICE_AREA" integer,
+
 	      "MALE_CATCHMENT_AREA" integer,
+
 	      "FEMALE_CATCHMENT_AREA" integer,
+
 	      "TOTAL_CATCHMENT_AREA" integer,
+
 	      "COVERAGE_CATCHMENT_AREA" integer,
+
 	      "COVERAGE_CATCHMENT_AND_SERVICE_AREA" integer,
+
 	      "TOTAL_CATCHMENT_AND_SERVICE_AREA" integer,
+
 	      "REPORTED_MONTH" integer,
+
 	      "REPORTED_YEAR" integer,
+
 	      "MODIFIED_ON" date NOT NULL,
+
 	      "MODIFIED_BY" integer NOT NULL,
-	      CONSTRAINT "HEALTH_FACILITY_BCG_OPV0_TT_VACCINATIONS_pkey" PRIMARY KEY ("HEALTH_FACILITY_ID","REPORTED_MONTH","REPORTED_YEAR")
+
+	      CONSTRAINT "HEALTH_FACILITY_BCG_OPV0_TT_VACCINATIONS_pkey" PRIMARY KEY ("HEALTH_FACILITY_ID","DOSE_ID","REPORTED_MONTH","REPORTED_YEAR")
+
 	    )
+
 	    WITH (
+
 	      OIDS=FALSE
+
 	    );
+
+
+
+
 
 
 
 	    CREATE TABLE IF NOT EXISTS public."HEALTH_FACILITY_VITAMIN_A_STOCK_BALANCE"
+
 	    (
+
 	      "HEALTH_FACILITY_ID" integer NOT NULL,
+
 	      "VITAMIN_NAME" text,
+
 	      "OPENING_BALANCE" integer NOT NULL,
+
 	      "RECEIVED" integer NOT NULL,
+
 	      "TOTAL_ADMINISTERED" integer,
+
 	      "WASTAGE" integer,
+
 	      "STOCK_ON_HAND" integer,
+
 	      "ITEM_NAME" integer,
+
 	      "REPORTED_MONTH" integer,
+
 	      "REPORTED_YEAR" integer,
+
 	      "MODIFIED_ON" date NOT NULL,
+
 	      "MODIFIED_BY" integer NOT NULL,
+
 	      CONSTRAINT "HEALTH_FACILITY_VITAMIN_A_STOCK_BALANCE_pkey" PRIMARY KEY ("HEALTH_FACILITY_ID","VITAMIN_NAME","REPORTED_MONTH","REPORTED_YEAR")
+
 	    )
+
 	    WITH (
+
 	      OIDS=FALSE
+
 	    );
+
+
+
+
 
 
 
 	    CREATE TABLE IF NOT EXISTS public."HEALTH_FACILITY_SYRINGES_AND_SAFETY_BOXES"
+
 	    (
+
 	      "HEALTH_FACILITY_ID" integer NOT NULL,
+
 	      "ITEM_NAME" text,
+
 	      "OPENING_BALANCE" integer NOT NULL,
+
 	      "RECEIVED" integer NOT NULL,
+
 	      "USED" integer,
+
 	      "WASTAGE" integer,
+
 	      "STOCK_ON_HAND" integer,
+
 	      "STOCKED_OUT_DAYS" integer,
+
 	      "REPORTED_MONTH" integer,
+
 	      "REPORTED_YEAR" integer,
+
 	      "MODIFIED_ON" date NOT NULL,
+
 	      "MODIFIED_BY" integer NOT NULL,
+
 	      CONSTRAINT "HEALTH_FACILITY_SYRINGES_AND_SAFETY_BOXES_pkey" PRIMARY KEY ("HEALTH_FACILITY_ID","ITEM_NAME","REPORTED_MONTH","REPORTED_YEAR")
+
 	    )
+
 	    WITH (
+
 	      OIDS=FALSE
+
 	    );
 
 
 
+
+
+
+
 	ELSE
+
 		DROP TABLE IF EXISTS public."HEALTH_FACILITY_BCG_OPV0_TT_VACCINATIONS";
+
 		DROP TABLE IF EXISTS public."HEALTH_FACILITY_COLD_CHAIN";
+
 		DROP TABLE IF EXISTS public."HEALTH_FACILITY_DESEASE_SURVEILLANCE";
+
 		DROP TABLE IF EXISTS public."HEALTH_FACILITY_IMMUNIZATION_SESSIONS_AND_ACTIVITIES";
+
 		DROP TABLE IF EXISTS public."HEALTH_FACILITY_VITAMIN_A_STOCK_BALANCE";
+
 		DROP TABLE IF EXISTS public."HEALTH_FACILITY_SYRINGES_AND_SAFETY_BOXES";
 
+
+
 	END IF;
+
 	END;
+
 $$ LANGUAGE plpgsql;
+
+
 
 select UPDATE_DB();

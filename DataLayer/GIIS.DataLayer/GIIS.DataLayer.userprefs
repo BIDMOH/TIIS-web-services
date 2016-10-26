@@ -1,9 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workbench ActiveDocument="HealthFacilityBcgOpv0AndTTVaccinations.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="HealthFacilityBalanceEntity.cs">
     <Files>
-      <File FileName="HealthFacilityVitaminAStockBalance.cs" Line="99" Column="111" />
-      <File FileName="HealthFacilitySyringesAndSafetyBoxes.cs" Line="231" Column="5" />
-      <File FileName="HealthFacilityBcgOpv0AndTTVaccinations.cs" Line="80" Column="106" />
+      <File FileName="HealthFacilityBalanceEntity.cs" Line="162" Column="116" />
+      <File FileName="AdjustmentReason.cs" Line="88" Column="65" />
+      <File FileName="Actions.cs" Line="22" Column="25" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

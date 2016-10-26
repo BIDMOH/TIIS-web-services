@@ -25,8 +25,12 @@ namespace GIIS.Tanzania.WCF
     public class HealthFacilityDoseBalanceEntity
     {
         public string antigen { get; set; }
-		public double balance { get; set; }
-		public double received { get; set; }
+		public double openingBalance { get; set; }
+		public double dosesReceived { get; set; }
+		public int dosesDiscardedUnopened { get; set; }
+		public int dosesDiscardedOpened { get; set; }
+		public double stockOnHand { get; set; }
+		public int childrenImmunized { get; set; }
         
     }
 

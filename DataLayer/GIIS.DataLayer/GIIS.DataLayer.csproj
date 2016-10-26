@@ -52,6 +52,9 @@
     <Reference Include="Npgsql">
       <HintPath>..\..\..\..\Downloads\tiis-datalayer\GIIS.BusinessLogic\bin\Debug\Npgsql.dll</HintPath>
     </Reference>
+    <Reference Include="Npgsql">
+      <HintPath>..\GIIS.BusinessLogic\bin\Debug\Npgsql.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Actions.cs" />

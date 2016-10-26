@@ -448,19 +448,14 @@ namespace GIIS.Tanzania.WCF
 			HealthFacilityBcgOpv0AndTTVaccinations vaccinations = new HealthFacilityBcgOpv0AndTTVaccinations();
 
 			vaccinations.HealthFacilityId = healthFacilityId;
-
 			vaccinations.DoseId = DoseId;
-
 			vaccinations.MaleServiceArea = MaleServiceArea;
 			vaccinations.MaleCatchmentArea = MaleCatchmentArea;
-
 			vaccinations.FemaleServiceArea = FemaleServiceArea;
 			vaccinations.FemaleCatchmentArea = FemaleCatchmentArea;
-
 			vaccinations.CoverageServiceArea = CoverageServiceArea;
 			vaccinations.CoverageCatchmentArea = CoverageCatchmentArea;
 			vaccinations.CoverageCatchmentAndServiceArea = CoverageCatchmentAndServiceArea;
-
 
 			vaccinations.ReportedMonth = reportingMonth;
 			vaccinations.ReportedYear = reportingYear;
@@ -485,7 +480,6 @@ namespace GIIS.Tanzania.WCF
 			irv.id = HealthFacilityBcgOpv0AndTTVaccinationsInserted;
 			return irv;
 		}
-
 
 
 

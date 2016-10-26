@@ -166,10 +166,10 @@ namespace GIIS.DataLayer
 		{
 			try
 			{
-				string query = @"UPDATE ""HEALTH_FACILITY_BCG_OPV0_TT_VACCINATIONS"" SET  ""DOSE_ID"" = @DoseId, ""MALE_SERVICE_AREA"" = @MaleServiceArea, ""FEMALE_SERVICE_AREA"" = @FemaleServiceArea,
+				string query = @"UPDATE ""HEALTH_FACILITY_BCG_OPV0_TT_VACCINATIONS"" SET  ""MALE_SERVICE_AREA"" = @MaleServiceArea, ""FEMALE_SERVICE_AREA"" = @FemaleServiceArea,
 				""COVERAGE_SERVICE_AREA"" = @CoverageServiceArea,""MALE_CATCHMENT_AREA"" = @MaleCatchmentArea, ""FEMALE_CATCHMENT_AREA"" = @FemaleCatchmentArea,
 				""COVERAGE_CATCHMENT_AREA"" = @CoverageCatchmentArea, ""COVERAGE_CATCHMENT_AND_SERVICE_AREA"" = @CoverageCatchmentAndServiceArea, ""MODIFIED_ON"" = @ModifiedOn, ""MODIFIED_BY"" = @ModifiedBy 
-				WHERE ""HEALTH_FACILITY_ID"" = @HealthFacilityId AND ""REPORTED_MONTH"" = @ReportingMonth AND  ""REPORTED_YEAR"" = @ReportingYear";
+				WHERE ""DOSE_ID"" = @DoseId AND ""HEALTH_FACILITY_ID"" = @HealthFacilityId AND ""REPORTED_MONTH"" = @ReportingMonth AND  ""REPORTED_YEAR"" = @ReportingYear";
 
 				List<Npgsql.NpgsqlParameter> parameters = new List<NpgsqlParameter>()
 				{

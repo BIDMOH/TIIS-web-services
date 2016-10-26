@@ -159,18 +159,18 @@ namespace GIIS.DataLayer
 			catch (Exception ex)
 			{
 				Log.InsertEntity("HealthFacilitySyringesAndSafetyBoxesStockBalance", "Insert", 1, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+				throw ex;
 			}
-			return -1;
 		}
 
 		public static int Update(HealthFacilitySyringesAndSafetyBoxesStockBalance balance)
 		{
 			try
 			{
-				string query = @"UPDATE ""HEALTH_FACILITY_SYRINGES_AND_SAFETY_BOXES"" SET  ""ITEM_NAME"" = @ItemName, ""OPENING_BALANCE"" = @OpeningBalance, ""RECEIVED"" = @Received,
+				string query = @"UPDATE ""HEALTH_FACILITY_SYRINGES_AND_SAFETY_BOXES"" SET  ""OPENING_BALANCE"" = @OpeningBalance, ""RECEIVED"" = @Received,
 				""USED"" = @Used,""WASTAGE"" = @Wastage, ""STOCK_ON_HAND"" = @StockInHand, ""STOCKED_OUT_DAYS"" = @StockedOutDays,
 				""MODIFIED_ON"" = @ModifiedOn, ""MODIFIED_BY"" = @ModifiedBy 
-				WHERE ""HEALTH_FACILITY_ID"" = @HealthFacilityId AND ""REPORTED_MONTH"" = @ReportingMonth AND  ""REPORTED_YEAR"" = @ReportingYear";
+				WHERE ""HEALTH_FACILITY_ID"" = @HealthFacilityId AND ""ITEM_NAME"" = @ItemName AND ""REPORTED_MONTH"" = @ReportingMonth AND  ""REPORTED_YEAR"" = @ReportingYear";
 
 				List<Npgsql.NpgsqlParameter> parameters = new List<NpgsqlParameter>()
 				{
@@ -195,8 +195,8 @@ namespace GIIS.DataLayer
 			catch (Exception ex)
 			{
 				Log.InsertEntity("HealthFacilitySyringesAndSafetyBoxesStockBalance", "Update", 2, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+				throw ex;
 			}
-			return -1;
 		}
 
 		public static int Delete(int healthFacilityId, int reportedMonth, int reportingYear)

@@ -48,7 +48,344 @@ namespace GIIS.DataLayer
             }
         }
 
-        public static int GetCountHealthFacilityBalanceByHealthFacility(int id)
+
+		public static Int32 GetHealthFacilityBalanceByHealthFacilityIdAndDose(int id, string doseName)
+		{
+			try
+			{
+				HealthFacility hf = HealthFacility.GetHealthFacilityById(id);
+				if (hf != null)
+				{
+					string query = @"SELECT SUM(""HEALTH_FACILITY_BALANCE"".""BALANCE"") AS STOCK_ON_HAND FROM ""HEALTH_FACILITY_BALANCE"" join ""ITEM_MANUFACTURER"" using (""GTIN"") join ""ITEM"" on ""ITEM_ID"" = ""ITEM"".""ID"" join ""ITEM_LOT"" using (""GTIN"", ""LOT_NUMBER"") 
+						WHERE ""HEALTH_FACILITY_CODE"" = @ParamValue and ""ITEM_MANUFACTURER"".""IS_ACTIVE"" = true and ""ITEM_LOT"".""IS_ACTIVE"" = true and ""ITEM"".""CODE"" = @doseName AND ""ITEM_LOT"".""EXPIRE_DATE"" > now() ";
+					List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
+					{
+						new NpgsqlParameter("@ParamValue", DbType.String) { Value = hf.Code },
+						new NpgsqlParameter("@doseName", DbType.String) { Value = doseName }
+					};
+					DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, parameters);
+
+					foreach (DataRow row in dt.Rows)
+					{
+						try
+						{
+							return Helper.ConvertToInt(row["STOCK_ON_HAND"]);
+						}
+						catch (Exception ex)
+						{
+							Log.InsertEntity("HealthFacilityBalance", "GetHealthFacilityBalanceAsList", 1, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+							throw ex;
+						}
+					}
+				}
+				return 0;
+			}
+			catch (Exception ex)
+			{
+				Log.InsertEntity("HealthFacilityBalance", "GetHealthFacilityBalanceByHealthFacility", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+				throw ex;
+			}
+
+		}
+
+		public static Int32 GetHealthFacilityReceivedDosesByHealthFacilityIdAndDose(int id, string doseName, DateTime from,DateTime to)
+		{
+			try
+			{
+				HealthFacility hf = HealthFacility.GetHealthFacilityById(id);
+				if (hf != null)
+				{
+					//TODO remove hardcoded transaction types names from the querry. coze
+					string query = @"SELECT SUM(T1.""TRANSACTION_QTY_IN_BASE_UOM"") AS DOSES_RECEIVED FROM ""ITEM_TRANSACTION"" T1
+									JOIN ( 
+											SELECT DISTINCT ""ITEM_TRANSACTION"".""ID""  FROM  ""ITEM_TRANSACTION""
+											join ""ITEM_MANUFACTURER"" using (""GTIN"") 
+											join ""ITEM"" on ""ITEM_ID"" = ""ITEM"".""ID"" 
+											join ""ITEM_LOT"" using (""GTIN"",""ITEM_ID"")
+											join ""ADJUSTMENT_REASON"" ON  ""ADJUSTMENT_ID"" = ""ADJUSTMENT_REASON"".""ID""
+											join ""TRANSACTION_TYPE"" ON ""TRANSACTION_TYPE_ID"" = ""TRANSACTION_TYPE"".""ID""
+												WHERE ""HEALTH_FACILITY_CODE"" = @ParamValue AND 
+													""ITEM_MANUFACTURER"".""IS_ACTIVE"" = true AND 
+													""ITEM_LOT"".""IS_ACTIVE"" = true AND 
+													""ITEM"".""CODE"" = @doseName AND 
+													""ITEM_LOT"".""EXPIRE_DATE"" > now() AND
+													""TRANSACTION_DATE"" >= @from AND
+													""TRANSACTION_DATE"" <= @to AND 
+													(
+														(""TRANSACTION_TYPE"".""NAME"" = 'Transfer' AND ""TRANSACTION_QTY_IN_BASE_UOM"" > 0) OR 
+														""TRANSACTION_TYPE"".""NAME"" = 'Allocation' OR
+														""ADJUSTMENT_REASON"".""NAME"" = 'Zimetoka Wilayani' OR
+														""ADJUSTMENT_REASON"".""NAME"" = 'Kutoka kituo kingine' OR
+														""ADJUSTMENT_REASON"".""NAME"" = 'Receipt' 
+													) 
+									)T2 ON T1.""ID"" = T2.""ID""   ";
+					List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
+					{
+						new NpgsqlParameter("@ParamValue", DbType.String) { Value = hf.Code },
+						new NpgsqlParameter("@doseName", DbType.String) { Value = doseName },
+						new NpgsqlParameter("@from", DbType.DateTime) { Value = from },
+						new NpgsqlParameter("@to", DbType.DateTime) { Value = to }
+					};
+					DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, parameters);
+
+					foreach (DataRow row in dt.Rows)
+					{
+						try
+						{
+							return Helper.ConvertToInt(row["DOSES_RECEIVED"]);
+						}
+						catch (Exception ex)
+						{
+							Log.InsertEntity("HealthFacilityBalance", "GetHealthFacilityReceivedDosesByHealthFacilityIdAndDose", 1, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+							throw ex;
+						}
+					}
+				}
+				return 0;
+			}
+			catch (Exception ex)
+			{
+				Log.InsertEntity("HealthFacilityBalance", "GetHealthFacilityReceivedDosesByHealthFacilityIdAndDose", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+				throw ex;
+			}
+
+		}
+
+		public static Int32 GetHealthFacilityDoseInAllTransactions(int id, string doseName, DateTime from, DateTime to)
+		{
+			try
+			{
+				HealthFacility hf = HealthFacility.GetHealthFacilityById(id);
+				if (hf != null)
+				{
+					//TODO remove hardcoded transaction types names from the querry. coze
+					string query = @"SELECT SUM(T1.""TRANSACTION_QTY_IN_BASE_UOM"") AS DOSES_RECEIVED FROM ""ITEM_TRANSACTION"" T1
+									JOIN ( 
+											SELECT DISTINCT ""ITEM_TRANSACTION"".""ID""  FROM  ""ITEM_TRANSACTION""
+											join ""ITEM_MANUFACTURER"" using (""GTIN"") 
+											join ""ITEM"" on ""ITEM_ID"" = ""ITEM"".""ID"" 
+											join ""ITEM_LOT"" using (""GTIN"",""ITEM_ID"")
+												WHERE ""HEALTH_FACILITY_CODE"" = @ParamValue AND 
+													""ITEM_MANUFACTURER"".""IS_ACTIVE"" = true AND 
+													""ITEM_LOT"".""IS_ACTIVE"" = true AND 
+													""ITEM"".""CODE"" = @doseName AND 
+													""TRANSACTION_DATE"" >= @from AND
+													""TRANSACTION_DATE"" <= @to
+									)T2 ON T1.""ID"" = T2.""ID""   ";
+					List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
+					{
+						new NpgsqlParameter("@ParamValue", DbType.String) { Value = hf.Code },
+						new NpgsqlParameter("@doseName", DbType.String) { Value = doseName },
+						new NpgsqlParameter("@from", DbType.DateTime) { Value = from },
+						new NpgsqlParameter("@to", DbType.DateTime) { Value = to }
+					};
+					DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, parameters);
+
+					foreach (DataRow row in dt.Rows)
+					{
+						try
+						{
+							return Helper.ConvertToInt(row["DOSES_RECEIVED"]);
+						}
+						catch (Exception ex)
+						{
+							Log.InsertEntity("HealthFacilityBalance", "GetHealthFacilityReceivedDosesByHealthFacilityIdAndDose", 1, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+							throw ex;
+						}
+					}
+				}
+				return 0;
+			}
+			catch (Exception ex)
+			{
+				Log.InsertEntity("HealthFacilityBalance", "GetHealthFacilityReceivedDosesByHealthFacilityIdAndDose", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+				throw ex;
+			}
+
+		}
+
+		public static Int32 GetHealthFacilityImmunizedChildrenCountByDose(int id, string doseName, DateTime from, DateTime to)
+		{
+			try
+			{
+				HealthFacility hf = HealthFacility.GetHealthFacilityById(id);
+				if (hf != null)
+				{
+					//TODO remove hardcoded transaction types names from the querry. coze
+					string query = @"SELECT SUM(T1.""TRANSACTION_QTY_IN_BASE_UOM"") AS IMMUNIZED_CHILDREN FROM ""ITEM_TRANSACTION"" T1
+									Join( 
+										SELECT DISTINCT ""ITEM_TRANSACTION"".""ID""  FROM  ""ITEM_TRANSACTION""
+										join ""ITEM_MANUFACTURER"" using (""GTIN"") 
+										join ""ITEM"" on ""ITEM_ID"" = ""ITEM"".""ID"" 
+										join ""ITEM_LOT"" using (""GTIN"",""ITEM_ID"")
+										join ""TRANSACTION_TYPE"" ON ""TRANSACTION_TYPE_ID"" = ""TRANSACTION_TYPE"".""ID""
+											WHERE ""HEALTH_FACILITY_CODE"" = @ParamValue AND 
+												""ITEM_MANUFACTURER"".""IS_ACTIVE"" = true AND 
+												""ITEM_LOT"".""IS_ACTIVE"" = true AND 
+												""ITEM"".""CODE"" = @doseName AND 
+												""TRANSACTION_DATE"" >= @from AND
+												""TRANSACTION_DATE"" <= @to AND 
+												""TRANSACTION_TYPE"".""NAME"" = 'Vaccination'
+									) T2 ON T1.""ID"" = T2.""ID"" ";
+					List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
+					{
+						new NpgsqlParameter("@ParamValue", DbType.String) { Value = hf.Code },
+						new NpgsqlParameter("@doseName", DbType.String) { Value = doseName },
+						new NpgsqlParameter("@from", DbType.DateTime) { Value = from },
+						new NpgsqlParameter("@to", DbType.DateTime) { Value = to }
+					};
+					DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, parameters);
+
+					foreach (DataRow row in dt.Rows)
+					{
+						try
+						{
+							return Helper.ConvertToInt(row["IMMUNIZED_CHILDREN"]);
+						}
+						catch (Exception ex)
+						{
+							Log.InsertEntity("HealthFacilityBalance", "GetHealthFacilityReceivedDosesByHealthFacilityIdAndDose", 1, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+							throw ex;
+						}
+					}
+				}
+				return 0;
+			}
+			catch (Exception ex)
+			{
+				Log.InsertEntity("HealthFacilityBalance", "GetHealthFacilityReceivedDosesByHealthFacilityIdAndDose", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+				throw ex;
+			}
+
+		}
+
+		public static Int32 GetHealthFacilityDosesDiscardedUnoppened(int id, string doseName, DateTime from, DateTime to)
+		{
+			try
+			{
+				HealthFacility hf = HealthFacility.GetHealthFacilityById(id);
+				if (hf != null)
+				{
+					//TODO remove hardcoded transaction types names from the querry. coze
+					string query = @"SELECT SUM(T1.""TRANSACTION_QTY_IN_BASE_UOM"") AS DOSES_DISCARDED_UNOPENED  FROM
+									""ITEM_TRANSACTION"" T1 JOIN
+									(SELECT DISTINCT ""ITEM_TRANSACTION"".""ID"" FROM  ""ITEM_TRANSACTION""
+									join ""ITEM_MANUFACTURER"" using (""GTIN"") 
+									join ""ITEM"" on ""ITEM_ID"" = ""ITEM"".""ID"" 
+									join ""ITEM_LOT"" using (""GTIN"",""ITEM_ID"")
+									join ""ADJUSTMENT_REASON"" ON  ""ADJUSTMENT_ID"" = ""ADJUSTMENT_REASON"".""ID""
+									join ""TRANSACTION_TYPE"" ON ""TRANSACTION_TYPE_ID"" = ""TRANSACTION_TYPE"".""ID""
+										WHERE ""HEALTH_FACILITY_CODE"" = @ParamValue AND 
+											""ITEM_MANUFACTURER"".""IS_ACTIVE"" = true AND 
+											""ITEM_LOT"".""IS_ACTIVE"" = true AND 
+											""ITEM"".""CODE"" = @doseName AND 
+											""TRANSACTION_DATE"" >= @from AND
+											""TRANSACTION_DATE"" <= @to AND 
+											""TRANSACTION_TYPE"".""NAME"" = 'Adjustment' AND 
+											  (""ADJUSTMENT_REASON"".""NAME"" = 'Kuisha muda wa matumizi' OR
+												""ADJUSTMENT_REASON"".""NAME"" = 'Zimevunjika'  OR
+												""ADJUSTMENT_REASON"".""NAME"" = 'Chanjo Kuganda'  OR
+												""ADJUSTMENT_REASON"".""NAME"" = 'Mabadiliko ya VVM'
+											   ) 
+									)T2 ON T1.""ID"" = T2.""ID""  ";
+
+
+
+					List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
+					{
+						new NpgsqlParameter("@ParamValue", DbType.String) { Value = hf.Code },
+						new NpgsqlParameter("@doseName", DbType.String) { Value = doseName },
+						new NpgsqlParameter("@from", DbType.DateTime) { Value = from },
+						new NpgsqlParameter("@to", DbType.DateTime) { Value = to }
+					};
+					DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, parameters);
+
+					foreach (DataRow row in dt.Rows)
+					{
+						try
+						{
+							return Helper.ConvertToInt(row["DOSES_DISCARDED_UNOPENED"]);
+						}
+						catch (Exception ex)
+						{
+							Log.InsertEntity("HealthFacilityBalance", "GetHealthFacilityBalanceAsList", 1, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+							throw ex;
+						}
+					}
+				}
+				return 0;
+			}
+			catch (Exception ex)
+			{
+				Log.InsertEntity("HealthFacilityBalance", "GetHealthFacilityBalanceByHealthFacility", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+				throw ex;
+			}
+
+		}
+
+		public static Int32 GetHealthFacilityDosesDiscardedOpened (int id, string doseName, DateTime from, DateTime to)
+		{
+			try
+			{
+				HealthFacility hf = HealthFacility.GetHealthFacilityById(id);
+				if (hf != null)
+				{
+					//TODO remove hardcoded transaction types names from the querry. coze
+					string query = @"SELECT SUM(T1.""TRANSACTION_QTY_IN_BASE_UOM"") AS DOSES_DISCARDED_UNOPENED  FROM
+									""ITEM_TRANSACTION"" T1 JOIN
+									(SELECT DISTINCT ""ITEM_TRANSACTION"".""ID"" FROM  ""ITEM_TRANSACTION""
+									join ""ITEM_MANUFACTURER"" using (""GTIN"") 
+									join ""ITEM"" on ""ITEM_ID"" = ""ITEM"".""ID"" 
+									join ""ITEM_LOT"" using (""GTIN"",""ITEM_ID"")
+									join ""ADJUSTMENT_REASON"" ON  ""ADJUSTMENT_ID"" = ""ADJUSTMENT_REASON"".""ID""
+									join ""TRANSACTION_TYPE"" ON ""TRANSACTION_TYPE_ID"" = ""TRANSACTION_TYPE"".""ID""
+										WHERE ""HEALTH_FACILITY_CODE"" = @ParamValue AND 
+											""ITEM_MANUFACTURER"".""IS_ACTIVE"" = true AND 
+											""ITEM_LOT"".""IS_ACTIVE"" = true AND 
+											""ITEM"".""CODE"" = @doseName AND 
+											""TRANSACTION_DATE"" >= @from AND
+											""TRANSACTION_DATE"" <= @to AND 
+											""TRANSACTION_TYPE"".""NAME"" = 'Adjustment' AND 
+											  (
+												""ADJUSTMENT_REASON"".""NAME"" = 'Zimemwagwa'
+											  ) 
+									)T2 ON T1.""ID"" = T2.""ID""  ";
+
+
+
+					List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
+					{
+						new NpgsqlParameter("@ParamValue", DbType.String) { Value = hf.Code },
+						new NpgsqlParameter("@doseName", DbType.String) { Value = doseName },
+						new NpgsqlParameter("@from", DbType.DateTime) { Value = from },
+						new NpgsqlParameter("@to", DbType.DateTime) { Value = to }
+					};
+					DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, parameters);
+
+					foreach (DataRow row in dt.Rows)
+					{
+						try
+						{
+							return Helper.ConvertToInt(row["DOSES_DISCARDED_UNOPENED"]);
+						}
+						catch (Exception ex)
+						{
+							Log.InsertEntity("HealthFacilityBalance", "GetHealthFacilityBalanceAsList", 1, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+							throw ex;
+						}
+					}
+				}
+				return 0;
+			}
+			catch (Exception ex)
+			{
+				Log.InsertEntity("HealthFacilityBalance", "GetHealthFacilityBalanceByHealthFacility", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+				throw ex;
+			}
+
+		}
+
+		public static int GetCountHealthFacilityBalanceByHealthFacility(int id)
         {
             try
             {
