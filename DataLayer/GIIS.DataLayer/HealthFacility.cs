@@ -168,7 +168,7 @@ new NpgsqlParameter("@ParamValue", DbType.Int32) { Value = i }
             }
         }
 
-		public static int GetHealthFacilityVaccinations(string healthFacilityId,string doseId,DateTime fromTime,DateTime toTime)
+		public static int GetHealthFacilityVaccinationsByDoseId(string healthFacilityId,string doseId,DateTime fromTime,DateTime toTime)
 		{
 			try
 			{
@@ -201,6 +201,52 @@ new NpgsqlParameter("@ParamValue", DbType.Int32) { Value = i }
 				foreach (DataRow row in dt.Rows)
 				{
 					count =  Helper.ConvertToInt(row["number"]);
+				}
+
+
+				return count;
+
+			}
+			catch (Exception ex)
+			{
+				Log.InsertEntity("HealthFacility", "GetHealthFacilityVaccinations", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+				throw ex;
+			}
+		}
+
+		public static int GetHealthFacilityVaccinationsByScheduledVaccinationId(int healthFacilityId, int scheduledVaccinationId, DateTime fromTime, DateTime toTime)
+		{
+			try
+			{
+
+				string query = @"SELECT COUNT(DISTINCT(""VACCINATION_EVENT"".""ID"")) AS number
+                            FROM ""VACCINATION_EVENT"" 
+							INNER JOIN ""DOSE"" ON ""VACCINATION_EVENT"".""DOSE_ID""=""DOSE"".""ID"" 
+							INNER JOIN ""CHILD"" ON  ""VACCINATION_EVENT"".""CHILD_ID""=""CHILD"".""ID"" 
+								WHERE 
+									""DOSE"".""SCHEDULED_VACCINATION_ID"" = @scheduledVaccinationId
+		                            AND ""VACCINATION_EVENT"".""VACCINATION_STATUS"" = @vaccinationStatus
+		                            AND ""VACCINATION_EVENT"".""HEALTH_FACILITY_ID"" = @healthFacilityId
+		                            AND ""VACCINATION_EVENT"".""VACCINATION_DATE"" >= @fromTime
+		                            AND ""VACCINATION_EVENT"".""VACCINATION_DATE"" <=  @toTime";
+
+
+
+				List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
+				{
+					new NpgsqlParameter("@healthFacilityId", DbType.Int32) { Value = healthFacilityId },
+					new NpgsqlParameter("@scheduledVaccinationId",   DbType.Int32) { Value = scheduledVaccinationId },
+					new NpgsqlParameter("@fromTime", DbType.DateTime) { Value = fromTime },
+					new NpgsqlParameter("@toTime",   DbType.DateTime) { Value = toTime },
+					new NpgsqlParameter("@vaccinationStatus",   DbType.Boolean) { Value = true }
+				};
+
+				DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, parameters);
+
+				int count = 0;
+				foreach (DataRow row in dt.Rows)
+				{
+					count = Helper.ConvertToInt(row["number"]);
 				}
 
 

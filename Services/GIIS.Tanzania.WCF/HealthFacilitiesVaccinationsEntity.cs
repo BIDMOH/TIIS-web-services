@@ -24,7 +24,6 @@ namespace GIIS.Tanzania.WCF
     {
 		public string antigen { get; set; }
 		public int dose { get; set; }
-		public int balance { get; set; }
 		public int serviceAreaMale { get; set; }
 		public int serviceAreaFemale { get; set; }
 		public int catchmentMale { get; set; }

@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="c558bb24-b2d2-4f57-a531-84e4409c803e" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../HealthFacilityBalanceEntity.cs" afterPath="$PROJECT_DIR$/../../HealthFacilityBalanceEntity.cs" />
+    </list>
+    <ignored path="GIIS.DataLayer1.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <ignored path=".idea/dataSources.local.xml" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="DatabaseView">
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_TABLE_DETAILS" value="true" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <PATH>
+      <PATH_ELEMENT>
+        <option name="myItemId" />
+        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$Root" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="PostgreSQL - postgres@localhost" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+    </PATH>
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="GIIS.DataLayer1" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="HealthFacilityBalanceEntity.cs" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../../HealthFacilityBalanceEntity.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="112">
+              <caret line="91" column="9" selection-start-line="91" selection-start-column="9" selection-end-line="91" selection-end-column="9" />
+              <folding>
+                <marker date="1477494706000" expanded="true" signature="0:813" ph="/* Copyright 2015 TIIS - Tanzania Immunization Information System ... */" />
+                <marker date="1477494706000" expanded="true" signature="820:913" ph="..." />
+                <marker date="1477494706000" expanded="true" signature="939:23891" ph="{...}" />
+                <marker date="1477494706000" expanded="true" signature="988:23889" ph="{...}" />
+                <marker date="1477494706000" expanded="true" signature="1093:2378" ph="{...}" />
+                <marker date="1477494706000" expanded="true" signature="1755:1884" ph="{...}" />
+                <marker date="1477494706000" expanded="true" signature="2477:3967" ph="{...}" />
+                <marker date="1477494706000" expanded="true" signature="3140:3300" ph="{...}" />
+                <marker date="1477494706000" expanded="true" signature="4098:6574" ph="{...}" />
+                <marker date="1477494706000" expanded="true" signature="5570:5866" ph="{...}" />
+                <marker date="1477494706000" expanded="true" signature="6689:8693" ph="{...}" />
+                <marker date="1477494706000" expanded="true" signature="7689:7985" ph="{...}" />
+                <marker date="1477494706000" expanded="true" signature="8815:10971" ph="{...}" />
+                <marker date="1477494706000" expanded="true" signature="9963:10259" ph="{...}" />
+                <marker date="1477494706000" expanded="true" signature="11088:13586" ph="{...}" />
+                <marker date="1477494706000" expanded="true" signature="12612:12908" ph="{...}" />
+                <marker date="1477494706000" expanded="true" signature="13701:16001" ph="{...}" />
+                <marker date="1477494706000" expanded="true" signature="15027:15323" ph="{...}" />
+                <marker date="1477494706000" expanded="true" signature="16076:17103" ph="{...}" />
+                <marker date="1477494706000" expanded="true" signature="16490:16619" ph="{...}" />
+                <marker date="1477494706000" expanded="true" signature="17182:18639" ph="{...}" />
+                <marker date="1477494706000" expanded="true" signature="18068:18181" ph="{...}" />
+                <marker date="1477494706000" expanded="true" signature="18712:19856" ph="{...}" />
+                <marker date="1477494706000" expanded="true" signature="19290:19403" ph="{...}" />
+                <marker date="1477494706000" expanded="true" signature="19903:21230" ph="{...}" />
+                <marker date="1477494706000" expanded="true" signature="20664:20777" ph="{...}" />
+                <marker date="1477494706000" expanded="true" signature="21283:23883" ph="{...}" />
+                <marker date="1477494706000" expanded="true" signature="23150:23437" ph="/* List&lt;NpgsqlParameter&gt; parameters = new List&lt;NpgsqlParameter&gt;() ... */" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../.." />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/034694fe-8e82-4ebc-9fdd-194554b16f60/console.sql" />
+        <option value="$PROJECT_DIR$/../../HealthFacilityBalanceEntity.cs" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="width" value="1680" />
+    <option name="height" value="1050" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="SolutionExplorer" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="SolutionExplorer">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GIIS.DataLayer1 (1 project)" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerNodeRider" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GIIS.DataLayer" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerNodeRider" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+        <option name="show-file-system" value="false" />
+        <option name="show-all-items" value="false" />
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="com.intellij.database.dataSource.DataSourceTemplate" value="PostgreSQL" />
+  </component>
+  <component name="RunManager" selected=".NET Project.Default">
+    <configuration default="true" type="DotNetProject" factoryName=".NET Project">
+      <option name="PROJECT_PATH" value="" />
+      <option name="PROJECT_KIND" value="None" />
+      <option name="EXE_PATH" value="" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="USE_MONO" value="0" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="Default" type="DotNetProject" factoryName=".NET Project">
+      <option name="PROJECT_PATH" value="" />
+      <option name="PROJECT_KIND" value="None" />
+      <option name="EXE_PATH" value="" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="USE_MONO" value="0" />
+      <envs />
+      <method />
+    </configuration>
+    <list size="1">
+      <item index="0" class="java.lang.String" itemvalue=".NET Project.Default" />
+    </list>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c558bb24-b2d2-4f57-a531-84e4409c803e" name="Default" comment="" />
+      <created>1477466297750</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1477466297750</updated>
+      <workItem from="1477466299120" duration="52000" />
+      <workItem from="1477466678661" duration="469000" />
+      <workItem from="1477494360755" duration="85000" />
+      <workItem from="1477494542460" duration="226000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="832000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Change Signature" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24969475" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Errors in solution" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3299389" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297619" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="UnitTesting" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="NuGet" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/../../HealthFacilityBalanceEntity.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1477494706000" expanded="true" signature="0:813" ph="/* Copyright 2015 TIIS - Tanzania Immunization Information System ... */" />
+            <marker date="1477494706000" expanded="true" signature="820:913" ph="..." />
+            <marker date="1477494706000" expanded="true" signature="939:23891" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="988:23889" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="1093:2378" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="1755:1884" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="2477:3967" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="3140:3300" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="4098:6574" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="5570:5866" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="6689:8693" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="7689:7985" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="8815:10971" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="9963:10259" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="11088:13586" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="12612:12908" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="13701:16001" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="15027:15323" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="16076:17103" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="16490:16619" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="17182:18639" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="18068:18181" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="18712:19856" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="19290:19403" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="19903:21230" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="20664:20777" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="21283:23883" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="23150:23437" ph="/* List&lt;NpgsqlParameter&gt; parameters = new List&lt;NpgsqlParameter&gt;() ... */" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../HealthFacilityBalanceEntity.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1477494706000" expanded="true" signature="0:813" ph="/* Copyright 2015 TIIS - Tanzania Immunization Information System ... */" />
+            <marker date="1477494706000" expanded="true" signature="820:913" ph="..." />
+            <marker date="1477494706000" expanded="true" signature="939:23891" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="988:23889" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="1093:2378" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="1755:1884" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="2477:3967" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="3140:3300" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="4098:6574" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="5570:5866" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="6689:8693" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="7689:7985" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="8815:10971" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="9963:10259" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="11088:13586" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="12612:12908" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="13701:16001" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="15027:15323" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="16076:17103" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="16490:16619" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="17182:18639" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="18068:18181" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="18712:19856" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="19290:19403" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="19903:21230" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="20664:20777" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="21283:23883" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="23150:23437" ph="/* List&lt;NpgsqlParameter&gt; parameters = new List&lt;NpgsqlParameter&gt;() ... */" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://DATABASE/034694fe-8e82-4ebc-9fdd-194554b16f60.DATABASE:timr">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>DATABASE</ID>
+          <OriginalElement>034694fe-8e82-4ebc-9fdd-194554b16f60.DATABASE:timr</OriginalElement>
+          <nodes />
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="563.0" y="474.0" />
+          <SelectedNodes />
+          <Categories />
+          <SCOPE>All</SCOPE>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/034694fe-8e82-4ebc-9fdd-194554b16f60/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../HealthFacilityBalanceEntity.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="91" column="9" selection-start-line="91" selection-start-column="9" selection-end-line="91" selection-end-column="9" />
+          <folding>
+            <marker date="1477494706000" expanded="true" signature="0:813" ph="/* Copyright 2015 TIIS - Tanzania Immunization Information System ... */" />
+            <marker date="1477494706000" expanded="true" signature="820:913" ph="..." />
+            <marker date="1477494706000" expanded="true" signature="939:23891" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="988:23889" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="1093:2378" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="1755:1884" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="2477:3967" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="3140:3300" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="4098:6574" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="5570:5866" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="6689:8693" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="7689:7985" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="8815:10971" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="9963:10259" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="11088:13586" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="12612:12908" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="13701:16001" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="15027:15323" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="16076:17103" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="16490:16619" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="17182:18639" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="18068:18181" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="18712:19856" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="19290:19403" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="19903:21230" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="20664:20777" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="21283:23883" ph="{...}" />
+            <marker date="1477494706000" expanded="true" signature="23150:23437" ph="/* List&lt;NpgsqlParameter&gt; parameters = new List&lt;NpgsqlParameter&gt;() ... */" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

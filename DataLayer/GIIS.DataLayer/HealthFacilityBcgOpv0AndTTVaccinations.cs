@@ -76,6 +76,29 @@ namespace GIIS.DataLayer
 			}
 		}
 
+		public static HealthFacilityBcgOpv0AndTTVaccinations GetHealthFacilityBcgOpv0AndTTVaccinationsByDoseId(int healthFacilityId,int doseId, int reportedMonth, int reportingYear)
+		{
+			try
+			{
+
+				string query = @"SELECT * FROM ""HEALTH_FACILITY_BCG_OPV0_TT_VACCINATIONS"" WHERE ""HEALTH_FACILITY_ID"" = @healthFacilityId AND ""DOSE_ID"" = @doseId AND 
+				""REPORTED_MONTH"" = @reportedMonth AND ""REPORTED_YEAR"" = @reportedYear ";
+				List<Npgsql.NpgsqlParameter> parameters = new List<NpgsqlParameter>()
+				{
+					new NpgsqlParameter("@healthFacilityId", DbType.Int32)  { Value = healthFacilityId },
+					new NpgsqlParameter("@doseId", DbType.Int32)  { Value = doseId },
+					new NpgsqlParameter("@reportedMonth", DbType.Int32)  { Value = reportedMonth },
+					new NpgsqlParameter("@reportedYear", DbType.Int32)  { Value = reportingYear }
+				};
+				DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, parameters);
+				return GetHealthFacilityBcgOpv0AndTTVaccinations(dt);
+			}
+			catch (Exception ex)
+			{
+				Log.InsertEntity("HealthFacilityBcgOpv0AndTTVaccinations", "GetHealthFacilityBcgOpv0AndTTVaccinations", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+				throw ex;
+			}
+		}
 
 		public static HealthFacilityBcgOpv0AndTTVaccinations GetHealthFacilityBcgOpv0AndTTVaccinationsPerDoseId(int healthFacilityId, int reportedMonth, int reportingYear, int DoseId)
 		{
@@ -158,6 +181,7 @@ namespace GIIS.DataLayer
 			catch (Exception ex)
 			{
 				Log.InsertEntity("HealthFacilityBcgOpv0AndTTVaccinations", "Insert", 1, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+				throw ex;
 			}
 			return -1;
 		}
@@ -195,6 +219,7 @@ namespace GIIS.DataLayer
 			catch (Exception ex)
 			{
 				Log.InsertEntity("HealthFacilityBcgOpv0AndTTVaccinations", "Update", 2, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+				throw ex;
 			}
 			return -1;
 		}

@@ -131,14 +131,29 @@ namespace GIIS.Tanzania.WCF
 					VaccinationsEntity vaccinationEntity = new VaccinationsEntity();
 					vaccinationEntity.antigen = ScheduledVaccination.GetScheduledVaccinationById(d.ScheduledVaccinationId).Name;
 					vaccinationEntity.dose = d.DoseNumber;
-					vaccinationEntity.serviceAreaMale = GIIS.DataLayer.HealthFacility.GetHealthFacilityVaccinationsByGenderAndCatchment(healthFacility.Id, d.Id, fromDate, toDate, true, false);
-					vaccinationEntity.serviceAreaFemale = GIIS.DataLayer.HealthFacility.GetHealthFacilityVaccinationsByGenderAndCatchment(healthFacility.Id, d.Id, fromDate, toDate, false, false);
-					vaccinationEntity.catchmentMale = GIIS.DataLayer.HealthFacility.GetHealthFacilityVaccinationsByGenderAndCatchment(healthFacility.Id, d.Id, fromDate, toDate, true, true);
-					vaccinationEntity.catchmentFemale = GIIS.DataLayer.HealthFacility.GetHealthFacilityVaccinationsByGenderAndCatchment(healthFacility.Id, d.Id, fromDate, toDate, false, true);
 
-					DateTime cummulativeFrom = new DateTime(Int32.Parse(DateTime.Now.Year.ToString()), 1, 1);
-					vaccinationEntity.serviceAreaCummulativeTotal = GIIS.DataLayer.HealthFacility.GetHealthFacilityVaccinationsByCatchment(healthFacility.Id, d.Id, cummulativeFrom, toDate, false);
-					vaccinationEntity.catchmentAreaCummulativeTotal = GIIS.DataLayer.HealthFacility.GetHealthFacilityVaccinationsByCatchment(healthFacility.Id, d.Id, cummulativeFrom, toDate, true);
+					if (vaccinationEntity.antigen.Equals("BCG") || vaccinationEntity.antigen.Equals("TT") || (vaccinationEntity.antigen.Equals("OPV") && vaccinationEntity.dose==0))
+					{
+						try
+						{
+							HealthFacilityBcgOpv0AndTTVaccinations v = GIIS.DataLayer.HealthFacilityBcgOpv0AndTTVaccinations.GetHealthFacilityBcgOpv0AndTTVaccinationsByDoseId(healthFacilityId, d.Id, fromDate.Month, fromDate.Year);
+							vaccinationEntity.serviceAreaMale = v.MaleServiceArea;
+							vaccinationEntity.serviceAreaFemale = v.FemaleServiceArea;
+							vaccinationEntity.catchmentMale = v.MaleCatchmentArea;
+							vaccinationEntity.catchmentFemale = v.FemaleCatchmentArea;
+						}
+						catch (Exception e){}
+					}
+					else {
+						vaccinationEntity.serviceAreaMale = GIIS.DataLayer.HealthFacility.GetHealthFacilityVaccinationsByGenderAndCatchment(healthFacility.Id, d.Id, fromDate, toDate, true, false);
+						vaccinationEntity.serviceAreaFemale = GIIS.DataLayer.HealthFacility.GetHealthFacilityVaccinationsByGenderAndCatchment(healthFacility.Id, d.Id, fromDate, toDate, false, false);
+						vaccinationEntity.catchmentMale = GIIS.DataLayer.HealthFacility.GetHealthFacilityVaccinationsByGenderAndCatchment(healthFacility.Id, d.Id, fromDate, toDate, true, true);
+						vaccinationEntity.catchmentFemale = GIIS.DataLayer.HealthFacility.GetHealthFacilityVaccinationsByGenderAndCatchment(healthFacility.Id, d.Id, fromDate, toDate, false, true);
+
+						DateTime cummulativeFrom = new DateTime(Int32.Parse(DateTime.Now.Year.ToString()), 1, 1);
+						vaccinationEntity.serviceAreaCummulativeTotal = GIIS.DataLayer.HealthFacility.GetHealthFacilityVaccinationsByCatchment(healthFacility.Id, d.Id, cummulativeFrom, toDate, false);
+						vaccinationEntity.catchmentAreaCummulativeTotal = GIIS.DataLayer.HealthFacility.GetHealthFacilityVaccinationsByCatchment(healthFacility.Id, d.Id, cummulativeFrom, toDate, true);
+					}
 
 					vaccinationsList.Add(vaccinationEntity);
 				}

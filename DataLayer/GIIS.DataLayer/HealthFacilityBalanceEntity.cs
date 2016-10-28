@@ -104,11 +104,8 @@ namespace GIIS.DataLayer
 											join ""ITEM_LOT"" using (""GTIN"",""ITEM_ID"")
 											join ""ADJUSTMENT_REASON"" ON  ""ADJUSTMENT_ID"" = ""ADJUSTMENT_REASON"".""ID""
 											join ""TRANSACTION_TYPE"" ON ""TRANSACTION_TYPE_ID"" = ""TRANSACTION_TYPE"".""ID""
-												WHERE ""HEALTH_FACILITY_CODE"" = @ParamValue AND 
-													""ITEM_MANUFACTURER"".""IS_ACTIVE"" = true AND 
-													""ITEM_LOT"".""IS_ACTIVE"" = true AND 
-													""ITEM"".""CODE"" = @doseName AND 
-													""ITEM_LOT"".""EXPIRE_DATE"" > now() AND
+												WHERE ""HEALTH_FACILITY_CODE"" = @ParamValue AND
+													""ITEM"".""CODE"" = @doseName AND
 													""TRANSACTION_DATE"" >= @from AND
 													""TRANSACTION_DATE"" <= @to AND 
 													(
@@ -215,14 +212,11 @@ namespace GIIS.DataLayer
 					string query = @"SELECT SUM(T1.""TRANSACTION_QTY_IN_BASE_UOM"") AS IMMUNIZED_CHILDREN FROM ""ITEM_TRANSACTION"" T1
 									Join( 
 										SELECT DISTINCT ""ITEM_TRANSACTION"".""ID""  FROM  ""ITEM_TRANSACTION""
-										join ""ITEM_MANUFACTURER"" using (""GTIN"") 
+										join ""ITEM_MANUFACTURER"" using (""GTIN"")
 										join ""ITEM"" on ""ITEM_ID"" = ""ITEM"".""ID"" 
-										join ""ITEM_LOT"" using (""GTIN"",""ITEM_ID"")
 										join ""TRANSACTION_TYPE"" ON ""TRANSACTION_TYPE_ID"" = ""TRANSACTION_TYPE"".""ID""
 											WHERE ""HEALTH_FACILITY_CODE"" = @ParamValue AND 
-												""ITEM_MANUFACTURER"".""IS_ACTIVE"" = true AND 
-												""ITEM_LOT"".""IS_ACTIVE"" = true AND 
-												""ITEM"".""CODE"" = @doseName AND 
+												""ITEM"".""NAME"" = @doseName AND 
 												""TRANSACTION_DATE"" >= @from AND
 												""TRANSACTION_DATE"" <= @to AND 
 												""TRANSACTION_TYPE"".""NAME"" = 'Vaccination'

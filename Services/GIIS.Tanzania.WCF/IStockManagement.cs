@@ -33,9 +33,9 @@ namespace GIIS.Tanzania.WCF
         List<BalanceEntity> GetCurrentStockByLot(int hfId);
 
 
-		[WebGet(UriTemplate = "GetCurrentStockByDose?hfid={hfid}&fromDate={fromDate}&toDate={toDate}", ResponseFormat = WebMessageFormat.Json)]
+		[WebGet(UriTemplate = "GetHealthFacilityCurrentStockByDose?hfid={hfid}&fromDate={fromDate}&toDate={toDate}", ResponseFormat = WebMessageFormat.Json)]
 		[OperationContract]
-		List<HealthFacilityDoseBalanceEntity> GetCurrentStockByDose(int hfId, DateTime fromDate, DateTime toDate);
+		List<HealthFacilityDoseBalanceEntity> GetHealthFacilityCurrentStockByDose(int hfId, DateTime fromDate, DateTime toDate);
 
 
         [WebGet(UriTemplate = "GetItemLots", ResponseFormat = WebMessageFormat.Json)]
