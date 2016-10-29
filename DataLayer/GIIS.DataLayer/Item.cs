@@ -129,6 +129,26 @@ new NpgsqlParameter("@ParamValue", DbType.String) { Value = s }
             }
         }
 
+		public static Item GetItemByCode(string s)
+		{
+			try
+			{
+				string query = @"SELECT * FROM ""ITEM"" WHERE LOWER(""CODE"") = LOWER(@ParamValue) ";
+				List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
+{
+new NpgsqlParameter("@ParamValue", DbType.String) { Value = s }
+};
+				DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, parameters);
+				AuditTable.InsertEntity("Item", string.Format("RecordId: {0}", s), 4, DateTime.Now, 1);
+				return GetItemAsObject(dt);
+			}
+			catch (Exception ex)
+			{
+				Log.InsertEntity("Item", "GetItemByName", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+				throw ex;
+			}
+		}
+
         #endregion
 
         #region CRUD

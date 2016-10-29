@@ -31,5 +31,9 @@ namespace GIIS.Tanzania.WCF
         [WebGet(UriTemplate = "GetItemList", ResponseFormat = WebMessageFormat.Json)]
         [OperationContract]
         List<Item> GetItemList();
+
+		[WebGet(UriTemplate = "GetItemManufacturerByGtin?gtin={gtin}", ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		ItemManufacturer GetItemManufacturerByGtin(string gtin);
     }
 }

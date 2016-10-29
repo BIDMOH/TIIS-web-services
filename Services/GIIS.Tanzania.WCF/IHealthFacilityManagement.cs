@@ -156,5 +156,23 @@ namespace GIIS.Tanzania.WCF
 		List<HealthFacilityBcgOpv0AndTTVaccinations> GetHealthFacilityBcgOpv0AndTTVaccinationsAsList(int healthFacilityId);
 
 
+		[WebGet(UriTemplate = "getVimsProducts", ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		string getVimsProducts();
+
+		[WebGet(UriTemplate = "receiveDelivery?jsonRequest={jsonRequest}", ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		IntReturnValue receiveDelivery(string jsonRequest);
+
+		[WebGet(UriTemplate = "GetHealthFacilityStockDistributions?healthFacilityId={healthFacilityId}", ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		List<HealthFacilityStockDistributions> GetHealthFacilityStockDistributions(int healthFacilityId);
+
+		[WebGet(UriTemplate = "DeleteHealthFacilityStockDistributions?healthFacilityId={healthFacilityId}&distributionDate={distributionDate}&status={status}", ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		int DeleteHealthFacilityStockDistributions(int healthFacilityId, DateTime distributionDate, string status);
+
+
+
 	}
 }

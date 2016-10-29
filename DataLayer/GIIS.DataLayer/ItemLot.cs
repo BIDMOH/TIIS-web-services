@@ -149,6 +149,7 @@ new NpgsqlParameter("@Notes", DbType.String)  { Value = (object)o.Notes ?? DBNul
             catch (Exception ex)
             {
                 Log.InsertEntity("ItemLot", "Insert", 1, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+				throw ex;
             }
             return -1;
         }

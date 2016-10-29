@@ -150,27 +150,27 @@ new NpgsqlParameter("@ParamValue", DbType.String) { Value = s }
             {
                 string query = @"INSERT INTO ""ITEM_MANUFACTURER"" (""GTIN"", ""ITEM_ID"", ""MANUFACTURER_ID"", ""BASE_UOM"", ""ALT_1_UOM"", ""ALT_1_QTY_PER"", ""ALT_2_UOM"", ""ALT_2_QTY_PER"", ""PRICE"", ""GTIN_PARENT"", ""BASE_UOM_CHILD_PER_BASE_UOM_PARENT"", ""STORAGE_SPACE"", ""IS_ACTIVE"", ""NOTES"", ""MODIFIED_ON"", ""MODIFIED_BY"") VALUES (@Gtin, @ItemId, @ManufacturerId, @BaseUom, @Alt1Uom, @Alt1QtyPer, @Alt2Uom, @Alt2QtyPer, @Price, @GtinParent, @BaseUomChildPerBaseUomParent, @StorageSpace, @IsActive, @Notes, @ModifiedOn, @ModifiedBy) returning ""GTIN"" ";
                 List<Npgsql.NpgsqlParameter> parameters = new List<NpgsqlParameter>()
-{
-new NpgsqlParameter("@Gtin", DbType.String)  { Value = o.Gtin },
-new NpgsqlParameter("@ItemId", DbType.Int32)  { Value = o.ItemId },
-new NpgsqlParameter("@ManufacturerId", DbType.Int32)  { Value = o.ManufacturerId },
-new NpgsqlParameter("@BaseUom", DbType.String)  { Value = o.BaseUom },
-new NpgsqlParameter("@Alt1Uom", DbType.String)  { Value = o.Alt1Uom },
-new NpgsqlParameter("@Alt1QtyPer", DbType.Int32)  { Value = o.Alt1QtyPer },
-new NpgsqlParameter("@Alt2Uom", DbType.String)  { Value = (object)o.Alt2Uom ?? DBNull.Value },
-new NpgsqlParameter("@Alt2QtyPer", DbType.Int32)  { Value = (object)o.Alt2QtyPer ?? DBNull.Value },
-new NpgsqlParameter("@Price", DbType.Double)  { Value = (object)o.Price ?? DBNull.Value },
-new NpgsqlParameter("@GtinParent", DbType.String)  { Value = (object)o.GtinParent ?? DBNull.Value },
-new NpgsqlParameter("@BaseUomChildPerBaseUomParent", DbType.Double)  { Value = (object)o.BaseUomChildPerBaseUomParent ?? DBNull.Value },
-new NpgsqlParameter("@StorageSpace", DbType.Double)  { Value = (object)o.StorageSpace ?? DBNull.Value },
-new NpgsqlParameter("@IsActive", DbType.Boolean)  { Value = o.IsActive },
-new NpgsqlParameter("@Notes", DbType.String)  { Value = (object)o.Notes ?? DBNull.Value },
-new NpgsqlParameter("@ModifiedOn", DbType.Date)  { Value = o.ModifiedOn },
-new NpgsqlParameter("@ModifiedBy", DbType.Int32)  { Value = o.ModifiedBy }
-};
+				{
+					new NpgsqlParameter("@Gtin", DbType.String)  { Value = o.Gtin },
+					new NpgsqlParameter("@ItemId", DbType.Int32)  { Value = o.ItemId },
+					new NpgsqlParameter("@ManufacturerId", DbType.Int32)  { Value = o.ManufacturerId },
+					new NpgsqlParameter("@BaseUom", DbType.String)  { Value = o.BaseUom },
+					new NpgsqlParameter("@Alt1Uom", DbType.String)  { Value = (object)o.Alt1Uom ?? DBNull.Value },
+					new NpgsqlParameter("@Alt1QtyPer", DbType.Int32)  { Value = (object)o.Alt1QtyPer ?? DBNull.Value },
+					new NpgsqlParameter("@Alt2Uom", DbType.String)  { Value = (object)o.Alt2Uom ?? DBNull.Value },
+					new NpgsqlParameter("@Alt2QtyPer", DbType.Int32)  { Value = (object)o.Alt2QtyPer ?? DBNull.Value },
+					new NpgsqlParameter("@Price", DbType.Double)  { Value = (object)o.Price ?? DBNull.Value },
+					new NpgsqlParameter("@GtinParent", DbType.String)  { Value = (object)o.GtinParent ?? DBNull.Value },
+					new NpgsqlParameter("@BaseUomChildPerBaseUomParent", DbType.Double)  { Value = (object)o.BaseUomChildPerBaseUomParent ?? DBNull.Value },
+					new NpgsqlParameter("@StorageSpace", DbType.Double)  { Value = (object)o.StorageSpace ?? DBNull.Value },
+					new NpgsqlParameter("@IsActive", DbType.Boolean)  { Value = o.IsActive },
+					new NpgsqlParameter("@Notes", DbType.String)  { Value = (object)o.Notes ?? DBNull.Value },
+					new NpgsqlParameter("@ModifiedOn", DbType.DateTime)  { Value = o.ModifiedOn },
+					new NpgsqlParameter("@ModifiedBy", DbType.Int32)  { Value = o.ModifiedBy }
+					};
                 object id = DBManager.ExecuteScalarCommand(query, CommandType.Text, parameters);
                 AuditTable.InsertEntity("ItemManufacturer", o.Gtin, 1, DateTime.Now, o.ModifiedBy);
-                return 1;// int.Parse(id.ToString());
+				return 1;//int.Parse(id.ToString());
             }
             catch (Exception ex)
             {
@@ -185,24 +185,24 @@ new NpgsqlParameter("@ModifiedBy", DbType.Int32)  { Value = o.ModifiedBy }
             {
                 string query = @"UPDATE ""ITEM_MANUFACTURER"" SET ""ITEM_ID"" = @ItemId, ""MANUFACTURER_ID"" = @ManufacturerId, ""BASE_UOM"" = @BaseUom, ""ALT_1_UOM"" = @Alt1Uom, ""ALT_1_QTY_PER"" = @Alt1QtyPer, ""ALT_2_UOM"" = @Alt2Uom, ""ALT_2_QTY_PER"" = @Alt2QtyPer, ""PRICE"" = @Price, ""GTIN_PARENT"" = @GtinParent, ""BASE_UOM_CHILD_PER_BASE_UOM_PARENT"" = @BaseUomChildPerBaseUomParent, ""STORAGE_SPACE"" = @StorageSpace, ""IS_ACTIVE"" = @IsActive, ""NOTES"" = @Notes, ""MODIFIED_ON"" = @ModifiedOn, ""MODIFIED_BY"" = @ModifiedBy WHERE ""GTIN"" = @Gtin ";
                 List<Npgsql.NpgsqlParameter> parameters = new List<NpgsqlParameter>()
-{
-new NpgsqlParameter("@Gtin", DbType.String)  { Value = o.Gtin },
-new NpgsqlParameter("@ItemId", DbType.Int32)  { Value = o.ItemId },
-new NpgsqlParameter("@ManufacturerId", DbType.Int32)  { Value = o.ManufacturerId },
-new NpgsqlParameter("@BaseUom", DbType.String)  { Value = o.BaseUom },
-new NpgsqlParameter("@Alt1Uom", DbType.String)  { Value = o.Alt1Uom },
-new NpgsqlParameter("@Alt1QtyPer", DbType.Int32)  { Value = o.Alt1QtyPer },
-new NpgsqlParameter("@Alt2Uom", DbType.String)  { Value = (object)o.Alt2Uom ?? DBNull.Value },
-new NpgsqlParameter("@Alt2QtyPer", DbType.Int32)  { Value = (object)o.Alt2QtyPer ?? DBNull.Value },
-new NpgsqlParameter("@Price", DbType.Double)  { Value = (object)o.Price ?? DBNull.Value },
-new NpgsqlParameter("@GtinParent", DbType.String)  { Value = (object)o.GtinParent ?? DBNull.Value },
-new NpgsqlParameter("@BaseUomChildPerBaseUomParent", DbType.Double)  { Value = (object)o.BaseUomChildPerBaseUomParent ?? DBNull.Value },
-new NpgsqlParameter("@StorageSpace", DbType.Double)  { Value = (object)o.StorageSpace ?? DBNull.Value },
-new NpgsqlParameter("@IsActive", DbType.Boolean)  { Value = o.IsActive },
-new NpgsqlParameter("@Notes", DbType.String)  { Value = (object)o.Notes ?? DBNull.Value },
-new NpgsqlParameter("@ModifiedOn", DbType.DateTime)  { Value = o.ModifiedOn },
-new NpgsqlParameter("@ModifiedBy", DbType.Int32)  { Value = o.ModifiedBy }
-};
+				{
+					new NpgsqlParameter("@Gtin", DbType.String)  { Value = o.Gtin },
+					new NpgsqlParameter("@ItemId", DbType.Int32)  { Value = o.ItemId },
+					new NpgsqlParameter("@ManufacturerId", DbType.Int32)  { Value = o.ManufacturerId },
+					new NpgsqlParameter("@BaseUom", DbType.String)  { Value = o.BaseUom },
+					new NpgsqlParameter("@Alt1Uom", DbType.String)  { Value = (object)o.Alt1Uom ?? DBNull.Value },
+					new NpgsqlParameter("@Alt1QtyPer", DbType.Int32)  { Value = (object)o.Alt1QtyPer ?? DBNull.Value },
+					new NpgsqlParameter("@Alt2Uom", DbType.String)  { Value = (object)o.Alt2Uom ?? DBNull.Value },
+					new NpgsqlParameter("@Alt2QtyPer", DbType.Int32)  { Value = (object)o.Alt2QtyPer ?? DBNull.Value },
+					new NpgsqlParameter("@Price", DbType.Double)  { Value = (object)o.Price ?? DBNull.Value },
+					new NpgsqlParameter("@GtinParent", DbType.String)  { Value = (object)o.GtinParent ?? DBNull.Value },
+					new NpgsqlParameter("@BaseUomChildPerBaseUomParent", DbType.Double)  { Value = (object)o.BaseUomChildPerBaseUomParent ?? DBNull.Value },
+					new NpgsqlParameter("@StorageSpace", DbType.Double)  { Value = (object)o.StorageSpace ?? DBNull.Value },
+					new NpgsqlParameter("@IsActive", DbType.Boolean)  { Value = o.IsActive },
+					new NpgsqlParameter("@Notes", DbType.String)  { Value = (object)o.Notes ?? DBNull.Value },
+					new NpgsqlParameter("@ModifiedOn", DbType.DateTime)  { Value = o.ModifiedOn },
+					new NpgsqlParameter("@ModifiedBy", DbType.Int32)  { Value = o.ModifiedBy }
+					};
 
                 int rowAffected = DBManager.ExecuteNonQueryCommand(query, CommandType.Text, parameters);
                 AuditTable.InsertEntity("ItemManufacturer", o.Gtin, 2, DateTime.Now, o.ModifiedBy);

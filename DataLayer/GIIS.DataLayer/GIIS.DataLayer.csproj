@@ -176,6 +176,7 @@
     <Compile Include="HealthFacilityImmunizationSessions.cs" />
     <Compile Include="HealthFacilityVitaminAStockBalance.cs" />
     <Compile Include="HealthFacilitySyringesAndSafetyBoxes.cs" />
+    <Compile Include="HealthFacilityStockDistributions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Library\Mono.Security.dll" />

@@ -590,5 +590,249 @@ namespace GIIS.Tanzania.WCF
 		}
 
 
+		public int DeleteHealthFacilityStockDistributions(int healthFacilityId,DateTime distributionDate, string status)
+		{
+			int i=HealthFacilityStockDistributions.Delete(healthFacilityId, distributionDate, status);
+
+			return i;
+		}
+
+
+		/**
+		 * Method used to receive stock distributed from vims
+		 * 
+		 **/
+		public IntReturnValue receiveDelivery(string jsonRequest)
+		{
+			int insertValues=0;
+			JObject products = JObject.Parse(getVimsProducts());
+			JObject dosageUnits = JObject.Parse(getVimsDosageUnits());
+
+			try
+			{
+				JObject o = JObject.Parse(jsonRequest);
+
+				int fromFacitiyId = (int)o["fromFacilityId"];
+				int toFacilityId = (int)o["toFacilityId"];
+				int programId = (int)o["programId"];
+				DateTime distributionDate = (DateTime)o["distributionDate"];
+				string distributionType = (o["distributionType"]).ToString();
+				string status = (o["status"]).ToString();
+
+				JArray lineItems = (JArray)o["lineItems"];
+				int counter = lineItems.Count;
+				for (int i = 0; i < counter; i++)
+				{
+					int itemId = 0;
+					string itemName="";
+					int alt1QtyPer = 0;
+					string manufacturer = "";
+					int dosageUnitId = 0;
+					string gtin = "";
+					int productId = (int)lineItems[i]["productId"];
+
+
+					JArray productsArray = (JArray)products["products"];
+					int count = productsArray.Count;
+
+					for (int p = 0; p < count; p++)
+					{
+						if (productsArray[p]["id"].Equals(lineItems[i]["productId"]))
+						{
+							gtin = productsArray[p]["gtin"].ToString();
+							manufacturer = productsArray[p]["manufacturer"].ToString();
+							dosageUnitId = (int)productsArray[p]["dosageUnitId"];
+							alt1QtyPer = (int)productsArray[p]["dosesPerDispensingUnit"];
+							itemName = productsArray[p]["primaryName"].ToString();
+
+							Item item = Item.GetItemByName(productsArray[p]["primaryName"].ToString());
+							Item itemByCode = Item.GetItemByCode(productsArray[p]["primaryName"].ToString());
+							if (item != null)
+							{
+								itemId = item.Id;
+							}
+							else if (itemByCode != null)
+							{
+								itemId = itemByCode.Id;
+							}
+							break;
+						}
+					}
+
+					JArray lots = (JArray)lineItems[i]["lots"];
+					int lotsCount = lots.Count;
+					for (int j = 0; j < lotsCount; j++)
+					{
+						int lotId;
+						int vimsLotId = (int)lots[j]["lotId"];
+						int quantity = (int)lots[j]["quantity"];
+						string vvmStatus = (string)lots[j]["vvmStatus"];
+
+						ItemLot item = getVimsLotsByProductId(productId,vimsLotId,gtin,itemId);
+
+						ItemLot checkItem = ItemLot.GetItemLotByLotNumber(item.LotNumber);
+						int manufacturerId;
+						if (checkItem == null)
+						{
+							Manufacturer man = Manufacturer.GetManufacturerByName(manufacturer);
+							if (man == null)
+							{
+								man = new Manufacturer();
+								man.IsActive = true;
+								man.Name = manufacturer;
+								man.Code = manufacturer;
+								manufacturerId = Manufacturer.Insert(man);
+							}
+							else {
+								manufacturerId = man.Id;
+							}
+
+
+							ItemManufacturer itemMan = ItemManufacturer.GetItemManufacturerByGtin(item.Gtin);
+							if (itemMan == null)
+							{
+								itemMan = new ItemManufacturer();
+								itemMan.Gtin = item.Gtin;
+								itemMan.ItemId = itemId;
+								itemMan.IsActive = true;
+								itemMan.ManufacturerId = manufacturerId;
+								itemMan.Alt1QtyPer = alt1QtyPer;
+								itemMan.Notes = itemName;
+								itemMan.ModifiedOn = new DateTime();
+								itemMan.ModifiedBy = 1;
+								itemMan.Alt1Uom = "";
+
+								JArray doseunitsArray = (JArray)dosageUnits["dosage-units"];
+								int doseCount = doseunitsArray.Count;
+								for (int z = 0; z < doseCount; z++)
+								{
+									if ((int)doseunitsArray[z]["id"] == dosageUnitId)
+									{
+										itemMan.BaseUom = doseunitsArray[z]["code"].ToString();
+										break;
+									}
+								}
+								ItemManufacturer.Insert(itemMan);
+
+							}
+
+
+							ItemLot.Insert(item);
+							lotId = ItemLot.GetItemLotByLotNumber(item.LotNumber).Id;
+						}
+						else 
+						{
+							ItemLot.Update(item);
+							lotId = checkItem.Id;
+						}
+
+
+						HealthFacilityStockDistributions distributions = new HealthFacilityStockDistributions();
+						distributions.FromHealthFacilityId = fromFacitiyId;
+						distributions.ToHealthFacilityId = toFacilityId;
+						distributions.ProgramId = programId;
+						distributions.Status = status;
+						distributions.DistributionDate = distributionDate;
+						distributions.DistributionType = distributionType;
+						distributions.ProductId = productId;
+						distributions.ItemId = itemId;
+						distributions.LotId = lotId;
+						distributions.VimsLotId = vimsLotId;
+						distributions.Quantity = quantity;
+						distributions.VvmStatus = vvmStatus;
+
+						insertValues=HealthFacilityStockDistributions.Insert(distributions);
+
+					}
+
+
+
+				}
+
+				IntReturnValue irv = new IntReturnValue();
+				irv.id = insertValues;
+				return irv;
+			}
+			catch (Exception e)
+			{
+				//throw new WebFaultException<string>("Error", HttpStatusCode.ServiceUnavailable);
+				throw e;
+			}
+
+
+		}
+
+
+
+
+
+		/**
+		 * Method used to receive all vims dosage Units
+		 * 
+		 **/
+		public string getVimsDosageUnits()
+		{
+
+			WebRequest webRequest = WebRequest.Create("http://uat.tz.elmis-dev.org:80/rest-api/lookup/dosage-units");
+			webRequest.Method = "GET";
+			webRequest.ContentType = "application/x-www-form-urlencoded";
+
+			String username = "vims-divo";
+			String password = "Admin123";
+			String encoded = System.Convert.ToBase64String(System.Text.Encoding.GetEncoding("ISO-8859-1").GetBytes(username + ":" + password));
+			webRequest.Headers.Add("Authorization", "Basic " + encoded);
+
+			WebResponse myWebResponse = webRequest.GetResponse();
+			using (Stream stream = myWebResponse.GetResponseStream())
+			{
+				StreamReader reader = new StreamReader(stream, Encoding.UTF8);
+				String responseString = reader.ReadToEnd();
+				return responseString;
+			}
+		}
+
+
+		/**
+		 * Method used to receive all vims products used for mapping of product ids to TIIS itemIds
+		 * 
+		 **/
+		public string getVimsProducts()
+		{
+			return Program.GetSourceForMyShowsPage("http://uat.tz.elmis-dev.org/rest-api/lookup/products?paging=false");
+		}
+
+		/**
+		 * Method used to receive all vims products used for mapping of product ids to TIIS itemIds
+		 * 
+		 **/
+		public ItemLot getVimsLotsByProductId(int productId,int vimslotId,string gtin,int itemId)
+		{
+			String responseString = Program.GetSourceForMyShowsPage("http://uat.tz.elmis-dev.org/vaccine/inventory/lots/byProduct/" + productId + ".json");
+			JObject o = JObject.Parse(responseString);
+
+			JArray lots = (JArray)o["lots"];
+			int counter = lots.Count;
+			for (int i = 0; i < counter; i++)
+			{
+				if (vimslotId == (int)lots[i]["id"])
+				{
+					ItemLot itemLot = new ItemLot();
+					itemLot.ExpireDate = (DateTime)lots[i]["expirationDate"];
+					itemLot.IsActive = (Boolean)lots[i]["valid"];
+					itemLot.LotNumber = (String)lots[i]["lotCode"];
+					itemLot.Gtin = gtin;
+					itemLot.ItemId = itemId;
+					return itemLot;
+				}
+			}
+			return null;
+		}
+
+		public List<HealthFacilityStockDistributions> GetHealthFacilityStockDistributions(int healthFacilityId)
+		{
+			List<HealthFacilityStockDistributions> stockDistributions = GIIS.DataLayer.HealthFacilityStockDistributions.GetHealthFacilityStockDistributions(healthFacilityId,"PENDING");
+			return stockDistributions;
+		}
+
 	}
 }
