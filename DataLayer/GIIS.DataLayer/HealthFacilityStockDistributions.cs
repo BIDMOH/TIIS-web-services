@@ -38,6 +38,8 @@ namespace GIIS.DataLayer
 		public string DistributionType { get; set; }
 		public string Status { get; set; }
 
+		//HACK to also obtain and send BaseUom to mobile devices
+		public string BaseUom { get; set; }
 		#endregion
 
 		#region GetData
@@ -61,7 +63,10 @@ namespace GIIS.DataLayer
 			try
 			{
 
-				string query = @"SELECT * FROM ""HEALTH_FACILITY_STOCK_DISTRIBUTIONS"" WHERE ""TO_HEALTH_FACILITY_ID"" = @toHealthFacilityId AND 
+				string query = @"SELECT * FROM ""HEALTH_FACILITY_STOCK_DISTRIBUTIONS"" 
+				JOIN ""ITEM_LOT"" ON ""HEALTH_FACILITY_STOCK_DISTRIBUTIONS"".""LOT_ID""  =""ITEM_LOT"".""ID"" 
+				JOIN ""ITEM_MANUFACTURER"" ON ""ITEM_LOT"".""GTIN""  =""ITEM_MANUFACTURER"".""GTIN""
+				WHERE ""TO_HEALTH_FACILITY_ID"" = @toHealthFacilityId AND 
 				""STATUS"" = @status ";
 				List<Npgsql.NpgsqlParameter> parameters = new List<NpgsqlParameter>()
 				{
@@ -123,13 +128,48 @@ namespace GIIS.DataLayer
 		{
 			try
 			{
-				string query = @"DELETE FROM ""HEALTH_FACILITY_STOCK_DISTRIBUTIONS"" WHERE ""TO_HEALTH_FACILITY_ID"" = @toHealthFacilityId AND ""DISTRIBUTION_DATE"" = @distributionDate AND ""STATUS"" = @status";
+				string query = @"DELETE FROM ""HEALTH_FACILITY_STOCK_DISTRIBUTIONS"" WHERE ""TO_HEALTH_FACILITY_ID"" = @ToHealthFacilityId AND ""DISTRIBUTION_DATE"" = @distributionDate AND ""STATUS"" = @status";
 				List<Npgsql.NpgsqlParameter> parameters = new List<NpgsqlParameter>()
 				{
 					new NpgsqlParameter("@toHealthFacilityId", DbType.Int32)  { Value = toHealthFacilityId },
 					new NpgsqlParameter("@distributionDate", DbType.DateTime)  { Value = distributionDate },
 					new NpgsqlParameter("@status", DbType.String)  { Value = status }
 				};
+				int rowAffected = DBManager.ExecuteNonQueryCommand(query, CommandType.Text, parameters);
+				return rowAffected;
+			}
+			catch (Exception ex)
+			{
+				Log.InsertEntity("HealthFacilityStockDistributions", "Delete", 1, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+				throw ex;
+			}
+		}
+
+
+		public static int Update(HealthFacilityStockDistributions transferedStock)
+		{
+			try
+			{
+				string query = @"UPDATE ""HEALTH_FACILITY_STOCK_DISTRIBUTIONS"" SET ""QUANTITY"" = @quantity, ""STATUS"" = @status WHERE ""TO_HEALTH_FACILITY_ID"" = @toHealthFacilityId AND ""FROM_HEALTH_FACILITY_ID"" = @FromHealthFacilityId AND ""DISTRIBUTION_DATE"" = @DistributionDate 
+				AND ""ITEM_ID""=@ItemId AND ""LOT_ID"" = @LotId AND ""PRODUCT_ID""=@ProductId  AND ""DISTRIBUTION_TYPE""=@DistributionType";
+
+				List<Npgsql.NpgsqlParameter> parameters = new List<NpgsqlParameter>()
+				{
+					new NpgsqlParameter("@FromHealthFacilityId", DbType.Int32)  { Value = transferedStock.FromHealthFacilityId },
+					new NpgsqlParameter("@ToHealthFacilityId", DbType.Int32)  { Value = transferedStock.ToHealthFacilityId },
+					new NpgsqlParameter("@ProgramId", DbType.Int32)  { Value = transferedStock.ProgramId},
+					new NpgsqlParameter("@DistributionDate", DbType.DateTime)  { Value = transferedStock.DistributionDate},
+					new NpgsqlParameter("@ItemId", DbType.Int32)  { Value = transferedStock.ItemId},
+					new NpgsqlParameter("@ProductId", DbType.Int32)  { Value = (object)transferedStock.ProductId ?? DBNull.Value },
+					new NpgsqlParameter("@LotId", DbType.Int32)  { Value = (object)transferedStock.LotId ?? DBNull.Value  },
+					new NpgsqlParameter("@VimsLotId", DbType.Int32)  { Value = transferedStock.VimsLotId },
+					new NpgsqlParameter("@VvmStatus", DbType.String)  { Value = transferedStock.VvmStatus },
+					new NpgsqlParameter("@Quantity", DbType.Int32)  { Value = transferedStock.Quantity },
+					new NpgsqlParameter("@Status", DbType.String)  { Value = transferedStock.Status },
+					new NpgsqlParameter("@DistributionType", DbType.String)  { Value = transferedStock.DistributionType }
+				};
+
+
 				int rowAffected = DBManager.ExecuteNonQueryCommand(query, CommandType.Text, parameters);
 				return rowAffected;
 			}
@@ -194,6 +234,11 @@ namespace GIIS.DataLayer
 					o.Quantity = Helper.ConvertToInt(row["QUANTITY"]);
 					o.Status = (row["STATUS"]).ToString();
 					o.DistributionType = (row["DISTRIBUTION_TYPE"]).ToString();
+					try
+					{
+						o.BaseUom = (row["BASE_UOM"]).ToString();
+					}
+					catch (Exception e) { }
 					oList.Add(o);
 				}
 				catch (Exception ex)

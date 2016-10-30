@@ -613,7 +613,7 @@ namespace GIIS.Tanzania.WCF
 				JObject o = JObject.Parse(jsonRequest);
 
 				int fromFacitiyId = (int)o["fromFacilityId"];
-				int toFacilityId = (int)o["toFacilityId"];
+				int toFacilityId = HealthFacilityMapper.GetTimrHealthFacilityFacilityId((int)o["toFacilityId"]);
 				int programId = (int)o["programId"];
 				DateTime distributionDate = (DateTime)o["distributionDate"];
 				string distributionType = (o["distributionType"]).ToString();
@@ -668,7 +668,7 @@ namespace GIIS.Tanzania.WCF
 						int quantity = (int)lots[j]["quantity"];
 						string vvmStatus = (string)lots[j]["vvmStatus"];
 
-						ItemLot item = getVimsLotsByProductId(productId,vimsLotId,gtin,itemId);
+						ItemLot item = getVimsLotsByProductId(productId,vimsLotId,gtin,itemId,fromFacitiyId);
 
 						ItemLot checkItem = ItemLot.GetItemLotByLotNumber(item.LotNumber);
 						int manufacturerId;
@@ -744,11 +744,9 @@ namespace GIIS.Tanzania.WCF
 						insertValues=HealthFacilityStockDistributions.Insert(distributions);
 
 					}
-
-
-
 				}
 
+				BroadcastStoredHealthFacilityData(toFacilityId, "UpdateHealthFacilityStockDistributions");
 				IntReturnValue irv = new IntReturnValue();
 				irv.id = insertValues;
 				return irv;
@@ -805,27 +803,41 @@ namespace GIIS.Tanzania.WCF
 		 * Method used to receive all vims products used for mapping of product ids to TIIS itemIds
 		 * 
 		 **/
-		public ItemLot getVimsLotsByProductId(int productId,int vimslotId,string gtin,int itemId)
+		public ItemLot getVimsLotsByProductId(int productId,int vimslotId,string gtin,int itemId,int fromFacilityId)
 		{
-			String responseString = Program.GetSourceForMyShowsPage("http://uat.tz.elmis-dev.org/vaccine/inventory/lots/byProduct/" + productId + ".json");
+			String responseString = Program.GetSourceForMyShowsPage("http://uat.tz.elmis-dev.org/api/v2/facilities/"+fromFacilityId+"/stockCards?entries=1&countOnly=false&includeEmptyLots=false");
 			JObject o = JObject.Parse(responseString);
 
-			JArray lots = (JArray)o["lots"];
-			int counter = lots.Count;
+			JArray stockCards = (JArray)o["stockCards"];
+			int counter = stockCards.Count;
 			for (int i = 0; i < counter; i++)
 			{
-				if (vimslotId == (int)lots[i]["id"])
+
+				JArray lotsOnHand = (JArray)stockCards[i]["lotsOnHand"];
+
+				int lotsOnHandCount = lotsOnHand.Count;
+				for (int j = 0; j < lotsOnHandCount; j++)
 				{
-					ItemLot itemLot = new ItemLot();
-					itemLot.ExpireDate = (DateTime)lots[i]["expirationDate"];
-					itemLot.IsActive = (Boolean)lots[i]["valid"];
-					itemLot.LotNumber = (String)lots[i]["lotCode"];
-					itemLot.Gtin = gtin;
-					itemLot.ItemId = itemId;
-					return itemLot;
+					if (vimslotId == (int)lotsOnHand[j]["lotId"])
+					{
+						JObject lot = (JObject)lotsOnHand[j]["lot"];
+
+						ItemLot itemLot = new ItemLot();
+						itemLot.ExpireDate = (DateTime)lot["expirationDate"];
+						itemLot.IsActive = (Boolean)lot["valid"];
+						itemLot.LotNumber = (String)lot["lotCode"];
+						itemLot.Gtin = gtin;
+						itemLot.ItemId = itemId;
+						return itemLot;
+					}
 				}
+
+
+
 			}
-			return null;
+
+			Exception e = new Exception("productId = " + productId + ",vimslotId = " + vimslotId + ",gtin=" + gtin + ",itemId=" + itemId);
+			throw e;
 		}
 
 		public List<HealthFacilityStockDistributions> GetHealthFacilityStockDistributions(int healthFacilityId)
@@ -834,5 +846,30 @@ namespace GIIS.Tanzania.WCF
 			return stockDistributions;
 		}
 
+		public List<HealthFacilityStockDistributions> GetAllHealthFacilityStockDistributionsList()
+		{
+			List<HealthFacilityStockDistributions> stockDistributions = GIIS.DataLayer.HealthFacilityStockDistributions.GetHealthFacilityStockDistributionsList();
+			return stockDistributions;
+		}
+
+
+		public int updateHeathFacilityStockDistributions(int fromHealthFacilityId, int toHealthFacilityId, int productId, int lotId, int itemId, string distributionType, DateTime distributionDate, int quantity, string status,int userId)
+		{
+			HealthFacilityStockDistributions distributions = new HealthFacilityStockDistributions();
+			distributions.FromHealthFacilityId = fromHealthFacilityId;
+			distributions.ToHealthFacilityId = toHealthFacilityId;
+			distributions.Status = status;
+			distributions.DistributionDate = distributionDate;
+			distributions.DistributionType = distributionType;
+			distributions.ProductId = productId;
+			distributions.ItemId = itemId;
+			distributions.LotId = lotId;
+			distributions.Quantity = quantity;
+
+
+			ItemLot lot = ItemLot.GetItemLotById(lotId);
+			new BusinessLogic.StockManagementLogic().Allocate(GetHealthFacilityById(toHealthFacilityId).ElementAt(0), lot.Gtin, lot.LotNumber, quantity, null, userId);
+			return HealthFacilityStockDistributions.Update(distributions);;
+		}
 	}
 }

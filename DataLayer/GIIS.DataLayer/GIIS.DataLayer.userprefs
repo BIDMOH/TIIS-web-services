@@ -1,9 +1,7 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workbench ActiveDocument="ItemLot.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="HealthFacilityStockDistributions.cs">
     <Files>
-      <File FileName="ItemLot.cs" Line="152" Column="14" />
-      <File FileName="ItemManufacturer.cs" Line="177" Column="128" />
-      <File FileName="Manufacturer.cs" Line="151" Column="124" />
+      <File FileName="HealthFacilityStockDistributions.cs" Line="241" Column="29" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

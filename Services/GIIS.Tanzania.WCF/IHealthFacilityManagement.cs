@@ -168,11 +168,18 @@ namespace GIIS.Tanzania.WCF
 		[OperationContract]
 		List<HealthFacilityStockDistributions> GetHealthFacilityStockDistributions(int healthFacilityId);
 
+
+		[WebGet(UriTemplate = "GetAllHealthFacilityStockDistributionsList", ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		List<HealthFacilityStockDistributions> GetAllHealthFacilityStockDistributionsList();
+
 		[WebGet(UriTemplate = "DeleteHealthFacilityStockDistributions?healthFacilityId={healthFacilityId}&distributionDate={distributionDate}&status={status}", ResponseFormat = WebMessageFormat.Json)]
 		[OperationContract]
 		int DeleteHealthFacilityStockDistributions(int healthFacilityId, DateTime distributionDate, string status);
 
-
+		[WebGet(UriTemplate = "updateHeathFacilityStockDistributions?fromHealthFacilityId={fromHealthFacilityId}&toHealthFacilityId={toHealthFacilityId}&productId={productId}&lotId={lotId}&itemId={itemId}&distributionType={distributionType}&distributionDate={distributionDate}&quantity={quantity}&status={status}&userId={userId}", ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		int updateHeathFacilityStockDistributions(int fromHealthFacilityId, int toHealthFacilityId, int productId, int lotId, int itemId, string distributionType, DateTime distributionDate, int quantity, string status,int userId);
 
 	}
 }

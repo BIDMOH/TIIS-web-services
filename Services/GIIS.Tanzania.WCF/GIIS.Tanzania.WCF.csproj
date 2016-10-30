@@ -186,6 +186,7 @@
     <Compile Include="HealthFacilitiesVaccinationsEntity.cs" />
     <Compile Include="HealthFacilityDoseBalanceEntity.cs" />
     <Compile Include="VimsNetworkRequestsHelper.cs" />
+    <Compile Include="VimsHealthFacilityMapper.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

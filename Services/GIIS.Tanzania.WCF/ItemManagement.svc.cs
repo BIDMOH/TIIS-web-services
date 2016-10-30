@@ -40,5 +40,13 @@ namespace GIIS.Tanzania.WCF
 			ItemManufacturer itemList = ItemManufacturer.GetItemManufacturerByGtin(gtin);
 			return itemList;
 		}
+
+
+		public List<ItemManufacturer> GetItemManufacturerList()
+		{
+			List<ItemManufacturer> itemList = ItemManufacturer.GetItemManufacturerList();
+			return itemList;
+		}
+
     }
 }
