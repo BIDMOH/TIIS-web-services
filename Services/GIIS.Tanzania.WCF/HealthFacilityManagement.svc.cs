@@ -925,11 +925,14 @@ namespace GIIS.Tanzania.WCF
 						lotItem.Add("id", lotsOrg[j]["id"]);
 						lotItem.Add("vvmStatus", lotsOrg[j]["vvmStatus"]);
 
-
 						HealthFacilityStockDistributions distribution = HealthFacilityStockDistributions.GetHealthFacilityStockDistributionsByLotId_ProductId_ToFacilityId_DistributionDate((int)lotsOrg[j]["lotId"], (int)lineItemsOrg[i]["productId"], timrToHealthfacilityId, (DateTime)o["distributionDate"], "RECEIVED");
+
+						if (distribution == null)
+						{
+							throw new Exception("lotId = " + (int)lotsOrg[j]["lotId"] + ", productId = " + (int)lineItemsOrg[i]["productId"] + ",toFacilityId = " + timrToHealthfacilityId + ",distributionDate = " + o["distributionDate"].ToString() + ",status=RECEIVED");
+						}
 						lotItem.Add("quantity", distribution.Quantity);
 						quantity += distribution.Quantity;
-
 						lots.Add(lotItem);
 					}
 					itemObj.Add("lots", lots);
@@ -942,7 +945,7 @@ namespace GIIS.Tanzania.WCF
 
 
 				string postUrl = "http://uat.tz.elmis-dev.org/vaccine/inventory/distribution/save.json";
-				return podObject.ToString();
+				return Program.PostJsonToUrl(postUrl, podObject.ToString());
 			}
 			catch(Exception ex)
 			{

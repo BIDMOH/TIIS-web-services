@@ -58,27 +58,29 @@ namespace GIIS.DataLayer
 			}
 		}
 
-		public static HealthFacilityStockDistributions GetHealthFacilityStockDistributionsByLotId_ProductId_ToFacilityId_DistributionDate(int LotId,int ProductId,int ToFacilityId,DateTime DistributionDate,string status)
+		public static HealthFacilityStockDistributions GetHealthFacilityStockDistributionsByLotId_ProductId_ToFacilityId_DistributionDate(int VimsLotId,int ProductId,int ToFacilityId,DateTime DistributionDate,string status)
 		{
 			try
 			{
 				string query = @"SELECT * FROM ""HEALTH_FACILITY_STOCK_DISTRIBUTIONS"" WHERE  
-						""STATUS"" = @status AND ""TO_HEALTH_FACILITY_ID"" = @toHealthFacilityId  
-						AND ""DISTRIBUTION_DATE"" = @DistributionDate AND ""LOT_ID"" = @LotId AND ""PRODUCT_ID""=@ProductId";
+						""STATUS"" = @status AND ""TO_HEALTH_FACILITY_ID"" = @ToFacilityId  
+						AND ""DISTRIBUTION_DATE"" = @DistributionDate AND ""VIMS_LOT_ID"" = @VimsLotId AND ""PRODUCT_ID""=@ProductId";
+				
 				List<Npgsql.NpgsqlParameter> parameters = new List<NpgsqlParameter>()
 				{
-					new NpgsqlParameter("@toHealthFacilityId", DbType.Int32)  { Value = ToFacilityId },
-					new NpgsqlParameter("@LotId", DbType.Int32)  { Value = LotId },
+					new NpgsqlParameter("@ToFacilityId", DbType.Int32)  { Value = ToFacilityId },
+					new NpgsqlParameter("@DistributionDate", DbType.DateTime)  { Value = DistributionDate},
 					new NpgsqlParameter("@ProductId", DbType.Int32)  { Value = ProductId },
-					new NpgsqlParameter("@DistributionDate", DbType.DateTime)  { Value = DistributionDate },
+					new NpgsqlParameter("@VimsLotId", DbType.Int32)  { Value = VimsLotId },
 					new NpgsqlParameter("@status", DbType.String)  { Value = status }
 				};
+
 				DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, parameters);
 				return GetHealthFacilityStockDistributions(dt);
 			}
 			catch (Exception ex)
 			{
-				Log.InsertEntity("HealthFacilityStockDistributions", "GetHealthFacilityStockDistributionsByLotId_ProductId_ToFacilityId_DistributionDate", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+				Log.InsertEntity("HealthFacilityStockDistributions", "Delete", 1, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
 				throw ex;
 			}
 		}
@@ -229,11 +231,16 @@ namespace GIIS.DataLayer
 					o.Quantity = Helper.ConvertToInt(row["QUANTITY"]);
 					o.Status = (row["STATUS"]).ToString();
 					o.DistributionType = (row["DISTRIBUTION_TYPE"]).ToString();
+					try
+					{
+						o.BaseUom = (row["BASE_UOM"]).ToString();
+					}
+					catch (Exception e) { }
 					return o;
 				}
 				catch (Exception ex)
 				{
-					Log.InsertEntity("HealthFacilityStockDistributions", "GetHealthFacilityStockDistributions", 1, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+					Log.InsertEntity("HealthFacilityStockDistributions", "GetHealthFacilityStockDistributionsAsList", 1, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
 					throw ex;
 				}
 			}

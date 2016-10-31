@@ -61,6 +61,8 @@ namespace GIIS.Tanzania.WCF
 				// Authenticating into vims
 				client.UploadValues("http://uat.tz.elmis-dev.org/j_spring_security_check", values);
 
+				//Setting th content type headers to application/json
+				client.Headers[HttpRequestHeader.ContentType] = "application/json";
 
 				// uploading a json to vims
 				return client.UploadString("",jsonString);
