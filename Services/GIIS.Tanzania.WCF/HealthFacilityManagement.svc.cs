@@ -610,7 +610,7 @@ namespace GIIS.Tanzania.WCF
 			JObject dosageUnits = JObject.Parse(getVimsDosageUnits());
 			try
 			{
-				JObject obj = JObject.Parse(Program.GetSourceForMyShowsPage("http://uat.tz.elmis-dev.org/vaccine/inventory/distribution/distribution-supervisorid/"+vimsToFacilityId));
+				JObject obj = JObject.Parse(Program.GetSourceForMyShowsPage("/vaccine/inventory/distribution/distribution-supervisorid/"+vimsToFacilityId));
 				JObject o = (JObject)obj["distribution"];
 				if (o["status"].ToString().Equals("PENDING"))
 				{
@@ -786,23 +786,7 @@ namespace GIIS.Tanzania.WCF
 		 **/
 		public string getVimsDosageUnits()
 		{
-
-			WebRequest webRequest = WebRequest.Create("http://uat.tz.elmis-dev.org:80/rest-api/lookup/dosage-units");
-			webRequest.Method = "GET";
-			webRequest.ContentType = "application/x-www-form-urlencoded";
-
-			String username = "vims-divo";
-			String password = "Admin123";
-			String encoded = System.Convert.ToBase64String(System.Text.Encoding.GetEncoding("ISO-8859-1").GetBytes(username + ":" + password));
-			webRequest.Headers.Add("Authorization", "Basic " + encoded);
-
-			WebResponse myWebResponse = webRequest.GetResponse();
-			using (Stream stream = myWebResponse.GetResponseStream())
-			{
-				StreamReader reader = new StreamReader(stream, Encoding.UTF8);
-				String responseString = reader.ReadToEnd();
-				return responseString;
-			}
+			return Program.GetSourceForMyShowsPage("/rest-api/lookup/dosage-units");
 		}
 
 
@@ -812,7 +796,7 @@ namespace GIIS.Tanzania.WCF
 		 **/
 		public string getVimsProducts()
 		{
-			return Program.GetSourceForMyShowsPage("http://uat.tz.elmis-dev.org/rest-api/lookup/products?paging=false");
+			return Program.GetSourceForMyShowsPage("/rest-api/lookup/products?paging=false");
 		}
 
 		/**
@@ -821,7 +805,7 @@ namespace GIIS.Tanzania.WCF
 		 **/
 		public ItemLot getVimsLotsByProductId(int productId,int vimslotId,string gtin,int itemId,int fromFacilityId)
 		{
-			String url ="http://uat.tz.elmis-dev.org/api/v2/facilities/" + fromFacilityId + "/stockCards?entries=1&countOnly=false&includeEmptyLots=false" ;
+			String url ="/api/v2/facilities/" + fromFacilityId + "/stockCards?entries=1&countOnly=false&includeEmptyLots=false" ;
 			String responseString = Program.GetSourceForMyShowsPage(url);
 			JObject o = JObject.Parse(responseString);
 
@@ -886,13 +870,22 @@ namespace GIIS.Tanzania.WCF
 			ItemTransaction transaction = new BusinessLogic.StockManagementLogic().Allocate(GetHealthFacilityById(toHealthFacilityId).ElementAt(0), lot.Gtin, lot.LotNumber, quantity, null, userId);
 			HealthFacilityStockDistributions.Update(distributions);
 
+
+			//Checks if all stock distributions have been received from the mobile app before sending the POD back to vims
+			List<HealthFacilityStockDistributions> stockDistributions = GIIS.DataLayer.HealthFacilityStockDistributions.GetHealthFacilityStockDistributions(toHealthFacilityId, "PENDING");
+			if (stockDistributions == null)
+			{
+				sendPOD(toHealthFacilityId);
+			}
+
+
 			return transaction.Id;
 		}
 
 
 		public string sendPOD(int timrToHealthfacilityId)
 		{
-			JObject obj = JObject.Parse(Program.GetSourceForMyShowsPage("http://uat.tz.elmis-dev.org/vaccine/inventory/distribution/distribution-supervisorid/" + HealthFacilityMapper.GetVimsHealthFacilityFacilityId(timrToHealthfacilityId)));
+			JObject obj = JObject.Parse(Program.GetSourceForMyShowsPage("/vaccine/inventory/distribution/distribution-supervisorid/" + HealthFacilityMapper.GetVimsHealthFacilityFacilityId(timrToHealthfacilityId)));
 			try
 			{
 				JObject o = (JObject)obj["distribution"];
@@ -944,7 +937,7 @@ namespace GIIS.Tanzania.WCF
 
 
 
-				string postUrl = "http://uat.tz.elmis-dev.org/vaccine/inventory/distribution/save.json";
+				string postUrl = Program.url+"/vaccine/inventory/distribution/save.json";
 				return Program.PostJsonToUrl(postUrl, podObject.ToString());
 			}
 			catch(Exception ex)

@@ -32,7 +32,7 @@ namespace GIIS.Tanzania.WCF
 {
 	class Program
 	{
-		
+		public static string url = "http://uat.tz.elmis-dev.org";
 		public static string GetSourceForMyShowsPage(string downloadUrl)
 		{
 			using (var client = new WebClientEx())
@@ -43,7 +43,7 @@ namespace GIIS.Tanzania.WCF
 				{ "j_password", "admin123" },
 			};
 				// Authenticating into vims
-				client.UploadValues("http://uat.tz.elmis-dev.org/j_spring_security_check", values);
+				client.UploadValues(downloadUrl+"/j_spring_security_check", values);
 				// Downloading desired page
 				return client.DownloadString(downloadUrl);
 			}
@@ -59,13 +59,13 @@ namespace GIIS.Tanzania.WCF
 				{ "j_password", "admin123" },
 			};
 				// Authenticating into vims
-				client.UploadValues("http://uat.tz.elmis-dev.org/j_spring_security_check", values);
+				client.UploadValues(url+"/j_spring_security_check", values);
 
 				//Setting th content type headers to application/json
 				client.Headers[HttpRequestHeader.ContentType] = "application/json";
 
 				// uploading a json to vims
-				return client.UploadString("",jsonString);
+				return client.UploadString(postUrl,jsonString);
 
 
 			}
