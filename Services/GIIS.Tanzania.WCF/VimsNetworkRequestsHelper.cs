@@ -39,13 +39,33 @@ namespace GIIS.Tanzania.WCF
 			{
 				var values = new NameValueCollection
 			{
-				{ "j_username", "vims-divo" },
-				{ "j_password", "Admin123" },
+				{ "j_username", "vims-rivo" },
+				{ "j_password", "admin123" },
 			};
 				// Authenticating into vims
 				client.UploadValues("http://uat.tz.elmis-dev.org/j_spring_security_check", values);
 				// Downloading desired page
 				return client.DownloadString(downloadUrl);
+			}
+		}
+
+		public static string PostJsonToUrl(string postUrl,string jsonString)
+		{
+			using (var client = new WebClientEx())
+			{
+				var values = new NameValueCollection
+			{
+				{ "j_username", "vims-rivo" },
+				{ "j_password", "admin123" },
+			};
+				// Authenticating into vims
+				client.UploadValues("http://uat.tz.elmis-dev.org/j_spring_security_check", values);
+
+
+				// uploading a json to vims
+				return client.UploadString("",jsonString);
+
+
 			}
 		}
 	}

@@ -602,154 +602,170 @@ namespace GIIS.Tanzania.WCF
 		 * Method used to receive stock distributed from vims
 		 * 
 		 **/
-		public IntReturnValue receiveDelivery(string jsonRequest)
+		public IntReturnValue receiveDelivery(int vimsToFacilityId)
 		{
+
 			int insertValues=0;
 			JObject products = JObject.Parse(getVimsProducts());
 			JObject dosageUnits = JObject.Parse(getVimsDosageUnits());
-
 			try
 			{
-				JObject o = JObject.Parse(jsonRequest);
-
-				int fromFacitiyId = (int)o["fromFacilityId"];
-				int toFacilityId = HealthFacilityMapper.GetTimrHealthFacilityFacilityId((int)o["toFacilityId"]);
-				int programId = (int)o["programId"];
-				DateTime distributionDate = (DateTime)o["distributionDate"];
-				string distributionType = (o["distributionType"]).ToString();
-				string status = (o["status"]).ToString();
-
-				JArray lineItems = (JArray)o["lineItems"];
-				int counter = lineItems.Count;
-				for (int i = 0; i < counter; i++)
+				JObject obj = JObject.Parse(Program.GetSourceForMyShowsPage("http://uat.tz.elmis-dev.org/vaccine/inventory/distribution/distribution-supervisorid/"+vimsToFacilityId));
+				JObject o = (JObject)obj["distribution"];
+				if (o["status"].ToString().Equals("PENDING"))
 				{
-					int itemId = 0;
-					string itemName="";
-					int alt1QtyPer = 0;
-					string manufacturer = "";
-					int dosageUnitId = 0;
-					string gtin = "";
-					int productId = (int)lineItems[i]["productId"];
-
-
-					JArray productsArray = (JArray)products["products"];
-					int count = productsArray.Count;
-
-					for (int p = 0; p < count; p++)
+					int fromFacitiyId = (int)o["fromFacilityId"];
+					int toFacilityId = HealthFacilityMapper.GetTimrHealthFacilityFacilityId((int)o["toFacilityId"]);
+					int programId=0;
+					try
 					{
-						if (productsArray[p]["id"].Equals(lineItems[i]["productId"]))
-						{
-							gtin = productsArray[p]["gtin"].ToString();
-							manufacturer = productsArray[p]["manufacturer"].ToString();
-							dosageUnitId = (int)productsArray[p]["dosageUnitId"];
-							alt1QtyPer = (int)productsArray[p]["dosesPerDispensingUnit"];
-							itemName = productsArray[p]["primaryName"].ToString();
-
-							Item item = Item.GetItemByName(productsArray[p]["primaryName"].ToString());
-							Item itemByCode = Item.GetItemByCode(productsArray[p]["primaryName"].ToString());
-							if (item != null)
-							{
-								itemId = item.Id;
-							}
-							else if (itemByCode != null)
-							{
-								itemId = itemByCode.Id;
-							}
-							break;
-						}
+						programId = (int)o["programId"];
 					}
+					catch { 
+						//setting programId to 0;
+					}
+					DateTime distributionDate = (DateTime)o["distributionDate"];
+					string distributionType = (o["distributionType"]).ToString();
+					string status = (o["status"]).ToString();
 
-					JArray lots = (JArray)lineItems[i]["lots"];
-					int lotsCount = lots.Count;
-					for (int j = 0; j < lotsCount; j++)
+					JArray lineItems = (JArray)o["lineItems"];
+					int counter = lineItems.Count;
+					for (int i = 0; i < counter; i++)
 					{
-						int lotId;
-						int vimsLotId = (int)lots[j]["lotId"];
-						int quantity = (int)lots[j]["quantity"];
-						string vvmStatus = (string)lots[j]["vvmStatus"];
+						int itemId = 0;
+						string itemName = "";
+						int alt1QtyPer = 0;
+						string manufacturer = "";
+						int dosageUnitId = 0;
+						string gtin = "";
+						int productId = (int)lineItems[i]["productId"];
 
-						ItemLot item = getVimsLotsByProductId(productId,vimsLotId,gtin,itemId,fromFacitiyId);
 
-						ItemLot checkItem = ItemLot.GetItemLotByLotNumber(item.LotNumber);
-						int manufacturerId;
-						if (checkItem == null)
+						JArray productsArray = (JArray)products["products"];
+						int count = productsArray.Count;
+
+						for (int p = 0; p < count; p++)
 						{
-							Manufacturer man = Manufacturer.GetManufacturerByName(manufacturer);
-							if (man == null)
+							if (productsArray[p]["id"].Equals(lineItems[i]["productId"]))
 							{
-								man = new Manufacturer();
-								man.IsActive = true;
-								man.Name = manufacturer;
-								man.Code = manufacturer;
-								manufacturerId = Manufacturer.Insert(man);
-							}
-							else {
-								manufacturerId = man.Id;
-							}
+								gtin = productsArray[p]["gtin"].ToString();
+								manufacturer = productsArray[p]["manufacturer"].ToString();
+								dosageUnitId = (int)productsArray[p]["dosageUnitId"];
+								alt1QtyPer = (int)productsArray[p]["dosesPerDispensingUnit"];
+								itemName = productsArray[p]["primaryName"].ToString();
 
-
-							ItemManufacturer itemMan = ItemManufacturer.GetItemManufacturerByGtin(item.Gtin);
-							if (itemMan == null)
-							{
-								itemMan = new ItemManufacturer();
-								itemMan.Gtin = item.Gtin;
-								itemMan.ItemId = itemId;
-								itemMan.IsActive = true;
-								itemMan.ManufacturerId = manufacturerId;
-								itemMan.Alt1QtyPer = alt1QtyPer;
-								itemMan.Notes = itemName;
-								itemMan.ModifiedOn = new DateTime();
-								itemMan.ModifiedBy = 1;
-								itemMan.Alt1Uom = "";
-
-								JArray doseunitsArray = (JArray)dosageUnits["dosage-units"];
-								int doseCount = doseunitsArray.Count;
-								for (int z = 0; z < doseCount; z++)
+								Item item = Item.GetItemByName(productsArray[p]["primaryName"].ToString());
+								Item itemByCode = Item.GetItemByCode(productsArray[p]["primaryName"].ToString());
+								if (item != null)
 								{
-									if ((int)doseunitsArray[z]["id"] == dosageUnitId)
-									{
-										itemMan.BaseUom = doseunitsArray[z]["code"].ToString();
-										break;
-									}
+									itemId = item.Id;
 								}
-								ItemManufacturer.Insert(itemMan);
+								else if (itemByCode != null)
+								{
+									itemId = itemByCode.Id;
+								}
+								else {
+									throw new Exception("Item "+productsArray[p]["primaryName"].ToString()+" is not in server please configure the item");
+								}
+								break;
+							}
+						}
 
+						JArray lots = (JArray)lineItems[i]["lots"];
+						int lotsCount = lots.Count;
+						for (int j = 0; j < lotsCount; j++)
+						{
+							int lotId;
+							int vimsLotId = (int)lots[j]["lotId"];
+							int quantity = (int)lots[j]["quantity"];
+							string vvmStatus = (string)lots[j]["vvmStatus"];
+
+							ItemLot item = getVimsLotsByProductId(productId, vimsLotId, gtin, itemId, fromFacitiyId);
+
+							ItemLot checkItem = ItemLot.GetItemLotByLotNumber(item.LotNumber);
+							int manufacturerId;
+							if (checkItem == null)
+							{
+								Manufacturer man = Manufacturer.GetManufacturerByName(manufacturer);
+								if (man == null)
+								{
+									man = new Manufacturer();
+									man.IsActive = true;
+									man.Name = manufacturer;
+									man.Code = manufacturer;
+									manufacturerId = Manufacturer.Insert(man);
+								}
+								else {
+									manufacturerId = man.Id;
+								}
+
+
+								ItemManufacturer itemMan = ItemManufacturer.GetItemManufacturerByGtin(item.Gtin);
+								if (itemMan == null)
+								{
+									itemMan = new ItemManufacturer();
+									itemMan.Gtin = item.Gtin;
+									itemMan.ItemId = itemId;
+									itemMan.IsActive = true;
+									itemMan.ManufacturerId = manufacturerId;
+									itemMan.Alt1QtyPer = alt1QtyPer;
+									itemMan.Notes = itemName;
+									itemMan.ModifiedOn = new DateTime();
+									itemMan.ModifiedBy = 1;
+									itemMan.Alt1Uom = "";
+
+									JArray doseunitsArray = (JArray)dosageUnits["dosage-units"];
+									int doseCount = doseunitsArray.Count;
+									for (int z = 0; z < doseCount; z++)
+									{
+										if ((int)doseunitsArray[z]["id"] == dosageUnitId)
+										{
+											itemMan.BaseUom = doseunitsArray[z]["code"].ToString();
+											break;
+										}
+									}
+									ItemManufacturer.Insert(itemMan);
+
+								}
+
+
+								ItemLot.Insert(item);
+								lotId = ItemLot.GetItemLotByLotNumber(item.LotNumber).Id;
+							}
+							else
+							{
+								ItemLot.Update(item);
+								lotId = checkItem.Id;
 							}
 
 
-							ItemLot.Insert(item);
-							lotId = ItemLot.GetItemLotByLotNumber(item.LotNumber).Id;
+							HealthFacilityStockDistributions distributions = new HealthFacilityStockDistributions();
+							distributions.FromHealthFacilityId = fromFacitiyId;
+							distributions.ToHealthFacilityId = toFacilityId;
+							distributions.ProgramId = programId;
+							distributions.Status = status;
+							distributions.DistributionDate = distributionDate;
+							distributions.DistributionType = distributionType;
+							distributions.ProductId = productId;
+							distributions.ItemId = itemId;
+							distributions.LotId = lotId;
+							distributions.VimsLotId = vimsLotId;
+							distributions.Quantity = quantity;
+							distributions.VvmStatus = vvmStatus;
+
+							insertValues = HealthFacilityStockDistributions.Insert(distributions);
+
 						}
-						else 
-						{
-							ItemLot.Update(item);
-							lotId = checkItem.Id;
-						}
-
-
-						HealthFacilityStockDistributions distributions = new HealthFacilityStockDistributions();
-						distributions.FromHealthFacilityId = fromFacitiyId;
-						distributions.ToHealthFacilityId = toFacilityId;
-						distributions.ProgramId = programId;
-						distributions.Status = status;
-						distributions.DistributionDate = distributionDate;
-						distributions.DistributionType = distributionType;
-						distributions.ProductId = productId;
-						distributions.ItemId = itemId;
-						distributions.LotId = lotId;
-						distributions.VimsLotId = vimsLotId;
-						distributions.Quantity = quantity;
-						distributions.VvmStatus = vvmStatus;
-
-						insertValues=HealthFacilityStockDistributions.Insert(distributions);
-
 					}
-				}
 
-				BroadcastStoredHealthFacilityData(toFacilityId, "UpdateHealthFacilityStockDistributions");
-				IntReturnValue irv = new IntReturnValue();
-				irv.id = insertValues;
-				return irv;
+					BroadcastStoredHealthFacilityData(toFacilityId, "UpdateHealthFacilityStockDistributions");
+					IntReturnValue irv = new IntReturnValue();
+					irv.id = insertValues;
+					return irv;
+				}
+				IntReturnValue irv2 = new IntReturnValue();
+				irv2.id = -1;
+				return irv2;
 			}
 			catch (Exception e)
 			{
@@ -805,20 +821,19 @@ namespace GIIS.Tanzania.WCF
 		 **/
 		public ItemLot getVimsLotsByProductId(int productId,int vimslotId,string gtin,int itemId,int fromFacilityId)
 		{
-			String responseString = Program.GetSourceForMyShowsPage("http://uat.tz.elmis-dev.org/api/v2/facilities/"+fromFacilityId+"/stockCards?entries=1&countOnly=false&includeEmptyLots=false");
+			String url ="http://uat.tz.elmis-dev.org/api/v2/facilities/" + fromFacilityId + "/stockCards?entries=1&countOnly=false&includeEmptyLots=false" ;
+			String responseString = Program.GetSourceForMyShowsPage(url);
 			JObject o = JObject.Parse(responseString);
 
 			JArray stockCards = (JArray)o["stockCards"];
 			int counter = stockCards.Count;
 			for (int i = 0; i < counter; i++)
 			{
-
 				JArray lotsOnHand = (JArray)stockCards[i]["lotsOnHand"];
-
 				int lotsOnHandCount = lotsOnHand.Count;
 				for (int j = 0; j < lotsOnHandCount; j++)
 				{
-					if (vimslotId == (int)lotsOnHand[j]["lotId"])
+					if(vimslotId == (int)lotsOnHand[j]["lotId"])
 					{
 						JObject lot = (JObject)lotsOnHand[j]["lot"];
 
@@ -836,7 +851,7 @@ namespace GIIS.Tanzania.WCF
 
 			}
 
-			Exception e = new Exception("productId = " + productId + ",vimslotId = " + vimslotId + ",gtin=" + gtin + ",itemId=" + itemId);
+			Exception e = new Exception("fromFacilityId = "+fromFacilityId+",productId = " + productId + ",vimslotId = " + vimslotId + ",gtin=" + gtin + ",itemId=" + itemId);
 			throw e;
 		}
 
@@ -868,8 +883,71 @@ namespace GIIS.Tanzania.WCF
 
 
 			ItemLot lot = ItemLot.GetItemLotById(lotId);
-			new BusinessLogic.StockManagementLogic().Allocate(GetHealthFacilityById(toHealthFacilityId).ElementAt(0), lot.Gtin, lot.LotNumber, quantity, null, userId);
-			return HealthFacilityStockDistributions.Update(distributions);;
+			ItemTransaction transaction = new BusinessLogic.StockManagementLogic().Allocate(GetHealthFacilityById(toHealthFacilityId).ElementAt(0), lot.Gtin, lot.LotNumber, quantity, null, userId);
+			HealthFacilityStockDistributions.Update(distributions);
+
+			return transaction.Id;
+		}
+
+
+		public string sendPOD(int timrToHealthfacilityId)
+		{
+			JObject obj = JObject.Parse(Program.GetSourceForMyShowsPage("http://uat.tz.elmis-dev.org/vaccine/inventory/distribution/distribution-supervisorid/" + HealthFacilityMapper.GetVimsHealthFacilityFacilityId(timrToHealthfacilityId)));
+			try
+			{
+				JObject o = (JObject)obj["distribution"];
+
+				JObject podObject = new JObject();
+				podObject.Add("id", o["id"]);
+				podObject.Add("programId", o["programId"]);
+				podObject.Add("status", "RECEIVED");
+				podObject.Add("toFacilityId", HealthFacilityMapper.GetVimsHealthFacilityFacilityId(timrToHealthfacilityId));
+
+				JArray lineItems = new JArray();
+
+				JArray lineItemsOrg = (JArray)o["lineItems"];
+				int counter = lineItemsOrg.Count;
+				for (int i = 0; i < counter; i++)
+				{
+					JObject itemObj = new JObject();
+					itemObj.Add("productId", lineItemsOrg[i]["productId"]);
+					itemObj.Add("id", lineItemsOrg[i]["id"]);
+
+					JArray lots = new JArray();
+
+					JArray lotsOrg = (JArray)lineItemsOrg[i]["lots"];
+					int lotsCounter = lotsOrg.Count;
+					int quantity = 0;
+					for (int j = 0; j < lotsCounter; j++)
+					{
+						JObject lotItem = new JObject();
+						lotItem.Add("lotId", lotsOrg[j]["lotId"]);
+						lotItem.Add("id", lotsOrg[j]["id"]);
+						lotItem.Add("vvmStatus", lotsOrg[j]["vvmStatus"]);
+
+
+						HealthFacilityStockDistributions distribution = HealthFacilityStockDistributions.GetHealthFacilityStockDistributionsByLotId_ProductId_ToFacilityId_DistributionDate((int)lotsOrg[j]["lotId"], (int)lineItemsOrg[i]["productId"], timrToHealthfacilityId, (DateTime)o["distributionDate"], "RECEIVED");
+						lotItem.Add("quantity", distribution.Quantity);
+						quantity += distribution.Quantity;
+
+						lots.Add(lotItem);
+					}
+					itemObj.Add("lots", lots);
+					itemObj.Add("quantity", quantity);
+
+					lineItems.Add(itemObj);
+				}
+				podObject.Add("lineItems", lineItems);
+
+
+
+				string postUrl = "http://uat.tz.elmis-dev.org/vaccine/inventory/distribution/save.json";
+				return podObject.ToString();
+			}
+			catch(Exception ex)
+			{
+				throw ex;
+			}
 		}
 	}
 }

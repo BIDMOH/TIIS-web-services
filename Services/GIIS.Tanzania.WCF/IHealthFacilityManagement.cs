@@ -160,9 +160,9 @@ namespace GIIS.Tanzania.WCF
 		[OperationContract]
 		string getVimsProducts();
 
-		[WebGet(UriTemplate = "receiveDelivery?jsonRequest={jsonRequest}", ResponseFormat = WebMessageFormat.Json)]
+		[WebGet(UriTemplate = "receiveDelivery?vimsToFacilityId={vimsToFacilityId}", ResponseFormat = WebMessageFormat.Json)]
 		[OperationContract]
-		IntReturnValue receiveDelivery(string jsonRequest);
+		IntReturnValue receiveDelivery(int vimsToFacilityId);
 
 		[WebGet(UriTemplate = "GetHealthFacilityStockDistributions?healthFacilityId={healthFacilityId}", ResponseFormat = WebMessageFormat.Json)]
 		[OperationContract]
@@ -181,5 +181,8 @@ namespace GIIS.Tanzania.WCF
 		[OperationContract]
 		int updateHeathFacilityStockDistributions(int fromHealthFacilityId, int toHealthFacilityId, int productId, int lotId, int itemId, string distributionType, DateTime distributionDate, int quantity, string status,int userId);
 
+		[WebGet(UriTemplate = "sendPOD?timrToHealthfacilityId={timrToHealthfacilityId}", ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		string sendPOD(int timrToHealthfacilityId);
 	}
 }

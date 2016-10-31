@@ -186,7 +186,7 @@ namespace GIIS.BusinessLogic
             };
 
             // Update the balance
-            //balance.Balance -= qty;
+            balance.Balance += qty;
             balance.Allocated += qty;
 
             // Save

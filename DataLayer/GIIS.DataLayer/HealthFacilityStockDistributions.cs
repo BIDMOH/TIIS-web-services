@@ -58,6 +58,32 @@ namespace GIIS.DataLayer
 			}
 		}
 
+		public static HealthFacilityStockDistributions GetHealthFacilityStockDistributionsByLotId_ProductId_ToFacilityId_DistributionDate(int LotId,int ProductId,int ToFacilityId,DateTime DistributionDate,string status)
+		{
+			try
+			{
+				string query = @"SELECT * FROM ""HEALTH_FACILITY_STOCK_DISTRIBUTIONS"" WHERE  
+						""STATUS"" = @status AND ""TO_HEALTH_FACILITY_ID"" = @toHealthFacilityId  
+						AND ""DISTRIBUTION_DATE"" = @DistributionDate AND ""LOT_ID"" = @LotId AND ""PRODUCT_ID""=@ProductId";
+				List<Npgsql.NpgsqlParameter> parameters = new List<NpgsqlParameter>()
+				{
+					new NpgsqlParameter("@toHealthFacilityId", DbType.Int32)  { Value = ToFacilityId },
+					new NpgsqlParameter("@LotId", DbType.Int32)  { Value = LotId },
+					new NpgsqlParameter("@ProductId", DbType.Int32)  { Value = ProductId },
+					new NpgsqlParameter("@DistributionDate", DbType.DateTime)  { Value = DistributionDate },
+					new NpgsqlParameter("@status", DbType.String)  { Value = status }
+				};
+				DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, parameters);
+				return GetHealthFacilityStockDistributions(dt);
+			}
+			catch (Exception ex)
+			{
+				Log.InsertEntity("HealthFacilityStockDistributions", "GetHealthFacilityStockDistributionsByLotId_ProductId_ToFacilityId_DistributionDate", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+				throw ex;
+			}
+		}
+
+
 		public static List<HealthFacilityStockDistributions> GetHealthFacilityStockDistributions(int toHealthFacilityId, string status)
 		{
 			try
