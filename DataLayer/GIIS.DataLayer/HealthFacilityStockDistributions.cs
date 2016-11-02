@@ -25,6 +25,7 @@ namespace GIIS.DataLayer
 	{
 
 		#region Properties
+		public Int32 StockDistributionId { get; set; }
 		public Int32 FromHealthFacilityId { get; set; }
 		public Int32 ToHealthFacilityId { get; set; }
 		public Int32 ProgramId { get; set; }
@@ -58,21 +59,16 @@ namespace GIIS.DataLayer
 			}
 		}
 
-		public static HealthFacilityStockDistributions GetHealthFacilityStockDistributionsByLotId_ProductId_ToFacilityId_DistributionDate(int VimsLotId,int ProductId,int ToFacilityId,DateTime DistributionDate,string status)
+		public static HealthFacilityStockDistributions GetHealthFacilityStockDistributionsById(int StockDistributionId)
 		{
 			try
 			{
 				string query = @"SELECT * FROM ""HEALTH_FACILITY_STOCK_DISTRIBUTIONS"" WHERE  
-						""STATUS"" = @status AND ""TO_HEALTH_FACILITY_ID"" = @ToFacilityId  
-						AND ""DISTRIBUTION_DATE"" = @DistributionDate AND ""VIMS_LOT_ID"" = @VimsLotId AND ""PRODUCT_ID""=@ProductId";
+						""STOCK_DISTRIBUTION_ID"" = @StockDistributionId";
 				
 				List<Npgsql.NpgsqlParameter> parameters = new List<NpgsqlParameter>()
 				{
-					new NpgsqlParameter("@ToFacilityId", DbType.Int32)  { Value = ToFacilityId },
-					new NpgsqlParameter("@DistributionDate", DbType.DateTime)  { Value = DistributionDate},
-					new NpgsqlParameter("@ProductId", DbType.Int32)  { Value = ProductId },
-					new NpgsqlParameter("@VimsLotId", DbType.Int32)  { Value = VimsLotId },
-					new NpgsqlParameter("@status", DbType.String)  { Value = status }
+					new NpgsqlParameter("@StockDistributionId", DbType.Int32)  { Value = StockDistributionId }
 				};
 
 				DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, parameters);
@@ -86,7 +82,7 @@ namespace GIIS.DataLayer
 		}
 
 
-		public static List<HealthFacilityStockDistributions> GetHealthFacilityStockDistributions(int toHealthFacilityId, string status)
+		public static List<HealthFacilityStockDistributions> GetHealthFacilityStockDistributionsByStatus(int toHealthFacilityId, string status)
 		{
 			try
 			{
@@ -100,6 +96,29 @@ namespace GIIS.DataLayer
 				{
 					new NpgsqlParameter("@toHealthFacilityId", DbType.Int32)  { Value = toHealthFacilityId },
 					new NpgsqlParameter("@status", DbType.String)  { Value = status }
+				};
+				DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, parameters);
+				return GetHealthFacilityStockDistributionsAsList(dt);
+			}
+			catch (Exception ex)
+			{
+				Log.InsertEntity("HealthFacilityStockDistributions", "GetHealthFacilityStockDistributionsByStatus", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+				throw ex;
+			}
+		}
+
+		public static List<HealthFacilityStockDistributions> GetHealthFacilityStockDistributions(int toHealthFacilityId)
+		{
+			try
+			{
+
+				string query = @"SELECT * FROM ""HEALTH_FACILITY_STOCK_DISTRIBUTIONS"" 
+				JOIN ""ITEM_LOT"" ON ""HEALTH_FACILITY_STOCK_DISTRIBUTIONS"".""LOT_ID""  =""ITEM_LOT"".""ID"" 
+				JOIN ""ITEM_MANUFACTURER"" ON ""ITEM_LOT"".""GTIN""  =""ITEM_MANUFACTURER"".""GTIN""
+				WHERE ""TO_HEALTH_FACILITY_ID"" = @toHealthFacilityId";
+				List<Npgsql.NpgsqlParameter> parameters = new List<NpgsqlParameter>()
+				{
+					new NpgsqlParameter("@toHealthFacilityId", DbType.Int32)  { Value = toHealthFacilityId }
 				};
 				DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, parameters);
 				return GetHealthFacilityStockDistributionsAsList(dt);
@@ -122,9 +141,9 @@ namespace GIIS.DataLayer
 			{
 				string query = @"INSERT INTO ""HEALTH_FACILITY_STOCK_DISTRIBUTIONS"" (""FROM_HEALTH_FACILITY_ID"",""TO_HEALTH_FACILITY_ID"" ,""PROGRAM_ID"", 
 				""DISTRIBUTION_DATE"", ""ITEM_ID"",
-				""PRODUCT_ID"",""LOT_ID"", ""VIMS_LOT_ID"",""VVM_STATUS"", ""QUANTITY"",""STATUS"",""DISTRIBUTION_TYPE"") 
+				""PRODUCT_ID"",""LOT_ID"", ""VIMS_LOT_ID"",""VVM_STATUS"", ""QUANTITY"",""STATUS"",""DISTRIBUTION_TYPE"",""STOCK_DISTRIBUTION_ID"") 
 				VALUES (@FromHealthFacilityId, @ToHealthFacilityId, @ProgramId, @DistributionDate, @ItemId,
-				@ProductId, @LotId, @VimsLotId,@VvmStatus, @Quantity, @Status,@DistributionType)";
+				@ProductId, @LotId, @VimsLotId,@VvmStatus, @Quantity, @Status,@DistributionType,@StockDistributionId)";
 				List<Npgsql.NpgsqlParameter> parameters = new List<NpgsqlParameter>()
 				{
 					new NpgsqlParameter("@FromHealthFacilityId", DbType.Int32)  { Value = transferedStock.FromHealthFacilityId },
@@ -138,6 +157,7 @@ namespace GIIS.DataLayer
 					new NpgsqlParameter("@VvmStatus", DbType.String)  { Value = transferedStock.VvmStatus },
 					new NpgsqlParameter("@Quantity", DbType.Int32)  { Value = transferedStock.Quantity },
 					new NpgsqlParameter("@Status", DbType.String)  { Value = transferedStock.Status },
+					new NpgsqlParameter("@StockDistributionId", DbType.Int32)  { Value = transferedStock.StockDistributionId},
 					new NpgsqlParameter("@DistributionType", DbType.String)  { Value = transferedStock.DistributionType }
 				};
 				DBManager.ExecuteScalarCommand(query, CommandType.Text, parameters);
@@ -178,8 +198,42 @@ namespace GIIS.DataLayer
 		{
 			try
 			{
-				string query = @"UPDATE ""HEALTH_FACILITY_STOCK_DISTRIBUTIONS"" SET ""QUANTITY"" = @quantity, ""STATUS"" = @status WHERE ""TO_HEALTH_FACILITY_ID"" = @toHealthFacilityId AND ""FROM_HEALTH_FACILITY_ID"" = @FromHealthFacilityId AND ""DISTRIBUTION_DATE"" = @DistributionDate 
-				AND ""ITEM_ID""=@ItemId AND ""LOT_ID"" = @LotId AND ""PRODUCT_ID""=@ProductId  AND ""DISTRIBUTION_TYPE""=@DistributionType";
+				string query = @"UPDATE ""HEALTH_FACILITY_STOCK_DISTRIBUTIONS"" SET ""QUANTITY"" = @quantity, ""STATUS"" = @status WHERE ""STOCK_DISTRIBUTION_ID"" = @StockDistributionId";
+
+				List<Npgsql.NpgsqlParameter> parameters = new List<NpgsqlParameter>()
+				{
+					new NpgsqlParameter("@FromHealthFacilityId", DbType.Int32)  { Value = transferedStock.FromHealthFacilityId },
+					new NpgsqlParameter("@ToHealthFacilityId", DbType.Int32)  { Value = transferedStock.ToHealthFacilityId },
+					new NpgsqlParameter("@ProgramId", DbType.Int32)  { Value = transferedStock.ProgramId},
+					new NpgsqlParameter("@DistributionDate", DbType.DateTime)  { Value = transferedStock.DistributionDate},
+					new NpgsqlParameter("@ItemId", DbType.Int32)  { Value = transferedStock.ItemId},
+					new NpgsqlParameter("@ProductId", DbType.Int32)  { Value = (object)transferedStock.ProductId ?? DBNull.Value },
+					new NpgsqlParameter("@LotId", DbType.Int32)  { Value = (object)transferedStock.LotId ?? DBNull.Value  },
+					new NpgsqlParameter("@VimsLotId", DbType.Int32)  { Value = transferedStock.VimsLotId },
+					new NpgsqlParameter("@VvmStatus", DbType.String)  { Value = transferedStock.VvmStatus },
+					new NpgsqlParameter("@Quantity", DbType.Int32)  { Value = transferedStock.Quantity },
+					new NpgsqlParameter("@StockDistributionId", DbType.Int32)  { Value = transferedStock.StockDistributionId },
+					new NpgsqlParameter("@Status", DbType.String)  { Value = transferedStock.Status },
+					new NpgsqlParameter("@DistributionType", DbType.String)  { Value = transferedStock.DistributionType }
+				};
+
+
+				int rowAffected = DBManager.ExecuteNonQueryCommand(query, CommandType.Text, parameters);
+				return rowAffected;
+			}
+			catch (Exception ex)
+			{
+				Log.InsertEntity("HealthFacilityStockDistributions", "Update", 1, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+				throw ex;
+			}
+		}
+
+
+		public static int UpdatePending(HealthFacilityStockDistributions transferedStock)
+		{
+			try
+			{
+				string query = @"UPDATE ""HEALTH_FACILITY_STOCK_DISTRIBUTIONS"" SET ""QUANTITY"" = @quantity, ""STATUS"" = @status WHERE ""STOCK_DISTRIBUTION_ID"" = @StockDistributionId AND ""STATUS"" = 'PENDING'";
 
 				List<Npgsql.NpgsqlParameter> parameters = new List<NpgsqlParameter>()
 				{
@@ -194,6 +248,7 @@ namespace GIIS.DataLayer
 					new NpgsqlParameter("@VvmStatus", DbType.String)  { Value = transferedStock.VvmStatus },
 					new NpgsqlParameter("@Quantity", DbType.Int32)  { Value = transferedStock.Quantity },
 					new NpgsqlParameter("@Status", DbType.String)  { Value = transferedStock.Status },
+					new NpgsqlParameter("@StockDistributionId", DbType.Int32)  { Value = transferedStock.StockDistributionId },
 					new NpgsqlParameter("@DistributionType", DbType.String)  { Value = transferedStock.DistributionType }
 				};
 
@@ -204,9 +259,10 @@ namespace GIIS.DataLayer
 			catch (Exception ex)
 			{
 				Log.InsertEntity("HealthFacilityStockDistributions", "Delete", 1, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
-				throw ex;
 			}
+			return -1;
 		}
+
 
 
 		#endregion
@@ -229,6 +285,7 @@ namespace GIIS.DataLayer
 					o.VimsLotId = Helper.ConvertToInt(row["VIMS_LOT_ID"]);
 					o.VvmStatus = (row["VVM_STATUS"]).ToString();
 					o.Quantity = Helper.ConvertToInt(row["QUANTITY"]);
+					o.StockDistributionId = Helper.ConvertToInt(row["STOCK_DISTRIBUTION_ID"]);
 					o.Status = (row["STATUS"]).ToString();
 					o.DistributionType = (row["DISTRIBUTION_TYPE"]).ToString();
 					try
@@ -265,6 +322,7 @@ namespace GIIS.DataLayer
 					o.VimsLotId = Helper.ConvertToInt(row["VIMS_LOT_ID"]);
 					o.VvmStatus = (row["VVM_STATUS"]).ToString();
 					o.Quantity = Helper.ConvertToInt(row["QUANTITY"]);
+					o.StockDistributionId = Helper.ConvertToInt(row["STOCK_DISTRIBUTION_ID"]);
 					o.Status = (row["STATUS"]).ToString();
 					o.DistributionType = (row["DISTRIBUTION_TYPE"]).ToString();
 					try

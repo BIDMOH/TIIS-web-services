@@ -2,9 +2,9 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="GIIS.Tanzania.WCF/HealthFacilityManagement.svc.cs">
     <Files>
       <File FileName="GIIS.Tanzania.WCF/VimsHealthFacilityMapper.cs" Line="35" Column="161" />
-      <File FileName="GIIS.Tanzania.WCF/HealthFacilityManagement.svc.cs" Line="915" Column="6" />
-      <File FileName="GIIS.Tanzania.WCF/IHealthFacilityManagement.cs" Line="163" Column="77" />
-      <File FileName="GIIS.Tanzania.WCF/VimsNetworkRequestsHelper.cs" Line="52" Column="37" />
+      <File FileName="GIIS.Tanzania.WCF/HealthFacilityManagement.svc.cs" Line="814" Column="1" />
+      <File FileName="GIIS.Tanzania.WCF/IHealthFacilityManagement.cs" Line="189" Column="1" />
+      <File FileName="GIIS.Tanzania.WCF/VimsNetworkRequestsHelper.cs" Line="49" Column="51" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

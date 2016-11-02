@@ -32,7 +32,8 @@ namespace GIIS.Tanzania.WCF
 {
 	class Program
 	{
-		public static string url = "http://uat.tz.elmis-dev.org";
+		public static string url = "http://kelvinmbwilo.com:9091";
+		//public static string url = "http://uat.tz.elmis-dev.org";
 		public static string GetSourceForMyShowsPage(string downloadUrl)
 		{
 			using (var client = new WebClientEx())
@@ -43,9 +44,9 @@ namespace GIIS.Tanzania.WCF
 				{ "j_password", "admin123" },
 			};
 				// Authenticating into vims
-				client.UploadValues(downloadUrl+"/j_spring_security_check", values);
+				client.UploadValues(url+"/j_spring_security_check", values);
 				// Downloading desired page
-				return client.DownloadString(downloadUrl);
+				return client.DownloadString(url+downloadUrl);
 			}
 		}
 

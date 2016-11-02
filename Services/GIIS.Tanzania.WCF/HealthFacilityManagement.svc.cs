@@ -678,6 +678,7 @@ namespace GIIS.Tanzania.WCF
 							int lotId;
 							int vimsLotId = (int)lots[j]["lotId"];
 							int quantity = (int)lots[j]["quantity"];
+							int stockDistributionId = (int)lots[j]["id"];
 							string vvmStatus = (string)lots[j]["vvmStatus"];
 
 							ItemLot item = getVimsLotsByProductId(productId, vimsLotId, gtin, itemId, fromFacitiyId);
@@ -743,13 +744,14 @@ namespace GIIS.Tanzania.WCF
 							distributions.FromHealthFacilityId = fromFacitiyId;
 							distributions.ToHealthFacilityId = toFacilityId;
 							distributions.ProgramId = programId;
-							distributions.Status = status;
+							distributions.Status = "PENDING";
 							distributions.DistributionDate = distributionDate;
 							distributions.DistributionType = distributionType;
 							distributions.ProductId = productId;
 							distributions.ItemId = itemId;
 							distributions.LotId = lotId;
 							distributions.VimsLotId = vimsLotId;
+							distributions.StockDistributionId = stockDistributionId;
 							distributions.Quantity = quantity;
 							distributions.VvmStatus = vvmStatus;
 
@@ -758,7 +760,10 @@ namespace GIIS.Tanzania.WCF
 						}
 					}
 
-					BroadcastStoredHealthFacilityData(toFacilityId, "UpdateHealthFacilityStockDistributions");
+					if (insertValues > 0)
+					{
+						BroadcastStoredHealthFacilityData(toFacilityId, "newHealthFacilityStockDistributions");
+					}
 					IntReturnValue irv = new IntReturnValue();
 					irv.id = insertValues;
 					return irv;
@@ -841,7 +846,7 @@ namespace GIIS.Tanzania.WCF
 
 		public List<HealthFacilityStockDistributions> GetHealthFacilityStockDistributions(int healthFacilityId)
 		{
-			List<HealthFacilityStockDistributions> stockDistributions = GIIS.DataLayer.HealthFacilityStockDistributions.GetHealthFacilityStockDistributions(healthFacilityId,"PENDING");
+			List<HealthFacilityStockDistributions> stockDistributions = GIIS.DataLayer.HealthFacilityStockDistributions.GetHealthFacilityStockDistributions(healthFacilityId);
 			return stockDistributions;
 		}
 
@@ -852,7 +857,7 @@ namespace GIIS.Tanzania.WCF
 		}
 
 
-		public int updateHeathFacilityStockDistributions(int fromHealthFacilityId, int toHealthFacilityId, int productId, int lotId, int itemId, string distributionType, DateTime distributionDate, int quantity, string status,int userId)
+		public int updateHeathFacilityStockDistributions(int fromHealthFacilityId, int toHealthFacilityId, int productId, int lotId, int itemId, string distributionType, DateTime distributionDate, int quantity, string status,int userId,int StockDistributionId)
 		{
 			HealthFacilityStockDistributions distributions = new HealthFacilityStockDistributions();
 			distributions.FromHealthFacilityId = fromHealthFacilityId;
@@ -863,23 +868,27 @@ namespace GIIS.Tanzania.WCF
 			distributions.ProductId = productId;
 			distributions.ItemId = itemId;
 			distributions.LotId = lotId;
+			distributions.StockDistributionId = StockDistributionId;
 			distributions.Quantity = quantity;
 
 
-			ItemLot lot = ItemLot.GetItemLotById(lotId);
-			ItemTransaction transaction = new BusinessLogic.StockManagementLogic().Allocate(GetHealthFacilityById(toHealthFacilityId).ElementAt(0), lot.Gtin, lot.LotNumber, quantity, null, userId);
-			HealthFacilityStockDistributions.Update(distributions);
-
-
-			//Checks if all stock distributions have been received from the mobile app before sending the POD back to vims
-			List<HealthFacilityStockDistributions> stockDistributions = GIIS.DataLayer.HealthFacilityStockDistributions.GetHealthFacilityStockDistributions(toHealthFacilityId, "PENDING");
-			if (stockDistributions == null)
+			int updateResults = HealthFacilityStockDistributions.UpdatePending(distributions);
+			if (updateResults > 0)
 			{
-				sendPOD(toHealthFacilityId);
+				ItemLot lot = ItemLot.GetItemLotById(lotId);
+				ItemTransaction transaction = new BusinessLogic.StockManagementLogic().Allocate(GetHealthFacilityById(toHealthFacilityId).ElementAt(0), lot.Gtin, lot.LotNumber, quantity, null, userId);
+				//Checks if all stock distributions have been received from the mobile app before sending the POD back to vims
+				List<HealthFacilityStockDistributions> stockDistributions = GIIS.DataLayer.HealthFacilityStockDistributions.GetHealthFacilityStockDistributionsByStatus(toHealthFacilityId, "PENDING");
+				if (stockDistributions.Count == 0)
+				{
+					sendPOD(toHealthFacilityId);
+					BroadcastStoredHealthFacilityData(toHealthFacilityId, "proofOfDeliverySentSuccessfully");
+				}
+				return transaction.Id;
+
 			}
 
-
-			return transaction.Id;
+			return 0;
 		}
 
 
@@ -918,7 +927,7 @@ namespace GIIS.Tanzania.WCF
 						lotItem.Add("id", lotsOrg[j]["id"]);
 						lotItem.Add("vvmStatus", lotsOrg[j]["vvmStatus"]);
 
-						HealthFacilityStockDistributions distribution = HealthFacilityStockDistributions.GetHealthFacilityStockDistributionsByLotId_ProductId_ToFacilityId_DistributionDate((int)lotsOrg[j]["lotId"], (int)lineItemsOrg[i]["productId"], timrToHealthfacilityId, (DateTime)o["distributionDate"], "RECEIVED");
+						HealthFacilityStockDistributions distribution = HealthFacilityStockDistributions.GetHealthFacilityStockDistributionsById((int)lotsOrg[j]["id"]);
 
 						if (distribution == null)
 						{

@@ -177,9 +177,9 @@ namespace GIIS.Tanzania.WCF
 		[OperationContract]
 		int DeleteHealthFacilityStockDistributions(int healthFacilityId, DateTime distributionDate, string status);
 
-		[WebGet(UriTemplate = "updateHeathFacilityStockDistributions?fromHealthFacilityId={fromHealthFacilityId}&toHealthFacilityId={toHealthFacilityId}&productId={productId}&lotId={lotId}&itemId={itemId}&distributionType={distributionType}&distributionDate={distributionDate}&quantity={quantity}&status={status}&userId={userId}", ResponseFormat = WebMessageFormat.Json)]
+		[WebGet(UriTemplate = "updateHeathFacilityStockDistributions?fromHealthFacilityId={fromHealthFacilityId}&toHealthFacilityId={toHealthFacilityId}&productId={productId}&lotId={lotId}&itemId={itemId}&distributionType={distributionType}&distributionDate={distributionDate}&quantity={quantity}&status={status}&userId={userId}&StockDistributionId={StockDistributionId}", ResponseFormat = WebMessageFormat.Json)]
 		[OperationContract]
-		int updateHeathFacilityStockDistributions(int fromHealthFacilityId, int toHealthFacilityId, int productId, int lotId, int itemId, string distributionType, DateTime distributionDate, int quantity, string status,int userId);
+		int updateHeathFacilityStockDistributions(int fromHealthFacilityId, int toHealthFacilityId, int productId, int lotId, int itemId, string distributionType, DateTime distributionDate, int quantity, string status,int userId,int StockDistributionId);
 
 		[WebGet(UriTemplate = "sendPOD?timrToHealthfacilityId={timrToHealthfacilityId}", ResponseFormat = WebMessageFormat.Json)]
 		[OperationContract]

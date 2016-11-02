@@ -1,8 +1,7 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workbench ActiveDocument="HealthFacilityStockDistributions.cs">
     <Files>
-      <File FileName="HealthFacilityStockDistributions.cs" Line="76" Column="7" />
-      <File FileName="HealthFacilityBalance.cs" Line="252" Column="133" />
+      <File FileName="HealthFacilityStockDistributions.cs" Line="67" Column="55" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
