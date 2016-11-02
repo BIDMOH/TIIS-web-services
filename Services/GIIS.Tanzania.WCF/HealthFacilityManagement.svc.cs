@@ -640,7 +640,6 @@ namespace GIIS.Tanzania.WCF
 						string gtin = "";
 						int productId = (int)lineItems[i]["productId"];
 
-
 						JArray productsArray = (JArray)products["products"];
 						int count = productsArray.Count;
 
@@ -648,11 +647,40 @@ namespace GIIS.Tanzania.WCF
 						{
 							if (productsArray[p]["id"].Equals(lineItems[i]["productId"]))
 							{
-								gtin = productsArray[p]["gtin"].ToString();
-								manufacturer = productsArray[p]["manufacturer"].ToString();
+								itemName = productsArray[p]["primaryName"].ToString();
+								if (productsArray[p]["primaryName"].ToString().Equals("Safety boxes"))
+								{
+									gtin = "17";
+									manufacturer = "Haffkine";
+								}
+								else 
+								{
+									
+									JToken manufacturerToken = productsArray[p]["manufacturer"];
+									if(manufacturerToken!=null)
+									{
+										manufacturer = productsArray[p]["manufacturer"].ToString();
+									}
+									else{
+										manufacturer = "Unknown Manufacturer";
+									}
+
+									JToken gtinToken = productsArray[p]["gtin"];
+									if (gtinToken != null)
+									{
+										gtin = productsArray[p]["gtin"].ToString();
+									}
+									else {
+										gtin = "";
+									}
+
+								}
+
 								dosageUnitId = (int)productsArray[p]["dosageUnitId"];
 								alt1QtyPer = (int)productsArray[p]["dosesPerDispensingUnit"];
-								itemName = productsArray[p]["primaryName"].ToString();
+
+
+
 
 								Item item = Item.GetItemByName(productsArray[p]["primaryName"].ToString());
 								Item itemByCode = Item.GetItemByCode(productsArray[p]["primaryName"].ToString());
@@ -671,20 +699,26 @@ namespace GIIS.Tanzania.WCF
 							}
 						}
 
-						JArray lots = (JArray)lineItems[i]["lots"];
-						int lotsCount = lots.Count;
-						for (int j = 0; j < lotsCount; j++)
+
+						if (itemName.Equals("Safety boxes"))
 						{
+							//HACK FOR HANDLING STOCK TRANSFER FOR SAFETY BOXES
 							int lotId;
-							int vimsLotId = (int)lots[j]["lotId"];
-							int quantity = (int)lots[j]["quantity"];
-							int stockDistributionId = (int)lots[j]["id"];
-							string vvmStatus = (string)lots[j]["vvmStatus"];
+							int vimsLotId = 0;
+							int quantity = (int)lineItems[i]["quantity"];
+							int stockDistributionId = (int)lineItems[i]["id"];
+							string vvmStatus = null;
 
-							ItemLot item = getVimsLotsByProductId(productId, vimsLotId, gtin, itemId, fromFacitiyId);
 
-							ItemLot checkItem = ItemLot.GetItemLotByLotNumber(item.LotNumber);
+							ItemLot itemLot = new ItemLot();
+							itemLot.ExpireDate = new DateTime(2100,12,31);
+							itemLot.IsActive = true;
+							itemLot.LotNumber = "";
+							itemLot.Gtin = gtin;
+							itemLot.ItemId = itemId;
 							int manufacturerId;
+
+							ItemLot checkItem = ItemLot.GetItemLotByLotNumber(itemLot.LotNumber);
 							if (checkItem == null)
 							{
 								Manufacturer man = Manufacturer.GetManufacturerByName(manufacturer);
@@ -701,11 +735,11 @@ namespace GIIS.Tanzania.WCF
 								}
 
 
-								ItemManufacturer itemMan = ItemManufacturer.GetItemManufacturerByGtin(item.Gtin);
+								ItemManufacturer itemMan = ItemManufacturer.GetItemManufacturerByGtin(itemLot.Gtin);
 								if (itemMan == null)
 								{
 									itemMan = new ItemManufacturer();
-									itemMan.Gtin = item.Gtin;
+									itemMan.Gtin = itemLot.Gtin;
 									itemMan.ItemId = itemId;
 									itemMan.IsActive = true;
 									itemMan.ManufacturerId = manufacturerId;
@@ -730,16 +764,14 @@ namespace GIIS.Tanzania.WCF
 								}
 
 
-								ItemLot.Insert(item);
-								lotId = ItemLot.GetItemLotByLotNumber(item.LotNumber).Id;
+								ItemLot.Insert(itemLot);
+								lotId = ItemLot.GetItemLotByLotNumber(itemLot.LotNumber).Id;
 							}
 							else
 							{
-								ItemLot.Update(item);
+								ItemLot.Update(itemLot);
 								lotId = checkItem.Id;
 							}
-
-
 							HealthFacilityStockDistributions distributions = new HealthFacilityStockDistributions();
 							distributions.FromHealthFacilityId = fromFacitiyId;
 							distributions.ToHealthFacilityId = toFacilityId;
@@ -757,6 +789,102 @@ namespace GIIS.Tanzania.WCF
 
 							insertValues = HealthFacilityStockDistributions.Insert(distributions);
 
+						}
+						else 
+						{
+							//handling other vaccines and syringes
+							JArray lots = (JArray)lineItems[i]["lots"];
+							int lotsCount = lots.Count;
+							for (int j = 0; j < lotsCount; j++)
+							{
+								int lotId;
+								int vimsLotId = (int)lots[j]["lotId"];
+								int quantity = (int)lots[j]["quantity"];
+								int stockDistributionId = (int)lots[j]["id"];
+								string vvmStatus = (string)lots[j]["vvmStatus"];
+
+								ItemLot item = getVimsLotsByProductId(productId, vimsLotId, gtin, itemId, fromFacitiyId);
+
+								if (item == null)
+								{
+									throw new Exception("itemId = " + itemId);
+								}
+
+								ItemLot checkItem = ItemLot.GetItemLotByLotNumber(item.LotNumber);
+								int manufacturerId;
+								if (checkItem == null)
+								{
+									Manufacturer man = Manufacturer.GetManufacturerByName(manufacturer);
+									if (man == null)
+									{
+										man = new Manufacturer();
+										man.IsActive = true;
+										man.Name = manufacturer;
+										man.Code = manufacturer;
+										manufacturerId = Manufacturer.Insert(man);
+									}
+									else {
+										manufacturerId = man.Id;
+									}
+
+
+									ItemManufacturer itemMan = ItemManufacturer.GetItemManufacturerByGtin(item.Gtin);
+									if (itemMan == null)
+									{
+										itemMan = new ItemManufacturer();
+										itemMan.Gtin = item.Gtin;
+										itemMan.ItemId = itemId;
+										itemMan.IsActive = true;
+										itemMan.ManufacturerId = manufacturerId;
+										itemMan.Alt1QtyPer = alt1QtyPer;
+										itemMan.Notes = itemName;
+										itemMan.ModifiedOn = new DateTime();
+										itemMan.ModifiedBy = 1;
+										itemMan.Alt1Uom = "";
+
+										JArray doseunitsArray = (JArray)dosageUnits["dosage-units"];
+										int doseCount = doseunitsArray.Count;
+										for (int z = 0; z < doseCount; z++)
+										{
+											if ((int)doseunitsArray[z]["id"] == dosageUnitId)
+											{
+												itemMan.BaseUom = doseunitsArray[z]["code"].ToString();
+												break;
+											}
+										}
+										ItemManufacturer.Insert(itemMan);
+
+									}
+
+
+									ItemLot.Insert(item);
+									lotId = ItemLot.GetItemLotByLotNumber(item.LotNumber).Id;
+								}
+								else
+								{
+									ItemLot.Update(item);
+									lotId = checkItem.Id;
+								}
+
+
+								HealthFacilityStockDistributions distributions = new HealthFacilityStockDistributions();
+								distributions.FromHealthFacilityId = fromFacitiyId;
+								distributions.ToHealthFacilityId = toFacilityId;
+								distributions.ProgramId = programId;
+								distributions.Status = "PENDING";
+								distributions.DistributionDate = distributionDate;
+								distributions.DistributionType = distributionType;
+								distributions.ProductId = productId;
+								distributions.ItemId = itemId;
+								distributions.LotId = lotId;
+								distributions.VimsLotId = vimsLotId;
+								distributions.StockDistributionId = stockDistributionId;
+								distributions.Quantity = quantity;
+								distributions.VvmStatus = vvmStatus;
+
+								insertValues = HealthFacilityStockDistributions.Insert(distributions);
+
+							}
 						}
 					}
 
@@ -876,7 +1004,14 @@ namespace GIIS.Tanzania.WCF
 			if (updateResults > 0)
 			{
 				ItemLot lot = ItemLot.GetItemLotById(lotId);
-				ItemTransaction transaction = new BusinessLogic.StockManagementLogic().Allocate(GetHealthFacilityById(toHealthFacilityId).ElementAt(0), lot.Gtin, lot.LotNumber, quantity, null, userId);
+				ItemTransaction transaction = new ItemTransaction();
+
+				//Checks if there is a valid LotItem by Id. For Safety Boxes this may be null since safety boxes have no lot
+				if (lot.LotNumber != null && !lot.LotNumber.Equals(""))
+				{
+					transaction = new BusinessLogic.StockManagementLogic().Allocate(GetHealthFacilityById(toHealthFacilityId).ElementAt(0), lot.Gtin, lot.LotNumber, quantity, null, userId);
+				}
+
 				//Checks if all stock distributions have been received from the mobile app before sending the POD back to vims
 				List<HealthFacilityStockDistributions> stockDistributions = GIIS.DataLayer.HealthFacilityStockDistributions.GetHealthFacilityStockDistributionsByStatus(toHealthFacilityId, "PENDING");
 				if (stockDistributions.Count == 0)
@@ -894,6 +1029,7 @@ namespace GIIS.Tanzania.WCF
 
 		public string sendPOD(int timrToHealthfacilityId)
 		{
+			//obtaining the original sent stock delivery from vims inorder to obtain more data to be returned in the POD responce.
 			JObject obj = JObject.Parse(Program.GetSourceForMyShowsPage("/vaccine/inventory/distribution/distribution-supervisorid/" + HealthFacilityMapper.GetVimsHealthFacilityFacilityId(timrToHealthfacilityId)));
 			try
 			{
@@ -931,14 +1067,29 @@ namespace GIIS.Tanzania.WCF
 
 						if (distribution == null)
 						{
-							throw new Exception("lotId = " + (int)lotsOrg[j]["lotId"] + ", productId = " + (int)lineItemsOrg[i]["productId"] + ",toFacilityId = " + timrToHealthfacilityId + ",distributionDate = " + o["distributionDate"].ToString() + ",status=RECEIVED");
+							throw new Exception("StockDistributionId = " + (int)lotsOrg[j]["id"] + ", productId = " + (int)lineItemsOrg[i]["productId"] + ",toFacilityId = " + timrToHealthfacilityId + ",distributionDate = " + o["distributionDate"].ToString() + ",status=RECEIVED");
 						}
 						lotItem.Add("quantity", distribution.Quantity);
 						quantity += distribution.Quantity;
 						lots.Add(lotItem);
 					}
 					itemObj.Add("lots", lots);
-					itemObj.Add("quantity", quantity);
+
+					if (lots.Count == 0)
+					{
+						//handling safety boxes since they have no Id
+						HealthFacilityStockDistributions distribution = HealthFacilityStockDistributions.GetHealthFacilityStockDistributionsById((int)lineItemsOrg[i]["id"]);
+						if (distribution == null)
+						{
+							throw new Exception("StockDistributionIdForSafetyBoxes = " + (int)lineItemsOrg[i]["id"] + ", productId = " + (int)lineItemsOrg[i]["productId"] + ",toFacilityId = " + timrToHealthfacilityId + ",distributionDate = " + o["distributionDate"].ToString() + ",status=RECEIVED");
+						}
+						else {
+							itemObj.Add("quantity", distribution.Quantity);
+						}
+					}
+					else {
+						itemObj.Add("quantity", quantity);
+					}
 
 					lineItems.Add(itemObj);
 				}
