@@ -32,7 +32,7 @@ namespace GIIS.Tanzania.WCF
 {
 	class HealthFacilityMapper
 	{
-		private static string facility_mapping = "[{'name':'User River GVT','vims_id':'16394','timr_id':'17515'},{'name':'Kaloleni','vims_id':'16333','timr_id':'19472'}]";
+		private static string facility_mapping = "[{'name':'Usariver GVT','vims_id':16394,'timr_id':17515},{'name':'Kaloleni HC','vims_id':16333,'timr_id':19472},{'name':'Kikatiti','vims_id':19221,'timr_id':19465},{'name':' Sombetini','vims_id':16753,'timr_id':13502},{'name':'St. Elizabeth','vims_id':16810,'timr_id':13909}]";
 
 		public static int GetVimsHealthFacilityFacilityId(int TimrId)
 		{

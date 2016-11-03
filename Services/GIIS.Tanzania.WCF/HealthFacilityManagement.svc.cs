@@ -95,13 +95,6 @@ namespace GIIS.Tanzania.WCF
 						vaccinationEntity.catchmentMale = GIIS.DataLayer.HealthFacility.GetHealthFacilityVaccinationsByGenderAndCatchment(healthFacility.Id, d.Id, fromDate, toDate, true, true);
 						vaccinationEntity.catchmentFemale = GIIS.DataLayer.HealthFacility.GetHealthFacilityVaccinationsByGenderAndCatchment(healthFacility.Id, d.Id, fromDate, toDate, false, true);
 
-						DateTime cummulativeFrom = new DateTime(Int32.Parse(DateTime.Now.Year.ToString()), 1, 1);
-						vaccinationEntity.serviceAreaCummulativeTotal = GIIS.DataLayer.HealthFacility.GetHealthFacilityVaccinationsByCatchment(healthFacility.Id, d.Id, cummulativeFrom, toDate,  false);
-						vaccinationEntity.catchmentAreaCummulativeTotal = GIIS.DataLayer.HealthFacility.GetHealthFacilityVaccinationsByCatchment(healthFacility.Id, d.Id, cummulativeFrom, toDate,  true);
-
-
-
-
 						vaccinationsList.Add(vaccinationEntity);
 					}
 				}
@@ -132,7 +125,7 @@ namespace GIIS.Tanzania.WCF
 					vaccinationEntity.antigen = ScheduledVaccination.GetScheduledVaccinationById(d.ScheduledVaccinationId).Name;
 					vaccinationEntity.dose = d.DoseNumber;
 
-					if (vaccinationEntity.antigen.Equals("BCG") || vaccinationEntity.antigen.Equals("TT") || (vaccinationEntity.antigen.Equals("OPV") && vaccinationEntity.dose==0))
+					if (vaccinationEntity.antigen.Equals("BCG") || vaccinationEntity.antigen.Equals("Tetanus Toxoid") || (vaccinationEntity.antigen.Equals("OPV") && vaccinationEntity.dose==0))
 					{
 						try
 						{
@@ -150,14 +143,104 @@ namespace GIIS.Tanzania.WCF
 						vaccinationEntity.catchmentMale = GIIS.DataLayer.HealthFacility.GetHealthFacilityVaccinationsByGenderAndCatchment(healthFacility.Id, d.Id, fromDate, toDate, true, true);
 						vaccinationEntity.catchmentFemale = GIIS.DataLayer.HealthFacility.GetHealthFacilityVaccinationsByGenderAndCatchment(healthFacility.Id, d.Id, fromDate, toDate, false, true);
 
-						DateTime cummulativeFrom = new DateTime(Int32.Parse(DateTime.Now.Year.ToString()), 1, 1);
-						vaccinationEntity.serviceAreaCummulativeTotal = GIIS.DataLayer.HealthFacility.GetHealthFacilityVaccinationsByCatchment(healthFacility.Id, d.Id, cummulativeFrom, toDate, false);
-						vaccinationEntity.catchmentAreaCummulativeTotal = GIIS.DataLayer.HealthFacility.GetHealthFacilityVaccinationsByCatchment(healthFacility.Id, d.Id, cummulativeFrom, toDate, true);
 					}
 
 					vaccinationsList.Add(vaccinationEntity);
 				}
 			}
+
+
+			//TODO remove the hardcoded ids and create a mechanism of obtaining this ids.
+			VaccinationsEntity vaccinationEntitytt1 = new VaccinationsEntity();
+			HealthFacilityBcgOpv0AndTTVaccinations vtt1 = GIIS.DataLayer.HealthFacilityBcgOpv0AndTTVaccinations.GetHealthFacilityBcgOpv0AndTTVaccinationsByDoseId(healthFacilityId, 79, fromDate.Month, fromDate.Year);
+			vaccinationEntitytt1.antigen = "Tetanus Toxoid";
+			vaccinationEntitytt1.dose = 1;
+			if (vtt1 != null)
+			{
+				vaccinationEntitytt1.serviceAreaMale = vtt1.MaleServiceArea;
+				vaccinationEntitytt1.serviceAreaFemale = vtt1.FemaleServiceArea;
+				vaccinationEntitytt1.catchmentMale = vtt1.MaleCatchmentArea;
+				vaccinationEntitytt1.catchmentFemale = vtt1.FemaleCatchmentArea;
+			}
+			vaccinationsList.Add(vaccinationEntitytt1);
+
+
+
+			VaccinationsEntity vaccinationEntitytt2 = new VaccinationsEntity();
+			HealthFacilityBcgOpv0AndTTVaccinations vtt2 = GIIS.DataLayer.HealthFacilityBcgOpv0AndTTVaccinations.GetHealthFacilityBcgOpv0AndTTVaccinationsByDoseId(healthFacilityId, 80, fromDate.Month, fromDate.Year);
+			vaccinationEntitytt2.antigen = "Tetanus Toxoid";
+			vaccinationEntitytt2.dose = 2;
+			if (vtt2 != null)
+			{
+				vaccinationEntitytt2.serviceAreaMale = vtt2.MaleServiceArea;
+				vaccinationEntitytt2.serviceAreaFemale = vtt2.FemaleServiceArea;
+				vaccinationEntitytt2.catchmentMale = vtt2.MaleCatchmentArea;
+				vaccinationEntitytt2.catchmentFemale = vtt2.FemaleCatchmentArea;
+			}
+			vaccinationsList.Add(vaccinationEntitytt2);
+
+
+			VaccinationsEntity vaccinationEntitytt3 = new VaccinationsEntity();
+			HealthFacilityBcgOpv0AndTTVaccinations vtt3 = GIIS.DataLayer.HealthFacilityBcgOpv0AndTTVaccinations.GetHealthFacilityBcgOpv0AndTTVaccinationsByDoseId(healthFacilityId, 81, fromDate.Month, fromDate.Year);
+			vaccinationEntitytt3.antigen = "Tetanus Toxoid";
+			vaccinationEntitytt3.dose = 3;
+
+			if (vtt3 != null)
+			{
+				vaccinationEntitytt3.serviceAreaMale = vtt3.MaleServiceArea;
+				vaccinationEntitytt3.serviceAreaFemale = vtt3.FemaleServiceArea;
+				vaccinationEntitytt3.catchmentMale = vtt3.MaleCatchmentArea;
+				vaccinationEntitytt3.catchmentFemale = vtt3.FemaleCatchmentArea;
+			}
+			vaccinationsList.Add(vaccinationEntitytt3);
+
+
+
+			VaccinationsEntity vaccinationEntitytt4 = new VaccinationsEntity();
+			HealthFacilityBcgOpv0AndTTVaccinations vtt4 = GIIS.DataLayer.HealthFacilityBcgOpv0AndTTVaccinations.GetHealthFacilityBcgOpv0AndTTVaccinationsByDoseId(healthFacilityId, 82, fromDate.Month, fromDate.Year);
+			vaccinationEntitytt4.antigen = "Tetanus Toxoid";
+			vaccinationEntitytt4.dose = 4;
+			if (vtt4 != null)
+			{
+				vaccinationEntitytt4.serviceAreaMale = vtt4.MaleServiceArea;
+				vaccinationEntitytt4.serviceAreaFemale = vtt4.FemaleServiceArea;
+				vaccinationEntitytt4.catchmentMale = vtt4.MaleCatchmentArea;
+				vaccinationEntitytt4.catchmentFemale = vtt4.FemaleCatchmentArea;
+			}
+			vaccinationsList.Add(vaccinationEntitytt4);
+
+
+			VaccinationsEntity vaccinationEntitytt5 = new VaccinationsEntity();
+			HealthFacilityBcgOpv0AndTTVaccinations vtt5 = GIIS.DataLayer.HealthFacilityBcgOpv0AndTTVaccinations.GetHealthFacilityBcgOpv0AndTTVaccinationsByDoseId(healthFacilityId, 83, fromDate.Month, fromDate.Year);
+			vaccinationEntitytt5.antigen = "Tetanus Toxoid";
+			vaccinationEntitytt5.dose = 5;
+
+			if (vtt5 != null)
+			{
+				vaccinationEntitytt5.serviceAreaMale = vtt5.MaleServiceArea;
+				vaccinationEntitytt5.serviceAreaFemale = vtt5.FemaleServiceArea;
+				vaccinationEntitytt5.catchmentMale = vtt5.MaleCatchmentArea;
+				vaccinationEntitytt5.catchmentFemale = vtt5.FemaleCatchmentArea;
+			}
+			vaccinationsList.Add(vaccinationEntitytt5);
+
+
+			VaccinationsEntity vaccinationEntitytt6 = new VaccinationsEntity();
+			HealthFacilityBcgOpv0AndTTVaccinations vtt6 = GIIS.DataLayer.HealthFacilityBcgOpv0AndTTVaccinations.GetHealthFacilityBcgOpv0AndTTVaccinationsByDoseId(healthFacilityId, 84, fromDate.Month, fromDate.Year);
+			vaccinationEntitytt6.antigen = "Tetanus Toxoid";
+			vaccinationEntitytt6.dose = 6;
+			if (vtt6 != null)
+			{
+				vaccinationEntitytt6.serviceAreaMale = vtt6.MaleServiceArea;
+				vaccinationEntitytt6.serviceAreaFemale = vtt6.FemaleServiceArea;
+				vaccinationEntitytt6.catchmentMale = vtt6.MaleCatchmentArea;
+				vaccinationEntitytt6.catchmentFemale = vtt6.FemaleCatchmentArea;
+			}
+			vaccinationsList.Add(vaccinationEntitytt6);
+
+
+
+
 			entity.healthFacilityVaccinations = vaccinationsList;
 			entity.healthFacilityName = healthFacility.Name;
 			entity.healthFacilityId = healthFacility.Id;
@@ -803,7 +886,7 @@ namespace GIIS.Tanzania.WCF
 								int stockDistributionId = (int)lots[j]["id"];
 								string vvmStatus = (string)lots[j]["vvmStatus"];
 
-								ItemLot item = getVimsLotsByProductId(productId, vimsLotId, gtin, itemId, fromFacitiyId);
+								ItemLot item = getVimsLotsByProductId(productId, vimsLotId, gtin, itemId, vimsToFacilityId);
 
 								if (item == null)
 								{
@@ -936,39 +1019,43 @@ namespace GIIS.Tanzania.WCF
 		 * Method used to receive all vims products used for mapping of product ids to TIIS itemIds
 		 * 
 		 **/
-		public ItemLot getVimsLotsByProductId(int productId,int vimslotId,string gtin,int itemId,int fromFacilityId)
+		public ItemLot getVimsLotsByProductId(int productId,int vimslotId,string gtin,int itemId,int vimsToFacilityId)
 		{
-			String url ="/api/v2/facilities/" + fromFacilityId + "/stockCards?entries=1&countOnly=false&includeEmptyLots=false" ;
-			String responseString = Program.GetSourceForMyShowsPage(url);
-			JObject o = JObject.Parse(responseString);
+			JObject o = JObject.Parse(Program.GetSourceForMyShowsPage("/vaccine/inventory/distribution/distribution-supervisorid/" + vimsToFacilityId));
 
-			JArray stockCards = (JArray)o["stockCards"];
-			int counter = stockCards.Count;
-			for (int i = 0; i < counter; i++)
+			JObject obj = (JObject)o["distribution"];
+	
+
+			JArray stockCards = (JArray)obj["lineItems"];
+			if (stockCards!=null)
 			{
-				JArray lotsOnHand = (JArray)stockCards[i]["lotsOnHand"];
-				int lotsOnHandCount = lotsOnHand.Count;
-				for (int j = 0; j < lotsOnHandCount; j++)
+				int counter = stockCards.Count;
+				for (int i = 0; i < counter; i++)
 				{
-					if(vimslotId == (int)lotsOnHand[j]["lotId"])
+					JArray lotsOnHand = (JArray)stockCards[i]["lots"];
+					if (lotsOnHand != null)
 					{
-						JObject lot = (JObject)lotsOnHand[j]["lot"];
+						int lotsOnHandCount = lotsOnHand.Count;
+						for (int j = 0; j < lotsOnHandCount; j++)
+						{
+							if (vimslotId == (int)lotsOnHand[j]["lotId"])
+							{
+								JObject lot = (JObject)lotsOnHand[j]["lot"];
 
-						ItemLot itemLot = new ItemLot();
-						itemLot.ExpireDate = (DateTime)lot["expirationDate"];
-						itemLot.IsActive = (Boolean)lot["valid"];
-						itemLot.LotNumber = (String)lot["lotCode"];
-						itemLot.Gtin = gtin;
-						itemLot.ItemId = itemId;
-						return itemLot;
+								ItemLot itemLot = new ItemLot();
+								itemLot.ExpireDate = (DateTime)lot["expirationDate"];
+								itemLot.IsActive = (Boolean)lot["valid"];
+								itemLot.LotNumber = (String)lot["lotCode"];
+								itemLot.Gtin = gtin;
+								itemLot.ItemId = itemId;
+								return itemLot;
+							}
+						}
 					}
 				}
-
-
-
 			}
 
-			Exception e = new Exception("fromFacilityId = "+fromFacilityId+",productId = " + productId + ",vimslotId = " + vimslotId + ",gtin=" + gtin + ",itemId=" + itemId);
+			Exception e = new Exception("vims fFacilityId = "+vimsToFacilityId+",productId = " + productId + ",vimslotId = " + vimslotId + ",gtin=" + gtin + ",itemId=" + itemId);
 			throw e;
 		}
 
@@ -1105,5 +1192,12 @@ namespace GIIS.Tanzania.WCF
 				throw ex;
 			}
 		}
+
+
+		public VitaminASupplimentation GetChildSupplementsByChild(int healthFacilityId,DateTime fromTime, DateTime toTime) 
+		{
+			return VitaminASupplimentation.GetChildSupplementsByChild(healthFacilityId, fromTime, toTime);
+		}
+
 	}
 }

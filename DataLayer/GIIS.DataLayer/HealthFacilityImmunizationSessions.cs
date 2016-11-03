@@ -27,6 +27,9 @@ namespace GIIS.DataLayer
 		#region Properties
 		public Int32 HealthFacilityId { get; set; }
 		public Int32 OutreachPlanned { get; set; }
+		public Int32 FixedConducted { get; set; }
+		public Int32 OutreachConducted { get; set; }
+		public Int32 OutreachCanceled { get; set; }
 		public string OtherMajorImmunizationActivities { get; set; }
 		public Int32 ReportedMonth { get; set; }
 		public Int32 ReportedYear { get; set; }

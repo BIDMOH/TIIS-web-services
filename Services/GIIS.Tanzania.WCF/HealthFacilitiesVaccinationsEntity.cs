@@ -28,8 +28,6 @@ namespace GIIS.Tanzania.WCF
 		public int serviceAreaFemale { get; set; }
 		public int catchmentMale { get; set; }
 		public int catchmentFemale { get; set; }
-		public int serviceAreaCummulativeTotal { get; set; }
-		public int catchmentAreaCummulativeTotal { get; set; }
     }
 
 	public class HealthFacilityVaccinationsEntity

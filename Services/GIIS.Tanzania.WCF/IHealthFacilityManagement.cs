@@ -184,5 +184,9 @@ namespace GIIS.Tanzania.WCF
 		[WebGet(UriTemplate = "sendPOD?timrToHealthfacilityId={timrToHealthfacilityId}", ResponseFormat = WebMessageFormat.Json)]
 		[OperationContract]
 		string sendPOD(int timrToHealthfacilityId);
+
+		[WebGet(UriTemplate = "GetChildSupplementsByChild?healthFacilityId={healthFacilityId}&fromTime={fromTime}&toTime={toTime}", ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		VitaminASupplimentation GetChildSupplementsByChild(int healthFacilityId, DateTime fromTime, DateTime toTime);
 	}
 }

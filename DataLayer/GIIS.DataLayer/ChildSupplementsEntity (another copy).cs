@@ -38,6 +38,32 @@ namespace GIIS.DataLayer
         }
 
 
+		public static ChildSupplements GetChildSupplementsByChild(DateTime fromTime,DateTime toTime)
+		{
+			try
+			{
+				string query = @"SELECT *
+                            FROM ""JRNL_CHILD_SUPPLEMENTS"" 
+							INNER JOIN ""CHILD"" ON  ""JRNL_CHILD_SUPPLEMENTS"".""CHILD_ID""=""CHILD"".""ID"" 
+								WHERE 
+									""DOSE"".""ID"" = @doseId
+									AND ""CHILD"".""GENDER"" = @gender
+									AND ""CHILD"".""HEALTHCENTER_ID"" = @healthFacilityId
+		                            AND ""VACCINATION_EVENT"".""VACCINATION_STATUS"" = @vaccinationStatus
+									AND ""VACCINATION_EVENT"".""HEALTH_FACILITY_ID"" = @healthFacilityId
+		                            AND ""VACCINATION_EVENT"".""VACCINATION_DATE"" >= @fromTime 
+		                            AND ""VACCINATION_EVENT"".""VACCINATION_DATE"" <=  @toTime";
+				
+				DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, null);
+				return GetChildSupplementsAsObject(dt);
+			}
+			catch (Exception ex)
+			{
+				Log.InsertEntity("ChildSupplements", "GetChildSupplementsByChild", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+				throw ex;
+			}
+		}
+
 
 		public static ChildSupplements GetChildSupplementsByChild(Int32 childId, DateTime date)
         {

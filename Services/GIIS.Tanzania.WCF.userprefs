@@ -1,10 +1,9 @@
 ﻿<Properties StartupConfiguration="{9A92CA0A-5B83-4E9D-8EDD-BB59683F9A98}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="GIIS.Tanzania.WCF/HealthFacilityManagement.svc.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="GIIS.Tanzania.WCF/VimsNetworkRequestsHelper.cs">
     <Files>
-      <File FileName="GIIS.Tanzania.WCF/VimsHealthFacilityMapper.cs" Line="35" Column="161" />
-      <File FileName="GIIS.Tanzania.WCF/HealthFacilityManagement.svc.cs" Line="1010" Column="32" />
-      <File FileName="GIIS.Tanzania.WCF/IHealthFacilityManagement.cs" Line="189" Column="1" />
-      <File FileName="GIIS.Tanzania.WCF/VimsNetworkRequestsHelper.cs" Line="49" Column="51" />
+      <File FileName="GIIS.Tanzania.WCF/ChildResults.cs" Line="19" Column="18" />
+      <File FileName="GIIS.Tanzania.WCF/HealthFacilityManagement.svc.cs" Line="1026" Column="26" />
+      <File FileName="GIIS.Tanzania.WCF/VimsNetworkRequestsHelper.cs" Line="36" Column="20" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
