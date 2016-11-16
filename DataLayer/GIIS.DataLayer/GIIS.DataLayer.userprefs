@@ -1,13 +1,16 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workbench ActiveDocument="HealthFacilityBcgOpv0AndTTVaccinations.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="HealthFacilityBalanceEntity.cs">
     <Files>
-      <File FileName="HealthFacilityBcgOpv0AndTTVaccinations.cs" Line="28" Column="47" />
-      <File FileName="HealthFacilityImmunizationSessions.cs" Line="221" Column="84" />
+      <File FileName="HealthFacilityAEFICases.cs" Line="60" Column="5" />
+      <File FileName="HealthFacilityBalance.cs" Line="341" Column="2" />
+      <File FileName="HealthFacilityBalanceEntity.cs" Line="339" Column="59" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/coze/Workspace/TIIS-web-services/DataLayer/GIIS.DataLayer/HealthFacilityAEFICases.cs" line="116" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

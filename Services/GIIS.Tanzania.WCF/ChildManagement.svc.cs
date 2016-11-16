@@ -131,9 +131,16 @@ namespace GIIS.Tanzania.WCF
 		{
 
 			Child c = GIIS.DataLayer.Child.GetChildByBarcode(barcodeId);
-			int childId = c.Id;
 
-			return BroadcastChildUpdates(childId);
+			if (c != null)
+			{
+				int childId = c.Id;
+
+				return BroadcastChildUpdates(childId);
+			}
+			else {
+				return "";
+			}
 		}
 
 		/**

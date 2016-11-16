@@ -125,8 +125,31 @@ namespace GIIS.Tanzania.WCF
 					vaccinationEntity.antigen = ScheduledVaccination.GetScheduledVaccinationById(d.ScheduledVaccinationId).Name;
 					vaccinationEntity.dose = d.DoseNumber;
 
-					if (vaccinationEntity.antigen.Equals("BCG") || vaccinationEntity.antigen.Equals("Tetanus Toxoid") || (vaccinationEntity.antigen.Equals("OPV") && vaccinationEntity.dose==0))
+					if (vaccinationEntity.antigen.Equals("BCG") || (vaccinationEntity.antigen.Equals("OPV") && vaccinationEntity.dose == 0))
 					{
+						try
+						{
+							HealthFacilityBcgOpv0AndTTVaccinations v = GIIS.DataLayer.HealthFacilityBcgOpv0AndTTVaccinations.GetHealthFacilityBcgOpv0AndTTVaccinationsByDoseId(healthFacilityId, d.Id, fromDate.Month, fromDate.Year);
+
+							if (v.MaleServiceArea != 0 && v.FemaleServiceArea != 0 && v.MaleCatchmentArea != 0 && v.FemaleCatchmentArea != 0)
+							{//check if the monthly report data for BCG or OPV0 vaccinations from the tablets have been filled (This data is filled from the tablet into the BcgOpv0AndTTVaccinations table), if so use the value from the monthly reports i.e BcgOpv0AndTTVaccinations table, and send it back to vims if not use the value from vaccination events
+
+								vaccinationEntity.serviceAreaMale = v.MaleServiceArea;
+								vaccinationEntity.serviceAreaFemale = v.FemaleServiceArea;
+								vaccinationEntity.catchmentMale = v.MaleCatchmentArea;
+								vaccinationEntity.catchmentFemale = v.FemaleCatchmentArea;
+							}
+							else { //Else use the values from child vaccinations data within the vaccination event tables of the facilities
+								vaccinationEntity.serviceAreaMale = GIIS.DataLayer.HealthFacility.GetHealthFacilityVaccinationsByGenderAndCatchment(healthFacility.Id, d.Id, fromDate, toDate, true, false);
+								vaccinationEntity.serviceAreaFemale = GIIS.DataLayer.HealthFacility.GetHealthFacilityVaccinationsByGenderAndCatchment(healthFacility.Id, d.Id, fromDate, toDate, false, false);
+								vaccinationEntity.catchmentMale = GIIS.DataLayer.HealthFacility.GetHealthFacilityVaccinationsByGenderAndCatchment(healthFacility.Id, d.Id, fromDate, toDate, true, true);
+								vaccinationEntity.catchmentFemale = GIIS.DataLayer.HealthFacility.GetHealthFacilityVaccinationsByGenderAndCatchment(healthFacility.Id, d.Id, fromDate, toDate, false, true);
+
+							}
+						}
+						catch (Exception e) { }
+					}
+					else if (vaccinationEntity.antigen.Equals("Tetanus Toxoid")){
 						try
 						{
 							HealthFacilityBcgOpv0AndTTVaccinations v = GIIS.DataLayer.HealthFacilityBcgOpv0AndTTVaccinations.GetHealthFacilityBcgOpv0AndTTVaccinationsByDoseId(healthFacilityId, d.Id, fromDate.Month, fromDate.Year);
@@ -135,9 +158,9 @@ namespace GIIS.Tanzania.WCF
 							vaccinationEntity.catchmentMale = v.MaleCatchmentArea;
 							vaccinationEntity.catchmentFemale = v.FemaleCatchmentArea;
 						}
-						catch (Exception e){}
-					}
-					else {
+						catch (Exception e) { }
+
+					}else {
 						vaccinationEntity.serviceAreaMale = GIIS.DataLayer.HealthFacility.GetHealthFacilityVaccinationsByGenderAndCatchment(healthFacility.Id, d.Id, fromDate, toDate, true, false);
 						vaccinationEntity.serviceAreaFemale = GIIS.DataLayer.HealthFacility.GetHealthFacilityVaccinationsByGenderAndCatchment(healthFacility.Id, d.Id, fromDate, toDate, false, false);
 						vaccinationEntity.catchmentMale = GIIS.DataLayer.HealthFacility.GetHealthFacilityVaccinationsByGenderAndCatchment(healthFacility.Id, d.Id, fromDate, toDate, true, true);
@@ -582,7 +605,7 @@ namespace GIIS.Tanzania.WCF
 
 
 		/**
-		 * Method used to broadcast Stored HealthFacilityColdChains to other tablets within the same facility
+		 * Method used to broadcast messages to  devices within the same facility as the facility Id
 		 * 
 		 **/
 		public string BroadcastStoredHealthFacilityData(int healthFacilityId, string value)
@@ -673,6 +696,8 @@ namespace GIIS.Tanzania.WCF
 		}
 
 
+		#region vims helper methods and api service for receiving stock, broadcasting stock tickle message to the facilities, allow health facilities to obtain the data and send Proof Of Delivery from the facility back to VIMS
+
 		public int DeleteHealthFacilityStockDistributions(int healthFacilityId,DateTime distributionDate, string status)
 		{
 			int i=HealthFacilityStockDistributions.Delete(healthFacilityId, distributionDate, status);
@@ -709,7 +734,6 @@ namespace GIIS.Tanzania.WCF
 					}
 					DateTime distributionDate = (DateTime)o["distributionDate"];
 					string distributionType = (o["distributionType"]).ToString();
-					string status = (o["status"]).ToString();
 
 					JArray lineItems = (JArray)o["lineItems"];
 					int counter = lineItems.Count;
@@ -1016,7 +1040,7 @@ namespace GIIS.Tanzania.WCF
 		}
 
 		/**
-		 * Method used to receive all vims products used for mapping of product ids to TIIS itemIds
+		 * Method used to receive all vims products used for mapping of lots to TIIS itemLotsIds
 		 * 
 		 **/
 		public ItemLot getVimsLotsByProductId(int productId,int vimslotId,string gtin,int itemId,int vimsToFacilityId)
@@ -1192,12 +1216,29 @@ namespace GIIS.Tanzania.WCF
 				throw ex;
 			}
 		}
+		#endregion
 
+
+		#region vims connection apis for obtaining Vitamin A supplimentations per health facility
 
 		public VitaminASupplimentation GetChildSupplementsByChild(int healthFacilityId,DateTime fromTime, DateTime toTime) 
 		{
 			return VitaminASupplimentation.GetChildSupplementsByChild(healthFacilityId, fromTime, toTime);
 		}
+
+		#endregion
+
+
+
+
+		#region vims connection api service for obtaining AEFI reporting data
+
+		public List<HealthFacilityAEFI> GetHealthFacilityAEFIList(int healthFacilityId, DateTime fromTime, DateTime toTime)
+		{
+			return HealthFacilityAEFI.GetHealthFacilityAEFIList(fromTime, toTime,healthFacilityId);
+		}
+
+		#endregion
 
 	}
 }

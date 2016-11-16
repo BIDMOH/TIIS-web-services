@@ -178,6 +178,7 @@
     <Compile Include="HealthFacilitySyringesAndSafetyBoxes.cs" />
     <Compile Include="HealthFacilityStockDistributions.cs" />
     <Compile Include="VitaminASupplimentation.cs" />
+    <Compile Include="HealthFacilityAEFICases.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Library\Mono.Security.dll" />

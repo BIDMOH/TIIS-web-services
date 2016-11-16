@@ -83,7 +83,7 @@ namespace GIIS.Tanzania.WCF
 					balanceEntity.stockOnHand = HealthFacilityBalance.GetHealthFacilityBalanceByHealthFacilityIdAndDose(hfId, antigen);
 					balanceEntity.dosesReceived = HealthFacilityBalance.GetHealthFacilityReceivedDosesByHealthFacilityIdAndDose(hfId, antigen, fromDate, toDate);
 					balanceEntity.dosesDiscardedUnopened = -1*HealthFacilityBalance.GetHealthFacilityDosesDiscardedUnoppened(hfId, antigen, fromDate, toDate);
-					balanceEntity.dosesDiscardedOpened = -1*HealthFacilityBalance.GetHealthFacilityDosesDiscardedOpened(hfId, antigen, fromDate, toDate);
+					balanceEntity.dosesDiscardedOpened = HealthFacilityBalance.GetHealthFacilityDosesDiscardedOpened(hfId, antigen, fromDate, toDate);
 					balanceEntity.childrenImmunized = HealthFacility.GetHealthFacilityVaccinationsByScheduledVaccinationId(hfId, v.Id, fromDate, toDate);
 
 					balanceEntity.openingBalance = balanceEntity.stockOnHand - HealthFacilityBalance.GetHealthFacilityDoseInAllTransactions(hfId, antigen, fromDate, toDate);

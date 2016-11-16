@@ -317,59 +317,62 @@ namespace GIIS.DataLayer
 
 		}
 
-		public static Int32 GetHealthFacilityDosesDiscardedOpened (int id, string doseName, DateTime from, DateTime to)
+		public static Int32 GetHealthFacilityDosesDiscardedOpened (int healthFacilityId, string doseName, DateTime from, DateTime to)
 		{
 			try
 			{
-				HealthFacility hf = HealthFacility.GetHealthFacilityById(id);
-				if (hf != null)
+				//TODO remove hardcoded transaction types names from the querry. coze
+				string query = @"SELECT COUNT (""CHILD_ID"") AS DOSE_COUNT,""SCHEDULED_VACCINATION"".""NAME"",""ALT_1_QTY_PER"",""VACCINATION_DATE"" FROM ""VACCINATION_EVENT"" T1 
+										JOIN ""DOSE"" ON T1.""DOSE_ID""=""DOSE"".""ID""
+										JOIN ""SCHEDULED_VACCINATION"" ON ""DOSE"".""SCHEDULED_VACCINATION_ID""=""SCHEDULED_VACCINATION"".""ID""
+										JOIN ""ITEM"" ON ""ITEM"".""NAME""=""SCHEDULED_VACCINATION"".""NAME""
+										JOIN ""ITEM_MANUFACTURER"" ON ""ITEM"".""ID""=""ITEM_MANUFACTURER"".""ITEM_ID""
+										JOIN ""USER"" ON T1.""MODIFIED_BY""=""USER"".""ID""
+										JOIN
+											(SELECT DISTINCT ""VACCINATION_DATE"" 
+											  FROM public.""VACCINATION_EVENT"") T2 USING (""VACCINATION_DATE"") 
+										WHERE 
+											""SCHEDULED_VACCINATION"".""NAME""=@doseName AND
+											""VACCINATION_DATE"">=@from                  AND
+											""VACCINATION_DATE""<=@to                    AND
+											""USER"".""HEALTH_FACILITY_ID""=@healthFacilityId AND
+											""ITEM_MANUFACTURER"".""IS_ACTIVE"" = @IsActive
+										GROUP BY ""SCHEDULED_VACCINATION"".""NAME"",""VACCINATION_DATE"",""ALT_1_QTY_PER"" ORDER BY ""VACCINATION_DATE"" ASC ";
+
+
+
+				List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
 				{
-					//TODO remove hardcoded transaction types names from the querry. coze
-					string query = @"SELECT SUM(T1.""TRANSACTION_QTY_IN_BASE_UOM"") AS DOSES_DISCARDED_UNOPENED  FROM
-									""ITEM_TRANSACTION"" T1 JOIN
-									(SELECT DISTINCT ""ITEM_TRANSACTION"".""ID"" FROM  ""ITEM_TRANSACTION""
-									join ""ITEM_MANUFACTURER"" using (""GTIN"") 
-									join ""ITEM"" on ""ITEM_ID"" = ""ITEM"".""ID"" 
-									join ""ITEM_LOT"" using (""GTIN"",""ITEM_ID"")
-									join ""ADJUSTMENT_REASON"" ON  ""ADJUSTMENT_ID"" = ""ADJUSTMENT_REASON"".""ID""
-									join ""TRANSACTION_TYPE"" ON ""TRANSACTION_TYPE_ID"" = ""TRANSACTION_TYPE"".""ID""
-										WHERE ""HEALTH_FACILITY_CODE"" = @ParamValue AND 
-											""ITEM_MANUFACTURER"".""IS_ACTIVE"" = true AND 
-											""ITEM_LOT"".""IS_ACTIVE"" = true AND 
-											""ITEM"".""CODE"" = @doseName AND 
-											""TRANSACTION_DATE"" >= @from AND
-											""TRANSACTION_DATE"" <= @to AND 
-											""TRANSACTION_TYPE"".""NAME"" = 'Adjustment' AND 
-											  (
-												""ADJUSTMENT_REASON"".""NAME"" = 'Zimemwagwa'
-											  ) 
-									)T2 ON T1.""ID"" = T2.""ID""  ";
+					new NpgsqlParameter("@healthFacilityId", DbType.Int32) { Value = healthFacilityId },
+					new NpgsqlParameter("@doseName", DbType.String) { Value = doseName },
+					new NpgsqlParameter("@IsActive", DbType.Boolean) { Value = true },
+					new NpgsqlParameter("@from", DbType.DateTime) { Value = from },
+					new NpgsqlParameter("@to", DbType.DateTime) { Value = to }
+				};
+				DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, parameters);
 
+				int count = 0;
 
-
-					List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
+				foreach (DataRow row in dt.Rows)
+				{
+					try
 					{
-						new NpgsqlParameter("@ParamValue", DbType.String) { Value = hf.Code },
-						new NpgsqlParameter("@doseName", DbType.String) { Value = doseName },
-						new NpgsqlParameter("@from", DbType.DateTime) { Value = from },
-						new NpgsqlParameter("@to", DbType.DateTime) { Value = to }
-					};
-					DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, parameters);
+						int numberOfDoses = Helper.ConvertToInt(row["DOSE_COUNT"]) / Helper.ConvertToInt(row["ALT_1_QTY_PER"]);
 
-					foreach (DataRow row in dt.Rows)
+						if (Helper.ConvertToInt(row["DOSE_COUNT"]) % Helper.ConvertToInt(row["ALT_1_QTY_PER"])!=0)
+						{
+							numberOfDoses++;
+						}
+						count += numberOfDoses;
+
+					}
+					catch (Exception ex)
 					{
-						try
-						{
-							return Helper.ConvertToInt(row["DOSES_DISCARDED_UNOPENED"]);
-						}
-						catch (Exception ex)
-						{
-							Log.InsertEntity("HealthFacilityBalance", "GetHealthFacilityBalanceAsList", 1, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
-							throw ex;
-						}
+						Log.InsertEntity("HealthFacilityBalance", "GetHealthFacilityBalanceAsList", 1, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+						throw ex;
 					}
 				}
-				return 0;
+				return count;
 			}
 			catch (Exception ex)
 			{
