@@ -890,6 +890,12 @@ namespace GIIS.Tanzania.WCF
             return childList;
         }
 
+		public List<Child> GetChildList()
+		{
+			List<Child> childList = Child.GetChildList();
+			return childList;
+		}
+
         public ChildListEntity GetOnlyChildrenDataByHealthFacility(int healthFacilityId)
         {
             if (healthFacilityId > 0)

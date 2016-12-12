@@ -249,27 +249,28 @@ new NpgsqlParameter("@Id", DbType.Int32) { Value = id }
         public static List<ItemLot> GetItemLotAsList(DataTable dt)
         {
             List<ItemLot> oList = new List<ItemLot>();
-            foreach (DataRow row in dt.Rows)
-            {
-                try
-                {
-                    ItemLot o = new ItemLot();
-                    o.Gtin = row["GTIN"].ToString();
-                    o.LotNumber = row["LOT_NUMBER"].ToString();
-                    o.ItemId = Helper.ConvertToInt(row["ITEM_ID"]);
-                    o.Id = Helper.ConvertToInt(row["ID"]);
-                    o.ExpireDate = Helper.ConvertToDate(row["EXPIRE_DATE"]);
-                    o.Notes = row["NOTES"].ToString();
-                    o.IsActive = Helper.ConvertToBoolean(row["IS_ACTIVE"]);
-                    oList.Add(o);
-                }
-                catch (Exception ex)
-                {
-                    Log.InsertEntity("ItemLot", "GetItemLotAsList", 1, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
-                    throw ex;
-                }
-            }
-            return oList;
+			try
+			{
+	            foreach (DataRow row in dt.Rows)
+	            {
+	               
+	                    ItemLot o = new ItemLot();
+	                    o.Gtin = row["GTIN"].ToString();
+	                    o.LotNumber = row["LOT_NUMBER"].ToString();
+	                    o.ItemId = Helper.ConvertToInt(row["ITEM_ID"]);
+	                    o.Id = Helper.ConvertToInt(row["ID"]);
+	                    o.ExpireDate = Helper.ConvertToDate(row["EXPIRE_DATE"]);
+	                    o.Notes = row["NOTES"].ToString();
+	                    o.IsActive = Helper.ConvertToBoolean(row["IS_ACTIVE"]);
+	                    oList.Add(o);
+	                
+	            }
+	            return oList;
+			}catch (Exception ex)
+			{
+				Log.InsertEntity("ItemLot", "GetItemLotAsList", 1, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+				throw ex;
+			}
         }
         #endregion
 
