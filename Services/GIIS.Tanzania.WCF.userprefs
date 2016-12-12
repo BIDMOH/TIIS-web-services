@@ -1,11 +1,9 @@
 ﻿<Properties StartupConfiguration="{9A92CA0A-5B83-4E9D-8EDD-BB59683F9A98}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="GIIS.Tanzania.WCF/IStockManagement.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="../DataLayer/GIIS.Website/Pages/RunReport.aspx.cs">
     <Files>
-      <File FileName="GIIS.Tanzania.WCF/StockManagement.svc.cs" Line="151" Column="10" />
-      <File FileName="GIIS.Tanzania.WCF/ChildManagement.svc.cs" Line="895" Column="46" />
-      <File FileName="GIIS.Tanzania.WCF/IChildManagement.cs" Line="293" Column="38" />
-      <File FileName="GIIS.Tanzania.WCF/VimsNetworkRequestsHelper.cs" Line="1" Column="1" />
-      <File FileName="GIIS.Tanzania.WCF/IStockManagement.cs" Line="1" Column="1" />
+      <File FileName="GIIS.Tanzania.WCF/HealthFacilityManagement.svc.cs" Line="707" Column="4" />
+      <File FileName="GIIS.Tanzania.WCF/IHealthFacilityManagement.cs" Line="128" Column="146" />
+      <File FileName="../DataLayer/GIIS.Website/Pages/RunReport.aspx.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

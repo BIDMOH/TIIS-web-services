@@ -696,8 +696,25 @@ namespace GIIS.Tanzania.WCF
 		}
 
 
-		#region vims helper methods and api service for receiving stock, broadcasting stock tickle message to the facilities, allow health facilities to obtain the data and send Proof Of Delivery from the facility back to VIMS
+		public IntReturnValue StoreHealthFacilityLoginSessions(int userId, int healthFacilityId, DateTime loginTime, int sessionLength)
+		{
+			HealthFacilitySessions healthFacilityLoginSessions = new HealthFacilitySessions();
 
+			healthFacilityLoginSessions.UserId = userId;
+			healthFacilityLoginSessions.HealthFacilityId = healthFacilityId;
+			healthFacilityLoginSessions.LoginTime = loginTime;
+			healthFacilityLoginSessions.SessionLength = sessionLength;
+
+			int HealthFacilitySessionsInserted;
+			HealthFacilitySessionsInserted = GIIS.DataLayer.HealthFacilitySessions.Insert(healthFacilityLoginSessions);
+
+			IntReturnValue irv = new IntReturnValue();
+			irv.id = HealthFacilitySessionsInserted;
+			return irv;
+		}
+
+
+#region vims helper methods and api service for receiving stock, broadcasting stock tickle message to the facilities, allow health facilities to obtain the data and send Proof Of Delivery from the facility back to VIMS
 		public int DeleteHealthFacilityStockDistributions(int healthFacilityId,DateTime distributionDate, string status)
 		{
 			int i=HealthFacilityStockDistributions.Delete(healthFacilityId, distributionDate, status);
