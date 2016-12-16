@@ -185,6 +185,7 @@
     <Compile Include="HealthFacilityStockDistributions.cs" />
     <Compile Include="VitaminASupplimentation.cs" />
     <Compile Include="HealthFacilityAEFICases.cs" />
+    <Compile Include="HealthFacilitiesSessions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Library\Mono.Security.dll" />

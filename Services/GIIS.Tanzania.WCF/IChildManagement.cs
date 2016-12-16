@@ -289,5 +289,10 @@ namespace GIIS.Tanzania.WCF
 		List<ChildEntityTemp> GetChildByBarcodeListTemp(string childList);
 
 
+		//for testing purposes to be removed
+		[WebGet(UriTemplate = "GetChildList", ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		List<Child> GetChildList();
+
 	}
 }

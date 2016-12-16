@@ -313,7 +313,23 @@ namespace GIIS.DataLayer
             }
         }
 
-        public static List<Child> GetChildByHealthFacilityIdForWebService(int healthFacilityId)
+		public static List<Child> GetAllChildren()
+		{
+			try
+			{
+				string query = @"SELECT * FROM ""CHILD""";
+				DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, null);
+				return GetChildAsList(dt);
+			}
+			catch (Exception ex)
+			{
+				Log.InsertEntity("Child", "GetAllChildren", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+				throw ex;
+			}
+		}
+
+
+		public static List<Child> GetChildByHealthFacilityIdForWebService(int healthFacilityId)
         {
             try
             {

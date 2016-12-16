@@ -159,7 +159,6 @@ namespace GIIS.Tanzania.WCF
 							vaccinationEntity.catchmentFemale = v.FemaleCatchmentArea;
 						}
 						catch (Exception e) { }
-
 					}else {
 						vaccinationEntity.serviceAreaMale = GIIS.DataLayer.HealthFacility.GetHealthFacilityVaccinationsByGenderAndCatchment(healthFacility.Id, d.Id, fromDate, toDate, true, false);
 						vaccinationEntity.serviceAreaFemale = GIIS.DataLayer.HealthFacility.GetHealthFacilityVaccinationsByGenderAndCatchment(healthFacility.Id, d.Id, fromDate, toDate, false, false);
@@ -696,8 +695,25 @@ namespace GIIS.Tanzania.WCF
 		}
 
 
-		#region vims helper methods and api service for receiving stock, broadcasting stock tickle message to the facilities, allow health facilities to obtain the data and send Proof Of Delivery from the facility back to VIMS
+		public IntReturnValue StoreHealthFacilityLoginSessions(int userId, int healthFacilityId, DateTime loginTime, int sessionLength)
+		{
+			HealthFacilitySessions healthFacilityLoginSessions = new HealthFacilitySessions();
 
+			healthFacilityLoginSessions.UserId = userId;
+			healthFacilityLoginSessions.HealthFacilityId = healthFacilityId;
+			healthFacilityLoginSessions.LoginTime = loginTime;
+			healthFacilityLoginSessions.SessionLength = sessionLength;
+
+			int HealthFacilitySessionsInserted;
+			HealthFacilitySessionsInserted = GIIS.DataLayer.HealthFacilitySessions.Insert(healthFacilityLoginSessions);
+
+			IntReturnValue irv = new IntReturnValue();
+			irv.id = HealthFacilitySessionsInserted;
+			return irv;
+		}
+
+
+#region vims helper methods and api service for receiving stock, broadcasting stock tickle message to the facilities, allow health facilities to obtain the data and send Proof Of Delivery from the facility back to VIMS
 		public int DeleteHealthFacilityStockDistributions(int healthFacilityId,DateTime distributionDate, string status)
 		{
 			int i=HealthFacilityStockDistributions.Delete(healthFacilityId, distributionDate, status);
@@ -729,7 +745,7 @@ namespace GIIS.Tanzania.WCF
 					{
 						programId = (int)o["programId"];
 					}
-					catch { 
+					catch {
 						//setting programId to 0;
 					}
 					DateTime distributionDate = (DateTime)o["distributionDate"];
@@ -990,7 +1006,6 @@ namespace GIIS.Tanzania.WCF
 								distributions.VvmStatus = vvmStatus;
 
 								insertValues = HealthFacilityStockDistributions.Insert(distributions);
-
 							}
 						}
 					}
@@ -1009,8 +1024,8 @@ namespace GIIS.Tanzania.WCF
 			}
 			catch (Exception e)
 			{
-				//throw new WebFaultException<string>("Error", HttpStatusCode.ServiceUnavailable);
-				throw e;
+				throw new Exception("error in passing data");
+				//throw e;
 			}
 
 

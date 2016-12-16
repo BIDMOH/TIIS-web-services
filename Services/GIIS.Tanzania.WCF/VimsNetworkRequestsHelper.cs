@@ -71,8 +71,6 @@ namespace GIIS.Tanzania.WCF
 
 				// uploading a json to vims
 				return client.UploadString(postUrl,jsonString);
-
-
 			}
 		}
 	}

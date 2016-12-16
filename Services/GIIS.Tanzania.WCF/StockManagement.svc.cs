@@ -69,7 +69,6 @@ namespace GIIS.Tanzania.WCF
 
 		public List<HealthFacilityDoseBalanceEntity> GetHealthFacilityCurrentStockByDose(int hfId, DateTime fromDate, DateTime toDate)
 		{
-
 			List<HealthFacilityDoseBalanceEntity> blist = new List<HealthFacilityDoseBalanceEntity>();
 
 			List<ScheduledVaccination> scheduledVaccines = ScheduledVaccination.GetScheduledVaccinationList();
@@ -100,19 +99,27 @@ namespace GIIS.Tanzania.WCF
         public List<LotNumbers> GetItemLots()
         {
             List<ItemLot> itemlots = ItemLot.GetItemLotList();
-            List<LotNumbers> lots = new List<LotNumbers>();
-            foreach (ItemLot il in itemlots)
-            {
-                LotNumbers ln = new LotNumbers();
-                ln.Gtin = il.Gtin;
-                ln.LotNumber = il.LotNumber;
-                ln.ExpireDate = il.ExpireDate;
-                ln.Id = il.Id;
-                ln.ItemId = il.ItemId;
-                ln.Notes = il.Notes;
-                lots.Add(ln);
-            }
-            return lots;
+
+			try
+			{
+				List<LotNumbers> lots = new List<LotNumbers>();
+				foreach (ItemLot il in itemlots)
+				{
+					LotNumbers ln = new LotNumbers();
+					ln.Gtin = il.Gtin;
+					ln.LotNumber = il.LotNumber;
+					ln.ExpireDate = il.ExpireDate;
+					ln.Id = il.Id;
+					ln.ItemId = il.ItemId;
+					ln.Notes = il.Notes;
+					lots.Add(ln);
+				}
+				return lots;
+			}
+			catch (Exception e)
+			{
+				throw e;
+			}
         }
 
         public int GetItemLotByDoseId(int id)
