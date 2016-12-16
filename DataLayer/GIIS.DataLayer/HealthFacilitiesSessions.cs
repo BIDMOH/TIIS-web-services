@@ -30,6 +30,7 @@ namespace GIIS.DataLayer
         public Int32 HealthFacilityId { get; set; }
 		public DateTime LoginTime { get; set; }
         public Int32 SessionLength { get; set; }
+		public string UserName { get; set;}
 
         #endregion
 
@@ -57,7 +58,7 @@ namespace GIIS.DataLayer
 				string query = @"SELECT * FROM ""HEALTH_FACILITIES_SESSIONS"" WHERE ""HEALTH_FACILITY_ID"" = @hfid ";
 				List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
 					{
-					new NpgsqlParameter("@hfid", DbType.String) { Value = hfid }
+					new NpgsqlParameter("@hfid", DbType.Int32) { Value = hfid }
 					};
 				DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, parameters);
 				return GetHealthFacilitySessionsAsList(dt);
@@ -70,6 +71,30 @@ namespace GIIS.DataLayer
 
 		}
 
+
+		public static List<HealthFacilitySessions> GetHealthFacilitySessionsByHealthFacilityIdAndUserId(int hfid, int userId, DateTime fromDate, DateTime toDate)
+		{
+
+			try
+			{
+				string query = @"SELECT * FROM ""HEALTH_FACILITIES_SESSIONS"" WHERE ""HEALTH_FACILITY_ID"" = @hfid AND ""USER_ID"" = @userId AND ""LOGIN_TIME"" >= @fromDate AND ""LOGIN_TIME""<= @toDate ";
+				List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
+					{
+					new NpgsqlParameter("@hfid", DbType.Int32) { Value = hfid },
+					new NpgsqlParameter("@userId", DbType.Int32) { Value = userId },
+					new NpgsqlParameter("@fromDate", DbType.DateTime) { Value = fromDate },
+					new NpgsqlParameter("@toDate", DbType.DateTime) { Value = toDate }
+					};
+				DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, parameters);
+				return GetHealthFacilitySessionsAsList(dt);
+			}
+			catch (Exception ex)
+			{
+				Log.InsertEntity("HealthFacilitySessions", "GetHealthFacilitySessionsByHealthFacilityIdAndUserId", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+				throw ex;
+			}
+
+		}
 
         #endregion
 
@@ -157,6 +182,7 @@ namespace GIIS.DataLayer
 					o.HealthFacilityId = Helper.ConvertToInt(row["HEALTH_FACILITY_ID"]);
 					o.LoginTime = Helper.ConvertToDate(row["LOGIN_TIME"]);
 					o.SessionLength = Helper.ConvertToInt(row["SESSION_LENGTH"]);
+					o.UserName = User.GetUserById(o.UserId).Username;
                    
                     return o;
                 }
@@ -182,6 +208,7 @@ namespace GIIS.DataLayer
 					o.HealthFacilityId = Helper.ConvertToInt(row["HEALTH_FACILITY_ID"]);
 					o.LoginTime = Helper.ConvertToDate(row["LOGIN_TIME"]);
 					o.SessionLength = Helper.ConvertToInt(row["SESSION_LENGTH"]);
+					o.UserName = User.GetUserById(o.UserId).Username;
 
 					oList.Add(o);
                 }
