@@ -32,14 +32,15 @@
         <div class="col-md-1 col-xs-1 col-sm-1 col-lg-1 clearfix"></div>
         <div class="col-md-6 col-xs-6 col-sm-6 col-lg-6 clearfix">
             <ul runat="server" id="ulReports">
-<%--                <li>
-                    <asp:Label ID="lblImmunizationReports" runat="server" Text="Built-in Immunization Reports" ForeColor="LightSlateGray" Font-Size="Large" Font-Bold="true" Font-Underline="true" />
+
+                <li>
+                    <asp:Label ID="lbsessionsReports" runat="server" Text="Built-in Session Reports" ForeColor="LightSlateGray" Font-Size="Large" Font-Bold="true" Font-Underline="true" />
                     <ul>
-                        <li><a runat="server" id="aCohortCoverageReport" href="HealthFacilityListForCohort.aspx" target="_blank" ><span id="mCohortCoverageReport" runat="server">Cohort Coverage Report</span></a></li>
-                        <li><a runat="server" id="aPlannedCoverageReport" href="HealthFacilityListForPlanned.aspx" target="_blank" ><span id="mPlannedCoverageReport" runat="server">Planned Coverage Report</span></a></li>
-                        <li><a runat="server" id="aActivityReport" href="HealthFacilityListForActivity.aspx" target="_blank"><span id="mActivityReport" runat="server">Vaccination Activity Report</span></a></li>
+                        <li><a runat="server" id="aCohortCoverageReport" href="SessionReport.aspx" target="_blank" ><span id="id1" runat="server">Session Durations Report</span></a></li>
+                        <li><a runat="server" id="aPlannedCoverageReport" href="SessionReport.aspx" target="_blank" ><span id="id2" runat="server">Total Sessions Report (Duration)</span></a></li>
+                        <li><a runat="server" id="aActivityReport" href="SessionReport.aspx" target="_blank"><span id="id3" runat="server">Total Sessions Report (Days)</span></a></li>
                     </ul>
-                </li>--%>
+                </li>
 
             </ul>
             <br />
@@ -72,6 +73,7 @@
                 <li><a runat="server" id="aConsumption" href="Consumption.aspx" target="_blank"><span id="mConsumption" runat="server">Consumption</span></a></li>
             </ul>
         </div>
+
     </div>-->
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
