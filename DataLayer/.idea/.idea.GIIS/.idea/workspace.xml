@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="85cfecfd-e9e1-4d16-88f7-091a66c79513" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../GIIS.DataLayer/HealthFacilitySessions.cs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../GIIS.DataLayer/GIIS.DataLayer.csproj" afterPath="$PROJECT_DIR$/../../GIIS.DataLayer/GIIS.DataLayer.csproj" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../GIIS.Website/Pages/Report.aspx" afterPath="$PROJECT_DIR$/../../GIIS.Website/Pages/Report.aspx" />
     </list>
     <ignored path="GIIS.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,8 +26,8 @@
       <file leaf-file-name="HealthFacility.cs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../../GIIS.DataLayer/HealthFacility.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="188">
-              <caret line="505" column="76" selection-start-line="505" selection-start-column="76" selection-end-line="505" selection-end-column="76" />
+            <state relative-caret-position="413">
+              <caret line="520" column="23" selection-start-line="520" selection-start-column="23" selection-end-line="520" selection-end-column="23" />
               <folding>
                 <marker date="1481533251000" expanded="true" signature="0:813" ph="/* Copyright 2015 TIIS - Tanzania Immunization Information System ... */" />
                 <marker date="1481533251000" expanded="true" signature="820:913" ph="..." />
@@ -72,23 +69,91 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HealthFacilitySessions.cs" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/../../GIIS.DataLayer/HealthFacilitySessions.cs">
+      <file leaf-file-name="ChildEntity.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../GIIS.DataLayer/ChildEntity.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="72" column="43" selection-start-line="72" selection-start-column="39" selection-end-line="72" selection-end-column="43" />
+            <state relative-caret-position="-10567">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
-                <marker date="1481872040000" expanded="true" signature="0:812" ph="/* Copyright 2015 TIIS - Tanzania Immunization Information System ... */" />
-                <marker date="1481872040000" expanded="true" signature="819:912" ph="..." />
-                <marker date="1481872040000" expanded="true" signature="939:4323" ph="{...}" />
-                <marker date="1481872040000" expanded="true" signature="989:4321" ph="{...}" />
-                <marker date="1481872040000" expanded="true" signature="1004:1222" ph="Properties" />
-                <marker date="1481872040000" expanded="true" signature="1232:2268" ph="GetData" />
-                <marker date="1481872040000" expanded="true" signature="1340:2248" ph="{...}" />
-                <marker date="1481872040000" expanded="true" signature="1600:1706" ph="{...}" />
-                <marker date="1481872040000" expanded="true" signature="2278:2309" ph="CRUD" />
-                <marker date="1481872040000" expanded="true" signature="2319:4314" ph="Helper Methods" />
-                <marker date="1481872040000" expanded="true" signature="2435:4294" ph="{...}" />
+                <marker date="1481872319000" expanded="true" signature="0:813" ph="/* Copyright 2015 TIIS - Tanzania Immunization Information System ... */" />
+                <marker date="1481872319000" expanded="true" signature="820:932" ph="..." />
+                <marker date="1481872319000" expanded="true" signature="958:43718" ph="{...}" />
+                <marker date="1481872319000" expanded="true" signature="991:43716" ph="{...}" />
+                <marker date="1481872319000" expanded="true" signature="1061:1805" ph="{...}" />
+                <marker date="1481872319000" expanded="true" signature="1299:1419" ph="{...}" />
+                <marker date="1481872319000" expanded="true" signature="1865:2596" ph="{...}" />
+                <marker date="1481872319000" expanded="true" signature="2097:2211" ph="{...}" />
+                <marker date="1481872319000" expanded="true" signature="2687:3256" ph="{...}" />
+                <marker date="1481872319000" expanded="true" signature="3365:3965" ph="{...}" />
+                <marker date="1481872319000" expanded="true" signature="4055:4728" ph="{...}" />
+                <marker date="1481872319000" expanded="true" signature="4858:5766" ph="{...}" />
+                <marker date="1481872319000" expanded="true" signature="5849:6684" ph="{...}" />
+                <marker date="1481872319000" expanded="true" signature="6814:8813" ph="{...}" />
+                <marker date="1481872319000" expanded="true" signature="8187:8386" ph="/* List&lt;NpgsqlParameter&gt; parameters = new List&lt;NpgsqlParameter&gt;() ... */" />
+                <marker date="1481872319000" expanded="true" signature="8930:10673" ph="{...}" />
+                <marker date="1481872319000" expanded="true" signature="10743:11601" ph="{...}" />
+                <marker date="1481872319000" expanded="true" signature="11723:14007" ph="{...}" />
+                <marker date="1481872319000" expanded="true" signature="14085:14814" ph="{...}" />
+                <marker date="1481872319000" expanded="true" signature="14302:14409" ph="{...}" />
+                <marker date="1481872319000" expanded="true" signature="14898:15845" ph="{...}" />
+                <marker date="1481872319000" expanded="true" signature="15237:15452" ph="{...}" />
+                <marker date="1481872319000" expanded="true" signature="15891:16237" ph="{...}" />
+                <marker date="1481872319000" expanded="true" signature="16329:17289" ph="{...}" />
+                <marker date="1481872319000" expanded="true" signature="16670:16883" ph="{...}" />
+                <marker date="1481872319000" expanded="true" signature="17377:19201" ph="{...}" />
+                <marker date="1481872319000" expanded="true" signature="17488:18013" ph="/* string query = string.Format(@&quot;select distinct C.* from &quot;&quot;CHILD&quot;&quot; C join &quot;&quot;VACCINATION_EVENT&quot;&quot; V on V.&quot;&quot;CHILD_ ... */" />
+                <marker date="1481872319000" expanded="true" signature="18451:18794" ph="{...}" />
+                <marker date="1481872319000" expanded="true" signature="19290:21314" ph="{...}" />
+                <marker date="1481872319000" expanded="true" signature="19402:19990" ph="/* string query = string.Format(@&quot;select distinct C.* from &quot;&quot;CHILD&quot;&quot; C join &quot;&quot;VACCINATION_EVENT&quot;&quot; V on V.&quot;&quot;CHILD_ ... */" />
+                <marker date="1481872319000" expanded="true" signature="20463:20906" ph="{...}" />
+                <marker date="1481872319000" expanded="true" signature="21401:22967" ph="{...}" />
+                <marker date="1481872319000" expanded="true" signature="21513:21921" ph="/* string query = string.Format(@&quot;select distinct C.* from &quot;&quot;CHILD&quot;&quot; C join &quot;&quot;VACCINATION_EVENT&quot;&quot; V on V.&quot;&quot;CHILD_ ... */" />
+                <marker date="1481872319000" expanded="true" signature="22279:22559" ph="{...}" />
+                <marker date="1481872319000" expanded="true" signature="23423:28240" ph="{...}" />
+                <marker date="1481872319000" expanded="true" signature="25917:27856" ph="{...}" />
+                <marker date="1481872319000" expanded="true" signature="28637:32193" ph="{...}" />
+                <marker date="1481872319000" expanded="true" signature="30435:31899" ph="{...}" />
+                <marker date="1481872319000" expanded="true" signature="32549:36631" ph="{...}" />
+                <marker date="1481872319000" expanded="true" signature="34702:36238" ph="{...}" />
+                <marker date="1481872319000" expanded="true" signature="36787:38834" ph="{...}" />
+                <marker date="1481872319000" expanded="true" signature="37812:38447" ph="{...}" />
+                <marker date="1481872319000" expanded="true" signature="38918:41091" ph="{...}" />
+                <marker date="1481872319000" expanded="true" signature="39088:39785" ph="/* string query = string.Format(@&quot;select distinct C.* from &quot;&quot;CHILD&quot;&quot; C join &quot;&quot;VACCINATION_EVENT&quot;&quot; V on V.&quot;&quot;CHILD_ ... */" />
+                <marker date="1481872319000" expanded="true" signature="40301:40708" ph="{...}" />
+                <marker date="1481872319000" expanded="true" signature="41180:43159" ph="{...}" />
+                <marker date="1481872319000" expanded="true" signature="41350:41983" ph="/* string query = string.Format(@&quot;select distinct C.* from &quot;&quot;CHILD&quot;&quot; C join &quot;&quot;VACCINATION_EVENT&quot;&quot; V on V.&quot;&quot;CHILD_ ... */" />
+                <marker date="1481872319000" expanded="true" signature="42464:42771" ph="{...}" />
+                <marker date="1481872319000" expanded="true" signature="43218:43343" ph="{...}" />
+                <marker date="1481872319000" expanded="true" signature="43401:43526" ph="{...}" />
+                <marker date="1481872319000" expanded="true" signature="43584:43709" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HealthFacilitiesSessions.cs" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../../GIIS.DataLayer/HealthFacilitiesSessions.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="420">
+              <caret line="30" column="33" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="33" />
+              <folding>
+                <marker date="1481872319000" expanded="true" signature="0:813" ph="/* Copyright 2015 TIIS - Tanzania Immunization Information System ... */" />
+                <marker date="1481872319000" expanded="true" signature="820:913" ph="..." />
+                <marker date="1481872319000" expanded="true" signature="939:7293" ph="{...}" />
+                <marker date="1481872319000" expanded="true" signature="989:7291" ph="{...}" />
+                <marker date="1481872319000" expanded="true" signature="1005:1266" ph="Properties" />
+                <marker date="1481872319000" expanded="true" signature="1276:1923" ph="GetData" />
+                <marker date="1481872319000" expanded="true" signature="1374:1902" ph="{...}" />
+                <marker date="1481872319000" expanded="true" signature="1933:5245" ph="CRUD" />
+                <marker date="1481872319000" expanded="true" signature="1998:3176" ph="{...}" />
+                <marker date="1481872319000" expanded="true" signature="2363:2705" ph="{...}" />
+                <marker date="1481872319000" expanded="true" signature="3236:4406" ph="{...}" />
+                <marker date="1481872319000" expanded="true" signature="3580:3922" ph="{...}" />
+                <marker date="1481872319000" expanded="true" signature="4448:5225" ph="{...}" />
+                <marker date="1481872319000" expanded="true" signature="4676:4744" ph="{...}" />
+                <marker date="1481872319000" expanded="true" signature="5255:7284" ph="Helper Methods" />
+                <marker date="1481872319000" expanded="true" signature="5370:6252" ph="{...}" />
+                <marker date="1481872319000" expanded="true" signature="6344:7265" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -201,6 +266,7 @@
     </leaf>
   </component>
   <component name="Git.Settings">
+    <option name="UPDATE_TYPE" value="MERGE" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
   </component>
   <component name="IdeDocumentHistory">
@@ -321,12 +387,12 @@
       <updated>1481533621300</updated>
       <workItem from="1481533623629" duration="607000" />
       <workItem from="1481534537778" duration="1834000" />
-      <workItem from="1481869391172" duration="2569000" />
+      <workItem from="1481869391172" duration="3334000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5010000" />
+    <option name="totallyTimeSpent" value="5775000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -341,27 +407,27 @@
     <frame x="0" y="22" width="1680" height="966" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Change Signature" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1277506" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Errors in solution" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32990867" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="UnitTesting" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32990867" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="NuGet" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Change Signature" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24755502" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -616,10 +682,51 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../../GIIS.DataLayer/User.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="81" column="9" selection-start-line="81" selection-start-column="9" selection-end-line="81" selection-end-column="9" />
+          <folding>
+            <marker date="1481533251000" expanded="true" signature="0:813" ph="/* Copyright 2015 TIIS - Tanzania Immunization Information System ... */" />
+            <marker date="1481533251000" expanded="true" signature="820:913" ph="..." />
+            <marker date="1481533251000" expanded="true" signature="939:11238" ph="{...}" />
+            <marker date="1481533251000" expanded="true" signature="967:11236" ph="{...}" />
+            <marker date="1481533251000" expanded="true" signature="971:1718" ph="Properties" />
+            <marker date="1481533251000" expanded="true" signature="1720:3710" ph="GetData" />
+            <marker date="1481533251000" expanded="true" signature="1774:2073" ph="{...}" />
+            <marker date="1481533251000" expanded="true" signature="2115:2511" ph="{...}" />
+            <marker date="1481533251000" expanded="true" signature="2552:3084" ph="{...}" />
+            <marker date="1481533251000" expanded="true" signature="2694:2760" ph="{...}" />
+            <marker date="1481533251000" expanded="true" signature="3132:3698" ph="{...}" />
+            <marker date="1481533251000" expanded="true" signature="3280:3347" ph="{...}" />
+            <marker date="1481533251000" expanded="true" signature="3712:9149" ph="CRUD" />
+            <marker date="1481533251000" expanded="true" signature="3757:5776" ph="{...}" />
+            <marker date="1481533251000" expanded="true" signature="4245:5452" ph="{...}" />
+            <marker date="1481533251000" expanded="true" signature="5810:8018" ph="{...}" />
+            <marker date="1481533251000" expanded="true" signature="6330:7698" ph="{...}" />
+            <marker date="1481533251000" expanded="true" signature="8052:8567" ph="{...}" />
+            <marker date="1481533251000" expanded="true" signature="8190:8249" ph="{...}" />
+            <marker date="1481533251000" expanded="true" signature="8601:9138" ph="{...}" />
+            <marker date="1481533251000" expanded="true" signature="8762:8821" ph="{...}" />
+            <marker date="1481533251000" expanded="true" signature="9151:11233" ph="Helper Methods" />
+            <marker date="1481533251000" expanded="true" signature="9222:10175" ph="{...}" />
+            <marker date="1481533251000" expanded="true" signature="10229:11222" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../GIIS.DataLayer/HealthFacilitySessions.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="37" column="11" selection-start-line="37" selection-start-column="11" selection-end-line="37" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/../../GIIS.DataLayer/HealthFacility.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="505" column="76" selection-start-line="505" selection-start-column="76" selection-end-line="505" selection-end-column="76" />
+        <state relative-caret-position="413">
+          <caret line="520" column="23" selection-start-line="520" selection-start-column="23" selection-end-line="520" selection-end-column="23" />
           <folding>
             <marker date="1481533251000" expanded="true" signature="0:813" ph="/* Copyright 2015 TIIS - Tanzania Immunization Information System ... */" />
             <marker date="1481533251000" expanded="true" signature="820:913" ph="..." />
@@ -660,55 +767,88 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../GIIS.DataLayer/User.cs">
+    <entry file="file://$PROJECT_DIR$/../../GIIS.DataLayer/ChildEntity.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="81" column="9" selection-start-line="81" selection-start-column="9" selection-end-line="81" selection-end-column="9" />
+        <state relative-caret-position="-10567">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1481533251000" expanded="true" signature="0:813" ph="/* Copyright 2015 TIIS - Tanzania Immunization Information System ... */" />
-            <marker date="1481533251000" expanded="true" signature="820:913" ph="..." />
-            <marker date="1481533251000" expanded="true" signature="939:11238" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="967:11236" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="971:1718" ph="Properties" />
-            <marker date="1481533251000" expanded="true" signature="1720:3710" ph="GetData" />
-            <marker date="1481533251000" expanded="true" signature="1774:2073" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="2115:2511" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="2552:3084" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="2694:2760" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="3132:3698" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="3280:3347" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="3712:9149" ph="CRUD" />
-            <marker date="1481533251000" expanded="true" signature="3757:5776" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="4245:5452" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="5810:8018" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="6330:7698" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="8052:8567" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="8190:8249" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="8601:9138" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="8762:8821" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="9151:11233" ph="Helper Methods" />
-            <marker date="1481533251000" expanded="true" signature="9222:10175" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="10229:11222" ph="{...}" />
+            <marker date="1481872319000" expanded="true" signature="0:813" ph="/* Copyright 2015 TIIS - Tanzania Immunization Information System ... */" />
+            <marker date="1481872319000" expanded="true" signature="820:932" ph="..." />
+            <marker date="1481872319000" expanded="true" signature="958:43718" ph="{...}" />
+            <marker date="1481872319000" expanded="true" signature="991:43716" ph="{...}" />
+            <marker date="1481872319000" expanded="true" signature="1061:1805" ph="{...}" />
+            <marker date="1481872319000" expanded="true" signature="1299:1419" ph="{...}" />
+            <marker date="1481872319000" expanded="true" signature="1865:2596" ph="{...}" />
+            <marker date="1481872319000" expanded="true" signature="2097:2211" ph="{...}" />
+            <marker date="1481872319000" expanded="true" signature="2687:3256" ph="{...}" />
+            <marker date="1481872319000" expanded="true" signature="3365:3965" ph="{...}" />
+            <marker date="1481872319000" expanded="true" signature="4055:4728" ph="{...}" />
+            <marker date="1481872319000" expanded="true" signature="4858:5766" ph="{...}" />
+            <marker date="1481872319000" expanded="true" signature="5849:6684" ph="{...}" />
+            <marker date="1481872319000" expanded="true" signature="6814:8813" ph="{...}" />
+            <marker date="1481872319000" expanded="true" signature="8187:8386" ph="/* List&lt;NpgsqlParameter&gt; parameters = new List&lt;NpgsqlParameter&gt;() ... */" />
+            <marker date="1481872319000" expanded="true" signature="8930:10673" ph="{...}" />
+            <marker date="1481872319000" expanded="true" signature="10743:11601" ph="{...}" />
+            <marker date="1481872319000" expanded="true" signature="11723:14007" ph="{...}" />
+            <marker date="1481872319000" expanded="true" signature="14085:14814" ph="{...}" />
+            <marker date="1481872319000" expanded="true" signature="14302:14409" ph="{...}" />
+            <marker date="1481872319000" expanded="true" signature="14898:15845" ph="{...}" />
+            <marker date="1481872319000" expanded="true" signature="15237:15452" ph="{...}" />
+            <marker date="1481872319000" expanded="true" signature="15891:16237" ph="{...}" />
+            <marker date="1481872319000" expanded="true" signature="16329:17289" ph="{...}" />
+            <marker date="1481872319000" expanded="true" signature="16670:16883" ph="{...}" />
+            <marker date="1481872319000" expanded="true" signature="17377:19201" ph="{...}" />
+            <marker date="1481872319000" expanded="true" signature="17488:18013" ph="/* string query = string.Format(@&quot;select distinct C.* from &quot;&quot;CHILD&quot;&quot; C join &quot;&quot;VACCINATION_EVENT&quot;&quot; V on V.&quot;&quot;CHILD_ ... */" />
+            <marker date="1481872319000" expanded="true" signature="18451:18794" ph="{...}" />
+            <marker date="1481872319000" expanded="true" signature="19290:21314" ph="{...}" />
+            <marker date="1481872319000" expanded="true" signature="19402:19990" ph="/* string query = string.Format(@&quot;select distinct C.* from &quot;&quot;CHILD&quot;&quot; C join &quot;&quot;VACCINATION_EVENT&quot;&quot; V on V.&quot;&quot;CHILD_ ... */" />
+            <marker date="1481872319000" expanded="true" signature="20463:20906" ph="{...}" />
+            <marker date="1481872319000" expanded="true" signature="21401:22967" ph="{...}" />
+            <marker date="1481872319000" expanded="true" signature="21513:21921" ph="/* string query = string.Format(@&quot;select distinct C.* from &quot;&quot;CHILD&quot;&quot; C join &quot;&quot;VACCINATION_EVENT&quot;&quot; V on V.&quot;&quot;CHILD_ ... */" />
+            <marker date="1481872319000" expanded="true" signature="22279:22559" ph="{...}" />
+            <marker date="1481872319000" expanded="true" signature="23423:28240" ph="{...}" />
+            <marker date="1481872319000" expanded="true" signature="25917:27856" ph="{...}" />
+            <marker date="1481872319000" expanded="true" signature="28637:32193" ph="{...}" />
+            <marker date="1481872319000" expanded="true" signature="30435:31899" ph="{...}" />
+            <marker date="1481872319000" expanded="true" signature="32549:36631" ph="{...}" />
+            <marker date="1481872319000" expanded="true" signature="34702:36238" ph="{...}" />
+            <marker date="1481872319000" expanded="true" signature="36787:38834" ph="{...}" />
+            <marker date="1481872319000" expanded="true" signature="37812:38447" ph="{...}" />
+            <marker date="1481872319000" expanded="true" signature="38918:41091" ph="{...}" />
+            <marker date="1481872319000" expanded="true" signature="39088:39785" ph="/* string query = string.Format(@&quot;select distinct C.* from &quot;&quot;CHILD&quot;&quot; C join &quot;&quot;VACCINATION_EVENT&quot;&quot; V on V.&quot;&quot;CHILD_ ... */" />
+            <marker date="1481872319000" expanded="true" signature="40301:40708" ph="{...}" />
+            <marker date="1481872319000" expanded="true" signature="41180:43159" ph="{...}" />
+            <marker date="1481872319000" expanded="true" signature="41350:41983" ph="/* string query = string.Format(@&quot;select distinct C.* from &quot;&quot;CHILD&quot;&quot; C join &quot;&quot;VACCINATION_EVENT&quot;&quot; V on V.&quot;&quot;CHILD_ ... */" />
+            <marker date="1481872319000" expanded="true" signature="42464:42771" ph="{...}" />
+            <marker date="1481872319000" expanded="true" signature="43218:43343" ph="{...}" />
+            <marker date="1481872319000" expanded="true" signature="43401:43526" ph="{...}" />
+            <marker date="1481872319000" expanded="true" signature="43584:43709" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../GIIS.DataLayer/HealthFacilitySessions.cs">
+    <entry file="file://$PROJECT_DIR$/../../GIIS.DataLayer/HealthFacilitiesSessions.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="72" column="43" selection-start-line="72" selection-start-column="39" selection-end-line="72" selection-end-column="43" />
+        <state relative-caret-position="420">
+          <caret line="30" column="33" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="33" />
           <folding>
-            <marker date="1481872040000" expanded="true" signature="0:812" ph="/* Copyright 2015 TIIS - Tanzania Immunization Information System ... */" />
-            <marker date="1481872040000" expanded="true" signature="819:912" ph="..." />
-            <marker date="1481872040000" expanded="true" signature="939:4323" ph="{...}" />
-            <marker date="1481872040000" expanded="true" signature="989:4321" ph="{...}" />
-            <marker date="1481872040000" expanded="true" signature="1004:1222" ph="Properties" />
-            <marker date="1481872040000" expanded="true" signature="1232:2268" ph="GetData" />
-            <marker date="1481872040000" expanded="true" signature="1340:2248" ph="{...}" />
-            <marker date="1481872040000" expanded="true" signature="1600:1706" ph="{...}" />
-            <marker date="1481872040000" expanded="true" signature="2278:2309" ph="CRUD" />
-            <marker date="1481872040000" expanded="true" signature="2319:4314" ph="Helper Methods" />
-            <marker date="1481872040000" expanded="true" signature="2435:4294" ph="{...}" />
+            <marker date="1481872319000" expanded="true" signature="0:813" ph="/* Copyright 2015 TIIS - Tanzania Immunization Information System ... */" />
+            <marker date="1481872319000" expanded="true" signature="820:913" ph="..." />
+            <marker date="1481872319000" expanded="true" signature="939:7293" ph="{...}" />
+            <marker date="1481872319000" expanded="true" signature="989:7291" ph="{...}" />
+            <marker date="1481872319000" expanded="true" signature="1005:1266" ph="Properties" />
+            <marker date="1481872319000" expanded="true" signature="1276:1923" ph="GetData" />
+            <marker date="1481872319000" expanded="true" signature="1374:1902" ph="{...}" />
+            <marker date="1481872319000" expanded="true" signature="1933:5245" ph="CRUD" />
+            <marker date="1481872319000" expanded="true" signature="1998:3176" ph="{...}" />
+            <marker date="1481872319000" expanded="true" signature="2363:2705" ph="{...}" />
+            <marker date="1481872319000" expanded="true" signature="3236:4406" ph="{...}" />
+            <marker date="1481872319000" expanded="true" signature="3580:3922" ph="{...}" />
+            <marker date="1481872319000" expanded="true" signature="4448:5225" ph="{...}" />
+            <marker date="1481872319000" expanded="true" signature="4676:4744" ph="{...}" />
+            <marker date="1481872319000" expanded="true" signature="5255:7284" ph="Helper Methods" />
+            <marker date="1481872319000" expanded="true" signature="5370:6252" ph="{...}" />
+            <marker date="1481872319000" expanded="true" signature="6344:7265" ph="{...}" />
           </folding>
         </state>
       </provider>
