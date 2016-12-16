@@ -168,10 +168,10 @@ public partial class Pages_SessionReport : System.Web.UI.Page
 
 
                 //grid header text
-                gvHealthFacility.Columns[1].HeaderText = "Sn";
-                gvHealthFacility.Columns[2].HeaderText = "Login Time";
-                gvHealthFacility.Columns[3].HeaderText = "Duration";
-                gvHealthFacility.Columns[4].HeaderText = "user";
+                gvHealthFacilitySessions.Columns[1].HeaderText = "Sn";
+                gvHealthFacilitySessions.Columns[2].HeaderText = "Login Time";
+                gvHealthFacilitySessions.Columns[3].HeaderText = "Duration";
+                gvHealthFacilitySessions.Columns[4].HeaderText = "user";
                 // gvHealthFacilitySessions.Columns[5].HeaderText = wtList["HealthFacilityLeaf"];
                 // gvHealthFacilitySessions.Columns[6].HeaderText = wtList["HealthFacilityVaccinationPoint"];
 

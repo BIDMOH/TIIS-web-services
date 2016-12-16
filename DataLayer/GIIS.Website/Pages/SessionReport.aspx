@@ -68,40 +68,28 @@
                 <PagerStyle CssClass="pagination" HorizontalAlign="Left" VerticalAlign="Top" />
             <Columns>
                 <asp:BoundField DataField="Id" HeaderText="Id" SortExpression="Id" Visible="False" />
-                <asp:TemplateField HeaderText="Sn">
+                <asp:TemplateField HeaderText="Time">
                     <ItemTemplate>
-                       <%-- <asp:HyperLink ID="hlName" runat="server" NavigateUrl='<%# Eval("Id", "HealthFacilityListForCohort.aspx?id={0}") %>'
-                            Text='<%# Eval("Name", "{0}") %>' ToolTip='<%# Eval("Notes", "{0}") %>'></asp:HyperLink>--%>
-                        <%# Eval("Name", "{0}") %>
+                        <%# Eval("LoginTime") %>
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:BoundField DataField="Code" HeaderText="Code" SortExpression="Code" Visible="false" />
-                <asp:TemplateField HeaderText="ParentId">
+                <asp:TemplateField HeaderText="Duration">
                    <ItemTemplate>
-                        <%#Eval("Parent.Name")%>
+                        <%#Eval("SessionLength")%>
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:CheckBoxField DataField="TopLevel" HeaderText="TopLevel" SortExpression="TopLevel" />
-                <asp:CheckBoxField DataField="Leaf" HeaderText="Leaf" SortExpression="Leaf" />
-                <asp:CheckBoxField DataField="VaccinationPoint" HeaderText="VaccinationPoint" SortExpression="VaccinationPoint" />
-                 <asp:TemplateField HeaderText="View Sessions">
+                 <asp:TemplateField HeaderText="User Name">
                     <ItemTemplate>
-                        <a href='<%# Eval("Id", "#") %>' target="_blank">
-                            <img alt='View Sessions 2' src="../img/DispatchLines.png" />
-                        </a>
+                        <%#Eval("")%>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:CheckBoxField DataField="IsActive" HeaderText="IsActive" SortExpression="IsActive" Visible ="false" />
-                <asp:BoundField DataField="ModifiedOn" HeaderText="ModifiedOn" SortExpression="ModifiedOn" Visible="False" />
-                <asp:BoundField DataField="ModifiedBy" HeaderText="ModifiedBy" SortExpression="ModifiedBy" Visible="False" />
-                <asp:BoundField DataField="Address" HeaderText="Address" SortExpression="Address" Visible="false" />
-                <asp:BoundField DataField="Population" HeaderText="Population" SortExpression="Population" Visible="false" />
             </Columns>
         </asp:GridView>
         <!--
             data binding of the gridview is done in connection to the Datalayer methods that queries the data
         -->
-        <asp:ObjectDataSource ID="odsHealthFacilitySessions" runat="server" EnablePaging="true" SelectMethod="GetPagedHealthFacilityList" TypeName="GIIS.DataLayer.HealthFacility" SelectCountMethod="GetCountHealthFacilityList">
+        <asp:ObjectDataSource ID="odsHealthFacilitySessions" runat="server" EnablePaging="true" SelectMethod="GetHealthFacilitySessionsByHealthFacilityId" TypeName="GIIS.DataLayer.HealthFacilitiesSessions">
             <SelectParameters>
                  <asp:Parameter Name="hfid" Type="String" />
             </SelectParameters>

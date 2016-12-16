@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="85cfecfd-e9e1-4d16-88f7-091a66c79513" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../GIIS.Website/Pages/SessionReport.aspx" afterPath="$PROJECT_DIR$/../../GIIS.Website/Pages/SessionReport.aspx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../GIIS.Website/Pages/SessionReport.aspx.cs" afterPath="$PROJECT_DIR$/../../GIIS.Website/Pages/SessionReport.aspx.cs" />
     </list>
     <ignored path="GIIS.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -134,26 +136,28 @@
       <file leaf-file-name="HealthFacilitiesSessions.cs" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../../GIIS.DataLayer/HealthFacilitiesSessions.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="30" column="33" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="33" />
+            <state relative-caret-position="255">
+              <caret line="51" column="94" selection-start-line="51" selection-start-column="51" selection-end-line="51" selection-end-column="94" />
               <folding>
-                <marker date="1481872319000" expanded="true" signature="0:813" ph="/* Copyright 2015 TIIS - Tanzania Immunization Information System ... */" />
-                <marker date="1481872319000" expanded="true" signature="820:913" ph="..." />
-                <marker date="1481872319000" expanded="true" signature="939:7293" ph="{...}" />
-                <marker date="1481872319000" expanded="true" signature="989:7291" ph="{...}" />
-                <marker date="1481872319000" expanded="true" signature="1005:1266" ph="Properties" />
-                <marker date="1481872319000" expanded="true" signature="1276:1923" ph="GetData" />
-                <marker date="1481872319000" expanded="true" signature="1374:1902" ph="{...}" />
-                <marker date="1481872319000" expanded="true" signature="1933:5245" ph="CRUD" />
-                <marker date="1481872319000" expanded="true" signature="1998:3176" ph="{...}" />
-                <marker date="1481872319000" expanded="true" signature="2363:2705" ph="{...}" />
-                <marker date="1481872319000" expanded="true" signature="3236:4406" ph="{...}" />
-                <marker date="1481872319000" expanded="true" signature="3580:3922" ph="{...}" />
-                <marker date="1481872319000" expanded="true" signature="4448:5225" ph="{...}" />
-                <marker date="1481872319000" expanded="true" signature="4676:4744" ph="{...}" />
-                <marker date="1481872319000" expanded="true" signature="5255:7284" ph="Helper Methods" />
-                <marker date="1481872319000" expanded="true" signature="5370:6252" ph="{...}" />
-                <marker date="1481872319000" expanded="true" signature="6344:7265" ph="{...}" />
+                <marker date="1481873121000" expanded="true" signature="0:813" ph="/* Copyright 2015 TIIS - Tanzania Immunization Information System ... */" />
+                <marker date="1481873121000" expanded="true" signature="820:913" ph="..." />
+                <marker date="1481873121000" expanded="true" signature="939:8017" ph="{...}" />
+                <marker date="1481873121000" expanded="true" signature="989:8015" ph="{...}" />
+                <marker date="1481873121000" expanded="true" signature="1005:1266" ph="Properties" />
+                <marker date="1481873121000" expanded="true" signature="1276:2647" ph="GetData" />
+                <marker date="1481873121000" expanded="true" signature="1374:1902" ph="{...}" />
+                <marker date="1481873121000" expanded="true" signature="2002:2626" ph="{...}" />
+                <marker date="1481873121000" expanded="true" signature="2198:2272" ph="{...}" />
+                <marker date="1481873121000" expanded="true" signature="2657:5969" ph="CRUD" />
+                <marker date="1481873121000" expanded="true" signature="2722:3900" ph="{...}" />
+                <marker date="1481873121000" expanded="true" signature="3087:3429" ph="{...}" />
+                <marker date="1481873121000" expanded="true" signature="3960:5130" ph="{...}" />
+                <marker date="1481873121000" expanded="true" signature="4304:4646" ph="{...}" />
+                <marker date="1481873121000" expanded="true" signature="5172:5949" ph="{...}" />
+                <marker date="1481873121000" expanded="true" signature="5400:5468" ph="{...}" />
+                <marker date="1481873121000" expanded="true" signature="5979:8008" ph="Helper Methods" />
+                <marker date="1481873121000" expanded="true" signature="6094:6976" ph="{...}" />
+                <marker date="1481873121000" expanded="true" signature="7068:7989" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -274,6 +278,7 @@
       <list>
         <option value="$PROJECT_DIR$/../../GIIS.DataLayer/HealthFacility.cs" />
         <option value="$PROJECT_DIR$/../../GIIS.DataLayer/HealthFacilitySessions.cs" />
+        <option value="$PROJECT_DIR$/../../GIIS.DataLayer/HealthFacilitiesSessions.cs" />
       </list>
     </option>
   </component>
@@ -387,12 +392,12 @@
       <updated>1481533621300</updated>
       <workItem from="1481533623629" duration="607000" />
       <workItem from="1481534537778" duration="1834000" />
-      <workItem from="1481869391172" duration="3334000" />
+      <workItem from="1481869391172" duration="3706000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5775000" />
+    <option name="totallyTimeSpent" value="6147000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -829,26 +834,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../../GIIS.DataLayer/HealthFacilitiesSessions.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="30" column="33" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="33" />
+        <state relative-caret-position="255">
+          <caret line="51" column="94" selection-start-line="51" selection-start-column="51" selection-end-line="51" selection-end-column="94" />
           <folding>
-            <marker date="1481872319000" expanded="true" signature="0:813" ph="/* Copyright 2015 TIIS - Tanzania Immunization Information System ... */" />
-            <marker date="1481872319000" expanded="true" signature="820:913" ph="..." />
-            <marker date="1481872319000" expanded="true" signature="939:7293" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="989:7291" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="1005:1266" ph="Properties" />
-            <marker date="1481872319000" expanded="true" signature="1276:1923" ph="GetData" />
-            <marker date="1481872319000" expanded="true" signature="1374:1902" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="1933:5245" ph="CRUD" />
-            <marker date="1481872319000" expanded="true" signature="1998:3176" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="2363:2705" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="3236:4406" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="3580:3922" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="4448:5225" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="4676:4744" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="5255:7284" ph="Helper Methods" />
-            <marker date="1481872319000" expanded="true" signature="5370:6252" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="6344:7265" ph="{...}" />
+            <marker date="1481873121000" expanded="true" signature="0:813" ph="/* Copyright 2015 TIIS - Tanzania Immunization Information System ... */" />
+            <marker date="1481873121000" expanded="true" signature="820:913" ph="..." />
+            <marker date="1481873121000" expanded="true" signature="939:8017" ph="{...}" />
+            <marker date="1481873121000" expanded="true" signature="989:8015" ph="{...}" />
+            <marker date="1481873121000" expanded="true" signature="1005:1266" ph="Properties" />
+            <marker date="1481873121000" expanded="true" signature="1276:2647" ph="GetData" />
+            <marker date="1481873121000" expanded="true" signature="1374:1902" ph="{...}" />
+            <marker date="1481873121000" expanded="true" signature="2002:2626" ph="{...}" />
+            <marker date="1481873121000" expanded="true" signature="2198:2272" ph="{...}" />
+            <marker date="1481873121000" expanded="true" signature="2657:5969" ph="CRUD" />
+            <marker date="1481873121000" expanded="true" signature="2722:3900" ph="{...}" />
+            <marker date="1481873121000" expanded="true" signature="3087:3429" ph="{...}" />
+            <marker date="1481873121000" expanded="true" signature="3960:5130" ph="{...}" />
+            <marker date="1481873121000" expanded="true" signature="4304:4646" ph="{...}" />
+            <marker date="1481873121000" expanded="true" signature="5172:5949" ph="{...}" />
+            <marker date="1481873121000" expanded="true" signature="5400:5468" ph="{...}" />
+            <marker date="1481873121000" expanded="true" signature="5979:8008" ph="Helper Methods" />
+            <marker date="1481873121000" expanded="true" signature="6094:6976" ph="{...}" />
+            <marker date="1481873121000" expanded="true" signature="7068:7989" ph="{...}" />
           </folding>
         </state>
       </provider>
