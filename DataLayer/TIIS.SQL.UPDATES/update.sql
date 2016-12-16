@@ -6,7 +6,7 @@ $$
 
 BEGIN
 
-	RETURN 1;
+	RETURN 2;
 
 END;
 
@@ -28,7 +28,7 @@ BEGIN
 
 	 * Update: CR-001
 
-	 * Applies to: 1
+	 * Applies to: 2
 
 	 * Notes:
 
@@ -38,7 +38,38 @@ BEGIN
 
 
 
-	IF GET_SCH_VER() > 0 THEN
+    IF GET_SCH_VER() > 1 THEN
+
+        CREATE SEQUENCE public."HEALTH_FACILITIES_SESSIONS_seq"
+          INCREMENT 1
+          MINVALUE 1
+          MAXVALUE 9223372036854775807
+          START 1
+          CACHE 1;
+        ALTER TABLE public."HEALTH_FACILITIES_SESSIONS_seq"
+          OWNER TO postgres;
+
+        CREATE TABLE public."HEALTH_FACILITIES_SESSIONS"
+        (
+          "ID" integer NOT NULL DEFAULT nextval('"HEALTH_FACILITIES_SESSIONS_seq"'::regclass),
+          "USER_ID" integer NOT NULL,
+          "HEALTH_FACILITY_ID" integer NOT NULL,
+          "LOGIN_TIME" timestamp without time zone NOT NULL,
+          "SESSION_LENGTH" integer NOT NULL, -- SESSION LENGTH in seconds
+          CONSTRAINT "HEALTH_FACILITIES_SESSIONS_primary_key" PRIMARY KEY ("USER_ID", "HEALTH_FACILITY_ID", "LOGIN_TIME")
+        )
+        WITH (
+          OIDS=FALSE
+        );
+        COMMENT ON COLUMN public."HEALTH_FACILITIES_SESSIONS"."SESSION_LENGTH" IS 'SESSION LENGTH in seconds';
+
+
+
+	ELSEIF GET_SCH_VER() > 0 THEN
+
+	DROP TABLE IF EXISTS public."HEALTH_FACILITIES_SESSIONS";
+    DROP SEQUENCE IF EXISTS public."HEALTH_FACILITIES_SESSIONS_seq";
+
 	CREATE TABLE IF NOT EXISTS public."HEALTH_FACILITY_STOCK_DISTRIBUTIONS"
 	    (
 	      "STOCK_DISTRIBUTION_ID" integer NOT NULL,

@@ -159,7 +159,6 @@ namespace GIIS.Tanzania.WCF
 							vaccinationEntity.catchmentFemale = v.FemaleCatchmentArea;
 						}
 						catch (Exception e) { }
-
 					}else {
 						vaccinationEntity.serviceAreaMale = GIIS.DataLayer.HealthFacility.GetHealthFacilityVaccinationsByGenderAndCatchment(healthFacility.Id, d.Id, fromDate, toDate, true, false);
 						vaccinationEntity.serviceAreaFemale = GIIS.DataLayer.HealthFacility.GetHealthFacilityVaccinationsByGenderAndCatchment(healthFacility.Id, d.Id, fromDate, toDate, false, false);
@@ -746,7 +745,7 @@ namespace GIIS.Tanzania.WCF
 					{
 						programId = (int)o["programId"];
 					}
-					catch { 
+					catch {
 						//setting programId to 0;
 					}
 					DateTime distributionDate = (DateTime)o["distributionDate"];
@@ -1007,7 +1006,6 @@ namespace GIIS.Tanzania.WCF
 								distributions.VvmStatus = vvmStatus;
 
 								insertValues = HealthFacilityStockDistributions.Insert(distributions);
-
 							}
 						}
 					}
@@ -1026,8 +1024,8 @@ namespace GIIS.Tanzania.WCF
 			}
 			catch (Exception e)
 			{
-				//throw new WebFaultException<string>("Error", HttpStatusCode.ServiceUnavailable);
-				throw e;
+				throw new Exception("error in passing data");
+				//throw e;
 			}
 
 
