@@ -49,6 +49,27 @@ namespace GIIS.DataLayer
             }
         }
 
+		public static List<HealthFacilitySessions> GetHealthFacilitySessionsByHealthFacilityId(int hfid)
+		{
+
+			try
+			{
+				string query = @"SELECT * FROM ""HEALTH_FACILITIES_SESSIONS"" WHERE ""HEALTH_FACILITY_ID"" = @hfid ";
+				List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
+					{
+					new NpgsqlParameter("@hfid", DbType.String) { Value = hfid }
+					};
+				DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, parameters);
+				return GetHealthFacilitySessionsAsList(dt);
+			}
+			catch (Exception ex)
+			{
+				Log.InsertEntity("HealthFacilitySessions", "GetHealthFacilitySessionsByHealthFacilityId", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+				throw ex;
+			}
+
+		}
+
 
         #endregion
 
