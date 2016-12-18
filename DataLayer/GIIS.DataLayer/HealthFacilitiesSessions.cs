@@ -97,7 +97,28 @@ namespace GIIS.DataLayer
 
 		}
 
+		public static List<HealthFacilitySessions> GetHealthFacilitySessionsByHealthFacilityId(string hfid, DateTime fromDate, DateTime toDate)
+		{
 
+			try
+			{
+				string query = @"SELECT * FROM ""HEALTH_FACILITIES_SESSIONS"" WHERE ""HEALTH_FACILITY_ID"" = @hfid  AND ""LOGIN_TIME"" >= @fromDate AND ""LOGIN_TIME""<= @toDate ";
+				List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
+					{
+					new NpgsqlParameter("@hfid", DbType.Int32) { Value = hfid },
+					new NpgsqlParameter("@fromDate", DbType.DateTime) { Value = fromDate },
+					new NpgsqlParameter("@toDate", DbType.DateTime) { Value = toDate }
+					};
+				DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, parameters);
+				return GetHealthFacilitySessionsAsList(dt);
+			}
+			catch (Exception ex)
+			{
+				Log.InsertEntity("HealthFacilitySessions", "GetHealthFacilitySessionsByHealthFacilityIdAndUserId", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+				throw ex;
+			}
+
+		}
 
 		public static int GetHealthFacilitySessionsLengthByHealthFacilityIdAndUserId(string hfid, string userId, DateTime fromDate, DateTime toDate)
 		{
@@ -177,42 +198,7 @@ namespace GIIS.DataLayer
 		}
 
 
-		public static int GetHealthFacilitySessionsLengthByHealthFacilityId(string hfid, DateTime fromDate, DateTime toDate)
-		{
 
-			try
-			{
-				string query = @"SELECT COUNT (""SESSION_LENGTH"") FROM ""HEALTH_FACILITIES_SESSIONS"" WHERE ""HEALTH_FACILITY_ID"" = @hfid AND ""LOGIN_TIME"" >= @fromDate AND ""LOGIN_TIME""<= @toDate ";
-				List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
-					{
-					new NpgsqlParameter("@hfid", DbType.Int32) { Value = hfid },
-					new NpgsqlParameter("@fromDate", DbType.DateTime) { Value = fromDate },
-					new NpgsqlParameter("@toDate", DbType.DateTime) { Value = toDate }
-					};
-				DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, parameters);
-				Int32 totalLength = 0;
-
-				foreach (DataRow row in dt.Rows)
-				{
-					try
-					{
-						totalLength = Helper.ConvertToInt(row["COUNT"]);
-					}
-					catch (Exception ex)
-					{
-						Log.InsertEntity("HealthFacilitySessions", "GetHealthFacilitySessionsLengthByHealthFacilityId", 1, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
-						throw ex;
-					}
-				}
-				return totalLength;
-			}
-			catch (Exception ex)
-			{
-				Log.InsertEntity("HealthFacilitySessions", "GetHealthFacilitySessionsLengthByHealthFacilityId", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
-				throw ex;
-			}
-
-		}
 
 
 
