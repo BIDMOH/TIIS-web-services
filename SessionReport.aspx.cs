@@ -66,13 +66,8 @@ public partial class Pages_SessionReport : System.Web.UI.Page
                     new NpgsqlParameter("@FacilityCode", NpgsqlTypes.NpgsqlDbType.Integer) { Value = CurrentEnvironment.LoggedUser.HealthFacility.Code },
                     new NpgsqlParameter("@UserId", NpgsqlTypes.NpgsqlDbType.Integer) { Value = CurrentEnvironment.LoggedUser.Id }
                 };
-                
-                // var params = new List<NpgsqlParameter>() {
-                //     new NpgsqlParameter("@FacilityId", NpgsqlTypes.NpgsqlDbType.Integer) { Value = CurrentEnvironment.LoggedUser.HealthFacilityId }
-                // };
 
-                string command = "SELECT \"ID\", \"USERNAME\" FROM \"USER\" WHERE \"ID\" <> 1 AND \"HEALTH_FACILITY_ID\" = @FacilityId";
-                using (var idt = DBManager.ExecuteReaderCommand(command, System.Data.CommandType.Text, contextParms))
+                using (var idt = DBManager.ExecuteReaderCommand("SELECT \"ID\",\"NAME\" FROM (SELECT p.\"ID\",p.\"NAME\", p.\"NAME\" AS s FROM \"PLACE\" p WHERE \"HEALTH_FACILITY_ID\" IN (WITH RECURSIVE facility(hfid) AS ( SELECT \"ID\" as hfid, \"PARENT_ID\" FROM \"HEALTH_FACILITY\" WHERE \"ID\" = @FacilityId UNION SELECT \"ID\", facility.hfid FROM facility, \"HEALTH_FACILITY\" WHERE \"HEALTH_FACILITY\".\"PARENT_ID\" = facility.hfid) SELECT HFID FROM facility) UNION SELECT NULL, 'All', 'AAA') H ORDER BY s", System.Data.CommandType.Text, contextParms))
                 {
                     using (var irdr = idt.CreateDataReader())
                     {
@@ -173,9 +168,12 @@ public partial class Pages_SessionReport : System.Web.UI.Page
 
 
                 //grid header text
-                gvHealthFacilitySessions.Columns[0].HeaderText = "Login Time";
-                gvHealthFacilitySessions.Columns[1].HeaderText = "Duration (Seconds)";
-                gvHealthFacilitySessions.Columns[2].HeaderText = "User Name";
+                gvHealthFacilitySessions.Columns[1].HeaderText = "Sn";
+                gvHealthFacilitySessions.Columns[2].HeaderText = "Login Time";
+                gvHealthFacilitySessions.Columns[3].HeaderText = "Duration";
+                gvHealthFacilitySessions.Columns[4].HeaderText = "user";
+                // gvHealthFacilitySessions.Columns[5].HeaderText = wtList["HealthFacilityLeaf"];
+                // gvHealthFacilitySessions.Columns[6].HeaderText = wtList["HealthFacilityVaccinationPoint"];
 
 
                 string sessionvar = "_healthfacility_" + CurrentEnvironment.LoggedUser.HealthFacilityId.ToString();
@@ -189,7 +187,7 @@ public partial class Pages_SessionReport : System.Web.UI.Page
                 }
 
                 odsHealthFacilitySessions.SelectParameters.Clear();
-                odsHealthFacilitySessions.SelectParameters.Add("hfid", s);
+                odsHealthFacilitySessions.SelectParameters.Add("hfid", int.parse(s));
                 odsHealthFacilitySessions.DataBind();
                 gvHealthFacilitySessions.DataSourceID = "odsHealthFacilitySessions";
                 gvHealthFacilitySessions.DataBind();
@@ -202,28 +200,6 @@ public partial class Pages_SessionReport : System.Web.UI.Page
                 Context.ApplicationInstance.CompleteRequest();
             }
         }
-    }
-
-    protected void btnSearch_Click(object sender, EventArgs e)
-    {
-        // string wsearch = txtName.Text.Replace("'", @"''");
-        // string csearch = txtCode.Text.Replace("'", @"''");
-
-        // string s = string.Empty;
-
-        // string sessionvar = "_healthfacility_" + CurrentEnvironment.LoggedUser.HealthFacilityId.ToString();
-        // if (Session[sessionvar] != null)
-        //     s = Session[sessionvar].ToString();
-        // else
-        //     s = HealthFacility.GetAllChildsForOneHealthFacility(CurrentEnvironment.LoggedUser.HealthFacilityId);
-
-        // odsHealthFacility.SelectParameters.Clear();
-        // odsHealthFacility.SelectParameters.Add("name", wsearch.ToUpper());
-        // odsHealthFacility.SelectParameters.Add("code", csearch.ToUpper());
-        // odsHealthFacility.SelectParameters.Add("hfid", s);
-
-        // gvHealthFacility.DataSourceID = "odsHealthFacility";
-        // gvHealthFacility.DataBind();
     }
 
     protected void gvHealthFacilitySessions_PageIndexChanging(object sender, GridViewPageEventArgs e)
