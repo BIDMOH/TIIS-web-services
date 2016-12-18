@@ -2,9 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="85cfecfd-e9e1-4d16-88f7-091a66c79513" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../GIIS.Website/Pages/SessionReport.aspx" afterPath="$PROJECT_DIR$/../../GIIS.Website/Pages/SessionReport.aspx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../GIIS.Website/Pages/SessionReport.aspx.cs" afterPath="$PROJECT_DIR$/../../GIIS.Website/Pages/SessionReport.aspx.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../GIIS.DataLayer/bin/Debug/GIIS.DataLayer.dll.mdb" afterPath="$PROJECT_DIR$/../../GIIS.DataLayer/bin/Debug/GIIS.DataLayer.dll.mdb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../GIIS.DataLayer/obj/Debug/GIIS.DataLayer.dll.mdb" afterPath="$PROJECT_DIR$/../../GIIS.DataLayer/obj/Debug/GIIS.DataLayer.dll.mdb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../Services/GIIS.Tanzania.WCF/bin/GIIS.DataLayer.dll" afterPath="$PROJECT_DIR$/../../../Services/GIIS.Tanzania.WCF/bin/GIIS.DataLayer.dll" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../Services/GIIS.Tanzania.WCF/bin/GIIS.Tanzania.WCF.dll" afterPath="$PROJECT_DIR$/../../../Services/GIIS.Tanzania.WCF/bin/GIIS.Tanzania.WCF.dll" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../Services/GIIS.Tanzania.WCF/bin/GIIS.Tanzania.WCF.dll.mdb" afterPath="$PROJECT_DIR$/../../../Services/GIIS.Tanzania.WCF/bin/GIIS.Tanzania.WCF.dll.mdb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../Services/GIIS.Tanzania.WCF/obj/Debug/GIIS.Tanzania.WCF.dll" afterPath="$PROJECT_DIR$/../../../Services/GIIS.Tanzania.WCF/obj/Debug/GIIS.Tanzania.WCF.dll" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../Services/GIIS.Tanzania.WCF/obj/Debug/GIIS.Tanzania.WCF.dll.mdb" afterPath="$PROJECT_DIR$/../../../Services/GIIS.Tanzania.WCF/obj/Debug/GIIS.Tanzania.WCF.dll.mdb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../GIIS.DataLayer/GIIS.DataLayer.csproj" afterPath="$PROJECT_DIR$/../../GIIS.DataLayer/GIIS.DataLayer.csproj" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../GIIS.DataLayer/GIIS.DataLayer.userprefs" afterPath="$PROJECT_DIR$/../../GIIS.DataLayer/GIIS.DataLayer.userprefs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../GIIS.DataLayer/HealthFacilitiesSessions.cs" afterPath="$PROJECT_DIR$/../../GIIS.DataLayer/HealthFacilitiesSessions.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../Services/GIIS.Tanzania.WCF.userprefs" afterPath="$PROJECT_DIR$/../../../Services/GIIS.Tanzania.WCF.userprefs" />
     </list>
     <ignored path="GIIS.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -31,41 +39,41 @@
             <state relative-caret-position="2370">
               <caret line="520" column="23" selection-start-line="520" selection-start-column="23" selection-end-line="520" selection-end-column="23" />
               <folding>
-                <marker date="1481533251000" expanded="true" signature="0:813" ph="/* Copyright 2015 TIIS - Tanzania Immunization Information System ... */" />
-                <marker date="1481533251000" expanded="true" signature="820:913" ph="..." />
-                <marker date="1481533251000" expanded="true" signature="939:26893" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="981:26891" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="997:2284" ph="Properties" />
-                <marker date="1481533251000" expanded="true" signature="2294:16042" ph="GetData" />
-                <marker date="1481533251000" expanded="true" signature="2376:2929" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="3012:3459" ph="{...}" />
-                <marker date="1481533251000" expanded="false" signature="3519:4123" ph="{...}" />
-                <marker date="1481533251000" expanded="false" signature="4193:4976" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="4410:4476" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="5048:5870" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="5271:5347" ph="{...}" />
-                <marker date="1481533251000" expanded="false" signature="5942:6764" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="6165:6241" ph="{...}" />
-                <marker date="1481533251000" expanded="false" signature="6896:8551" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="7724:8127" ph="{...}" />
-                <marker date="1481533251000" expanded="false" signature="8712:10436" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="9578:10013" ph="{...}" />
-                <marker date="1481533251000" expanded="false" signature="10604:13319" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="12399:12876" ph="{...}" />
-                <marker date="1481533251000" expanded="false" signature="13468:16022" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="15175:15579" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="16052:23034" ph="CRUD" />
-                <marker date="1481533251000" expanded="false" signature="16115:18701" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="16787:18215" ph="{...}" />
-                <marker date="1481533251000" expanded="false" signature="18753:21418" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="19447:20935" ph="{...}" />
-                <marker date="1481533251000" expanded="false" signature="21460:22205" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="21673:21732" ph="{...}" />
-                <marker date="1481533251000" expanded="false" signature="22247:23015" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="22483:22542" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="23044:26884" ph="Helper Methods" />
-                <marker date="1481533251000" expanded="true" signature="23143:24927" ph="{...}" />
-                <marker date="1481533251000" expanded="false" signature="25009:26865" ph="{...}" />
+                <marker date="1482092117000" expanded="true" signature="0:813" ph="/* Copyright 2015 TIIS - Tanzania Immunization Information System ... */" />
+                <marker date="1482092117000" expanded="true" signature="820:913" ph="..." />
+                <marker date="1482092117000" expanded="true" signature="939:26893" ph="{...}" />
+                <marker date="1482092117000" expanded="true" signature="981:26891" ph="{...}" />
+                <marker date="1482092117000" expanded="true" signature="997:2284" ph="Properties" />
+                <marker date="1482092117000" expanded="true" signature="2294:16042" ph="GetData" />
+                <marker date="1482092117000" expanded="true" signature="2376:2929" ph="{...}" />
+                <marker date="1482092117000" expanded="true" signature="3012:3459" ph="{...}" />
+                <marker date="1482092117000" expanded="false" signature="3519:4123" ph="{...}" />
+                <marker date="1482092117000" expanded="false" signature="4193:4976" ph="{...}" />
+                <marker date="1482092117000" expanded="true" signature="4410:4476" ph="{...}" />
+                <marker date="1482092117000" expanded="true" signature="5048:5870" ph="{...}" />
+                <marker date="1482092117000" expanded="true" signature="5271:5347" ph="{...}" />
+                <marker date="1482092117000" expanded="false" signature="5942:6764" ph="{...}" />
+                <marker date="1482092117000" expanded="true" signature="6165:6241" ph="{...}" />
+                <marker date="1482092117000" expanded="false" signature="6896:8551" ph="{...}" />
+                <marker date="1482092117000" expanded="true" signature="7724:8127" ph="{...}" />
+                <marker date="1482092117000" expanded="false" signature="8712:10436" ph="{...}" />
+                <marker date="1482092117000" expanded="true" signature="9578:10013" ph="{...}" />
+                <marker date="1482092117000" expanded="false" signature="10604:13319" ph="{...}" />
+                <marker date="1482092117000" expanded="true" signature="12399:12876" ph="{...}" />
+                <marker date="1482092117000" expanded="false" signature="13468:16022" ph="{...}" />
+                <marker date="1482092117000" expanded="true" signature="15175:15579" ph="{...}" />
+                <marker date="1482092117000" expanded="true" signature="16052:23034" ph="CRUD" />
+                <marker date="1482092117000" expanded="false" signature="16115:18701" ph="{...}" />
+                <marker date="1482092117000" expanded="true" signature="16787:18215" ph="{...}" />
+                <marker date="1482092117000" expanded="false" signature="18753:21418" ph="{...}" />
+                <marker date="1482092117000" expanded="true" signature="19447:20935" ph="{...}" />
+                <marker date="1482092117000" expanded="false" signature="21460:22205" ph="{...}" />
+                <marker date="1482092117000" expanded="true" signature="21673:21732" ph="{...}" />
+                <marker date="1482092117000" expanded="false" signature="22247:23015" ph="{...}" />
+                <marker date="1482092117000" expanded="true" signature="22483:22542" ph="{...}" />
+                <marker date="1482092117000" expanded="true" signature="23044:26884" ph="Helper Methods" />
+                <marker date="1482092117000" expanded="true" signature="23143:24927" ph="{...}" />
+                <marker date="1482092117000" expanded="false" signature="25009:26865" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -77,57 +85,57 @@
             <state relative-caret-position="0">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
-                <marker date="1481872319000" expanded="true" signature="0:813" ph="/* Copyright 2015 TIIS - Tanzania Immunization Information System ... */" />
-                <marker date="1481872319000" expanded="true" signature="820:932" ph="..." />
-                <marker date="1481872319000" expanded="true" signature="958:43718" ph="{...}" />
-                <marker date="1481872319000" expanded="true" signature="991:43716" ph="{...}" />
-                <marker date="1481872319000" expanded="true" signature="1061:1805" ph="{...}" />
-                <marker date="1481872319000" expanded="true" signature="1299:1419" ph="{...}" />
-                <marker date="1481872319000" expanded="true" signature="1865:2596" ph="{...}" />
-                <marker date="1481872319000" expanded="true" signature="2097:2211" ph="{...}" />
-                <marker date="1481872319000" expanded="true" signature="2687:3256" ph="{...}" />
-                <marker date="1481872319000" expanded="true" signature="3365:3965" ph="{...}" />
-                <marker date="1481872319000" expanded="true" signature="4055:4728" ph="{...}" />
-                <marker date="1481872319000" expanded="true" signature="4858:5766" ph="{...}" />
-                <marker date="1481872319000" expanded="true" signature="5849:6684" ph="{...}" />
-                <marker date="1481872319000" expanded="true" signature="6814:8813" ph="{...}" />
-                <marker date="1481872319000" expanded="true" signature="8187:8386" ph="/* List&lt;NpgsqlParameter&gt; parameters = new List&lt;NpgsqlParameter&gt;() ... */" />
-                <marker date="1481872319000" expanded="true" signature="8930:10673" ph="{...}" />
-                <marker date="1481872319000" expanded="true" signature="10743:11601" ph="{...}" />
-                <marker date="1481872319000" expanded="true" signature="11723:14007" ph="{...}" />
-                <marker date="1481872319000" expanded="true" signature="14085:14814" ph="{...}" />
-                <marker date="1481872319000" expanded="true" signature="14302:14409" ph="{...}" />
-                <marker date="1481872319000" expanded="true" signature="14898:15845" ph="{...}" />
-                <marker date="1481872319000" expanded="true" signature="15237:15452" ph="{...}" />
-                <marker date="1481872319000" expanded="true" signature="15891:16237" ph="{...}" />
-                <marker date="1481872319000" expanded="true" signature="16329:17289" ph="{...}" />
-                <marker date="1481872319000" expanded="true" signature="16670:16883" ph="{...}" />
-                <marker date="1481872319000" expanded="true" signature="17377:19201" ph="{...}" />
-                <marker date="1481872319000" expanded="true" signature="17488:18013" ph="/* string query = string.Format(@&quot;select distinct C.* from &quot;&quot;CHILD&quot;&quot; C join &quot;&quot;VACCINATION_EVENT&quot;&quot; V on V.&quot;&quot;CHILD_ ... */" />
-                <marker date="1481872319000" expanded="true" signature="18451:18794" ph="{...}" />
-                <marker date="1481872319000" expanded="true" signature="19290:21314" ph="{...}" />
-                <marker date="1481872319000" expanded="true" signature="19402:19990" ph="/* string query = string.Format(@&quot;select distinct C.* from &quot;&quot;CHILD&quot;&quot; C join &quot;&quot;VACCINATION_EVENT&quot;&quot; V on V.&quot;&quot;CHILD_ ... */" />
-                <marker date="1481872319000" expanded="true" signature="20463:20906" ph="{...}" />
-                <marker date="1481872319000" expanded="true" signature="21401:22967" ph="{...}" />
-                <marker date="1481872319000" expanded="true" signature="21513:21921" ph="/* string query = string.Format(@&quot;select distinct C.* from &quot;&quot;CHILD&quot;&quot; C join &quot;&quot;VACCINATION_EVENT&quot;&quot; V on V.&quot;&quot;CHILD_ ... */" />
-                <marker date="1481872319000" expanded="true" signature="22279:22559" ph="{...}" />
-                <marker date="1481872319000" expanded="true" signature="23423:28240" ph="{...}" />
-                <marker date="1481872319000" expanded="true" signature="25917:27856" ph="{...}" />
-                <marker date="1481872319000" expanded="true" signature="28637:32193" ph="{...}" />
-                <marker date="1481872319000" expanded="true" signature="30435:31899" ph="{...}" />
-                <marker date="1481872319000" expanded="true" signature="32549:36631" ph="{...}" />
-                <marker date="1481872319000" expanded="true" signature="34702:36238" ph="{...}" />
-                <marker date="1481872319000" expanded="true" signature="36787:38834" ph="{...}" />
-                <marker date="1481872319000" expanded="true" signature="37812:38447" ph="{...}" />
-                <marker date="1481872319000" expanded="true" signature="38918:41091" ph="{...}" />
-                <marker date="1481872319000" expanded="true" signature="39088:39785" ph="/* string query = string.Format(@&quot;select distinct C.* from &quot;&quot;CHILD&quot;&quot; C join &quot;&quot;VACCINATION_EVENT&quot;&quot; V on V.&quot;&quot;CHILD_ ... */" />
-                <marker date="1481872319000" expanded="true" signature="40301:40708" ph="{...}" />
-                <marker date="1481872319000" expanded="true" signature="41180:43159" ph="{...}" />
-                <marker date="1481872319000" expanded="true" signature="41350:41983" ph="/* string query = string.Format(@&quot;select distinct C.* from &quot;&quot;CHILD&quot;&quot; C join &quot;&quot;VACCINATION_EVENT&quot;&quot; V on V.&quot;&quot;CHILD_ ... */" />
-                <marker date="1481872319000" expanded="true" signature="42464:42771" ph="{...}" />
-                <marker date="1481872319000" expanded="true" signature="43218:43343" ph="{...}" />
-                <marker date="1481872319000" expanded="true" signature="43401:43526" ph="{...}" />
-                <marker date="1481872319000" expanded="true" signature="43584:43709" ph="{...}" />
+                <marker date="1482092117000" expanded="true" signature="0:813" ph="/* Copyright 2015 TIIS - Tanzania Immunization Information System ... */" />
+                <marker date="1482092117000" expanded="true" signature="820:932" ph="..." />
+                <marker date="1482092117000" expanded="true" signature="958:43718" ph="{...}" />
+                <marker date="1482092117000" expanded="true" signature="991:43716" ph="{...}" />
+                <marker date="1482092117000" expanded="true" signature="1061:1805" ph="{...}" />
+                <marker date="1482092117000" expanded="true" signature="1299:1419" ph="{...}" />
+                <marker date="1482092117000" expanded="true" signature="1865:2596" ph="{...}" />
+                <marker date="1482092117000" expanded="true" signature="2097:2211" ph="{...}" />
+                <marker date="1482092117000" expanded="true" signature="2687:3256" ph="{...}" />
+                <marker date="1482092117000" expanded="true" signature="3365:3965" ph="{...}" />
+                <marker date="1482092117000" expanded="true" signature="4055:4728" ph="{...}" />
+                <marker date="1482092117000" expanded="true" signature="4858:5766" ph="{...}" />
+                <marker date="1482092117000" expanded="true" signature="5849:6684" ph="{...}" />
+                <marker date="1482092117000" expanded="true" signature="6814:8813" ph="{...}" />
+                <marker date="1482092117000" expanded="true" signature="8187:8386" ph="/* List&lt;NpgsqlParameter&gt; parameters = new List&lt;NpgsqlParameter&gt;() ... */" />
+                <marker date="1482092117000" expanded="true" signature="8930:10673" ph="{...}" />
+                <marker date="1482092117000" expanded="true" signature="10743:11601" ph="{...}" />
+                <marker date="1482092117000" expanded="true" signature="11723:14007" ph="{...}" />
+                <marker date="1482092117000" expanded="true" signature="14085:14814" ph="{...}" />
+                <marker date="1482092117000" expanded="true" signature="14302:14409" ph="{...}" />
+                <marker date="1482092117000" expanded="true" signature="14898:15845" ph="{...}" />
+                <marker date="1482092117000" expanded="true" signature="15237:15452" ph="{...}" />
+                <marker date="1482092117000" expanded="true" signature="15891:16237" ph="{...}" />
+                <marker date="1482092117000" expanded="true" signature="16329:17289" ph="{...}" />
+                <marker date="1482092117000" expanded="true" signature="16670:16883" ph="{...}" />
+                <marker date="1482092117000" expanded="true" signature="17377:19201" ph="{...}" />
+                <marker date="1482092117000" expanded="true" signature="17488:18013" ph="/* string query = string.Format(@&quot;select distinct C.* from &quot;&quot;CHILD&quot;&quot; C join &quot;&quot;VACCINATION_EVENT&quot;&quot; V on V.&quot;&quot;CHILD_ ... */" />
+                <marker date="1482092117000" expanded="true" signature="18451:18794" ph="{...}" />
+                <marker date="1482092117000" expanded="true" signature="19290:21314" ph="{...}" />
+                <marker date="1482092117000" expanded="true" signature="19402:19990" ph="/* string query = string.Format(@&quot;select distinct C.* from &quot;&quot;CHILD&quot;&quot; C join &quot;&quot;VACCINATION_EVENT&quot;&quot; V on V.&quot;&quot;CHILD_ ... */" />
+                <marker date="1482092117000" expanded="true" signature="20463:20906" ph="{...}" />
+                <marker date="1482092117000" expanded="true" signature="21401:22967" ph="{...}" />
+                <marker date="1482092117000" expanded="true" signature="21513:21921" ph="/* string query = string.Format(@&quot;select distinct C.* from &quot;&quot;CHILD&quot;&quot; C join &quot;&quot;VACCINATION_EVENT&quot;&quot; V on V.&quot;&quot;CHILD_ ... */" />
+                <marker date="1482092117000" expanded="true" signature="22279:22559" ph="{...}" />
+                <marker date="1482092117000" expanded="true" signature="23423:28240" ph="{...}" />
+                <marker date="1482092117000" expanded="true" signature="25917:27856" ph="{...}" />
+                <marker date="1482092117000" expanded="true" signature="28637:32193" ph="{...}" />
+                <marker date="1482092117000" expanded="true" signature="30435:31899" ph="{...}" />
+                <marker date="1482092117000" expanded="true" signature="32549:36631" ph="{...}" />
+                <marker date="1482092117000" expanded="true" signature="34702:36238" ph="{...}" />
+                <marker date="1482092117000" expanded="true" signature="36787:38834" ph="{...}" />
+                <marker date="1482092117000" expanded="true" signature="37812:38447" ph="{...}" />
+                <marker date="1482092117000" expanded="true" signature="38918:41091" ph="{...}" />
+                <marker date="1482092117000" expanded="true" signature="39088:39785" ph="/* string query = string.Format(@&quot;select distinct C.* from &quot;&quot;CHILD&quot;&quot; C join &quot;&quot;VACCINATION_EVENT&quot;&quot; V on V.&quot;&quot;CHILD_ ... */" />
+                <marker date="1482092117000" expanded="true" signature="40301:40708" ph="{...}" />
+                <marker date="1482092117000" expanded="true" signature="41180:43159" ph="{...}" />
+                <marker date="1482092117000" expanded="true" signature="41350:41983" ph="/* string query = string.Format(@&quot;select distinct C.* from &quot;&quot;CHILD&quot;&quot; C join &quot;&quot;VACCINATION_EVENT&quot;&quot; V on V.&quot;&quot;CHILD_ ... */" />
+                <marker date="1482092117000" expanded="true" signature="42464:42771" ph="{...}" />
+                <marker date="1482092117000" expanded="true" signature="43218:43343" ph="{...}" />
+                <marker date="1482092117000" expanded="true" signature="43401:43526" ph="{...}" />
+                <marker date="1482092117000" expanded="true" signature="43584:43709" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -136,30 +144,24 @@
       <file leaf-file-name="HealthFacilitiesSessions.cs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../../GIIS.DataLayer/HealthFacilitiesSessions.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="52" column="98" selection-start-line="52" selection-start-column="95" selection-end-line="52" selection-end-column="98" />
+            <state relative-caret-position="195">
+              <caret line="53" column="98" selection-start-line="53" selection-start-column="98" selection-end-line="53" selection-end-column="98" />
               <folding>
-                <marker date="1481874136000" expanded="true" signature="0:813" ph="/* Copyright 2015 TIIS - Tanzania Immunization Information System ... */" />
-                <marker date="1481874136000" expanded="true" signature="820:913" ph="..." />
-                <marker date="1481874136000" expanded="true" signature="939:9260" ph="{...}" />
-                <marker date="1481874136000" expanded="true" signature="989:9258" ph="{...}" />
-                <marker date="1481874136000" expanded="true" signature="1005:1304" ph="Properties" />
-                <marker date="1481874136000" expanded="true" signature="1314:3780" ph="GetData" />
-                <marker date="1481874136000" expanded="true" signature="1412:1940" ph="{...}" />
-                <marker date="1481874136000" expanded="true" signature="2040:2663" ph="{...}" />
-                <marker date="1481874136000" expanded="true" signature="2236:2309" ph="{...}" />
-                <marker date="1481874136000" expanded="true" signature="2821:3760" ph="{...}" />
-                <marker date="1481874136000" expanded="true" signature="3104:3397" ph="{...}" />
-                <marker date="1481874136000" expanded="true" signature="3790:7102" ph="CRUD" />
-                <marker date="1481874136000" expanded="true" signature="3855:5033" ph="{...}" />
-                <marker date="1481874136000" expanded="true" signature="4220:4562" ph="{...}" />
-                <marker date="1481874136000" expanded="true" signature="5093:6263" ph="{...}" />
-                <marker date="1481874136000" expanded="true" signature="5437:5779" ph="{...}" />
-                <marker date="1481874136000" expanded="true" signature="6305:7082" ph="{...}" />
-                <marker date="1481874136000" expanded="true" signature="6533:6601" ph="{...}" />
-                <marker date="1481874136000" expanded="true" signature="7112:9251" ph="Helper Methods" />
-                <marker date="1481874136000" expanded="true" signature="7227:8164" ph="{...}" />
-                <marker date="1481874136000" expanded="true" signature="8256:9232" ph="{...}" />
+                <marker date="1482092100000" expanded="true" signature="0:813" ph="/* Copyright 2015 TIIS - Tanzania Immunization Information System ... */" />
+                <marker date="1482092100000" expanded="true" signature="820:906" ph="..." />
+                <marker date="1482092100000" expanded="true" signature="10414:10434" ph="GetData" />
+                <marker date="1482092100000" expanded="true" signature="10414:15912" ph="{...}" />
+                <marker date="1482092100000" expanded="true" signature="10414:15914" ph="{...}" />
+                <marker date="1482092100000" expanded="true" signature="10444:13756" ph="CRUD" />
+                <marker date="1482092100000" expanded="true" signature="10509:11687" ph="{...}" />
+                <marker date="1482092100000" expanded="true" signature="10874:11216" ph="{...}" />
+                <marker date="1482092100000" expanded="true" signature="11747:12917" ph="{...}" />
+                <marker date="1482092100000" expanded="true" signature="12091:12433" ph="{...}" />
+                <marker date="1482092100000" expanded="true" signature="12959:13736" ph="{...}" />
+                <marker date="1482092100000" expanded="true" signature="13187:13255" ph="{...}" />
+                <marker date="1482092100000" expanded="true" signature="13766:15905" ph="Helper Methods" />
+                <marker date="1482092100000" expanded="true" signature="13881:14818" ph="{...}" />
+                <marker date="1482092100000" expanded="true" signature="14910:15886" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -171,30 +173,30 @@
             <state relative-caret-position="525">
               <caret line="85" column="30" selection-start-line="85" selection-start-column="19" selection-end-line="85" selection-end-column="30" />
               <folding>
-                <marker date="1481533251000" expanded="true" signature="0:813" ph="/* Copyright 2015 TIIS - Tanzania Immunization Information System ... */" />
-                <marker date="1481533251000" expanded="true" signature="820:913" ph="..." />
-                <marker date="1481533251000" expanded="true" signature="939:11238" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="967:11236" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="971:1718" ph="Properties" />
-                <marker date="1481533251000" expanded="true" signature="1720:3710" ph="GetData" />
-                <marker date="1481533251000" expanded="true" signature="1774:2073" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="2115:2511" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="2552:3084" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="2694:2760" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="3132:3698" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="3280:3347" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="3712:9149" ph="CRUD" />
-                <marker date="1481533251000" expanded="true" signature="3757:5776" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="4245:5452" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="5810:8018" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="6330:7698" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="8052:8567" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="8190:8249" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="8601:9138" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="8762:8821" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="9151:11233" ph="Helper Methods" />
-                <marker date="1481533251000" expanded="true" signature="9222:10175" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="10229:11222" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="0:813" ph="/* Copyright 2015 TIIS - Tanzania Immunization Information System ... */" />
+                <marker date="1482092118000" expanded="true" signature="820:913" ph="..." />
+                <marker date="1482092118000" expanded="true" signature="939:11238" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="967:11236" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="971:1718" ph="Properties" />
+                <marker date="1482092118000" expanded="true" signature="1720:3710" ph="GetData" />
+                <marker date="1482092118000" expanded="true" signature="1774:2073" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="2115:2511" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="2552:3084" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="2694:2760" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="3132:3698" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="3280:3347" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="3712:9149" ph="CRUD" />
+                <marker date="1482092118000" expanded="true" signature="3757:5776" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="4245:5452" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="5810:8018" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="6330:7698" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="8052:8567" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="8190:8249" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="8601:9138" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="8762:8821" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="9151:11233" ph="Helper Methods" />
+                <marker date="1482092118000" expanded="true" signature="9222:10175" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="10229:11222" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -203,34 +205,34 @@
       <file leaf-file-name="UserEntity.cs" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../../GIIS.DataLayer/UserEntity.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="376">
-              <caret line="51" column="233" selection-start-line="51" selection-start-column="31" selection-end-line="51" selection-end-column="233" />
+            <state relative-caret-position="172">
+              <caret line="33" column="17" selection-start-line="33" selection-start-column="17" selection-end-line="33" selection-end-column="17" />
               <folding>
-                <marker date="1481533251000" expanded="true" signature="0:812" ph="/* Copyright 2015 TIIS - Tanzania Immunization Information System ... */" />
-                <marker date="1481533251000" expanded="true" signature="819:931" ph="..." />
-                <marker date="1481533251000" expanded="true" signature="957:11357" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="979:11355" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="1040:1607" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="1244:1317" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="1680:2389" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="1991:2088" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="2497:3022" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="3107:3512" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="3582:5263" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="3786:3875" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="4230:4308" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="4755:4922" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="5345:7553" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="5554:5629" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="6416:6590" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="7025:7194" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="7606:8221" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="7833:7924" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="8337:10190" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="8358:8869" ph="/* string wsearch = txtUsername.Text.Replace(&quot;'&quot;, @&quot;''&quot;); ... */" />
-                <marker date="1481533251000" expanded="true" signature="9465:9906" ph="/* List&lt;NpgsqlParameter&gt; parameters = new List&lt;NpgsqlParameter&gt;() ... */" />
-                <marker date="1481533251000" expanded="true" signature="10255:11352" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="10800:11058" ph="/* List&lt;NpgsqlParameter&gt; parameters = new List&lt;NpgsqlParameter&gt;() ... */" />
+                <marker date="1482092118000" expanded="true" signature="0:812" ph="/* Copyright 2015 TIIS - Tanzania Immunization Information System ... */" />
+                <marker date="1482092118000" expanded="true" signature="819:931" ph="..." />
+                <marker date="1482092118000" expanded="true" signature="957:11357" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="979:11355" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="1040:1607" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="1244:1317" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="1680:2389" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="1991:2088" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="2497:3022" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="3107:3512" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="3582:5263" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="3786:3875" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="4230:4308" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="4755:4922" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="5345:7553" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="5554:5629" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="6416:6590" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="7025:7194" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="7606:8221" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="7833:7924" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="8337:10190" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="8358:8869" ph="/* string wsearch = txtUsername.Text.Replace(&quot;'&quot;, @&quot;''&quot;); ... */" />
+                <marker date="1482092118000" expanded="true" signature="9465:9906" ph="/* List&lt;NpgsqlParameter&gt; parameters = new List&lt;NpgsqlParameter&gt;() ... */" />
+                <marker date="1482092118000" expanded="true" signature="10255:11352" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="10800:11058" ph="/* List&lt;NpgsqlParameter&gt; parameters = new List&lt;NpgsqlParameter&gt;() ... */" />
               </folding>
             </state>
           </provider>
@@ -242,45 +244,45 @@
             <state relative-caret-position="405">
               <caret line="27" column="9" selection-start-line="27" selection-start-column="9" selection-end-line="27" selection-end-column="9" />
               <folding>
-                <marker date="1481533251000" expanded="true" signature="0:813" ph="/* Copyright 2015 TIIS - Tanzania Immunization Information System ... */" />
-                <marker date="1481533251000" expanded="true" signature="820:913" ph="..." />
-                <marker date="1481533251000" expanded="true" signature="974:23725" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="1024:1562" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="1638:2246" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="2326:2891" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="2973:3637" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="3689:4204" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="4326:4667" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="4727:5179" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="5287:5883" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="6024:6525" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="6611:6860" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="6930:7173" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="7240:7950" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="8018:8700" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="8853:10463" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="9554:10052" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="10556:11909" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="11174:11498" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="12037:12658" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="12726:13266" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="13352:14123" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="13606:13709" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="14206:14988" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="14486:14589" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="15054:17799" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="15280:15376" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="16253:16503" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="17131:17381" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="17876:21263" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="18102:18198" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="18862:19042" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="19717:19967" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="20595:20845" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="21368:23717" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="21617:21713" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="22197:22462" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="23038:23303" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="0:813" ph="/* Copyright 2015 TIIS - Tanzania Immunization Information System ... */" />
+                <marker date="1482092118000" expanded="true" signature="820:913" ph="..." />
+                <marker date="1482092118000" expanded="true" signature="974:23725" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="1024:1562" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="1638:2246" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="2326:2891" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="2973:3637" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="3689:4204" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="4326:4667" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="4727:5179" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="5287:5883" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="6024:6525" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="6611:6860" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="6930:7173" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="7240:7950" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="8018:8700" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="8853:10463" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="9554:10052" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="10556:11909" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="11174:11498" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="12037:12658" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="12726:13266" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="13352:14123" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="13606:13709" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="14206:14988" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="14486:14589" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="15054:17799" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="15280:15376" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="16253:16503" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="17131:17381" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="17876:21263" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="18102:18198" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="18862:19042" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="19717:19967" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="20595:20845" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="21368:23717" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="21617:21713" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="22197:22462" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="23038:23303" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -292,13 +294,13 @@
             <state relative-caret-position="480">
               <caret line="32" column="13" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
               <folding>
-                <marker date="1481533251000" expanded="true" signature="0:813" ph="/* Copyright 2015 TIIS - Tanzania Immunization Information System ... */" />
-                <marker date="1481533251000" expanded="true" signature="820:899" ph="..." />
-                <marker date="1481533251000" expanded="true" signature="925:3192" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="977:3190" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="1110:1736" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="1885:2534" ph="{...}" />
-                <marker date="1481533251000" expanded="true" signature="2612:3184" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="0:813" ph="/* Copyright 2015 TIIS - Tanzania Immunization Information System ... */" />
+                <marker date="1482092118000" expanded="true" signature="820:899" ph="..." />
+                <marker date="1482092118000" expanded="true" signature="925:3192" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="977:3190" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="1110:1736" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="1885:2534" ph="{...}" />
+                <marker date="1482092118000" expanded="true" signature="2612:3184" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -316,6 +318,7 @@
         <option value="$PROJECT_DIR$/../../GIIS.DataLayer/HealthFacility.cs" />
         <option value="$PROJECT_DIR$/../../GIIS.DataLayer/HealthFacilitySessions.cs" />
         <option value="$PROJECT_DIR$/../../GIIS.DataLayer/HealthFacilitiesSessions.cs" />
+        <option value="$PROJECT_DIR$/../../GIIS.DataLayer/UserEntity.cs" />
       </list>
     </option>
   </component>
@@ -358,20 +361,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="GIIS (6 projects)" />
-              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerNodeRider" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" />
-              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GIIS (6 projects)" />
-              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerNodeRider" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GIIS.DataLayer" />
               <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerNodeRider" />
             </PATH_ELEMENT>
           </PATH>
@@ -430,12 +419,12 @@
       <workItem from="1481533623629" duration="607000" />
       <workItem from="1481534537778" duration="1834000" />
       <workItem from="1481869391172" duration="4784000" />
-      <workItem from="1482088023227" duration="64000" />
+      <workItem from="1482088023227" duration="295000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7289000" />
+    <option name="totallyTimeSpent" value="7520000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -486,41 +475,41 @@
         <state relative-caret-position="2370">
           <caret line="520" column="23" selection-start-line="520" selection-start-column="23" selection-end-line="520" selection-end-column="23" />
           <folding>
-            <marker date="1481533251000" expanded="true" signature="0:813" ph="/* Copyright 2015 TIIS - Tanzania Immunization Information System ... */" />
-            <marker date="1481533251000" expanded="true" signature="820:913" ph="..." />
-            <marker date="1481533251000" expanded="true" signature="939:26893" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="981:26891" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="997:2284" ph="Properties" />
-            <marker date="1481533251000" expanded="true" signature="2294:16042" ph="GetData" />
-            <marker date="1481533251000" expanded="true" signature="2376:2929" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="3012:3459" ph="{...}" />
-            <marker date="1481533251000" expanded="false" signature="3519:4123" ph="{...}" />
-            <marker date="1481533251000" expanded="false" signature="4193:4976" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="4410:4476" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="5048:5870" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="5271:5347" ph="{...}" />
-            <marker date="1481533251000" expanded="false" signature="5942:6764" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="6165:6241" ph="{...}" />
-            <marker date="1481533251000" expanded="false" signature="6896:8551" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="7724:8127" ph="{...}" />
-            <marker date="1481533251000" expanded="false" signature="8712:10436" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="9578:10013" ph="{...}" />
-            <marker date="1481533251000" expanded="false" signature="10604:13319" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="12399:12876" ph="{...}" />
-            <marker date="1481533251000" expanded="false" signature="13468:16022" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="15175:15579" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="16052:23034" ph="CRUD" />
-            <marker date="1481533251000" expanded="false" signature="16115:18701" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="16787:18215" ph="{...}" />
-            <marker date="1481533251000" expanded="false" signature="18753:21418" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="19447:20935" ph="{...}" />
-            <marker date="1481533251000" expanded="false" signature="21460:22205" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="21673:21732" ph="{...}" />
-            <marker date="1481533251000" expanded="false" signature="22247:23015" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="22483:22542" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="23044:26884" ph="Helper Methods" />
-            <marker date="1481533251000" expanded="true" signature="23143:24927" ph="{...}" />
-            <marker date="1481533251000" expanded="false" signature="25009:26865" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="0:813" ph="/* Copyright 2015 TIIS - Tanzania Immunization Information System ... */" />
+            <marker date="1482092117000" expanded="true" signature="820:913" ph="..." />
+            <marker date="1482092117000" expanded="true" signature="939:26893" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="981:26891" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="997:2284" ph="Properties" />
+            <marker date="1482092117000" expanded="true" signature="2294:16042" ph="GetData" />
+            <marker date="1482092117000" expanded="true" signature="2376:2929" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="3012:3459" ph="{...}" />
+            <marker date="1482092117000" expanded="false" signature="3519:4123" ph="{...}" />
+            <marker date="1482092117000" expanded="false" signature="4193:4976" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="4410:4476" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="5048:5870" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="5271:5347" ph="{...}" />
+            <marker date="1482092117000" expanded="false" signature="5942:6764" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="6165:6241" ph="{...}" />
+            <marker date="1482092117000" expanded="false" signature="6896:8551" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="7724:8127" ph="{...}" />
+            <marker date="1482092117000" expanded="false" signature="8712:10436" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="9578:10013" ph="{...}" />
+            <marker date="1482092117000" expanded="false" signature="10604:13319" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="12399:12876" ph="{...}" />
+            <marker date="1482092117000" expanded="false" signature="13468:16022" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="15175:15579" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="16052:23034" ph="CRUD" />
+            <marker date="1482092117000" expanded="false" signature="16115:18701" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="16787:18215" ph="{...}" />
+            <marker date="1482092117000" expanded="false" signature="18753:21418" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="19447:20935" ph="{...}" />
+            <marker date="1482092117000" expanded="false" signature="21460:22205" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="21673:21732" ph="{...}" />
+            <marker date="1482092117000" expanded="false" signature="22247:23015" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="22483:22542" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="23044:26884" ph="Helper Methods" />
+            <marker date="1482092117000" expanded="true" signature="23143:24927" ph="{...}" />
+            <marker date="1482092117000" expanded="false" signature="25009:26865" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -530,57 +519,57 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1481872319000" expanded="true" signature="0:813" ph="/* Copyright 2015 TIIS - Tanzania Immunization Information System ... */" />
-            <marker date="1481872319000" expanded="true" signature="820:932" ph="..." />
-            <marker date="1481872319000" expanded="true" signature="958:43718" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="991:43716" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="1061:1805" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="1299:1419" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="1865:2596" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="2097:2211" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="2687:3256" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="3365:3965" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="4055:4728" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="4858:5766" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="5849:6684" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="6814:8813" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="8187:8386" ph="/* List&lt;NpgsqlParameter&gt; parameters = new List&lt;NpgsqlParameter&gt;() ... */" />
-            <marker date="1481872319000" expanded="true" signature="8930:10673" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="10743:11601" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="11723:14007" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="14085:14814" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="14302:14409" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="14898:15845" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="15237:15452" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="15891:16237" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="16329:17289" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="16670:16883" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="17377:19201" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="17488:18013" ph="/* string query = string.Format(@&quot;select distinct C.* from &quot;&quot;CHILD&quot;&quot; C join &quot;&quot;VACCINATION_EVENT&quot;&quot; V on V.&quot;&quot;CHILD_ ... */" />
-            <marker date="1481872319000" expanded="true" signature="18451:18794" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="19290:21314" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="19402:19990" ph="/* string query = string.Format(@&quot;select distinct C.* from &quot;&quot;CHILD&quot;&quot; C join &quot;&quot;VACCINATION_EVENT&quot;&quot; V on V.&quot;&quot;CHILD_ ... */" />
-            <marker date="1481872319000" expanded="true" signature="20463:20906" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="21401:22967" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="21513:21921" ph="/* string query = string.Format(@&quot;select distinct C.* from &quot;&quot;CHILD&quot;&quot; C join &quot;&quot;VACCINATION_EVENT&quot;&quot; V on V.&quot;&quot;CHILD_ ... */" />
-            <marker date="1481872319000" expanded="true" signature="22279:22559" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="23423:28240" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="25917:27856" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="28637:32193" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="30435:31899" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="32549:36631" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="34702:36238" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="36787:38834" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="37812:38447" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="38918:41091" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="39088:39785" ph="/* string query = string.Format(@&quot;select distinct C.* from &quot;&quot;CHILD&quot;&quot; C join &quot;&quot;VACCINATION_EVENT&quot;&quot; V on V.&quot;&quot;CHILD_ ... */" />
-            <marker date="1481872319000" expanded="true" signature="40301:40708" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="41180:43159" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="41350:41983" ph="/* string query = string.Format(@&quot;select distinct C.* from &quot;&quot;CHILD&quot;&quot; C join &quot;&quot;VACCINATION_EVENT&quot;&quot; V on V.&quot;&quot;CHILD_ ... */" />
-            <marker date="1481872319000" expanded="true" signature="42464:42771" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="43218:43343" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="43401:43526" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="43584:43709" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="0:813" ph="/* Copyright 2015 TIIS - Tanzania Immunization Information System ... */" />
+            <marker date="1482092117000" expanded="true" signature="820:932" ph="..." />
+            <marker date="1482092117000" expanded="true" signature="958:43718" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="991:43716" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="1061:1805" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="1299:1419" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="1865:2596" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="2097:2211" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="2687:3256" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="3365:3965" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="4055:4728" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="4858:5766" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="5849:6684" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="6814:8813" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="8187:8386" ph="/* List&lt;NpgsqlParameter&gt; parameters = new List&lt;NpgsqlParameter&gt;() ... */" />
+            <marker date="1482092117000" expanded="true" signature="8930:10673" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="10743:11601" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="11723:14007" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="14085:14814" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="14302:14409" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="14898:15845" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="15237:15452" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="15891:16237" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="16329:17289" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="16670:16883" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="17377:19201" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="17488:18013" ph="/* string query = string.Format(@&quot;select distinct C.* from &quot;&quot;CHILD&quot;&quot; C join &quot;&quot;VACCINATION_EVENT&quot;&quot; V on V.&quot;&quot;CHILD_ ... */" />
+            <marker date="1482092117000" expanded="true" signature="18451:18794" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="19290:21314" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="19402:19990" ph="/* string query = string.Format(@&quot;select distinct C.* from &quot;&quot;CHILD&quot;&quot; C join &quot;&quot;VACCINATION_EVENT&quot;&quot; V on V.&quot;&quot;CHILD_ ... */" />
+            <marker date="1482092117000" expanded="true" signature="20463:20906" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="21401:22967" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="21513:21921" ph="/* string query = string.Format(@&quot;select distinct C.* from &quot;&quot;CHILD&quot;&quot; C join &quot;&quot;VACCINATION_EVENT&quot;&quot; V on V.&quot;&quot;CHILD_ ... */" />
+            <marker date="1482092117000" expanded="true" signature="22279:22559" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="23423:28240" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="25917:27856" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="28637:32193" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="30435:31899" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="32549:36631" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="34702:36238" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="36787:38834" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="37812:38447" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="38918:41091" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="39088:39785" ph="/* string query = string.Format(@&quot;select distinct C.* from &quot;&quot;CHILD&quot;&quot; C join &quot;&quot;VACCINATION_EVENT&quot;&quot; V on V.&quot;&quot;CHILD_ ... */" />
+            <marker date="1482092117000" expanded="true" signature="40301:40708" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="41180:43159" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="41350:41983" ph="/* string query = string.Format(@&quot;select distinct C.* from &quot;&quot;CHILD&quot;&quot; C join &quot;&quot;VACCINATION_EVENT&quot;&quot; V on V.&quot;&quot;CHILD_ ... */" />
+            <marker date="1482092117000" expanded="true" signature="42464:42771" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="43218:43343" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="43401:43526" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="43584:43709" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -590,27 +579,21 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1481874136000" expanded="true" signature="0:813" ph="/* Copyright 2015 TIIS - Tanzania Immunization Information System ... */" />
-            <marker date="1481874136000" expanded="true" signature="820:913" ph="..." />
-            <marker date="1481874136000" expanded="true" signature="939:9260" ph="{...}" />
-            <marker date="1481874136000" expanded="true" signature="989:9258" ph="{...}" />
-            <marker date="1481874136000" expanded="true" signature="1005:1304" ph="Properties" />
-            <marker date="1481874136000" expanded="true" signature="1314:3780" ph="GetData" />
-            <marker date="1481874136000" expanded="true" signature="1412:1940" ph="{...}" />
-            <marker date="1481874136000" expanded="true" signature="2040:2663" ph="{...}" />
-            <marker date="1481874136000" expanded="true" signature="2236:2309" ph="{...}" />
-            <marker date="1481874136000" expanded="true" signature="2821:3760" ph="{...}" />
-            <marker date="1481874136000" expanded="true" signature="3104:3397" ph="{...}" />
-            <marker date="1481874136000" expanded="true" signature="3790:7102" ph="CRUD" />
-            <marker date="1481874136000" expanded="true" signature="3855:5033" ph="{...}" />
-            <marker date="1481874136000" expanded="true" signature="4220:4562" ph="{...}" />
-            <marker date="1481874136000" expanded="true" signature="5093:6263" ph="{...}" />
-            <marker date="1481874136000" expanded="true" signature="5437:5779" ph="{...}" />
-            <marker date="1481874136000" expanded="true" signature="6305:7082" ph="{...}" />
-            <marker date="1481874136000" expanded="true" signature="6533:6601" ph="{...}" />
-            <marker date="1481874136000" expanded="true" signature="7112:9251" ph="Helper Methods" />
-            <marker date="1481874136000" expanded="true" signature="7227:8164" ph="{...}" />
-            <marker date="1481874136000" expanded="true" signature="8256:9232" ph="{...}" />
+            <marker date="1482092100000" expanded="true" signature="0:813" ph="/* Copyright 2015 TIIS - Tanzania Immunization Information System ... */" />
+            <marker date="1482092100000" expanded="true" signature="820:906" ph="..." />
+            <marker date="1482092100000" expanded="true" signature="10414:10434" ph="GetData" />
+            <marker date="1482092100000" expanded="true" signature="10414:15912" ph="{...}" />
+            <marker date="1482092100000" expanded="true" signature="10414:15914" ph="{...}" />
+            <marker date="1482092100000" expanded="true" signature="10444:13756" ph="CRUD" />
+            <marker date="1482092100000" expanded="true" signature="10509:11687" ph="{...}" />
+            <marker date="1482092100000" expanded="true" signature="10874:11216" ph="{...}" />
+            <marker date="1482092100000" expanded="true" signature="11747:12917" ph="{...}" />
+            <marker date="1482092100000" expanded="true" signature="12091:12433" ph="{...}" />
+            <marker date="1482092100000" expanded="true" signature="12959:13736" ph="{...}" />
+            <marker date="1482092100000" expanded="true" signature="13187:13255" ph="{...}" />
+            <marker date="1482092100000" expanded="true" signature="13766:15905" ph="Helper Methods" />
+            <marker date="1482092100000" expanded="true" signature="13881:14818" ph="{...}" />
+            <marker date="1482092100000" expanded="true" signature="14910:15886" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -620,30 +603,30 @@
         <state relative-caret-position="1215">
           <caret line="81" column="9" selection-start-line="81" selection-start-column="9" selection-end-line="81" selection-end-column="9" />
           <folding>
-            <marker date="1481533251000" expanded="true" signature="0:813" ph="/* Copyright 2015 TIIS - Tanzania Immunization Information System ... */" />
-            <marker date="1481533251000" expanded="true" signature="820:913" ph="..." />
-            <marker date="1481533251000" expanded="true" signature="939:11238" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="967:11236" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="971:1718" ph="Properties" />
-            <marker date="1481533251000" expanded="true" signature="1720:3710" ph="GetData" />
-            <marker date="1481533251000" expanded="true" signature="1774:2073" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="2115:2511" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="2552:3084" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="2694:2760" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="3132:3698" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="3280:3347" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="3712:9149" ph="CRUD" />
-            <marker date="1481533251000" expanded="true" signature="3757:5776" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="4245:5452" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="5810:8018" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="6330:7698" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="8052:8567" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="8190:8249" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="8601:9138" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="8762:8821" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="9151:11233" ph="Helper Methods" />
-            <marker date="1481533251000" expanded="true" signature="9222:10175" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="10229:11222" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="0:813" ph="/* Copyright 2015 TIIS - Tanzania Immunization Information System ... */" />
+            <marker date="1482092118000" expanded="true" signature="820:913" ph="..." />
+            <marker date="1482092118000" expanded="true" signature="939:11238" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="967:11236" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="971:1718" ph="Properties" />
+            <marker date="1482092118000" expanded="true" signature="1720:3710" ph="GetData" />
+            <marker date="1482092118000" expanded="true" signature="1774:2073" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="2115:2511" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="2552:3084" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="2694:2760" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="3132:3698" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="3280:3347" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="3712:9149" ph="CRUD" />
+            <marker date="1482092118000" expanded="true" signature="3757:5776" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="4245:5452" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="5810:8018" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="6330:7698" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="8052:8567" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="8190:8249" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="8601:9138" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="8762:8821" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="9151:11233" ph="Helper Methods" />
+            <marker date="1482092118000" expanded="true" signature="9222:10175" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="10229:11222" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -653,45 +636,45 @@
         <state relative-caret-position="405">
           <caret line="27" column="9" selection-start-line="27" selection-start-column="9" selection-end-line="27" selection-end-column="9" />
           <folding>
-            <marker date="1481533251000" expanded="true" signature="0:813" ph="/* Copyright 2015 TIIS - Tanzania Immunization Information System ... */" />
-            <marker date="1481533251000" expanded="true" signature="820:913" ph="..." />
-            <marker date="1481533251000" expanded="true" signature="974:23725" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="1024:1562" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="1638:2246" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="2326:2891" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="2973:3637" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="3689:4204" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="4326:4667" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="4727:5179" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="5287:5883" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="6024:6525" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="6611:6860" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="6930:7173" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="7240:7950" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="8018:8700" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="8853:10463" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="9554:10052" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="10556:11909" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="11174:11498" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="12037:12658" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="12726:13266" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="13352:14123" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="13606:13709" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="14206:14988" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="14486:14589" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="15054:17799" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="15280:15376" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="16253:16503" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="17131:17381" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="17876:21263" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="18102:18198" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="18862:19042" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="19717:19967" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="20595:20845" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="21368:23717" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="21617:21713" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="22197:22462" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="23038:23303" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="0:813" ph="/* Copyright 2015 TIIS - Tanzania Immunization Information System ... */" />
+            <marker date="1482092118000" expanded="true" signature="820:913" ph="..." />
+            <marker date="1482092118000" expanded="true" signature="974:23725" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="1024:1562" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="1638:2246" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="2326:2891" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="2973:3637" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="3689:4204" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="4326:4667" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="4727:5179" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="5287:5883" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="6024:6525" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="6611:6860" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="6930:7173" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="7240:7950" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="8018:8700" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="8853:10463" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="9554:10052" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="10556:11909" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="11174:11498" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="12037:12658" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="12726:13266" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="13352:14123" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="13606:13709" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="14206:14988" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="14486:14589" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="15054:17799" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="15280:15376" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="16253:16503" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="17131:17381" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="17876:21263" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="18102:18198" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="18862:19042" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="19717:19967" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="20595:20845" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="21368:23717" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="21617:21713" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="22197:22462" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="23038:23303" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -701,13 +684,13 @@
         <state relative-caret-position="480">
           <caret line="32" column="13" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
           <folding>
-            <marker date="1481533251000" expanded="true" signature="0:813" ph="/* Copyright 2015 TIIS - Tanzania Immunization Information System ... */" />
-            <marker date="1481533251000" expanded="true" signature="820:899" ph="..." />
-            <marker date="1481533251000" expanded="true" signature="925:3192" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="977:3190" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="1110:1736" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="1885:2534" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="2612:3184" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="0:813" ph="/* Copyright 2015 TIIS - Tanzania Immunization Information System ... */" />
+            <marker date="1482092118000" expanded="true" signature="820:899" ph="..." />
+            <marker date="1482092118000" expanded="true" signature="925:3192" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="977:3190" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="1110:1736" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="1885:2534" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="2612:3184" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -773,13 +756,13 @@
         <state relative-caret-position="480">
           <caret line="32" column="13" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
           <folding>
-            <marker date="1481533251000" expanded="true" signature="0:813" ph="/* Copyright 2015 TIIS - Tanzania Immunization Information System ... */" />
-            <marker date="1481533251000" expanded="true" signature="820:899" ph="..." />
-            <marker date="1481533251000" expanded="true" signature="925:3192" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="977:3190" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="1110:1736" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="1885:2534" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="2612:3184" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="0:813" ph="/* Copyright 2015 TIIS - Tanzania Immunization Information System ... */" />
+            <marker date="1482092118000" expanded="true" signature="820:899" ph="..." />
+            <marker date="1482092118000" expanded="true" signature="925:3192" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="977:3190" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="1110:1736" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="1885:2534" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="2612:3184" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -789,45 +772,45 @@
         <state relative-caret-position="405">
           <caret line="27" column="9" selection-start-line="27" selection-start-column="9" selection-end-line="27" selection-end-column="9" />
           <folding>
-            <marker date="1481533251000" expanded="true" signature="0:813" ph="/* Copyright 2015 TIIS - Tanzania Immunization Information System ... */" />
-            <marker date="1481533251000" expanded="true" signature="820:913" ph="..." />
-            <marker date="1481533251000" expanded="true" signature="974:23725" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="1024:1562" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="1638:2246" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="2326:2891" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="2973:3637" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="3689:4204" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="4326:4667" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="4727:5179" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="5287:5883" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="6024:6525" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="6611:6860" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="6930:7173" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="7240:7950" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="8018:8700" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="8853:10463" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="9554:10052" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="10556:11909" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="11174:11498" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="12037:12658" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="12726:13266" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="13352:14123" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="13606:13709" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="14206:14988" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="14486:14589" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="15054:17799" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="15280:15376" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="16253:16503" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="17131:17381" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="17876:21263" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="18102:18198" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="18862:19042" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="19717:19967" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="20595:20845" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="21368:23717" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="21617:21713" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="22197:22462" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="23038:23303" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="0:813" ph="/* Copyright 2015 TIIS - Tanzania Immunization Information System ... */" />
+            <marker date="1482092118000" expanded="true" signature="820:913" ph="..." />
+            <marker date="1482092118000" expanded="true" signature="974:23725" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="1024:1562" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="1638:2246" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="2326:2891" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="2973:3637" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="3689:4204" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="4326:4667" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="4727:5179" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="5287:5883" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="6024:6525" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="6611:6860" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="6930:7173" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="7240:7950" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="8018:8700" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="8853:10463" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="9554:10052" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="10556:11909" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="11174:11498" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="12037:12658" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="12726:13266" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="13352:14123" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="13606:13709" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="14206:14988" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="14486:14589" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="15054:17799" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="15280:15376" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="16253:16503" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="17131:17381" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="17876:21263" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="18102:18198" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="18862:19042" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="19717:19967" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="20595:20845" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="21368:23717" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="21617:21713" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="22197:22462" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="23038:23303" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -838,41 +821,41 @@
         <state relative-caret-position="2370">
           <caret line="520" column="23" selection-start-line="520" selection-start-column="23" selection-end-line="520" selection-end-column="23" />
           <folding>
-            <marker date="1481533251000" expanded="true" signature="0:813" ph="/* Copyright 2015 TIIS - Tanzania Immunization Information System ... */" />
-            <marker date="1481533251000" expanded="true" signature="820:913" ph="..." />
-            <marker date="1481533251000" expanded="true" signature="939:26893" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="981:26891" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="997:2284" ph="Properties" />
-            <marker date="1481533251000" expanded="true" signature="2294:16042" ph="GetData" />
-            <marker date="1481533251000" expanded="true" signature="2376:2929" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="3012:3459" ph="{...}" />
-            <marker date="1481533251000" expanded="false" signature="3519:4123" ph="{...}" />
-            <marker date="1481533251000" expanded="false" signature="4193:4976" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="4410:4476" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="5048:5870" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="5271:5347" ph="{...}" />
-            <marker date="1481533251000" expanded="false" signature="5942:6764" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="6165:6241" ph="{...}" />
-            <marker date="1481533251000" expanded="false" signature="6896:8551" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="7724:8127" ph="{...}" />
-            <marker date="1481533251000" expanded="false" signature="8712:10436" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="9578:10013" ph="{...}" />
-            <marker date="1481533251000" expanded="false" signature="10604:13319" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="12399:12876" ph="{...}" />
-            <marker date="1481533251000" expanded="false" signature="13468:16022" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="15175:15579" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="16052:23034" ph="CRUD" />
-            <marker date="1481533251000" expanded="false" signature="16115:18701" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="16787:18215" ph="{...}" />
-            <marker date="1481533251000" expanded="false" signature="18753:21418" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="19447:20935" ph="{...}" />
-            <marker date="1481533251000" expanded="false" signature="21460:22205" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="21673:21732" ph="{...}" />
-            <marker date="1481533251000" expanded="false" signature="22247:23015" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="22483:22542" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="23044:26884" ph="Helper Methods" />
-            <marker date="1481533251000" expanded="true" signature="23143:24927" ph="{...}" />
-            <marker date="1481533251000" expanded="false" signature="25009:26865" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="0:813" ph="/* Copyright 2015 TIIS - Tanzania Immunization Information System ... */" />
+            <marker date="1482092117000" expanded="true" signature="820:913" ph="..." />
+            <marker date="1482092117000" expanded="true" signature="939:26893" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="981:26891" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="997:2284" ph="Properties" />
+            <marker date="1482092117000" expanded="true" signature="2294:16042" ph="GetData" />
+            <marker date="1482092117000" expanded="true" signature="2376:2929" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="3012:3459" ph="{...}" />
+            <marker date="1482092117000" expanded="false" signature="3519:4123" ph="{...}" />
+            <marker date="1482092117000" expanded="false" signature="4193:4976" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="4410:4476" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="5048:5870" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="5271:5347" ph="{...}" />
+            <marker date="1482092117000" expanded="false" signature="5942:6764" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="6165:6241" ph="{...}" />
+            <marker date="1482092117000" expanded="false" signature="6896:8551" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="7724:8127" ph="{...}" />
+            <marker date="1482092117000" expanded="false" signature="8712:10436" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="9578:10013" ph="{...}" />
+            <marker date="1482092117000" expanded="false" signature="10604:13319" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="12399:12876" ph="{...}" />
+            <marker date="1482092117000" expanded="false" signature="13468:16022" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="15175:15579" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="16052:23034" ph="CRUD" />
+            <marker date="1482092117000" expanded="false" signature="16115:18701" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="16787:18215" ph="{...}" />
+            <marker date="1482092117000" expanded="false" signature="18753:21418" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="19447:20935" ph="{...}" />
+            <marker date="1482092117000" expanded="false" signature="21460:22205" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="21673:21732" ph="{...}" />
+            <marker date="1482092117000" expanded="false" signature="22247:23015" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="22483:22542" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="23044:26884" ph="Helper Methods" />
+            <marker date="1482092117000" expanded="true" signature="23143:24927" ph="{...}" />
+            <marker date="1482092117000" expanded="false" signature="25009:26865" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -882,87 +865,81 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1481872319000" expanded="true" signature="0:813" ph="/* Copyright 2015 TIIS - Tanzania Immunization Information System ... */" />
-            <marker date="1481872319000" expanded="true" signature="820:932" ph="..." />
-            <marker date="1481872319000" expanded="true" signature="958:43718" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="991:43716" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="1061:1805" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="1299:1419" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="1865:2596" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="2097:2211" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="2687:3256" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="3365:3965" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="4055:4728" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="4858:5766" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="5849:6684" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="6814:8813" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="8187:8386" ph="/* List&lt;NpgsqlParameter&gt; parameters = new List&lt;NpgsqlParameter&gt;() ... */" />
-            <marker date="1481872319000" expanded="true" signature="8930:10673" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="10743:11601" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="11723:14007" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="14085:14814" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="14302:14409" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="14898:15845" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="15237:15452" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="15891:16237" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="16329:17289" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="16670:16883" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="17377:19201" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="17488:18013" ph="/* string query = string.Format(@&quot;select distinct C.* from &quot;&quot;CHILD&quot;&quot; C join &quot;&quot;VACCINATION_EVENT&quot;&quot; V on V.&quot;&quot;CHILD_ ... */" />
-            <marker date="1481872319000" expanded="true" signature="18451:18794" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="19290:21314" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="19402:19990" ph="/* string query = string.Format(@&quot;select distinct C.* from &quot;&quot;CHILD&quot;&quot; C join &quot;&quot;VACCINATION_EVENT&quot;&quot; V on V.&quot;&quot;CHILD_ ... */" />
-            <marker date="1481872319000" expanded="true" signature="20463:20906" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="21401:22967" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="21513:21921" ph="/* string query = string.Format(@&quot;select distinct C.* from &quot;&quot;CHILD&quot;&quot; C join &quot;&quot;VACCINATION_EVENT&quot;&quot; V on V.&quot;&quot;CHILD_ ... */" />
-            <marker date="1481872319000" expanded="true" signature="22279:22559" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="23423:28240" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="25917:27856" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="28637:32193" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="30435:31899" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="32549:36631" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="34702:36238" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="36787:38834" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="37812:38447" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="38918:41091" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="39088:39785" ph="/* string query = string.Format(@&quot;select distinct C.* from &quot;&quot;CHILD&quot;&quot; C join &quot;&quot;VACCINATION_EVENT&quot;&quot; V on V.&quot;&quot;CHILD_ ... */" />
-            <marker date="1481872319000" expanded="true" signature="40301:40708" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="41180:43159" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="41350:41983" ph="/* string query = string.Format(@&quot;select distinct C.* from &quot;&quot;CHILD&quot;&quot; C join &quot;&quot;VACCINATION_EVENT&quot;&quot; V on V.&quot;&quot;CHILD_ ... */" />
-            <marker date="1481872319000" expanded="true" signature="42464:42771" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="43218:43343" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="43401:43526" ph="{...}" />
-            <marker date="1481872319000" expanded="true" signature="43584:43709" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="0:813" ph="/* Copyright 2015 TIIS - Tanzania Immunization Information System ... */" />
+            <marker date="1482092117000" expanded="true" signature="820:932" ph="..." />
+            <marker date="1482092117000" expanded="true" signature="958:43718" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="991:43716" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="1061:1805" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="1299:1419" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="1865:2596" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="2097:2211" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="2687:3256" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="3365:3965" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="4055:4728" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="4858:5766" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="5849:6684" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="6814:8813" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="8187:8386" ph="/* List&lt;NpgsqlParameter&gt; parameters = new List&lt;NpgsqlParameter&gt;() ... */" />
+            <marker date="1482092117000" expanded="true" signature="8930:10673" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="10743:11601" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="11723:14007" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="14085:14814" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="14302:14409" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="14898:15845" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="15237:15452" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="15891:16237" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="16329:17289" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="16670:16883" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="17377:19201" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="17488:18013" ph="/* string query = string.Format(@&quot;select distinct C.* from &quot;&quot;CHILD&quot;&quot; C join &quot;&quot;VACCINATION_EVENT&quot;&quot; V on V.&quot;&quot;CHILD_ ... */" />
+            <marker date="1482092117000" expanded="true" signature="18451:18794" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="19290:21314" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="19402:19990" ph="/* string query = string.Format(@&quot;select distinct C.* from &quot;&quot;CHILD&quot;&quot; C join &quot;&quot;VACCINATION_EVENT&quot;&quot; V on V.&quot;&quot;CHILD_ ... */" />
+            <marker date="1482092117000" expanded="true" signature="20463:20906" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="21401:22967" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="21513:21921" ph="/* string query = string.Format(@&quot;select distinct C.* from &quot;&quot;CHILD&quot;&quot; C join &quot;&quot;VACCINATION_EVENT&quot;&quot; V on V.&quot;&quot;CHILD_ ... */" />
+            <marker date="1482092117000" expanded="true" signature="22279:22559" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="23423:28240" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="25917:27856" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="28637:32193" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="30435:31899" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="32549:36631" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="34702:36238" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="36787:38834" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="37812:38447" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="38918:41091" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="39088:39785" ph="/* string query = string.Format(@&quot;select distinct C.* from &quot;&quot;CHILD&quot;&quot; C join &quot;&quot;VACCINATION_EVENT&quot;&quot; V on V.&quot;&quot;CHILD_ ... */" />
+            <marker date="1482092117000" expanded="true" signature="40301:40708" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="41180:43159" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="41350:41983" ph="/* string query = string.Format(@&quot;select distinct C.* from &quot;&quot;CHILD&quot;&quot; C join &quot;&quot;VACCINATION_EVENT&quot;&quot; V on V.&quot;&quot;CHILD_ ... */" />
+            <marker date="1482092117000" expanded="true" signature="42464:42771" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="43218:43343" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="43401:43526" ph="{...}" />
+            <marker date="1482092117000" expanded="true" signature="43584:43709" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../../GIIS.DataLayer/HealthFacilitiesSessions.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="52" column="98" selection-start-line="52" selection-start-column="95" selection-end-line="52" selection-end-column="98" />
+        <state relative-caret-position="195">
+          <caret line="53" column="98" selection-start-line="53" selection-start-column="98" selection-end-line="53" selection-end-column="98" />
           <folding>
-            <marker date="1481874136000" expanded="true" signature="0:813" ph="/* Copyright 2015 TIIS - Tanzania Immunization Information System ... */" />
-            <marker date="1481874136000" expanded="true" signature="820:913" ph="..." />
-            <marker date="1481874136000" expanded="true" signature="939:9260" ph="{...}" />
-            <marker date="1481874136000" expanded="true" signature="989:9258" ph="{...}" />
-            <marker date="1481874136000" expanded="true" signature="1005:1304" ph="Properties" />
-            <marker date="1481874136000" expanded="true" signature="1314:3780" ph="GetData" />
-            <marker date="1481874136000" expanded="true" signature="1412:1940" ph="{...}" />
-            <marker date="1481874136000" expanded="true" signature="2040:2663" ph="{...}" />
-            <marker date="1481874136000" expanded="true" signature="2236:2309" ph="{...}" />
-            <marker date="1481874136000" expanded="true" signature="2821:3760" ph="{...}" />
-            <marker date="1481874136000" expanded="true" signature="3104:3397" ph="{...}" />
-            <marker date="1481874136000" expanded="true" signature="3790:7102" ph="CRUD" />
-            <marker date="1481874136000" expanded="true" signature="3855:5033" ph="{...}" />
-            <marker date="1481874136000" expanded="true" signature="4220:4562" ph="{...}" />
-            <marker date="1481874136000" expanded="true" signature="5093:6263" ph="{...}" />
-            <marker date="1481874136000" expanded="true" signature="5437:5779" ph="{...}" />
-            <marker date="1481874136000" expanded="true" signature="6305:7082" ph="{...}" />
-            <marker date="1481874136000" expanded="true" signature="6533:6601" ph="{...}" />
-            <marker date="1481874136000" expanded="true" signature="7112:9251" ph="Helper Methods" />
-            <marker date="1481874136000" expanded="true" signature="7227:8164" ph="{...}" />
-            <marker date="1481874136000" expanded="true" signature="8256:9232" ph="{...}" />
+            <marker date="1482092100000" expanded="true" signature="0:813" ph="/* Copyright 2015 TIIS - Tanzania Immunization Information System ... */" />
+            <marker date="1482092100000" expanded="true" signature="820:906" ph="..." />
+            <marker date="1482092100000" expanded="true" signature="10414:10434" ph="GetData" />
+            <marker date="1482092100000" expanded="true" signature="10414:15912" ph="{...}" />
+            <marker date="1482092100000" expanded="true" signature="10414:15914" ph="{...}" />
+            <marker date="1482092100000" expanded="true" signature="10444:13756" ph="CRUD" />
+            <marker date="1482092100000" expanded="true" signature="10509:11687" ph="{...}" />
+            <marker date="1482092100000" expanded="true" signature="10874:11216" ph="{...}" />
+            <marker date="1482092100000" expanded="true" signature="11747:12917" ph="{...}" />
+            <marker date="1482092100000" expanded="true" signature="12091:12433" ph="{...}" />
+            <marker date="1482092100000" expanded="true" signature="12959:13736" ph="{...}" />
+            <marker date="1482092100000" expanded="true" signature="13187:13255" ph="{...}" />
+            <marker date="1482092100000" expanded="true" signature="13766:15905" ph="Helper Methods" />
+            <marker date="1482092100000" expanded="true" signature="13881:14818" ph="{...}" />
+            <marker date="1482092100000" expanded="true" signature="14910:15886" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -972,64 +949,64 @@
         <state relative-caret-position="525">
           <caret line="85" column="30" selection-start-line="85" selection-start-column="19" selection-end-line="85" selection-end-column="30" />
           <folding>
-            <marker date="1481533251000" expanded="true" signature="0:813" ph="/* Copyright 2015 TIIS - Tanzania Immunization Information System ... */" />
-            <marker date="1481533251000" expanded="true" signature="820:913" ph="..." />
-            <marker date="1481533251000" expanded="true" signature="939:11238" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="967:11236" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="971:1718" ph="Properties" />
-            <marker date="1481533251000" expanded="true" signature="1720:3710" ph="GetData" />
-            <marker date="1481533251000" expanded="true" signature="1774:2073" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="2115:2511" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="2552:3084" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="2694:2760" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="3132:3698" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="3280:3347" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="3712:9149" ph="CRUD" />
-            <marker date="1481533251000" expanded="true" signature="3757:5776" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="4245:5452" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="5810:8018" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="6330:7698" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="8052:8567" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="8190:8249" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="8601:9138" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="8762:8821" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="9151:11233" ph="Helper Methods" />
-            <marker date="1481533251000" expanded="true" signature="9222:10175" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="10229:11222" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="0:813" ph="/* Copyright 2015 TIIS - Tanzania Immunization Information System ... */" />
+            <marker date="1482092118000" expanded="true" signature="820:913" ph="..." />
+            <marker date="1482092118000" expanded="true" signature="939:11238" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="967:11236" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="971:1718" ph="Properties" />
+            <marker date="1482092118000" expanded="true" signature="1720:3710" ph="GetData" />
+            <marker date="1482092118000" expanded="true" signature="1774:2073" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="2115:2511" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="2552:3084" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="2694:2760" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="3132:3698" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="3280:3347" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="3712:9149" ph="CRUD" />
+            <marker date="1482092118000" expanded="true" signature="3757:5776" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="4245:5452" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="5810:8018" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="6330:7698" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="8052:8567" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="8190:8249" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="8601:9138" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="8762:8821" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="9151:11233" ph="Helper Methods" />
+            <marker date="1482092118000" expanded="true" signature="9222:10175" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="10229:11222" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../../GIIS.DataLayer/UserEntity.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="376">
-          <caret line="51" column="233" selection-start-line="51" selection-start-column="31" selection-end-line="51" selection-end-column="233" />
+        <state relative-caret-position="172">
+          <caret line="33" column="17" selection-start-line="33" selection-start-column="17" selection-end-line="33" selection-end-column="17" />
           <folding>
-            <marker date="1481533251000" expanded="true" signature="0:812" ph="/* Copyright 2015 TIIS - Tanzania Immunization Information System ... */" />
-            <marker date="1481533251000" expanded="true" signature="819:931" ph="..." />
-            <marker date="1481533251000" expanded="true" signature="957:11357" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="979:11355" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="1040:1607" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="1244:1317" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="1680:2389" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="1991:2088" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="2497:3022" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="3107:3512" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="3582:5263" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="3786:3875" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="4230:4308" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="4755:4922" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="5345:7553" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="5554:5629" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="6416:6590" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="7025:7194" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="7606:8221" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="7833:7924" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="8337:10190" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="8358:8869" ph="/* string wsearch = txtUsername.Text.Replace(&quot;'&quot;, @&quot;''&quot;); ... */" />
-            <marker date="1481533251000" expanded="true" signature="9465:9906" ph="/* List&lt;NpgsqlParameter&gt; parameters = new List&lt;NpgsqlParameter&gt;() ... */" />
-            <marker date="1481533251000" expanded="true" signature="10255:11352" ph="{...}" />
-            <marker date="1481533251000" expanded="true" signature="10800:11058" ph="/* List&lt;NpgsqlParameter&gt; parameters = new List&lt;NpgsqlParameter&gt;() ... */" />
+            <marker date="1482092118000" expanded="true" signature="0:812" ph="/* Copyright 2015 TIIS - Tanzania Immunization Information System ... */" />
+            <marker date="1482092118000" expanded="true" signature="819:931" ph="..." />
+            <marker date="1482092118000" expanded="true" signature="957:11357" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="979:11355" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="1040:1607" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="1244:1317" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="1680:2389" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="1991:2088" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="2497:3022" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="3107:3512" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="3582:5263" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="3786:3875" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="4230:4308" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="4755:4922" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="5345:7553" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="5554:5629" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="6416:6590" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="7025:7194" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="7606:8221" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="7833:7924" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="8337:10190" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="8358:8869" ph="/* string wsearch = txtUsername.Text.Replace(&quot;'&quot;, @&quot;''&quot;); ... */" />
+            <marker date="1482092118000" expanded="true" signature="9465:9906" ph="/* List&lt;NpgsqlParameter&gt; parameters = new List&lt;NpgsqlParameter&gt;() ... */" />
+            <marker date="1482092118000" expanded="true" signature="10255:11352" ph="{...}" />
+            <marker date="1482092118000" expanded="true" signature="10800:11058" ph="/* List&lt;NpgsqlParameter&gt; parameters = new List&lt;NpgsqlParameter&gt;() ... */" />
           </folding>
         </state>
       </provider>

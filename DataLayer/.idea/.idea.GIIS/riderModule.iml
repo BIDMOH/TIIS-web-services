@@ -14,8 +14,6 @@
       <excludeFolder url="file://$MODULE_DIR$/../../GIIS.BusinessLogic/obj" />
       <excludeFolder url="file://$MODULE_DIR$/../../GIIS.DataLayer.Tests/bin" />
       <excludeFolder url="file://$MODULE_DIR$/../../GIIS.DataLayer.Tests/obj" />
-      <excludeFolder url="file://$MODULE_DIR$/../../GIIS.DataLayer/bin" />
-      <excludeFolder url="file://$MODULE_DIR$/../../GIIS.DataLayer/obj" />
       <excludeFolder url="file://$MODULE_DIR$/../../HIESync/bin" />
       <excludeFolder url="file://$MODULE_DIR$/../../HIESync/obj" />
       <excludeFolder url="file://$MODULE_DIR$/../../packages" />

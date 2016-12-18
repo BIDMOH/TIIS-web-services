@@ -17,6 +17,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Data;
+using System.Linq;
 using Npgsql;
 
 namespace GIIS.DataLayer
@@ -50,7 +51,7 @@ namespace GIIS.DataLayer
             }
         }
 
-		public static List<HealthFacilitySessions> GetHealthFacilitySessionsByHealthFacilityId(int hfid)
+		public static List<HealthFacilitySessions> GetHealthFacilitySessionsByHealthFacilityId(string hfid)
 		{
 
 			try
@@ -72,7 +73,7 @@ namespace GIIS.DataLayer
 		}
 
 
-		public static List<HealthFacilitySessions> GetHealthFacilitySessionsByHealthFacilityIdAndUserId(int hfid, int userId, DateTime fromDate, DateTime toDate)
+		public static List<HealthFacilitySessions> GetHealthFacilitySessionsByHealthFacilityIdAndUserId(string hfid, string userId, DateTime fromDate, DateTime toDate)
 		{
 
 			try
@@ -95,6 +96,188 @@ namespace GIIS.DataLayer
 			}
 
 		}
+
+
+
+		public static int GetHealthFacilitySessionsLengthByHealthFacilityIdAndUserId(string hfid, string userId, DateTime fromDate, DateTime toDate)
+		{
+
+			try
+			{
+				string query = @"SELECT COUNT (""SESSION_LENGTH"") FROM ""HEALTH_FACILITIES_SESSIONS"" WHERE ""HEALTH_FACILITY_ID"" = @hfid AND ""USER_ID"" = @userId AND ""LOGIN_TIME"" >= @fromDate AND ""LOGIN_TIME""<= @toDate ";
+				List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
+					{
+					new NpgsqlParameter("@hfid", DbType.Int32) { Value = hfid },
+					new NpgsqlParameter("@userId", DbType.Int32) { Value = userId },
+					new NpgsqlParameter("@fromDate", DbType.DateTime) { Value = fromDate },
+					new NpgsqlParameter("@toDate", DbType.DateTime) { Value = toDate }
+					};
+				DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, parameters);
+				Int32 totalLength = 0;
+
+				foreach (DataRow row in dt.Rows)
+				{
+					try
+					{
+						totalLength =  Helper.ConvertToInt(row["COUNT"]);
+					}
+					catch (Exception ex)
+					{
+						Log.InsertEntity("HealthFacilitySessions", "GetHealthFacilitySessionsLengthByHealthFacilityIdAndUserId", 1, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+						throw ex;
+					}
+				}
+				return totalLength;
+			}
+			catch (Exception ex)
+			{
+				Log.InsertEntity("HealthFacilitySessions", "GetHealthFacilitySessionsLengthByHealthFacilityIdAndUserId", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+				throw ex;
+			}
+
+		}
+
+
+
+		public static int GetHealthFacilitySessionsLengthByHealthFacilityId(string hfid, DateTime fromDate, DateTime toDate)
+		{
+
+			try
+			{
+				string query = @"SELECT COUNT (""SESSION_LENGTH"") FROM ""HEALTH_FACILITIES_SESSIONS"" WHERE ""HEALTH_FACILITY_ID"" = @hfid AND  ""LOGIN_TIME"" >= @fromDate AND ""LOGIN_TIME""<= @toDate ";
+				List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
+					{
+					new NpgsqlParameter("@hfid", DbType.Int32) { Value = hfid },
+					new NpgsqlParameter("@fromDate", DbType.DateTime) { Value = fromDate },
+					new NpgsqlParameter("@toDate", DbType.DateTime) { Value = toDate }
+					};
+				DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, parameters);
+				Int32 totalLength = 0;
+
+				foreach (DataRow row in dt.Rows)
+				{
+					try
+					{
+						totalLength = Helper.ConvertToInt(row["COUNT"]);
+					}
+					catch (Exception ex)
+					{
+						Log.InsertEntity("HealthFacilitySessions", "GetHealthFacilitySessionsLengthByHealthFacilityId", 1, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+						throw ex;
+					}
+				}
+				return totalLength;
+			}
+			catch (Exception ex)
+			{
+				Log.InsertEntity("HealthFacilitySessions", "GetHealthFacilitySessionsLengthByHealthFacilityIdAndUserId", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+				throw ex;
+			}
+
+		}
+
+
+		public static int GetHealthFacilitySessionsLengthByHealthFacilityId(string hfid, DateTime fromDate, DateTime toDate)
+		{
+
+			try
+			{
+				string query = @"SELECT COUNT (""SESSION_LENGTH"") FROM ""HEALTH_FACILITIES_SESSIONS"" WHERE ""HEALTH_FACILITY_ID"" = @hfid AND ""LOGIN_TIME"" >= @fromDate AND ""LOGIN_TIME""<= @toDate ";
+				List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
+					{
+					new NpgsqlParameter("@hfid", DbType.Int32) { Value = hfid },
+					new NpgsqlParameter("@fromDate", DbType.DateTime) { Value = fromDate },
+					new NpgsqlParameter("@toDate", DbType.DateTime) { Value = toDate }
+					};
+				DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, parameters);
+				Int32 totalLength = 0;
+
+				foreach (DataRow row in dt.Rows)
+				{
+					try
+					{
+						totalLength = Helper.ConvertToInt(row["COUNT"]);
+					}
+					catch (Exception ex)
+					{
+						Log.InsertEntity("HealthFacilitySessions", "GetHealthFacilitySessionsLengthByHealthFacilityId", 1, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+						throw ex;
+					}
+				}
+				return totalLength;
+			}
+			catch (Exception ex)
+			{
+				Log.InsertEntity("HealthFacilitySessions", "GetHealthFacilitySessionsLengthByHealthFacilityId", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+				throw ex;
+			}
+
+		}
+
+
+
+		public static int GetHealthFacilitySessionsDaysByHealthFacilityIdAndUserId(string hfid, string userId, DateTime fromDate, DateTime toDate)
+		{
+			try
+			{
+				string query = @"SELECT ""LOGIN_TIME"" FROM ""HEALTH_FACILITIES_SESSIONS"" WHERE ""HEALTH_FACILITY_ID"" = @hfid AND ""USER_ID"" = @userId AND ""LOGIN_TIME"" >= @fromDate AND ""LOGIN_TIME""<= @toDate ";
+				List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
+					{
+					new NpgsqlParameter("@hfid", DbType.Int32) { Value = hfid },
+					new NpgsqlParameter("@userId", DbType.Int32) { Value = userId },
+					new NpgsqlParameter("@fromDate", DbType.DateTime) { Value = fromDate },
+					new NpgsqlParameter("@toDate", DbType.DateTime) { Value = toDate }
+					};
+				DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, parameters);
+				List<DateTime> dates = new List<DateTime>();
+
+				foreach (DataRow row in dt.Rows)
+				{
+					dates.Add(Helper.ConvertToDate(row["LOGIN_TIME"]));
+				}
+				dates = dates.Select(x => x.Date).Distinct().ToList();
+
+				return dates.Count;
+
+			}
+			catch (Exception ex)
+			{
+				Log.InsertEntity("HealthFacilitySessions", "GetHealthFacilitySessionsByHealthFacilityIdAndUserId", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+				throw ex;
+			}
+		}
+
+
+		public static int GetHealthFacilitySessionsDaysByHealthFacilityId(string hfid, DateTime fromDate, DateTime toDate)
+		{
+			try
+			{
+				string query = @"SELECT ""LOGIN_TIME"" FROM ""HEALTH_FACILITIES_SESSIONS"" WHERE ""HEALTH_FACILITY_ID"" = @hfid AND  ""LOGIN_TIME"" >= @fromDate AND ""LOGIN_TIME""<= @toDate ";
+				List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
+					{
+					new NpgsqlParameter("@hfid", DbType.Int32) { Value = hfid },
+					new NpgsqlParameter("@fromDate", DbType.DateTime) { Value = fromDate },
+					new NpgsqlParameter("@toDate", DbType.DateTime) { Value = toDate }
+					};
+				DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, parameters);
+				List<DateTime> dates = new List<DateTime>();
+
+				foreach (DataRow row in dt.Rows)
+				{
+					dates.Add(Helper.ConvertToDate(row["LOGIN_TIME"]));
+				}
+				dates = dates.Select(x => x.Date).Distinct().ToList();
+
+				return dates.Count;
+
+			}
+			catch (Exception ex)
+			{
+				Log.InsertEntity("HealthFacilitySessions", "GetHealthFacilitySessionsByHealthFacilityIdAndUserId", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+				throw ex;
+			}
+		}
+
 
         #endregion
 
