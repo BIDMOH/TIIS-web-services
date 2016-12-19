@@ -25,12 +25,13 @@ using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
-public partial class Pages_SessionReport : System.Web.UI.Page
+public partial class Pages_TotalSessionDays : System.Web.UI.Page
 {
-    public String datefromString = "";
-    public String datetoString = "";
+    public static String datefromString = "";
+    public static String datetoString = "";
+    public String userID = "";
     public int userSelectedIndex = 0;
-
+    public HtmlGenericControl inputControl3;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!this.Page.IsPostBack)
@@ -62,11 +63,6 @@ public partial class Pages_SessionReport : System.Web.UI.Page
 
                 createInputControls();
 
-                //grid header text
-                gvHealthFacilitySessions.Columns[0].HeaderText = "Login Time";
-                gvHealthFacilitySessions.Columns[1].HeaderText = "Duration (Seconds)";
-                gvHealthFacilitySessions.Columns[2].HeaderText = "User Name";
-                
             }
             else
             {
@@ -79,7 +75,8 @@ public partial class Pages_SessionReport : System.Web.UI.Page
 
     protected void createInputControls(){
         //date-from controls
-        var inputControl3 = new HtmlGenericControl("select");
+        inputControl3 = new HtmlGenericControl("select");
+
         inputControl3.Attributes.Add("class", "form-control");
 
         var contextParms = new List<NpgsqlParameter>() {
@@ -102,12 +99,20 @@ public partial class Pages_SessionReport : System.Web.UI.Page
                 opt.Attributes.Add("value", "0");
                 opt.InnerText = "All";
 
+                int count =0;
                 while (irdr.Read())
                 {
+
                     opt = new HtmlGenericControl("option");
                     inputControl3.Controls.Add(opt);
                     opt.Attributes.Add("value", irdr[0].ToString());
                     opt.InnerText = irdr[1].ToString();
+
+                    if(userID.Equals(irdr[0].ToString())){
+                        opt.Attributes.Add("selected","true");
+                    }
+
+                    count++;
                 }
             }
         }
@@ -137,7 +142,7 @@ public partial class Pages_SessionReport : System.Web.UI.Page
         inputControl2.Attributes.Add("type", "text");
         inputControl2.Attributes.Add("style", "z-index:8");
         inputControl2.Attributes.Add("name", "dateTo");
-        inputControl.Attributes.Add("value", datetoString);
+        inputControl2.Attributes.Add("value", datetoString);
         inputControl2.Attributes.Add("title", "Session Report Description");
 
         // Label control
@@ -197,8 +202,7 @@ public partial class Pages_SessionReport : System.Web.UI.Page
                     string.Format(
                     "<script type=\"text/javascript\">Sys.Application.add_init(function() {{$create(Sys.Extended.UI.CalendarBehavior, {{\"format\":\"MM-dd-yyyy\",\"id\":\"dateFrom\"}}, null, null, $get(\"{0}\"));}});</script>", "dateTo"));
                     //  $create(Sys.Extended.UI.CalendarBehavior, {"endDate":"Thu, 28 May 2015 00:00:00 GMT","format":"dd/MM/yyyy","id":"ctl00_ContentPlaceHolder1_ceBirthdateTo"}, null, null, $get("ctl00_ContentPlaceHolder1_txtBirthdateTo"));
-
-
+        
     }
 
     protected void btnSearch_Click(object sender, EventArgs e)
@@ -221,51 +225,31 @@ public partial class Pages_SessionReport : System.Web.UI.Page
         datefromString  = strFromDate;
         datetoString    = strToDate;
 
-        String userID = Request.Form["selectUser"];
-
-
-        ListItem li = selectUser.Items.FindByValue(userID);
-        li.Selected = true;
-        // userSelectedIndex = selectUser.SelectedIndex=ddlData.Items.IndexOf(ddlData.Items.FindByText("value"));
-        // String username = selectUser.Text;
-
-        datefromString  = userID;
-        datetoString    = userID;
+        userID = Request.Form["selectUser"];
 
         if (userID == "0"){
-            odsHealthFacilitySessions.SelectParameters.Clear();
-            odsHealthFacilitySessions.SelectParameters.Add("hfid", s);
-            odsHealthFacilitySessions.SelectParameters.Add("fromDate", strFromDate);
-            odsHealthFacilitySessions.SelectParameters.Add("toDate", strToDate);
-            odsHealthFacilitySessions.DataBind();
-            gvHealthFacilitySessions.DataSourceID = "odsHealthFacilitySessions";
-            gvHealthFacilitySessions.DataBind();
+            int duration = HealthFacilitySessions.GetHealthFacilitySessionsDaysByHealthFacilityId(s, Convert.ToDateTime(strFromDate), Convert.ToDateTime(strToDate));
+            String postfix = "";
+            if (duration == 1){
+                postfix = "Day";
+            }else{
+                postfix = "Days";
+            }
+            this.lblTotalDurationsValue.Text = duration.ToString()+" "+postfix;
         }else{
-            odsHealthFacilitySessionsByUsers.SelectParameters.Clear();
-            odsHealthFacilitySessionsByUsers.SelectParameters.Add("hfid", s);
-            odsHealthFacilitySessionsByUsers.SelectParameters.Add("userID", userID);
-            odsHealthFacilitySessionsByUsers.SelectParameters.Add("fromDate", strFromDate);
-            odsHealthFacilitySessionsByUsers.SelectParameters.Add("toDate", strToDate);
-            odsHealthFacilitySessionsByUsers.DataBind();
-            gvHealthFacilitySessions.DataSourceID = "odsHealthFacilitySessionsByUsers";
-            gvHealthFacilitySessions.DataBind();
+            //GetHealthFacilitySessionsLengthByHealthFacilityIdAndUserId
+            int duration = HealthFacilitySessions.GetHealthFacilitySessionsDaysByHealthFacilityIdAndUserId(s, userID ,Convert.ToDateTime(strFromDate), Convert.ToDateTime(strToDate));
+            String postfix = "";
+            if (duration == 1){
+                postfix = "Day";
+            }else{
+                postfix = "Days";
+            }
+            this.lblTotalDurationsValue.Text = duration.ToString()+" "+postfix;
         }
 
         createInputControls();
         
-    }
-
-    protected void gvHealthFacilitySessions_PageIndexChanging(object sender, GridViewPageEventArgs e)
-    {
-        gvHealthFacilitySessions.PageIndex = e.NewPageIndex;
-    }
-
-    protected void gvHealthFacilitySessions_DataBound(object sender, EventArgs e)
-    {
-        // if (gvHealthFacilitySessions.Rows.Count == 0)
-        //     // lblWarning.Visible = true;
-        // else
-        //     // lblWarning.Visible = false;
     }
     
 }

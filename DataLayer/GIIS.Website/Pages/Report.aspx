@@ -37,8 +37,8 @@
                     <asp:Label ID="lbsessionsReports" runat="server" Text="Built-in Session Reports" ForeColor="LightSlateGray" Font-Size="Large" Font-Bold="true" Font-Underline="true" />
                     <ul>
                         <li><a runat="server" id="aCohortCoverageReport" href="SessionReport.aspx" target="_blank" ><span id="id1" runat="server">Session Durations Report</span></a></li>
-                        <li><a runat="server" id="aPlannedCoverageReport" href="SessionReport.aspx" target="_blank" ><span id="id2" runat="server">Total Sessions Report (Duration)</span></a></li>
-                        <li><a runat="server" id="aActivityReport" href="SessionReport.aspx" target="_blank"><span id="id3" runat="server">Total Sessions Report (Days)</span></a></li>
+                        <li><a runat="server" id="aPlannedCoverageReport" href="TotalSessionDuration.aspx" target="_blank" ><span id="id2" runat="server">Total Sessions Report (Duration)</span></a></li>
+                        <li><a runat="server" id="aActivityReport" href="TotalSessionDays.aspx" target="_blank"><span id="id3" runat="server">Total Sessions Report (Days)</span></a></li>
                     </ul>
                 </li>
 

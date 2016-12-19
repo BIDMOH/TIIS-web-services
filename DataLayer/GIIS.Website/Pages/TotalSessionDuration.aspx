@@ -15,7 +15,7 @@
    limitations under the License.
  ******************************************************************************
 --%>
-<%@ Page Title="View Session Report" EnableEventValidation="false" Language="C#" AutoEventWireup="true" CodeFile="SessionReport.aspx.cs" Inherits="Pages_SessionReport" MasterPageFile="~/Pages/MasterPage.master" %>
+<%@ Page Title="View Session Report" EnableEventValidation="false" Language="C#" AutoEventWireup="true" CodeFile="TotalSessionDuration.aspx.cs" Inherits="Pages_TotalSessionDuration" MasterPageFile="~/Pages/MasterPage.master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <style type="text/css">
@@ -69,52 +69,13 @@
     <br />
 
     <div class="row">
-        <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12 clearfix" style="overflow:auto">
-            
-       <asp:GridView ID="gvHealthFacilitySessions" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover table-responsive" AllowPaging="True" OnDataBound="gvHealthFacilitySessions_DataBound" OnPageIndexChanging="gvHealthFacilitySessions_PageIndexChanging" >
-                <PagerSettings Position="Top" Mode="NumericFirstLast" />
-                <PagerStyle CssClass="pagination" HorizontalAlign="Left" VerticalAlign="Top" />
-            <Columns>
-                <asp:TemplateField HeaderText="Time">
-                    <ItemTemplate>
-                        <%# Eval("LoginTime") %>
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:TemplateField HeaderText="Duration">
-                   <ItemTemplate>
-                        <%#Eval("SessionLength")%>
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:TemplateField HeaderText="User Name">
-                <ItemTemplate>
-                    <%#Eval("UserName")%>
-                </ItemTemplate>
-                </asp:TemplateField>            
-            </Columns>
-        </asp:GridView>
-        <!--
-            data binding of the gridview is done in connection to the Datalayer methods that queries the data EnablePaging="false"
-        -->
-        <asp:ObjectDataSource ID="odsHealthFacilitySessions" runat="server" SelectMethod="GetHealthFacilitySessionsByHealthFacilityId" TypeName="GIIS.DataLayer.HealthFacilitySessions">
-            <SelectParameters>
-                 <asp:Parameter Name="hfid" Type="String" />
-                 <asp:Parameter Name="fromDate" Type="DateTime" />
-                 <asp:Parameter Name="toDate" Type="DateTime" />
-            </SelectParameters>
-        </asp:ObjectDataSource>
-
-        <asp:ObjectDataSource ID="odsHealthFacilitySessionsByUsers" runat="server" SelectMethod="GetHealthFacilitySessionsByHealthFacilityIdAndUserId" TypeName="GIIS.DataLayer.HealthFacilitySessions">
-            <SelectParameters>
-                 <asp:Parameter Name="hfid" Type="String" />
-                 <asp:Parameter Name="userID" Type="String" />
-                 <asp:Parameter Name="fromDate" Type="DateTime" />
-                 <asp:Parameter Name="toDate" Type="DateTime" />
-            </SelectParameters>
-        </asp:ObjectDataSource>
-
-
+        <div class="col-md-2 col-xs-2 col-sm-2 col-lg-2 clearfix">
+            <em><asp:Label runat="server" ID="lblTotalDurations" Text="Total Duration"  /></em>
+        </div>
+        <div class="col-md-4 col-xs-4 col-sm-4 col-lg-4 clearfix">
+            <em><asp:Label runat="server" ID="lblTotalDurationsValue" Text=""  /></em>
+        </div>
     </div>
-</div>
 
     <!--<div class="row">
         <div class="col-md-12">
