@@ -179,6 +179,7 @@
     <Compile Include="VitaminASupplimentation.cs" />
     <Compile Include="HealthFacilityAEFICases.cs" />
     <Compile Include="HealthFacilitiesSessions.cs" />
+    <Compile Include="HealthFacilityLoginSessionsRatingsEntity.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Library\Mono.Security.dll" />
