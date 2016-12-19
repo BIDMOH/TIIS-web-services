@@ -39,12 +39,12 @@
     
     <div class="row">
         <div class="col-md-12">
-            <h2><asp:Label ID="lblReportName" Text="Session Durations Report" runat="server" /></h2>
+            <h2><asp:Label ID="lblReportName" Text="Total Days Session Report" runat="server" /></h2>
         </div>
     </div>
     <div class="row">
         <div class="col-md-12">
-            <em><asp:Label runat="server" ID="lblReportDescription" Text="This will be the description of the text Session Report"  /></em>
+            <em><asp:Label runat="server" ID="lblReportDescription" Text="Report to display the total number of days for a given date range that the application was logged in"  /></em>
         </div>
     </div>
     <br />
