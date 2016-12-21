@@ -125,7 +125,7 @@ namespace GIIS.DataLayer
 
 			try
 			{
-				string query = @"SELECT COUNT (""SESSION_LENGTH"") FROM ""HEALTH_FACILITIES_SESSIONS"" WHERE ""HEALTH_FACILITY_ID"" = @hfid AND ""USER_ID"" = @userId AND ""LOGIN_TIME"" >= @fromDate AND ""LOGIN_TIME""<= @toDate ";
+				string query = @"SELECT SUM (""SESSION_LENGTH"") FROM ""HEALTH_FACILITIES_SESSIONS"" WHERE ""HEALTH_FACILITY_ID"" = @hfid AND ""USER_ID"" = @userId AND ""LOGIN_TIME"" >= @fromDate AND ""LOGIN_TIME""<= @toDate ";
 				List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
 					{
 					new NpgsqlParameter("@hfid", DbType.Int32) { Value = hfid },
@@ -140,7 +140,7 @@ namespace GIIS.DataLayer
 				{
 					try
 					{
-						totalLength =  Helper.ConvertToInt(row["COUNT"]);
+						totalLength =  Helper.ConvertToInt(row["SUM"]);
 					}
 					catch (Exception ex)
 					{
@@ -165,7 +165,7 @@ namespace GIIS.DataLayer
 
 			try
 			{
-				string query = @"SELECT COUNT (""SESSION_LENGTH"") FROM ""HEALTH_FACILITIES_SESSIONS"" WHERE ""HEALTH_FACILITY_ID"" = @hfid AND  ""LOGIN_TIME"" >= @fromDate AND ""LOGIN_TIME""<= @toDate ";
+				string query = @"SELECT SUM (""SESSION_LENGTH"") FROM ""HEALTH_FACILITIES_SESSIONS"" WHERE ""HEALTH_FACILITY_ID"" = @hfid AND  ""LOGIN_TIME"" >= @fromDate AND ""LOGIN_TIME""<= @toDate ";
 				List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
 					{
 					new NpgsqlParameter("@hfid", DbType.Int32) { Value = hfid },
@@ -179,7 +179,7 @@ namespace GIIS.DataLayer
 				{
 					try
 					{
-						totalLength = Helper.ConvertToInt(row["COUNT"]);
+						totalLength = Helper.ConvertToInt(row["SUM"]);
 					}
 					catch (Exception ex)
 					{
@@ -324,6 +324,73 @@ namespace GIIS.DataLayer
 				throw ex;
 			}
 		}
+
+
+		public static List<HealthFacilityLoginSessionsRatings> GetHealthFacilitySessionsDaysRatingsByDistrict (string districtCouncilId, string userId, DateTime fromDate, DateTime toDate)
+		{
+
+			string query = @"SELECT ""HEALTH_FACILITY_ID"",""NAME""  
+									FROM ""HEALTH_FACILITIES_SESSIONS"" 
+											INNER JOIN ""HEALTH_FACILITY"" ON ""HEALTH_FACILITY"".""ID"" = ""HEALTH_FACILITIES_SESSIONS"".""HEALTH_FACILITY_ID""
+									WHERE ""PARENT_ID"" = @districtCouncilId
+									GROUP BY ""HEALTH_FACILITY_ID"",""NAME"" 
+									ORDER BY 3 DESC;";
+			List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
+			{
+					new NpgsqlParameter("@districtCouncilId", DbType.Int32) { Value = districtCouncilId }
+			};
+
+			DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, parameters);
+
+			List<HealthFacilityLoginSessionsRatings> oList = new List<HealthFacilityLoginSessionsRatings>();
+			foreach (DataRow row in dt.Rows)
+			{
+				try
+				{
+					HealthFacilityLoginSessionsRatings o = new HealthFacilityLoginSessionsRatings();
+					o.HealthFacilityId = Helper.ConvertToInt(row["HEALTH_FACILITY_ID"]);
+					o.Name = (row["NAME"]).ToString();
+					try
+					{
+						string query2 = @"SELECT ""LOGIN_TIME"" FROM ""HEALTH_FACILITIES_SESSIONS"" WHERE ""HEALTH_FACILITY_ID"" = @hfid AND ""LOGIN_TIME"" >= @fromDate AND ""LOGIN_TIME""<= @toDate ";
+						List<NpgsqlParameter> parameters2 = new List<NpgsqlParameter>()
+						{
+							new NpgsqlParameter("@hfid", DbType.Int32) { Value = o.HealthFacilityId },
+							new NpgsqlParameter("@fromDate", DbType.DateTime) { Value = fromDate },
+							new NpgsqlParameter("@toDate", DbType.DateTime) { Value = toDate }
+						};
+						DataTable dt2 = DBManager.ExecuteReaderCommand(query2, CommandType.Text, parameters2);
+						List<DateTime> dates = new List<DateTime>();
+						foreach (DataRow row2 in dt2.Rows)
+						{
+							dates.Add(Helper.ConvertToDate(row2["LOGIN_TIME"]));
+						}
+
+						dates = dates.Select(x => x.Date).Distinct().ToList();
+						o.SessionsCount = dates.Count;
+
+					}
+					catch (Exception ex)
+					{
+						Log.InsertEntity("HealthFacilitySessions", "GetHealthFacilitySessionsByHealthFacilityIdAndUserId", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+						throw ex;
+					}
+
+
+					oList.Add(o);
+				}
+				catch (Exception ex)
+				{
+					Log.InsertEntity("HealthFacilitySessions", "GetHealthFacilitySessionsAsList", 1, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+					throw ex;
+				}
+			}
+
+			List<HealthFacilityLoginSessionsRatings> orderedList = oList.OrderByDescending(o => o.SessionsCount).ToList();
+			return orderedList;
+
+		}
+
 
 
 
