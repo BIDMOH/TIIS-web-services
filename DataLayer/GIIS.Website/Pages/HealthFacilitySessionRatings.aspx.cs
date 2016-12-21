@@ -68,6 +68,7 @@ public partial class Pages_HealthFacilitySessionRatings : System.Web.UI.Page
                 //grid header text
                 gvHealthFacilitySessions.Columns[0].HeaderText = "Name";
                 gvHealthFacilitySessions.Columns[1].HeaderText = "Session Count";
+                gvHealthFacilitySessions.Columns[1].HeaderText = "View Facility Session Reports";
                 
             }
             else
@@ -99,21 +100,17 @@ public partial class Pages_HealthFacilitySessionRatings : System.Web.UI.Page
 
 
 
-        string command = "SELECT \"ID\", \"NAME\" FROM \"HEALTH_FACILITY\" WHERE \"PARENT_ID\" = "+hfParentID;
+        string command = "SELECT \"ID\", \"NAME\" FROM \"HEALTH_FACILITY\" WHERE \"TYPE_ID\" = "+2;
         using (var idt = DBManager.ExecuteReaderCommand(command, System.Data.CommandType.Text, contextParms))
         {
             using (var irdr = idt.CreateDataReader())
             {
-                var opt = new HtmlGenericControl("option");
-                inputControl3.Controls.Add(opt);
-                opt.Attributes.Add("value", "0");
-                opt.InnerText = "All";
-
+                
                 int count =0;
                 while (irdr.Read())
                 {
 
-                    opt = new HtmlGenericControl("option");
+                    var opt = new HtmlGenericControl("option");
                     inputControl3.Controls.Add(opt);
                     opt.Attributes.Add("value", irdr[0].ToString());
                     opt.InnerText = irdr[1].ToString();
@@ -242,7 +239,7 @@ public partial class Pages_HealthFacilitySessionRatings : System.Web.UI.Page
         selectedHealthFacilityID = Request.Form["selectHealthFacility"];
 
         odsHealthFacilitySessions.SelectParameters.Clear();
-        odsHealthFacilitySessions.SelectParameters.Add("districtCouncilId", hfParentID.ToString());
+        odsHealthFacilitySessions.SelectParameters.Add("districtCouncilId", selectedHealthFacilityID);
         odsHealthFacilitySessions.SelectParameters.Add("fromDate", strFromDate);
         odsHealthFacilitySessions.SelectParameters.Add("toDate", strToDate);
         odsHealthFacilitySessions.DataBind();

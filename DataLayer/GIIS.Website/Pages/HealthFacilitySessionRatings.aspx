@@ -39,7 +39,7 @@
     
     <div class="row">
         <div class="col-md-12">
-            <h2><asp:Label ID="lblReportName" Text="Health Facility Session Ratings" runat="server" /></h2>
+            <h2><asp:Label ID="lblReportName" Text="Health Facilities Session Ratings" runat="server" /></h2>
         </div>
     </div>
     <div class="row">
@@ -84,6 +84,13 @@
                 <ItemTemplate>
                     <%#Eval("SessionsCount")%>
                 </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="View Facility Session Reports">
+                    <ItemTemplate>
+                        <a href="HealthFacilitySpecificSessionReports.aspx" target="_blank">
+                            <img alt='View Session Reports' src="../img/arrow_right_blue.png" />
+                        </a>
+                    </ItemTemplate>
                 </asp:TemplateField>            
             </Columns>
         </asp:GridView>

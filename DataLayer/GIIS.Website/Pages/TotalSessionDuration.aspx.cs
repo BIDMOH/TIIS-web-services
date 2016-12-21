@@ -232,11 +232,13 @@ public partial class Pages_TotalSessionDuration : System.Web.UI.Page
 
         if (userID == "0"){
             int duration = HealthFacilitySessions.GetHealthFacilitySessionsLengthByHealthFacilityId(s, Convert.ToDateTime(strFromDate), Convert.ToDateTime(strToDate));
-            this.lblTotalDurationsValue.Text = duration.ToString();
+            TimeSpan t = TimeSpan.FromSeconds(duration);
+            this.lblTotalDurationsValue.Text =  t.Hours+" Hours  "+t.Minutes+" Minutes  "+t.Seconds+" Seconds";
         }else{
             //GetHealthFacilitySessionsLengthByHealthFacilityIdAndUserId
             int duration = HealthFacilitySessions.GetHealthFacilitySessionsLengthByHealthFacilityIdAndUserId(s, userID ,Convert.ToDateTime(strFromDate), Convert.ToDateTime(strToDate));
-            this.lblTotalDurationsValue.Text = duration.ToString();
+            TimeSpan t = TimeSpan.FromSeconds(duration);
+            this.lblTotalDurationsValue.Text =  t.Hours+" Hours  "+t.Minutes+" Minutes  "+t.Seconds+" Seconds";
         }
 
         createInputControls();

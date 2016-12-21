@@ -39,12 +39,12 @@
     
     <div class="row">
         <div class="col-md-12">
-            <h2><asp:Label ID="lblReportName" Text="Health Facility Session Ratings" runat="server" /></h2>
+            <h2><asp:Label ID="lblReportName" Text="Health Facilities Session Length Ratings" runat="server" /></h2>
         </div>
     </div>
     <div class="row">
         <div class="col-md-12">
-            <em><asp:Label runat="server" ID="lblReportDescription" Text="This will be the description of the text Session Report"  /></em>
+            <em><asp:Label runat="server" ID="lblReportDescription" Text="This report shows the ranking of health facilities within the District council by their total sessions lengths during the specified date range"  /></em>
         </div>
     </div>
     <br />
@@ -80,9 +80,9 @@
                         <%#Eval("Name")%>
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:TemplateField HeaderText="Session Count">
-                <ItemTemplate>
-                    <%#Eval("SessionsCount")%>
+                <asp:TemplateField HeaderText="Session Length">
+                <ItemTemplate> 
+                    <%# convertToHoursAndMinutes(Convert.ToInt32(Eval("SessionsCount"))) %>
                 </ItemTemplate>
                 </asp:TemplateField>            
             </Columns>

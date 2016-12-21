@@ -44,7 +44,7 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <em><asp:Label runat="server" ID="lblReportDescription" Text="This will be the description of the text Session Report"  /></em>
+            <em><asp:Label runat="server" ID="lblReportDescription" Text="This report shows in details all the sessions conducted by in specific health facility by different users, within a specific date range"  /></em>
         </div>
     </div>
     <br />
@@ -82,7 +82,7 @@
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Duration">
                    <ItemTemplate>
-                        <%#Eval("SessionLength")%>
+                       <%# convertToHoursAndMinutes(Convert.ToInt32(Eval("SessionLength"))) %>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="User Name">

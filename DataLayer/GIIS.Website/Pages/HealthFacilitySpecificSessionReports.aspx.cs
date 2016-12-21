@@ -25,13 +25,23 @@ using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
-public partial class Pages_SessionReport : System.Web.UI.Page
+public partial class Pages_HealthFacilitySpecificSessionReports : System.Web.UI.Page
 {
     public static String datefromString = "";
     public static String datetoString = "";
+    public static String durationDatefromString = "";
+    public static String durationDatetoString = "";
+    public static String daysDatefromString = "";
+    public static String daysDatetoString = "";
     public String userID = "";
+    public String durationUserID = "";
+    public String daysUserID = "";
     public int userSelectedIndex = 0;
+    public int durationUserSelectedIndex = 0;
+    public int daysUserSelectedIndex = 0;
     public HtmlGenericControl inputControl3;
+    public HtmlGenericControl durationInputControl3;
+    public HtmlGenericControl daysInputControl3;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!this.Page.IsPostBack)
@@ -62,12 +72,13 @@ public partial class Pages_SessionReport : System.Web.UI.Page
                 }
 
                 createInputControls();
+                // durationCreateInputControls();
 
                 //grid header text
                 gvHealthFacilitySessions.Columns[0].HeaderText = "Login Time";
                 gvHealthFacilitySessions.Columns[1].HeaderText = "Duration";
                 gvHealthFacilitySessions.Columns[2].HeaderText = "User Name";
-                
+
             }
             else
             {
@@ -213,11 +224,143 @@ public partial class Pages_SessionReport : System.Web.UI.Page
                     string.Format(
                     "<script type=\"text/javascript\">Sys.Application.add_init(function() {{$create(Sys.Extended.UI.CalendarBehavior, {{\"format\":\"MM-dd-yyyy\",\"id\":\"dateFrom\"}}, null, null, $get(\"{0}\"));}});</script>", "dateTo"));
                     //  $create(Sys.Extended.UI.CalendarBehavior, {"endDate":"Thu, 28 May 2015 00:00:00 GMT","format":"dd/MM/yyyy","id":"ctl00_ContentPlaceHolder1_ceBirthdateTo"}, null, null, $get("ctl00_ContentPlaceHolder1_txtBirthdateTo"));
+        
+    }
+    
+    // protected void durationCreateInputControls(){
+    //     //date-from controls
+    //     durationInputControl3 = new HtmlGenericControl("select");
+
+    //     durationInputControl3.Attributes.Add("class", "form-control");
+
+    //     var contextParms = new List<NpgsqlParameter>() {
+    //         new NpgsqlParameter("@FacilityId", NpgsqlTypes.NpgsqlDbType.Integer) { Value = CurrentEnvironment.LoggedUser.HealthFacilityId },
+    //         new NpgsqlParameter("@FacilityCode", NpgsqlTypes.NpgsqlDbType.Integer) { Value = CurrentEnvironment.LoggedUser.HealthFacility.Code },
+    //         new NpgsqlParameter("@UserId", NpgsqlTypes.NpgsqlDbType.Integer) { Value = CurrentEnvironment.LoggedUser.Id }
+    //     };
+        
+    //     // var params = new List<NpgsqlParameter>() {
+    //     //     new NpgsqlParameter("@FacilityId", NpgsqlTypes.NpgsqlDbType.Integer) { Value = CurrentEnvironment.LoggedUser.HealthFacilityId }
+    //     // };
+
+    //     string command = "SELECT \"ID\", \"USERNAME\" FROM \"USER\" WHERE \"ID\" <> 1 AND \"HEALTH_FACILITY_ID\" = @FacilityId";
+    //     using (var idt = DBManager.ExecuteReaderCommand(command, System.Data.CommandType.Text, contextParms))
+    //     {
+    //         using (var irdr = idt.CreateDataReader())
+    //         {
+    //             var opt = new HtmlGenericControl("option");
+    //             durationInputControl3.Controls.Add(opt);
+    //             opt.Attributes.Add("value", "0");
+    //             opt.InnerText = "All";
+
+    //             int count =0;
+    //             while (irdr.Read())
+    //             {
+
+    //                 opt = new HtmlGenericControl("option");
+    //                 durationInputControl3.Controls.Add(opt);
+    //                 opt.Attributes.Add("value", irdr[0].ToString());
+    //                 opt.InnerText = irdr[1].ToString();
+
+    //                 if(userID.Equals(irdr[0].ToString())){
+    //                     opt.Attributes.Add("selected","true");
+    //                 }
+
+    //                 count++;
+    //             }
+    //         }
+    //     }
+
+    //     durationInputControl3.Attributes.Add("id", "selectDurationUser");
+    //     durationInputControl3.Attributes.Add("type", "text");
+    //     durationInputControl3.Attributes.Add("style", "z-index:8");
+    //     durationInputControl3.Attributes.Add("name", "selectDurationUser");
+    //     durationInputControl3.Attributes.Add("title", "User option description");
+
+    //     //date-from controls
+    //     var inputControl = new HtmlGenericControl("input");
+    //     inputControl.Attributes.Add("class", "form-control");
+
+    //     inputControl.Attributes.Add("id", "durationDateFrom");
+    //     inputControl.Attributes.Add("type", "text");
+    //     inputControl.Attributes.Add("style", "z-index:8");
+    //     inputControl.Attributes.Add("name", "dateFrom");
+    //     inputControl.Attributes.Add("value", durationDatefromString);
+    //     inputControl.Attributes.Add("title", "Session Report Description");
+
+    //     //date-to Controls
+    //     var inputControl2 = new HtmlGenericControl("input");
+    //     inputControl2.Attributes.Add("class", "form-control");
+
+    //     inputControl2.Attributes.Add("id", "durationDateTo");
+    //     inputControl2.Attributes.Add("type", "text");
+    //     inputControl2.Attributes.Add("style", "z-index:8");
+    //     inputControl2.Attributes.Add("name", "dateTo");
+    //     inputControl2.Attributes.Add("value", durationDatetoString);
+    //     inputControl2.Attributes.Add("title", "Session Report Description");
+
+    //     // Label control
+    //     var labelControl = new Label()
+    //     {
+    //         Text = "From Date"
+    //     };
+
+    //         var labelControl2 = new Label()
+    //     {
+    //         Text = "To Date"
+    //     };
+
+    //         var labelControl3 = new Label()
+    //     {
+    //         Text = "Select User"
+    //     };
+
+    //     var row = new HtmlGenericControl("div");
+    //     row.Attributes.Add("class", "row");
+    //     // row.Attributes.Add("style", "margin:5px");
+
+    //     var colMd4 = new HtmlGenericControl("div");
+    //     colMd4.Attributes.Add("class", "col-md-1");
+    //     var colMd42 = new HtmlGenericControl("div");
+    //     colMd42.Attributes.Add("class", "col-md-1");
+    //     var colMd43 = new HtmlGenericControl("div");
+    //     colMd43.Attributes.Add("class", "col-md-1");
+
+    //     var colMd8 = new HtmlGenericControl("div");
+    //     colMd8.Attributes.Add("class", "col-md-3");
+    //     var colMd82 = new HtmlGenericControl("div");
+    //     colMd82.Attributes.Add("class", "col-md-3");
+    //     var colMd83 = new HtmlGenericControl("div");
+    //     colMd83.Attributes.Add("class", "col-md-3");
+
+    //     row.Controls.Add(colMd4);
+    //     row.Controls.Add(colMd8);
+    //     row.Controls.Add(colMd42);
+    //     row.Controls.Add(colMd82);
+    //     row.Controls.Add(colMd43);
+    //     row.Controls.Add(colMd83);
+
+    //     colMd4.Controls.Add(labelControl);
+    //     colMd8.Controls.Add(inputControl);
+    //     colMd42.Controls.Add(labelControl2);
+    //     colMd82.Controls.Add(inputControl2);
+    //     colMd43.Controls.Add(labelControl3);
+    //     colMd83.Controls.Add(durationInputControl3);
+
+    //     this.durationReportInputs.Controls.Add(row);
+
+    //     Page.RegisterStartupScript("durationDateFrom",
+    //                 string.Format(
+    //                 "<script type=\"text/javascript\">Sys.Application.add_init(function() {{$create(Sys.Extended.UI.CalendarBehavior, {{\"format\":\"MM-dd-yyyy\",\"id\":\"dateFrom\"}}, null, null, $get(\"{0}\"));}});</script>", "durationDateFrom"));
+    //     Page.RegisterStartupScript("durationDateTo",
+    //                 string.Format(
+    //                 "<script type=\"text/javascript\">Sys.Application.add_init(function() {{$create(Sys.Extended.UI.CalendarBehavior, {{\"format\":\"MM-dd-yyyy\",\"id\":\"dateFrom\"}}, null, null, $get(\"{0}\"));}});</script>", "durationDateTo"));
+    //                 //  $create(Sys.Extended.UI.CalendarBehavior, {"endDate":"Thu, 28 May 2015 00:00:00 GMT","format":"dd/MM/yyyy","id":"ctl00_ContentPlaceHolder1_ceBirthdateTo"}, null, null, $get("ctl00_ContentPlaceHolder1_txtBirthdateTo"));
 
 
 
         
-    }
+    // }
 
     protected void btnSearch_Click(object sender, EventArgs e)
     {
@@ -260,8 +403,71 @@ public partial class Pages_SessionReport : System.Web.UI.Page
             gvHealthFacilitySessions.DataBind();
         }
 
+        getDurationData();
+        getDaysData();
         createInputControls();
         
+    }
+
+    protected void getDurationData()
+    {
+
+
+        string sessionvar = "_healthfacility_" + CurrentEnvironment.LoggedUser.HealthFacilityId.ToString();
+        string s;
+        if (Session[sessionvar] != null)
+            s = Session[sessionvar].ToString();
+        else
+        {
+            s = HealthFacility.GetAllChildsForOneHealthFacility(CurrentEnvironment.LoggedUser.HealthFacilityId);
+            Session[sessionvar] = s;
+        }
+
+        if (userID == "0"){
+            int duration = HealthFacilitySessions.GetHealthFacilitySessionsLengthByHealthFacilityId(s, Convert.ToDateTime(datefromString), Convert.ToDateTime(datetoString));
+            TimeSpan t = TimeSpan.FromSeconds(duration);
+            this.lblTotalDurationsValue.Text =  t.Hours+" Hours  "+t.Minutes+" Minutes  "+t.Seconds+" Seconds";
+        }else{
+            //GetHealthFacilitySessionsLengthByHealthFacilityIdAndUserId
+            int duration = HealthFacilitySessions.GetHealthFacilitySessionsLengthByHealthFacilityIdAndUserId(s, userID ,Convert.ToDateTime(datefromString), Convert.ToDateTime(datetoString));
+            TimeSpan t = TimeSpan.FromSeconds(duration);
+            this.lblTotalDurationsValue.Text =  t.Hours+" Hours  "+t.Minutes+" Minutes  "+t.Seconds+" Seconds";
+        }
+
+    }
+
+    protected void getDaysData(){
+        string sessionvar = "_healthfacility_" + CurrentEnvironment.LoggedUser.HealthFacilityId.ToString();
+        string s;
+        if (Session[sessionvar] != null)
+            s = Session[sessionvar].ToString();
+        else
+        {
+            s = HealthFacility.GetAllChildsForOneHealthFacility(CurrentEnvironment.LoggedUser.HealthFacilityId);
+            Session[sessionvar] = s;
+        }
+
+        if (userID == "0"){
+            int duration = HealthFacilitySessions.GetHealthFacilitySessionsDaysByHealthFacilityId(s, Convert.ToDateTime(datefromString), Convert.ToDateTime(datetoString));
+            String postfix = "";
+            if (duration == 1){
+                postfix = "Day";
+            }else{
+                postfix = "Days";
+            }
+            this.lblTotalDaysValue.Text = duration.ToString()+" "+postfix;
+        }else{
+            //GetHealthFacilitySessionsLengthByHealthFacilityIdAndUserId
+            int duration = HealthFacilitySessions.GetHealthFacilitySessionsDaysByHealthFacilityIdAndUserId(s, userID ,Convert.ToDateTime(datefromString), Convert.ToDateTime(datetoString));
+            String postfix = "";
+            if (duration == 1){
+                postfix = "Day";
+            }else{
+                postfix = "Days";
+            }
+            this.lblTotalDaysValue.Text = duration.ToString()+" "+postfix;
+        }
+
     }
 
     protected void gvHealthFacilitySessions_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -276,5 +482,5 @@ public partial class Pages_SessionReport : System.Web.UI.Page
         // else
         //     // lblWarning.Visible = false;
     }
-    
+
 }

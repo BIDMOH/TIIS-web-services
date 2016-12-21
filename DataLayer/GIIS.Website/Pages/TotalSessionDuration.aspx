@@ -44,7 +44,7 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <em><asp:Label runat="server" ID="lblReportDescription" Text="This report is going to show the tatal duration spent by users in the mobile application"  /></em>
+            <em><asp:Label runat="server" ID="lblReportDescription" Text="This report shows the total time spent by users in the mobile application in hours, within a specific date range"  /></em>
         </div>
     </div>
     <br />
