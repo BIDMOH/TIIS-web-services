@@ -170,6 +170,7 @@
 
                                         <li><a runat="server" id="aGlobalConfigurations" href="Configuration.aspx"><span id="mGlobalConfigurations" runat="server">Global Configurations</span></a></li>
                                         <li><a runat="server" id="aChildConfiguration" href="ChildConfiguration.aspx"><span id="mChildConfiguration" runat="server">Child Configuration</span></a></li>
+                                        <li><a runat="server" id="aReportsConfiguration" href="ReportsConfiguration.aspx"><span id="mReportsConfiguration" runat="server">Reports Configuration</span></a></li>
                                         <li><a runat="server" id="aHelp" href="Help.aspx"><span id="mHelp" runat="server">Help</span></a></li>
                                         <li class="divider"></li>
                                         <li><a runat="server" id="aLanguages" href="Language.aspx"><span id="mLanguages" runat="server">Languages</span></a></li>

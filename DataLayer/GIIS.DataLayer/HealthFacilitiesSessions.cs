@@ -272,7 +272,7 @@ namespace GIIS.DataLayer
 			{
 				string query = @"SELECT ""HEALTH_FACILITY_ID"",""NAME"", COUNT(*)  AS C
 									FROM ""HEALTH_FACILITIES_SESSIONS"" 
-											INNER JOIN ""HEALTH_FACILITY"" ON ""HEALTH_FACILITY"".""ID"" = ""HEALTH_FACILITIES_SESSIONS"".""HEALTH_FACILITY_ID""
+											LEFT JOIN ""HEALTH_FACILITY"" ON ""HEALTH_FACILITY"".""ID"" = ""HEALTH_FACILITIES_SESSIONS"".""HEALTH_FACILITY_ID""
 									WHERE ""PARENT_ID"" = @districtCouncilId AND
 										""LOGIN_TIME"" >= @fromDate AND ""LOGIN_TIME""<= @toDate
 									GROUP BY ""HEALTH_FACILITY_ID"",""NAME"" 
@@ -302,7 +302,7 @@ namespace GIIS.DataLayer
 			{
 				string query = @"SELECT ""HEALTH_FACILITY_ID"",""NAME"", SUM(""SESSION_LENGTH"") AS C  
 									FROM ""HEALTH_FACILITIES_SESSIONS"" 
-											INNER JOIN ""HEALTH_FACILITY"" ON ""HEALTH_FACILITY"".""ID"" = ""HEALTH_FACILITIES_SESSIONS"".""HEALTH_FACILITY_ID""
+											LEFT JOIN ""HEALTH_FACILITY"" ON ""HEALTH_FACILITY"".""ID""=""HEALTH_FACILITIES_SESSIONS"".""HEALTH_FACILITY_ID""
 									WHERE ""PARENT_ID"" = @districtCouncilId AND
 										""LOGIN_TIME"" >= @fromDate AND ""LOGIN_TIME""<= @toDate
 									GROUP BY ""HEALTH_FACILITY_ID"",""NAME"" 
@@ -326,15 +326,14 @@ namespace GIIS.DataLayer
 		}
 
 
-		public static List<HealthFacilityLoginSessionsRatings> GetHealthFacilitySessionsDaysRatingsByDistrict (string districtCouncilId, string userId, DateTime fromDate, DateTime toDate)
+		public static List<HealthFacilityLoginSessionsRatings> GetHealthFacilitySessionsDaysRatingsByDistrict (string districtCouncilId, DateTime fromDate, DateTime toDate)
 		{
 
 			string query = @"SELECT ""HEALTH_FACILITY_ID"",""NAME""  
 									FROM ""HEALTH_FACILITIES_SESSIONS"" 
-											INNER JOIN ""HEALTH_FACILITY"" ON ""HEALTH_FACILITY"".""ID"" = ""HEALTH_FACILITIES_SESSIONS"".""HEALTH_FACILITY_ID""
+											LEFT JOIN ""HEALTH_FACILITY"" ON ""HEALTH_FACILITY"".""ID"" = ""HEALTH_FACILITIES_SESSIONS"".""HEALTH_FACILITY_ID"" 
 									WHERE ""PARENT_ID"" = @districtCouncilId
-									GROUP BY ""HEALTH_FACILITY_ID"",""NAME"" 
-									ORDER BY 3 DESC;";
+									GROUP BY ""HEALTH_FACILITY_ID"",""NAME"" ";
 			List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
 			{
 					new NpgsqlParameter("@districtCouncilId", DbType.Int32) { Value = districtCouncilId }
