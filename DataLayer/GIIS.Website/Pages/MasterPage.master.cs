@@ -238,6 +238,9 @@ public partial class Pages_MasterPage : System.Web.UI.MasterPage
                 this.aLanguages.Visible = actions.Contains("ViewMenuLanguages");
                 this.aSystemModules.Visible = false; // actions.Contains("ViewMenuSystemModules");
 
+                this.aReportsConfiguration.Visible = actions.Contains("ViewReportConfigurations");
+
+
                 #endregion
             }
         }
