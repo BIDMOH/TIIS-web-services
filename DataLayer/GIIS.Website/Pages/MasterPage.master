@@ -177,6 +177,8 @@
                                         <li class="divider"></li>
                                         <li><a runat="server" id="aItemCategories" href="ItemCategory.aspx"><span id="mItemCategories" runat="server">Item Categories</span></a></li>
                                         <li><a runat="server" id="aSystemModules" href="SystemModule.aspx"><span id="mSystemModules" runat="server">System Modules</span></a></li>
+                                        <li class="divider"></li>
+                                        <li><a runat="server" id="aReportConfiguration" href="ReportsConfiguration.aspx"><span id="mReportConfiguration" runat="server">Reports Configuration</span></a></li>
                                     </ul>
                                 </li>
 
