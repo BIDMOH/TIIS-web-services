@@ -263,5 +263,29 @@ public partial class Pages_HealthFacilitySessionLengthRatings : System.Web.UI.Pa
         // else
         //     // lblWarning.Visible = false;
     }
-    
+
+    protected void gvHealthFacilitySessions_DataBound(object sender, GridViewRowEventArgs e)
+        {
+             // To check condition on integer value
+
+
+                if (e.Row.RowState == DataControlRowState.Alternate)
+                    {
+                       if (Convert.ToInt16(DataBinder.Eval(e.Row.DataItem, "SessionsCount")) > 3)
+                       {
+                         e.Row.BackColor = System.Drawing.Color.Green;
+                       }else if(Convert.ToInt16(DataBinder.Eval(e.Row.DataItem, "SessionsCount")) < 2){
+                           e.Row.BackColor = System.Drawing.Color.Red;
+                       }
+                    }
+                    else
+                    {
+                       if (Convert.ToInt16(DataBinder.Eval(e.Row.DataItem, "SessionsCount")) > 3)
+                       {
+                         e.Row.BackColor = System.Drawing.Color.Green;
+                       }else if(Convert.ToInt16(DataBinder.Eval(e.Row.DataItem, "SessionsCount")) < 2){
+                           e.Row.BackColor = System.Drawing.Color.Red;
+                       }
+                    }
+        }
 }
