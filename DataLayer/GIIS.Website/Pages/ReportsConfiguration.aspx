@@ -16,7 +16,9 @@
  ******************************************************************************
 --%>
 <%@ Page Title="Configuration" Language="C#" MasterPageFile="~/Pages/MasterPage.master" AutoEventWireup="true" CodeFile="ReportsConfiguration.aspx.cs" Inherits="_Configuration" %>
+<asp:Content ID="ContentHead" ContentPlaceHolderID="head" runat="Server">
 
+</asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <div class="row">
         <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12 clearfix">
@@ -32,10 +34,6 @@
     <div class="row">
         <div class="col-md-5">
             <h3><asp:Label ID="lblHoursThresholds" Text="Hours Thresholds for Health Facility Sessions" runat="server" /></h3>
-        </div>
-
-        <div class="col-md-2">
-            <hr width="1" size="500">
         </div>
 
         <div class="col-md-5">
@@ -65,13 +63,10 @@
                     <asp:TextBox ID="txtMinThreshold" runat="server" CssClass="form-control"></asp:TextBox>
                 </div>
             </div>
+            <br />
             <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12 clearfix">
                 <asp:Button ID="btnSaveHoursThreshold" runat="server" Text="Save" CssClass="btn btn-raised btn-primary" OnClick="btnSave_Click" ValidationGroup="saveConfiguration" />
             </div>
-        </div>
-
-        <div class="col-md-2">
-            <hr width="1" size="500">
         </div>
 
         <div class="col-md-5">
@@ -94,6 +89,7 @@
                     <asp:TextBox ID="txtMinThresholdDays" runat="server" CssClass="form-control"></asp:TextBox>
                 </div>
             </div>
+            <br />
             <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12 clearfix">
                 <asp:Button ID="btnSaveDaysThreshold" runat="server" Text="Save" CssClass="btn btn-raised btn-primary" OnClick="btnSave_Click" ValidationGroup="saveConfiguration" />
             </div>
@@ -111,6 +107,4 @@
         </div>
     </div>
     <br />
-</asp:Content>
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
