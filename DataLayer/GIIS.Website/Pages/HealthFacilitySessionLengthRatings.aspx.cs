@@ -263,5 +263,38 @@ public partial class Pages_HealthFacilitySessionLengthRatings : System.Web.UI.Pa
         // else
         //     // lblWarning.Visible = false;
     }
-    
+
+    protected void gvHealthFacilitySessions_DataBound(object sender, GridViewRowEventArgs e)
+        {
+             // To check condition on integer value
+
+            if (e.Row.RowState == DataControlRowState.Alternate)
+                {
+                    if (Convert.ToInt16(DataBinder.Eval(e.Row.DataItem, "SessionsCount")) > convertHoursToSeconds(int.Parse(ReportsConfiguration.GetConfigurationByName("HoursMaximum").Value)))
+                    {
+                        e.Row.BackColor = System.Drawing.Color.Green;
+                    }else if(Convert.ToInt16(DataBinder.Eval(e.Row.DataItem, "SessionsCount")) < convertHoursToSeconds(int.Parse(ReportsConfiguration.GetConfigurationByName("HoursMinimum").Value))){
+                        e.Row.BackColor = System.Drawing.Color.Red;
+                    }
+                }
+                else
+                {
+                    if (Convert.ToInt16(DataBinder.Eval(e.Row.DataItem, "SessionsCount")) > convertHoursToSeconds(int.Parse(ReportsConfiguration.GetConfigurationByName("HoursMaximum").Value)))
+                    {
+                        e.Row.BackColor = System.Drawing.Color.Green;
+                    }else if(Convert.ToInt16(DataBinder.Eval(e.Row.DataItem, "SessionsCount")) < convertHoursToSeconds(int.Parse(ReportsConfiguration.GetConfigurationByName("HoursMinimum").Value))){
+                        e.Row.BackColor = System.Drawing.Color.Red;
+                    }
+                }
+
+                if (gvHealthFacilitySessions.Rows.Count > 0){
+                    gvHealthFacilitySessions.HeaderRow.BackColor = System.Drawing.Color.White;
+            } 
+        }
+
+        protected int convertHoursToSeconds(int mHours){
+            int val = 0;
+            val = mHours;
+            return val*60*60;
+        }
 }

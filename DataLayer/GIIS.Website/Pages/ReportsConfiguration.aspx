@@ -45,7 +45,7 @@
     <div class="row">
         <div class="col-md-5">
             <div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 clearfix">
-                <asp:Label ID="lblMaxThreshold" runat="server" Text="Maximum"></asp:Label>
+                <asp:Label ID="lblMaxThreshold" runat="server" Text="Maximum (Hrs)"></asp:Label>
             </div>
 
             <div class="col-md-7 col-xs-7 col-sm-7 col-lg-7 clearfix">
@@ -55,7 +55,7 @@
             </div> 
 
             <div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 clearfix">
-                <asp:Label ID="lblMinThreshold" runat="server" Text="Minimum"></asp:Label>
+                <asp:Label ID="lblMinThreshold" runat="server" Text="Minimum (Hrs)"></asp:Label>
             </div>
 
             <div class="col-md-7 col-xs-7 col-sm-7 col-lg-7 clearfix">

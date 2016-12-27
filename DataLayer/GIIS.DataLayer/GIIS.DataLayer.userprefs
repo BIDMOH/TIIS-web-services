@@ -1,12 +1,1 @@
-﻿<Properties>
-  <MonoDevelop.Ide.Workbench ActiveDocument="Configuration (copy).cs">
-    <Files>
-      <File FileName="Configuration (copy).cs" Line="116" Column="6" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-</Properties>
+﻿<Properties />

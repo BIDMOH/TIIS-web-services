@@ -2,9 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="22ae8903-ebf0-4653-a638-4bca3b316a89" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/ReportsConfiguration.aspx" afterPath="$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/ReportsConfiguration.aspx" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DataLayer/GIIS.DataLayer/ConfigurationsReports.cs" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/DataLayer/GIIS.DataLayer/Configuration (copy).cs" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DataLayer/GIIS.DataLayer/bin/Debug/GIIS.DataLayer.dll.mdb" afterPath="$PROJECT_DIR$/DataLayer/GIIS.DataLayer/bin/Debug/GIIS.DataLayer.dll.mdb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DataLayer/GIIS.DataLayer/obj/Debug/GIIS.DataLayer.dll.mdb" afterPath="$PROJECT_DIR$/DataLayer/GIIS.DataLayer/obj/Debug/GIIS.DataLayer.dll.mdb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Services/GIIS.Tanzania.WCF/bin/GIIS.DataLayer.dll" afterPath="$PROJECT_DIR$/Services/GIIS.Tanzania.WCF/bin/GIIS.DataLayer.dll" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DataLayer/GIIS.DataLayer/GIIS.DataLayer.csproj" afterPath="$PROJECT_DIR$/DataLayer/GIIS.DataLayer/GIIS.DataLayer.csproj" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DataLayer/GIIS.DataLayer/GIIS.DataLayer.userprefs" afterPath="$PROJECT_DIR$/DataLayer/GIIS.DataLayer/GIIS.DataLayer.userprefs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DataLayer/GIIS.Website/.idea/workspace.xml" afterPath="$PROJECT_DIR$/DataLayer/GIIS.Website/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilitySessionDaysRatings.aspx" afterPath="$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilitySessionDaysRatings.aspx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilitySessionDaysRatings.aspx.cs" afterPath="$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilitySessionDaysRatings.aspx.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilitySessionLengthRatings.aspx" afterPath="$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilitySessionLengthRatings.aspx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilitySessionLengthRatings.aspx.cs" afterPath="$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilitySessionLengthRatings.aspx.cs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/ReportsConfiguration.aspx.cs" afterPath="$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/ReportsConfiguration.aspx.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Services/GIIS.Tanzania.WCF.userprefs" afterPath="$PROJECT_DIR$/Services/GIIS.Tanzania.WCF.userprefs" />
     </list>
     <ignored path="TIIS-web-services.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -26,11 +37,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Configuration (copy).cs" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/DataLayer/GIIS.DataLayer/Configuration (copy).cs">
+      <file leaf-file-name="ConfigurationsReports.cs" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/DataLayer/GIIS.DataLayer/ConfigurationsReports.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="284">
-              <caret line="107" column="9" selection-start-line="107" selection-start-column="9" selection-end-line="107" selection-end-column="9" />
+            <state relative-caret-position="225">
+              <caret line="140" column="18" selection-start-line="140" selection-start-column="18" selection-end-line="140" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -182,12 +193,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1482825917931</updated>
-      <workItem from="1482825919364" duration="1520000" />
+      <workItem from="1482825919364" duration="1813000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1520000" />
+    <option name="totallyTimeSpent" value="1813000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1680" height="991" extended-state="6" />
@@ -232,6 +243,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="284">
           <caret line="107" column="9" selection-start-line="107" selection-start-column="9" selection-end-line="107" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataLayer/GIIS.DataLayer/ConfigurationsReports.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="140" column="18" selection-start-line="140" selection-start-column="18" selection-end-line="140" selection-end-column="18" />
           <folding />
         </state>
       </provider>

@@ -247,6 +247,7 @@ public partial class Pages_HealthFacilitySessionDaysRatings : System.Web.UI.Page
         gvHealthFacilitySessions.DataSourceID = "odsHealthFacilitySessions";
         gvHealthFacilitySessions.DataBind();
 
+
         createInputControls();
         
     }
@@ -256,12 +257,32 @@ public partial class Pages_HealthFacilitySessionDaysRatings : System.Web.UI.Page
         gvHealthFacilitySessions.PageIndex = e.NewPageIndex;
     }
 
-    protected void gvHealthFacilitySessions_DataBound(object sender, EventArgs e)
+    protected void gvHealthFacilitySessions_DataBound(object sender, GridViewRowEventArgs e)
     {
-        // if (gvHealthFacilitySessions.Rows.Count == 0)
-        //     // lblWarning.Visible = true;
-        // else
-        //     // lblWarning.Visible = false;
+         // To check condition on integer value
+
+        if (e.Row.RowState == DataControlRowState.Alternate)
+            {
+                if (Convert.ToInt16(DataBinder.Eval(e.Row.DataItem, "SessionsCount")) > int.Parse(ReportsConfiguration.GetConfigurationByName("DaysMaximum").Value))
+                {
+                    e.Row.BackColor = System.Drawing.Color.Green;
+                }else if(Convert.ToInt16(DataBinder.Eval(e.Row.DataItem, "SessionsCount")) < int.Parse(ReportsConfiguration.GetConfigurationByName("DaysMinimum").Value)){
+                    e.Row.BackColor = System.Drawing.Color.Red;
+                }
+            }
+            else
+            {
+                if (Convert.ToInt16(DataBinder.Eval(e.Row.DataItem, "SessionsCount")) > int.Parse(ReportsConfiguration.GetConfigurationByName("DaysMaximum").Value))
+                {
+                    e.Row.BackColor = System.Drawing.Color.Green;
+                }else if(Convert.ToInt16(DataBinder.Eval(e.Row.DataItem, "SessionsCount")) < int.Parse(ReportsConfiguration.GetConfigurationByName("DaysMinimum").Value)){
+                    e.Row.BackColor = System.Drawing.Color.Red;
+                }
+            }
+            if (gvHealthFacilitySessions.Rows.Count > 0){
+                gvHealthFacilitySessions.HeaderRow.BackColor = System.Drawing.Color.White;
+            } 
+        
     }
     
 }

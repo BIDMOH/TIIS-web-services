@@ -107,23 +107,24 @@ public partial class _Configuration : System.Web.UI.Page
                 string minHours = txtMinThreshold.Text;
             
                 ReportsConfiguration co = new ReportsConfiguration();
+                
                 ReportsConfiguration flag = ReportsConfiguration.GetConfigurationByName("HoursMaximum");
-
                 if (flag != null){
-                    co.Name = "HoursMaximum";
-                    co.Value = maxHours;
-                    i = ReportsConfiguration.Update(co);
+                    flag.Name = "HoursMaximum";
+                    flag.Value = maxHours;
+                    i = ReportsConfiguration.Update(flag);
                 }else{
                     co.Name = "HoursMaximum";
                     co.Value = maxHours;
                     i = ReportsConfiguration.Insert(co);
                 } 
                 
+                co = new ReportsConfiguration();
                 flag = ReportsConfiguration.GetConfigurationByName("HoursMinimum");
                 if (flag != null){
-                    co.Name = "HoursMinimum";
-                    co.Value = minHours;
-                    i = ReportsConfiguration.Update(co);
+                    flag.Name = "HoursMinimum";
+                    flag.Value = minHours;
+                    i = ReportsConfiguration.Update(flag);
                 }else{
                     co.Name = "HoursMinimum";
                     co.Value = minHours;
@@ -168,20 +169,21 @@ public partial class _Configuration : System.Web.UI.Page
                 ReportsConfiguration flag = ReportsConfiguration.GetConfigurationByName("DaysMaximum");
 
                 if (flag != null){
-                    co.Name = "DaysMaximum";
-                    co.Value = maxDays;
-                    i = ReportsConfiguration.Update(co);
+                    flag.Name = "DaysMaximum";
+                    flag.Value = maxDays;
+                    i = ReportsConfiguration.Update(flag);
                 }else{
                     co.Name = "DaysMaximum";
                     co.Value = maxDays;
                     i = ReportsConfiguration.Insert(co);
                 }
                 
+                co = new ReportsConfiguration();
                 flag = ReportsConfiguration.GetConfigurationByName("DaysMinimum");
                 if (flag != null){
-                    co.Name = "DaysMinimum";
-                    co.Value = minDays;
-                    i = ReportsConfiguration.Update(co);
+                    flag.Name = "DaysMinimum";
+                    flag.Value = minDays;
+                    i = ReportsConfiguration.Update(flag);
                 }else{
                     co.Name = "DaysMinimum";
                     co.Value = minDays;
