@@ -36,11 +36,12 @@
                 <li>
                     <asp:Label ID="lbsessionsReports" runat="server" Text="Built-in Session Reports" ForeColor="LightSlateGray" Font-Size="Large" Font-Bold="true" Font-Underline="true" />
                     <ul>
-                        <li><a runat="server" id="sessionReport" href="SessionReport.aspx" target="_blank" ><span id="id1" runat="server">Session Durations Report</span></a></li>
-                        <li><a runat="server" id="sessionDurationReport" href="TotalSessionDuration.aspx" target="_blank" ><span id="id2" runat="server">Total Sessions Report (Duration)</span></a></li>
-                        <li><a runat="server" id="totalSessionDays" href="TotalSessionDays.aspx" target="_blank"><span id="id3" runat="server">Total Sessions Report (Days)</span></a></li>
-                        <li><a runat="server" id="hfsessionRatings" href="HealthFacilitySessionRatings.aspx" target="_blank"><span id="id4" runat="server">Health Facility Session Ratings By District</span></a></li>
-                        <li><a runat="server" id="hfsessionRatingsLength" href="HealthFacilitySessionLengthRatings.aspx" target="_blank"><span id="id5" runat="server">Health Facility Session Ratings Length By District</span></a></li>
+                        <li><a runat="server" id="sessionReport" href="SessionReport.aspx" ><span id="id1" runat="server">Session Durations Report</span></a></li>
+                        <li><a runat="server" id="sessionDurationReport" href="TotalSessionDuration.aspx"  ><span id="id2" runat="server">Total Sessions Report (Duration)</span></a></li>
+                        <li><a runat="server" id="totalSessionDays" href="TotalSessionDays.aspx" ><span id="id3" runat="server">Total Sessions Report (Days)</span></a></li>
+                        <li><a runat="server" id="hfsessionRatings" href="HealthFacilitySessionRatings.aspx" ><span id="id4" runat="server">Health Facility Session Ratings By District</span></a></li>
+                        <li><a runat="server" id="hfsessionRatingsLength" href="HealthFacilitySessionLengthRatings.aspx" ><span id="id5" runat="server">Health Facility Session Ratings Length By District</span></a></li>
+                        <li><a runat="server" id="hfsessionRatingsDays" href="HealthFacilitySessionDaysRatings.aspx" ><span id="id6" runat="server">Health Facility Session Ratings Days By District</span></a></li>
                     </ul>
                 </li>
 

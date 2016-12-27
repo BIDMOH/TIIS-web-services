@@ -159,12 +159,12 @@ public partial class Pages_SessionReport : System.Web.UI.Page
         // Label control
         var labelControl = new Label()
         {
-            Text = "From Date"
+            Text = "From"
         };
 
             var labelControl2 = new Label()
         {
-            Text = "To Date"
+            Text = "To"
         };
 
             var labelControl3 = new Label()

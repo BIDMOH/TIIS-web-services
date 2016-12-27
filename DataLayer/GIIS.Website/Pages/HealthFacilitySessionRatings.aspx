@@ -39,7 +39,7 @@
     
     <div class="row">
         <div class="col-md-12">
-            <h2><asp:Label ID="lblReportName" Text="Health Facilities Session Ratings" runat="server" /></h2>
+            <h2><asp:Label ID="lblReportName" Text="Health Facilities Session Ratings By District" runat="server" /></h2>
         </div>
     </div>
     <div class="row">
@@ -50,18 +50,14 @@
     <br />
     <form class="form" method="get" action="" id="launchReport" >
     <div class="row">
-        <div class="col-md-12">        
+        <div class="col-md-9">        
             <asp:TextBox ID="hack" runat="server" Visible="false" />
                     <input type="hidden" name="j_username" value="<%=ConfigurationManager.AppSettings["JasperUser"]%>" />
                     <input type="hidden" name="j_password" value="<%=ConfigurationManager.AppSettings["JasperPassword"]%>" />
             <div class="container-fluid" runat="server" id="reportInputs">
             </div>
         </div>
-    </div>
-    <br />
-    
-    <div class="row">
-        <div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 clearfix">&nbsp;</div>
+
         <div class="col-md-2 col-xs-2 col-sm-2 col-lg-2 clearfix">
             <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn btn-primary btn-raised" OnClick="btnSearch_Click" />
         </div>
@@ -70,62 +66,42 @@
 
     <div class="row">
         <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12 clearfix" style="overflow:auto">
-            
-       <asp:GridView ID="gvHealthFacilitySessions" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover table-responsive" AllowPaging="True" OnDataBound="gvHealthFacilitySessions_DataBound" OnPageIndexChanging="gvHealthFacilitySessions_PageIndexChanging" >
-                <PagerSettings Position="Top" Mode="NumericFirstLast" />
-                <PagerStyle CssClass="pagination" HorizontalAlign="Left" VerticalAlign="Top" />
-            <Columns>
-                <asp:TemplateField HeaderText="Name">
-                   <ItemTemplate>
-                        <%#Eval("Name")%>
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:TemplateField HeaderText="Session Count">
-                <ItemTemplate>
-                    <%#Eval("SessionsCount")%>
-                </ItemTemplate>
-                </asp:TemplateField>
-                <asp:TemplateField HeaderText="View Facility Session Reports">
-                    <ItemTemplate>
-                        <a href="HealthFacilitySpecificSessionReports.aspx" target="_blank">
-                            <img alt='View Session Reports' src="../img/arrow_right_blue.png" />
-                        </a>
-                    </ItemTemplate>
-                </asp:TemplateField>            
-            </Columns>
-        </asp:GridView>
-        <!--
-            data binding of the gridview is done in connection to the Datalayer methods that queries the data EnablePaging="false"
-        -->
-        <asp:ObjectDataSource ID="odsHealthFacilitySessions" runat="server" SelectMethod="GetHealthFacilitySessionsRatingsByDistrict" TypeName="GIIS.DataLayer.HealthFacilitySessions">
-            <SelectParameters>
-                 <asp:Parameter Name="districtCouncilId" Type="String"/>
-                 <asp:Parameter Name="fromDate" Type="DateTime" />
-                 <asp:Parameter Name="toDate" Type="DateTime" />
-            </SelectParameters>
-        </asp:ObjectDataSource>
+            <asp:GridView ID="gvHealthFacilitySessions" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover table-responsive" AllowPaging="True" 
+            OnDataBound="gvHealthFacilitySessions_DataBound" PageSize="25" OnPageIndexChanging="gvHealthFacilitySessions_PageIndexChanging" >
+                        <PagerSettings Position="Top" Mode="NumericFirstLast" />
+                        <PagerStyle CssClass="pagination" HorizontalAlign="Left" VerticalAlign="Top" />
+                    <Columns>
+                        <asp:TemplateField HeaderText="Name">
+                        <ItemTemplate>
+                                <%#Eval("Name")%>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Session Count">
+                        <ItemTemplate>
+                            <%#Eval("SessionsCount")%>
+                        </ItemTemplate>
+                        </asp:TemplateField>
+                        
+                        <asp:TemplateField HeaderText="View Facility Session Reports">
+                            <ItemTemplate>
+                                <a href='<%# Eval("HealthFacilityId", "HealthFacilitySpecificSessionReports.aspx?hfId={0}") %>' target="_blank">
+                                    <img alt='View Session Reports' src="../img/arrow_right_blue.png" />
+                                </a>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                    </Columns>
+                </asp:GridView>
 
-        <!--<asp:ObjectDataSource ID="odsHealthFacilitySessionsByUsers" runat="server" SelectMethod="GetHealthFacilitySessionsByHealthFacilityIdAndUserId" TypeName="GIIS.DataLayer.HealthFacilitySessions">
-            <SelectParameters>
-                 <asp:Parameter Name="hfid" Type="String" />
-                 <asp:Parameter Name="userID" Type="String" />
-                 <asp:Parameter Name="fromDate" Type="DateTime" />
-                 <asp:Parameter Name="toDate" Type="DateTime" />
-            </SelectParameters>
-        </asp:ObjectDataSource>-->
-
-
-    </div>
-</div>
-
-    <!--<div class="row">
-        <div class="col-md-12">
-            <input type="submit" class="btn btn-primary" value="Download <%=Request.QueryString["format"] %>" />
+                <asp:ObjectDataSource ID="odsHealthFacilitySessions" runat="server" SelectMethod="GetHealthFacilitySessionsRatingsByDistrict" TypeName="GIIS.DataLayer.HealthFacilitySessions">
+                    <SelectParameters>
+                        <asp:Parameter Name="districtCouncilId" Type="String"/>
+                        <asp:Parameter Name="fromDate" Type="DateTime" />
+                        <asp:Parameter Name="toDate" Type="DateTime" />
+                    </SelectParameters>
+                </asp:ObjectDataSource>
         </div>
-    </div>-->
-
+    </div>
     </form>
-
     <br />
     <div class="row">
         <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12 clearfix" style="overflow:auto">

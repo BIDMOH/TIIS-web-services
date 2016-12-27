@@ -68,7 +68,7 @@ public partial class Pages_HealthFacilitySessionRatings : System.Web.UI.Page
                 //grid header text
                 gvHealthFacilitySessions.Columns[0].HeaderText = "Name";
                 gvHealthFacilitySessions.Columns[1].HeaderText = "Session Count";
-                gvHealthFacilitySessions.Columns[1].HeaderText = "View Facility Session Reports";
+                gvHealthFacilitySessions.Columns[2].HeaderText = "View Facility Session Reports";
                 
             }
             else
@@ -166,7 +166,7 @@ public partial class Pages_HealthFacilitySessionRatings : System.Web.UI.Page
 
             var labelControl3 = new Label()
         {
-            Text = "Select Health Facility"
+            Text = "District"
         };
 
         var row = new HtmlGenericControl("div");

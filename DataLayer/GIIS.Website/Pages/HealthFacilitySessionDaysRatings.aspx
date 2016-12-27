@@ -15,7 +15,7 @@
    limitations under the License.
  ******************************************************************************
 --%>
-<%@ Page Title="View Session Report" EnableEventValidation="false" Language="C#" AutoEventWireup="true" CodeFile="HealthFacilitySessionLengthRatings.aspx.cs" Inherits="Pages_HealthFacilitySessionLengthRatings" MasterPageFile="~/Pages/MasterPage.master" %>
+<%@ Page Title="View Session Report" EnableEventValidation="false" Language="C#" AutoEventWireup="true" CodeFile="HealthFacilitySessionDaysRatings.aspx.cs" Inherits="Pages_HealthFacilitySessionDaysRatings" MasterPageFile="~/Pages/MasterPage.master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <style type="text/css">
@@ -39,12 +39,12 @@
     
     <div class="row">
         <div class="col-md-12">
-            <h2><asp:Label ID="lblReportName" Text="Health Facilities Session Length Ratings By District" runat="server" /></h2>
+            <h2><asp:Label ID="lblReportName" Text="Health Facilities Session Days Ratings By District" runat="server" /></h2>
         </div>
     </div>
     <div class="row">
         <div class="col-md-12">
-            <em><asp:Label runat="server" ID="lblReportDescription" Text="This report shows the ranking of health facilities within the District council by their total sessions lengths during the specified date range"  /></em>
+            <em><asp:Label runat="server" ID="lblReportDescription" Text="This report shows the ranking of health facilities within the District council by their total sessions days during the specified date range"  /></em>
         </div>
     </div>
     <br />
@@ -58,12 +58,13 @@
             </div>
         </div>
 
-        <div class="col-md-3 col-lg-3 clearfix">
+        <div class="col-md-2 col-xs-2 col-sm-2 col-lg-2 clearfix">
             <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn btn-primary btn-raised" OnClick="btnSearch_Click" />
         </div>
     </div>
     <br />
 
+    <br />
     <div class="row">
         <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12 clearfix" style="overflow:auto">
             
@@ -76,9 +77,9 @@
                         <%#Eval("Name")%>
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:TemplateField HeaderText="Session Length">
+                <asp:TemplateField HeaderText="Session Days">
                 <ItemTemplate> 
-                    <%# convertToHoursAndMinutes(Convert.ToInt32(Eval("SessionsCount"))) %>
+                    <%#Eval("SessionsCount")%>
                 </ItemTemplate>
                 </asp:TemplateField>   
                 <asp:TemplateField HeaderText="View Facility Session Reports">
@@ -93,7 +94,7 @@
         <!--
             data binding of the gridview is done in connection to the Datalayer methods that queries the data EnablePaging="false"
         -->
-        <asp:ObjectDataSource ID="odsHealthFacilitySessions" runat="server" SelectMethod="GetHealthFacilitySessionsLengthRatingsByDistrict" TypeName="GIIS.DataLayer.HealthFacilitySessions">
+        <asp:ObjectDataSource ID="odsHealthFacilitySessions" runat="server" SelectMethod="GetHealthFacilitySessionsDaysRatingsByDistrict" TypeName="GIIS.DataLayer.HealthFacilitySessions">
             <SelectParameters>
                  <asp:Parameter Name="districtCouncilId" Type="String"/>
                  <asp:Parameter Name="fromDate" Type="DateTime" />
@@ -101,24 +102,8 @@
             </SelectParameters>
         </asp:ObjectDataSource>
 
-        <!--<asp:ObjectDataSource ID="odsHealthFacilitySessionsByUsers" runat="server" SelectMethod="GetHealthFacilitySessionsByHealthFacilityIdAndUserId" TypeName="GIIS.DataLayer.HealthFacilitySessions">
-            <SelectParameters>
-                 <asp:Parameter Name="hfid" Type="String" />
-                 <asp:Parameter Name="userID" Type="String" />
-                 <asp:Parameter Name="fromDate" Type="DateTime" />
-                 <asp:Parameter Name="toDate" Type="DateTime" />
-            </SelectParameters>
-        </asp:ObjectDataSource>-->
-
-
     </div>
 </div>
-
-    <!--<div class="row">
-        <div class="col-md-12">
-            <input type="submit" class="btn btn-primary" value="Download <%=Request.QueryString["format"] %>" />
-        </div>
-    </div>-->
 
     </form>
 

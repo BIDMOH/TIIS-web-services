@@ -15,7 +15,7 @@
    limitations under the License.
  ******************************************************************************
 --%>
-<%@ Page Title="Health Facility Session Reports" Language="C#" MasterPageFile="~/Pages/MasterPage.master" AutoEventWireup="true" CodeFile="HealthFacilitySpecificSessionReports.aspx.cs" Inherits="Pages_HealthFacilitySpecificSessionReports" %>
+<%@ Page Title="Health Facility Session Reports" Debug="true" Language="C#" MasterPageFile="~/Pages/MasterPage.master" AutoEventWireup="true" CodeFile="HealthFacilitySpecificSessionReports.aspx.cs" Inherits="Pages_HealthFacilitySpecificSessionReports" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
       <style type="text/css">
@@ -50,35 +50,35 @@
                 </ol>
             </div>
         </div>
-
+        <div class="row">
+            <div class="col-md-12">
+                <h2><asp:Label ID="lblFacilityName" Text="" runat="server" /></h2>
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12 clearfix">
                 
                 <br />
                 <form class="form" method="get" action="" id="launchReport" >
-                <div class="row">
-                    <div class="col-md-12">        
-                        <asp:TextBox ID="hack" runat="server" Visible="false" />
-                                <input type="hidden" name="j_username" value="<%=ConfigurationManager.AppSettings["JasperUser"]%>" />
-                                <input type="hidden" name="j_password" value="<%=ConfigurationManager.AppSettings["JasperPassword"]%>" />
-                        <div class="container-fluid" runat="server" id="reportInputs">
+                    <div class="row">
+                        <div class="col-md-9">        
+                            <asp:TextBox ID="hack" runat="server" Visible="false" />
+                                    <input type="hidden" name="j_username" value="<%=ConfigurationManager.AppSettings["JasperUser"]%>" />
+                                    <input type="hidden" name="j_password" value="<%=ConfigurationManager.AppSettings["JasperPassword"]%>" />
+                            <div class="container-fluid" runat="server" id="reportInputs">
+                            </div>
+                        </div>
+
+                        <div class="col-md-2 col-xs-2 col-sm-2 col-lg-2 clearfix">
+                            <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn btn-primary btn-raised" OnClick="btnSearch_Click" />
                         </div>
                     </div>
-                </div>
-                <br />
-                
-                <div class="row">
-                    <div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 clearfix">&nbsp;</div>
-                    <div class="col-md-2 col-xs-2 col-sm-2 col-lg-2 clearfix">
-                        <asp:Button ID="btnSearch" runat="server" Text="Generate" CssClass="btn btn-primary btn-raised" OnClick="btnSearch_Click" />
-                    </div>
-                </div>
-                <br />
-                <ul class="nav nav-pills" id="myTab">
-                    <li class="active"><a data-toggle="pill" href="#home">Session Durations Report</a></li>
-                    <li><a data-toggle="pill" href="#menu1">Total Sessions Report (Duration)</a></li>
-                    <li><a data-toggle="pill" href="#menu2">Total Sessions Report (Days)</a></li>
-                </ul>
+                    <br />
+                    <ul class="nav nav-pills" id="myTab">
+                        <li class="active"><a data-toggle="pill" href="#home">Session Durations Report</a></li>
+                        <li><a data-toggle="pill" href="#menu1">Total Sessions Report (Duration)</a></li>
+                        <li><a data-toggle="pill" href="#menu2">Total Sessions Report (Days)</a></li>
+                    </ul>
                 <div class="tab-content">
                     <div id="home" class="tab-pane fade in active">
                         <br />
@@ -91,7 +91,7 @@
                         <div class="row">
                             <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12 clearfix" style="overflow:auto">
                                 
-                        <asp:GridView ID="gvHealthFacilitySessions" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover table-responsive" AllowPaging="True" OnDataBound="gvHealthFacilitySessions_DataBound" OnPageIndexChanging="gvHealthFacilitySessions_PageIndexChanging" >
+                        <asp:GridView ID="gvHealthFacilitySessions" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover table-responsive" AllowPaging="True" OnDataBound="gvHealthFacilitySessions_DataBound" OnPageIndexChanging="gvHealthFacilitySessions_PageIndexChanging" PageSize="25" >
                                     <PagerSettings Position="Top" Mode="NumericFirstLast" />
                                     <PagerStyle CssClass="pagination" HorizontalAlign="Left" VerticalAlign="Top" />
                                 <Columns>

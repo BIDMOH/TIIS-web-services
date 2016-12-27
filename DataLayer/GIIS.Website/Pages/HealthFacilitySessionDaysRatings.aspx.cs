@@ -25,7 +25,7 @@ using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
-public partial class Pages_HealthFacilitySessionLengthRatings : System.Web.UI.Page
+public partial class Pages_HealthFacilitySessionDaysRatings : System.Web.UI.Page
 {
     public static String datefromString = "";
     public static String datetoString = "";
@@ -67,7 +67,7 @@ public partial class Pages_HealthFacilitySessionLengthRatings : System.Web.UI.Pa
 
                 //grid header text
                 gvHealthFacilitySessions.Columns[0].HeaderText = "Name";
-                gvHealthFacilitySessions.Columns[1].HeaderText = "Session Length";
+                gvHealthFacilitySessions.Columns[1].HeaderText = "Days";
                 gvHealthFacilitySessions.Columns[2].HeaderText = "View Facility Session Reports";
             }
             else

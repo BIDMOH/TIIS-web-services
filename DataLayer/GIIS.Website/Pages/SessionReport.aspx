@@ -49,19 +49,15 @@
     </div>
     <br />
     <form class="form" method="get" action="" id="launchReport" >
-    <div class="row">
-        <div class="col-md-12">        
+        <div class="row">
+        <div class="col-md-9">        
             <asp:TextBox ID="hack" runat="server" Visible="false" />
                     <input type="hidden" name="j_username" value="<%=ConfigurationManager.AppSettings["JasperUser"]%>" />
                     <input type="hidden" name="j_password" value="<%=ConfigurationManager.AppSettings["JasperPassword"]%>" />
             <div class="container-fluid" runat="server" id="reportInputs">
             </div>
         </div>
-    </div>
-    <br />
-    
-    <div class="row">
-        <div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 clearfix">&nbsp;</div>
+
         <div class="col-md-2 col-xs-2 col-sm-2 col-lg-2 clearfix">
             <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn btn-primary btn-raised" OnClick="btnSearch_Click" />
         </div>
