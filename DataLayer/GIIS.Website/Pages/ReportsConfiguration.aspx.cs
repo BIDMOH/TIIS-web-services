@@ -50,51 +50,42 @@ public partial class _Configuration : System.Web.UI.Page
                     HttpContext.Current.Cache.Insert("Configuration-dictionary" + language, wtList);
                 }
 
-                //controls
-                // this.lblCountry.Text = wtList["ConfigurationCountry"];
-                // this.lblLanguage.Text = wtList["ConfigurationLanguage"];
-                // this.lblDateFormat.Text = wtList["ConfigurationDateFormat"];
-                // this.lblCurrency.Text = wtList["ConfigurationCurrency"];
-                // this.lblHomePageText.Text = wtList["ConfigurationHomePageText"];
-                // this.lblSupplyChain.Text = wtList["ConfigurationSupplyChainLevels"];
-                // this.lblWarningDays.Text = wtList["ConfigurationWarningDays"];
-                //this.lblEligible.Text = wtList["ConfigurationEligible"];
-                //this.lblDefaulters.Text = wtList["ConfigurationDefaulters"];
-
-                //actions
-                // this.btnSave.Visible = actionList.Contains("SaveConfiguration");
-
-                //buttons
-                // this.btnSave.Text = wtList["ConfigurationSaveButton"];
-
                 //message
                 this.lblSuccess.Text = wtList["ConfigurationSuccessText"];
                 this.lblWarning.Text = wtList["ConfigurationWarningText"];
                 this.lblError.Text = wtList["ConfigurationErrorText"];
 
-                //Page Title
-                // this.lblTitle.Text = wtList["ConfigurationPageTitle"];
+                ReportsConfiguration co = ReportsConfiguration.GetConfigurationByName("HoursMaximum");
+                if (co != null){
+                    txtMAxThreshold.Text = co.Value;
+                }else{
+                    txtMAxThreshold.Text = "";
+                }
 
-                //validators
-                // revCurrency.ErrorMessage = wtList["ConfigurationCurrencyValidator"];
-                // revSupplyChainLevels.ErrorMessage = wtList["ConfigurationSupplyChainLevelsValidator"];
-                // revWarningDays.ErrorMessage = wtList["ConfigurationWarningDaysValidator"];
+                co = null;
+                co  = ReportsConfiguration.GetConfigurationByName("HoursMinimum");
+                if (co != null){
+                    txtMinThreshold.Text = co.Value;
+                }else{
+                    txtMinThreshold.Text = "";
+                }
 
-                // ddlCountry.SelectedValue = Configuration.GetConfigurationByName("Country").Value;
-                // ddlLanguage.SelectedValue = Configuration.GetConfigurationByName("Language").Value;
-                // ddlDateFormat.SelectedValue = Configuration.GetConfigurationByName("DateFormat").Value;
-                // txtCurrency.Text = Configuration.GetConfigurationByName("Currency").Value;
-                // txtHomePageText.Text = Configuration.GetConfigurationByName("HomePageText").Value;
-                // txtSupplyChain.Text = Configuration.GetConfigurationByName("SupplyChainLevels").Value;
-                // txtWarningDays.Text = Configuration.GetConfigurationByName("DefaultWarningDays").Value;
-                // txtEligible.Text = Configuration.GetConfigurationByName("EligibleForVaccination").Value;
-                // txtDefaulters.Text = Configuration.GetConfigurationByName("Defaulters").Value;
+                co = null;
+                co  = ReportsConfiguration.GetConfigurationByName("DaysMaximum");
+                if (co != null){
+                    txtMaxThresholdDays.Text = co.Value;
+                }else{
+                    txtMaxThresholdDays.Text = "";
+                }
 
-                // string link = Configuration.GetConfigurationByName("LinkImmunizationwithStockManagement").Value;
-                // if (link == "1")
-                //     rblLink.SelectedIndex = 0;
-                // else
-                //     rblLink.SelectedIndex = 1;
+                co = null;
+                co  = ReportsConfiguration.GetConfigurationByName("DaysMinimum");
+                if (co != null){
+                    txtMinThresholdDays.Text = co.Value;
+                }else{
+                    txtMinThresholdDays.Text = "";
+                }
+
             }
             else
             {
@@ -104,102 +95,112 @@ public partial class _Configuration : System.Web.UI.Page
     }
 
 
-    protected void btnSave_Click(object sender, EventArgs e)
+    protected void btnSaveHoursThreshold_Click(object sender, EventArgs e)
     {
         try
         {
             if (Page.IsValid)
             {
-                // string country = ddlCountry.SelectedValue;
-                // string language = ddlLanguage.SelectedValue;
-                // string dateformat = ddlDateFormat.SelectedValue;
-                // string currecy = txtCurrency.Text.Replace("'", @"''");
-                // string homepage = txtHomePageText.Text.Replace("'", @"''");
-                // string supplyChainLevels = txtSupplyChain.Text;
-                // string warningDays = txtWarningDays.Text;
-                // string eligible = txtEligible.Text;
-                // string defaulters = txtDefaulters.Text;
 
-                // string prevcountry = Configuration.GetConfigurationByName("Country").Value;
+                int i = 0;
+                string maxHours = txtMAxThreshold.Text;
+                string minHours = txtMinThreshold.Text;
+            
+                ReportsConfiguration co = new ReportsConfiguration();
+                ReportsConfiguration flag = ReportsConfiguration.GetConfigurationByName("HoursMaximum");
 
-                // int i = 0;
-                // Configuration o = new Configuration();
-                // o.Name = "Country";
-                // o.Value = country;
-                // i = Configuration.UpdateValues(o);
-                // if (country != "0" && prevcountry == "0")
-                // {
-                //     HealthFacility hf = HealthFacility.GetHealthFacilityById(1);
-                //     if (hf != null)
-                //     {
-                //         hf.Name = Country.GetCountryById(int.Parse(country)).Name;
-                //         HealthFacility.Update(hf);
-                //     }
-                //     if (Place.GetPlaceByParentId(0) == null)
-                //     {
-                //         Place p = new Place();
-                //         p.Name = Country.GetCountryById(int.Parse(country)).Name;
-                //         p.ParentId = 0;
-                //         p.Leaf = false;
-                //         p.IsActive = true;
-                //         p.Notes = "";
-                //         p.ModifiedBy = 1;
-                //         p.ModifiedOn = DateTime.Today.Date;
-                //         Place.Insert(p);
-                //     }
-                // }
+                if (flag != null){
+                    co.Name = "HoursMaximum";
+                    co.Value = maxHours;
+                    i = ReportsConfiguration.Update(co);
+                }else{
+                    co.Name = "HoursMaximum";
+                    co.Value = maxHours;
+                    i = ReportsConfiguration.Insert(co);
+                } 
+                
+                flag = ReportsConfiguration.GetConfigurationByName("HoursMinimum");
+                if (flag != null){
+                    co.Name = "HoursMinimum";
+                    co.Value = minHours;
+                    i = ReportsConfiguration.Update(co);
+                }else{
+                    co.Name = "HoursMinimum";
+                    co.Value = minHours;
+                    i = ReportsConfiguration.Insert(co);
+                }
 
-                // o.Name = "Language";
-                // o.Value = language;
-                // i = Configuration.UpdateValues(o);
+                if (i > 0)
+                {
+                    lblSuccess.Visible = true;
+                    lblWarning.Visible = false;
+                    lblError.Visible = false;
+                }
+                else
+                {
+                    lblSuccess.Visible = false;
+                    lblWarning.Visible = false;
+                    lblError.Visible = true;
+                }
+            
+            }
+        }
+        catch (Exception ex)
+        {
+            lblSuccess.Visible = false;
+            lblWarning.Visible = false;
+            lblError.Visible = true;
+        }
+    }
+ 
+    protected void btnSaveDaysThreshold_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            if (Page.IsValid)
+            {
 
-                // o.Name = "DateFormat";
-                // o.Value = dateformat;
-                // i = Configuration.UpdateValues(o);
+                int i = 0;
+                string maxDays = txtMaxThresholdDays.Text;
+                string minDays = txtMinThresholdDays.Text; 
+                
+                ReportsConfiguration co = new ReportsConfiguration();
+                ReportsConfiguration flag = ReportsConfiguration.GetConfigurationByName("DaysMaximum");
 
-                // o.Name = "Currency";
-                // o.Value = currecy;
-                // i = Configuration.UpdateValues(o);
+                if (flag != null){
+                    co.Name = "DaysMaximum";
+                    co.Value = maxDays;
+                    i = ReportsConfiguration.Update(co);
+                }else{
+                    co.Name = "DaysMaximum";
+                    co.Value = maxDays;
+                    i = ReportsConfiguration.Insert(co);
+                }
+                
+                flag = ReportsConfiguration.GetConfigurationByName("DaysMinimum");
+                if (flag != null){
+                    co.Name = "DaysMinimum";
+                    co.Value = minDays;
+                    i = ReportsConfiguration.Update(co);
+                }else{
+                    co.Name = "DaysMinimum";
+                    co.Value = minDays;
+                    i = ReportsConfiguration.Insert(co);
+                } 
 
-                // o.Name = "HomePageText";
-                // o.Value = homepage;
-                // i = Configuration.UpdateValues(o);
-
-                // o.Name = "SupplyChainLevels";
-                // o.Value = supplyChainLevels;
-                // i = Configuration.UpdateValues(o);
-
-                // o.Name = "DefaultWarningDays";
-                // o.Value = warningDays;
-                // i = Configuration.UpdateValues(o);
-
-                // o.Name = "LinkImmunizationwithStockManagement";
-                // if (rblLink.SelectedIndex == 0)
-                //     o.Value = "1";
-                // else
-                //     o.Value = "0";
-                // i = Configuration.UpdateValues(o);
-
-                // o.Name = "EligibleForVaccination";
-                // o.Value = eligible;
-                // i = Configuration.UpdateValues(o);
-
-                // o.Name = "Defaulters";
-                // o.Value = defaulters;
-                // i = Configuration.UpdateValues(o);
-
-                // if (i > 0)
-                // {
-                //     lblSuccess.Visible = true;
-                //     lblWarning.Visible = false;
-                //     lblError.Visible = false;
-                // }
-                // else
-                // {
-                //     lblSuccess.Visible = false;
-                //     lblWarning.Visible = false;
-                //     lblError.Visible = true;
-                // }
+                if (i > 0)
+                {
+                    lblSuccess.Visible = true;
+                    lblWarning.Visible = false;
+                    lblError.Visible = false;
+                }
+                else
+                {
+                    lblSuccess.Visible = false;
+                    lblWarning.Visible = false;
+                    lblError.Visible = true;
+                }
+            
             }
         }
         catch (Exception ex)

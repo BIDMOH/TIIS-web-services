@@ -65,7 +65,7 @@
             </div>
             <br />
             <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12 clearfix">
-                <asp:Button ID="btnSaveHoursThreshold" runat="server" Text="Save" CssClass="btn btn-raised btn-primary" OnClick="btnSave_Click" ValidationGroup="saveConfiguration" />
+                <asp:Button ID="btnSaveHoursThreshold" runat="server" Text="Save" CssClass="btn btn-raised btn-primary" OnClick="btnSaveHoursThreshold_Click" ValidationGroup="saveConfiguration" />
             </div>
         </div>
 
@@ -91,7 +91,7 @@
             </div>
             <br />
             <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12 clearfix">
-                <asp:Button ID="btnSaveDaysThreshold" runat="server" Text="Save" CssClass="btn btn-raised btn-primary" OnClick="btnSave_Click" ValidationGroup="saveConfiguration" />
+                <asp:Button ID="btnSaveDaysThreshold" runat="server" Text="Save" CssClass="btn btn-raised btn-primary" OnClick="btnSaveDaysThreshold_Click" ValidationGroup="saveConfiguration" />
             </div>
         </div>
     </div> 
