@@ -1,7 +1,7 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workbench ActiveDocument="VaccinationLogic.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="StockManagementLogic.cs">
     <Files>
-      <File FileName="StockManagementLogic.cs" Line="158" Column="56" />
+      <File FileName="StockManagementLogic.cs" Line="185" Column="51" />
       <File FileName="VaccinationLogic.cs" Line="131" Column="44" />
     </Files>
   </MonoDevelop.Ide.Workbench>

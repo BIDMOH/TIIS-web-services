@@ -102,7 +102,6 @@ namespace GIIS.DataLayer
 											join ""ITEM_MANUFACTURER"" using (""GTIN"") 
 											join ""ITEM"" on ""ITEM_ID"" = ""ITEM"".""ID"" 
 											join ""ITEM_LOT"" using (""GTIN"",""ITEM_ID"")
-											join ""ADJUSTMENT_REASON"" ON  ""ADJUSTMENT_ID"" = ""ADJUSTMENT_REASON"".""ID""
 											join ""TRANSACTION_TYPE"" ON ""TRANSACTION_TYPE_ID"" = ""TRANSACTION_TYPE"".""ID""
 												WHERE ""HEALTH_FACILITY_CODE"" = @ParamValue AND
 													""ITEM"".""CODE"" = @doseName AND
@@ -110,10 +109,7 @@ namespace GIIS.DataLayer
 													""TRANSACTION_DATE"" <= @to AND 
 													(
 														(""TRANSACTION_TYPE"".""NAME"" = 'Transfer' AND ""TRANSACTION_QTY_IN_BASE_UOM"" > 0) OR 
-														""TRANSACTION_TYPE"".""NAME"" = 'Allocation' OR
-														""ADJUSTMENT_REASON"".""NAME"" = 'Zimetoka Wilayani' OR
-														""ADJUSTMENT_REASON"".""NAME"" = 'Kutoka kituo kingine' OR
-														""ADJUSTMENT_REASON"".""NAME"" = 'Receipt' 
+														""TRANSACTION_TYPE"".""NAME"" = 'Allocation'
 													) 
 									)T2 ON T1.""ID"" = T2.""ID""   ";
 					List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
@@ -322,22 +318,20 @@ namespace GIIS.DataLayer
 			try
 			{
 				//TODO remove hardcoded transaction types names from the querry. coze
-				string query = @"SELECT COUNT (""CHILD_ID"") AS DOSE_COUNT,""SCHEDULED_VACCINATION"".""NAME"",""ALT_1_QTY_PER"",""VACCINATION_DATE"" FROM ""VACCINATION_EVENT"" T1 
+				string query = @"SELECT COUNT (""CHILD_ID"") AS DOSE_COUNT,""SCHEDULED_VACCINATION"".""NAME"",""VACCINATION_DATE"" FROM ""VACCINATION_EVENT"" T1 
 										JOIN ""DOSE"" ON T1.""DOSE_ID""=""DOSE"".""ID""
 										JOIN ""SCHEDULED_VACCINATION"" ON ""DOSE"".""SCHEDULED_VACCINATION_ID""=""SCHEDULED_VACCINATION"".""ID""
-										JOIN ""ITEM"" ON ""ITEM"".""NAME""=""SCHEDULED_VACCINATION"".""NAME""
-										JOIN ""ITEM_MANUFACTURER"" ON ""ITEM"".""ID""=""ITEM_MANUFACTURER"".""ITEM_ID""
 										JOIN ""USER"" ON T1.""MODIFIED_BY""=""USER"".""ID""
 										JOIN
 											(SELECT DISTINCT ""VACCINATION_DATE"" 
 											  FROM public.""VACCINATION_EVENT"") T2 USING (""VACCINATION_DATE"") 
 										WHERE 
-											""SCHEDULED_VACCINATION"".""NAME""=@doseName AND
-											""VACCINATION_DATE"">=@from                  AND
-											""VACCINATION_DATE""<=@to                    AND
-											""USER"".""HEALTH_FACILITY_ID""=@healthFacilityId AND
-											""ITEM_MANUFACTURER"".""IS_ACTIVE"" = @IsActive
-										GROUP BY ""SCHEDULED_VACCINATION"".""NAME"",""VACCINATION_DATE"",""ALT_1_QTY_PER"" ORDER BY ""VACCINATION_DATE"" ASC ";
+											""SCHEDULED_VACCINATION"".""NAME"" = @doseName 		AND
+											""VACCINATION_DATE"" >= @from                  		AND
+											""VACCINATION_DATE"" <= @to                    		AND
+											""VACCINATION_STATUS"" = @IsActive            		AND
+											""USER"".""HEALTH_FACILITY_ID"" = @healthFacilityId 	
+										GROUP BY ""SCHEDULED_VACCINATION"".""NAME"",""VACCINATION_DATE"" ORDER BY ""VACCINATION_DATE"" ASC ";
 
 
 
@@ -351,19 +345,39 @@ namespace GIIS.DataLayer
 				};
 				DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, parameters);
 
+
 				int count = 0;
 
 				foreach (DataRow row in dt.Rows)
 				{
+					string query1 = @"SELECT ""ALT_1_QTY_PER"" FROM  ""ITEM_MANUFACTURER""
+        							JOIN ""ITEM"" ON ""ITEM_MANUFACTURER"".""ITEM_ID""=""ITEM"".""ID""
+        							JOIN ""SCHEDULED_VACCINATION"" ON ""SCHEDULED_VACCINATION"".""NAME""=""ITEM"".""NAME""
+									WHERE ""SCHEDULED_VACCINATION"".""NAME"" = @doseName AND ""ITEM_MANUFACTURER"".""IS_ACTIVE""=true LIMIT 1";
+
+					List<NpgsqlParameter> parameters1 = new List<NpgsqlParameter>()
+					{
+						new NpgsqlParameter("@doseName", DbType.String) { Value = doseName }
+					};
+					DataTable dt1 = DBManager.ExecuteReaderCommand(query1, CommandType.Text, parameters1);
+
+					int quantityPerDose = 0 ;
+					foreach (DataRow row2 in dt1.Rows)
+					{
+						quantityPerDose = Helper.ConvertToInt(row2["ALT_1_QTY_PER"]);
+					}
+
+
 					try
 					{
-						int numberOfDoses = Helper.ConvertToInt(row["DOSE_COUNT"]) / Helper.ConvertToInt(row["ALT_1_QTY_PER"]);
+						int numberOfDoses = Helper.ConvertToInt(row["DOSE_COUNT"]) / quantityPerDose;
+						int numberOFVials = numberOfDoses * quantityPerDose;
 
-						if (Helper.ConvertToInt(row["DOSE_COUNT"]) % Helper.ConvertToInt(row["ALT_1_QTY_PER"])!=0)
+						if (Helper.ConvertToInt(row["DOSE_COUNT"]) % quantityPerDose!=0)
 						{
-							numberOfDoses++;
+							numberOFVials = numberOFVials + quantityPerDose;
 						}
-						count += numberOfDoses;
+						count += numberOFVials;
 
 					}
 					catch (Exception ex)

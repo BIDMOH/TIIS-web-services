@@ -60,14 +60,8 @@ BEGIN
   		OIDS=FALSE
 	);
 
-	INSERT INTO public."MENU"("PARENT_ID", "TITLE", "NAVIGATE_URL", "IS_ACTIVE", "DISPLAY_ORDER")
- 	VALUES (8, 'Reports Configuration', 'ReportsConfiguration.aspx', TRUE, 8);
-
-	INSERT INTO public."ACTIONS"(
-            "NAME", "NOTES")
-    	VALUES ('ViewReportConfigurations', '');
-
-
+	ALTER TABLE public."REPORT" ALTER COLUMN "JASPER_ID" TYPE character varying(64);
+	ALTER TABLE public."REPORT" ALTER COLUMN "REPORT_NAME" TYPE character varying(64);
 
 
 
@@ -76,6 +70,7 @@ BEGIN
 	DROP TABLE IF EXISTS public."CONFIGURATION_REPORTS";
     	DROP SEQUENCE IF EXISTS public."CONFIGURATION_REPORTS_ID_seq";
 
+	
         CREATE SEQUENCE IF NOT EXISTS public."HEALTH_FACILITIES_SESSIONS_seq"
           INCREMENT 1
           MINVALUE 1

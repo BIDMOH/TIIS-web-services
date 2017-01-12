@@ -96,9 +96,10 @@ namespace GIIS.Tanzania.WCF
 		List<HealthFacilityDeseaseSurvailance> GetHealthFacilityDeseaseSurvailanceAsList(int healthFacilityId);
 
 
-		[WebGet(UriTemplate = "StoreHealthFacilityImmunizationSessions?healthFacilityId={healthFacilityId}&OutreachPlanned={OutreachPlanned}&OtherMajorImmunizationActivities={OtherMajorImmunizationActivities}&reportingMonth={reportingMonth}&reportingYear={reportingYear}&userId={userId}&modifiedOn={modifiedOn}", ResponseFormat = WebMessageFormat.Json)]
+		[WebGet(UriTemplate = "StoreHealthFacilityImmunizationSessions?healthFacilityId={healthFacilityId}&fixedConducted={fixedConducted}&outreachCanceled={outreachCanceled}&outreachConducted={outreachConducted}&OutreachPlanned={OutreachPlanned}&OtherMajorImmunizationActivities={OtherMajorImmunizationActivities}&reportingMonth={reportingMonth}&reportingYear={reportingYear}&userId={userId}&modifiedOn={modifiedOn}", ResponseFormat = WebMessageFormat.Json)]
 		[OperationContract]
-		IntReturnValue StoreHealthFacilityImmunizationSessions(int healthFacilityId, int OutreachPlanned, string OtherMajorImmunizationActivities, int reportingMonth, int reportingYear, int userId, DateTime modifiedOn);
+		IntReturnValue StoreHealthFacilityImmunizationSessions(int healthFacilityId, int fixedConducted, int outreachCanceled, int outreachConducted, int OutreachPlanned, string OtherMajorImmunizationActivities, int reportingMonth, int reportingYear, int userId, DateTime modifiedOn);
+
 
 		[WebGet(UriTemplate = "GetHealthFacilityImmunizationSessions?healthFacilityId={healthFacilityId}&reportingMonth={reportingMonth}&reportingYear={reportingYear}", ResponseFormat = WebMessageFormat.Json)]
 		[OperationContract]

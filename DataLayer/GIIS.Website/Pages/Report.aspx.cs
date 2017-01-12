@@ -55,42 +55,6 @@ public partial class _Report : System.Web.UI.Page
                 //controls
                 this.lblTitle.Text = wtList["ReportsPageTitle"];
 
-                //this.lblImmunizationReports.Text = wtList["ReportsImmunization"];
-                //this.mCohortCoverageReport.InnerText = wtList["ReportsCohortCoverage"];
-                //this.mActivityReport.InnerText = wtList["ReportsActivityReport"];
-
-                //this.lblStockReports.Text = wtList["ReportsStock"];
-
-                //this.mRunningBalance.InnerText = wtList["ReportsRunningBalance"];
-                //this.mItemInHealthFacility.InnerText = wtList["ReportsItemInHealthFacilities"];
-                //this.mItemLotInHealthFacility.InnerText = wtList["ReportsItemLotInHealthFacilities"];
-                //this.mStockCountList.InnerText = wtList["ReportsViewStockCounts"];
-                //this.mAdjustmentsList.InnerText = wtList["ReportsViewAdjustments"];
-
-                //this.mClosedVialWastage.InnerText = wtList["ReportsClosedVialWastage"];
-                //this.mItemLotsCloseToExpiry.InnerText = wtList["ReportsItemLotsCloseToExpiry"];
-                //this.mLotTracking.InnerText = wtList["ReportsLotTracking"];
-                //this.mConsumption.InnerText = wtList["ReportsConsumption"];
-
-
-                //visible 
-                //this.lblImmunizationReports.Visible = actionList.Contains("ViewMenuImmunizationReports");
-                //this.aCohortCoverageReport.Visible = actionList.Contains("ViewMenuCohortCoverageReport");
-                //this.aActivityReport.Visible = actionList.Contains("ViewMenuActivityReport");
-
-                //this.lblStockReports.Visible = actionList.Contains("ViewMenuStockReports");
-
-                //this.aRunningBalance.Visible = actionList.Contains("ViewMenuRunningBalance");
-                //this.aItemInHealthFacility.Visible = actionList.Contains("ViewMenuItemInHealthFacilities");
-                //this.aItemLotInHealthFacility.Visible = actionList.Contains("ViewMenuItemLotInHealthFacilities");
-                //this.aStockCountList.Visible = actionList.Contains("ViewMenuViewStockCounts");
-                //this.aAdjustmentsList.Visible = actionList.Contains("ViewMenuViewAdjustments");
-
-                //this.aClosedVialWastage.Visible = actionList.Contains("ViewMenuClosedVialWastage");
-                //this.aItemLotsCloseToExpiry.Visible = actionList.Contains("ViewMenuItemLotsCloseToExpiry");
-                //this.aLotTracking.Visible = actionList.Contains("ViewMenuLotTracking");
-                //this.aConsumption.Visible = actionList.Contains("ViewMenuConsumption");
-
 
                 // Populate 
                 // HACK: Should be done with DAL but under time crunches
@@ -107,6 +71,7 @@ public partial class _Report : System.Web.UI.Page
 
                         while(rdr.Read())
                         {
+
                             // Group header
                             if(rdr["GROUP_NAME"].ToString() != grpHeader)
                             {
@@ -118,27 +83,26 @@ public partial class _Report : System.Web.UI.Page
                                 ulReports.Controls.Add(liGroup);
                             }
 
-                            // Link to the report
-                            var li = new HtmlGenericControl("li");
-                            currentGroup.Controls.Add(li);
-                            li.Controls.Add(new Label() { Text = rdr["REPORT_NAME"].ToString() });
-                            li.Controls.Add(new Label() { Text = "(" });
-                            li.Controls.Add(new HyperLink()
-                                {
-                                    Target = "_blank",
-                                    Text = "PDF",
-                                    NavigateUrl = "~/Pages/RunReport.aspx?reportId=" + rdr["ID"].ToString() + "&format=pdf"
-                                }
-                            );
-                            li.Controls.Add(new Label() { Text = "|" });
-                            li.Controls.Add(new HyperLink()
-                            {
-                                Target = "_blank",
-                                Text = "XLS",
-                                NavigateUrl = "~/Pages/RunReport.aspx?reportId=" + rdr["ID"].ToString() + "&format=xls"
+                            if(rdr["DESCRIPTION"].ToString().Equals("Non Jasper Reports")){
+                                var li = new HtmlGenericControl("li");
+                                currentGroup.Controls.Add(li);
+                                li.Controls.Add(new HyperLink()
+                                    {
+                                        Text = rdr["REPORT_NAME"].ToString(),
+                                        NavigateUrl = "~/Pages/" + rdr["JASPER_ID"].ToString()
+                                    }
+                                );
+                            }else{
+                                // Link to the report
+                                var li = new HtmlGenericControl("li");
+                                currentGroup.Controls.Add(li);
+                                li.Controls.Add(new HyperLink()
+                                    {
+                                        Text = rdr["REPORT_NAME"].ToString(),
+                                        NavigateUrl = "~/Pages/RunReport.aspx?reportId=" + rdr["ID"].ToString()
+                                    }
+                                );
                             }
-                            );
-                            li.Controls.Add(new Label() { Text = ")" });
 
 
                         }

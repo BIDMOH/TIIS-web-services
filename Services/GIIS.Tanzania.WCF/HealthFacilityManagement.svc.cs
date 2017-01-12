@@ -375,13 +375,16 @@ namespace GIIS.Tanzania.WCF
 			return immunizationSessions;
 		}
 
-		public IntReturnValue StoreHealthFacilityImmunizationSessions(int healthFacilityId, int OutreachPlanned, string OtherMajorImmunizationActivities, int reportingMonth, int reportingYear, int userId, DateTime modifiedOn)
+		public IntReturnValue StoreHealthFacilityImmunizationSessions(int healthFacilityId,int fixedConducted,int outreachCanceled,int outreachConducted, int OutreachPlanned, string OtherMajorImmunizationActivities, int reportingMonth, int reportingYear, int userId, DateTime modifiedOn)
 		{
 			HealthFacilityImmunizationSessions deseaseSurvailance = new HealthFacilityImmunizationSessions();
 
 			deseaseSurvailance.HealthFacilityId = healthFacilityId;
 			deseaseSurvailance.OutreachPlanned = OutreachPlanned;
 			deseaseSurvailance.OtherMajorImmunizationActivities = OtherMajorImmunizationActivities;
+			deseaseSurvailance.FixedConducted = fixedConducted;
+			deseaseSurvailance.OutreachConducted = outreachConducted;
+			deseaseSurvailance.OutreachCanceled = outreachCanceled;
 			deseaseSurvailance.ReportedMonth = reportingMonth;
 			deseaseSurvailance.ReportedYear = reportingYear;
 			deseaseSurvailance.ModifiedOn = modifiedOn;
@@ -736,6 +739,7 @@ namespace GIIS.Tanzania.WCF
 			{
 				JObject obj = JObject.Parse(Program.GetSourceForMyShowsPage("/vaccine/inventory/distribution/distribution-supervisorid/"+vimsToFacilityId));
 				JObject o = (JObject)obj["distribution"];
+
 				if (o["status"].ToString().Equals("PENDING"))
 				{
 					int fromFacitiyId = (int)o["fromFacilityId"];
@@ -815,9 +819,9 @@ namespace GIIS.Tanzania.WCF
 								{
 									itemId = itemByCode.Id;
 								}
-								else {
-									throw new Exception("Item "+productsArray[p]["primaryName"].ToString()+" is not in server please configure the item");
-								}
+								//else {
+								//	throw new Exception("Item "+productsArray[p]["primaryName"].ToString()+" is not in server please configure the item");
+								//}
 								break;
 							}
 						}

@@ -32,18 +32,14 @@
         <div class="col-md-1 col-xs-1 col-sm-1 col-lg-1 clearfix"></div>
         <div class="col-md-6 col-xs-6 col-sm-6 col-lg-6 clearfix">
             <ul runat="server" id="ulReports">
-
-                <li>
-                    <asp:Label ID="lbsessionsReports" runat="server" Text="Built-in Session Reports" ForeColor="LightSlateGray" Font-Size="Large" Font-Bold="true" Font-Underline="true" />
+<%--                <li>
+                    <asp:Label ID="lblImmunizationReports" runat="server" Text="Built-in Immunization Reports" ForeColor="LightSlateGray" Font-Size="Large" Font-Bold="true" Font-Underline="true" />
                     <ul>
-                        <li><a runat="server" id="sessionReport" href="SessionReport.aspx" ><span id="id1" runat="server">Session Durations Report</span></a></li>
-                        <li><a runat="server" id="sessionDurationReport" href="TotalSessionDuration.aspx"  ><span id="id2" runat="server">Total Sessions Report (Duration)</span></a></li>
-                        <li><a runat="server" id="totalSessionDays" href="TotalSessionDays.aspx" ><span id="id3" runat="server">Total Sessions Report (Days)</span></a></li>
-                        <li><a runat="server" id="hfsessionRatings" href="HealthFacilitySessionRatings.aspx" ><span id="id4" runat="server">Health Facility Session Ratings By District</span></a></li>
-                        <li><a runat="server" id="hfsessionRatingsLength" href="HealthFacilitySessionLengthRatings.aspx" ><span id="id5" runat="server">Health Facility Session Ratings Length By District</span></a></li>
-                        <li><a runat="server" id="hfsessionRatingsDays" href="HealthFacilitySessionDaysRatings.aspx" ><span id="id6" runat="server">Health Facility Session Ratings Days By District</span></a></li>
+                        <li><a runat="server" id="aCohortCoverageReport" href="HealthFacilityListForCohort.aspx" target="_blank" ><span id="mCohortCoverageReport" runat="server">Cohort Coverage Report</span></a></li>
+                        <li><a runat="server" id="aPlannedCoverageReport" href="HealthFacilityListForPlanned.aspx" target="_blank" ><span id="mPlannedCoverageReport" runat="server">Planned Coverage Report</span></a></li>
+                        <li><a runat="server" id="aActivityReport" href="HealthFacilityListForActivity.aspx" target="_blank"><span id="mActivityReport" runat="server">Vaccination Activity Report</span></a></li>
                     </ul>
-                </li>
+                </li>--%>
 
             </ul>
             <br />
@@ -54,7 +50,7 @@
            <div class="col-md-1 col-xs-1 col-sm-1 col-lg-1 clearfix">
                <br />
            </div>
-        
+
     </div>
     <!--
    <div class="row">
@@ -69,14 +65,13 @@
                 <li><a runat="server" id="aItemLotInHealthFacility" href="ItemLotBalanceInHealthFacilities.aspx" target="_blank"><span id="mItemLotInHealthFacility" runat="server">Item Lot Balance in H.Facilities</span></a></li>
                 <li><a runat="server" id="aStockCountList" href="HealthFacilityListForStockCount.aspx" target="_blank"><span id="mStockCountList" runat="server">View Stock Counts</span></a></li>
                 <li><a runat="server" id="aAdjustmentsList" href="HealtFacilityListForAdjustments.aspx" target="_blank"><span id="mAdjustmentsList" runat="server">View Adjustments</span></a></li>
-              
+
                 <li><a runat="server" id="aLotTracking" href="LotTracking.aspx" target="_blank"><span id="mLotTracking" runat="server">Lot Tracking</span></a> </li>
                 <li><a runat="server" id="aItemLotsCloseToExpiry" href="ItemLotsCloseToExpiry.aspx" target="_blank"><span id="mItemLotsCloseToExpiry" runat="server">Item Lots Close to Expiry</span></a></li>
                 <li><a runat="server" id="aClosedVialWastage" href="ClosedVialWastage.aspx" target="_blank"><span id="mClosedVialWastage" runat="server">Closed Vial Wastage</span></a></li>
                 <li><a runat="server" id="aConsumption" href="Consumption.aspx" target="_blank"><span id="mConsumption" runat="server">Consumption</span></a></li>
             </ul>
         </div>
-
     </div>-->
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
