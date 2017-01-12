@@ -127,6 +127,7 @@ namespace GIIS.Tanzania.WCF
 
 					if (vaccinationEntity.antigen.Equals("BCG") || (vaccinationEntity.antigen.Equals("OPV") && vaccinationEntity.dose == 0))
 					{
+						
 						try
 						{
 							HealthFacilityBcgOpv0AndTTVaccinations v = GIIS.DataLayer.HealthFacilityBcgOpv0AndTTVaccinations.GetHealthFacilityBcgOpv0AndTTVaccinationsByDoseId(healthFacilityId, d.Id, fromDate.Month, fromDate.Year);
@@ -775,10 +776,14 @@ namespace GIIS.Tanzania.WCF
 							if (productsArray[p]["id"].Equals(lineItems[i]["productId"]))
 							{
 								itemName = productsArray[p]["primaryName"].ToString();
+								dosageUnitId = (int)productsArray[p]["dosageUnitId"];
+								alt1QtyPer = (int)productsArray[p]["dosesPerDispensingUnit"];
+
 								if (productsArray[p]["primaryName"].ToString().Equals("Safety boxes"))
 								{
 									gtin = "17";
 									manufacturer = "Haffkine";
+									alt1QtyPer = 1;
 								}
 								else 
 								{
@@ -803,8 +808,7 @@ namespace GIIS.Tanzania.WCF
 
 								}
 
-								dosageUnitId = (int)productsArray[p]["dosageUnitId"];
-								alt1QtyPer = (int)productsArray[p]["dosesPerDispensingUnit"];
+
 
 
 
@@ -1008,6 +1012,7 @@ namespace GIIS.Tanzania.WCF
 								distributions.StockDistributionId = stockDistributionId;
 								distributions.Quantity = quantity;
 								distributions.VvmStatus = vvmStatus;
+								distributions.DosesPerDispensingUnit =alt1QtyPer;
 
 								insertValues = HealthFacilityStockDistributions.Insert(distributions);
 							}
@@ -1148,6 +1153,8 @@ namespace GIIS.Tanzania.WCF
 				{
 					sendPOD(toHealthFacilityId);
 					BroadcastStoredHealthFacilityData(toHealthFacilityId, "proofOfDeliverySentSuccessfully");
+					receiveDelivery(HealthFacilityMapper.GetVimsHealthFacilityFacilityId(toHealthFacilityId));
+
 				}
 				return transaction.Id;
 

@@ -36,6 +36,7 @@ namespace GIIS.DataLayer
 		public Int32 VimsLotId { get; set; }
 		public string VvmStatus { get; set; }
 		public Int32 Quantity { get; set; }
+		public Int32 DosesPerDispensingUnit { get; set; }
 		public string DistributionType { get; set; }
 		public string Status { get; set; }
 
@@ -141,9 +142,9 @@ namespace GIIS.DataLayer
 			{
 				string query = @"INSERT INTO ""HEALTH_FACILITY_STOCK_DISTRIBUTIONS"" (""FROM_HEALTH_FACILITY_ID"",""TO_HEALTH_FACILITY_ID"" ,""PROGRAM_ID"", 
 				""DISTRIBUTION_DATE"", ""ITEM_ID"",
-				""PRODUCT_ID"",""LOT_ID"", ""VIMS_LOT_ID"",""VVM_STATUS"", ""QUANTITY"",""STATUS"",""DISTRIBUTION_TYPE"",""STOCK_DISTRIBUTION_ID"") 
+				""PRODUCT_ID"",""LOT_ID"", ""VIMS_LOT_ID"",""VVM_STATUS"", ""QUANTITY"",""STATUS"",""DISTRIBUTION_TYPE"",""STOCK_DISTRIBUTION_ID"",""DOSES_PER_DISPENSING_UNIT"") 
 				VALUES (@FromHealthFacilityId, @ToHealthFacilityId, @ProgramId, @DistributionDate, @ItemId,
-				@ProductId, @LotId, @VimsLotId,@VvmStatus, @Quantity, @Status,@DistributionType,@StockDistributionId)";
+				@ProductId, @LotId, @VimsLotId,@VvmStatus, @Quantity, @Status,@DistributionType,@StockDistributionId,@DosesPerDispensingUnit)";
 				List<Npgsql.NpgsqlParameter> parameters = new List<NpgsqlParameter>()
 				{
 					new NpgsqlParameter("@FromHealthFacilityId", DbType.Int32)  { Value = transferedStock.FromHealthFacilityId },
@@ -156,6 +157,7 @@ namespace GIIS.DataLayer
 					new NpgsqlParameter("@VimsLotId", DbType.Int32)  { Value = transferedStock.VimsLotId },
 					new NpgsqlParameter("@VvmStatus", DbType.String)  { Value = transferedStock.VvmStatus },
 					new NpgsqlParameter("@Quantity", DbType.Int32)  { Value = transferedStock.Quantity },
+					new NpgsqlParameter("@DosesPerDispensingUnit", DbType.Int32)  { Value = transferedStock.DosesPerDispensingUnit },
 					new NpgsqlParameter("@Status", DbType.String)  { Value = transferedStock.Status },
 					new NpgsqlParameter("@StockDistributionId", DbType.Int32)  { Value = transferedStock.StockDistributionId},
 					new NpgsqlParameter("@DistributionType", DbType.String)  { Value = transferedStock.DistributionType }
@@ -288,6 +290,7 @@ namespace GIIS.DataLayer
 					o.StockDistributionId = Helper.ConvertToInt(row["STOCK_DISTRIBUTION_ID"]);
 					o.Status = (row["STATUS"]).ToString();
 					o.DistributionType = (row["DISTRIBUTION_TYPE"]).ToString();
+					o.DosesPerDispensingUnit = Helper.ConvertToInt(row["DOSES_PER_DISPENSING_UNIT"]);
 					try
 					{
 						o.BaseUom = (row["BASE_UOM"]).ToString();
@@ -325,6 +328,7 @@ namespace GIIS.DataLayer
 					o.StockDistributionId = Helper.ConvertToInt(row["STOCK_DISTRIBUTION_ID"]);
 					o.Status = (row["STATUS"]).ToString();
 					o.DistributionType = (row["DISTRIBUTION_TYPE"]).ToString();
+					o.DosesPerDispensingUnit = Helper.ConvertToInt(row["DOSES_PER_DISPENSING_UNIT"]);
 					try
 					{
 						o.BaseUom = (row["BASE_UOM"]).ToString();

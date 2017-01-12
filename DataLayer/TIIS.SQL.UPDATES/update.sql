@@ -1,4 +1,4 @@
--- RETURNS: THE MAJOR, MINOR AND RELEASE NUMBER OF THE DATABASE SCHEMA
+﻿-- RETURNS: THE MAJOR, MINOR AND RELEASE NUMBER OF THE DATABASE SCHEMA
 
 CREATE OR REPLACE FUNCTION GET_SCH_VER() RETURNS INTEGER AS
 
@@ -6,7 +6,7 @@ $$
 
 BEGIN
 
-	RETURN 3;
+	RETURN 4;
 
 END;
 
@@ -36,336 +36,347 @@ BEGIN
 
 	 */
 
-	IF GET_SCH_VER() > 2 THEN
+	IF GET_SCH_VER() > 3 THEN
 
+		BEGIN
+			ALTER TABLE public."HEALTH_FACILITY_STOCK_DISTRIBUTIONS" ADD COLUMN "DOSES_PER_DISPENSING_UNIT" integer ;
+		EXCEPTION
+			WHEN duplicate_column THEN RAISE NOTICE 'column DOSES_PER_DISPENSING_UNIT already exists in HEALTH_FACILITY_STOCK_DISTRIBUTIONS.';
+		END;
+			
+		
+			
+	ELSEIF GET_SCH_VER() > 2 THEN
 
-	CREATE SEQUENCE IF NOT EXISTS public."CONFIGURATION_REPORTS_ID_seq"
-  	INCREMENT 1
-  	MINVALUE 1
-  	MAXVALUE 9223372036854775807
-  	START 17
-  	CACHE 1;
+		ALTER TABLE public."HEALTH_FACILITY_STOCK_DISTRIBUTIONS" DROP COLUMN IF EXISTS "DOSES_PER_DISPENSING_UNIT";
+	
+
+		CREATE SEQUENCE IF NOT EXISTS public."CONFIGURATION_REPORTS_ID_seq"
+		INCREMENT 1
+		MINVALUE 1
+		MAXVALUE 9223372036854775807
+		START 17
+		CACHE 1;
 
 	
-	CREATE TABLE IF NOT EXISTS public."CONFIGURATION_REPORTS"
-	(
-  		"ID" integer NOT NULL DEFAULT nextval('"CONFIGURATION_REPORTS_ID_seq"'::regclass),
-  		"NAME" text NOT NULL,
-  		"VALUE" text NOT NULL,
-  		"NOTES" text,
-  		CONSTRAINT "CONFIGURATION_REPORTS_pkey" PRIMARY KEY ("ID"),
-  		CONSTRAINT "CONFIGURATION_REPORTS_NAME_key" UNIQUE ("NAME")
-	)
-	WITH (
-  		OIDS=FALSE
-	);
+		CREATE TABLE IF NOT EXISTS public."CONFIGURATION_REPORTS"
+		(
+			"ID" integer NOT NULL DEFAULT nextval('"CONFIGURATION_REPORTS_ID_seq"'::regclass),
+			"NAME" text NOT NULL,
+			"VALUE" text NOT NULL,
+			"NOTES" text,
+			CONSTRAINT "CONFIGURATION_REPORTS_pkey" PRIMARY KEY ("ID"),
+			CONSTRAINT "CONFIGURATION_REPORTS_NAME_key" UNIQUE ("NAME")
+		)
+		WITH (
+			OIDS=FALSE
+		);
 
-	ALTER TABLE public."REPORT" ALTER COLUMN "JASPER_ID" TYPE character varying(64);
-	ALTER TABLE public."REPORT" ALTER COLUMN "REPORT_NAME" TYPE character varying(64);
+		ALTER TABLE public."REPORT" ALTER COLUMN "JASPER_ID" TYPE character varying(64);
+		ALTER TABLE public."REPORT" ALTER COLUMN "REPORT_NAME" TYPE character varying(64);
 
 
 
-    ELSEIF GET_SCH_VER() > 1 THEN
+	ELSEIF GET_SCH_VER() > 1 THEN
 
-	DROP TABLE IF EXISTS public."CONFIGURATION_REPORTS";
-    	DROP SEQUENCE IF EXISTS public."CONFIGURATION_REPORTS_ID_seq";
+		DROP TABLE IF EXISTS public."CONFIGURATION_REPORTS";
+		DROP SEQUENCE IF EXISTS public."CONFIGURATION_REPORTS_ID_seq";
 
-	
-        CREATE SEQUENCE IF NOT EXISTS public."HEALTH_FACILITIES_SESSIONS_seq"
-          INCREMENT 1
-          MINVALUE 1
-          MAXVALUE 9223372036854775807
-          START 1
-          CACHE 1;
-        ALTER TABLE public."HEALTH_FACILITIES_SESSIONS_seq"
-          OWNER TO postgres;
+		
+		CREATE SEQUENCE IF NOT EXISTS public."HEALTH_FACILITIES_SESSIONS_seq"
+		  INCREMENT 1
+		  MINVALUE 1
+		  MAXVALUE 9223372036854775807
+		  START 1
+		  CACHE 1;
+		ALTER TABLE public."HEALTH_FACILITIES_SESSIONS_seq"
+		  OWNER TO postgres;
 
-        CREATE TABLE IF NOT EXISTS public."HEALTH_FACILITIES_SESSIONS"
-        (
-          "ID" integer NOT NULL DEFAULT nextval('"HEALTH_FACILITIES_SESSIONS_seq"'::regclass),
-          "USER_ID" integer NOT NULL,
-          "HEALTH_FACILITY_ID" integer NOT NULL,
-          "LOGIN_TIME" timestamp without time zone NOT NULL,
-          "SESSION_LENGTH" integer NOT NULL, -- SESSION LENGTH in seconds
-          CONSTRAINT "HEALTH_FACILITIES_SESSIONS_primary_key" PRIMARY KEY ("USER_ID", "HEALTH_FACILITY_ID", "LOGIN_TIME")
-        )
-        WITH (
-          OIDS=FALSE
-        );
-        COMMENT ON COLUMN public."HEALTH_FACILITIES_SESSIONS"."SESSION_LENGTH" IS 'SESSION LENGTH in seconds';
+		CREATE TABLE IF NOT EXISTS public."HEALTH_FACILITIES_SESSIONS"
+		(
+		  "ID" integer NOT NULL DEFAULT nextval('"HEALTH_FACILITIES_SESSIONS_seq"'::regclass),
+		  "USER_ID" integer NOT NULL,
+		  "HEALTH_FACILITY_ID" integer NOT NULL,
+		  "LOGIN_TIME" timestamp without time zone NOT NULL,
+		  "SESSION_LENGTH" integer NOT NULL, -- SESSION LENGTH in seconds
+		  CONSTRAINT "HEALTH_FACILITIES_SESSIONS_primary_key" PRIMARY KEY ("USER_ID", "HEALTH_FACILITY_ID", "LOGIN_TIME")
+		)
+		WITH (
+		  OIDS=FALSE
+		);
+		COMMENT ON COLUMN public."HEALTH_FACILITIES_SESSIONS"."SESSION_LENGTH" IS 'SESSION LENGTH in seconds';
 
 
 
 	ELSEIF GET_SCH_VER() > 0 THEN
 
-	DROP TABLE IF EXISTS public."HEALTH_FACILITIES_SESSIONS";
-    	DROP SEQUENCE IF EXISTS public."HEALTH_FACILITIES_SESSIONS_seq";
+		DROP TABLE IF EXISTS public."HEALTH_FACILITIES_SESSIONS";
+		DROP SEQUENCE IF EXISTS public."HEALTH_FACILITIES_SESSIONS_seq";
 
-	CREATE TABLE IF NOT EXISTS public."HEALTH_FACILITY_STOCK_DISTRIBUTIONS"
-	    (
-	      "STOCK_DISTRIBUTION_ID" integer NOT NULL,
-	      "FROM_HEALTH_FACILITY_ID" integer NOT NULL,
-	      "TO_HEALTH_FACILITY_ID" integer NOT NULL,
-	      "PROGRAM_ID" integer NOT NULL, 
-	      "DISTRIBUTION_DATE" date NOT NULL,
-	      "ITEM_ID" integer,
-	      "PRODUCT_ID" integer NOT NULL, 
-	      "LOT_ID" integer,
-	      "VIMS_LOT_ID" integer,
-	      "VVM_STATUS" text,
-	      "QUANTITY" integer,
-	      "STATUS" text,
-	      "DISTRIBUTION_TYPE" text,
-	      CONSTRAINT "HEALTH_FACILITY_STOCK_DISTRIBUTIONS_pkey" PRIMARY KEY ("STOCK_DISTRIBUTION_ID")
+		CREATE TABLE IF NOT EXISTS public."HEALTH_FACILITY_STOCK_DISTRIBUTIONS"
+		    (
+		      "STOCK_DISTRIBUTION_ID" integer NOT NULL,
+		      "FROM_HEALTH_FACILITY_ID" integer NOT NULL,
+		      "TO_HEALTH_FACILITY_ID" integer NOT NULL,
+		      "PROGRAM_ID" integer NOT NULL, 
+		      "DISTRIBUTION_DATE" date NOT NULL,
+		      "ITEM_ID" integer,
+		      "PRODUCT_ID" integer NOT NULL, 
+		      "LOT_ID" integer,
+		      "VIMS_LOT_ID" integer,
+		      "VVM_STATUS" text,
+		      "QUANTITY" integer,
+		      "STATUS" text,
+		      "DISTRIBUTION_TYPE" text,
+		      CONSTRAINT "HEALTH_FACILITY_STOCK_DISTRIBUTIONS_pkey" PRIMARY KEY ("STOCK_DISTRIBUTION_ID")
 
-	    )
+		    )
 
-	    WITH (
-	      OIDS=FALSE
+		    WITH (
+		      OIDS=FALSE
 
-	    );
+		    );
 
-	    CREATE TABLE IF NOT EXISTS public."HEALTH_FACILITY_DESEASE_SURVEILLANCE"
+		    CREATE TABLE IF NOT EXISTS public."HEALTH_FACILITY_DESEASE_SURVEILLANCE"
+		    (
 
-	    (
+		      "HEALTH_FACILITY_ID" integer NOT NULL,
 
-	      "HEALTH_FACILITY_ID" integer NOT NULL,
+		      "FEVER_MONTHLY_CASES" integer NOT NULL,
 
-	      "FEVER_MONTHLY_CASES" integer NOT NULL,
+		      "FEVER_DEATHS" integer NOT NULL,
 
-	      "FEVER_DEATHS" integer NOT NULL,
+		      "AFP_MONTHLY_CASES" integer,
 
-	      "AFP_MONTHLY_CASES" integer,
+		      "AFP_DEATHS" integer,
 
-	      "AFP_DEATHS" integer,
+		      "NEONATAL_TT_CASES" integer,
 
-	      "NEONATAL_TT_CASES" integer,
+		      "NEONATAL_TT_DEATHS" integer,
 
-	      "NEONATAL_TT_DEATHS" integer,
+		      "REPORTED_MONTH" integer,
 
-	      "REPORTED_MONTH" integer,
+		      "REPORTED_YEAR" integer,
 
-	      "REPORTED_YEAR" integer,
+		      "MODIFIED_ON" date NOT NULL,
 
-	      "MODIFIED_ON" date NOT NULL,
+		      "MODIFIED_BY" integer NOT NULL,
 
-	      "MODIFIED_BY" integer NOT NULL,
+		      CONSTRAINT "HEALTH_FACILITY_DESEASE_SURVEILLANCE_pkey" PRIMARY KEY ("HEALTH_FACILITY_ID","REPORTED_MONTH","REPORTED_YEAR")
 
-	      CONSTRAINT "HEALTH_FACILITY_DESEASE_SURVEILLANCE_pkey" PRIMARY KEY ("HEALTH_FACILITY_ID","REPORTED_MONTH","REPORTED_YEAR")
+		    )
 
-	    )
+		    WITH (
 
-	    WITH (
+		      OIDS=FALSE
 
-	      OIDS=FALSE
+		    );
 
-	    );
 
 
 
 
+		    CREATE TABLE IF NOT EXISTS public."HEALTH_FACILITY_COLD_CHAIN"
 
-	    CREATE TABLE IF NOT EXISTS public."HEALTH_FACILITY_COLD_CHAIN"
+		    (
 
-	    (
+		      "HEALTH_FACILITY_ID" integer NOT NULL,
 
-	      "HEALTH_FACILITY_ID" integer NOT NULL,
+		      "TEMP_MAX" real NOT NULL,
 
-	      "TEMP_MAX" real NOT NULL,
+		      "TEMP_MIN" real NOT NULL,
 
-	      "TEMP_MIN" real NOT NULL,
+		      "ALARM_HIGH_TEMP" integer,
 
-	      "ALARM_HIGH_TEMP" integer,
+		      "ALARM_LOW_TEMP" integer,
 
-	      "ALARM_LOW_TEMP" integer,
+		      "REPORTED_MONTH" integer,
 
-	      "REPORTED_MONTH" integer,
+		      "REPORTED_YEAR" integer,
 
-	      "REPORTED_YEAR" integer,
+		      "MODIFIED_ON" date NOT NULL,
 
-	      "MODIFIED_ON" date NOT NULL,
+		      "MODIFIED_BY" integer NOT NULL,
 
-	      "MODIFIED_BY" integer NOT NULL,
+		      CONSTRAINT "HEALTH_FACILITY_COLD_CHAIN_pkey" PRIMARY KEY ("HEALTH_FACILITY_ID","REPORTED_MONTH","REPORTED_YEAR")
 
-	      CONSTRAINT "HEALTH_FACILITY_COLD_CHAIN_pkey" PRIMARY KEY ("HEALTH_FACILITY_ID","REPORTED_MONTH","REPORTED_YEAR")
+		    )
 
-	    )
+		    WITH (
 
-	    WITH (
+		      OIDS=FALSE
 
-	      OIDS=FALSE
+		    );
 
-	    );
 
 
 
 
 
 
+		    CREATE TABLE IF NOT EXISTS public."HEALTH_FACILITY_IMMUNIZATION_SESSIONS_AND_ACTIVITIES"
 
-	    CREATE TABLE IF NOT EXISTS public."HEALTH_FACILITY_IMMUNIZATION_SESSIONS_AND_ACTIVITIES"
+		    (
 
-	    (
+		      "HEALTH_FACILITY_ID" integer NOT NULL,
 
-	      "HEALTH_FACILITY_ID" integer NOT NULL,
+		      "OUTREACH_PLANNED" integer NOT NULL,
 
-	      "OUTREACH_PLANNED" integer NOT NULL,
+		      "OTHER_MAJOR_IMMUNIZATION_ACTIVITIES" text NOT NULL,
 
-	      "OTHER_MAJOR_IMMUNIZATION_ACTIVITIES" text NOT NULL,
+		      "REPORTED_MONTH" integer,
 
-	      "REPORTED_MONTH" integer,
+		      "REPORTED_YEAR" integer,
 
-	      "REPORTED_YEAR" integer,
+		      "MODIFIED_ON" date NOT NULL,
 
-	      "MODIFIED_ON" date NOT NULL,
+		      "MODIFIED_BY" integer NOT NULL,
 
-	      "MODIFIED_BY" integer NOT NULL,
+		      CONSTRAINT "HEALTH_FACILITY_IMMUNIZATION_SESSIONS_AND_ACTIVITIES_pkey" PRIMARY KEY ("HEALTH_FACILITY_ID","REPORTED_MONTH","REPORTED_YEAR")
 
-	      CONSTRAINT "HEALTH_FACILITY_IMMUNIZATION_SESSIONS_AND_ACTIVITIES_pkey" PRIMARY KEY ("HEALTH_FACILITY_ID","REPORTED_MONTH","REPORTED_YEAR")
+		    )
 
-	    )
+		    WITH (
 
-	    WITH (
+		      OIDS=FALSE
 
-	      OIDS=FALSE
+		    );
 
-	    );
 
 
+		    CREATE TABLE IF NOT EXISTS public."HEALTH_FACILITY_BCG_OPV0_TT_VACCINATIONS"
 
-	    CREATE TABLE IF NOT EXISTS public."HEALTH_FACILITY_BCG_OPV0_TT_VACCINATIONS"
+		    (
 
-	    (
+		      "HEALTH_FACILITY_ID" integer NOT NULL,
 
-	      "HEALTH_FACILITY_ID" integer NOT NULL,
+		      "DOSE_ID" integer NOT NULL,
 
-	      "DOSE_ID" integer NOT NULL,
+		      "MALE_SERVICE_AREA" integer NOT NULL,
 
-	      "MALE_SERVICE_AREA" integer NOT NULL,
+		      "FEMALE_SERVICE_AREA" integer,
 
-	      "FEMALE_SERVICE_AREA" integer,
+		      "TOTAL_SERVICE_AREA" integer,
 
-	      "TOTAL_SERVICE_AREA" integer,
+		      "COVERAGE_SERVICE_AREA" integer,
 
-	      "COVERAGE_SERVICE_AREA" integer,
+		      "MALE_CATCHMENT_AREA" integer,
 
-	      "MALE_CATCHMENT_AREA" integer,
+		      "FEMALE_CATCHMENT_AREA" integer,
 
-	      "FEMALE_CATCHMENT_AREA" integer,
+		      "TOTAL_CATCHMENT_AREA" integer,
 
-	      "TOTAL_CATCHMENT_AREA" integer,
+		      "COVERAGE_CATCHMENT_AREA" integer,
 
-	      "COVERAGE_CATCHMENT_AREA" integer,
+		      "COVERAGE_CATCHMENT_AND_SERVICE_AREA" integer,
 
-	      "COVERAGE_CATCHMENT_AND_SERVICE_AREA" integer,
+		      "TOTAL_CATCHMENT_AND_SERVICE_AREA" integer,
 
-	      "TOTAL_CATCHMENT_AND_SERVICE_AREA" integer,
+		      "REPORTED_MONTH" integer,
 
-	      "REPORTED_MONTH" integer,
+		      "REPORTED_YEAR" integer,
 
-	      "REPORTED_YEAR" integer,
+		      "MODIFIED_ON" date NOT NULL,
 
-	      "MODIFIED_ON" date NOT NULL,
+		      "MODIFIED_BY" integer NOT NULL,
 
-	      "MODIFIED_BY" integer NOT NULL,
+		      CONSTRAINT "HEALTH_FACILITY_BCG_OPV0_TT_VACCINATIONS_pkey" PRIMARY KEY ("HEALTH_FACILITY_ID","DOSE_ID","REPORTED_MONTH","REPORTED_YEAR")
 
-	      CONSTRAINT "HEALTH_FACILITY_BCG_OPV0_TT_VACCINATIONS_pkey" PRIMARY KEY ("HEALTH_FACILITY_ID","DOSE_ID","REPORTED_MONTH","REPORTED_YEAR")
+		    )
 
-	    )
+		    WITH (
 
-	    WITH (
+		      OIDS=FALSE
 
-	      OIDS=FALSE
+		    );
 
-	    );
 
 
 
 
 
 
+		    CREATE TABLE IF NOT EXISTS public."HEALTH_FACILITY_VITAMIN_A_STOCK_BALANCE"
 
-	    CREATE TABLE IF NOT EXISTS public."HEALTH_FACILITY_VITAMIN_A_STOCK_BALANCE"
+		    (
 
-	    (
+		      "HEALTH_FACILITY_ID" integer NOT NULL,
 
-	      "HEALTH_FACILITY_ID" integer NOT NULL,
+		      "VITAMIN_NAME" text,
 
-	      "VITAMIN_NAME" text,
+		      "OPENING_BALANCE" integer NOT NULL,
 
-	      "OPENING_BALANCE" integer NOT NULL,
+		      "RECEIVED" integer NOT NULL,
 
-	      "RECEIVED" integer NOT NULL,
+		      "TOTAL_ADMINISTERED" integer,
 
-	      "TOTAL_ADMINISTERED" integer,
+		      "WASTAGE" integer,
 
-	      "WASTAGE" integer,
+		      "STOCK_ON_HAND" integer,
 
-	      "STOCK_ON_HAND" integer,
+		      "ITEM_NAME" integer,
 
-	      "ITEM_NAME" integer,
+		      "REPORTED_MONTH" integer,
 
-	      "REPORTED_MONTH" integer,
+		      "REPORTED_YEAR" integer,
 
-	      "REPORTED_YEAR" integer,
+		      "MODIFIED_ON" date NOT NULL,
 
-	      "MODIFIED_ON" date NOT NULL,
+		      "MODIFIED_BY" integer NOT NULL,
 
-	      "MODIFIED_BY" integer NOT NULL,
+		      CONSTRAINT "HEALTH_FACILITY_VITAMIN_A_STOCK_BALANCE_pkey" PRIMARY KEY ("HEALTH_FACILITY_ID","VITAMIN_NAME","REPORTED_MONTH","REPORTED_YEAR")
 
-	      CONSTRAINT "HEALTH_FACILITY_VITAMIN_A_STOCK_BALANCE_pkey" PRIMARY KEY ("HEALTH_FACILITY_ID","VITAMIN_NAME","REPORTED_MONTH","REPORTED_YEAR")
+		    )
 
-	    )
+		    WITH (
 
-	    WITH (
+		      OIDS=FALSE
 
-	      OIDS=FALSE
+		    );
 
-	    );
 
 
 
 
 
 
+		    CREATE TABLE IF NOT EXISTS public."HEALTH_FACILITY_SYRINGES_AND_SAFETY_BOXES"
 
-	    CREATE TABLE IF NOT EXISTS public."HEALTH_FACILITY_SYRINGES_AND_SAFETY_BOXES"
+		    (
 
-	    (
+		      "HEALTH_FACILITY_ID" integer NOT NULL,
 
-	      "HEALTH_FACILITY_ID" integer NOT NULL,
+		      "ITEM_NAME" text,
 
-	      "ITEM_NAME" text,
+		      "OPENING_BALANCE" integer NOT NULL,
 
-	      "OPENING_BALANCE" integer NOT NULL,
+		      "RECEIVED" integer NOT NULL,
 
-	      "RECEIVED" integer NOT NULL,
+		      "USED" integer,
 
-	      "USED" integer,
+		      "WASTAGE" integer,
 
-	      "WASTAGE" integer,
+		      "STOCK_ON_HAND" integer,
 
-	      "STOCK_ON_HAND" integer,
+		      "STOCKED_OUT_DAYS" integer,
 
-	      "STOCKED_OUT_DAYS" integer,
+		      "REPORTED_MONTH" integer,
 
-	      "REPORTED_MONTH" integer,
+		      "REPORTED_YEAR" integer,
 
-	      "REPORTED_YEAR" integer,
+		      "MODIFIED_ON" date NOT NULL,
 
-	      "MODIFIED_ON" date NOT NULL,
+		      "MODIFIED_BY" integer NOT NULL,
 
-	      "MODIFIED_BY" integer NOT NULL,
+		      CONSTRAINT "HEALTH_FACILITY_SYRINGES_AND_SAFETY_BOXES_pkey" PRIMARY KEY ("HEALTH_FACILITY_ID","ITEM_NAME","REPORTED_MONTH","REPORTED_YEAR")
 
-	      CONSTRAINT "HEALTH_FACILITY_SYRINGES_AND_SAFETY_BOXES_pkey" PRIMARY KEY ("HEALTH_FACILITY_ID","ITEM_NAME","REPORTED_MONTH","REPORTED_YEAR")
+		    )
 
-	    )
+		    WITH (
 
-	    WITH (
+		      OIDS=FALSE
 
-	      OIDS=FALSE
-
-	    );
+		    );
 
 
 
