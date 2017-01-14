@@ -126,6 +126,29 @@ new NpgsqlParameter("@ParamValue", DbType.String) { Value = s }
             }
         }
 
+
+		public static ItemLot GetItemLotByLotNumberAndGtin(string lotNumber, string gtin)
+		{
+			try
+			{
+				string query = @"SELECT * FROM ""ITEM_LOT"" WHERE ""LOT_NUMBER"" = @lotNumber AND ""GTIN"" = @gtin ";
+				List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
+				{
+					new NpgsqlParameter("@lotNumber", DbType.String) { Value = lotNumber },
+					new NpgsqlParameter("@gtin", DbType.String) { Value = gtin }
+				};
+				DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, parameters);
+				AuditTable.InsertEntity("ItemLot", string.Format("RecordId: {0}", gtin), 4, DateTime.Now, 1);
+				return GetItemLotAsObject(dt);
+			}
+			catch (Exception ex)
+			{
+				Log.InsertEntity("ItemLot", "GetItemLotByLotNumber", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+				throw ex;
+			}
+		}
+
+
         #endregion
 
         #region CRUD
