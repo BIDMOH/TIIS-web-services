@@ -33,11 +33,10 @@ namespace GIIS.Tanzania.WCF
 	class Program
 	{
 		//Live server
-		//public static string url = "http://52.57.123.55:9091";
+		public static string url = "http://eis.moh.go.tz";
 
 		//TEsting instances
-		public static string url = "http://kelvinmbwilo.com:9091";
-		//public static string url = "http://uat.tz.elmis-dev.org";
+		//public static string url = "http://kelvinmbwilo.com:9091";
 		public static string GetSourceForMyShowsPage(string downloadUrl)
 		{
 			using (var client = new WebClientEx())

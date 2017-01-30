@@ -77,7 +77,7 @@ namespace GIIS.Tanzania.WCF
 				if (v.IsActive)
 				{
 					HealthFacilityDoseBalanceEntity balanceEntity = new HealthFacilityDoseBalanceEntity();
-					string antigen = v.Code;
+					string antigen = v.Name;
 					balanceEntity.antigen = antigen;
 					balanceEntity.stockOnHand = HealthFacilityBalance.GetHealthFacilityBalanceByHealthFacilityIdAndDose(hfId, antigen);
 					balanceEntity.dosesReceived = HealthFacilityBalance.GetHealthFacilityReceivedDosesByHealthFacilityIdAndDose(hfId, antigen, fromDate, toDate);
