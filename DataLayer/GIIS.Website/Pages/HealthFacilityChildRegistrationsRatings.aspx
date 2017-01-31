@@ -15,7 +15,7 @@
    limitations under the License.
  ******************************************************************************
 --%>
-<%@ Page Title="View Session Report" EnableEventValidation="false" Language="C#" AutoEventWireup="true" CodeFile="HealthFacilitySessionLengthRatings.aspx.cs" Inherits="Pages_HealthFacilitySessionLengthRatings" MasterPageFile="~/Pages/MasterPage.master" %>
+<%@ Page Title="View Session Report" EnableEventValidation="false" Language="C#" AutoEventWireup="true" CodeFile="HealthFacilityChildRegistrationsRatings.aspx.cs" Inherits="Pages_HealthFacilityChildrenRegistrationsRatings" MasterPageFile="~/Pages/MasterPage.master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <style type="text/css">
@@ -39,12 +39,12 @@
     
     <div class="row">
         <div class="col-md-12">
-            <h2><asp:Label ID="lblReportName" Text="Health Facilities Session Length Ratings By District" runat="server" /></h2>
+            <h2><asp:Label ID="lblReportName" Text="Health Facilities New Children Registration By District" runat="server" /></h2>
         </div>
     </div>
     <div class="row">
         <div class="col-md-12">
-            <em><asp:Label runat="server" ID="lblReportDescription" Text="This report shows the ranking of health facilities within the District council by their total sessions lengths during the specified date range"  /></em>
+            <em><asp:Label runat="server" ID="lblReportDescription" Text="This report shows the ranking of health facilities within the District council by their total number of children registrations"  /></em>
         </div>
     </div>
     <br />
@@ -76,9 +76,9 @@
                         <%#Eval("Name")%>
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:TemplateField HeaderText="Session Length">
+                <asp:TemplateField HeaderText="Children Registrations">
                 <ItemTemplate> 
-                    <%# convertToHoursAndMinutes(Convert.ToInt32(Eval("SessionsCount"))) %>
+                    <%# Convert.ToInt32(Eval("SessionsCount")) %>
                 </ItemTemplate>
                 </asp:TemplateField>   
                 <asp:TemplateField HeaderText="View Facility Session Reports">
@@ -93,7 +93,7 @@
         <!--
             data binding of the gridview is done in connection to the Datalayer methods that queries the data EnablePaging="false"
         -->
-        <asp:ObjectDataSource ID="odsHealthFacilitySessions" runat="server" SelectMethod="GetHealthFacilitySessionsLengthRatingsByDistrict" TypeName="GIIS.DataLayer.HealthFacilitySessions">
+        <asp:ObjectDataSource ID="odsHealthFacilitySessions" runat="server" SelectMethod="GetHealthFacilityChildrenRegistrationsByDistrict" TypeName="GIIS.DataLayer.HealthFacilitySessions">
             <SelectParameters>
                  <asp:Parameter Name="districtCouncilId" Type="String"/>
                  <asp:Parameter Name="fromDate" Type="DateTime" />

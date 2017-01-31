@@ -63,8 +63,8 @@
                     <div class="row">
                         <div class="col-md-9">        
                             <asp:TextBox ID="hack" runat="server" Visible="false" />
-                                    <input type="hidden" name="j_username" value="<%=ConfigurationManager.AppSettings["JasperUser"]%>" />
-                                    <input type="hidden" name="j_password" value="<%=ConfigurationManager.AppSettings["JasperPassword"]%>" />
+                            <input type="hidden" name="j_username" value="<%=ConfigurationManager.AppSettings["JasperUser"]%>" />
+                            <input type="hidden" name="j_password" value="<%=ConfigurationManager.AppSettings["JasperPassword"]%>" />
                             <div class="container-fluid" runat="server" id="reportInputs">
                             </div>
                         </div>
@@ -77,93 +77,68 @@
                     <ul class="nav nav-pills" id="myTab">
                         <li class="active"><a data-toggle="pill" href="#home">Session Durations Report</a></li>
                         <li><a data-toggle="pill" href="#menu1">Total Sessions Report (Duration)</a></li>
-                        <li><a data-toggle="pill" href="#menu2">Total Sessions Report (Days)</a></li>
                     </ul>
                 <div class="tab-content">
                     <div id="home" class="tab-pane fade in active">
                         <br />
                         <div class="row">
                             <div class="col-md-12">
-                                <em><asp:Label runat="server" ID="lblReportDescription" Text="This report shows in details all the sessions conducted by in specific health facility by different users, within a specific date range"  /></em>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12 clearfix" style="overflow:auto">
-                                
-                        <asp:GridView ID="gvHealthFacilitySessions" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover table-responsive" AllowPaging="True" OnDataBound="gvHealthFacilitySessions_DataBound" OnPageIndexChanging="gvHealthFacilitySessions_PageIndexChanging" PageSize="25" >
-                                    <PagerSettings Position="Top" Mode="NumericFirstLast" />
-                                    <PagerStyle CssClass="pagination" HorizontalAlign="Left" VerticalAlign="Top" />
-                                <Columns>
-                                    <asp:TemplateField HeaderText="Time">
-                                        <ItemTemplate>
-                                            <%# Eval("LoginTime") %>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Duration">
-                                    <ItemTemplate>
-                                        <%# convertToHoursAndMinutes(Convert.ToInt32(Eval("SessionLength"))) %>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="User Name">
-                                    <ItemTemplate>
-                                        <%#Eval("UserName")%>
-                                    </ItemTemplate>
-                                    </asp:TemplateField>            
-                                </Columns>
-                            </asp:GridView>
-                            <!--
-                                data binding of the gridview is done in connection to the Datalayer methods that queries the data EnablePaging="false"
-                            -->
-                            <asp:ObjectDataSource ID="odsHealthFacilitySessions" runat="server" SelectMethod="GetHealthFacilitySessionsByHealthFacilityId" TypeName="GIIS.DataLayer.HealthFacilitySessions">
-                                <SelectParameters>
-                                    <asp:Parameter Name="hfid" Type="String" />
-                                    <asp:Parameter Name="fromDate" Type="DateTime" />
-                                    <asp:Parameter Name="toDate" Type="DateTime" />
-                                </SelectParameters>
-                            </asp:ObjectDataSource>
-
-                            <asp:ObjectDataSource ID="odsHealthFacilitySessionsByUsers" runat="server" SelectMethod="GetHealthFacilitySessionsByHealthFacilityIdAndUserId" TypeName="GIIS.DataLayer.HealthFacilitySessions">
-                                <SelectParameters>
-                                    <asp:Parameter Name="hfid" Type="String" />
-                                    <asp:Parameter Name="userID" Type="String" />
-                                    <asp:Parameter Name="fromDate" Type="DateTime" />
-                                    <asp:Parameter Name="toDate" Type="DateTime" />
-                                </SelectParameters>
-                            </asp:ObjectDataSource>
-
-
-                        </div>
-                    </div>
-                    </form>
-                    <br />
-                    <div class="row">
-                        <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12 clearfix" style="overflow:auto">
-                        </div>
-                    </div>
-                    <br />
-                    </div>
-
-                    <div id="menu1" class="tab-pane fade">
-                        <br />
-                        <div class="row">
-                            <div class="col-md-12">
-                                <em><asp:Label runat="server" ID="lblDurationReportDescription" Text="This report shows the total time spent by users in the mobile application in hours, within a specific date range"  /></em>
+                                <em><asp:Label runat="server" ID="lblDurationReportDescription" Text="This report shows the number of children registrations by users in the mobile application within a specific date range"  /></em>
                             </div>
                         </div>
                         <br />
                         <form class="form" method="get" action="" id="launchDurationReport" >
                         <div class="row">
-                            <div class="col-md-2 col-xs-2 col-sm-2 col-lg-2 clearfix">
-                                <em><asp:Label runat="server" ID="lblTotalDurations" Text="Total Duration"  /></em>
-                            </div>
-                            <div class="col-md-4 col-xs-4 col-sm-4 col-lg-4 clearfix">
-                                <em><asp:Label runat="server" ID="lblTotalDurationsValue" Text=""  /></em>
-                            </div>
+                            <!--begin-->
+                            <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12 clearfix" style="overflow:auto">
+                                   <asp:GridView ID="gvHealthFacilityChildRegistrations" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover table-responsive" AllowPaging="True"
+                                   OnDataBound="gvHealthFacilityChildRegistrations_DataBound" PageSize="25" OnPageIndexChanging="gvHealthFacilityChildRegistrations_PageIndexChanging" >
+                                           <PagerSettings Position="Top" Mode="NumericFirstLast" />
+                                           <PagerStyle CssClass="pagination" HorizontalAlign="Left" VerticalAlign="Top" />
+                                           <Columns>
+                                               <asp:TemplateField HeaderText="User Name">
+                                                    <ItemTemplate>
+                                                       <%#Eval("UserName")%>
+                                                    </ItemTemplate>
+                                               </asp:TemplateField>
+                                               <asp:TemplateField HeaderText="Login Date">
+                                                    <ItemTemplate>
+                                                       <%#  String.Format("{0:dd/MM/yyyy}", Convert.ToDateTime(Eval("LoginTime"))) %>
+                                                    </ItemTemplate>
+                                               </asp:TemplateField>
+
+                                               <asp:TemplateField HeaderText="Children Registered">
+                                                    <ItemTemplate>
+                                                        <%#Eval("SessionLength")%>
+                                                    </ItemTemplate>
+                                               </asp:TemplateField>
+                                           </Columns>
+                                       </asp:GridView>
+
+                                       <asp:ObjectDataSource ID="odsHealthFacilityChildRegistrations" runat="server" SelectMethod="GetHealthFacilityChildRegistrationsByHealthFacilityId" TypeName="GIIS.DataLayer.HealthFacilitySessions">
+                                           <SelectParameters>
+                                               <asp:Parameter Name="hfid" Type="String" />
+                                               <asp:Parameter Name="fromDate" Type="DateTime" />
+                                               <asp:Parameter Name="toDate" Type="DateTime" />
+                                           </SelectParameters>
+                                       </asp:ObjectDataSource>
+
+                                       <asp:ObjectDataSource ID="odsHealthFacilityChildRegistrationsByUsers" runat="server" SelectMethod="GetHealthFacilityChildRegistrationsByHealthFacilityIdAndUserId" TypeName="GIIS.DataLayer.HealthFacilitySessions">
+                                           <SelectParameters>
+                                               <asp:Parameter Name="hfid" Type="String" />
+                                               <asp:Parameter Name="userID" Type="String" />
+                                               <asp:Parameter Name="fromDate" Type="DateTime" />
+                                               <asp:Parameter Name="toDate" Type="DateTime" />
+                                           </SelectParameters>
+                                       </asp:ObjectDataSource>
+
+                               </div>
+                            <!--end-->
                         </div>
                         </form>
+
                     </div>
-                    <div id="menu2" class="tab-pane fade">
+                    <div id="menu1" class="tab-pane fade">
                         <br />
                         <div class="row">
                             <div class="col-md-12">
@@ -171,14 +146,55 @@
                             </div>
                         </div>
                         <br />
-                        <div class="row">
-                            <div class="col-md-3 col-xs-3 col-sm-3 col-lg-3 clearfix">
-                                <em><asp:Label runat="server" ID="lblTotalDays" Text="Total Session Days : "  /></em>
+                        <form class="form" method="get" action="" id="launchDurationReport" >
+                            <div class="row">
+                                <!--begin-->
+                                <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12 clearfix" style="overflow:auto">
+                                       <asp:GridView ID="gvHealthFacilityChildVaccinations" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover table-responsive" AllowPaging="True"
+                                       OnDataBound="gvHealthFacilityChildVaccinations_DataBound" PageSize="25" OnPageIndexChanging="gvHealthFacilityChildVaccinations_PageIndexChanging" >
+                                               <PagerSettings Position="Top" Mode="NumericFirstLast" />
+                                               <PagerStyle CssClass="pagination" HorizontalAlign="Left" VerticalAlign="Top" />
+                                               <Columns>
+                                                   <asp:TemplateField HeaderText="User Name">
+                                                        <ItemTemplate>
+                                                           <%#Eval("UserName")%>
+                                                        </ItemTemplate>
+                                                   </asp:TemplateField>
+                                                   <asp:TemplateField HeaderText="Login Date">
+                                                        <ItemTemplate>
+                                                           <%#  String.Format("{0:dd/MM/yyyy}", Convert.ToDateTime(Eval("LoginTime"))) %>
+                                                        </ItemTemplate>
+                                                   </asp:TemplateField>
+
+                                                   <asp:TemplateField HeaderText="Children Registered">
+                                                        <ItemTemplate>
+                                                            <%#Eval("SessionLength")%>
+                                                        </ItemTemplate>
+                                                   </asp:TemplateField>
+                                               </Columns>
+                                           </asp:GridView>
+
+                                           <asp:ObjectDataSource ID="odsHealthFacilityChildrenVaccinations" runat="server" SelectMethod="GetHealthFacilityChildVaccinationsByHealthFacilityId" TypeName="GIIS.DataLayer.HealthFacilitySessions">
+                                               <SelectParameters>
+                                                   <asp:Parameter Name="hfid" Type="String" />
+                                                   <asp:Parameter Name="fromDate" Type="DateTime" />
+                                                   <asp:Parameter Name="toDate" Type="DateTime" />
+                                               </SelectParameters>
+                                           </asp:ObjectDataSource>
+
+                                           <asp:ObjectDataSource ID="odsHealthFacilityChildrenVaccinationsByUsers" runat="server" SelectMethod="GetHealthFacilityChildVaccinationsByHealthFacilityIdAndUserId" TypeName="GIIS.DataLayer.HealthFacilitySessions">
+                                               <SelectParameters>
+                                                   <asp:Parameter Name="hfid" Type="String" />
+                                                   <asp:Parameter Name="userID" Type="String" />
+                                                   <asp:Parameter Name="fromDate" Type="DateTime" />
+                                                   <asp:Parameter Name="toDate" Type="DateTime" />
+                                               </SelectParameters>
+                                           </asp:ObjectDataSource>
+
+                                   </div>
+                                <!--end-->
                             </div>
-                            <div class="col-md-4 col-xs-4 col-sm-4 col-lg-4 clearfix">
-                                <em><asp:Label runat="server" ID="lblTotalDaysValue" Text=""  /></em>
-                            </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
                <br>

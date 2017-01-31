@@ -73,12 +73,23 @@ namespace GIIS.DataLayer
 		}
 
 
-		public static List<HealthFacilitySessions> GetHealthFacilitySessionsByHealthFacilityIdAndUserId(string hfid, string userId, DateTime fromDate, DateTime toDate)
+		public static List<HealthFacilitySessions> GetHealthFacilityChildRegistrationsByHealthFacilityIdAndUserId(string hfid, string userId, DateTime fromDate, DateTime toDate)
 		{
 
+			toDate = toDate.AddDays(1);
 			try
 			{
-				string query = @"SELECT * FROM ""HEALTH_FACILITIES_SESSIONS"" WHERE ""HEALTH_FACILITY_ID"" = @hfid AND ""USER_ID"" = @userId AND ""LOGIN_TIME"" >= @fromDate AND ""LOGIN_TIME""<= @toDate ";
+				string query = @"SELECT ""USER_ID"",""HEALTH_FACILITIES_SESSIONS"".""HEALTH_FACILITY_ID"", date_trunc('day', ""LOGIN_TIME"") AS LOGIN_TIME, COUNT ( DISTINCT ""CHILD"".""ID"") AS SESSION_LENGTH
+									FROM ""HEALTH_FACILITIES_SESSIONS"" 
+											LEFT JOIN ""HEALTH_FACILITY"" ON ""HEALTH_FACILITY"".""ID""=""HEALTH_FACILITIES_SESSIONS"".""HEALTH_FACILITY_ID""
+											INNER JOIN ""CHILD"" ON ""CHILD"".""MODIFIED_BY"" = ""HEALTH_FACILITIES_SESSIONS"".""USER_ID""
+									WHERE 
+										""HEALTH_FACILITIES_SESSIONS"".""HEALTH_FACILITY_ID"" = @hfid AND
+										""USER_ID"" = @userId AND
+										""LOGIN_TIME"" >= @fromDate AND ""LOGIN_TIME""< @toDate AND
+										date_trunc('day', ""CHILD"".""MODIFIED_ON"") = date_trunc('day', ""LOGIN_TIME"")
+									GROUP BY ""USER_ID"",""HEALTH_FACILITIES_SESSIONS"".""HEALTH_FACILITY_ID"",LOGIN_TIME 
+									ORDER BY 3 DESC;";
 				List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
 					{
 					new NpgsqlParameter("@hfid", DbType.Int32) { Value = hfid },
@@ -87,22 +98,33 @@ namespace GIIS.DataLayer
 					new NpgsqlParameter("@toDate", DbType.DateTime) { Value = toDate }
 					};
 				DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, parameters);
+
 				return GetHealthFacilitySessionsAsList(dt);
+
 			}
 			catch (Exception ex)
 			{
-				Log.InsertEntity("HealthFacilitySessions", "GetHealthFacilitySessionsByHealthFacilityIdAndUserId", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+				Log.InsertEntity("HealthFacilitySessions", "GetHealthFacilityChildRegistrationsByHealthFacilityIdAndUserId", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
 				throw ex;
 			}
 
 		}
 
-		public static List<HealthFacilitySessions> GetHealthFacilitySessionsByHealthFacilityId(string hfid, DateTime fromDate, DateTime toDate)
+		public static List<HealthFacilitySessions> GetHealthFacilityChildRegistrationsByHealthFacilityId(string hfid, DateTime fromDate, DateTime toDate)
 		{
-
+			toDate = toDate.AddDays(1);
 			try
 			{
-				string query = @"SELECT * FROM ""HEALTH_FACILITIES_SESSIONS"" WHERE ""HEALTH_FACILITY_ID"" = @hfid  AND ""LOGIN_TIME"" >= @fromDate AND ""LOGIN_TIME""<= @toDate ";
+				string query = @"SELECT ""USER_ID"",""HEALTH_FACILITIES_SESSIONS"".""HEALTH_FACILITY_ID"", date_trunc('day', ""LOGIN_TIME"") AS LOGIN_TIME, COUNT ( DISTINCT ""CHILD"".""ID"") AS SESSION_LENGTH
+									FROM ""HEALTH_FACILITIES_SESSIONS"" 
+											LEFT JOIN ""HEALTH_FACILITY"" ON ""HEALTH_FACILITY"".""ID""=""HEALTH_FACILITIES_SESSIONS"".""HEALTH_FACILITY_ID""
+											INNER JOIN ""CHILD"" ON ""CHILD"".""MODIFIED_BY"" = ""HEALTH_FACILITIES_SESSIONS"".""USER_ID""
+									WHERE 
+										""HEALTH_FACILITIES_SESSIONS"".""HEALTH_FACILITY_ID"" = @hfid AND
+										""LOGIN_TIME"" >= @fromDate AND ""LOGIN_TIME""< @toDate AND
+										date_trunc('day', ""CHILD"".""MODIFIED_ON"") = date_trunc('day', ""LOGIN_TIME"")
+									GROUP BY ""USER_ID"",""HEALTH_FACILITIES_SESSIONS"".""HEALTH_FACILITY_ID"",LOGIN_TIME 
+									ORDER BY 3 DESC;";
 				List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
 					{
 					new NpgsqlParameter("@hfid", DbType.Int32) { Value = hfid },
@@ -110,22 +132,36 @@ namespace GIIS.DataLayer
 					new NpgsqlParameter("@toDate", DbType.DateTime) { Value = toDate }
 					};
 				DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, parameters);
-				return GetHealthFacilitySessionsAsList(dt);
+
+				 return GetHealthFacilitySessionsAsList(dt);
+
 			}
 			catch (Exception ex)
 			{
-				Log.InsertEntity("HealthFacilitySessions", "GetHealthFacilitySessionsByHealthFacilityIdAndUserId", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+				Log.InsertEntity("HealthFacilitySessions", "GetHealthFacilityChildRegistrationsByHealthFacilityId", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
 				throw ex;
 			}
 
 		}
 
-		public static int GetHealthFacilitySessionsLengthByHealthFacilityIdAndUserId(string hfid, string userId, DateTime fromDate, DateTime toDate)
+
+		public static List<HealthFacilitySessions> GetHealthFacilityChildVaccinationsByHealthFacilityIdAndUserId(string hfid, string userId, DateTime fromDate, DateTime toDate)
 		{
 
+			toDate = toDate.AddDays(1);
 			try
 			{
-				string query = @"SELECT SUM (""SESSION_LENGTH"") FROM ""HEALTH_FACILITIES_SESSIONS"" WHERE ""HEALTH_FACILITY_ID"" = @hfid AND ""USER_ID"" = @userId AND ""LOGIN_TIME"" >= @fromDate AND ""LOGIN_TIME""<= @toDate ";
+				string query = @"SELECT ""USER_ID"",""HEALTH_FACILITIES_SESSIONS"".""HEALTH_FACILITY_ID"", date_trunc('day', ""LOGIN_TIME"") AS LOGIN_TIME, COUNT ( DISTINCT ""CHILD"".""ID"") AS SESSION_LENGTH
+									FROM ""HEALTH_FACILITIES_SESSIONS"" 
+											LEFT JOIN ""HEALTH_FACILITY"" ON ""HEALTH_FACILITY"".""ID""=""HEALTH_FACILITIES_SESSIONS"".""HEALTH_FACILITY_ID""
+											INNER JOIN ""CHILD"" ON ""CHILD"".""MODIFIED_BY"" = ""HEALTH_FACILITIES_SESSIONS"".""USER_ID""
+									WHERE 
+										""HEALTH_FACILITIES_SESSIONS"".""HEALTH_FACILITY_ID"" = @hfid AND
+										""USER_ID"" = @userId AND
+										""LOGIN_TIME"" >= @fromDate AND ""LOGIN_TIME""< @toDate AND
+										date_trunc('day', ""CHILD"".""MODIFIED_ON"") = date_trunc('day', ""LOGIN_TIME"")
+									GROUP BY ""USER_ID"",""HEALTH_FACILITIES_SESSIONS"".""HEALTH_FACILITY_ID"",LOGIN_TIME 
+									ORDER BY 3 DESC;";
 				List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
 					{
 					new NpgsqlParameter("@hfid", DbType.Int32) { Value = hfid },
@@ -134,69 +170,53 @@ namespace GIIS.DataLayer
 					new NpgsqlParameter("@toDate", DbType.DateTime) { Value = toDate }
 					};
 				DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, parameters);
-				Int32 totalLength = 0;
 
-				foreach (DataRow row in dt.Rows)
-				{
-					try
-					{
-						totalLength =  Helper.ConvertToInt(row["SUM"]);
-					}
-					catch (Exception ex)
-					{
-						Log.InsertEntity("HealthFacilitySessions", "GetHealthFacilitySessionsLengthByHealthFacilityIdAndUserId", 1, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
-						throw ex;
-					}
-				}
-				return totalLength;
+				return GetHealthFacilitySessionsAsList(dt);
+
 			}
 			catch (Exception ex)
 			{
-				Log.InsertEntity("HealthFacilitySessions", "GetHealthFacilitySessionsLengthByHealthFacilityIdAndUserId", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+				Log.InsertEntity("HealthFacilitySessions", "GetHealthFacilityChildRegistrationsByHealthFacilityIdAndUserId", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
 				throw ex;
 			}
 
 		}
 
-
-
-		public static int GetHealthFacilitySessionsLengthByHealthFacilityId(string hfid, DateTime fromDate, DateTime toDate)
+		public static List<HealthFacilitySessions> GetHealthFacilityChildVaccinationsByHealthFacilityId(string hfid, DateTime fromDate, DateTime toDate)
 		{
-
+			toDate = toDate.AddDays(1);
 			try
 			{
-				string query = @"SELECT SUM (""SESSION_LENGTH"") FROM ""HEALTH_FACILITIES_SESSIONS"" WHERE ""HEALTH_FACILITY_ID"" = @hfid AND  ""LOGIN_TIME"" >= @fromDate AND ""LOGIN_TIME""<= @toDate ";
+				string query = @"SELECT ""USER_ID"",""HEALTH_FACILITIES_SESSIONS"".""HEALTH_FACILITY_ID"", date_trunc('day', ""LOGIN_TIME"") AS LOGIN_TIME, COUNT ( DISTINCT ""VACCINATION_EVENT"".""CHILD_ID"") AS SESSION_LENGTH
+									FROM ""HEALTH_FACILITIES_SESSIONS"" 
+											LEFT JOIN ""HEALTH_FACILITY"" ON ""HEALTH_FACILITY"".""ID""=""HEALTH_FACILITIES_SESSIONS"".""HEALTH_FACILITY_ID""
+											INNER JOIN ""VACCINATION_EVENT"" ON ""VACCINATION_EVENT"".""MODIFIED_BY"" = ""HEALTH_FACILITIES_SESSIONS"".""USER_ID""
+									WHERE 
+										""HEALTH_FACILITIES_SESSIONS"".""HEALTH_FACILITY_ID"" = @hfid AND
+										""LOGIN_TIME"" >= @fromDate AND ""LOGIN_TIME""< @toDate AND
+										date_trunc('day', ""VACCINATION_EVENT"".""VACCINATION_DATE"") = date_trunc('day', ""LOGIN_TIME"") AND
+										""VACCINATION_EVENT"".""VACCINATION_STATUS"" = @status
+									GROUP BY ""USER_ID"",""HEALTH_FACILITIES_SESSIONS"".""HEALTH_FACILITY_ID"",LOGIN_TIME 
+									ORDER BY 3 DESC;";
 				List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
-					{
+				{
 					new NpgsqlParameter("@hfid", DbType.Int32) { Value = hfid },
 					new NpgsqlParameter("@fromDate", DbType.DateTime) { Value = fromDate },
-					new NpgsqlParameter("@toDate", DbType.DateTime) { Value = toDate }
-					};
+					new NpgsqlParameter("@toDate", DbType.DateTime) { Value = toDate },
+					new NpgsqlParameter("@status", DbType.Boolean) { Value = true }
+				};
 				DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, parameters);
-				Int32 totalLength = 0;
 
-				foreach (DataRow row in dt.Rows)
-				{
-					try
-					{
-						totalLength = Helper.ConvertToInt(row["SUM"]);
-					}
-					catch (Exception ex)
-					{
-						Log.InsertEntity("HealthFacilitySessions", "GetHealthFacilitySessionsLengthByHealthFacilityId", 1, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
-						throw ex;
-					}
-				}
-				return totalLength;
+				return GetHealthFacilitySessionsAsList(dt);
+
 			}
 			catch (Exception ex)
 			{
-				Log.InsertEntity("HealthFacilitySessions", "GetHealthFacilitySessionsLengthByHealthFacilityIdAndUserId", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+				Log.InsertEntity("HealthFacilitySessions", "GetHealthFacilityChildRegistrationsByHealthFacilityId", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
 				throw ex;
 			}
 
 		}
-
 
 
 
@@ -206,14 +226,26 @@ namespace GIIS.DataLayer
 		{
 			try
 			{
-				string query = @"SELECT ""LOGIN_TIME"" FROM ""HEALTH_FACILITIES_SESSIONS"" WHERE ""HEALTH_FACILITY_ID"" = @hfid AND ""USER_ID"" = @userId AND ""LOGIN_TIME"" >= @fromDate AND ""LOGIN_TIME""<= @toDate ";
+				string query = @"SELECT ""USER_ID"",""HEALTH_FACILITIES_SESSIONS"".""HEALTH_FACILITY_ID"", date_trunc('day', ""LOGIN_TIME"") AS LOGIN_TIME, COUNT ( DISTINCT ""VACCINATION_EVENT"".""CHILD_ID"") AS SESSION_LENGTH
+									FROM ""HEALTH_FACILITIES_SESSIONS"" 
+											LEFT JOIN ""HEALTH_FACILITY"" ON ""HEALTH_FACILITY"".""ID""=""HEALTH_FACILITIES_SESSIONS"".""HEALTH_FACILITY_ID""
+											INNER JOIN ""VACCINATION_EVENT"" ON ""VACCINATION_EVENT"".""MODIFIED_BY"" = ""HEALTH_FACILITIES_SESSIONS"".""USER_ID""
+									WHERE 
+										""HEALTH_FACILITIES_SESSIONS"".""HEALTH_FACILITY_ID"" = @hfid AND
+										""USER_ID"" = @userId  AND
+										""LOGIN_TIME"" >= @fromDate AND ""LOGIN_TIME""< @toDate AND
+										date_trunc('day', ""VACCINATION_EVENT"".""VACCINATION_DATE"") = date_trunc('day', ""LOGIN_TIME"") AND
+										""VACCINATION_EVENT"".""VACCINATION_STATUS"" = @status
+									GROUP BY ""USER_ID"",""HEALTH_FACILITIES_SESSIONS"".""HEALTH_FACILITY_ID"",LOGIN_TIME 
+									ORDER BY 3 DESC;";
 				List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
-					{
+				{
 					new NpgsqlParameter("@hfid", DbType.Int32) { Value = hfid },
 					new NpgsqlParameter("@userId", DbType.Int32) { Value = userId },
 					new NpgsqlParameter("@fromDate", DbType.DateTime) { Value = fromDate },
-					new NpgsqlParameter("@toDate", DbType.DateTime) { Value = toDate }
-					};
+					new NpgsqlParameter("@toDate", DbType.DateTime) { Value = toDate },
+					new NpgsqlParameter("@status", DbType.Boolean) { Value = true }
+				};
 				DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, parameters);
 				List<DateTime> dates = new List<DateTime>();
 
@@ -266,23 +298,28 @@ namespace GIIS.DataLayer
 
 
 
-		public static List<HealthFacilityLoginSessionsRatings> GetHealthFacilitySessionsRatingsByDistrict(string districtCouncilId, DateTime fromDate, DateTime toDate)
+		public static List<HealthFacilityLoginSessionsRatings> GetHealthFacilityChildrenVaccinationsByDistrict(string districtCouncilId, DateTime fromDate, DateTime toDate)
 		{
+			toDate = toDate.AddDays(1);
 			try
 			{
-				string query = @"SELECT ""HEALTH_FACILITY_ID"",""NAME"", COUNT(*)  AS C
+				string query = @"SELECT ""HEALTH_FACILITIES_SESSIONS"".""HEALTH_FACILITY_ID"",""NAME"", COUNT(DISTINCT ""VACCINATION_EVENT"".""CHILD_ID"")  AS C
 									FROM ""HEALTH_FACILITIES_SESSIONS"" 
 											LEFT JOIN ""HEALTH_FACILITY"" ON ""HEALTH_FACILITY"".""ID"" = ""HEALTH_FACILITIES_SESSIONS"".""HEALTH_FACILITY_ID""
+											LEFT JOIN ""VACCINATION_EVENT"" ON ""VACCINATION_EVENT"".""MODIFIED_BY"" = ""HEALTH_FACILITIES_SESSIONS"".""USER_ID""
 									WHERE ""PARENT_ID"" = @districtCouncilId AND
-										""LOGIN_TIME"" >= @fromDate AND ""LOGIN_TIME""<= @toDate
-									GROUP BY ""HEALTH_FACILITY_ID"",""NAME"" 
+										""LOGIN_TIME"" >= @fromDate AND ""LOGIN_TIME""< @toDate AND
+										date_trunc('day', ""VACCINATION_EVENT"".""VACCINATION_DATE"") = date_trunc('day', ""LOGIN_TIME"") AND
+										""VACCINATION_EVENT"".""VACCINATION_STATUS"" = @status
+									GROUP BY ""HEALTH_FACILITIES_SESSIONS"".""HEALTH_FACILITY_ID"",""NAME"" 
 									ORDER BY 3 DESC;";
 				List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
-					{
+				{
 					new NpgsqlParameter("@districtCouncilId", DbType.Int32) { Value = districtCouncilId },
 					new NpgsqlParameter("@fromDate", DbType.DateTime) { Value = fromDate },
-					new NpgsqlParameter("@toDate", DbType.DateTime) { Value = toDate }
-					};
+					new NpgsqlParameter("@toDate", DbType.DateTime) { Value = toDate },
+					new NpgsqlParameter("@status", DbType.Boolean) { Value = true }
+				};
 				DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, parameters);
 
 				return GetHealthFacilityLoginSessionRatingsAsList(dt);
@@ -290,21 +327,24 @@ namespace GIIS.DataLayer
 			}
 			catch (Exception ex)
 			{
-				Log.InsertEntity("HealthFacilitySessions", "GetHealthFacilitySessionsByHealthFacilityIdAndUserId", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+				Log.InsertEntity("HealthFacilitySessions", "GetHealthFacilityChildrenVaccinationsByDistrict", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
 				throw ex;
 			}
 		}
 
 
-		public static List<HealthFacilityLoginSessionsRatings> GetHealthFacilitySessionsLengthRatingsByDistrict(string districtCouncilId, DateTime fromDate, DateTime toDate)
+		public static List<HealthFacilityLoginSessionsRatings> GetHealthFacilityChildrenRegistrationsByDistrict(string districtCouncilId, DateTime fromDate, DateTime toDate)
 		{
+			toDate = toDate.AddDays(1);
 			try
 			{
-				string query = @"SELECT ""HEALTH_FACILITY_ID"",""NAME"", SUM(""SESSION_LENGTH"") AS C  
+				string query = @"SELECT ""HEALTH_FACILITY_ID"",""NAME"", COUNT( DISTINCT ""CHILD"".""ID"") AS C  
 									FROM ""HEALTH_FACILITIES_SESSIONS"" 
 											LEFT JOIN ""HEALTH_FACILITY"" ON ""HEALTH_FACILITY"".""ID""=""HEALTH_FACILITIES_SESSIONS"".""HEALTH_FACILITY_ID""
+											LEFT JOIN ""CHILD"" ON ""CHILD"".""MODIFIED_BY"" = ""HEALTH_FACILITIES_SESSIONS"".""USER_ID""
 									WHERE ""PARENT_ID"" = @districtCouncilId AND
-										""LOGIN_TIME"" >= @fromDate AND ""LOGIN_TIME""<= @toDate
+										""LOGIN_TIME"" >= @fromDate AND ""LOGIN_TIME""< @toDate AND
+										""CHILD"".""MODIFIED_ON"" >= @fromDate AND ""CHILD"".""MODIFIED_ON""< @toDate
 									GROUP BY ""HEALTH_FACILITY_ID"",""NAME"" 
 									ORDER BY 3 DESC;";
 				List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
@@ -320,7 +360,7 @@ namespace GIIS.DataLayer
 			}
 			catch (Exception ex)
 			{
-				Log.InsertEntity("HealthFacilitySessions", "GetHealthFacilitySessionsByHealthFacilityIdAndUserId", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+				Log.InsertEntity("HealthFacilitySessions", "GetHealthFacilityChildrenRegistrationsByDistrict", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
 				throw ex;
 			}
 		}
@@ -328,7 +368,7 @@ namespace GIIS.DataLayer
 
 		public static List<HealthFacilityLoginSessionsRatings> GetHealthFacilitySessionsDaysRatingsByDistrict (string districtCouncilId, DateTime fromDate, DateTime toDate)
 		{
-
+			toDate = toDate.AddDays(1);
 			string query = @"SELECT ""HEALTH_FACILITY_ID"",""NAME""  
 									FROM ""HEALTH_FACILITIES_SESSIONS"" 
 											LEFT JOIN ""HEALTH_FACILITY"" ON ""HEALTH_FACILITY"".""ID"" = ""HEALTH_FACILITIES_SESSIONS"".""HEALTH_FACILITY_ID"" 
@@ -500,7 +540,14 @@ namespace GIIS.DataLayer
                 try
                 {
                     HealthFacilitySessions o = new HealthFacilitySessions();
-					o.Id = Helper.ConvertToInt(row["ID"]);
+					try
+					{
+						o.Id = Helper.ConvertToInt(row["ID"]);
+					}
+					catch
+					{
+						o.Id = 0;
+					}
 					o.UserId = Helper.ConvertToInt(row["USER_ID"]);
 					o.HealthFacilityId = Helper.ConvertToInt(row["HEALTH_FACILITY_ID"]);
 					o.LoginTime = Helper.ConvertToDate(row["LOGIN_TIME"]);

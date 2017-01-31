@@ -84,9 +84,14 @@ public partial class Pages_HealthFacilitySpecificSessionReports : System.Web.UI.
                 // durationCreateInputControls();
 
                 //grid header text
-                gvHealthFacilitySessions.Columns[0].HeaderText = "Login Time";
-                gvHealthFacilitySessions.Columns[1].HeaderText = "Duration";
-                gvHealthFacilitySessions.Columns[2].HeaderText = "User Name";
+                gvHealthFacilityChildRegistrations.Columns[0].HeaderText = "User Name";
+                gvHealthFacilityChildRegistrations.Columns[1].HeaderText = "Login Date";
+                gvHealthFacilityChildRegistrations.Columns[2].HeaderText = "Children Registered";
+
+
+                gvHealthFacilityChildVaccinations.Columns[0].HeaderText = "User Name";
+                gvHealthFacilityChildVaccinations.Columns[1].HeaderText = "Login Date";
+                gvHealthFacilityChildVaccinations.Columns[2].HeaderText = "Children Vaccinations";
 
             }
             else
@@ -98,11 +103,6 @@ public partial class Pages_HealthFacilitySpecificSessionReports : System.Web.UI.
         }
     }
 
-    public string convertToHoursAndMinutes(int duration){
-        TimeSpan t = TimeSpan.FromSeconds(duration);
-        String result =  t.Hours+" Hours  "+t.Minutes+" Minutes  "+t.Seconds+" Seconds";
-        return result;
-    }
 
     protected void createInputControls(){
         //date-from controls
@@ -248,88 +248,116 @@ public partial class Pages_HealthFacilitySpecificSessionReports : System.Web.UI.
         userID = Request.Form["selectUser"];
 
         if (userID == "0"){
-            odsHealthFacilitySessions.SelectParameters.Clear();
-            odsHealthFacilitySessions.SelectParameters.Add("hfid", selectedHFID.ToString());
-            odsHealthFacilitySessions.SelectParameters.Add("fromDate", strFromDate);
-            odsHealthFacilitySessions.SelectParameters.Add("toDate", strToDate);
-            odsHealthFacilitySessions.DataBind();
-            gvHealthFacilitySessions.DataSourceID = "odsHealthFacilitySessions";
-            gvHealthFacilitySessions.DataBind();
+            odsHealthFacilityChildRegistrations.SelectParameters.Clear();
+            odsHealthFacilityChildRegistrations.SelectParameters.Add("hfid", selectedHFID.ToString());
+            odsHealthFacilityChildRegistrations.SelectParameters.Add("fromDate", strFromDate);
+            odsHealthFacilityChildRegistrations.SelectParameters.Add("toDate", strToDate);
+            odsHealthFacilityChildRegistrations.DataBind();
+            gvHealthFacilityChildRegistrations.DataSourceID = "odsHealthFacilityChildRegistrations";
+            gvHealthFacilityChildRegistrations.DataBind();
+
+
+            odsHealthFacilityChildrenVaccinations.SelectParameters.Clear();
+            odsHealthFacilityChildrenVaccinations.SelectParameters.Add("hfid", selectedHFID.ToString());
+            odsHealthFacilityChildrenVaccinations.SelectParameters.Add("fromDate", strFromDate);
+            odsHealthFacilityChildrenVaccinations.SelectParameters.Add("toDate", strToDate);
+            odsHealthFacilityChildrenVaccinations.DataBind();
+            gvHealthFacilityChildVaccinations.DataSourceID = "odsHealthFacilityChildrenVaccinations";
+            gvHealthFacilityChildVaccinations.DataBind();
         }else{
-            odsHealthFacilitySessionsByUsers.SelectParameters.Clear();
-            odsHealthFacilitySessionsByUsers.SelectParameters.Add("hfid", selectedHFID.ToString());
-            odsHealthFacilitySessionsByUsers.SelectParameters.Add("userID", userID);
-            odsHealthFacilitySessionsByUsers.SelectParameters.Add("fromDate", strFromDate);
-            odsHealthFacilitySessionsByUsers.SelectParameters.Add("toDate", strToDate);
-            odsHealthFacilitySessionsByUsers.DataBind();
-            gvHealthFacilitySessions.DataSourceID = "odsHealthFacilitySessionsByUsers";
-            gvHealthFacilitySessions.DataBind();
+
+            odsHealthFacilityChildRegistrations.SelectParameters.Clear();
+            odsHealthFacilityChildRegistrations.SelectParameters.Add("hfid", selectedHFID.ToString());
+            odsHealthFacilityChildRegistrations.SelectParameters.Add("fromDate", strFromDate);
+            odsHealthFacilityChildRegistrations.SelectParameters.Add("toDate", strToDate);
+            odsHealthFacilityChildRegistrations.DataBind();
+            gvHealthFacilityChildRegistrations.DataSourceID = "odsHealthFacilityChildRegistrations";
+            gvHealthFacilityChildRegistrations.DataBind();
+
+            odsHealthFacilityChildrenVaccinationsByUsers.SelectParameters.Clear();
+            odsHealthFacilityChildrenVaccinationsByUsers.SelectParameters.Add("hfid", selectedHFID.ToString());
+            odsHealthFacilityChildrenVaccinationsByUsers.SelectParameters.Add("userID", userID);
+            odsHealthFacilityChildrenVaccinationsByUsers.SelectParameters.Add("fromDate", strFromDate);
+            odsHealthFacilityChildrenVaccinationsByUsers.SelectParameters.Add("toDate", strToDate);
+            odsHealthFacilityChildrenVaccinationsByUsers.DataBind();
+            gvHealthFacilityChildVaccinations.DataSourceID = "odsHealthFacilityChildrenVaccinationsByUsers";
+            gvHealthFacilityChildVaccinations.DataBind();
+
+
         }
 
-        getDurationData();
-        getDaysData();
+//        getDurationData();
+//        getDaysData();
         createInputControls();
 
     }
 
-    protected void getDurationData(){
+//    protected void getDurationData(){
+//
+//        string strFromDate = String.Format("{0}", Request.Form["dateFrom"]);
+//        string strToDate = String.Format("{0}", Request.Form["dateTo"]);
+//
+//        if (userID == "0"){
+//            int duration = HealthFacilitySessions.GetHealthFacilitySessionsLengthByHealthFacilityId(selectedHFID.ToString(), Convert.ToDateTime(strFromDate), Convert.ToDateTime(strToDate));
+//            TimeSpan t = TimeSpan.FromSeconds(duration);
+//            this.lblTotalDurationsValue.Text =  t.Hours+" Hours  "+t.Minutes+" Minutes  "+t.Seconds+" Seconds";
+//        }else{
+//            //GetHealthFacilitySessionsLengthByHealthFacilityIdAndUserId
+//            int duration = HealthFacilitySessions.GetHealthFacilitySessionsLengthByHealthFacilityIdAndUserId(selectedHFID.ToString(), userID ,Convert.ToDateTime(strFromDate), Convert.ToDateTime(strToDate));
+//            TimeSpan t = TimeSpan.FromSeconds(duration);
+//            this.lblTotalDurationsValue.Text =  t.Hours+" Hours  "+t.Minutes+" Minutes  "+t.Seconds+" Seconds";
+//        }
+//
+//    }
+//
+//    protected void getDaysData(){
+//
+//        string strFromDate = String.Format("{0}", Request.Form["dateFrom"]);
+//        string strToDate = String.Format("{0}", Request.Form["dateTo"]);
+//
+//        if (userID == "0"){
+//            int duration = HealthFacilitySessions.GetHealthFacilitySessionsDaysByHealthFacilityId(selectedHFID.ToString(), Convert.ToDateTime(strFromDate), Convert.ToDateTime(strToDate));
+//            String postfix = "";
+//            if (duration == 1){
+//                postfix = "Day";
+//            }else{
+//                postfix = "Days";
+//            }
+//            this.lblTotalDaysValue.Text = duration.ToString()+" "+postfix;
+//        }else{
+//            //GetHealthFacilitySessionsLengthByHealthFacilityIdAndUserId
+//            int duration = HealthFacilitySessions.GetHealthFacilitySessionsDaysByHealthFacilityIdAndUserId(selectedHFID.ToString(), userID ,Convert.ToDateTime(strFromDate), Convert.ToDateTime(strToDate));
+//            String postfix = "";
+//            if (duration == 1){
+//                postfix = "Day";
+//            }else{
+//                postfix = "Days";
+//            }
+//            this.lblTotalDaysValue.Text = duration.ToString()+" "+postfix;
+//        }
+//
+//    }
 
-        string strFromDate = String.Format("{0}", Request.Form["dateFrom"]);
-        string strToDate = String.Format("{0}", Request.Form["dateTo"]);
-
-        if (userID == "0"){
-            int duration = HealthFacilitySessions.GetHealthFacilitySessionsLengthByHealthFacilityId(selectedHFID.ToString(), Convert.ToDateTime(strFromDate), Convert.ToDateTime(strToDate));
-            TimeSpan t = TimeSpan.FromSeconds(duration);
-            this.lblTotalDurationsValue.Text =  t.Hours+" Hours  "+t.Minutes+" Minutes  "+t.Seconds+" Seconds";
-        }else{
-            //GetHealthFacilitySessionsLengthByHealthFacilityIdAndUserId
-            int duration = HealthFacilitySessions.GetHealthFacilitySessionsLengthByHealthFacilityIdAndUserId(selectedHFID.ToString(), userID ,Convert.ToDateTime(strFromDate), Convert.ToDateTime(strToDate));
-            TimeSpan t = TimeSpan.FromSeconds(duration);
-            this.lblTotalDurationsValue.Text =  t.Hours+" Hours  "+t.Minutes+" Minutes  "+t.Seconds+" Seconds";
-        }
-
-    }
-
-    protected void getDaysData(){
-
-        string strFromDate = String.Format("{0}", Request.Form["dateFrom"]);
-        string strToDate = String.Format("{0}", Request.Form["dateTo"]);
-
-        if (userID == "0"){
-            int duration = HealthFacilitySessions.GetHealthFacilitySessionsDaysByHealthFacilityId(selectedHFID.ToString(), Convert.ToDateTime(strFromDate), Convert.ToDateTime(strToDate));
-            String postfix = "";
-            if (duration == 1){
-                postfix = "Day";
-            }else{
-                postfix = "Days";
-            }
-            this.lblTotalDaysValue.Text = duration.ToString()+" "+postfix;
-        }else{
-            //GetHealthFacilitySessionsLengthByHealthFacilityIdAndUserId
-            int duration = HealthFacilitySessions.GetHealthFacilitySessionsDaysByHealthFacilityIdAndUserId(selectedHFID.ToString(), userID ,Convert.ToDateTime(strFromDate), Convert.ToDateTime(strToDate));
-            String postfix = "";
-            if (duration == 1){
-                postfix = "Day";
-            }else{
-                postfix = "Days";
-            }
-            this.lblTotalDaysValue.Text = duration.ToString()+" "+postfix;
-        }
-
-    }
-
-    protected void gvHealthFacilitySessions_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    protected void gvHealthFacilityChildRegistrations_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
-        gvHealthFacilitySessions.PageIndex = e.NewPageIndex;
+        gvHealthFacilityChildRegistrations.PageIndex = e.NewPageIndex;
         createInputControls();
     }
 
-    protected void gvHealthFacilitySessions_DataBound(object sender, EventArgs e)
+    protected void gvHealthFacilityChildRegistrations_DataBound(object sender, EventArgs e)
     {
-        // if (gvHealthFacilitySessions.Rows.Count == 0)
-        //     // lblWarning.Visible = true;
-        // else
-        //     // lblWarning.Visible = false;
+
     }
 
+
+    protected void gvHealthFacilityChildVaccinations_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        gvHealthFacilityChildVaccinations.PageIndex = e.NewPageIndex;
+        createInputControls();
+    }
+
+    protected void gvHealthFacilityChildVaccinations_DataBound(object sender, EventArgs e)
+    {
+
+    }
 }

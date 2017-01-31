@@ -1,8 +1,7 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workbench ActiveDocument="HealthFacilitiesSessions.cs">
     <Files>
-      <File FileName="HealthFacilitiesSessions.cs" Line="329" Column="34" />
-      <File FileName="HealthFacilityLoginSessionsRatingsEntity.cs" Line="25" Column="18" />
+      <File FileName="HealthFacilitiesSessions.cs" Line="311" Column="23" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

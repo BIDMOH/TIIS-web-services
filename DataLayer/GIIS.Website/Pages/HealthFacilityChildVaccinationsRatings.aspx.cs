@@ -25,7 +25,7 @@ using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
-public partial class Pages_HealthFacilitySessionLengthRatings : System.Web.UI.Page
+public partial class Pages_HealthFacilitySessionRatings : System.Web.UI.Page
 {
     public static String datefromString = "";
     public static String datetoString = "";
@@ -67,8 +67,9 @@ public partial class Pages_HealthFacilitySessionLengthRatings : System.Web.UI.Pa
 
                 //grid header text
                 gvHealthFacilitySessions.Columns[0].HeaderText = "Name";
-                gvHealthFacilitySessions.Columns[1].HeaderText = "Session Length";
+                gvHealthFacilitySessions.Columns[1].HeaderText = "Child Vaccinations";
                 gvHealthFacilitySessions.Columns[2].HeaderText = "View Facility Session Reports";
+                
             }
             else
             {
@@ -77,12 +78,6 @@ public partial class Pages_HealthFacilitySessionLengthRatings : System.Web.UI.Pa
                 Context.ApplicationInstance.CompleteRequest();
             }
         }
-    }
-
-    public string convertToHoursAndMinutes(int duration){
-        TimeSpan t = TimeSpan.FromSeconds(duration);
-        String result =  t.Hours+" Hours  "+t.Minutes+" Minutes  "+t.Seconds+" Seconds";
-        return result;
     }
 
     protected void createInputControls(){
@@ -110,7 +105,7 @@ public partial class Pages_HealthFacilitySessionLengthRatings : System.Web.UI.Pa
         {
             using (var irdr = idt.CreateDataReader())
             {
-    
+                
                 int count =0;
                 while (irdr.Read())
                 {
@@ -161,12 +156,12 @@ public partial class Pages_HealthFacilitySessionLengthRatings : System.Web.UI.Pa
         // Label control
         var labelControl = new Label()
         {
-            Text = "From"
+            Text = "From Date"
         };
 
             var labelControl2 = new Label()
         {
-            Text = "To"
+            Text = "To Date"
         };
 
             var labelControl3 = new Label()
@@ -215,11 +210,15 @@ public partial class Pages_HealthFacilitySessionLengthRatings : System.Web.UI.Pa
                     string.Format(
                     "<script type=\"text/javascript\">Sys.Application.add_init(function() {{$create(Sys.Extended.UI.CalendarBehavior, {{\"format\":\"MM-dd-yyyy\",\"id\":\"dateFrom\"}}, null, null, $get(\"{0}\"));}});</script>", "dateTo"));
                     //  $create(Sys.Extended.UI.CalendarBehavior, {"endDate":"Thu, 28 May 2015 00:00:00 GMT","format":"dd/MM/yyyy","id":"ctl00_ContentPlaceHolder1_ceBirthdateTo"}, null, null, $get("ctl00_ContentPlaceHolder1_txtBirthdateTo"));
+
+
+
         
     }
 
     protected void btnSearch_Click(object sender, EventArgs e)
     {
+
 
         string sessionvar = "_healthfacility_" + CurrentEnvironment.LoggedUser.HealthFacilityId.ToString();
         string s;
@@ -239,13 +238,32 @@ public partial class Pages_HealthFacilitySessionLengthRatings : System.Web.UI.Pa
 
         selectedHealthFacilityID = Request.Form["selectHealthFacility"];
 
-        odsHealthFacilitySessions.SelectParameters.Clear();
-        odsHealthFacilitySessions.SelectParameters.Add("districtCouncilId", selectedHealthFacilityID);
-        odsHealthFacilitySessions.SelectParameters.Add("fromDate", strFromDate);
-        odsHealthFacilitySessions.SelectParameters.Add("toDate", strToDate);
-        odsHealthFacilitySessions.DataBind();
-        gvHealthFacilitySessions.DataSourceID = "odsHealthFacilitySessions";
+        odsHealthFacilitySessionsVaccinations.SelectParameters.Clear();
+        odsHealthFacilitySessionsVaccinations.SelectParameters.Add("districtCouncilId", selectedHealthFacilityID);
+        odsHealthFacilitySessionsVaccinations.SelectParameters.Add("fromDate", strFromDate);
+        odsHealthFacilitySessionsVaccinations.SelectParameters.Add("toDate", strToDate);
+        odsHealthFacilitySessionsVaccinations.DataBind();
+        gvHealthFacilitySessions.DataSourceID = "odsHealthFacilitySessionsVaccinations";
         gvHealthFacilitySessions.DataBind();
+
+        // if (userID == "0"){
+        //     odsHealthFacilitySessionsVaccinations.SelectParameters.Clear();
+        //     odsHealthFacilitySessionsVaccinations.SelectParameters.Add("hfid", s);
+        //     odsHealthFacilitySessionsVaccinations.SelectParameters.Add("fromDate", strFromDate);
+        //     odsHealthFacilitySessionsVaccinations.SelectParameters.Add("toDate", strToDate);
+        //     odsHealthFacilitySessionsVaccinations.DataBind();
+        //     gvHealthFacilitySessions.DataSourceID = "odsHealthFacilitySessionsVaccinations";
+        //     gvHealthFacilitySessions.DataBind();
+        // }else{
+        //     odsHealthFacilitySessionsByUsers.SelectParameters.Clear();
+        //     odsHealthFacilitySessionsByUsers.SelectParameters.Add("hfid", s);
+        //     odsHealthFacilitySessionsByUsers.SelectParameters.Add("userID", userID);
+        //     odsHealthFacilitySessionsByUsers.SelectParameters.Add("fromDate", strFromDate);
+        //     odsHealthFacilitySessionsByUsers.SelectParameters.Add("toDate", strToDate);
+        //     odsHealthFacilitySessionsByUsers.DataBind();
+        //     gvHealthFacilitySessions.DataSourceID = "odsHealthFacilitySessionsByUsers";
+        //     gvHealthFacilitySessions.DataBind();
+        // }
 
         createInputControls();
         
@@ -263,29 +281,5 @@ public partial class Pages_HealthFacilitySessionLengthRatings : System.Web.UI.Pa
         // else
         //     // lblWarning.Visible = false;
     }
-
-    protected void gvHealthFacilitySessions_DataBound(object sender, GridViewRowEventArgs e)
-        {
-             // To check condition on integer value
-
-
-                if (e.Row.RowState == DataControlRowState.Alternate)
-                    {
-                       if (Convert.ToInt16(DataBinder.Eval(e.Row.DataItem, "SessionsCount")) > 3)
-                       {
-                         e.Row.BackColor = System.Drawing.Color.Green;
-                       }else if(Convert.ToInt16(DataBinder.Eval(e.Row.DataItem, "SessionsCount")) < 2){
-                           e.Row.BackColor = System.Drawing.Color.Red;
-                       }
-                    }
-                    else
-                    {
-                       if (Convert.ToInt16(DataBinder.Eval(e.Row.DataItem, "SessionsCount")) > 3)
-                       {
-                         e.Row.BackColor = System.Drawing.Color.Green;
-                       }else if(Convert.ToInt16(DataBinder.Eval(e.Row.DataItem, "SessionsCount")) < 2){
-                           e.Row.BackColor = System.Drawing.Color.Red;
-                       }
-                    }
-        }
+    
 }

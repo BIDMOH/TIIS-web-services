@@ -5,7 +5,7 @@
       <File FileName="GIIS.Tanzania.WCF/HealthFacilityManagement.svc.cs" Line="1091" Column="53" />
       <File FileName="GIIS.Tanzania.WCF/IHealthFacilityManagement.cs" Line="181" Column="64" />
       <File FileName="GIIS.Tanzania.WCF/StockManagement.svc.cs" Line="26" Column="120" />
-      <File FileName="GIIS.Tanzania.WCF/VimsNetworkRequestsHelper.cs" Line="36" Column="53" />
+      <File FileName="GIIS.Tanzania.WCF/VimsNetworkRequestsHelper.cs" Line="9" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
