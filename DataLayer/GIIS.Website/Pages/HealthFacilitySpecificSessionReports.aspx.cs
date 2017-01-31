@@ -118,6 +118,7 @@ public partial class Pages_HealthFacilitySpecificSessionReports : System.Web.UI.
         //     new NpgsqlParameter("@FacilityId", NpgsqlTypes.NpgsqlDbType.Integer) { Value = CurrentEnvironment.LoggedUser.HealthFacilityId }
         // };
 
+
         string command = "SELECT \"ID\", \"USERNAME\" FROM \"USER\" WHERE \"ID\" <> 1 AND \"HEALTH_FACILITY_ID\" = @FacilityId";
         using (var idt = DBManager.ExecuteReaderCommand(command, System.Data.CommandType.Text, contextParms))
         {
@@ -257,12 +258,13 @@ public partial class Pages_HealthFacilitySpecificSessionReports : System.Web.UI.
             gvHealthFacilityChildRegistrations.DataBind();
 
 
-            odsHealthFacilityChildrenVaccinations.SelectParameters.Clear();
-            odsHealthFacilityChildrenVaccinations.SelectParameters.Add("hfid", selectedHFID.ToString());
-            odsHealthFacilityChildrenVaccinations.SelectParameters.Add("fromDate", strFromDate);
-            odsHealthFacilityChildrenVaccinations.SelectParameters.Add("toDate", strToDate);
-            odsHealthFacilityChildrenVaccinations.DataBind();
-            gvHealthFacilityChildVaccinations.DataSourceID = "odsHealthFacilityChildrenVaccinations";
+            odsHealthFacilityChildRegistrationsByUsers.SelectParameters.Clear();
+            odsHealthFacilityChildRegistrationsByUsers.SelectParameters.Add("hfid", selectedHFID.ToString());
+            odsHealthFacilityChildRegistrationsByUsers.SelectParameters.Add("fromDate", strFromDate);
+            odsHealthFacilityChildRegistrationsByUsers.SelectParameters.Add("toDate", strToDate);
+            odsHealthFacilityChildRegistrationsByUsers.SelectParameters.Add("userID", userID);
+            odsHealthFacilityChildRegistrationsByUsers.DataBind();
+            odsHealthFacilityChildRegistrationsByUsers.DataSourceID = "GetHealthFacilityChildVaccinationsByHealthFacilityIdAndUserId";
             gvHealthFacilityChildVaccinations.DataBind();
         }else{
 

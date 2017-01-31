@@ -66,30 +66,28 @@
 
     <div class="row">
         <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12 clearfix" style="overflow:auto">
-            <asp:GridView ID="gvHealthFacilitySessions" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover table-responsive" AllowPaging="True" 
-            OnDataBound="gvHealthFacilitySessions_DataBound" PageSize="25" OnPageIndexChanging="gvHealthFacilitySessions_PageIndexChanging" >
-                        <PagerSettings Position="Top" Mode="NumericFirstLast" />
-                        <PagerStyle CssClass="pagination" HorizontalAlign="Left" VerticalAlign="Top" />
+                <asp:GridView ID="gvHealthFacilitySessions" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover table-responsive" AllowPaging="True" OnRowDataBound="gvHealthFacilitySessions_DataBound" OnPageIndexChanging="gvHealthFacilitySessions_PageIndexChanging" PageSize="25">
+                    <PagerSettings Position="Top" Mode="NumericFirstLast" />
+                    <PagerStyle CssClass="pagination" HorizontalAlign="Left" VerticalAlign="Top" />
                     <Columns>
-                        <asp:TemplateField HeaderText="Name">
-                        <ItemTemplate>
-                                <%#Eval("Name")%>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Child Vaccinations">
-                        <ItemTemplate>
-                            <%#Eval("SessionsCount")%>
-                        </ItemTemplate>
-                        </asp:TemplateField>
-                        
-                        <asp:TemplateField HeaderText="View Facility Session Reports">
+                            <asp:TemplateField HeaderText="Name">
+                               <ItemTemplate>
+                                    <%#Eval("Name")%>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Children Registrations">
                             <ItemTemplate>
-                                <a href='<%# Eval("HealthFacilityId", "HealthFacilitySpecificSessionReports.aspx?hfId={0}") %>' target="_blank">
-                                    <img alt='View Session Reports' src="../img/arrow_right_blue.png" />
-                                </a>
+                                <%# Convert.ToInt32(Eval("SessionsCount")) %>
                             </ItemTemplate>
-                        </asp:TemplateField>
-                    </Columns>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="View Facility Session Reports">
+                                <ItemTemplate>
+                                    <a href='<%# Eval("HealthFacilityId", "HealthFacilitySpecificSessionReports.aspx?hfId={0}") %>' target="_blank">
+                                        <img alt='View Session Reports' src="../img/arrow_right_blue.png" />
+                                    </a>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                        </Columns>
                 </asp:GridView>
 
                 <asp:ObjectDataSource ID="odsHealthFacilitySessionsVaccinations" runat="server" SelectMethod="GetHealthFacilityChildrenVaccinationsByDistrict" TypeName="GIIS.DataLayer.HealthFacilitySessions">

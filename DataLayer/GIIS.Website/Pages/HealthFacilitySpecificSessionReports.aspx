@@ -75,8 +75,8 @@
                     </div>
                     <br />
                     <ul class="nav nav-pills" id="myTab">
-                        <li class="active"><a data-toggle="pill" href="#home">Session Durations Report</a></li>
-                        <li><a data-toggle="pill" href="#menu1">Total Sessions Report (Duration)</a></li>
+                        <li class="active"><a data-toggle="pill" href="#home">Child Registrations Report</a></li>
+                        <li><a data-toggle="pill" href="#menu1">Child Vaccinations Report</a></li>
                     </ul>
                 <div class="tab-content">
                     <div id="home" class="tab-pane fade in active">
@@ -142,7 +142,7 @@
                         <br />
                         <div class="row">
                             <div class="col-md-12">
-                                <em><asp:Label runat="server" ID="lblDaysReportDescription" Text="Report to display the total number of days for a given date range that the application was logged in"  /></em>
+                                <em><asp:Label runat="server" ID="lblDaysReportDescription" Text="This report shows the number of children vaccinated by users in the mobile application within a specific date range"  /></em>
                             </div>
                         </div>
                         <br />

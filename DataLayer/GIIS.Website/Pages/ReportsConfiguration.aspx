@@ -32,46 +32,79 @@
     </div>
 
     <div class="row">
-        <div class="col-md-5">
-            <h3><asp:Label ID="lblHoursThresholds" Text="Number of Children Registations Threshold For Health Facility Sessions" runat="server" /></h3>
+        <div class="col-md-4">
+            <h5><asp:Label ID="lblRegistrationsThresholds" Text="Children Registations Threshold For Health Facility Sessions" runat="server" /></h5>
         </div>
 
-        <div class="col-md-5">
-            <h3><asp:Label ID="lblDaysThresholds" Text="Days Thresholds for Health Facility Sessions" runat="server" /></h3>
+        <div class="col-md-4">
+                    <h5><asp:Label ID="lblVaccinationsThresholds" Text="Children Vaccinations Threshold For Health Facility Sessions" runat="server" /></h5>
+        </div>
+
+        <div class="col-md-4">
+            <h5><asp:Label ID="lblDaysThresholds" Text="Days Thresholds for Health Facility Sessions" runat="server" /></h5>
         </div>
     </div>
     <br />
     <br />
     <div class="row">
-        <div class="col-md-5">
+        <div class="col-md-4">
             <div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 clearfix">
-                <asp:Label ID="lblMaxThreshold" runat="server" Text="Maximum"></asp:Label>
+                <asp:Label ID="lblMaxRegistationsThreshold" runat="server" Text="Upper"></asp:Label>
             </div>
 
             <div class="col-md-7 col-xs-7 col-sm-7 col-lg-7 clearfix">
                 <div class="form-group">
-                    <asp:TextBox ID="txtMAxThreshold" runat="server" CssClass="form-control"></asp:TextBox>
+                    <asp:TextBox ID="txtMaxRegistationsThreshold" runat="server" CssClass="form-control"></asp:TextBox>
                 </div>
             </div> 
 
             <div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 clearfix">
-                <asp:Label ID="lblMinThreshold" runat="server" Text="Minimum"></asp:Label>
+                <asp:Label ID="lblMinRegistationsThreshold" runat="server" Text="Lower"></asp:Label>
             </div>
 
             <div class="col-md-7 col-xs-7 col-sm-7 col-lg-7 clearfix">
                 <div class="form-group">
-                    <asp:TextBox ID="txtMinThreshold" runat="server" CssClass="form-control"></asp:TextBox>
+                    <asp:TextBox ID="txtMinRegistationsThreshold" runat="server" CssClass="form-control"></asp:TextBox>
                 </div>
             </div>
             <br />
             <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12 clearfix">
-                <asp:Button ID="btnSaveHoursThreshold" runat="server" Text="Save" CssClass="btn btn-raised btn-primary" OnClick="btnSaveHoursThreshold_Click" ValidationGroup="saveConfiguration" />
+                <asp:Button ID="btnSaveRegistrationsThreshold" runat="server" Text="Save" CssClass="btn btn-raised btn-primary" OnClick="btnSaveChildrenRegistrationsThreshold_Click" ValidationGroup="saveConfiguration" />
             </div>
         </div>
 
-        <div class="col-md-5">
+
+        <div class="col-md-4">
             <div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 clearfix">
-                <asp:Label ID="lblMaxThresholdDays" runat="server" Text="Maximum"></asp:Label>
+                <asp:Label ID="lblMaxVaccinationsThreshold" runat="server" Text="Upper"></asp:Label>
+            </div>
+
+            <div class="col-md-7 col-xs-7 col-sm-7 col-lg-7 clearfix">
+                <div class="form-group">
+                    <asp:TextBox ID="txtMaxVaccinationsThreshold" runat="server" CssClass="form-control"></asp:TextBox>
+                </div>
+            </div>
+
+            <div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 clearfix">
+                <asp:Label ID="lblMinVaccinationsThreshold" runat="server" Text="Lower"></asp:Label>
+            </div>
+
+            <div class="col-md-7 col-xs-7 col-sm-7 col-lg-7 clearfix">
+                <div class="form-group">
+                    <asp:TextBox ID="txtMinVaccinationsThreshold" runat="server" CssClass="form-control"></asp:TextBox>
+                </div>
+            </div>
+            <br />
+            <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12 clearfix">
+                <asp:Button ID="btnSaveVaccinationsThreshold" runat="server" Text="Save" CssClass="btn btn-raised btn-primary" OnClick="btnSaveChildrenVaccinationsThreshold_Click" ValidationGroup="saveConfiguration" />
+            </div>
+        </div>
+
+
+
+        <div class="col-md-4">
+            <div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 clearfix">
+                <asp:Label ID="lblMaxThresholdDays" runat="server" Text="Upper"></asp:Label>
             </div>
 
             <div class="col-md-7 col-xs-7 col-sm-7 col-lg-7 clearfix">
@@ -81,7 +114,7 @@
             </div> 
 
             <div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 clearfix">
-                <asp:Label ID="lblMinThresholdDays" runat="server" Text="Minimum"></asp:Label>
+                <asp:Label ID="lblMinThresholdDays" runat="server" Text="Lower"></asp:Label>
             </div>
 
             <div class="col-md-7 col-xs-7 col-sm-7 col-lg-7 clearfix">

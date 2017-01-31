@@ -103,9 +103,18 @@ public partial class Pages_HealthFacilitySessionDaysRatings : System.Web.UI.Page
 
         hfParentID = HealthFacility.GetHealthFacilityById(CurrentEnvironment.LoggedUser.HealthFacilityId).ParentId;
 
+        int userId = CurrentEnvironment.LoggedUser.Id;
+        UserRole role = UserRole.GetUserRoleByUserId(userId);
+
+        string command;
+        if(role.Role.Name.Equals("Middle Level Officer"))
+        {
+            command = "SELECT \"ID\", \"NAME\" FROM \"HEALTH_FACILITY\" WHERE \"TYPE_ID\" = 2  AND \"ID\" = "+CurrentEnvironment.LoggedUser.HealthFacilityId;
+        }else{
+            command = "SELECT \"ID\", \"NAME\" FROM \"HEALTH_FACILITY\" WHERE \"TYPE_ID\" = "+2;
+        }
 
 
-        string command = "SELECT \"ID\", \"NAME\" FROM \"HEALTH_FACILITY\" WHERE \"TYPE_ID\" = "+2;
         using (var idt = DBManager.ExecuteReaderCommand(command, System.Data.CommandType.Text, contextParms))
         {
             using (var irdr = idt.CreateDataReader())
@@ -262,26 +271,20 @@ public partial class Pages_HealthFacilitySessionDaysRatings : System.Web.UI.Page
     protected void gvHealthFacilitySessions_DataBound(object sender, GridViewRowEventArgs e)
     {
          // To check condition on integer value
+           ReportsConfiguration co1 = ReportsConfiguration.GetConfigurationByName("DaysMaximum");
+           ReportsConfiguration co2 = ReportsConfiguration.GetConfigurationByName("DaysMinimum");
 
-
-            if (e.Row.RowState == DataControlRowState.Alternate)
+            if(co1!=null && co2!=null){
+                if (e.Row.RowType != DataControlRowType.Header)
                 {
-                   if (Convert.ToInt16(DataBinder.Eval(e.Row.DataItem, "SessionsCount")) > 3)
+                   if (Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "SessionsCount")) > Convert.ToInt32(co1.Value))
                    {
-                     e.Row.BackColor = System.Drawing.Color.Green;
-                   }else if(Convert.ToInt16(DataBinder.Eval(e.Row.DataItem, "SessionsCount")) < 2){
-                       e.Row.BackColor = System.Drawing.Color.Red;
+                     e.Row.ForeColor = System.Drawing.Color.Green;
+                   }else if(Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "SessionsCount")) < Convert.ToInt32(co2.Value)){
+                       e.Row.ForeColor = System.Drawing.Color.Red;
                    }
                 }
-                else
-                {
-                   if (Convert.ToInt16(DataBinder.Eval(e.Row.DataItem, "SessionsCount")) > 3)
-                   {
-                     e.Row.BackColor = System.Drawing.Color.Green;
-                   }else if(Convert.ToInt16(DataBinder.Eval(e.Row.DataItem, "SessionsCount")) < 2){
-                       e.Row.BackColor = System.Drawing.Color.Red;
-                   }
-                }
+            }
     }
     
 }
