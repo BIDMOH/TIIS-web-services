@@ -72,6 +72,59 @@ namespace GIIS.DataLayer
 
 		}
 
+		public static List<HealthFacilitySessions> GetHealthFacilitySessionsLastLoginsByHealthFacilityId(string hfid,DateTime fromDate, DateTime toDate)
+		{
+			toDate = toDate.AddDays(1);
+			try
+			{
+				string query = @"SELECT DISTINCT ON (""USER_ID"") ""USER_ID"",""LOGIN_TIME"",""HEALTH_FACILITY_ID"",""SESSION_LENGTH"" FROM ""HEALTH_FACILITIES_SESSIONS"" 
+						WHERE ""HEALTH_FACILITY_ID"" = @hfid
+							ORDER BY ""USER_ID"",""LOGIN_TIME"" DESC ";
+				List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
+				{
+					new NpgsqlParameter("@hfid", DbType.Int32) { Value = hfid },
+					new NpgsqlParameter("@fromDate", DbType.DateTime) { Value = fromDate },
+					new NpgsqlParameter("@toDate", DbType.DateTime) { Value = toDate }
+				};
+				DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, parameters);
+				return GetHealthFacilitySessionsAsList(dt);
+			}
+			catch (Exception ex)
+			{
+				Log.InsertEntity("HealthFacilitySessions", "GetHealthFacilitySessionsByHealthFacilityId", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+				throw ex;
+			}
+
+		}
+
+
+		public static List<HealthFacilitySessions> GetHealthFacilitySessionsLastLoginsByHealthFacilityIdAndUserId(string hfid,string userId, DateTime fromDate, DateTime toDate)
+		{
+			toDate = toDate.AddDays(1);
+			try
+			{
+				string query = @"SELECT DISTINCT ON (""USER_ID"") ""USER_ID"",""LOGIN_TIME"",""HEALTH_FACILITY_ID"",""SESSION_LENGTH"" FROM ""HEALTH_FACILITIES_SESSIONS"" 
+						WHERE 
+							""HEALTH_FACILITY_ID"" = @hfid AND 
+							""USER_ID"" = @userId
+							ORDER BY ""USER_ID"",""LOGIN_TIME"" DESC ";
+				List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
+				{
+					new NpgsqlParameter("@hfid", DbType.Int32) { Value = hfid },
+					new NpgsqlParameter("@userId", DbType.Int32) { Value = userId },
+					new NpgsqlParameter("@fromDate", DbType.DateTime) { Value = fromDate },
+					new NpgsqlParameter("@toDate", DbType.DateTime) { Value = toDate }
+				};
+				DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, parameters);
+				return GetHealthFacilitySessionsAsList(dt);
+			}
+			catch (Exception ex)
+			{
+				Log.InsertEntity("HealthFacilitySessions", "GetHealthFacilitySessionsByHealthFacilityId", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+				throw ex;
+			}
+
+		}
 
 		public static List<HealthFacilitySessions> GetHealthFacilityChildRegistrationsByHealthFacilityIdAndUserId(string hfid, string userId, DateTime fromDate, DateTime toDate)
 		{

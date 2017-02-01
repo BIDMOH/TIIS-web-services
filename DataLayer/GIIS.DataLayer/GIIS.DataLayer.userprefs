@@ -1,13 +1,8 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workbench ActiveDocument="HealthFacilitiesSessions.cs">
     <Files>
-      <File FileName="HealthFacilitiesSessions.cs" Line="206" Column="19" />
-      <File FileName="ConfigurationsReports.cs" Line="40" Column="59" />
-      <File FileName="UserRole.cs" Line="32" Column="17" />
-      <File FileName="UserRoleEntity.cs" Line="26" Column="50" />
-      <File FileName="Role.cs" Line="28" Column="30" />
-      <File FileName="UserEntity.cs" Line="1" Column="1" />
-      <File FileName="User.cs" Line="42" Column="30" />
+      <File FileName="HealthFacilitiesSessions.cs" Line="81" Column="43" />
+      <File FileName="HealthFacilityImmunizationSessions.cs" Line="342" Column="67" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

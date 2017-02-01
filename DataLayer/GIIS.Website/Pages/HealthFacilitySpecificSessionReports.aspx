@@ -75,11 +75,66 @@
                     </div>
                     <br />
                     <ul class="nav nav-pills" id="myTab">
-                        <li class="active"><a data-toggle="pill" href="#home">Child Registrations Report</a></li>
-                        <li><a data-toggle="pill" href="#menu1">Child Vaccinations Report</a></li>
+                        <li class="active"><a data-toggle="pill" href="#home">User's Last Logins</a></li>
+                        <li><a data-toggle="pill" href="#menu1">Child Registrations Report</a></li>
+                        <li><a data-toggle="pill" href="#menu2">Child Vaccinations Report</a></li>
                     </ul>
                 <div class="tab-content">
                     <div id="home" class="tab-pane fade in active">
+                        <br />
+                        <div class="row">
+                            <div class="col-md-12">
+                                <em><asp:Label runat="server" ID="lblLastLogins" Text="This report shows the last logins dates and time for users in a health facility  within a specific date range"  /></em>
+                            </div>
+                        </div>
+                        <br />
+                        <form class="form" method="get" action="" id="launchDurationReport" >
+                        <div class="row">
+                            <!--begin-->
+                            <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12 clearfix" style="overflow:auto">
+                                   <asp:GridView ID="gvHealthFacilityLastLogin" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover table-responsive" AllowPaging="True"
+                                   OnDataBound="gvHealthFacilityLastLogin_DataBound" PageSize="25" OnPageIndexChanging="gvHealthFacilityLastLogin_PageIndexChanging" >
+                                           <PagerSettings Position="Top" Mode="NumericFirstLast" />
+                                           <PagerStyle CssClass="pagination" HorizontalAlign="Left" VerticalAlign="Top" />
+                                           <Columns>
+                                               <asp:TemplateField HeaderText="User Name">
+                                                    <ItemTemplate>
+                                                       <%#Eval("UserName")%>
+                                                    </ItemTemplate>
+                                               </asp:TemplateField>
+                                               <asp:TemplateField HeaderText="Last Login">
+                                                    <ItemTemplate>
+                                                       <%#Eval("LoginTime")%>
+                                                    </ItemTemplate>
+                                               </asp:TemplateField>
+
+                                           </Columns>
+                                       </asp:GridView>
+
+                                       <asp:ObjectDataSource ID="odsgvHealthFacilityLastLogin" runat="server" SelectMethod="GetHealthFacilitySessionsLastLoginsByHealthFacilityId" TypeName="GIIS.DataLayer.HealthFacilitySessions">
+                                           <SelectParameters>
+                                               <asp:Parameter Name="hfid" Type="String" />
+                                               <asp:Parameter Name="fromDate" Type="DateTime" />
+                                               <asp:Parameter Name="toDate" Type="DateTime" />
+                                           </SelectParameters>
+                                       </asp:ObjectDataSource>
+
+                                       <asp:ObjectDataSource ID="odsgvHealthFacilityLastLoginByUsers" runat="server" SelectMethod="GetHealthFacilitySessionsLastLoginsByHealthFacilityIdAndUserId" TypeName="GIIS.DataLayer.HealthFacilitySessions">
+                                           <SelectParameters>
+                                               <asp:Parameter Name="hfid" Type="String" />
+                                               <asp:Parameter Name="userID" Type="String" />
+                                               <asp:Parameter Name="fromDate" Type="DateTime" />
+                                               <asp:Parameter Name="toDate" Type="DateTime" />
+                                           </SelectParameters>
+                                       </asp:ObjectDataSource>
+
+                               </div>
+                            <!--end-->
+                        </div>
+                        </form>
+
+                    </div>
+                    <div id="menu1" class="tab-pane fade">
                         <br />
                         <div class="row">
                             <div class="col-md-12">
@@ -138,7 +193,7 @@
                         </form>
 
                     </div>
-                    <div id="menu1" class="tab-pane fade">
+                    <div id="menu2" class="tab-pane fade">
                         <br />
                         <div class="row">
                             <div class="col-md-12">

@@ -258,22 +258,32 @@ public partial class Pages_HealthFacilitySpecificSessionReports : System.Web.UI.
             gvHealthFacilityChildRegistrations.DataBind();
 
 
+            odsHealthFacilityChildrenVaccinations.SelectParameters.Clear();
+            odsHealthFacilityChildrenVaccinations.SelectParameters.Add("hfid", selectedHFID.ToString());
+            odsHealthFacilityChildrenVaccinations.SelectParameters.Add("fromDate", strFromDate);
+            odsHealthFacilityChildrenVaccinations.SelectParameters.Add("toDate", strToDate);
+            odsHealthFacilityChildrenVaccinations.DataBind();
+            gvHealthFacilityChildVaccinations.DataSourceID = "odsHealthFacilityChildrenVaccinations";
+            gvHealthFacilityChildVaccinations.DataBind();
+
+            odsgvHealthFacilityLastLogin.SelectParameters.Clear();
+            odsgvHealthFacilityLastLogin.SelectParameters.Add("hfid", selectedHFID.ToString());
+            odsgvHealthFacilityLastLogin.SelectParameters.Add("fromDate", strFromDate);
+            odsgvHealthFacilityLastLogin.SelectParameters.Add("toDate", strToDate);
+            odsgvHealthFacilityLastLogin.DataBind();
+            gvHealthFacilityLastLogin.DataSourceID = "odsgvHealthFacilityLastLogin";
+            gvHealthFacilityLastLogin.DataBind();
+
+
+
+        }else{
             odsHealthFacilityChildRegistrationsByUsers.SelectParameters.Clear();
             odsHealthFacilityChildRegistrationsByUsers.SelectParameters.Add("hfid", selectedHFID.ToString());
             odsHealthFacilityChildRegistrationsByUsers.SelectParameters.Add("fromDate", strFromDate);
             odsHealthFacilityChildRegistrationsByUsers.SelectParameters.Add("toDate", strToDate);
             odsHealthFacilityChildRegistrationsByUsers.SelectParameters.Add("userID", userID);
             odsHealthFacilityChildRegistrationsByUsers.DataBind();
-            odsHealthFacilityChildRegistrationsByUsers.DataSourceID = "GetHealthFacilityChildVaccinationsByHealthFacilityIdAndUserId";
-            gvHealthFacilityChildVaccinations.DataBind();
-        }else{
-
-            odsHealthFacilityChildRegistrations.SelectParameters.Clear();
-            odsHealthFacilityChildRegistrations.SelectParameters.Add("hfid", selectedHFID.ToString());
-            odsHealthFacilityChildRegistrations.SelectParameters.Add("fromDate", strFromDate);
-            odsHealthFacilityChildRegistrations.SelectParameters.Add("toDate", strToDate);
-            odsHealthFacilityChildRegistrations.DataBind();
-            gvHealthFacilityChildRegistrations.DataSourceID = "odsHealthFacilityChildRegistrations";
+            gvHealthFacilityChildRegistrations.DataSourceID = "odsHealthFacilityChildRegistrationsByUsers";
             gvHealthFacilityChildRegistrations.DataBind();
 
             odsHealthFacilityChildrenVaccinationsByUsers.SelectParameters.Clear();
@@ -284,6 +294,16 @@ public partial class Pages_HealthFacilitySpecificSessionReports : System.Web.UI.
             odsHealthFacilityChildrenVaccinationsByUsers.DataBind();
             gvHealthFacilityChildVaccinations.DataSourceID = "odsHealthFacilityChildrenVaccinationsByUsers";
             gvHealthFacilityChildVaccinations.DataBind();
+
+
+            odsgvHealthFacilityLastLoginByUsers.SelectParameters.Clear();
+            odsgvHealthFacilityLastLoginByUsers.SelectParameters.Add("hfid", selectedHFID.ToString());
+            odsgvHealthFacilityLastLoginByUsers.SelectParameters.Add("userID", userID);
+            odsgvHealthFacilityLastLoginByUsers.SelectParameters.Add("fromDate", strFromDate);
+            odsgvHealthFacilityLastLoginByUsers.SelectParameters.Add("toDate", strToDate);
+            odsgvHealthFacilityLastLoginByUsers.DataBind();
+            gvHealthFacilityLastLogin.DataSourceID = "odsgvHealthFacilityLastLoginByUsers";
+            gvHealthFacilityLastLogin.DataBind();
 
 
         }
@@ -359,6 +379,18 @@ public partial class Pages_HealthFacilitySpecificSessionReports : System.Web.UI.
     }
 
     protected void gvHealthFacilityChildVaccinations_DataBound(object sender, EventArgs e)
+    {
+
+    }
+
+
+    protected void gvHealthFacilityLastLogin_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        gvHealthFacilityLastLogin.PageIndex = e.NewPageIndex;
+        createInputControls();
+    }
+
+    protected void gvHealthFacilityLastLogin_DataBound(object sender, EventArgs e)
     {
 
     }

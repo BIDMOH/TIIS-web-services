@@ -66,7 +66,7 @@ namespace GIIS.DataLayer
 					new NpgsqlParameter("@reportedYear", DbType.Int32)  { Value = reportingYear }
 				};
 				DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, parameters);
-				return GetHealthFacilityImmunizationSessionsAsList(dt);
+				return GetHealthFacilityImmunizationSessionsAsList(dt, healthFacilityId,  reportedMonth,  reportingYear);
 			}
 			catch (Exception ex)
 			{
@@ -92,6 +92,89 @@ namespace GIIS.DataLayer
 			catch (Exception ex)
 			{
 				Log.InsertEntity("HealthFacilityImmunizationSessions", "GetHealthFacilityImmunizationSessions", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+				throw ex;
+			}
+		}
+
+
+
+		public static int GetHealthFacilityFixedImmunizationSessionsCount(int healthFacilityId,int reportedMonth, int reportingYear)
+		{
+			DateTime fromDate = new DateTime(reportingYear, reportedMonth, 1);
+			DateTime toDate = fromDate.AddMonths(1);
+			try
+			{
+
+				string query = @"SELECT COUNT (DISTINCT date_trunc('day',ve.""VACCINATION_DATE"")) AS C FROM ""VACCINATION_APPOINTMENT"" as va
+                    INNER JOIN
+                       ""VACCINATION_EVENT"" as ve on va.""ID"" = ve.""APPOINTMENT_ID"" 
+                    WHERE ve.""APPOINTMENT_ID"" = va.""ID""
+                       AND ve.""HEALTH_FACILITY_ID"" = @healthFacilityId
+                       AND ve.""VACCINATION_STATUS"" = true
+                       AND va.""OUTREACH"" = false
+                       AND ve.""VACCINATION_DATE"" >= @fromDate
+                       AND ve.""VACCINATION_DATE"" < @toDate   ";
+				List<Npgsql.NpgsqlParameter> parameters = new List<NpgsqlParameter>()
+				{
+					new NpgsqlParameter("@healthFacilityId", DbType.Int32)  { Value = healthFacilityId },
+					new NpgsqlParameter("@fromDate", DbType.DateTime)  { Value = fromDate },
+					new NpgsqlParameter("@toDate", DbType.DateTime)  { Value = toDate }
+				};
+				DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, parameters);
+
+				int count = 0;
+				foreach (DataRow row in dt.Rows)
+				{
+					count = Helper.ConvertToInt(row["C"]);
+				}
+
+
+				return count;
+			}
+			catch (Exception ex)
+			{
+				Log.InsertEntity("HealthFacilityImmunizationSessions", "GetHealthFacilityFixedImmunizationSessionsCount", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+				throw ex;
+			}
+		}
+
+
+		public static int GetHealthFacilityOutreachImmunizationSessionsCount(int healthFacilityId, int reportedMonth, int reportingYear)
+		{
+			DateTime fromDate = new DateTime(reportingYear, reportedMonth, 1);
+			DateTime toDate = fromDate.AddMonths(1);
+			try
+			{
+
+				string query = @"SELECT COUNT (DISTINCT date_trunc('day',ve.""VACCINATION_DATE"")) AS C FROM ""VACCINATION_APPOINTMENT"" as va
+                    INNER JOIN
+                       ""VACCINATION_EVENT"" as ve on va.""ID"" = ve.""APPOINTMENT_ID"" 
+                    WHERE ve.""APPOINTMENT_ID"" = va.""ID""
+                       AND ve.""HEALTH_FACILITY_ID"" = @healthFacilityId
+                       AND ve.""VACCINATION_STATUS"" = true
+                       AND va.""OUTREACH"" = true
+                       AND ve.""VACCINATION_DATE"" >= @fromDate
+                       AND ve.""VACCINATION_DATE"" < @toDate   ";
+				List<Npgsql.NpgsqlParameter> parameters = new List<NpgsqlParameter>()
+				{
+					new NpgsqlParameter("@healthFacilityId", DbType.Int32)  { Value = healthFacilityId },
+					new NpgsqlParameter("@fromDate", DbType.DateTime)  { Value = fromDate },
+					new NpgsqlParameter("@toDate", DbType.DateTime)  { Value = toDate }
+				};
+				DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, parameters);
+
+				int count = 0;
+				foreach (DataRow row in dt.Rows)
+				{
+					count = Helper.ConvertToInt(row["C"]);
+				}
+
+
+				return count;
+			}
+			catch (Exception ex)
+			{
+				Log.InsertEntity("HealthFacilityImmunizationSessions", "GetHealthFacilityFixedImmunizationSessionsCount", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
 				throw ex;
 			}
 		}
@@ -198,6 +281,9 @@ namespace GIIS.DataLayer
 					o.ReportedYear = Helper.ConvertToInt(row["REPORTED_YEAR"]);
 					o.ModifiedBy = Helper.ConvertToInt(row["MODIFIED_BY"]);
 					o.ModifiedOn = Helper.ConvertToDate(row["MODIFIED_ON"]);
+
+
+
 					return o;
 				}
 				catch (Exception ex)
@@ -234,6 +320,37 @@ namespace GIIS.DataLayer
 			}
 			return oList;
 		}
+
+
+		public static List<HealthFacilityImmunizationSessions> GetHealthFacilityImmunizationSessionsAsList(DataTable dt,int healthFacilityId, int reportedMonth, int reportingYear)
+		{
+			List<HealthFacilityImmunizationSessions> oList = new List<HealthFacilityImmunizationSessions>();
+			foreach (DataRow row in dt.Rows)
+			{
+				try
+				{
+					HealthFacilityImmunizationSessions o = new HealthFacilityImmunizationSessions();
+					o.HealthFacilityId = Helper.ConvertToInt(row["HEALTH_FACILITY_ID"]);
+					o.OtherMajorImmunizationActivities = (row["OTHER_MAJOR_IMMUNIZATION_ACTIVITIES"]).ToString();
+					o.OutreachPlanned = Helper.ConvertToInt(row["OUTREACH_PLANNED"]);
+					o.ReportedMonth = Helper.ConvertToInt(row["REPORTED_MONTH"]);
+					o.ReportedYear = Helper.ConvertToInt(row["REPORTED_YEAR"]);
+					o.ModifiedBy = Helper.ConvertToInt(row["MODIFIED_BY"]);
+					o.ModifiedOn = Helper.ConvertToDate(row["MODIFIED_ON"]);
+					o.FixedConducted = GetHealthFacilityFixedImmunizationSessionsCount(healthFacilityId,reportedMonth,reportingYear);
+					o.OutreachConducted = GetHealthFacilityOutreachImmunizationSessionsCount(healthFacilityId, reportedMonth, reportingYear);
+					o.OutreachCanceled = o.OutreachPlanned - o.OutreachConducted;
+					oList.Add(o);
+				}
+				catch (Exception ex)
+				{
+					Log.InsertEntity("HealthFacilityImmunizationSessions", "GetHealthFacilityImmunizationSessionsAsList", 1, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+					throw ex;
+				}
+			}
+			return oList;
+		}
+
 		#endregion
 
 	}
