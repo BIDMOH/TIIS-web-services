@@ -33,19 +33,19 @@ namespace GIIS.Tanzania.WCF
 	class Program
 	{
 		//Live server
-		public static string url = "http://eis.moh.go.tz";
+		//public static string url = "http://eis.moh.go.tz";
 
 		//TEsting instances
-		//public static string url = "http://kelvinmbwilo.com:9091";
+		public static string url = "http://kelvinmbwilo.com:9091";
 		public static string GetSourceForMyShowsPage(string downloadUrl)
 		{
 			using (var client = new WebClientEx())
 			{
 				var values = new NameValueCollection
-			{
-				{ "j_username", "vims-rivo" },
-				{ "j_password", "admin123" },
-			};
+				{
+					{ "j_username", "vims-rivo" },
+					{ "j_password", "admin123" },
+				};
 				// Authenticating into vims
 				client.UploadValues(url+"/j_spring_security_check", values);
 				// Downloading desired page

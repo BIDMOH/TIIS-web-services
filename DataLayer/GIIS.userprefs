@@ -1,10 +1,15 @@
-﻿<Properties StartupItem="HIESync/GIIS.HIESync.csproj">
-  <MonoDevelop.Ide.Workbench />
+﻿<Properties>
+  <MonoDevelop.Ide.Workbench ActiveDocument="GIIS.Website/Pages/HealthFacilityList.aspx">
+    <Files>
+      <File FileName="GIIS.Website/Pages/HealthFacilityList.aspx" Line="141" Column="45" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
   <DisabledProjects>
     <String>HIESync/GIIS.HIESync.csproj</String>
     <String>GIIS.BusinessLogic.Test/GIIS.BusinessLogic.Test.csproj</String>
