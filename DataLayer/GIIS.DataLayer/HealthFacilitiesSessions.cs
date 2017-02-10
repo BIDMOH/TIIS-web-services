@@ -242,22 +242,34 @@ namespace GIIS.DataLayer
 			toDate = toDate.AddDays(1);
 			try
 			{
-				string query = @"SELECT ""HEALTH_FACILITY_ID"",""NAME"", SUM(SESSION_LENGTH)  AS C
-									FROM 
+				string query = @"SELECT ""HEALTH_FACILITY_ID"",""NAME"", SUM(SESSION_LENGTH) AS C,DaysMaximum,DaysMinimum,ChildrenVaccinationsMaximumThreshold,ChildrenVaccinationsMinimumThreshold,ChildrenRegistrationsMaximumThreshold,ChildrenRegistrationsMinimumThreshold
+        						FROM
 
-										(SELECT ""HEALTH_FACILITIES_SESSIONS"".""HEALTH_FACILITY_ID"",""NAME"", date_trunc('day', ""LOGIN_TIME"") AS LOGIN_TIME, COUNT ( DISTINCT ""VACCINATION_EVENT"".""APPOINTMENT_ID"") AS SESSION_LENGTH
-											FROM ""HEALTH_FACILITIES_SESSIONS"" 
-													LEFT JOIN ""HEALTH_FACILITY"" ON ""HEALTH_FACILITY"".""ID""=""HEALTH_FACILITIES_SESSIONS"".""HEALTH_FACILITY_ID""
-													INNER JOIN ""VACCINATION_EVENT"" ON ""VACCINATION_EVENT"".""MODIFIED_BY"" = ""HEALTH_FACILITIES_SESSIONS"".""USER_ID""
-											WHERE 
-												""PARENT_ID"" = @districtCouncilId AND
-												""LOGIN_TIME"" >= @fromDate AND ""LOGIN_TIME""< @toDate AND
-												date_trunc('day', ""VACCINATION_EVENT"".""VACCINATION_DATE"") = date_trunc('day', ""LOGIN_TIME"") AND
-												""VACCINATION_EVENT"".""VACCINATION_STATUS"" = @status
-											GROUP BY ""HEALTH_FACILITIES_SESSIONS"".""HEALTH_FACILITY_ID"",""NAME"",LOGIN_TIME) AS T1
+							        (SELECT ""HEALTH_FACILITIES_SESSIONS"".""HEALTH_FACILITY_ID"",""NAME"", date_trunc('day', ""LOGIN_TIME"") AS LOGIN_TIME, COUNT ( DISTINCT ""VACCINATION_EVENT"".""APPOINTMENT_ID"") AS SESSION_LENGTH,DaysMaximum,DaysMinimum,ChildrenVaccinationsMaximumThreshold,ChildrenVaccinationsMinimumThreshold,ChildrenRegistrationsMaximumThreshold,ChildrenRegistrationsMinimumThreshold
+								        FROM ""HEALTH_FACILITIES_SESSIONS""
+								        LEFT JOIN ""HEALTH_FACILITY"" ON ""HEALTH_FACILITY"".""ID""=""HEALTH_FACILITIES_SESSIONS"".""HEALTH_FACILITY_ID""
+								        INNER JOIN ""VACCINATION_EVENT"" ON ""VACCINATION_EVENT"".""MODIFIED_BY"" = ""HEALTH_FACILITIES_SESSIONS"".""USER_ID""
+								        LEFT JOIN (
+											SELECT ""HEALTH_FACILITY_ID"",
+											SUM(CASE ""NAME"" WHEN 'DaysMaximum' THEN ""VALUE"" ELSE 0 END) AS DaysMaximum,
+											SUM(CASE ""NAME"" WHEN 'DaysMinimum' THEN ""VALUE"" ELSE 0 END) AS DaysMinimum,
+											SUM(CASE ""NAME"" WHEN 'ChildrenVaccinationsMaximumThreshold' THEN ""VALUE"" ELSE 0 END) AS ChildrenVaccinationsMaximumThreshold,
+											SUM(CASE ""NAME"" WHEN 'ChildrenVaccinationsMinimumThreshold' THEN ""VALUE"" ELSE 0 END) AS ChildrenVaccinationsMinimumThreshold,
+											SUM(CASE ""NAME"" WHEN 'ChildrenRegistrationsMaximumThreshold' THEN ""VALUE"" ELSE 0 END) AS ChildrenRegistrationsMaximumThreshold,
+											SUM(CASE ""NAME"" WHEN 'ChildrenRegistrationsMinimumThreshold' THEN ""VALUE"" ELSE 0 END) AS ChildrenRegistrationsMinimumThreshold
+											FROM ""CONFIGURATION_REPORTS""
+											GROUP BY ""HEALTH_FACILITY_ID""
+										) AS T2 ON T2.""HEALTH_FACILITY_ID"" = ""HEALTH_FACILITIES_SESSIONS"".""HEALTH_FACILITY_ID""
 
-									GROUP BY ""HEALTH_FACILITY_ID"",""NAME""
-									ORDER BY 3 DESC;";
+								        WHERE
+									        ""PARENT_ID"" = @districtCouncilId AND
+									        ""LOGIN_TIME"" >= @fromDate AND ""LOGIN_TIME""< @toDate AND
+											date_trunc('day', ""VACCINATION_EVENT"".""VACCINATION_DATE"") = date_trunc('day', ""LOGIN_TIME"") AND
+									        ""VACCINATION_EVENT"".""VACCINATION_STATUS"" = @status
+										GROUP BY ""HEALTH_FACILITIES_SESSIONS"".""HEALTH_FACILITY_ID"",""NAME"",LOGIN_TIME,DaysMaximum,DaysMinimum,ChildrenVaccinationsMaximumThreshold,ChildrenVaccinationsMinimumThreshold,ChildrenRegistrationsMaximumThreshold,ChildrenRegistrationsMinimumThreshold
+									) AS T1
+						        GROUP BY ""HEALTH_FACILITY_ID"",""NAME"",DaysMaximum,DaysMinimum,ChildrenVaccinationsMaximumThreshold,ChildrenVaccinationsMinimumThreshold,ChildrenRegistrationsMaximumThreshold,ChildrenRegistrationsMinimumThreshold
+						        ORDER BY 3 DESC;";
 				List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
 				{
 					new NpgsqlParameter("@districtCouncilId", DbType.Int32) { Value = districtCouncilId },
@@ -397,14 +409,25 @@ namespace GIIS.DataLayer
 			toDate = toDate.AddDays(1);
 			try
 			{
-				string query = @"SELECT ""HEALTH_FACILITY_ID"",""NAME"", COUNT( DISTINCT ""CHILD"".""ID"") AS C  
+				string query = @"SELECT ""HEALTH_FACILITIES_SESSIONS"".""HEALTH_FACILITY_ID"",""NAME"", COUNT( DISTINCT ""CHILD"".""ID"") AS C,DaysMaximum,DaysMinimum,ChildrenVaccinationsMaximumThreshold,ChildrenVaccinationsMinimumThreshold,ChildrenRegistrationsMaximumThreshold,ChildrenRegistrationsMinimumThreshold  
 									FROM ""HEALTH_FACILITIES_SESSIONS"" 
 											LEFT JOIN ""HEALTH_FACILITY"" ON ""HEALTH_FACILITY"".""ID""=""HEALTH_FACILITIES_SESSIONS"".""HEALTH_FACILITY_ID""
 											LEFT JOIN ""CHILD"" ON ""CHILD"".""MODIFIED_BY"" = ""HEALTH_FACILITIES_SESSIONS"".""USER_ID""
+											LEFT JOIN (
+															SELECT ""HEALTH_FACILITY_ID"",
+															       SUM(CASE ""NAME"" WHEN 'DaysMaximum' THEN ""VALUE"" ELSE 0 END) AS DaysMaximum,
+															       SUM(CASE ""NAME"" WHEN 'DaysMinimum' THEN ""VALUE"" ELSE 0 END) AS DaysMinimum,
+															       SUM(CASE ""NAME"" WHEN 'ChildrenVaccinationsMaximumThreshold' THEN ""VALUE"" ELSE 0 END) AS ChildrenVaccinationsMaximumThreshold,
+															       SUM(CASE ""NAME"" WHEN 'ChildrenVaccinationsMinimumThreshold' THEN ""VALUE"" ELSE 0 END) AS ChildrenVaccinationsMinimumThreshold,
+															       SUM(CASE ""NAME"" WHEN 'ChildrenRegistrationsMaximumThreshold' THEN ""VALUE"" ELSE 0 END) AS ChildrenRegistrationsMaximumThreshold,
+															       SUM(CASE ""NAME"" WHEN 'ChildrenRegistrationsMinimumThreshold' THEN ""VALUE"" ELSE 0 END) AS ChildrenRegistrationsMinimumThreshold
+															FROM ""CONFIGURATION_REPORTS""
+															GROUP BY ""HEALTH_FACILITY_ID""
+													) AS T1 ON T1.""HEALTH_FACILITY_ID"" = ""HEALTH_FACILITIES_SESSIONS"".""HEALTH_FACILITY_ID""
 									WHERE ""PARENT_ID"" = @districtCouncilId AND
 										""LOGIN_TIME"" >= @fromDate AND ""LOGIN_TIME""< @toDate AND
 										date_trunc('day', ""CHILD"".""MODIFIED_ON"") = date_trunc('day', ""LOGIN_TIME"")
-									GROUP BY ""HEALTH_FACILITY_ID"",""NAME"" 
+									GROUP BY ""HEALTH_FACILITIES_SESSIONS"".""HEALTH_FACILITY_ID"",""NAME"",DaysMaximum,DaysMinimum,ChildrenVaccinationsMaximumThreshold,ChildrenVaccinationsMinimumThreshold,ChildrenRegistrationsMaximumThreshold,ChildrenRegistrationsMinimumThreshold 
 									ORDER BY 3 DESC;";
 				List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
 					{
@@ -428,11 +451,21 @@ namespace GIIS.DataLayer
 		public static List<HealthFacilityLoginSessionsRatings> GetHealthFacilitySessionsDaysRatingsByDistrict (string districtCouncilId, DateTime fromDate, DateTime toDate)
 		{
 			toDate = toDate.AddDays(1);
-			string query = @"SELECT ""HEALTH_FACILITY_ID"",""NAME""  
-									FROM ""HEALTH_FACILITIES_SESSIONS"" 
-											LEFT JOIN ""HEALTH_FACILITY"" ON ""HEALTH_FACILITY"".""ID"" = ""HEALTH_FACILITIES_SESSIONS"".""HEALTH_FACILITY_ID"" 
-									WHERE ""PARENT_ID"" = @districtCouncilId
-									GROUP BY ""HEALTH_FACILITY_ID"",""NAME"" ";
+			string query = @"SELECT ""HEALTH_FACILITIES_SESSIONS"".""HEALTH_FACILITY_ID"",""NAME"",DaysMaximum,DaysMinimum,ChildrenVaccinationsMaximumThreshold,ChildrenVaccinationsMinimumThreshold,ChildrenRegistrationsMaximumThreshold,ChildrenRegistrationsMinimumThreshold
+        					FROM ""HEALTH_FACILITIES_SESSIONS""
+        						LEFT JOIN ""HEALTH_FACILITY"" ON ""HEALTH_FACILITY"".""ID"" = ""HEALTH_FACILITIES_SESSIONS"".""HEALTH_FACILITY_ID""
+								LEFT JOIN (
+									SELECT ""HEALTH_FACILITY_ID"",
+									       SUM(CASE ""NAME"" WHEN 'DaysMaximum' THEN ""VALUE"" ELSE 0 END) AS DaysMaximum,
+									       SUM(CASE ""NAME"" WHEN 'DaysMinimum' THEN ""VALUE"" ELSE 0 END) AS DaysMinimum,
+									       SUM(CASE ""NAME"" WHEN 'ChildrenVaccinationsMaximumThreshold' THEN ""VALUE"" ELSE 0 END) AS ChildrenVaccinationsMaximumThreshold,
+									       SUM(CASE ""NAME"" WHEN 'ChildrenVaccinationsMinimumThreshold' THEN ""VALUE"" ELSE 0 END) AS ChildrenVaccinationsMinimumThreshold,
+									       SUM(CASE ""NAME"" WHEN 'ChildrenRegistrationsMaximumThreshold' THEN ""VALUE"" ELSE 0 END) AS ChildrenRegistrationsMaximumThreshold,
+									       SUM(CASE ""NAME"" WHEN 'ChildrenRegistrationsMinimumThreshold' THEN ""VALUE"" ELSE 0 END) AS ChildrenRegistrationsMinimumThreshold
+									FROM ""CONFIGURATION_REPORTS""
+									GROUP BY ""HEALTH_FACILITY_ID"") AS T1 ON T1.""HEALTH_FACILITY_ID"" = ""HEALTH_FACILITIES_SESSIONS"".""HEALTH_FACILITY_ID""
+						        WHERE ""PARENT_ID"" = @districtCouncilId
+								GROUP BY ""HEALTH_FACILITIES_SESSIONS"".""HEALTH_FACILITY_ID"",""NAME"",DaysMaximum,DaysMinimum,ChildrenVaccinationsMaximumThreshold,ChildrenVaccinationsMinimumThreshold,ChildrenRegistrationsMaximumThreshold,ChildrenRegistrationsMinimumThreshold";
 			List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
 			{
 					new NpgsqlParameter("@districtCouncilId", DbType.Int32) { Value = districtCouncilId }
@@ -448,6 +481,35 @@ namespace GIIS.DataLayer
 					HealthFacilityLoginSessionsRatings o = new HealthFacilityLoginSessionsRatings();
 					o.HealthFacilityId = Helper.ConvertToInt(row["HEALTH_FACILITY_ID"]);
 					o.Name = (row["NAME"]).ToString();
+					try
+					{
+						o.DaysMaximum = Helper.ConvertToInt(row["DaysMaximum"]);
+					}
+					catch { }
+					try
+					{
+					o.DaysMinimum = Helper.ConvertToInt(row["DaysMinimum"]);
+					}
+					catch { }
+					try
+					{
+					o.ChildrenVaccinationsMaximumThreshold = Helper.ConvertToInt(row["ChildrenVaccinationsMaximumThreshold"]);
+					}catch { }
+
+					try
+					{
+					o.ChildrenVaccinationsMinimumThreshold = Helper.ConvertToInt(row["ChildrenVaccinationsMinimumThreshold"]);
+					}catch { }
+
+					try
+					{
+					o.ChildrenRegistrationsMaximumThreshold = Helper.ConvertToInt(row["ChildrenRegistrationsMaximumThreshold"]);
+					}catch { }
+
+					try
+					{
+					o.ChildrenRegistrationsMinimumThreshold = Helper.ConvertToInt(row["ChildrenRegistrationsMinimumThreshold"]);
+					}catch { }
 					try
 					{
 						string query2 = @"SELECT ""LOGIN_TIME"" FROM ""HEALTH_FACILITIES_SESSIONS"" WHERE ""HEALTH_FACILITY_ID"" = @hfid AND ""LOGIN_TIME"" >= @fromDate AND ""LOGIN_TIME""<= @toDate ";
@@ -612,7 +674,6 @@ namespace GIIS.DataLayer
 					o.LoginTime = Helper.ConvertToDate(row["LOGIN_TIME"]);
 					o.SessionLength = Helper.ConvertToInt(row["SESSION_LENGTH"]);
 					o.UserName = User.GetUserById(o.UserId).Username;
-
 					oList.Add(o);
                 }
                 catch (Exception ex)
@@ -638,6 +699,39 @@ namespace GIIS.DataLayer
 					o.HealthFacilityId = Helper.ConvertToInt(row["HEALTH_FACILITY_ID"]);
 					o.Name = (row["NAME"]).ToString();
 					o.SessionsCount = Helper.ConvertToInt(row["C"]);
+					try
+					{
+						o.DaysMaximum = Helper.ConvertToInt(row["DaysMaximum"]);
+					}
+					catch { }
+					try
+					{
+						o.DaysMinimum = Helper.ConvertToInt(row["DaysMinimum"]);
+					}
+					catch { }
+					try
+					{
+						o.ChildrenVaccinationsMaximumThreshold = Helper.ConvertToInt(row["ChildrenVaccinationsMaximumThreshold"]);
+					}
+					catch { }
+
+					try
+					{
+						o.ChildrenVaccinationsMinimumThreshold = Helper.ConvertToInt(row["ChildrenVaccinationsMinimumThreshold"]);
+					}
+					catch { }
+
+					try
+					{
+						o.ChildrenRegistrationsMaximumThreshold = Helper.ConvertToInt(row["ChildrenRegistrationsMaximumThreshold"]);
+					}
+					catch { }
+
+					try
+					{
+						o.ChildrenRegistrationsMinimumThreshold = Helper.ConvertToInt(row["ChildrenRegistrationsMinimumThreshold"]);
+					}
+					catch { }
 					oList.Add(o);
 				}
 				catch (Exception ex)
@@ -655,3 +749,16 @@ namespace GIIS.DataLayer
 
     }
 }
+
+
+
+//SELECT "HEALTH_FACILITY_ID",
+
+//	   SUM(CASE "NAME" WHEN 'DaysMaximum' THEN "VALUE" ELSE 0 END) AS DaysMaximum,
+//	   SUM(CASE "NAME" WHEN 'DaysMinimum' THEN "VALUE" ELSE 0 END) AS DaysMinimum,
+//	   SUM(CASE "NAME" WHEN 'ChildrenVaccinationsMaximumThreshold' THEN "VALUE" ELSE 0 END) AS ChildrenVaccinationsMaximumThreshold,
+//	   SUM(CASE "NAME" WHEN 'ChildrenVaccinationsMinimumThreshold' THEN "VALUE" ELSE 0 END) AS ChildrenVaccinationsMinimumThreshold,
+//	   SUM(CASE "NAME" WHEN 'ChildrenRegistrationsMaximumThreshold' THEN "VALUE" ELSE 0 END) AS ChildrenRegistrationsMaximumThreshold,
+//	   SUM(CASE "NAME" WHEN 'ChildrenRegistrationsMinimumThreshold' THEN "VALUE" ELSE 0 END) AS ChildrenRegistrationsMinimumThreshold
+//FROM "CONFIGURATION_REPORTS"
+//GROUP BY "HEALTH_FACILITY_ID"

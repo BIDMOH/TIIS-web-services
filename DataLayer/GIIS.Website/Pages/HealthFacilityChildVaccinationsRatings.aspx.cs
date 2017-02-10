@@ -267,22 +267,23 @@ public partial class Pages_HealthFacilitySessionRatings : System.Web.UI.Page
 
     protected void gvHealthFacilitySessions_DataBound(object sender, GridViewRowEventArgs e)
     {
-       // To check condition on integer value
-        ReportsConfiguration co1 = ReportsConfiguration.GetConfigurationByName("ChildrenVaccinationsMaximumThreshold");
-        ReportsConfiguration co2 = ReportsConfiguration.GetConfigurationByName("ChildrenVaccinationsMinimumThreshold");
-
-
        if (e.Row.RowType != DataControlRowType.Header)
-       {
-          if (co1!=null && co2!=null ){
-              if (Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "SessionsCount")) > Convert.ToInt32(co1.Value))
-              {
-                e.Row.ForeColor = System.Drawing.Color.Green;
-              }else if(Convert.ToInt16(DataBinder.Eval(e.Row.DataItem, "SessionsCount")) < Convert.ToInt32(co2.Value)){
-                  e.Row.ForeColor = System.Drawing.Color.Red;
-              }
-          }
-       }
+		{
+			if (Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "ChildrenVaccinationsMaximumThreshold")) != null && Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "ChildrenVaccinationsMinimumThreshold")) != null)
+			{
+				if (Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "ChildrenVaccinationsMaximumThreshold")) != 0 && Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "ChildrenVaccinationsMinimumThreshold")) != 0)
+				{
+					if (Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "SessionsCount")) > Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "ChildrenVaccinationsMaximumThreshold")))
+					{
+						e.Row.ForeColor = System.Drawing.Color.Green;
+					}
+					else if (Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "SessionsCount")) < Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "ChildrenVaccinationsMinimumThreshold")))
+					{
+						e.Row.ForeColor = System.Drawing.Color.Red;
+					}
+				}
+			}
+		}
 
     }
     

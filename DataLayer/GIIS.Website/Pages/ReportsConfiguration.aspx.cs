@@ -1,4 +1,4 @@
-//*******************************************************************************
+﻿//*******************************************************************************
 //Copyright 2015 TIIS - Tanzania Immunization Information System
 //
 //    Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,16 +13,17 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
  //******************************************************************************
-using GIIS.DataLayer;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using GIIS.DataLayer;
 
-
-public partial class _Configuration : System.Web.UI.Page
+public partial class Pages_HealthFacilityList : System.Web.UI.Page
 {
+
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!this.Page.IsPostBack)
@@ -35,258 +36,144 @@ public partial class _Configuration : System.Web.UI.Page
                 actionList = (List<string>)Session[sessionNameAction];
             }
 
-            if ((actionList != null) && actionList.Contains("ViewConfiguration") && (CurrentEnvironment.LoggedUser != null))
+            if ((actionList != null) && actionList.Contains("ViewHealthFacilityList") && (CurrentEnvironment.LoggedUser != null))
             {
                 int userId = CurrentEnvironment.LoggedUser.Id;
                 string language = CurrentEnvironment.Language;
                 int languageId = int.Parse(language);
-                Dictionary<string, string> wtList = (Dictionary<string, string>)HttpContext.Current.Cache["Configuration-dictionary" + language];
+                Dictionary<string, string> wtList = (Dictionary<string, string>)HttpContext.Current.Cache["HealthFacility-dictionary" + language];
                 if (wtList == null)
                 {
-                    List<WordTranslate> wordTranslateList = WordTranslate.GetWordByLanguage(languageId, "Configuration");
+                    List<WordTranslate> wordTranslateList = WordTranslate.GetWordByLanguage(languageId, "HealthFacility");
                     wtList = new Dictionary<string, string>();
                     foreach (WordTranslate vwt in wordTranslateList)
                         wtList.Add(vwt.Code, vwt.Name);
-                    HttpContext.Current.Cache.Insert("Configuration-dictionary" + language, wtList);
+                    HttpContext.Current.Cache.Insert("HealthFacility-dictionary" + language, wtList);
                 }
+
+                //controls
+                this.lblName.Text = wtList["HealthFacilityName"];
+                this.lblCode.Text = wtList["HealthFacilityCode"];
+
+                //grid header text
+                gvHealthFacility.Columns[1].HeaderText = wtList["HealthFacilityName"];
+                gvHealthFacility.Columns[2].HeaderText = wtList["HealthFacilityCode"];
+                gvHealthFacility.Columns[3].HeaderText = wtList["HealthFacilityParent"];
+                gvHealthFacility.Columns[4].HeaderText = wtList["HealthFacilityTopLevel"];
+                gvHealthFacility.Columns[5].HeaderText = wtList["HealthFacilityLeaf"];
+                gvHealthFacility.Columns[6].HeaderText = wtList["HealthFacilityVaccinationPoint"];
+                gvHealthFacility.Columns[7].HeaderText = wtList["HealthFacilityNotes"];
+                gvHealthFacility.Columns[8].HeaderText = wtList["HealthFacilityIsActive"];
+                gvHealthFacility.Columns[11].HeaderText = wtList["HealthFacilityAddress"];
+
+                gvExport.Columns[1].HeaderText = wtList["HealthFacilityName"];
+                gvExport.Columns[2].HeaderText = wtList["HealthFacilityCode"];
+                gvExport.Columns[3].HeaderText = wtList["HealthFacilityParent"];
+                gvExport.Columns[4].HeaderText = wtList["HealthFacilityTopLevel"];
+                gvExport.Columns[5].HeaderText = wtList["HealthFacilityLeaf"];
+                gvExport.Columns[6].HeaderText = wtList["HealthFacilityVaccinationPoint"];
+                gvExport.Columns[7].HeaderText = wtList["HealthFacilityNotes"];
+                gvExport.Columns[8].HeaderText = wtList["HealthFacilityIsActive"];
+                gvExport.Columns[11].HeaderText = wtList["HealthFacilityAddress"];
+
+                
+                this.btnSearch.Text = wtList["HealthFacilitySearchButton"];
 
                 //message
-                this.lblSuccess.Text = wtList["ConfigurationSuccessText"];
-                this.lblWarning.Text = wtList["ConfigurationWarningText"];
-                this.lblError.Text = wtList["ConfigurationErrorText"];
+                this.lblWarning.Text = wtList["HealthFacilitySearchWarningText"];
 
-                ReportsConfiguration co = ReportsConfiguration.GetConfigurationByName("ChildrenRegistrationsMaximumThreshold");
-                if (co != null){
-                    txtMaxRegistationsThreshold.Text = co.Value;
-                }else{
-                    txtMaxRegistationsThreshold.Text = "";
-                }
+                //Page Title
+                this.lblTitle.Text = wtList["HealthFacilityListPageTitle"];
 
-                co = null;
-                co  = ReportsConfiguration.GetConfigurationByName("ChildrenRegistrationsMinimumThreshold");
-                if (co != null){
-                    txtMinRegistationsThreshold.Text = co.Value;
-                }else{
-                    txtMinRegistationsThreshold.Text = "";
-                }
-                
-                co = null;
-                co  = ReportsConfiguration.GetConfigurationByName("ChildrenVaccinationsMaximumThreshold");
-                if (co != null){
-                    txtMaxVaccinationsThreshold.Text = co.Value;
-                }else{
-                    txtMaxVaccinationsThreshold.Text = "";
-                }
-                
-                co = null;
-                co  = ReportsConfiguration.GetConfigurationByName("ChildrenVaccinationsMinimumThreshold");
-                if (co != null){
-                    txtMinVaccinationsThreshold.Text = co.Value;
-                }else{
-                    txtMinVaccinationsThreshold.Text = "";
-                }
-                
+                //gridview databind
+                odsHealthFacility.SelectParameters.Clear();
 
-                co = null;
-                co  = ReportsConfiguration.GetConfigurationByName("DaysMaximum");
-                if (co != null){
-                    txtMaxThresholdDays.Text = co.Value;
-                }else{
-                    txtMaxThresholdDays.Text = "";
-                }
 
-                co = null;
-                co  = ReportsConfiguration.GetConfigurationByName("DaysMinimum");
-                if (co != null){
-                    txtMinThresholdDays.Text = co.Value;
-                }else{
-                    txtMinThresholdDays.Text = "";
-                }
+                if (HttpContext.Current.Session["HealthFacilityList-Name"] != null)
+                    odsHealthFacility.SelectParameters.Add("name", HttpContext.Current.Session["HealthFacilityList-Name"].ToString().ToUpper());
+                else odsHealthFacility.SelectParameters.Add("name", "");
 
+                if (HttpContext.Current.Session["HealthFacilityList-Code"] != null)
+                    odsHealthFacility.SelectParameters.Add("code", HttpContext.Current.Session["HealthFacilityList-Code"].ToString().ToUpper());
+                else odsHealthFacility.SelectParameters.Add("code", "");
+
+                Session["_healthfacility"] = CurrentEnvironment.LoggedUser.HealthFacilityId;
+                string s = HealthFacility.GetAllChildsForOneHealthFacility(CurrentEnvironment.LoggedUser.HealthFacilityId);
+
+                //if (HttpContext.Current.Session["HealthFacilityList-HFID"] != null)
+                //    odsHealthFacility.SelectParameters.Add("hfid", HttpContext.Current.Session["HealthFacilityList-HFID"].ToString().ToUpper());
+                //else odsHealthFacility.SelectParameters.Add("hfid", s);
+
+                odsHealthFacility.SelectParameters.Add("hfid", s);
+
+                gvHealthFacility.DataSourceID = "odsHealthFacility";
+                gvHealthFacility.DataBind();
             }
             else
             {
-                Response.Redirect("Default.aspx");
+
+                Response.Redirect("Default.aspx", false);
+                Context.ApplicationInstance.CompleteRequest();
             }
         }
     }
 
-
-    protected void btnSaveChildrenRegistrationsThreshold_Click(object sender, EventArgs e)
+    protected void btnSearch_Click(object sender, EventArgs e)
     {
-        try
-        {
-            if (Page.IsValid)
-            {
+        string wsearch = txtName.Text.Replace("'", @"''");
+        string csearch = txtCode.Text.Replace("'", @"''");
+        
+        string s = string.Empty;
+        string hf = string.Empty;
+        if (Session["_healthfacility"] != null)
+            hf = Session["_healthfacility"].ToString();
 
-                int i = 0;
-                string maxRegistationsThreshold = txtMaxRegistationsThreshold.Text;
-                string minRegistationsThreshold = txtMinRegistationsThreshold.Text;
-            
-                ReportsConfiguration co = new ReportsConfiguration();
-                
-                ReportsConfiguration flag = ReportsConfiguration.GetConfigurationByName("ChildrenRegistrationsMaximumThreshold");
-                if (flag != null){
-                    flag.Name = "ChildrenRegistrationsMaximumThreshold";
-                    flag.Value = maxRegistationsThreshold;
-                    i = ReportsConfiguration.Update(flag);
-                }else{
-                    co.Name = "ChildrenRegistrationsMaximumThreshold";
-                    co.Value = maxRegistationsThreshold;
-                    i = ReportsConfiguration.Insert(co);
-                } 
-                
-                co = new ReportsConfiguration();
-                flag = ReportsConfiguration.GetConfigurationByName("ChildrenRegistrationsMinimumThreshold");
-                if (flag != null){
-                    flag.Name = "ChildrenRegistrationsMinimumThreshold";
-                    flag.Value = minRegistationsThreshold;
-                    i = ReportsConfiguration.Update(flag);
-                }else{
-                    co.Name = "ChildrenRegistrationsMinimumThreshold";
-                    co.Value = minRegistationsThreshold;
-                    i = ReportsConfiguration.Insert(co);
-                }
-
-                if (i > 0)
-                {
-                    lblSuccess.Visible = true;
-                    lblWarning.Visible = false;
-                    lblError.Visible = false;
-                }
-                else
-                {
-                    lblSuccess.Visible = false;
-                    lblWarning.Visible = false;
-                    lblError.Visible = true;
-                }
-            
-            }
-        }
-        catch (Exception ex)
+        if (!string.IsNullOrEmpty(hf))
         {
-            lblSuccess.Visible = false;
-            lblWarning.Visible = false;
-            lblError.Visible = true;
+            s = HealthFacility.GetAllChildsForOneHealthFacility(int.Parse(hf));
         }
+
+        odsHealthFacility.SelectParameters.Clear();
+        odsHealthFacility.SelectParameters.Add("name", wsearch.ToUpper());
+        odsHealthFacility.SelectParameters.Add("code", csearch.ToUpper());
+        odsHealthFacility.SelectParameters.Add("hfid", s);
+
+        Session["HealthFacilityList-Name"] = wsearch.ToUpper();
+        Session["HealthFacilityList-Code"] = csearch.ToUpper();
+        Session["HealthFacilityList-HFID"] = s;
+        
     }
-
-    protected void btnSaveChildrenVaccinationsThreshold_Click(object sender, EventArgs e)
+    protected void gvHealthFacility_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
-        try
-        {
-            if (Page.IsValid)
-            {
-
-                int i = 0;
-                string maxChildVaccinations = txtMaxVaccinationsThreshold.Text;
-                string minChildVaccinations = txtMinVaccinationsThreshold.Text;
-
-                ReportsConfiguration co = new ReportsConfiguration();
-
-                ReportsConfiguration flag = ReportsConfiguration.GetConfigurationByName("ChildrenVaccinationsMaximumThreshold");
-                if (flag != null){
-                    flag.Name = "ChildrenVaccinationsMaximumThreshold";
-                    flag.Value = maxChildVaccinations;
-                    i = ReportsConfiguration.Update(flag);
-                }else{
-                    co.Name = "ChildrenVaccinationsMaximumThreshold";
-                    co.Value = maxChildVaccinations;
-                    i = ReportsConfiguration.Insert(co);
-                }
-
-                co = new ReportsConfiguration();
-                flag = ReportsConfiguration.GetConfigurationByName("ChildrenVaccinationsMinimumThreshold");
-                if (flag != null){
-                    flag.Name = "ChildrenVaccinationsMinimumThreshold";
-                    flag.Value = minChildVaccinations;
-                    i = ReportsConfiguration.Update(flag);
-                }else{
-                    co.Name = "ChildrenVaccinationsMinimumThreshold";
-                    co.Value = minChildVaccinations;
-                    i = ReportsConfiguration.Insert(co);
-                }
-
-                if (i > 0)
-                {
-                    lblSuccess.Visible = true;
-                    lblWarning.Visible = false;
-                    lblError.Visible = false;
-                }
-                else
-                {
-                    lblSuccess.Visible = false;
-                    lblWarning.Visible = false;
-                    lblError.Visible = true;
-                }
-
-            }
-        }
-        catch (Exception ex)
-        {
-            lblSuccess.Visible = false;
-            lblWarning.Visible = false;
-            lblError.Visible = true;
-        }
+        gvHealthFacility.PageIndex = e.NewPageIndex;
     }
 
-    protected void btnSaveDaysThreshold_Click(object sender, EventArgs e)
+    protected void gvHealthFacility_DataBound(object sender, EventArgs e)
     {
-        try
+        if (gvHealthFacility.Rows.Count <= 0)
         {
-            if (Page.IsValid)
-            {
-
-                int i = 0;
-                string maxDays = txtMaxThresholdDays.Text;
-                string minDays = txtMinThresholdDays.Text; 
-                
-                ReportsConfiguration co = new ReportsConfiguration();
-                ReportsConfiguration flag = ReportsConfiguration.GetConfigurationByName("DaysMaximum");
-
-                if (flag != null){
-                    flag.Name = "DaysMaximum";
-                    flag.Value = maxDays;
-                    i = ReportsConfiguration.Update(flag);
-                }else{
-                    co.Name = "DaysMaximum";
-                    co.Value = maxDays;
-                    i = ReportsConfiguration.Insert(co);
-                }
-                
-                co = new ReportsConfiguration();
-                flag = ReportsConfiguration.GetConfigurationByName("DaysMinimum");
-                if (flag != null){
-                    flag.Name = "DaysMinimum";
-                    flag.Value = minDays;
-                    i = ReportsConfiguration.Update(flag);
-                }else{
-                    co.Name = "DaysMinimum";
-                    co.Value = minDays;
-                    i = ReportsConfiguration.Insert(co);
-                } 
-
-                if (i > 0)
-                {
-                    lblSuccess.Visible = true;
-                    lblWarning.Visible = false;
-                    lblError.Visible = false;
-                }
-                else
-                {
-                    lblSuccess.Visible = false;
-                    lblWarning.Visible = false;
-                    lblError.Visible = true;
-                }
-            
-            }
+            lblWarning.Visible = true;
         }
-        catch (Exception ex)
+        else
         {
-            lblSuccess.Visible = false;
             lblWarning.Visible = false;
-            lblError.Visible = true;
         }
     }
- 
+
+    protected override void Render(HtmlTextWriter writer)
+    {
+        // Ensure that the control is nested in a server form.
+        if ((Page != null))
+        {
+            Page.VerifyRenderingInServerForm(this);
+        }
+
+        base.Render(writer);
+    }
+
+    public override void VerifyRenderingInServerForm(Control control)
+    {
+        // Confirms that an HtmlForm control is rendered for the specified ASP.NET
+        //     server control at run time. 
+    }
 }

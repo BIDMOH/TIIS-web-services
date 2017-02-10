@@ -27,5 +27,12 @@ namespace GIIS.DataLayer
         public Int32 HealthFacilityId { get; set; }
 		public string Name { get; set; }
 		public Int32 SessionsCount { get; set; }
+
+		public Int32 DaysMaximum { get; set; }
+		public Int32 DaysMinimum { get; set; }
+		public Int32 ChildrenVaccinationsMaximumThreshold { get; set; }
+		public Int32 ChildrenVaccinationsMinimumThreshold { get; set; }
+		public Int32 ChildrenRegistrationsMaximumThreshold { get; set; }
+		public Int32 ChildrenRegistrationsMinimumThreshold { get; set; }
     }
 }

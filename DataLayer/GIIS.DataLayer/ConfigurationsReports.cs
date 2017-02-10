@@ -27,8 +27,9 @@ namespace GIIS.DataLayer
 		#region Properties
 		public Int32 Id { get; set; }
 		public string Name { get; set; }
-		public string Value { get; set; }
+		public Int32 Value { get; set; }
 		public string Notes { get; set; }
+		public Int32 HealthFacilityId { get; set;}
 		#endregion
 
 
@@ -82,14 +83,15 @@ namespace GIIS.DataLayer
 			}
 		}
 
-		public static ReportsConfiguration GetConfigurationByName(string s)
+		public static ReportsConfiguration GetConfigurationByName(string s, int healthFacilityId)
 		{
 			try
 			{
-				string query = @"SELECT * FROM ""CONFIGURATION_REPORTS"" WHERE ""NAME"" = @ParamValue ";
+				string query = @"SELECT * FROM ""CONFIGURATION_REPORTS"" WHERE ""NAME"" = @ParamValue AND ""HEALTH_FACILITY_ID""=@ParamHealthFaciltyId ";
 				List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
 				{
-					new NpgsqlParameter("@ParamValue", DbType.String) { Value = s }
+					new NpgsqlParameter("@ParamValue", DbType.String) { Value = s },
+					new NpgsqlParameter("@ParamHealthFaciltyId", DbType.Int32) { Value = healthFacilityId }
 				};
 				DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, parameters);
 				//   AuditTable.InsertEntity("Configuration", string.Format("RecordId: {0}", s), 4, DateTime.Now, 1);
@@ -109,12 +111,13 @@ namespace GIIS.DataLayer
 		{
 			try
 			{
-				string query = @"INSERT INTO ""CONFIGURATION_REPORTS"" (""NAME"", ""VALUE"", ""NOTES"") VALUES (@Name, @Value, @Notes) returning ""ID"" ";
+				string query = @"INSERT INTO ""CONFIGURATION_REPORTS"" (""NAME"", ""VALUE"", ""NOTES"",""HEALTH_FACILITY_ID"") VALUES (@Name, @Value, @Notes,@HealthFacilityId) returning ""ID"" ";
 				List<Npgsql.NpgsqlParameter> parameters = new List<NpgsqlParameter>()
 				{
 					new NpgsqlParameter("@Name", DbType.String)  { Value = o.Name },
-					new NpgsqlParameter("@Value", DbType.String)  { Value = o.Value },
-					new NpgsqlParameter("@Notes", DbType.String)  { Value = (object)o.Notes ?? DBNull.Value }
+					new NpgsqlParameter("@Value", DbType.Int32)  { Value = o.Value },
+					new NpgsqlParameter("@Notes", DbType.String)  { Value = (object)o.Notes ?? DBNull.Value },
+					new NpgsqlParameter("@HealthFacilityId", DbType.Int32)  { Value = o.HealthFacilityId}
 				};
 				object id = DBManager.ExecuteScalarCommand(query, CommandType.Text, parameters);
 				AuditTable.InsertEntity("ConfigurationReport", id.ToString(), 1, DateTime.Now, 1);
@@ -131,13 +134,14 @@ namespace GIIS.DataLayer
 		{
 			try
 			{
-				string query = @"UPDATE ""CONFIGURATION_REPORTS"" SET ""ID"" = @Id, ""NAME"" = @Name, ""VALUE"" = @Value, ""NOTES"" = @Notes WHERE ""ID"" = @Id ";
+				string query = @"UPDATE ""CONFIGURATION_REPORTS"" SET ""ID"" = @Id, ""NAME"" = @Name, ""VALUE"" = @Value, ""NOTES"" = @Notes, ""HEALTH_FACILITY_ID""=@HealthFacilityId WHERE ""ID"" = @Id ";
 				List<Npgsql.NpgsqlParameter> parameters = new List<NpgsqlParameter>()
 				{
 					new NpgsqlParameter("@Name", DbType.String)  { Value = o.Name },
-					new NpgsqlParameter("@Value", DbType.String)  { Value = o.Value },
+					new NpgsqlParameter("@Value", DbType.Int32)  { Value = o.Value },
 					new NpgsqlParameter("@Notes", DbType.String)  { Value = (object)o.Notes ?? DBNull.Value },
-					new NpgsqlParameter("@Id", DbType.Int32) { Value = o.Id }
+					new NpgsqlParameter("@Id", DbType.Int32) { Value = o.Id },
+					new NpgsqlParameter("@HealthFacilityId", DbType.Int32)  { Value = o.HealthFacilityId}
 				};
 				int rowAffected = DBManager.ExecuteNonQueryCommand(query, CommandType.Text, parameters);
 				AuditTable.InsertEntity("ConfigurationReport", o.Id.ToString(), 2, DateTime.Now, 1);
@@ -182,8 +186,9 @@ namespace GIIS.DataLayer
 					ReportsConfiguration o = new ReportsConfiguration();
 					o.Id = Helper.ConvertToInt(row["ID"]);
 					o.Name = row["NAME"].ToString();
-					o.Value = row["VALUE"].ToString();
+					o.Value = Helper.ConvertToInt(row["VALUE"]);
 					o.Notes = row["NOTES"].ToString();
+					o.HealthFacilityId = Helper.ConvertToInt(row["HEALTH_FACILITY_ID"]);
 					return o;
 				}
 				catch (Exception ex)
@@ -205,8 +210,9 @@ namespace GIIS.DataLayer
 					ReportsConfiguration o = new ReportsConfiguration();
 					o.Id = Helper.ConvertToInt(row["ID"]);
 					o.Name = row["NAME"].ToString();
-					o.Value = row["VALUE"].ToString();
+					o.Value = Helper.ConvertToInt(row["VALUE"]);
 					o.Notes = row["NOTES"].ToString();
+					o.HealthFacilityId = Helper.ConvertToInt(row["HEALTH_FACILITY_ID"]);
 					oList.Add(o);
 				}
 				catch (Exception ex)

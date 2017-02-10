@@ -1,8 +1,14 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workbench ActiveDocument="HealthFacilitiesSessions.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="../GIIS.Website/Pages/HealthFacilitySpecificSessionReports.aspx">
     <Files>
-      <File FileName="HealthFacilitiesSessions.cs" Line="81" Column="43" />
-      <File FileName="HealthFacilityImmunizationSessions.cs" Line="342" Column="67" />
+      <File FileName="HealthFacilitiesSessions.cs" Line="268" Column="37" />
+      <File FileName="../GIIS.Website/Pages/ReportsConfiguration.aspx" Line="94" Column="117" />
+      <File FileName="HealthFacility.cs" Line="81" Column="80" />
+      <File FileName="../GIIS.Website/Pages/ReportsConfiguration.aspx.cs" Line="98" Column="39" />
+      <File FileName="HealthFacilityEntity.cs" Line="254" Column="23" />
+      <File FileName="ItemLot.cs" Line="62" Column="60" />
+      <File FileName="../GIIS.Website/Pages/HealthFacilityChildVaccinationsRatings.aspx" Line="42" Column="90" />
+      <File FileName="../GIIS.Website/Pages/HealthFacilitySpecificSessionReports.aspx" Line="200" Column="168" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
@@ -10,4 +16,5 @@
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
 </Properties>

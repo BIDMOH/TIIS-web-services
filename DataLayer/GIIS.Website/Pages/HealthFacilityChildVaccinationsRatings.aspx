@@ -39,12 +39,12 @@
     
     <div class="row">
         <div class="col-md-12">
-            <h2><asp:Label ID="lblReportName" Text="Health Facilities Child Vaccinations By District" runat="server" /></h2>
+            <h2><asp:Label ID="lblReportName" Text="Health Facilities Child Immunizations By District" runat="server" /></h2>
         </div>
     </div>
     <div class="row">
         <div class="col-md-12">
-            <em><asp:Label runat="server" ID="lblReportDescription" Text="This report shows the ranking of health facilities within the District council by their total number of children vaccinations"  /></em>
+            <em><asp:Label runat="server" ID="lblReportDescription" Text="This report shows the ranking of health facilities within the District council by their total number of Immunizations performed"  /></em>
         </div>
     </div>
     <br />

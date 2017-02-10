@@ -197,7 +197,7 @@
                         <br />
                         <div class="row">
                             <div class="col-md-12">
-                                <em><asp:Label runat="server" ID="lblDaysReportDescription" Text="This report shows the number of children vaccinated by users in the mobile application within a specific date range"  /></em>
+                                <em><asp:Label runat="server" ID="lblDaysReportDescription" Text="This report shows the number of Immunizations performed by a specific users in the mobile application within a specific date range"  /></em>
                             </div>
                         </div>
                         <br />

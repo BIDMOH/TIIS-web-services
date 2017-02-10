@@ -278,23 +278,26 @@ public partial class Pages_HealthFacilityChildrenRegistrationsRatings : System.W
 
     protected void gvHealthFacilitySessions_DataBound(object sender, GridViewRowEventArgs e)
     {
-         // To check condition on integer value
-         ReportsConfiguration co1 = ReportsConfiguration.GetConfigurationByName("ChildrenRegistrationsMaximumThreshold");
-         ReportsConfiguration co2 = ReportsConfiguration.GetConfigurationByName("ChildrenRegistrationsMinimumThreshold");
 
-
-        if (e.Row.RowType != DataControlRowType.Header)
-        {
-           if (co1!=null && co2!=null ){
-               if (Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "SessionsCount")) > Convert.ToInt32(co1.Value))
-               {
-                 e.Row.ForeColor = System.Drawing.Color.Green;
-               }else if(Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "SessionsCount")) < Convert.ToInt32(co2.Value))
-               {
-                   e.Row.ForeColor = System.Drawing.Color.Red;
-               }
-           }
-        }
+	
+		if (e.Row.RowType != DataControlRowType.Header)
+		{
+			if (Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "ChildrenRegistrationsMaximumThreshold")) != null && Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "ChildrenRegistrationsMinimumThreshold")) != null)
+			{
+				if (Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "ChildrenRegistrationsMaximumThreshold")) != 0 && Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "ChildrenRegistrationsMinimumThreshold")) != 0)
+				{
+					if (Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "SessionsCount")) > Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "ChildrenRegistrationsMaximumThreshold")))
+					{
+						e.Row.ForeColor = System.Drawing.Color.Green;
+					}
+					else if (Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "SessionsCount")) < Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "ChildrenRegistrationsMinimumThreshold")))
+					{
+						e.Row.ForeColor = System.Drawing.Color.Red;
+					}
+				}
+			}
+		}
+	
 
     }
 }

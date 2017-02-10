@@ -270,21 +270,23 @@ public partial class Pages_HealthFacilitySessionDaysRatings : System.Web.UI.Page
 
     protected void gvHealthFacilitySessions_DataBound(object sender, GridViewRowEventArgs e)
     {
-         // To check condition on integer value
-           ReportsConfiguration co1 = ReportsConfiguration.GetConfigurationByName("DaysMaximum");
-           ReportsConfiguration co2 = ReportsConfiguration.GetConfigurationByName("DaysMinimum");
-
-            if(co1!=null && co2!=null){
-                if (e.Row.RowType != DataControlRowType.Header)
-                {
-                   if (Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "SessionsCount")) > Convert.ToInt32(co1.Value))
-                   {
-                     e.Row.ForeColor = System.Drawing.Color.Green;
-                   }else if(Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "SessionsCount")) < Convert.ToInt32(co2.Value)){
-                       e.Row.ForeColor = System.Drawing.Color.Red;
-                   }
-                }
-            }
+         if (e.Row.RowType != DataControlRowType.Header)
+		{
+			if (Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "DaysMaximum")) != null && Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "DaysMinimum")) != null)
+			{
+				if (Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "DaysMaximum")) != 0 && Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "DaysMinimum")) != 0)
+				{
+					if (Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "SessionsCount")) > Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "DaysMaximum")))
+					{
+						e.Row.ForeColor = System.Drawing.Color.Green;
+					}
+					else if (Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "SessionsCount")) < Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "DaysMinimum")))
+					{
+						e.Row.ForeColor = System.Drawing.Color.Red;
+					}
+				}
+			}
+		}
     }
     
 }

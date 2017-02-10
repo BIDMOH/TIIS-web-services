@@ -243,6 +243,35 @@ namespace GIIS.DataLayer
             }
         }
 
+		public static List<HealthFacility> GetPagedNonDistrictCouncilHealthFacilityList(string name, string code, string hfid, ref int maximumRows, ref int startRowIndex)
+		{
+			try
+			{
+				string query = @"SELECT * FROM ""HEALTH_FACILITY"" WHERE 1 = 1 AND ""TYPE_ID""=3 "
+							+ @" AND ( UPPER(""NAME"") like @Name OR @Name is null or @Name = '')"
+							+ @" AND ( UPPER(""CODE"") like @Code OR @Code is null or @Code = '')"
+							+ @" AND (( ""ID"" = ANY( CAST( string_to_array(@HealthFacilityId, ',' ) AS INTEGER[] ))) or @HealthFacilityId = '' or @HealthFacilityId is null)"
+							+ @" ORDER BY  ""NAME"" OFFSET @StartRowIndex LIMIT @MaximumRows;";
+
+				List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
+				{
+					new NpgsqlParameter("@Name", DbType.String) { Value = ("%" + name + "%") },
+					new NpgsqlParameter("@Code", DbType.String) { Value = ("%" + code + "%") },
+					new NpgsqlParameter("@HealthFacilityId", DbType.String) { Value = hfid },
+					new NpgsqlParameter("@MaximumRows", DbType.Int32) { Value = maximumRows },
+					new NpgsqlParameter("@StartRowIndex", DbType.Int32) { Value = startRowIndex }
+				};
+
+				DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, parameters);
+				return GetHealthFacilityAsList(dt);
+			}
+			catch (Exception ex)
+			{
+				Log.InsertEntity("HealthFacility", "GetPagedNonDistrictCouncilHealthFacilityList", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+				throw ex;
+			}
+		}
+
         public static int GetCountHealthFacilityList(string name, string code, string hfid)
         {
             try
@@ -268,6 +297,33 @@ namespace GIIS.DataLayer
                 throw ex;
             }
         }
+
+		public static int GetCountNonDistrictCouncilHealthFacilityList(string name, string code, string hfid)
+		{
+			try
+			{
+				string query = @"SELECT COUNT(*) FROM ""HEALTH_FACILITY"" WHERE 1 = 1 "
+								  + @" AND ( UPPER(""NAME"") like @Name OR @Name is null or @Name = '')"
+								  + @" AND ( UPPER(""CODE"") like @Code OR @Code is null or @Code = '')"
+								  + @" AND (( ""ID"" = ANY( CAST( string_to_array(@HealthFacilityId, ',' ) AS INTEGER[] ))) or @HealthFacilityId = '' or @HealthFacilityId is null);";
+
+				List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
+				{
+					new NpgsqlParameter("@Name", DbType.String) { Value = ("%" + name + "%") },
+					new NpgsqlParameter("@Code", DbType.String) { Value = ("%" + code + "%") },
+					new NpgsqlParameter("@HealthFacilityId", DbType.String) { Value = hfid }
+				};
+
+				object count = DBManager.ExecuteScalarCommand(query, CommandType.Text, parameters);
+				return int.Parse(count.ToString());
+			}
+			catch (Exception ex)
+			{
+				Log.InsertEntity("HealthFacility", "GetCountNonDistrictCouncilHealthFacilityList", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+				throw ex;
+			}
+		}
+
         public static List<HealthFacility> GetPagedHealthFacilityList(ref int maximumRows, ref int startRowIndex, string where)
         {
             try

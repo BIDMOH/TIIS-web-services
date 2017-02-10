@@ -1,7 +1,12 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workbench ActiveDocument="GIIS.Website/Pages/HealthFacilityList.aspx">
+  <MonoDevelop.Ide.Workbench ActiveDocument="GIIS.Website/Pages/ReportsConfigurationDetails.aspx.cs">
     <Files>
-      <File FileName="GIIS.Website/Pages/HealthFacilityList.aspx" Line="141" Column="45" />
+      <File FileName="GIIS.Website/Pages/ReportsConfiguration.aspx.cs" Line="80" Column="76" />
+      <File FileName="GIIS.Website/Pages/ReportsConfiguration.aspx" Line="77" Column="123" />
+      <File FileName="GIIS.Website/Pages/ReportsConfigurationDetails.aspx" Line="37" Column="2" />
+      <File FileName="GIIS.Website/Pages/ReportsConfigurationDetails.aspx.cs" Line="44" Column="55" />
+      <File FileName="GIIS.Website/Pages/HealthFacilitySpecificSessionReports.aspx" Line="57" Column="15" />
+      <File FileName="GIIS.Website/Pages/HealthFacilitySpecificSessionReports.aspx.cs" Line="38" Column="35" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
