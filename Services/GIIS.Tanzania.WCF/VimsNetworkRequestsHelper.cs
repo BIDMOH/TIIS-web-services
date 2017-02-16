@@ -33,10 +33,14 @@ namespace GIIS.Tanzania.WCF
 	class Program
 	{
 		//Live server
-		//public static string url = "http://eis.moh.go.tz";
+		//public static string url = "http://vims.moh.go.tz";
 
 		//TEsting instances
-		public static string url = "http://kelvinmbwilo.com:9091";
+		public static string url = "http://vimstraining.elmis-dev.org";
+		//public static string url = "http://kelvinmbwilo.com:9091";
+
+
+
 		public static string GetSourceForMyShowsPage(string downloadUrl)
 		{
 			using (var client = new WebClientEx())
@@ -74,9 +78,7 @@ namespace GIIS.Tanzania.WCF
 		}
 	}
 
-	/// <summary>
-	/// A custom WebClient featuring a cookie container
-	/// </summary>
+
 
 	public class WebClientEx : WebClient
 	{

@@ -272,7 +272,7 @@ namespace GIIS.DataLayer
 						        ORDER BY 3 DESC;";
 				List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
 				{
-					new NpgsqlParameter("@districtCouncilId", DbType.Int32) { Value = districtCouncilId },
+					new NpgsqlParameter("@districtCouncilId", DbType.Int32) { Value = Helper.ConvertToInt(districtCouncilId) },
 					new NpgsqlParameter("@fromDate", DbType.DateTime) { Value = fromDate },
 					new NpgsqlParameter("@toDate", DbType.DateTime) { Value = toDate },
 					new NpgsqlParameter("@status", DbType.Boolean) { Value = true }
@@ -468,7 +468,7 @@ namespace GIIS.DataLayer
 								GROUP BY ""HEALTH_FACILITIES_SESSIONS"".""HEALTH_FACILITY_ID"",""NAME"",DaysMaximum,DaysMinimum,ChildrenVaccinationsMaximumThreshold,ChildrenVaccinationsMinimumThreshold,ChildrenRegistrationsMaximumThreshold,ChildrenRegistrationsMinimumThreshold";
 			List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
 			{
-					new NpgsqlParameter("@districtCouncilId", DbType.Int32) { Value = districtCouncilId }
+					new NpgsqlParameter("@districtCouncilId", DbType.Int32) { Value = Helper.ConvertToInt(districtCouncilId) }
 			};
 
 			DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, parameters);

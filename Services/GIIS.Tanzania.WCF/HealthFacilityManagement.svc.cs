@@ -724,6 +724,13 @@ namespace GIIS.Tanzania.WCF
 
 			return i;
 		}
+		/**
+		 * Method triggered periodically by the andoid client apps used to check for new stock from vims
+		 */
+		public IntReturnValue checkForNewStockFromVims(int healthFacilityId)
+		{
+			return receiveDelivery(HealthFacilityMapper.GetVimsHealthFacilityFacilityId(healthFacilityId));
+		}
 
 
 		/**

@@ -197,5 +197,9 @@ namespace GIIS.Tanzania.WCF
 		[WebGet(UriTemplate = "GetHealthFacilityAEFIList?healthFacilityId={healthFacilityId}&fromTime={fromTime}&toTime={toTime}", ResponseFormat = WebMessageFormat.Json)]
 		[OperationContract]
 		List<HealthFacilityAEFI> GetHealthFacilityAEFIList(int healthFacilityId, DateTime fromTime, DateTime toTime);
+
+		[WebGet(UriTemplate = "checkForNewStockFromVims?healthFacilityId={healthFacilityId}", ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		 IntReturnValue checkForNewStockFromVims(int healthFacilityId);
 	}
 }

@@ -111,7 +111,7 @@ namespace GIIS.DataLayer
 		{
 			try
 			{
-				string query = @"INSERT INTO ""CONFIGURATION_REPORTS"" (""NAME"", ""VALUE"", ""NOTES"",""HEALTH_FACILITY_ID"") VALUES (@Name, @Value, @Notes,@HealthFacilityId) returning ""ID"" ";
+				string query = @"INSERT INTO ""CONFIGURATION_REPORTS"" (""NAME"", ""VALUE"", ""HEALTH_FACILITY_ID"",""NOTES"") VALUES (@Name, @Value, @HealthFacilityId,@Notes) returning ""ID"" ";
 				List<Npgsql.NpgsqlParameter> parameters = new List<NpgsqlParameter>()
 				{
 					new NpgsqlParameter("@Name", DbType.String)  { Value = o.Name },
@@ -125,9 +125,8 @@ namespace GIIS.DataLayer
 			}
 			catch (Exception ex)
 			{
-				Log.InsertEntity("ConfigurationReport", "Insert", 1, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+				throw ex;
 			}
-			return -1;
 		}
 
 		public static int Update(ReportsConfiguration o)
