@@ -1,7 +1,7 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workbench ActiveDocument="StockManagementLogic.cs">
     <Files>
-      <File FileName="StockManagementLogic.cs" Line="185" Column="51" />
+      <File FileName="StockManagementLogic.cs" Line="156" Column="54" />
       <File FileName="VaccinationLogic.cs" Line="131" Column="44" />
     </Files>
   </MonoDevelop.Ide.Workbench>
@@ -10,4 +10,5 @@
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
 </Properties>

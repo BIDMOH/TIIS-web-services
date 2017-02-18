@@ -576,6 +576,7 @@ namespace GIIS.DataLayer
             catch (Exception ex)
             {
                 Log.InsertEntity("HealthFacilitySessions", "Insert", 1, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+				throw ex;
             }
             return -1;
         }

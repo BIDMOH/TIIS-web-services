@@ -57,7 +57,7 @@ namespace GIIS.DataLayer
 				if (hf != null)
 				{
 					string query = @"SELECT SUM(""HEALTH_FACILITY_BALANCE"".""BALANCE"") AS STOCK_ON_HAND FROM ""HEALTH_FACILITY_BALANCE"" join ""ITEM_MANUFACTURER"" using (""GTIN"") join ""ITEM"" on ""ITEM_ID"" = ""ITEM"".""ID"" join ""ITEM_LOT"" using (""GTIN"", ""LOT_NUMBER"") 
-						WHERE ""HEALTH_FACILITY_CODE"" = @ParamValue and ""ITEM_MANUFACTURER"".""IS_ACTIVE"" = true and ""ITEM_LOT"".""IS_ACTIVE"" = true and ""ITEM"".""CODE"" = @doseName AND ""ITEM_LOT"".""EXPIRE_DATE"" > now() ";
+						WHERE ""HEALTH_FACILITY_CODE"" = @ParamValue and ""ITEM_MANUFACTURER"".""IS_ACTIVE"" = true and ""ITEM_LOT"".""IS_ACTIVE"" = true and ""ITEM"".""NAME"" = @doseName AND ""ITEM_LOT"".""EXPIRE_DATE"" > now() ";
 					List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
 					{
 						new NpgsqlParameter("@ParamValue", DbType.String) { Value = hf.Code },
@@ -370,10 +370,14 @@ namespace GIIS.DataLayer
 
 					try
 					{
+						if (quantityPerDose == 0)
+						{
+							quantityPerDose = 1;
+						}
 						int numberOfDoses = Helper.ConvertToInt(row["DOSE_COUNT"]) / quantityPerDose;
 						int numberOFVials = numberOfDoses * quantityPerDose;
 
-						if (Helper.ConvertToInt(row["DOSE_COUNT"]) % quantityPerDose!=0)
+						if (Helper.ConvertToInt(row["DOSE_COUNT"]) % quantityPerDose != 0)
 						{
 							numberOFVials = numberOFVials + quantityPerDose;
 						}

@@ -33,7 +33,7 @@ namespace GIIS.Tanzania.WCF
 	class Program
 	{
 		//Live server
-		//public static string url = "http://vims.moh.go.tz";
+		//public static string url = "https://vims.moh.go.tz";
 
 		//TEsting instances
 		public static string url = "http://vimstraining.elmis-dev.org";
@@ -52,10 +52,34 @@ namespace GIIS.Tanzania.WCF
 				};
 				// Authenticating into vims
 				client.UploadValues(url+"/j_spring_security_check", values);
+
 				// Downloading desired page
 				return client.DownloadString(url+downloadUrl);
 			}
 		}
+
+
+		public static string GetSourceForMyShowsPageWithAuthorizationHeader(string downloadUrl)
+		{
+			
+			using (var client = new WebClientEx())
+			{
+				string userName= "vims-rivo";
+				string passWord= "admin123";
+
+
+
+
+				string credentials = Convert.ToBase64String(Encoding.ASCII.GetBytes(userName + ":" +passWord));
+				client.Headers[HttpRequestHeader.Authorization] = "Basic " +credentials;
+
+
+				// Downloading desired page
+				return client.DownloadString(url + downloadUrl);
+			}
+			 
+		}
+
 
 		public static string PostJsonToUrl(string postUrl,string jsonString)
 		{
