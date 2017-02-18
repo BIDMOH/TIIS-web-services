@@ -4,7 +4,7 @@
       <File FileName="HealthFacilityBalance.cs" Line="17" Column="34" />
       <File FileName="HealthFacilityBcgOpv0AndTTVaccinations.cs" Line="1" Column="1" />
       <File FileName="HealthFacilityBalanceEntity.cs" Line="60" Column="156" />
-      <File FileName="HealthFacilitiesSessions.cs" Line="401" Column="15" />
+      <File FileName="HealthFacilitiesSessions.cs" Line="587" Column="14" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
