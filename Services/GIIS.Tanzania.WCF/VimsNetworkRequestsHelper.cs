@@ -47,12 +47,12 @@ namespace GIIS.Tanzania.WCF
 			{
 				var values = new NameValueCollection
 				{
-					{ "j_username", "vims-rivo" },
-					{ "j_password", "admin123" },
+					{ "j_username", "vims-divo" },
+					{ "j_password", "Admin123" },
 				};
 				// Authenticating into vims
 				client.UploadValues(url+"/j_spring_security_check", values);
-
+				client.Headers.Add("User-Agent: Other");
 				// Downloading desired page
 				return client.DownloadString(url+downloadUrl);
 			}

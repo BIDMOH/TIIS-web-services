@@ -125,27 +125,29 @@ namespace GIIS.Tanzania.WCF
 					vaccinationEntity.antigen = ScheduledVaccination.GetScheduledVaccinationById(d.ScheduledVaccinationId).Name;
 					vaccinationEntity.dose = d.DoseNumber;
 
-					if (vaccinationEntity.antigen.Equals("BCG") || (vaccinationEntity.antigen.Equals("OPV") && vaccinationEntity.dose == 0))
+					if (vaccinationEntity.antigen.Equals("BCG") || (vaccinationEntity.antigen.Equals("bOPV") && vaccinationEntity.dose == 0))
 					{
 						
 						try
 						{
 							HealthFacilityBcgOpv0AndTTVaccinations v = GIIS.DataLayer.HealthFacilityBcgOpv0AndTTVaccinations.GetHealthFacilityBcgOpv0AndTTVaccinationsByDoseId(healthFacilityId, d.Id, fromDate.Month, fromDate.Year);
-
-							if (v.MaleServiceArea != 0 && v.FemaleServiceArea != 0 && v.MaleCatchmentArea != 0 && v.FemaleCatchmentArea != 0)
-							{//check if the monthly report data for BCG or OPV0 vaccinations from the tablets have been filled (This data is filled from the tablet into the BcgOpv0AndTTVaccinations table), if so use the value from the monthly reports i.e BcgOpv0AndTTVaccinations table, and send it back to vims if not use the value from vaccination events
-
-								vaccinationEntity.serviceAreaMale = v.MaleServiceArea;
-								vaccinationEntity.serviceAreaFemale = v.FemaleServiceArea;
-								vaccinationEntity.catchmentMale = v.MaleCatchmentArea;
-								vaccinationEntity.catchmentFemale = v.FemaleCatchmentArea;
-							}
-							else { //Else use the values from child vaccinations data within the vaccination event tables of the facilities
+						
+							if (v.MaleServiceArea == 0 && v.FemaleServiceArea == 0 && v.MaleCatchmentArea == 0 && v.FemaleCatchmentArea == 0)
+							{
+								//Else use the values from child vaccinations data within the vaccination event tables of the facilities
 								vaccinationEntity.serviceAreaMale = GIIS.DataLayer.HealthFacility.GetHealthFacilityVaccinationsByGenderAndCatchment(healthFacility.Id, d.Id, fromDate, toDate, true, false);
 								vaccinationEntity.serviceAreaFemale = GIIS.DataLayer.HealthFacility.GetHealthFacilityVaccinationsByGenderAndCatchment(healthFacility.Id, d.Id, fromDate, toDate, false, false);
 								vaccinationEntity.catchmentMale = GIIS.DataLayer.HealthFacility.GetHealthFacilityVaccinationsByGenderAndCatchment(healthFacility.Id, d.Id, fromDate, toDate, true, true);
 								vaccinationEntity.catchmentFemale = GIIS.DataLayer.HealthFacility.GetHealthFacilityVaccinationsByGenderAndCatchment(healthFacility.Id, d.Id, fromDate, toDate, false, true);
 
+							}
+							else { 
+								
+								//check if the monthly report data for BCG or OPV0 vaccinations from the tablets have been filled (This data is filled from the tablet into the BcgOpv0AndTTVaccinations table), if so use the value from the monthly reports i.e BcgOpv0AndTTVaccinations table, and send it back to vims if not use the value from vaccination events
+								vaccinationEntity.serviceAreaMale = v.MaleServiceArea;
+								vaccinationEntity.serviceAreaFemale = v.FemaleServiceArea;
+								vaccinationEntity.catchmentMale = v.MaleCatchmentArea;
+								vaccinationEntity.catchmentFemale = v.FemaleCatchmentArea;
 							}
 						}
 						catch (Exception e) { }
@@ -273,6 +275,26 @@ namespace GIIS.Tanzania.WCF
 		public List<HealthFacilityColdChain> GetHealthFacilityColdChain(int healthFacilityId, int reportingMonth, int reportingYear)
 		{
 			List <HealthFacilityColdChain> coldChain = GIIS.DataLayer.HealthFacilityColdChain.GetHealthFacilityColdChain(healthFacilityId, reportingMonth,reportingYear);
+
+
+			JObject vimsOperationStatusObject = JObject.Parse(Program.GetSourceForMyShowsPage("/equipment/type/operational-status"));
+			JArray operationStatusArray = (JArray)vimsOperationStatusObject["status"];
+			int operationStatusArrayCount = operationStatusArray.Count;
+			int functionalStatusId = 0;
+
+			for (int i = 0; i < operationStatusArrayCount; i++)
+			{
+				if (operationStatusArray[i]["name"].Equals("Functional"))
+				{
+					functionalStatusId = (int)operationStatusArray[i]["id"];
+				}
+			}
+
+			//JObject vimsReportDetailsObject = JObject.Parse(Program.GetSourceForMyShowsPage("/vaccine/report/get/" + reportId + ".json"));
+			//JArray coldChainLineItems = (JArray)vimsReportDetailsObject["report"]["coldChainLineItems"];
+
+
+
 			return coldChain;
 		}
 
@@ -315,6 +337,111 @@ namespace GIIS.Tanzania.WCF
 		}
 
 
+		public string SendColdChainToVims(int vimsFacilityId, double tempMax, double tempMin, int alarmHighTemp, int alarmLowTemp)
+		{
+			JObject vimsOperationStatusObject = JObject.Parse(Program.GetSourceForMyShowsPage("/equipment/type/operational-status"));
+
+
+			JObject obj = JObject.Parse(Program.GetSourceForMyShowsPage("/rest-api/lookup/program/Vaccine"));
+			int programId = (int)obj["program"]["id"];
+			JObject vimsReportsPeriodsObject = JObject.Parse(Program.GetSourceForMyShowsPage("/vaccine/report/periods/"+vimsFacilityId+"/"+programId));
+
+			JArray vimsReportsPeriods = (JArray)vimsReportsPeriodsObject["periods"];
+			int periodsCount = vimsReportsPeriods.Count;
+			int reportId = -1;
+			for (int i = 0; i < periodsCount; i++)
+			{
+				if (vimsReportsPeriods[i]["status"].ToString().Equals("DRAFT"))
+				{
+					reportId = (int)vimsReportsPeriods[i]["id"];
+				}
+			}
+
+			if (reportId != -1)
+			{
+				JObject vimsReportDetailsObject = JObject.Parse(Program.GetSourceForMyShowsPage("/vaccine/report/get/" + reportId+".json"));
+				JArray coldChainLineItems = (JArray)vimsReportDetailsObject["report"]["coldChainLineItems"];
+
+
+
+				JArray operationStatusArray = (JArray)vimsOperationStatusObject["status"];
+				int operationStatusArrayCount = operationStatusArray.Count;
+				int functionalStatusId = 0;
+
+				for (int i = 0; i < operationStatusArrayCount; i++)
+				{
+					if (operationStatusArray[i]["name"].Equals("Functional"))
+					{
+						functionalStatusId = (int)operationStatusArray[i]["id"];
+					}
+				}
+
+
+				JObject facilityEquipmentsObject = JObject.Parse(Program.GetSourceForMyShowsPage("/equipment/inventory/rest-api/EquipmentInventory/{facilityId}/{programId}?facilityId=" + vimsFacilityId + "&programId=" + programId));
+				JArray equipments = (JArray)facilityEquipmentsObject["Equipments"];
+
+				int count = equipments.Count;
+
+				for (int i = 0; i < count; i++)
+				{
+					JObject equipmentUpdateObj = new JObject();
+					equipmentUpdateObj.Add("id", equipments[i]["id"]);
+					equipmentUpdateObj.Add("facilityId", equipments[i]["facilityId"]);
+					equipmentUpdateObj.Add("programId", programId);
+					equipmentUpdateObj.Add("equipmentId", equipments[i]["equipmentId"]);
+					equipmentUpdateObj.Add("equipment", equipments[i]["equipment"]);
+					equipmentUpdateObj.Add("facility", vimsReportDetailsObject["report"]["facility"]);
+					equipmentUpdateObj.Add("operationalStatusId", functionalStatusId);//ask
+					equipmentUpdateObj.Add("notFunctionalStatusId", 0);//ask
+					equipmentUpdateObj.Add("serialNumber", equipments[i]["serialNumber"]);
+					equipmentUpdateObj.Add("yearOfInstallation", equipments[i]["yearOfInstallation"]);
+					equipmentUpdateObj.Add("purchasePrice", equipments[i]["purchasePrice"]);
+					equipmentUpdateObj.Add("sourceOfFund", equipments[i]["sourceOfFund"]);
+					equipmentUpdateObj.Add("replacementRecommended", equipments[i]["replacementRecommended"]);
+					equipmentUpdateObj.Add("reasonForReplacement", equipments[i]["reasonForReplacement"]);
+					equipmentUpdateObj.Add("nameOfAssessor", equipments[i]["nameOfAssessor"]);
+					equipmentUpdateObj.Add("primaryDonorId", equipments[i]["primaryDonorId"]);
+					equipmentUpdateObj.Add("isActive", equipments[i]["isActive"]);
+					equipmentUpdateObj.Add("dateDecommissioned", equipments[i]["dateDecommissioned"]);
+					equipmentUpdateObj.Add("dateLastAssessed", new DateTime());
+					equipmentUpdateObj.Add("hasStabilizer", equipments[i]["hasStabilizer"]);
+					equipmentUpdateObj.Add("nameOfSparePart", equipments[i]["nameOfSparePart"]);
+					equipmentUpdateObj.Add("equipmentInventoryId", equipments[i]["equipmentInventoryId"]);
+
+
+					JArray coldChainLines = new JArray();
+					JObject coldChainItem = new JObject();
+					coldChainItem.Add("id", coldChainLineItems[i]["id"]);
+					coldChainItem.Add("skipped", coldChainLineItems[i]["skipped"]);
+					coldChainItem.Add("reportId", reportId);
+					coldChainItem.Add("equipmentInventoryId", equipments[i]["equipmentInventoryId"]);
+
+					coldChainItem.Add("minTemp", tempMin);
+					coldChainItem.Add("maxTemp", tempMax);
+					coldChainItem.Add("minEpisodeTemp", alarmLowTemp);
+					coldChainItem.Add("maxEpisodeTemp", alarmHighTemp);
+					coldChainItem.Add("remarks", "");
+					coldChainItem.Add("operationalStatusId", functionalStatusId);
+					coldChainItem.Add("equipmentName", equipments[i]["equipment"]["name"]);
+
+					coldChainItem.Add("type", equipments[i]["equipment"]["equipmentType"]["name"]);
+					coldChainItem.Add("model", equipments[i]["equipment"]["model"]);
+					coldChainItem.Add("energySource", equipments[i]["equipment"]["energyType"]["name"]);
+					coldChainItem.Add("serial", coldChainLineItems[i]["serialNumber"]);
+					coldChainItem.Add("location_value", coldChainLineItems[i]["location_value"]);
+
+					coldChainLines.Add(coldChainItem);
+					equipmentUpdateObj.Add("coldChainLineItems", coldChainLines);
+
+					return equipmentUpdateObj.ToString();
+
+					Program.PostJsonToUrl(Program.url+"/equipment/inventory/rest-api/EquipmentInventory/update", equipmentUpdateObj.ToString());
+
+				}
+			}
+
+			return "success";
+		}
 
 		public List<HealthFacilityDeseaseSurvailance> GetHealthFacilityDeseaseSurvailance(int healthFacilityId, int reportingMonth, int reportingYear)
 		{

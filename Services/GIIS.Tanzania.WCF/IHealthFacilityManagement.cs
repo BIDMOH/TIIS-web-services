@@ -201,5 +201,9 @@ namespace GIIS.Tanzania.WCF
 		[WebGet(UriTemplate = "checkForNewStockFromVims?healthFacilityId={healthFacilityId}", ResponseFormat = WebMessageFormat.Json)]
 		[OperationContract]
 		 IntReturnValue checkForNewStockFromVims(int healthFacilityId);
+
+		[WebGet(UriTemplate = "SendColdChainToVims?vimsFacilityId={vimsFacilityId}&tempMax={tempMax}&tempMin={tempMin}&alarmHighTemp={alarmHighTemp}&alarmLowTemp={alarmLowTemp}", ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		string SendColdChainToVims(int vimsFacilityId, double tempMax, double tempMin, int alarmHighTemp, int alarmLowTemp);
 	}
 }
