@@ -1,16 +1,18 @@
 ﻿<Properties StartupConfiguration="{9A92CA0A-5B83-4E9D-8EDD-BB59683F9A98}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="GIIS.Tanzania.WCF/IHealthFacilityManagement.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="GIIS.Tanzania.WCF/VimsHealthFacilityMapper.cs">
     <Files>
-      <File FileName="GIIS.Tanzania.WCF/HealthFacilityManagement.svc.cs" Line="317" Column="126" />
-      <File FileName="GIIS.Tanzania.WCF/VimsNetworkRequestsHelper.cs" Line="30" Column="1" />
-      <File FileName="GIIS.Tanzania.WCF/IHealthFacilityManagement.cs" Line="206" Column="3" />
+      <File FileName="GIIS.Tanzania.WCF/HealthFacilityManagement.svc.cs" Line="1176" Column="4" />
+      <File FileName="GIIS.Tanzania.WCF/VimsNetworkRequestsHelper.cs" Line="34" Column="3" />
+      <File FileName="GIIS.Tanzania.WCF/IHealthFacilityManagement.cs" Line="207" Column="9" />
+      <File FileName="GIIS.Tanzania.WCF/VimsHealthFacilityMapper.cs" Line="37" Column="15261" />
+      <File FileName="GIIS.Tanzania.WCF/IChildManagement.cs" Line="178" Column="81" />
+      <File FileName="GIIS.Tanzania.WCF/ChildManagement.svc.cs" Line="865" Column="69" />
+      <File FileName="GIIS.Tanzania.WCF/UserManagement.svc.cs" Line="43" Column="49" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/coze/Workspace/TIIS-web-services/Services/GIIS.Tanzania.WCF/HealthFacilityManagement.svc.cs" relfile="GIIS.Tanzania.WCF/HealthFacilityManagement.svc.cs" line="1214" column="1" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.ItemProperties.GIIS.Tanzania.WCF PreferredExecutionTarget="MonoDevelop.Default" />

@@ -36,7 +36,7 @@ namespace GIIS.Tanzania.WCF
 		//public static string url = "https://vims.moh.go.tz";
 
 		//TEsting instances
-		public static string url = "http://vimstraining.elmis-dev.org";
+		public static string url = "https://vimstraining.elmis-dev.org";
 		//public static string url = "http://kelvinmbwilo.com:9091";
 
 
@@ -47,8 +47,8 @@ namespace GIIS.Tanzania.WCF
 			{
 				var values = new NameValueCollection
 				{
-					{ "j_username", "vims-divo" },
-					{ "j_password", "Admin123" },
+					{ "j_username", "vims-rivo" },
+					{ "j_password", "admin123" },
 				};
 				// Authenticating into vims
 				client.UploadValues(url+"/j_spring_security_check", values);

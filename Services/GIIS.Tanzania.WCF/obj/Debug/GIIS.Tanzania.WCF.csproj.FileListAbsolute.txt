@@ -1,21 +1,35 @@
-C:\Users\Doriana\Documents\Visual Studio 2012\Projects\GIIS.API\GIIS_API\GIIS_API\GIIS.Tanzania.WCF\bin\GIIS.Tanzania.WCF.dll
-C:\Users\Doriana\Documents\Visual Studio 2012\Projects\GIIS.API\GIIS_API\GIIS_API\GIIS.Tanzania.WCF\bin\GIIS.Tanzania.WCF.pdb
-C:\Users\Doriana\Documents\Visual Studio 2012\Projects\GIIS.API\GIIS_API\GIIS_API\GIIS.Tanzania.WCF\bin\GIIS.DataLayer.dll
-C:\Users\Doriana\Documents\Visual Studio 2012\Projects\GIIS.API\GIIS_API\GIIS_API\GIIS.Tanzania.WCF\bin\Mono.Security.dll
-C:\Users\Doriana\Documents\Visual Studio 2012\Projects\GIIS.API\GIIS_API\GIIS_API\GIIS.Tanzania.WCF\bin\Npgsql.dll
-C:\Users\Doriana\Documents\Visual Studio 2012\Projects\GIIS.API\GIIS_API\GIIS_API\GIIS.Tanzania.WCF\obj\Debug\GIIS.Tanzania.WCF.csprojResolveAssemblyReference.cache
-C:\Users\Doriana\Documents\Visual Studio 2012\Projects\GIIS.API\GIIS_API\GIIS_API\GIIS.Tanzania.WCF\obj\Debug\GIIS.Tanzania.WCF.dll
-C:\Users\Doriana\Documents\Visual Studio 2012\Projects\GIIS.API\GIIS_API\GIIS_API\GIIS.Tanzania.WCF\obj\Debug\GIIS.Tanzania.WCF.pdb
-C:\Users\Doriana\Documents\Visual Studio 2012\Projects\GIIS.API\GIIS_API\GIIS_API\GIIS.Tanzania.WCF\bin\GIIS.BusinessLogic.dll
-C:\Users\user\Desktop\tiiswebservices-d5e5f476ab643acb17faf1e8de4adfe3c3a9415b\GIIS.Tanzania.WCF\obj\Debug\GIIS.Tanzania.WCF.csprojResolveAssemblyReference.cache
-C:\Users\user\Documents\tiis-services-and-datalayer\Services\GIIS.Tanzania.WCF\obj\Debug\GIIS.Tanzania.WCF.csprojResolveAssemblyReference.cache
-C:\Users\user\Documents\tiis-services-and-datalayer\Services\GIIS.Tanzania.WCF\bin\GIIS.Tanzania.WCF.dll.config
-C:\Users\user\Documents\tiis-services-and-datalayer\Services\GIIS.Tanzania.WCF\bin\GIIS.Tanzania.WCF.dll
-C:\Users\user\Documents\tiis-services-and-datalayer\Services\GIIS.Tanzania.WCF\bin\GIIS.Tanzania.WCF.pdb
-C:\Users\user\Documents\tiis-services-and-datalayer\Services\GIIS.Tanzania.WCF\bin\GIIS.BusinessLogic.dll
-C:\Users\user\Documents\tiis-services-and-datalayer\Services\GIIS.Tanzania.WCF\bin\GIIS.BusinessLogic.pdb
-C:\Users\user\Documents\tiis-services-and-datalayer\Services\GIIS.Tanzania.WCF\bin\GIIS.BusinessLogic.xml
-C:\Users\user\Documents\tiis-services-and-datalayer\Services\GIIS.Tanzania.WCF\obj\Debug\GIIS.Tanzania.WCF.dll
-C:\Users\user\Documents\tiis-services-and-datalayer\Services\GIIS.Tanzania.WCF\obj\Debug\GIIS.Tanzania.WCF.pdb
-C:\Users\user\Documents\tiis-services-and-datalayer\Services\GIIS.Tanzania.WCF\bin\GIIS.DataLayer.dll
-C:\Users\user\Documents\tiis-services-and-datalayer\Services\GIIS.Tanzania.WCF\bin\GIIS.DataLayer.pdb
+C:/Users/Doriana/Documents/Visual Studio 2012/Projects/GIIS.API/GIIS_API/GIIS_API/GIIS.Tanzania.WCF/bin/GIIS.Tanzania.WCF.dll
+C:/Users/Doriana/Documents/Visual Studio 2012/Projects/GIIS.API/GIIS_API/GIIS_API/GIIS.Tanzania.WCF/bin/GIIS.Tanzania.WCF.pdb
+C:/Users/Doriana/Documents/Visual Studio 2012/Projects/GIIS.API/GIIS_API/GIIS_API/GIIS.Tanzania.WCF/bin/GIIS.DataLayer.dll
+C:/Users/Doriana/Documents/Visual Studio 2012/Projects/GIIS.API/GIIS_API/GIIS_API/GIIS.Tanzania.WCF/bin/Mono.Security.dll
+C:/Users/Doriana/Documents/Visual Studio 2012/Projects/GIIS.API/GIIS_API/GIIS_API/GIIS.Tanzania.WCF/bin/Npgsql.dll
+C:/Users/Doriana/Documents/Visual Studio 2012/Projects/GIIS.API/GIIS_API/GIIS_API/GIIS.Tanzania.WCF/obj/Debug/GIIS.Tanzania.WCF.csprojResolveAssemblyReference.cache
+C:/Users/Doriana/Documents/Visual Studio 2012/Projects/GIIS.API/GIIS_API/GIIS_API/GIIS.Tanzania.WCF/obj/Debug/GIIS.Tanzania.WCF.dll
+C:/Users/Doriana/Documents/Visual Studio 2012/Projects/GIIS.API/GIIS_API/GIIS_API/GIIS.Tanzania.WCF/obj/Debug/GIIS.Tanzania.WCF.pdb
+C:/Users/Doriana/Documents/Visual Studio 2012/Projects/GIIS.API/GIIS_API/GIIS_API/GIIS.Tanzania.WCF/bin/GIIS.BusinessLogic.dll
+C:/Users/user/Desktop/tiiswebservices-d5e5f476ab643acb17faf1e8de4adfe3c3a9415b/GIIS.Tanzania.WCF/obj/Debug/GIIS.Tanzania.WCF.csprojResolveAssemblyReference.cache
+C:/Users/user/Documents/tiis-services-and-datalayer/Services/GIIS.Tanzania.WCF/obj/Debug/GIIS.Tanzania.WCF.csprojResolveAssemblyReference.cache
+C:/Users/user/Documents/tiis-services-and-datalayer/Services/GIIS.Tanzania.WCF/bin/GIIS.Tanzania.WCF.dll.config
+C:/Users/user/Documents/tiis-services-and-datalayer/Services/GIIS.Tanzania.WCF/bin/GIIS.Tanzania.WCF.dll
+C:/Users/user/Documents/tiis-services-and-datalayer/Services/GIIS.Tanzania.WCF/bin/GIIS.Tanzania.WCF.pdb
+C:/Users/user/Documents/tiis-services-and-datalayer/Services/GIIS.Tanzania.WCF/bin/GIIS.BusinessLogic.dll
+C:/Users/user/Documents/tiis-services-and-datalayer/Services/GIIS.Tanzania.WCF/bin/GIIS.BusinessLogic.pdb
+C:/Users/user/Documents/tiis-services-and-datalayer/Services/GIIS.Tanzania.WCF/bin/GIIS.BusinessLogic.xml
+C:/Users/user/Documents/tiis-services-and-datalayer/Services/GIIS.Tanzania.WCF/obj/Debug/GIIS.Tanzania.WCF.dll
+C:/Users/user/Documents/tiis-services-and-datalayer/Services/GIIS.Tanzania.WCF/obj/Debug/GIIS.Tanzania.WCF.pdb
+C:/Users/user/Documents/tiis-services-and-datalayer/Services/GIIS.Tanzania.WCF/bin/GIIS.DataLayer.dll
+C:/Users/user/Documents/tiis-services-and-datalayer/Services/GIIS.Tanzania.WCF/bin/GIIS.DataLayer.pdb
+/Users/coze/Workspace/TIIS-web-services/Services/GIIS.Tanzania.WCF/bin/GIIS.Tanzania.WCF.dll
+/Users/coze/Workspace/TIIS-web-services/Services/GIIS.Tanzania.WCF/bin/GIIS.Tanzania.WCF.dll.mdb
+/Users/coze/Workspace/TIIS-web-services/Services/GIIS.Tanzania.WCF/bin/GIIS.BusinessLogic.dll
+/Users/coze/Workspace/TIIS-web-services/Services/GIIS.Tanzania.WCF/bin/GIIS.DataLayer.dll
+/Users/coze/Workspace/TIIS-web-services/Services/GIIS.Tanzania.WCF/bin/Npgsql.dll
+/Users/coze/Workspace/TIIS-web-services/Services/GIIS.Tanzania.WCF/bin/GIIS.DataLayer.dll.mdb
+/Users/coze/Workspace/TIIS-web-services/Services/GIIS.Tanzania.WCF/bin/Newtonsoft.Json.xml
+/Users/coze/Workspace/TIIS-web-services/Services/GIIS.Tanzania.WCF/bin/GIIS.BusinessLogic.dll.mdb
+/Users/coze/Workspace/TIIS-web-services/Services/GIIS.Tanzania.WCF/bin/GIIS.BusinessLogic.xml
+/Users/coze/Workspace/TIIS-web-services/Services/GIIS.Tanzania.WCF/bin/GIIS.BusinessLogic.dll.config
+/Users/coze/Workspace/TIIS-web-services/Services/GIIS.Tanzania.WCF/bin/Npgsql.xml
+/Users/coze/Workspace/TIIS-web-services/Services/GIIS.Tanzania.WCF/obj/Debug/GIIS.Tanzania.WCF.csprojResolveAssemblyReference.cache
+/Users/coze/Workspace/TIIS-web-services/Services/GIIS.Tanzania.WCF/obj/Debug/GIIS.Tanzania.WCF.dll
+/Users/coze/Workspace/TIIS-web-services/Services/GIIS.Tanzania.WCF/obj/Debug/GIIS.Tanzania.WCF.dll.mdb

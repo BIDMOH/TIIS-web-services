@@ -242,11 +242,11 @@ namespace GIIS.DataLayer
 		{
 			try
 			{
-				string query = string.Format("SELECT * FROM \"USER\" " + "WHERE UPPER(\"USERNAME\") = @Username AND \"IS_ACTIVE\" = 'True' ");
+				string query = string.Format("SELECT * FROM \"USER\" " + "WHERE \"USERNAME\" = @Username AND \"IS_ACTIVE\" = 'True' ");
 
 				List<Npgsql.NpgsqlParameter> parameters = new List<NpgsqlParameter>()
 				{
-					new NpgsqlParameter("@Username", DbType.String) { Value = username.ToUpper() }
+					new NpgsqlParameter("@Username", DbType.String) { Value = username }
 				};
 
 				DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, parameters);
