@@ -205,5 +205,10 @@ namespace GIIS.Tanzania.WCF
 		[WebGet(UriTemplate = "SendColdChainToVims?vimsFacilityId={vimsFacilityId}&tempMax={tempMax}&tempMin={tempMin}&alarmHighTemp={alarmHighTemp}&alarmLowTemp={alarmLowTemp}", ResponseFormat = WebMessageFormat.Json)]
 		[OperationContract]
 		string SendColdChainToVims(int vimsFacilityId, double tempMax, double tempMin, int alarmHighTemp, int alarmLowTemp);
+
+
+		[WebGet(UriTemplate = "GetDistrictCoverageReport?scheduledVaccinationName={scheduledVaccinationName}&healthFacilityId={healthFacilityId}&fromDate={fromDate}&toDate={toDate}", ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		 List<CoverageReportEntity> GetDistrictCoverageReport(string scheduledVaccinationName, int healthFacilityId, DateTime fromDate, DateTime toDate);
 	}
 }

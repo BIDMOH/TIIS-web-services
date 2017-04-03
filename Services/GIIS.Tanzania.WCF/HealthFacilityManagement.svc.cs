@@ -1188,6 +1188,12 @@ namespace GIIS.Tanzania.WCF
 			return stockDistributions;
 		}
 
+		public List<CoverageReportEntity> GetDistrictCoverageReport(string scheduledVaccinationName, int healthFacilityId, DateTime fromDate, DateTime toDate)
+		{
+			List<CoverageReportEntity> stockDistributions = GIIS.DataLayer.CoverageReportEntity.GetDistrictCoverageReport(scheduledVaccinationName, healthFacilityId, fromDate, toDate);
+			return stockDistributions;
+		} 
+
 
 		public int updateHeathFacilityStockDistributions(int fromHealthFacilityId, int toHealthFacilityId, int productId, int lotId, int itemId, string distributionType, DateTime distributionDate, int quantity, string status,int userId,int StockDistributionId)
 		{
