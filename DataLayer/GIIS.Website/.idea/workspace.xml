@@ -5,12 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="530d796c-0780-454e-b5db-359b024888dd" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../GIIS.DataLayer/Cohort.cs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../GIIS.DataLayer/bin/Debug/GIIS.DataLayer.dll.mdb" afterPath="$PROJECT_DIR$/../GIIS.DataLayer/bin/Debug/GIIS.DataLayer.dll.mdb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../GIIS.DataLayer/obj/Debug/GIIS.DataLayer.dll.mdb" afterPath="$PROJECT_DIR$/../GIIS.DataLayer/obj/Debug/GIIS.DataLayer.dll.mdb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/GIIS.Tanzania.WCF/bin/GIIS.DataLayer.dll" afterPath="$PROJECT_DIR$/../../Services/GIIS.Tanzania.WCF/bin/GIIS.DataLayer.dll" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/GIIS.Tanzania.WCF/bin/GIIS.DataLayer.dll.mdb" afterPath="$PROJECT_DIR$/../../Services/GIIS.Tanzania.WCF/bin/GIIS.DataLayer.dll.mdb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../GIIS.DataLayer/CoverRageReportEntity.cs" afterPath="$PROJECT_DIR$/../GIIS.DataLayer/CoverRageReportEntity.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../GIIS.DataLayer/GIIS.DataLayer.csproj" afterPath="$PROJECT_DIR$/../GIIS.DataLayer/GIIS.DataLayer.csproj" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../GIIS.DataLayer/GIIS.DataLayer.userprefs" afterPath="$PROJECT_DIR$/../GIIS.DataLayer/GIIS.DataLayer.userprefs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../GIIS.DataLayer/obj/Debug/CoreCompileInputs.cache" afterPath="$PROJECT_DIR$/../GIIS.DataLayer/obj/Debug/CoreCompileInputs.cache" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pages/CoverageByScheduleReports.aspx" afterPath="$PROJECT_DIR$/Pages/CoverageByScheduleReports.aspx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pages/CoverageByScheduleReports.aspx.cs" afterPath="$PROJECT_DIR$/Pages/CoverageByScheduleReports.aspx.cs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/GIIS.Tanzania.WCF.userprefs" afterPath="$PROJECT_DIR$/../../Services/GIIS.Tanzania.WCF.userprefs" />
@@ -38,8 +42,8 @@
       <file leaf-file-name="CoverageByScheduleReports.aspx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Pages/CoverageByScheduleReports.aspx">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3847242">
-              <caret line="84" column="45" selection-start-line="84" selection-start-column="45" selection-end-line="84" selection-end-column="45" />
+            <state vertical-scroll-proportion="0.6191176">
+              <caret line="108" column="122" selection-start-line="108" selection-start-column="122" selection-end-line="108" selection-end-column="136" />
               <folding />
             </state>
           </provider>
@@ -48,8 +52,8 @@
       <file leaf-file-name="CoverageByScheduleReports.aspx.cs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Pages/CoverageByScheduleReports.aspx.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="49" column="13" selection-start-line="49" selection-start-column="13" selection-end-line="49" selection-end-column="13" />
+            <state vertical-scroll-proportion="-20.88889">
+              <caret line="277" column="92" selection-start-line="277" selection-start-column="92" selection-end-line="277" selection-end-column="92" />
               <folding />
             </state>
           </provider>
@@ -512,16 +516,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Pages/CoverageByScheduleReports.aspx.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="49" column="13" selection-start-line="49" selection-start-column="13" selection-end-line="49" selection-end-column="13" />
+        <state vertical-scroll-proportion="-20.88889">
+          <caret line="277" column="92" selection-start-line="277" selection-start-column="92" selection-end-line="277" selection-end-column="92" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Pages/CoverageByScheduleReports.aspx">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3847242">
-          <caret line="84" column="45" selection-start-line="84" selection-start-column="45" selection-end-line="84" selection-end-column="45" />
+        <state vertical-scroll-proportion="0.6191176">
+          <caret line="108" column="122" selection-start-line="108" selection-start-column="122" selection-end-line="108" selection-end-column="136" />
           <folding />
         </state>
       </provider>

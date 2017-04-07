@@ -275,6 +275,7 @@ public partial class Pages_CoverageReport : System.Web.UI.Page
              objds.SelectParameters.Add(new Parameter("toDate", TypeCode.String, datetoString));
              objds.SelectParameters.Add(new Parameter("healthFacilityId", TypeCode.String, selectedHealthFacilityID));
              objds.SelectParameters.Add(new Parameter("scheduledVaccinationName", TypeCode.String, scheduledVaccinationName));
+             objds.SelectParameters.Add(new Parameter("isSchedule", TypeCode.Boolean, "true"));
              objds.DataBind();
 
 

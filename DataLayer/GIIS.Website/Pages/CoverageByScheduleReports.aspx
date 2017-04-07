@@ -32,14 +32,14 @@
                 <li class="active">
                     <a href="Report.aspx">Reports</a></li>
                 <li class="active">
-                    <asp:Label ID="lblTitle" runat="server" Text="Coverage Report" /></li>
+                    <asp:Label ID="lblTitle" runat="server" Text="Coverage Report By Schedule" /></li>
             </ol>
         </div>
     </div>
     
     <div class="row">
         <div class="col-md-12">
-            <h2><asp:Label ID="lblReportName" Text="Coverage Report" runat="server" /></h2>
+            <h2><asp:Label ID="lblReportName" Text="Coverage Report By Schedule" runat="server" /></h2>
         </div>
     </div>
     <div class="row">
@@ -140,6 +140,7 @@
                  <asp:Parameter Name="healthFacilityId" Type="String"/>
                  <asp:Parameter Name="fromDate" Type="DateTime" />
                  <asp:Parameter Name="toDate" Type="DateTime" />
+                 <asp:Parameter Name="isSchedule" Type="Boolean" />
             </SelectParameters>
         </asp:ObjectDataSource>
 

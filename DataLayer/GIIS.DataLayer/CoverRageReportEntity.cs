@@ -35,10 +35,11 @@ namespace GIIS.DataLayer
 		public Int32 TotalVaccinations { get; set; }
 		public Int32 ExpectedTotalCatchmentsVaccinations { get; set; }
 		public Int32 CoveragePercentage { get; set; }
+
         #endregion
 
         #region GetData
-		public static List<CoverageReportEntity> GetDistrictCoverageReport(string scheduledVaccinationName, int healthFacilityId, DateTime fromDate, DateTime toDate)
+		public static List<CoverageReportEntity> GetDistrictCoverageReport(string scheduledVaccinationName, int healthFacilityId, DateTime fromDate, DateTime toDate, bool isSchedule)
         {
 
 			string query = "SELECT * FROM " +
@@ -53,7 +54,7 @@ namespace GIIS.DataLayer
 					" \"VACCINATION_STATUS\" = true AND " +
 					" \"SCHEDULED_VACCINATION\".\"NAME\" = '" + scheduledVaccinationName + "' AND  " +
 					" (\"HEALTH_FACILITY\".\"ID\" = " + healthFacilityId + " OR \"HEALTH_FACILITY\".\"PARENT_ID\" = " + healthFacilityId + ") AND " +
-					" \"CHILD\".\"HEALTHCENTER_ID\" = \"VACCINATION_EVENT\".\"HEALTH_FACILITY_ID\") " +
+				" \"CHILD\".\"HEALTHCENTER_ID\" = \"VACCINATION_EVENT\".\"HEALTH_FACILITY_ID\" AND \"VACCINATION_DATE\">='"+fromDate.ToString()+"' AND \"VACCINATION_DATE\"<='"+toDate.ToString()+"') " +
 					"AS T1 GROUP BY T1.\"FULLNAME\", T1.\"GENDER\" ORDER BY T1.\"FULLNAME\", T1.\"GENDER\"  " +
 
 					")AS T2  $$) AS final_result(DOSE TEXT, FEMALEWithin BIGINT, MALEwithin BIGINT) " +
@@ -69,7 +70,7 @@ namespace GIIS.DataLayer
 					" \"VACCINATION_STATUS\" = true AND  " +
 					" \"SCHEDULED_VACCINATION\".\"NAME\" = '" + scheduledVaccinationName + "' AND " +
 					" (\"HEALTH_FACILITY\".\"ID\" = " + healthFacilityId + " OR \"HEALTH_FACILITY\".\"PARENT_ID\" = " + healthFacilityId + ") AND " +
-					" \"CHILD\".\"HEALTHCENTER_ID\" <> \"VACCINATION_EVENT\".\"HEALTH_FACILITY_ID\") " +
+					" \"CHILD\".\"HEALTHCENTER_ID\" <> \"VACCINATION_EVENT\".\"HEALTH_FACILITY_ID\"  AND \"VACCINATION_DATE\">='"+fromDate.ToString()+"' AND \"VACCINATION_DATE\"<='"+toDate.ToString()+"') " +
 					"AS T1 GROUP BY T1.\"FULLNAME\", T1.\"GENDER\" ORDER BY T1.\"FULLNAME\", T1.\"GENDER\" " +
 					")AS T2  $$) AS final_result(DOSE TEXT, FEMALEoutside BIGINT, MALEoutside BIGINT) " +
 					") AS table2 " +
@@ -82,9 +83,8 @@ namespace GIIS.DataLayer
 					" WHERE " +
 					" \"SCHEDULED_VACCINATION\".\"NAME\" = '" + scheduledVaccinationName +"' AND " +
 					" (\"HEALTH_FACILITY\".\"ID\" = " + healthFacilityId + " OR \"HEALTH_FACILITY\".\"PARENT_ID\" = " + healthFacilityId +") AND " +
-					" \"CHILD\".\"HEALTHCENTER_ID\" = \"VACCINATION_EVENT\".\"HEALTH_FACILITY_ID\"  GROUP BY \"FULLNAME\") " +
+					" \"CHILD\".\"HEALTHCENTER_ID\" = \"VACCINATION_EVENT\".\"HEALTH_FACILITY_ID\"  AND \"VACCINATION_DATE\">='"+fromDate.ToString()+"' AND \"VACCINATION_DATE\"<='"+toDate.ToString()+"' GROUP BY \"FULLNAME\") " +
 				" AS table3 ON table1.\"dose\" = table3.\"dose\" ";
-
 
 			try
             {
@@ -98,12 +98,15 @@ namespace GIIS.DataLayer
 
 				DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, null);
 
-				return GetCoverageReport(dt, scheduledVaccinationName);
+				if(isSchedule)
+					return GetCoverageReport(dt, scheduledVaccinationName);
+				else
+					return GetCoverageReportByTargetPopulation(dt, scheduledVaccinationName,healthFacilityId);
             }
             catch (Exception ex)
             {
 				Log.InsertEntity("CoverageReportEntity", "GetDistrictCoverageReport", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
-				throw new Exception(query);
+				throw ex;
             }
         }
 
@@ -166,7 +169,83 @@ namespace GIIS.DataLayer
     
             return oList;
         }
+
+
+		public static List<CoverageReportEntity> GetCoverageReportByTargetPopulation(DataTable dt, string vaccinationName,int healthFacilityId)
+		{
+			List<CoverageReportEntity> oList = new List<CoverageReportEntity>();
+			if (dt.Rows.Count != 0)
+			{
+				foreach (DataRow row in dt.Rows)
+				{
+					try
+					{
+						CoverageReportEntity o = new CoverageReportEntity();
+						o.DoseName = row["dose"].ToString();
+						o.MaleWithinCatchment = Helper.ConvertToInt(row["malewithin"]);
+						o.FemaleWithinCatchment = Helper.ConvertToInt(row["femalewithin"]);
+						o.FemaleOutsideCatchment = Helper.ConvertToInt(row["femaleoutside"]);
+						o.MaleOutsideCatchment = Helper.ConvertToInt(row["maleoutside"]);
+
+						o.ExpectedTotalCatchmentsVaccinations = Helper.ConvertToInt(row["expected_total"]);
+
+						o.TotalWithinCatchment = o.MaleWithinCatchment + o.FemaleWithinCatchment;
+						o.TotalOutsideCatchment = o.MaleOutsideCatchment + o.FemaleOutsideCatchment;
+						o.TotalVaccinations = o.TotalWithinCatchment + o.TotalOutsideCatchment;
+
+						DateTime date = new DateTime();
+
+						Cohort c = Cohort.GetCohortDataByHealthFacilityAndYear(healthFacilityId, date.Year);
+
+						if (c.CohortValue == 0)
+						{
+							o.CoveragePercentage = 0;
+						}
+						else
+						{
+							o.CoveragePercentage = (o.TotalWithinCatchment * 100) / c.CohortValue;
+						}
+
+
+						oList.Add(o);
+					}
+					catch (Exception ex)
+					{
+						Log.InsertEntity("CoverageReportEntity", "GetCoverageReport", 1, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+						throw ex;
+					}
+				}
+			}
+			else
+			{
+
+				List<Dose> doses = Dose.GetDoseByVaccinationName(vaccinationName);
+				foreach (Dose dose in doses)
+				{
+					CoverageReportEntity o = new CoverageReportEntity();
+					o.DoseName = dose.Fullname;
+					o.MaleWithinCatchment = 0;
+					o.FemaleWithinCatchment = 0;
+					o.FemaleOutsideCatchment = 0;
+					o.MaleOutsideCatchment = 0;
+
+					o.ExpectedTotalCatchmentsVaccinations = 0;
+
+					o.TotalWithinCatchment = 0;
+					o.TotalOutsideCatchment = 0;
+					o.TotalVaccinations = 0;
+					o.CoveragePercentage = 0;
+					oList.Add(o);
+				}
+			}
+
+			return oList;
+		}
+
         #endregion
 
     }
+
+
+
 }
