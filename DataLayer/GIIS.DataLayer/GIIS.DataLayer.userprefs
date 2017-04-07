@@ -1,7 +1,7 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workbench ActiveDocument="CoverRageReportEntity.cs">
     <Files>
-      <File FileName="CoverRageReportEntity.cs" Line="29" Column="41" />
+      <File FileName="CoverRageReportEntity.cs" Line="131" Column="97" />
       <File FileName="HealthFacilityBalanceEntity.cs" Line="122" Column="51" />
     </Files>
   </MonoDevelop.Ide.Workbench>

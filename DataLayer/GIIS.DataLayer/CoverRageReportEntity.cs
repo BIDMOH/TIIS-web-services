@@ -33,45 +33,58 @@ namespace GIIS.DataLayer
 		public Int32 FemaleOutsideCatchment { get; set; }
 		public Int32 TotalOutsideCatchment { get; set; }
 		public Int32 TotalVaccinations { get; set; }
+		public Int32 ExpectedTotalCatchmentsVaccinations { get; set; }
+		public Int32 CoveragePercentage { get; set; }
         #endregion
 
         #region GetData
 		public static List<CoverageReportEntity> GetDistrictCoverageReport(string scheduledVaccinationName, int healthFacilityId, DateTime fromDate, DateTime toDate)
         {
-			
-			string query ="SELECT * FROM " +
-					"(SELECT * FROM CROSSTAB($$ SELECT T2.\"FULLNAME\", T2.\"GENDER\", T2.\"count\" FROM("+
-					"SELECT T1.\"GENDER\", T1.\"FULLNAME\", COUNT(T1.\"CHILD_ID\") FROM "+
-					"(select * from \"VACCINATION_EVENT\" "+
-					"inner join \"CHILD\" on \"VACCINATION_EVENT\".\"CHILD_ID\" = \"CHILD\".\"ID\" "+
+
+			string query = "SELECT * FROM " +
+					"(SELECT * FROM CROSSTAB($$ SELECT T2.\"FULLNAME\", T2.\"GENDER\", T2.\"count\" FROM(" +
+					"SELECT T1.\"GENDER\", T1.\"FULLNAME\", COUNT(T1.\"CHILD_ID\") FROM " +
+					"(select * from \"VACCINATION_EVENT\" " +
+					"inner join \"CHILD\" on \"VACCINATION_EVENT\".\"CHILD_ID\" = \"CHILD\".\"ID\" " +
 					"inner join \"DOSE\" on \"VACCINATION_EVENT\".\"DOSE_ID\" = \"DOSE\".\"ID\" " +
 					"inner join \"SCHEDULED_VACCINATION\" on \"DOSE\".\"SCHEDULED_VACCINATION_ID\" = \"SCHEDULED_VACCINATION\".\"ID\" " +
 					"inner join \"HEALTH_FACILITY\" ON \"VACCINATION_EVENT\".\"HEALTH_FACILITY_ID\" = \"HEALTH_FACILITY\".\"ID\"  " +
-					"WHERE "+
+					"WHERE " +
 					" \"VACCINATION_STATUS\" = true AND " +
-					" \"SCHEDULED_VACCINATION\".\"NAME\" = '" + scheduledVaccinationName +"' AND  " +
-					" (\"HEALTH_FACILITY\".\"ID\" = " + healthFacilityId + " OR \"HEALTH_FACILITY\".\"PARENT_ID\" = " + healthFacilityId +") AND " +
+					" \"SCHEDULED_VACCINATION\".\"NAME\" = '" + scheduledVaccinationName + "' AND  " +
+					" (\"HEALTH_FACILITY\".\"ID\" = " + healthFacilityId + " OR \"HEALTH_FACILITY\".\"PARENT_ID\" = " + healthFacilityId + ") AND " +
 					" \"CHILD\".\"HEALTHCENTER_ID\" = \"VACCINATION_EVENT\".\"HEALTH_FACILITY_ID\") " +
-					"AS T1 GROUP BY T1.\"FULLNAME\", T1.\"GENDER\" ORDER BY T1.\"FULLNAME\", T1.\"GENDER\"  "+
+					"AS T1 GROUP BY T1.\"FULLNAME\", T1.\"GENDER\" ORDER BY T1.\"FULLNAME\", T1.\"GENDER\"  " +
 
 					")AS T2  $$) AS final_result(DOSE TEXT, FEMALEWithin BIGINT, MALEwithin BIGINT) " +
 					") AS table1  INNER JOIN " +
-					"(SELECT * FROM CROSSTAB($$ SELECT T2.\"FULLNAME\", T2.\"GENDER\", T2.\"count\" FROM( "+
-					"SELECT T1.\"GENDER\", T1.\"FULLNAME\", COUNT(T1.\"CHILD_ID\") FROM "+
-					"(select * from \"VACCINATION_EVENT\"  "+
-					"inner join \"CHILD\" on \"VACCINATION_EVENT\".\"CHILD_ID\" = \"CHILD\".\"ID\" "+
+					"(SELECT * FROM CROSSTAB($$ SELECT T2.\"FULLNAME\", T2.\"GENDER\", T2.\"count\" FROM( " +
+					"SELECT T1.\"GENDER\", T1.\"FULLNAME\", COUNT(T1.\"CHILD_ID\") FROM " +
+					"(select * from \"VACCINATION_EVENT\"  " +
+					"inner join \"CHILD\" on \"VACCINATION_EVENT\".\"CHILD_ID\" = \"CHILD\".\"ID\" " +
 					"inner join \"DOSE\" on \"VACCINATION_EVENT\".\"DOSE_ID\" = \"DOSE\".\"ID\"  " +
-					"inner join \"SCHEDULED_VACCINATION\" on \"DOSE\".\"SCHEDULED_VACCINATION_ID\" = \"SCHEDULED_VACCINATION\".\"ID\" "+
-					"inner join \"HEALTH_FACILITY\" ON \"VACCINATION_EVENT\".\"HEALTH_FACILITY_ID\" = \"HEALTH_FACILITY\".\"ID\" "+
-					"WHERE "+
-					" \"VACCINATION_STATUS\" = true AND  "+
-					" \"SCHEDULED_VACCINATION\".\"NAME\" = '" + scheduledVaccinationName +"' AND " +
-					" (\"HEALTH_FACILITY\".\"ID\" = " + healthFacilityId +" OR \"HEALTH_FACILITY\".\"PARENT_ID\" = " + healthFacilityId +") AND " +
+					"inner join \"SCHEDULED_VACCINATION\" on \"DOSE\".\"SCHEDULED_VACCINATION_ID\" = \"SCHEDULED_VACCINATION\".\"ID\" " +
+					"inner join \"HEALTH_FACILITY\" ON \"VACCINATION_EVENT\".\"HEALTH_FACILITY_ID\" = \"HEALTH_FACILITY\".\"ID\" " +
+					"WHERE " +
+					" \"VACCINATION_STATUS\" = true AND  " +
+					" \"SCHEDULED_VACCINATION\".\"NAME\" = '" + scheduledVaccinationName + "' AND " +
+					" (\"HEALTH_FACILITY\".\"ID\" = " + healthFacilityId + " OR \"HEALTH_FACILITY\".\"PARENT_ID\" = " + healthFacilityId + ") AND " +
 					" \"CHILD\".\"HEALTHCENTER_ID\" <> \"VACCINATION_EVENT\".\"HEALTH_FACILITY_ID\") " +
-					"AS T1 GROUP BY T1.\"FULLNAME\", T1.\"GENDER\" ORDER BY T1.\"FULLNAME\", T1.\"GENDER\" "+
-					")AS T2  $$) AS final_result(DOSE TEXT, FEMALEoutside BIGINT, MALEoutside BIGINT) "+
+					"AS T1 GROUP BY T1.\"FULLNAME\", T1.\"GENDER\" ORDER BY T1.\"FULLNAME\", T1.\"GENDER\" " +
+					")AS T2  $$) AS final_result(DOSE TEXT, FEMALEoutside BIGINT, MALEoutside BIGINT) " +
 					") AS table2 " +
-					"ON table1.\"dose\" = table2.\"dose\" ";   
+					"ON table1.\"dose\" = table2.\"dose\" " +
+					" INNER JOIN(select \"FULLNAME\" AS dose, COUNT(DISTINCT \"VACCINATION_EVENT\".\"ID\") AS EXPECTED_TOTAL from \"VACCINATION_EVENT\" " +
+					" inner join \"CHILD\" on \"VACCINATION_EVENT\".\"CHILD_ID\" = \"CHILD\".\"ID\" " +
+					" inner join \"DOSE\" on \"VACCINATION_EVENT\".\"DOSE_ID\" = \"DOSE\".\"ID\" " +
+					 " inner join \"SCHEDULED_VACCINATION\" on \"DOSE\".\"SCHEDULED_VACCINATION_ID\" = \"SCHEDULED_VACCINATION\".\"ID\" " +
+					" inner join \"HEALTH_FACILITY\" ON \"VACCINATION_EVENT\".\"HEALTH_FACILITY_ID\" = \"HEALTH_FACILITY\".\"ID\"  " +
+					" WHERE " +
+					" \"SCHEDULED_VACCINATION\".\"NAME\" = 'OPV' AND " +
+					" (\"HEALTH_FACILITY\".\"ID\" = 12610 OR \"HEALTH_FACILITY\".\"PARENT_ID\" = 12610) AND " +
+					" \"CHILD\".\"HEALTHCENTER_ID\" = \"VACCINATION_EVENT\".\"HEALTH_FACILITY_ID\"  GROUP BY \"FULLNAME\") " +
+				" AS table3 ON table1.\"dose\" = table3.\"dose\" ";
+
 
 			try
             {
@@ -108,9 +121,15 @@ namespace GIIS.DataLayer
 					o.FemaleWithinCatchment = Helper.ConvertToInt(row["femalewithin"]);
 					o.FemaleOutsideCatchment = Helper.ConvertToInt(row["femaleoutside"]);
 					o.MaleOutsideCatchment  = Helper.ConvertToInt(row["maleoutside"]);
+
+					o.ExpectedTotalCatchmentsVaccinations = Helper.ConvertToInt(row["expected_total"]);
+
 					o.TotalWithinCatchment  = o.MaleWithinCatchment + o.FemaleWithinCatchment;
 					o.TotalOutsideCatchment = o.MaleOutsideCatchment + o.FemaleOutsideCatchment;
 					o.TotalVaccinations = o.TotalWithinCatchment + o.TotalOutsideCatchment;
+
+					o.CoveragePercentage = (o.TotalWithinCatchment * 100)/o.ExpectedTotalCatchmentsVaccinations;
+
                     oList.Add(o);
                 }
                 catch (Exception ex)
