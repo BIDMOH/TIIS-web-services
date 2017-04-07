@@ -80,8 +80,8 @@ namespace GIIS.DataLayer
 					 " inner join \"SCHEDULED_VACCINATION\" on \"DOSE\".\"SCHEDULED_VACCINATION_ID\" = \"SCHEDULED_VACCINATION\".\"ID\" " +
 					" inner join \"HEALTH_FACILITY\" ON \"VACCINATION_EVENT\".\"HEALTH_FACILITY_ID\" = \"HEALTH_FACILITY\".\"ID\"  " +
 					" WHERE " +
-					" \"SCHEDULED_VACCINATION\".\"NAME\" = 'OPV' AND " +
-					" (\"HEALTH_FACILITY\".\"ID\" = 12610 OR \"HEALTH_FACILITY\".\"PARENT_ID\" = 12610) AND " +
+					" \"SCHEDULED_VACCINATION\".\"NAME\" = '" + scheduledVaccinationName +"' AND " +
+					" (\"HEALTH_FACILITY\".\"ID\" = " + healthFacilityId + " OR \"HEALTH_FACILITY\".\"PARENT_ID\" = " + healthFacilityId +") AND " +
 					" \"CHILD\".\"HEALTHCENTER_ID\" = \"VACCINATION_EVENT\".\"HEALTH_FACILITY_ID\"  GROUP BY \"FULLNAME\") " +
 				" AS table3 ON table1.\"dose\" = table3.\"dose\" ";
 
@@ -98,7 +98,7 @@ namespace GIIS.DataLayer
 
 				DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, null);
 
-                return GetCoverageReport(dt);
+				return GetCoverageReport(dt, scheduledVaccinationName);
             }
             catch (Exception ex)
             {
@@ -108,36 +108,62 @@ namespace GIIS.DataLayer
         }
 
 
-		public static List<CoverageReportEntity> GetCoverageReport(DataTable dt)
+		public static List<CoverageReportEntity> GetCoverageReport(DataTable dt,string vaccinationName)
         {
 			List<CoverageReportEntity> oList = new List<CoverageReportEntity>();
-            foreach (DataRow row in dt.Rows)
-            {
-                try
-                {
+			if (dt.Rows.Count != 0)
+			{
+				foreach (DataRow row in dt.Rows)
+				{
+					try
+					{
+						CoverageReportEntity o = new CoverageReportEntity();
+						o.DoseName = row["dose"].ToString();
+						o.MaleWithinCatchment = Helper.ConvertToInt(row["malewithin"]);
+						o.FemaleWithinCatchment = Helper.ConvertToInt(row["femalewithin"]);
+						o.FemaleOutsideCatchment = Helper.ConvertToInt(row["femaleoutside"]);
+						o.MaleOutsideCatchment = Helper.ConvertToInt(row["maleoutside"]);
+
+						o.ExpectedTotalCatchmentsVaccinations = Helper.ConvertToInt(row["expected_total"]);
+
+						o.TotalWithinCatchment = o.MaleWithinCatchment + o.FemaleWithinCatchment;
+						o.TotalOutsideCatchment = o.MaleOutsideCatchment + o.FemaleOutsideCatchment;
+						o.TotalVaccinations = o.TotalWithinCatchment + o.TotalOutsideCatchment;
+
+						o.CoveragePercentage = (o.TotalWithinCatchment * 100) / o.ExpectedTotalCatchmentsVaccinations;
+
+						oList.Add(o);
+					}
+					catch (Exception ex)
+					{
+						Log.InsertEntity("CoverageReportEntity", "GetCoverageReport", 1, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+						throw ex;
+					}
+				}
+			}
+			else
+			{
+
+				List<Dose> doses = Dose.GetDoseByVaccinationName(vaccinationName);
+				foreach (Dose dose in doses)
+				{
 					CoverageReportEntity o = new CoverageReportEntity();
-					o.DoseName = row["dose"].ToString();
-					o.MaleWithinCatchment   = Helper.ConvertToInt(row["malewithin"]);
-					o.FemaleWithinCatchment = Helper.ConvertToInt(row["femalewithin"]);
-					o.FemaleOutsideCatchment = Helper.ConvertToInt(row["femaleoutside"]);
-					o.MaleOutsideCatchment  = Helper.ConvertToInt(row["maleoutside"]);
+					o.DoseName =dose.Fullname;
+					o.MaleWithinCatchment = 0;
+					o.FemaleWithinCatchment = 0;
+					o.FemaleOutsideCatchment = 0;
+					o.MaleOutsideCatchment = 0;
 
-					o.ExpectedTotalCatchmentsVaccinations = Helper.ConvertToInt(row["expected_total"]);
+					o.ExpectedTotalCatchmentsVaccinations = 0;
 
-					o.TotalWithinCatchment  = o.MaleWithinCatchment + o.FemaleWithinCatchment;
-					o.TotalOutsideCatchment = o.MaleOutsideCatchment + o.FemaleOutsideCatchment;
-					o.TotalVaccinations = o.TotalWithinCatchment + o.TotalOutsideCatchment;
-
-					o.CoveragePercentage = (o.TotalWithinCatchment * 100)/o.ExpectedTotalCatchmentsVaccinations;
-
-                    oList.Add(o);
-                }
-                catch (Exception ex)
-                {
-					Log.InsertEntity("CoverageReportEntity", "GetCoverageReport", 1, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
-                    throw ex;
-                }
-            }
+					o.TotalWithinCatchment = 0;
+					o.TotalOutsideCatchment = 0;
+					o.TotalVaccinations = 0;
+					o.CoveragePercentage = 0;
+					oList.Add(o);
+				}
+			}
+    
             return oList;
         }
         #endregion

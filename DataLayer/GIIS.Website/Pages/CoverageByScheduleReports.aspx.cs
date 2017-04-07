@@ -20,8 +20,6 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Web;
-using System.Data;
-using System.Drawing;
 
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
@@ -257,6 +255,8 @@ public partial class Pages_CoverageReport : System.Web.UI.Page
 
     protected void gvCoverageReport_DataBound(object sender ,GridViewRowEventArgs e)
     {
+
+
         if (e.Row.RowType == DataControlRowType.DataRow)
         {
             string scheduledVaccinationName = e.Row.Cells[0].Text;
@@ -283,6 +283,7 @@ public partial class Pages_CoverageReport : System.Web.UI.Page
 
 
         }
+
     }
 
 
@@ -293,7 +294,12 @@ public partial class Pages_CoverageReport : System.Web.UI.Page
 
     protected void gvCoverageReportDetails_DataBound(object sender ,GridViewRowEventArgs e)
     {
-
+             if (e.Row.RowType == DataControlRowType.Header)
+                {
+                                e.Row.Cells[0].Text = "DoseName";
+                                e.Row.Cells[1].Text = "Male";
+                                e.Row.Cells[2].Text = "Female";
+                 }
     }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

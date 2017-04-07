@@ -72,6 +72,28 @@ namespace GIIS.DataLayer
                 throw ex;
             }
         }
+
+		public static List<Dose> GetDoseByVaccinationName(string sch)
+		{
+			try
+			{
+				string query = @"SELECT * FROM ""DOSE"" 
+									inner join ""SCHEDULED_VACCINATION"" ON ""DOSE"".""SCHEDULED_VACCINATION_ID"" = ""SCHEDULED_VACCINATION"".""ID""
+								WHERE ""SCHEDULED_VACCINATION"".""NAME"" = @vaccineName AND ""DOSE"".""IS_ACTIVE"" = true ";
+				List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
+				{
+					new NpgsqlParameter("@vaccineName", DbType.String) { Value = sch }
+
+				};
+				DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, parameters);
+				return GetDoseAsList(dt);
+			}
+			catch (Exception ex)
+			{
+				Log.InsertEntity("Dose", "GetDoseByVaccinationName", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+				throw ex;
+			}
+		}
         public static DataTable GetDoseListForReport()
         {
             try
