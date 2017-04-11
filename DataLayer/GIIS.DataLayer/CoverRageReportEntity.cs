@@ -34,7 +34,7 @@ namespace GIIS.DataLayer
 		public Int32 TotalOutsideCatchment { get; set; }
 		public Int32 TotalVaccinations { get; set; }
 		public Int32 ExpectedTotalCatchmentsVaccinations { get; set; }
-		public Int32 CoveragePercentage { get; set; }
+		
         #endregion
 
         #region GetData
@@ -129,8 +129,7 @@ namespace GIIS.DataLayer
 						o.TotalWithinCatchment = o.MaleWithinCatchment + o.FemaleWithinCatchment;
 						o.TotalOutsideCatchment = o.MaleOutsideCatchment + o.FemaleOutsideCatchment;
 						o.TotalVaccinations = o.TotalWithinCatchment + o.TotalOutsideCatchment;
-
-						o.CoveragePercentage = (o.TotalWithinCatchment * 100) / o.ExpectedTotalCatchmentsVaccinations;
+						
 
 						oList.Add(o);
 					}
@@ -159,7 +158,6 @@ namespace GIIS.DataLayer
 					o.TotalWithinCatchment = 0;
 					o.TotalOutsideCatchment = 0;
 					o.TotalVaccinations = 0;
-					o.CoveragePercentage = 0;
 					oList.Add(o);
 				}
 			}

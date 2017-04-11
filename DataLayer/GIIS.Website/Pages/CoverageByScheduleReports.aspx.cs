@@ -294,12 +294,7 @@ public partial class Pages_CoverageReport : System.Web.UI.Page
 
     protected void gvCoverageReportDetails_DataBound(object sender ,GridViewRowEventArgs e)
     {
-             if (e.Row.RowType == DataControlRowType.Header)
-                {
-                                e.Row.Cells[0].Text = "DoseName";
-                                e.Row.Cells[1].Text = "Male";
-                                e.Row.Cells[2].Text = "Female";
-                 }
+
     }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

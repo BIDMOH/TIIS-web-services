@@ -19,3 +19,7 @@ C:/Users/user/Documents/tiis-services-and-datalayer/DataLayer/GIIS.DataLayer/obj
 /Users/coze/Workspace/TIIS-web-services/DataLayer/GIIS.DataLayer/obj/Debug/GIIS.DataLayer.csprojResolveAssemblyReference.cache
 /Users/coze/Workspace/TIIS-web-services/DataLayer/GIIS.DataLayer/obj/Debug/GIIS.DataLayer.dll
 /Users/coze/Workspace/TIIS-web-services/DataLayer/GIIS.DataLayer/obj/Debug/GIIS.DataLayer.dll.mdb
+C:\Users\Kency\workspace\TIIS-web-services\DataLayer\GIIS.DataLayer\bin\Debug\GIIS.DataLayer.dll
+C:\Users\Kency\workspace\TIIS-web-services\DataLayer\GIIS.DataLayer\bin\Debug\GIIS.DataLayer.pdb
+C:\Users\Kency\workspace\TIIS-web-services\DataLayer\GIIS.DataLayer\obj\Debug\GIIS.DataLayer.dll
+C:\Users\Kency\workspace\TIIS-web-services\DataLayer\GIIS.DataLayer\obj\Debug\GIIS.DataLayer.pdb
