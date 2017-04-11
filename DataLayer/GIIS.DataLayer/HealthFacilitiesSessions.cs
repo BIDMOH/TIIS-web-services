@@ -32,11 +32,12 @@ namespace GIIS.DataLayer
 		public DateTime LoginTime { get; set; }
         public Int32 SessionLength { get; set; }
 		public string UserName { get; set;}
+		
 
-        #endregion
+		#endregion
 
-        #region GetData
-        public static List<HealthFacilitySessions> GetHealthFacilitySessionsList()
+		#region GetData
+		public static List<HealthFacilitySessions> GetHealthFacilitySessionsList()
         {
             try
             {
@@ -512,7 +513,7 @@ namespace GIIS.DataLayer
 					}catch { }
 					try
 					{
-						string query2 = @"SELECT ""LOGIN_TIME"" FROM ""HEALTH_FACILITIES_SESSIONS"" WHERE ""HEALTH_FACILITY_ID"" = @hfid AND ""LOGIN_TIME"" >= @fromDate AND ""LOGIN_TIME""<= @toDate ";
+						string query2 = @"SELECT ""LOGIN_TIME"",""APK_VERSION"" FROM ""HEALTH_FACILITIES_SESSIONS"" WHERE ""HEALTH_FACILITY_ID"" = @hfid AND ""LOGIN_TIME"" >= @fromDate AND ""LOGIN_TIME""<= @toDate ";
 						List<NpgsqlParameter> parameters2 = new List<NpgsqlParameter>()
 						{
 							new NpgsqlParameter("@hfid", DbType.Int32) { Value = o.HealthFacilityId },
@@ -524,8 +525,9 @@ namespace GIIS.DataLayer
 						foreach (DataRow row2 in dt2.Rows)
 						{
 							dates.Add(Helper.ConvertToDate(row2["LOGIN_TIME"]));
+							o.apk = row2["APK_VERSION"].ToString();
 						}
-
+						
 						dates = dates.Select(x => x.Date).Distinct().ToList();
 						o.SessionsCount = dates.Count;
 

@@ -23,3 +23,4 @@ C:\Users\Kency\workspace\TIIS-web-services\DataLayer\GIIS.DataLayer\bin\Debug\GI
 C:\Users\Kency\workspace\TIIS-web-services\DataLayer\GIIS.DataLayer\bin\Debug\GIIS.DataLayer.pdb
 C:\Users\Kency\workspace\TIIS-web-services\DataLayer\GIIS.DataLayer\obj\Debug\GIIS.DataLayer.dll
 C:\Users\Kency\workspace\TIIS-web-services\DataLayer\GIIS.DataLayer\obj\Debug\GIIS.DataLayer.pdb
+C:\Users\Kency\workspace\TIIS-web-services\DataLayer\GIIS.DataLayer\obj\Debug\GIIS.DataLayer.csprojResolveAssemblyReference.cache

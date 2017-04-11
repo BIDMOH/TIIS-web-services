@@ -27,6 +27,7 @@ namespace GIIS.DataLayer
         public Int32 HealthFacilityId { get; set; }
 		public string Name { get; set; }
 		public Int32 SessionsCount { get; set; }
+		public string apk { get; set; }
 
 		public Int32 DaysMaximum { get; set; }
 		public Int32 DaysMinimum { get; set; }

@@ -106,9 +106,9 @@ public partial class Pages_HealthFacilityChildrenRegistrationsDefaulters : Syste
                 UserRole role = UserRole.GetUserRoleByUserId(userId);
                 if(role.Role.Name.Equals("Middle Level Officer"))
                 {
-                    command = "SELECT \"ID\", \"NAME\" FROM \"HEALTH_FACILITY\" WHERE \"TYPE_ID\" = 3  AND \"ID\" = "+CurrentEnvironment.LoggedUser.HealthFacilityId;
+                    command = "SELECT \"ID\", \"NAME\" FROM \"HEALTH_FACILITY\" WHERE  \"ID\" = "+CurrentEnvironment.LoggedUser.HealthFacilityId;
                 }else{
-                    command = "SELECT \"ID\", \"NAME\" FROM \"HEALTH_FACILITY\" WHERE \"TYPE_ID\" = "+3;
+                    command = "SELECT \"ID\", \"NAME\" FROM \"HEALTH_FACILITY\" ;
                 }
 
 
