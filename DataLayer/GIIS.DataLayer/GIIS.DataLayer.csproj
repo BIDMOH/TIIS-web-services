@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{241F7080-2919-4084-AD56-DACFD85DD65E}</ProjectGuid>
+    <ProjectGuid>{7D28803D-FC9C-4245-B4C0-6D3FB8D2F851}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>GIIS.DataLayer</RootNamespace>
@@ -52,7 +52,7 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Mono.Security">
-      <HintPath>..\..\..\..\..\..\Desktop\Npgsql-2.2.5-net45\Mono.Security.dll</HintPath>
+      <HintPath>bin\Debug\Mono.Security.dll</HintPath>
     </Reference>
     <Reference Include="System.Configuration" />
     <Reference Include="Npgsql">
@@ -93,6 +93,7 @@
     <Compile Include="DoseEntity.cs" />
     <Compile Include="GtinHfStockPolicy.cs" />
     <Compile Include="GtinHfStockPolicyEntity.cs" />
+    <Compile Include="HealthFacilitiesDefaulters.cs" />
     <Compile Include="HealthFacility.cs" />
     <Compile Include="HealthFacilityBalance.cs" />
     <Compile Include="HealthFacilityBalanceEntity.cs" />

@@ -81,7 +81,12 @@
                 <ItemTemplate> 
                     <%#Eval("SessionsCount")%>
                 </ItemTemplate>
-                </asp:TemplateField>   
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="APK Version">
+                     <ItemTemplate>
+                         <%#Eval("apk")%>
+                     </ItemTemplate>
+                </asp:TemplateField>
                 <asp:TemplateField HeaderText="View Facility Session Reports">
                     <ItemTemplate>
                         <a href='<%# Eval("HealthFacilityId", "HealthFacilitySpecificSessionReports.aspx?hfId={0}") %>' target="_blank">
