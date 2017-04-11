@@ -15,7 +15,7 @@
    limitations under the License.
  ******************************************************************************
 --%>
-<%@ Page Title="View Coverage By Schedule Report" EnableEventValidation="false" Language="C#" AutoEventWireup="true" CodeFile="CoverageByScheduleReports.aspx.cs" Inherits="Pages_CoverageReport" MasterPageFile="~/Pages/MasterPage.master" %>
+<%@ Page Title="View Coverage By Schedule Report" EnableEventValidation="false" Language="C#" AutoEventWireup="true" CodeFile="CoverageByTargetPopulationReports.aspx.cs" Inherits="Pages_CoverageByTargetPopulationReport" MasterPageFile="~/Pages/MasterPage.master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <style type="text/css">
@@ -32,19 +32,19 @@
                 <li class="active">
                     <a href="Report.aspx">Reports</a></li>
                 <li class="active">
-                    <asp:Label ID="lblTitle" runat="server" Text="Coverage Report By Schedule" /></li>
+                    <asp:Label ID="lblTitle" runat="server" Text="Coverage Report By Target Population" /></li>
             </ol>
         </div>
     </div>
     
     <div class="row">
         <div class="col-md-12">
-            <h2><asp:Label ID="lblReportName" Text="Coverage Report By Schedule" runat="server" /></h2>
+            <h2><asp:Label ID="lblReportName" Text="Coverage Report By Target Population" runat="server" /></h2>
         </div>
     </div>
     <div class="row">
         <div class="col-md-12">
-            <em><asp:Label runat="server" ID="lblReportDescription" Text="This report shows the measure of percentage difference between number of children immunized with third dose and first dose for each antigen against pre-determined monthly immunization target "  /></em>
+            <em><asp:Label runat="server" ID="lblReportDescription" Text="This report shows the measure of percentage difference between number of children immunized with third dose and first dose for each antigen against pre-determined target population "  /></em>
         </div>
     </div>
     <br />

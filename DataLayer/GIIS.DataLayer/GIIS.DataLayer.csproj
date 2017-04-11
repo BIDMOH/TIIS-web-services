@@ -190,6 +190,7 @@
     <Compile Include="HealthFacilityLoginSessionsRatingsEntity.cs" />
     <Compile Include="ConfigurationsReports.cs" />
     <Compile Include="CoverRageReportEntity.cs" />
+    <Compile Include="Cohort.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Library\Mono.Security.dll" />
