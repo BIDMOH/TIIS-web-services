@@ -131,6 +131,12 @@ namespace GIIS.Tanzania.WCF
 		IntReturnValue StoreHealthFacilityLoginSessions(int userId, int healthFacilityId, DateTime loginTime, int sessionLength);
 
 
+		[WebGet(UriTemplate = "StoreHealthFacilityLoginSessionsAndAppVersion?userId={userId}&healthFacilityId={healthFacilityId}&loginTime={loginTime}&sessionLength={sessionLength}&appVersion={appVersion}", ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		IntReturnValue StoreHealthFacilityLoginSessionsAndAppVersion(int userId, int healthFacilityId, DateTime loginTime, int sessionLength, string appVersion);
+
+
+
 		[WebGet(UriTemplate = "StoreHealthFacilitySyringesAndSafetyBoxesStockBalance?healthFacilityId={healthFacilityId}&ItemName={ItemName}&OpeningBalance={OpeningBalance}&Received={Received}&StockInHand={StockInHand}&Used={Used}&wastage={wastage}&StockedOutDays={StockedOutDays}&reportingMonth={reportingMonth}&reportingYear={reportingYear}&userId={userId}&modifiedOn={modifiedOn}", ResponseFormat = WebMessageFormat.Json)]
 		[OperationContract]
 		IntReturnValue StoreHealthFacilitySyringesAndSafetyBoxesStockBalance(int healthFacilityId, string ItemName, int OpeningBalance, int Received, int StockInHand, int Used, int wastage, int StockedOutDays, int reportingMonth, int reportingYear, int userId, DateTime modifiedOn);

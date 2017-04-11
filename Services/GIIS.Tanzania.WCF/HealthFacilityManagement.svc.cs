@@ -834,6 +834,26 @@ namespace GIIS.Tanzania.WCF
 			healthFacilityLoginSessions.HealthFacilityId = healthFacilityId;
 			healthFacilityLoginSessions.LoginTime = loginTime;
 			healthFacilityLoginSessions.SessionLength = sessionLength;
+			healthFacilityLoginSessions.ApkVersion = "Below current version";
+
+			int HealthFacilitySessionsInserted;
+			HealthFacilitySessionsInserted = GIIS.DataLayer.HealthFacilitySessions.Insert(healthFacilityLoginSessions);
+
+			IntReturnValue irv = new IntReturnValue();
+			irv.id = HealthFacilitySessionsInserted;
+			return irv;
+		}
+
+
+		public IntReturnValue StoreHealthFacilityLoginSessionsAndAppVersion(int userId, int healthFacilityId, DateTime loginTime, int sessionLength, string appVersion)
+		{
+			HealthFacilitySessions healthFacilityLoginSessions = new HealthFacilitySessions();
+
+			healthFacilityLoginSessions.UserId = userId;
+			healthFacilityLoginSessions.HealthFacilityId = healthFacilityId;
+			healthFacilityLoginSessions.LoginTime = loginTime;
+			healthFacilityLoginSessions.SessionLength = sessionLength;
+			healthFacilityLoginSessions.ApkVersion = appVersion;
 
 			int HealthFacilitySessionsInserted;
 			HealthFacilitySessionsInserted = GIIS.DataLayer.HealthFacilitySessions.Insert(healthFacilityLoginSessions);
