@@ -525,7 +525,7 @@ namespace GIIS.DataLayer
 						foreach (DataRow row2 in dt2.Rows)
 						{
 							dates.Add(Helper.ConvertToDate(row2["LOGIN_TIME"]));
-							o.apk = row2["APK_VERSION"].ToString();
+							o.ApkVersion = row2["APK_VERSION"].ToString();
 						}
 						
 						dates = dates.Select(x => x.Date).Distinct().ToList();
