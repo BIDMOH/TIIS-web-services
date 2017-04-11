@@ -34,7 +34,8 @@ namespace GIIS.DataLayer
 		public Int32 TotalOutsideCatchment { get; set; }
 		public Int32 TotalVaccinations { get; set; }
 		public Int32 ExpectedTotalCatchmentsVaccinations { get; set; }
-		public Int32 CoveragePercentage { get; set; }
+		public String CoveragePercentage { get; set; }
+		public Double CoveragePercentageValue { get; set; }
 
         #endregion
 
@@ -133,7 +134,8 @@ namespace GIIS.DataLayer
 						o.TotalOutsideCatchment = o.MaleOutsideCatchment + o.FemaleOutsideCatchment;
 						o.TotalVaccinations = o.TotalWithinCatchment + o.TotalOutsideCatchment;
 
-						o.CoveragePercentage = (o.TotalWithinCatchment * 100) / o.ExpectedTotalCatchmentsVaccinations;
+						o.CoveragePercentage = ((o.TotalWithinCatchment * 100) / o.ExpectedTotalCatchmentsVaccinations)+"%";
+						o.CoveragePercentageValue = ((o.TotalWithinCatchment * 100) / o.ExpectedTotalCatchmentsVaccinations);
 
 						oList.Add(o);
 					}
@@ -162,7 +164,8 @@ namespace GIIS.DataLayer
 					o.TotalWithinCatchment = 0;
 					o.TotalOutsideCatchment = 0;
 					o.TotalVaccinations = 0;
-					o.CoveragePercentage = 0;
+					o.CoveragePercentage = " - ";
+					o.CoveragePercentageValue =0;
 					oList.Add(o);
 				}
 			}
@@ -193,17 +196,19 @@ namespace GIIS.DataLayer
 						o.TotalOutsideCatchment = o.MaleOutsideCatchment + o.FemaleOutsideCatchment;
 						o.TotalVaccinations = o.TotalWithinCatchment + o.TotalOutsideCatchment;
 
-						DateTime date = new DateTime();
+						DateTime date = DateTime.Now;
 
 						Cohort c = Cohort.GetCohortDataByHealthFacilityAndYear(healthFacilityId, date.Year);
 
 						if (c.CohortValue == 0)
 						{
-							o.CoveragePercentage = 0;
+							o.CoveragePercentage = " - ";
+							o.CoveragePercentageValue = 0;
 						}
 						else
 						{
-							o.CoveragePercentage = (o.TotalWithinCatchment * 100) / c.CohortValue;
+							o.CoveragePercentage = ((o.TotalWithinCatchment * 100.0) / c.CohortValue)+"%";
+							o.CoveragePercentageValue = ((o.TotalWithinCatchment * 100.0) / c.CohortValue);
 						}
 
 
@@ -234,7 +239,8 @@ namespace GIIS.DataLayer
 					o.TotalWithinCatchment = 0;
 					o.TotalOutsideCatchment = 0;
 					o.TotalVaccinations = 0;
-					o.CoveragePercentage = 0;
+					o.CoveragePercentage = " - ";
+					o.CoveragePercentageValue = 0;
 					oList.Add(o);
 				}
 			}

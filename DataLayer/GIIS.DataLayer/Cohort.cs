@@ -43,7 +43,7 @@ namespace GIIS.DataLayer
 				List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
 				{
 					new NpgsqlParameter("@healthFacilityId", DbType.Int32) { Value = healthFacilityId },
-						new NpgsqlParameter("@year", DbType.String) { Value = year }
+					new NpgsqlParameter("@year", DbType.Int32) { Value = year }
 				};
 
 				DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, parameters);
