@@ -84,7 +84,7 @@
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="APK Version">
                      <ItemTemplate>
-                         <%#Eval("apk")%>
+                         <%#Eval("ApkVersion")%>
                      </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="View Facility Session Reports">

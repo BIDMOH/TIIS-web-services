@@ -64,11 +64,6 @@ public partial class Pages_HealthFacilitySessionDaysRatings : System.Web.UI.Page
                 }
 
                 createInputControls();
-
-                //grid header text
-                gvHealthFacilitySessions.Columns[0].HeaderText = "Name";
-                gvHealthFacilitySessions.Columns[1].HeaderText = "Days";
-                gvHealthFacilitySessions.Columns[2].HeaderText = "View Facility Session Reports";
             }
             else
             {
