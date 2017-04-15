@@ -15,7 +15,7 @@
    limitations under the License.
  ******************************************************************************
 --%>
-<%@ Page Title="View Session Report" EnableEventValidation="false" Language="C#" AutoEventWireup="true" CodeFile="HealthFacilityChildDefaultersReportByDistrict.aspx.cs" Inherits="Pages_HealthFacilityChildDefaultersReportByDistrict" MasterPageFile="~/Pages/MasterPage.master" %>
+<%@ Page Title="View Session Report" EnableEventValidation="false" Language="C#" AutoEventWireup="true" CodeFile="HealthFacilityChildDefaultersReportByDistrict.aspx.cs" Inherits="Pages_HealthFacilityChildrenRegistrationsDefaultersReportByDistrict" MasterPageFile="~/Pages/MasterPage.master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <style type="text/css">
@@ -71,29 +71,29 @@
                 <PagerSettings Position="Top" Mode="NumericFirstLast" />
                 <PagerStyle CssClass="pagination" HorizontalAlign="Left" VerticalAlign="Top" />
             <Columns>
-                <asp:TemplateField HeaderText="Child name">
+                <asp:TemplateField HeaderText="Health Facility Name">
                    <ItemTemplate>
-                        <%#Eval("childName")%>
+                        <%#Eval("HealthFacility")%>
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:TemplateField HeaderText="Child name">
+                <asp:TemplateField HeaderText="January">
                    <ItemTemplate>
-                        <%#Eval("childBarcodeId")%>
+                        <%#Eval("January")%>
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:TemplateField HeaderText="Mother/Guardian name">
+                <asp:TemplateField HeaderText="February">
                 <ItemTemplate> 
-                    <%#Eval("gudianName")%>
+                    <%#Eval("February")%>
                 </ItemTemplate>
                 </asp:TemplateField>   
-                <asp:TemplateField HeaderText="Mother/Guardian contact">
+                <asp:TemplateField HeaderText="March">
                     <ItemTemplate>
-                        <%#Eval("gudianContact")%>
+                        <%#Eval("March")%>
                     </ItemTemplate>
                     </asp:TemplateField>
-                <asp:TemplateField HeaderText="Village">
+                <asp:TemplateField HeaderText="April">
                      <ItemTemplate>
-                        <%#Eval("village")%>
+                        <%#Eval("April")%>
                      </ItemTemplate>
                      </asp:TemplateField>
             </Columns>
@@ -109,14 +109,7 @@
             </SelectParameters>
         </asp:ObjectDataSource>
 
-        <!--<asp:ObjectDataSource ID="odsHealthFacilitySessionsByUsers" runat="server" SelectMethod="GetHealthFacilitySessionsByHealthFacilityIdAndUserId" TypeName="GIIS.DataLayer.HealthFacilitySessions">
-            <SelectParameters>
-                 <asp:Parameter Name="hfid" Type="String" />
-                 <asp:Parameter Name="userID" Type="String" />
-                 <asp:Parameter Name="fromDate" Type="DateTime" />
-                 <asp:Parameter Name="toDate" Type="DateTime" />
-            </SelectParameters>
-        </asp:ObjectDataSource>-->
+
 
 
     </div>
