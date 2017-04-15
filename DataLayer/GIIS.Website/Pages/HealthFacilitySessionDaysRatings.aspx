@@ -35,19 +35,19 @@
                     <asp:Label ID="lblTitle" runat="server" Text="Session Report" /></li>
             </ol>
         </div>
-    </div>
+   </div>
     
-    <div class="row">
+   <div class="row">
         <div class="col-md-12">
             <h2><asp:Label ID="lblReportName" Text="Health Facilities Session Days Ratings By District" runat="server" /></h2>
         </div>
-    </div>
-    <div class="row">
+   </div>
+   <div class="row">
         <div class="col-md-12">
             <em><asp:Label runat="server" ID="lblReportDescription" Text="This report shows the ranking of health facilities within the District council by their total sessions days during the specified date range"  /></em>
         </div>
-    </div>
-    <br />
+   </div>
+   <br />
     <form class="form" method="get" action="" id="launchReport" >
     <div class="row">
         <div class="col-md-9">        
@@ -99,15 +99,15 @@
         <!--
             data binding of the gridview is done in connection to the Datalayer methods that queries the data EnablePaging="false"
         -->
-        <asp:ObjectDataSource ID="odsHealthFacilitySessions" runat="server" SelectMethod="GetHealthFacilitySessionsDaysRatingsByDistrict" TypeName="GIIS.DataLayer.HealthFacilitySessions">
+       <asp:ObjectDataSource ID="odsHealthFacilitySessions" runat="server" SelectMethod="GetHealthFacilitySessionsDaysRatingsByDistrict" TypeName="GIIS.DataLayer.HealthFacilitySessions">
             <SelectParameters>
                  <asp:Parameter Name="districtCouncilId" Type="String"/>
                  <asp:Parameter Name="fromDate" Type="DateTime" />
                  <asp:Parameter Name="toDate" Type="DateTime" />
             </SelectParameters>
-        </asp:ObjectDataSource>
+       </asp:ObjectDataSource>
 
-    </div>
+   </div>
 </div>
 
     </form>
