@@ -32,19 +32,19 @@
                 <li class="active">
                     <a href="Report.aspx">Reports</a></li>
                 <li class="active">
-                    <asp:Label ID="lblTitle" runat="server" Text="Defaulters Report" /></li>
+                    <asp:Label ID="lblTitle" runat="server" Text="Stock Status Report" /></li>
             </ol>
         </div>
     </div>
     
     <div class="row">
         <div class="col-md-12">
-            <h2><asp:Label ID="lblReportName" Text="Health Facilities Defaulters " runat="server" /></h2>
+            <h2><asp:Label ID="lblReportName" Text="Health Facilities Stock Status " runat="server" /></h2>
         </div>
     </div>
     <div class="row">
         <div class="col-md-12">
-            <em><asp:Label runat="server" ID="lblReportDescription" Text="This report shows the number and list of children who missed at least one immunization schedules. "  /></em>
+            <em><asp:Label runat="server" ID="lblReportDescription" Text="This report shows the number of doses of vaccine received, adjusted by reasons of adjustment, physically counted at the end of particular month in a facility. "  /></em>
         </div>
     </div>
     <br />
@@ -73,27 +73,27 @@
             <Columns>
                 <asp:TemplateField HeaderText="Antigen">
                    <ItemTemplate>
-                        <%#Eval("name")%>
+                        <%#Eval("antigen")%>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Received">
                    <ItemTemplate>
-                        <%#Eval("received")%>
+                        <%#Eval("dosesReceived")%>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Consumed">
                 <ItemTemplate> 
-                    <%#Eval("consumed")%>
+                    <%#Eval("childrenImmunized")%>
                 </ItemTemplate>
                 </asp:TemplateField>   
                 <asp:TemplateField HeaderText="Balance">
                     <ItemTemplate>
-                        <%#Eval("balance")%>
+                        <%#Eval("stockOnHand")%>
                     </ItemTemplate>
                     </asp:TemplateField>
                 <asp:TemplateField HeaderText="Adjusted">
                      <ItemTemplate>
-                        <%#Eval("adjusted")%>
+                        <%#Eval("dosesDiscardedUnopened")%>
                      </ItemTemplate>
                  </asp:TemplateField>
             </Columns>
@@ -101,10 +101,11 @@
         <!--
             data binding of the gridview is done in connection to the Datalayer methods that queries the data EnablePaging="false"
         -->
-        <asp:ObjectDataSource ID="odsHealthFacilityListStockStatusReport" runat="server" SelectMethod="GetHealthFacilityListStockStatusReportList" TypeName="GIIS.DataLayer.HealthFacilityStockStatus">
+        <asp:ObjectDataSource ID="odsHealthFacilityListStockStatusReport" runat="server" SelectMethod="GetHealthFacilityCurrentStockByDose" TypeName="GIIS.Tanzania.WCF.StockManagement">
             <SelectParameters>
-                 <asp:Parameter Name="districtCouncilId" Type="String"/>
-                 <asp:Parameter Name="reportPeriod" Type="DateTime" />
+                 <asp:Parameter Name="hfid" Type="String"/>
+                 <asp:Parameter Name="fromDate" Type="DateTime"/>
+                 <asp:Parameter Name="toDate" Type="DateTime"/>
             </SelectParameters>
         </asp:ObjectDataSource>
 
