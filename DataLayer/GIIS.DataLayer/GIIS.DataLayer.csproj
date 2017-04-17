@@ -93,6 +93,7 @@
     <Compile Include="DoseEntity.cs" />
     <Compile Include="GtinHfStockPolicy.cs" />
     <Compile Include="GtinHfStockPolicyEntity.cs" />
+    <Compile Include="HealthFacilityPMTCTstatus.cs" />
     <Compile Include="HealthFacilitiesDefaulters.cs" />
     <Compile Include="HealthFacility.cs" />
     <Compile Include="HealthFacilityBalance.cs" />

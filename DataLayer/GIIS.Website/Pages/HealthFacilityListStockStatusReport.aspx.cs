@@ -25,7 +25,7 @@ using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
-public partial class Pages_HealthFacilityChildrenRegistrationsDefaultersReportByDistrict : System.Web.UI.Page
+public partial class Pages_HealthFacilityListStockStatusReport : System.Web.UI.Page
 {
     public static String datefromString = "";
     public static String datetoString = "";
@@ -109,9 +109,9 @@ public partial class Pages_HealthFacilityChildrenRegistrationsDefaultersReportBy
         UserRole role = UserRole.GetUserRoleByUserId(userId);
         if(role.Role.Name.Equals("Middle Level Officer"))
         {
-            command = "SELECT \"ID\", \"NAME\" FROM \"HEALTH_FACILITY\" WHERE \"TYPE_ID\" = 2  AND \"ID\" = "+CurrentEnvironment.LoggedUser.HealthFacilityId;
+            command = "SELECT \"ID\", \"NAME\" FROM \"HEALTH_FACILITY\" WHERE  \"ID\" = "+CurrentEnvironment.LoggedUser.HealthFacilityId;
         }else{
-            command = "SELECT \"ID\", \"NAME\" FROM \"HEALTH_FACILITY\" WHERE \"TYPE_ID\" = "+2;
+            command = "SELECT \"ID\", \"NAME\" FROM \"HEALTH_FACILITY\" ";
         }
 
 
@@ -277,24 +277,24 @@ public partial class Pages_HealthFacilityChildrenRegistrationsDefaultersReportBy
 
         selectedHealthFacilityID = Request.Form["selectHealthFacility"];
 
-        odsHealthFacilityDefaultersByDistrict.SelectParameters.Clear();
-        odsHealthFacilityDefaultersByDistrict.SelectParameters.Add("districtCouncilId", selectedHealthFacilityID);
-        odsHealthFacilityDefaultersByDistrict.SelectParameters.Add("fromDate", strFromDate);
-        odsHealthFacilityDefaultersByDistrict.SelectParameters.Add("toDate", strToDate);
-        odsHealthFacilityDefaultersByDistrict.DataBind();
-        gvHealthFacilityDefaultersByDistrict.DataSourceID = "odsHealthFacilityDefaultersByDistrict";
-        gvHealthFacilityDefaultersByDistrict.DataBind();
+        odsHealthFacilityListStockStatusReport.SelectParameters.Clear();
+        odsHealthFacilityListStockStatusReport.SelectParameters.Add("districtCouncilId", selectedHealthFacilityID);
+        odsHealthFacilityListStockStatusReport.SelectParameters.Add("fromDate", strFromDate);
+        odsHealthFacilityListStockStatusReport.SelectParameters.Add("toDate", strToDate);
+        odsHealthFacilityListStockStatusReport.DataBind();
+        gvHealthFacilityListStockStatusReport.DataSourceID = "odsHealthFacilityListStockStatusReport";
+        gvHealthFacilityListStockStatusReport.DataBind();
 
         createInputControls();
         
     }
 
-    protected void gvHealthFacilityDefaultersByDistrict_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    protected void gvHealthFacilityListStockStatusReport_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
-        gvHealthFacilityDefaultersByDistrict.PageIndex = e.NewPageIndex;
+        gvHealthFacilityListStockStatusReport.PageIndex = e.NewPageIndex;
     }
 
-    protected void gvHealthFacilityDefaultersByDistrict_DataBound(object sender, EventArgs e)
+    protected void gvHealthFacilityListStockStatusReport_DataBound(object sender, EventArgs e)
     {
         // if (gvHealthFacilitySessions.Rows.Count == 0)
         //     // lblWarning.Visible = true;
@@ -302,7 +302,7 @@ public partial class Pages_HealthFacilityChildrenRegistrationsDefaultersReportBy
         //     // lblWarning.Visible = false;
     }
 
-    protected void gvHealthFacilityDefaultersByDistrict_DataBound(object sender, GridViewRowEventArgs e)
+    protected void gvHealthFacilityListStockStatusReport_DataBound(object sender, GridViewRowEventArgs e)
     {
 
 	

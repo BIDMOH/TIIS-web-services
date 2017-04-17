@@ -15,7 +15,7 @@
    limitations under the License.
  ******************************************************************************
 --%>
-<%@ Page Title="View Defaulters Report" EnableEventValidation="false" Language="C#" AutoEventWireup="true" CodeFile="HealthFacilityChildDefaultersReport.aspx.cs" Inherits="Pages_HealthFacilityChildrenRegistrationsDefaulters" MasterPageFile="~/Pages/MasterPage.master" %>
+<%@ Page Title="View Stock Status Report" EnableEventValidation="false" Language="C#" AutoEventWireup="true" CodeFile="HealthFacilityListStockStatusReport.aspx.cs" Inherits="Pages_HealthFacilityListStockStatusReport" MasterPageFile="~/Pages/MasterPage.master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <style type="text/css">
@@ -67,45 +67,44 @@
     <div class="row">
         <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12 clearfix" style="overflow:auto">
             
-       <asp:GridView ID="gvHealthFacilityDefaulters" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered table-hover table-responsive" AllowPaging="True" OnRowDataBound="gvHealthFacilityDefaulters_DataBound" OnPageIndexChanging="gvHealthFacilityDefaulters_PageIndexChanging" PageSize="25">
+       <asp:GridView ID="gvHealthFacilityListStockStatusReport" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered table-hover table-responsive" AllowPaging="True" OnRowDataBound="gvHealthFacilityListStockStatusReport_DataBound" OnPageIndexChanging="gvHealthFacilityListStockStatusReport_PageIndexChanging" PageSize="25">
                 <PagerSettings Position="Top" Mode="NumericFirstLast" />
                 <PagerStyle CssClass="pagination" HorizontalAlign="Left" VerticalAlign="Top" />
             <Columns>
-                <asp:TemplateField HeaderText="Child name">
+                <asp:TemplateField HeaderText="Antigen">
                    <ItemTemplate>
-                        <%#Eval("childName")%>
+                        <%#Eval("name")%>
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:TemplateField HeaderText="Child Barcode Id">
+                <asp:TemplateField HeaderText="Received">
                    <ItemTemplate>
-                        <%#Eval("childBarcodeId")%>
+                        <%#Eval("received")%>
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:TemplateField HeaderText="Mother/Guardian name">
+                <asp:TemplateField HeaderText="Consumed">
                 <ItemTemplate> 
-                    <%#Eval("gudianName")%>
+                    <%#Eval("consumed")%>
                 </ItemTemplate>
                 </asp:TemplateField>   
-                <asp:TemplateField HeaderText="Mother/Guardian contact">
+                <asp:TemplateField HeaderText="Balance">
                     <ItemTemplate>
-                        <%#Eval("gudianContact")%>
+                        <%#Eval("balance")%>
                     </ItemTemplate>
                     </asp:TemplateField>
-                <asp:TemplateField HeaderText="Village">
+                <asp:TemplateField HeaderText="Adjusted">
                      <ItemTemplate>
-                        <%#Eval("village")%>
+                        <%#Eval("adjusted")%>
                      </ItemTemplate>
-                     </asp:TemplateField>
+                 </asp:TemplateField>
             </Columns>
         </asp:GridView>
         <!--
             data binding of the gridview is done in connection to the Datalayer methods that queries the data EnablePaging="false"
         -->
-        <asp:ObjectDataSource ID="odsHealthFacilityDefaulters" runat="server" SelectMethod="GetHealthFacilityDefaultersList" TypeName="GIIS.DataLayer.HealthFacilityDefaulters">
+        <asp:ObjectDataSource ID="odsHealthFacilityListStockStatusReport" runat="server" SelectMethod="GetHealthFacilityListStockStatusReportList" TypeName="GIIS.DataLayer.HealthFacilityStockStatus">
             <SelectParameters>
-                 <asp:Parameter Name="hfid" Type="String"/>
-                 <asp:Parameter Name="fromDate" Type="DateTime" />
-                 <asp:Parameter Name="toDate" Type="DateTime" />
+                 <asp:Parameter Name="districtCouncilId" Type="String"/>
+                 <asp:Parameter Name="reportPeriod" Type="DateTime" />
             </SelectParameters>
         </asp:ObjectDataSource>
 

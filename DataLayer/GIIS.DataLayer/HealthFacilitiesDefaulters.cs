@@ -43,8 +43,8 @@ namespace GIIS.DataLayer
 		public Int32 August { get; set; }
 		public Int32 September { get; set; }
 		public Int32 October { get; set; }
-		public Int32 Novemebr { get; set; }
-		public Int32 Decemeber { get; set; }
+		public Int32 November { get; set; }
+		public Int32 December { get; set; }
 
 
 		#endregion
@@ -52,14 +52,14 @@ namespace GIIS.DataLayer
 		#region GetData
 		public static List<HealthFacilityDefaulters> GetHealthFacilityDefaultersList(string hfid, DateTime fromDate, DateTime toDate)
         {
-            try
-            {
+			try
+			{
 				string query = @"SELECT ""CHILD"".""ID"",""FIRSTNAME1"", ""FIRSTNAME2"", ""LASTNAME1"", ""LASTNAME2"", 
-                             ""HEALTHCENTER_ID"", ""COMMUNITY_ID"", 
-                               ""ADDRESS"", ""PHONE"", ""MOBILE"", ""EMAIL"", ""MOTHER_FIRSTNAME"", ""MOTHER_LASTNAME"",""CHILD"".""MODIFIED_ON"",""CHILD"".""MODIFIED_BY"", ""BARCODE_ID"" 
+                             ""HEALTHCENTER_ID"", ""PLACE"".""NAME"" AS village, 
+                               ""PHONE"", ""MOBILE"", ""EMAIL"", ""MOTHER_FIRSTNAME"", ""MOTHER_LASTNAME"",""CHILD"".""MODIFIED_ON"",""CHILD"".""MODIFIED_BY"", ""BARCODE_ID"" 
                                FROM ""CHILD"" inner join ""VACCINATION_EVENT"" on ""CHILD"".""ID"" = ""VACCINATION_EVENT"".""CHILD_ID"" LEFT JOIN 				     ""NONVACCINATION_REASON"" ON ""VACCINATION_EVENT"".""NONVACCINATION_REASON_ID"" = ""NONVACCINATION_REASON"".""ID""
-                                
-                                WHERE ""CHILD"".""STATUS_ID"" = 1 and ""HEALTHCENTER_ID"" = @hfid and ""VACCINATION_EVENT"".""SCHEDULED_DATE"" <= NOW() AND""VACCINATION_EVENT"".""SCHEDULED_DATE"" >= @fromDate  AND ""VACCINATION_EVENT"".""SCHEDULED_DATE"" <= @toDate and ""VACCINATION_STATUS"" = false GROUP BY ""CHILD"".""ID""  ORDER BY ""BIRTHDATE"",""LASTNAME1""";
+                                inner join  ""PLACE"" on ""CHILD"".""DOMICILE_ID"" = ""PLACE"".""ID""
+								WHERE ""CHILD"".""STATUS_ID"" = 1 and ""HEALTHCENTER_ID"" = @hfid and ""VACCINATION_EVENT"".""SCHEDULED_DATE"" <= NOW() AND""VACCINATION_EVENT"".""SCHEDULED_DATE"" >= @fromDate  AND ""VACCINATION_EVENT"".""SCHEDULED_DATE"" <= @toDate and ""VACCINATION_STATUS"" = false GROUP BY ""CHILD"".""ID"",""PLACE"".""NAME""   ORDER BY ""CHILD"".""ID"",""PLACE"".""NAME""";
 				;
 				List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
 					{
@@ -88,8 +88,8 @@ namespace GIIS.DataLayer
 							   " (SELECT \"CHILD\".\"ID\",EXTRACT(MONTH FROM \"SCHEDULED_DATE\") AS Month,\"HEALTH_FACILITY\".\"NAME\",\"CHILD\".\"MODIFIED_BY\", \"BARCODE_ID\" "+
 							   " FROM \"CHILD\" " +
 							   "inner join \"VACCINATION_EVENT\" on \"CHILD\".\"ID\" = \"VACCINATION_EVENT\".\"CHILD_ID\" LEFT JOIN \"NONVACCINATION_REASON\" ON \"VACCINATION_EVENT\".\"NONVACCINATION_REASON_ID\" = \"NONVACCINATION_REASON\".\"ID\" " +
-
-							   "inner join \"HEALTH_FACILITY\" ON \"CHILD\".\"HEALTHCENTER_ID\" = \"HEALTH_FACILITY\".\"ID\" "+
+							  
+							   "inner join \"HEALTH_FACILITY\" ON \"CHILD\".\"HEALTHCENTER_ID\" = \"HEALTH_FACILITY\".\"ID\" " +
 							   "WHERE \"CHILD\".\"STATUS_ID\" = 1 and (\"HEALTH_FACILITY\".\"ID\" = " + districtCouncilId + " OR \"HEALTH_FACILITY\".\"PARENT_ID\" = " + districtCouncilId +") and \"VACCINATION_EVENT\".\"SCHEDULED_DATE\" <= NOW() AND\"VACCINATION_EVENT\".\"SCHEDULED_DATE\" >= '"+ fromDate.ToString() + "'  AND \"VACCINATION_EVENT\".\"SCHEDULED_DATE\" <= '"+toDate.ToString() + "' and \"VACCINATION_STATUS\" = false GROUP BY \"CHILD\".\"ID\",\"SCHEDULED_DATE\",\"HEALTH_FACILITY\".\"ID\",\"CHILD\".\"MODIFIED_BY\", \"BARCODE_ID\"  ) AS T2 GROUP BY T2.Month ,T2.\"NAME\" ORDER BY  \"NAME\",Month ) AS t1  $$) " +
 							   " AS   final_result(\"NAME\" text, \"JAN\" bigint,\"FEB\" bigint,\"MAR\" bigint,\"APR\" bigint, \"MAY\" bigint,\"JUN\" bigint , \"JUL\" bigint , \"AUG\" bigint , \"SEP\" bigint, \"OCT\" bigint , \"NOV\" bigint, \"DEC\" bigint ) ";
 				
@@ -101,6 +101,8 @@ namespace GIIS.DataLayer
 					};
 				DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, parameters);
 
+				DateTime n = DateTime.Now;
+				
 
 				return GetHealthFacilityDefaultersByDistrictAsList(dt);
 			}
@@ -166,7 +168,7 @@ namespace GIIS.DataLayer
 					o.childName = row["FIRSTNAME1"].ToString()+  " " + row["LASTNAME1"].ToString(); 
 					o.gudianName = row["MOTHER_FIRSTNAME"].ToString() + " " + row["MOTHER_LASTNAME"].ToString();
 					o.gudianContact = row["PHONE"].ToString()+" "+ row["MOBILE"].ToString()+" "+ row["EMAIL"].ToString();   
-					o.village = row["ADDRESS"].ToString();
+					o.village = row["village"].ToString();
 					oList.Add(o);
                 }
                 catch (Exception ex)
@@ -231,11 +233,11 @@ namespace GIIS.DataLayer
 					}
 					if (!row["NOV"].ToString().Equals(""))
 					{
-						o.Novemebr = Helper.ConvertToInt(row["NOV"]);
+						o.November = Helper.ConvertToInt(row["NOV"]);
 					}
 					 if (!row["DEC"].ToString().Equals(""))
 					{
-						o.Decemeber = Helper.ConvertToInt(row["DEC"]);
+						o.December = Helper.ConvertToInt(row["DEC"]);
 					}
 
 					oList.Add(o);
