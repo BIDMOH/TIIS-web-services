@@ -33,10 +33,10 @@ namespace GIIS.Tanzania.WCF
 	class Program
 	{
 		//Live server
-		//public static string url = "https://vims.moh.go.tz";
+		public static string url = "https://vims.moh.go.tz";
 
 		//TEsting instances
-		public static string url = "https://vimstraining.elmis-dev.org";
+		//public static string url = "https://vimstraining.elmis-dev.org";
 		//public static string url = "http://kelvinmbwilo.com:9091";
 
 

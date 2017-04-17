@@ -1,4 +1,4 @@
-//*******************************************************************************
+﻿//*******************************************************************************
 //Copyright 2015 TIIS - Tanzania Immunization Information System
 //
 //    Licensed under the Apache License, Version 2.0 (the "License");
@@ -25,7 +25,7 @@ using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
-public partial class Pages_HealthFacilitySessionDaysRatings : System.Web.UI.Page
+public partial class Pages_HealthFacilityChildrenRegistrationsDropout : System.Web.UI.Page
 {
     public static String datefromString = "";
     public static String datetoString = "";
@@ -64,13 +64,17 @@ public partial class Pages_HealthFacilitySessionDaysRatings : System.Web.UI.Page
                 }
 
                 createInputControls();
+
+
             }
             else
             {
-                
+
                 Response.Redirect("Default.aspx", false);
                 Context.ApplicationInstance.CompleteRequest();
             }
+
+
         }
     }
 
@@ -91,17 +95,18 @@ public partial class Pages_HealthFacilitySessionDaysRatings : System.Web.UI.Page
             new NpgsqlParameter("@FacilityCode", NpgsqlTypes.NpgsqlDbType.Integer) { Value = CurrentEnvironment.LoggedUser.HealthFacility.Code },
             new NpgsqlParameter("@UserId", NpgsqlTypes.NpgsqlDbType.Integer) { Value = CurrentEnvironment.LoggedUser.Id }
         };
-        
+
         // var params = new List<NpgsqlParameter>() {
         //     new NpgsqlParameter("@FacilityId", NpgsqlTypes.NpgsqlDbType.Integer) { Value = CurrentEnvironment.LoggedUser.HealthFacilityId }
         // };
 
         hfParentID = HealthFacility.GetHealthFacilityById(CurrentEnvironment.LoggedUser.HealthFacilityId).ParentId;
 
+
+        string command="";
+
         int userId = CurrentEnvironment.LoggedUser.Id;
         UserRole role = UserRole.GetUserRoleByUserId(userId);
-
-        string command;
         if(role.Role.Name.Equals("Middle Level Officer"))
         {
             command = "SELECT \"ID\", \"NAME\" FROM \"HEALTH_FACILITY\" WHERE \"TYPE_ID\" = 2  AND \"ID\" = "+CurrentEnvironment.LoggedUser.HealthFacilityId;
@@ -114,7 +119,7 @@ public partial class Pages_HealthFacilitySessionDaysRatings : System.Web.UI.Page
         {
             using (var irdr = idt.CreateDataReader())
             {
-    
+
                 int count =0;
                 while (irdr.Read())
                 {
@@ -149,7 +154,7 @@ public partial class Pages_HealthFacilitySessionDaysRatings : System.Web.UI.Page
         inputControl.Attributes.Add("style", "z-index:8");
         inputControl.Attributes.Add("name", "dateFrom");
         inputControl.Attributes.Add("value", datefromString);
-        inputControl.Attributes.Add("title", "Session Report Description");
+        inputControl.Attributes.Add("title", "Defaulters Report Description");
 
         //date-to Controls
         var inputControl2 = new HtmlGenericControl("input");
@@ -160,7 +165,7 @@ public partial class Pages_HealthFacilitySessionDaysRatings : System.Web.UI.Page
         inputControl2.Attributes.Add("style", "z-index:8");
         inputControl2.Attributes.Add("name", "dateTo");
         inputControl2.Attributes.Add("value", datetoString);
-        inputControl2.Attributes.Add("title", "Session Report Description");
+        inputControl2.Attributes.Add("title", "Defaulters Report Description");
 
         // Label control
         var labelControl = new Label()
@@ -219,7 +224,7 @@ public partial class Pages_HealthFacilitySessionDaysRatings : System.Web.UI.Page
                     string.Format(
                     "<script type=\"text/javascript\">Sys.Application.add_init(function() {{$create(Sys.Extended.UI.CalendarBehavior, {{\"format\":\"MM-dd-yyyy\",\"id\":\"dateTo\"}}, null, null, $get(\"{0}\"));}});</script>", "dateTo"));
                     //  $create(Sys.Extended.UI.CalendarBehavior, {"endDate":"Thu, 28 May 2015 00:00:00 GMT","format":"dd/MM/yyyy","id":"ctl00_ContentPlaceHolder1_ceBirthdateTo"}, null, null, $get("ctl00_ContentPlaceHolder1_txtBirthdateTo"));
-        
+
     }
 
     protected void btnSearch_Click(object sender, EventArgs e)
@@ -243,45 +248,53 @@ public partial class Pages_HealthFacilitySessionDaysRatings : System.Web.UI.Page
 
         selectedHealthFacilityID = Request.Form["selectHealthFacility"];
 
-        odsHealthFacilitySessions.SelectParameters.Clear();
-        odsHealthFacilitySessions.SelectParameters.Add("districtCouncilId", selectedHealthFacilityID);
-        odsHealthFacilitySessions.SelectParameters.Add("fromDate", strFromDate);
-        odsHealthFacilitySessions.SelectParameters.Add("toDate", strToDate);
-        odsHealthFacilitySessions.DataBind();
-        gvHealthFacilitySessions.DataSourceID = "odsHealthFacilitySessions";
-        gvHealthFacilitySessions.DataBind();
-
+        odsGetHealthFacilityDropout.SelectParameters.Clear();
+        odsGetHealthFacilityDropout.SelectParameters.Add("hfid", selectedHealthFacilityID);
+        odsGetHealthFacilityDropout.SelectParameters.Add("fromDate", strFromDate);
+        odsGetHealthFacilityDropout.SelectParameters.Add("toDate", strToDate);
+        odsGetHealthFacilityDropout.DataBind();
+        gvHealthFacilityDropout.DataSourceID = "odsGetHealthFacilityDropout";
+        gvHealthFacilityDropout.DataBind();
 
         createInputControls();
 
-
-        
     }
 
-    protected void gvHealthFacilitySessions_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    protected void gvHealthFacilityDefaultersByDistrict_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
-        gvHealthFacilitySessions.PageIndex = e.NewPageIndex;
+        gvHealthFacilityDropout.PageIndex = e.NewPageIndex;
     }
 
-    protected void gvHealthFacilitySessions_DataBound(object sender, GridViewRowEventArgs e)
+    protected void gvHealthFacilityDefaultersByDistrict_DataBound(object sender, EventArgs e)
     {
-         if (e.Row.RowType != DataControlRowType.Header)
-		{
-			if (Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "DaysMaximum")) != null && Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "DaysMinimum")) != null)
-			{
-				if (Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "DaysMaximum")) != 0 && Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "DaysMinimum")) != 0)
-				{
-					if (Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "SessionsCount")) > Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "DaysMaximum")))
-					{
-						e.Row.ForeColor = System.Drawing.Color.Green;
-					}
-					else if (Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "SessionsCount")) < Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "DaysMinimum")))
-					{
-						e.Row.ForeColor = System.Drawing.Color.Red;
-					}
-				}
-			}
-		}
+        // if (gvHealthFacilitySessions.Rows.Count == 0)
+        //     // lblWarning.Visible = true;
+        // else
+        //     // lblWarning.Visible = false;
     }
-    
+
+    protected void gvHealthFacilityDefaultersByDistrict_DataBound(object sender, GridViewRowEventArgs e)
+    {
+
+
+//		if (e.Row.RowType != DataControlRowType.Header)
+//		{
+//			if (Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "ChildrenRegistrationsMaximumThreshold")) != null && Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "ChildrenRegistrationsMinimumThreshold")) != null)
+//			{
+//				if (Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "ChildrenRegistrationsMaximumThreshold")) != 0 && Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "ChildrenRegistrationsMinimumThreshold")) != 0)
+//				{
+//					if (Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "SessionsCount")) > Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "ChildrenRegistrationsMaximumThreshold")))
+//					{
+//						e.Row.ForeColor = System.Drawing.Color.Green;
+//					}
+//					else if (Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "SessionsCount")) < Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "ChildrenRegistrationsMinimumThreshold")))
+//					{
+//						e.Row.ForeColor = System.Drawing.Color.Red;
+//					}
+//				}
+//			}
+//		}
+
+
+    }
 }

@@ -1,11 +1,7 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workbench ActiveDocument="CoverRageReportEntity.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="HealthFacilitiesDropouts.cs">
     <Files>
-      <File FileName="CoverRageReportEntity.cs" Line="89" Column="4" />
-      <File FileName="HealthFacilityBalanceEntity.cs" Line="115" Column="6" />
-      <File FileName="Dose.cs" Line="1" Column="1" />
-      <File FileName="DoseEntity.cs" Line="76" Column="52" />
-      <File FileName="Cohort.cs" Line="41" Column="65" />
+      <File FileName="HealthFacilitiesDropouts.cs" Line="67" Column="14" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

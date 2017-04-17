@@ -32,6 +32,7 @@ namespace GIIS.DataLayer
 		public DateTime LoginTime { get; set; }
         public Int32 SessionLength { get; set; }
 		public string UserName { get; set;}
+		public string ApkVersion { get; set; }
 		
 
 		#endregion
@@ -513,7 +514,7 @@ namespace GIIS.DataLayer
 					}catch { }
 					try
 					{
-						string query2 = @"SELECT ""LOGIN_TIME"",""APK_VERSION"" FROM ""HEALTH_FACILITIES_SESSIONS"" WHERE ""HEALTH_FACILITY_ID"" = @hfid AND ""LOGIN_TIME"" >= @fromDate AND ""LOGIN_TIME""<= @toDate ";
+						string query2 = @"SELECT ""LOGIN_TIME"" FROM ""HEALTH_FACILITIES_SESSIONS"" WHERE ""HEALTH_FACILITY_ID"" = @hfid AND ""LOGIN_TIME"" >= @fromDate AND ""LOGIN_TIME""<= @toDate ";
 						List<NpgsqlParameter> parameters2 = new List<NpgsqlParameter>()
 						{
 							new NpgsqlParameter("@hfid", DbType.Int32) { Value = o.HealthFacilityId },
@@ -525,11 +526,29 @@ namespace GIIS.DataLayer
 						foreach (DataRow row2 in dt2.Rows)
 						{
 							dates.Add(Helper.ConvertToDate(row2["LOGIN_TIME"]));
-							o.ApkVersion = row2["APK_VERSION"].ToString();
 						}
 						
 						dates = dates.Select(x => x.Date).Distinct().ToList();
 						o.SessionsCount = dates.Count;
+
+
+
+
+						string query3 = @"SELECT ""APK_VERSION"",""ID"" FROM ""HEALTH_FACILITIES_SESSIONS"" WHERE ""HEALTH_FACILITY_ID"" = @hfid  ORDER BY ""ID"" DESC LIMIT 1";
+						List<NpgsqlParameter> parameters3 = new List<NpgsqlParameter>()
+						{
+							new NpgsqlParameter("@hfid", DbType.Int32) { Value = o.HealthFacilityId }
+						};
+						DataTable dt3 = DBManager.ExecuteReaderCommand(query3, CommandType.Text, parameters3);
+
+						foreach (DataRow row3 in dt3.Rows)
+						{
+							if (row3["APK_VERSION"].ToString().Equals(""))
+								o.ApkVersion = "Below current version";
+							else
+								o.ApkVersion = row3["APK_VERSION"].ToString();
+						}
+
 
 					}
 					catch (Exception ex)
@@ -563,13 +582,14 @@ namespace GIIS.DataLayer
         {
             try
             {
-                string query = @"INSERT INTO ""HEALTH_FACILITIES_SESSIONS"" (""USER_ID"", ""HEALTH_FACILITY_ID"", ""LOGIN_TIME"", ""SESSION_LENGTH"") VALUES (@UserId, @HealthFacilityId, @LoginTime, @SessionLength) returning ""ID"" ";
+				string query = @"INSERT INTO ""HEALTH_FACILITIES_SESSIONS"" (""USER_ID"", ""HEALTH_FACILITY_ID"", ""LOGIN_TIME"", ""SESSION_LENGTH"", ""APK_VERSION"") VALUES (@UserId, @HealthFacilityId, @LoginTime, @SessionLength, @ApkVersion) returning ""ID"" ";
                 List<Npgsql.NpgsqlParameter> parameters = new List<NpgsqlParameter>()
 				{
 					new NpgsqlParameter("@UserId", DbType.Int32)  { Value = o.UserId },
 					new NpgsqlParameter("@HealthFacilityId", DbType.Int32)  { Value = o.HealthFacilityId },
 					new NpgsqlParameter("@LoginTime", DbType.DateTime)  { Value = o.LoginTime },
 					new NpgsqlParameter("@SessionLength", DbType.Int32)  { Value = o.SessionLength },
+					new NpgsqlParameter("@ApkVersion", DbType.String)  { Value = o.ApkVersion }
 				};
 	            object id = DBManager.ExecuteScalarCommand(query, CommandType.Text, parameters);
 				AuditTable.InsertEntity("HealthFacilitySessions", id.ToString(), 1, DateTime.Now, o.UserId);
@@ -580,7 +600,6 @@ namespace GIIS.DataLayer
                 Log.InsertEntity("HealthFacilitySessions", "Insert", 1, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
 				throw ex;
             }
-            return -1;
         }
 
         public static int Update(HealthFacilitySessions o)
