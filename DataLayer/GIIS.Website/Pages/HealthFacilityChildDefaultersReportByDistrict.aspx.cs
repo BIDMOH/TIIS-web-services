@@ -25,7 +25,7 @@ using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
-public partial class Pages_HealthFacilityChildrenRegistrationsDefaulters : System.Web.UI.Page
+public partial class Pages_HealthFacilityChildrenRegistrationsDefaultersReportByDistrict : System.Web.UI.Page
 {
     public static String datefromString = "";
     public static String datetoString = "";

@@ -79,17 +79,20 @@ namespace GIIS.DataLayer
             }
         }
 
-		public static List<HealthFacilityDefaulters> GetHealthFacilityDefaultersByDistrictList(string districtCouncilId, DateTime fromDate, DateTime toDate)
+		public static List<HealthFacilityDefaulters> GetHealthFacilityDefaultersByDistrictList(int districtCouncilId, DateTime fromDate, DateTime toDate)
 		{
 			try
 			{
-				string query = String.Format(@"SELECT ""CHILD"".""ID"", ""SYSTEM_ID"",""CHILD_CUMULATIVE_SN"",""CHILD_REGISTRY_YEAR"", ""FIRSTNAME1"", ""FIRSTNAME2"", ""LASTNAME1"", ""LASTNAME2"", 
-                               ""BIRTHDATE"", ""GENDER"", ""HEALTHCENTER_ID"", ""BIRTHPLACE_ID"", ""COMMUNITY_ID"", 
-                               ""DOMICILE_ID"", ""STATUS_ID"", ""ADDRESS"", ""PHONE"", ""MOBILE"", ""EMAIL"", ""MOTHER_FIRSTNAME"", ""MOTHER_LASTNAME"",""MOTHER_HIV_STATUS"",""MOTHER_TT2_STATUS"", ""FATHER_ID"", 
-                               ""FATHER_FIRSTNAME"", ""FATHER_LASTNAME"", ""CARETAKER_ID"", ""CARETAKER_FIRSTNAME"", 
-                               ""CARETAKER_LASTNAME"", ""NONVACCINATION_REASON"".""NAME"" as ""NOTES"", ""CHILD"".""IS_ACTIVE"", ""CHILD"".""MODIFIED_ON"", ""CHILD"".""MODIFIED_BY"", ""BARCODE_ID"", ""TEMP_ID""
-                                FROM ""CHILD"" inner join ""VACCINATION_EVENT"" on ""CHILD"".""ID"" = ""VACCINATION_EVENT"".""CHILD_ID"" LEFT JOIN ""NONVACCINATION_REASON"" ON ""VACCINATION_EVENT"".""NONVACCINATION_REASON_ID"" = ""NONVACCINATION_REASON"".""ID""
-                                WHERE ""CHILD"".""STATUS_ID"" = 1 and ""VACCINATION_STATUS"" = false {0} and ""HEALTHCENTER_ID"" = @districtCouncilId AND ""MODIFIED_ON"" >= @fromDate OR ""MODIFIED_ON"" <= @toDate  ORDER BY ""BIRTHDATE"",""LASTNAME1"" OFFSET {1} LIMIT {2} ");
+				string query = @"SELECT * "+
+                               "FROM   crosstab($$ SELECT t1.\"NAME\",t1.Month,t1.defaulter FROM (SELECT T2.Month,T2.\"NAME\", COUNT(T2.\"ID\") as DEFAULTER FROM" +
+							   " (SELECT \"CHILD\".\"ID\",EXTRACT(MONTH FROM \"SCHEDULED_DATE\") AS Month,\"HEALTH_FACILITY\".\"NAME\",\"CHILD\".\"MODIFIED_BY\", \"BARCODE_ID\" "+
+							   " FROM \"CHILD\" " +
+							   "inner join \"VACCINATION_EVENT\" on \"CHILD\".\"ID\" = \"VACCINATION_EVENT\".\"CHILD_ID\" LEFT JOIN \"NONVACCINATION_REASON\" ON \"VACCINATION_EVENT\".\"NONVACCINATION_REASON_ID\" = \"NONVACCINATION_REASON\".\"ID\" " +
+
+							   "inner join \"HEALTH_FACILITY\" ON \"CHILD\".\"HEALTHCENTER_ID\" = \"HEALTH_FACILITY\".\"ID\" "+
+							   "WHERE \"CHILD\".\"STATUS_ID\" = 1 and (\"HEALTH_FACILITY\".\"ID\" = " + districtCouncilId + " OR \"HEALTH_FACILITY\".\"PARENT_ID\" = " + districtCouncilId +") and \"VACCINATION_EVENT\".\"SCHEDULED_DATE\" <= NOW() AND\"VACCINATION_EVENT\".\"SCHEDULED_DATE\" >= '"+ fromDate.ToString() + "'  AND \"VACCINATION_EVENT\".\"SCHEDULED_DATE\" <= '"+toDate.ToString() + "' and \"VACCINATION_STATUS\" = false GROUP BY \"CHILD\".\"ID\",\"SCHEDULED_DATE\",\"HEALTH_FACILITY\".\"ID\",\"CHILD\".\"MODIFIED_BY\", \"BARCODE_ID\"  ) AS T2 GROUP BY T2.Month ,T2.\"NAME\" ORDER BY  \"NAME\",Month ) AS t1  $$) " +
+							   " AS   final_result(\"NAME\" text, \"JAN\" bigint,\"FEB\" bigint,\"MAR\" bigint,\"APR\" bigint, \"MAY\" bigint,\"JUN\" bigint , \"JUL\" bigint , \"AUG\" bigint , \"SEP\" bigint, \"OCT\" bigint , \"NOV\" bigint, \"DEC\" bigint ) ";
+				
 				List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
 					{
 					new NpgsqlParameter("@districtCouncilId", DbType.Int32) { Value = districtCouncilId },
@@ -186,51 +189,53 @@ namespace GIIS.DataLayer
 
 					o.HealthFacility = row["NAME"].ToString();
 
-					if (row["jan"].ToString() != null) {
-						o.January = Helper.ConvertToInt(row["jan"]);
-					}else if (row["feb"].ToString() != null)
-					{
-						o.February = Helper.ConvertToInt(row["feb"]);
+					if (!row["JAN"].ToString().Equals("")) {
+						o.January = Helper.ConvertToInt(row["JAN"]);
 					}
-					else if (row["mar"].ToString() != null)
+
+					if (!row["FEB"].ToString().Equals(""))
 					{
-						o.March = Helper.ConvertToInt(row["mar"]);
+						o.February = Helper.ConvertToInt(row["FEB"]);
 					}
-					else if (row["apr"].ToString() != null)
+					 if (!row["MAR"].ToString().Equals(""))
 					{
-						o.April = Helper.ConvertToInt(row["apr"]);
+						o.March = Helper.ConvertToInt(row["MAR"]);
 					}
-					else if (row["may"].ToString() != null)
+					if (!row["APR"].ToString().Equals(""))
 					{
-						o.May = Helper.ConvertToInt(row["may"]);
+						o.April = Helper.ConvertToInt(row["APR"]);
 					}
-					else if (row["jun"].ToString() != null)
+					if (!row["MAY"].ToString().Equals(""))
 					{
-						o.June = Helper.ConvertToInt(row["jun"]);
+						o.May = Helper.ConvertToInt(row["MAY"]);
 					}
-					else if (row["jul"].ToString() != null)
+					if (!row["JUN"].ToString().Equals(""))
 					{
-						o.July = Helper.ConvertToInt(row["jul"]);
+						o.June = Helper.ConvertToInt(row["JUN"]);
 					}
-					else if (row["aug"].ToString() != null)
+					 if (!row["JUL"].ToString().Equals(""))
 					{
-						o.August = Helper.ConvertToInt(row["aug"]);
+						o.July = Helper.ConvertToInt(row["JUL"]);
 					}
-					else if (row["sep"].ToString() != null)
+					if (!row["AUG"].ToString().Equals(""))
 					{
-						o.September = Helper.ConvertToInt(row["sep"]);
+						o.August = Helper.ConvertToInt(row["AUG"]);
 					}
-					else if (row["oct"].ToString() != null)
+					if (!row["SEP"].ToString().Equals(""))
 					{
-						o.October = Helper.ConvertToInt(row["oct"]);
+						o.September = Helper.ConvertToInt(row["SEP"]);
 					}
-					else if (row["nov"].ToString() != null)
+					 if (!row["OCT"].ToString().Equals(""))
 					{
-						o.Novemebr = Helper.ConvertToInt(row["nov"]);
+						o.October = Helper.ConvertToInt(row["OCT"]);
 					}
-					else if (row["dec"].ToString() != null)
+					if (!row["NOV"].ToString().Equals(""))
 					{
-						o.Decemeber = Helper.ConvertToInt(row["dec"]);
+						o.Novemebr = Helper.ConvertToInt(row["NOV"]);
+					}
+					 if (!row["DEC"].ToString().Equals(""))
+					{
+						o.Decemeber = Helper.ConvertToInt(row["DEC"]);
 					}
 
 					oList.Add(o);
