@@ -40,9 +40,9 @@ namespace GIIS.DataLayer
 			try
 			{
 				string query = "SELECT * FROM   crosstab($$ SELECT t1.status, t1.\"GENDER\", t1.count FROM " +
-							   "(select \"MOTHER_HIV_STATUS\" as status, \"GENDER\", count(\"GENDER\") as count from \"CHILD\" where \"HEALTHCENTER_ID\" = "+hfid+ " AND (\"BIRTHDATE\" >='"+fromDate.ToString() + "' or \"BIRTHDATE\"<='" +toDate.ToString() + "')  GROUP BY \"MOTHER_HIV_STATUS\", \"GENDER\" order by \"MOTHER_HIV_STATUS\")AS t1  $$)" +
+							   "(select \"MOTHER_HIV_STATUS\" as status, \"GENDER\", count(\"GENDER\") as count from \"CHILD\" where \"HEALTHCENTER_ID\" = "+hfid+ " AND (\"BIRTHDATE\" >='"+fromDate + "' and \"BIRTHDATE\"<='" +toDate + "')  GROUP BY \"MOTHER_HIV_STATUS\", \"GENDER\" order by \"MOTHER_HIV_STATUS\")AS t1  $$)" +
 							   "as final_result(\"status\" text, \"female\" bigint,\"male\" bigint) ";
-				throw new Exception (query);
+				
 				List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
 					{
 					new NpgsqlParameter("@hfid", DbType.Int32) { Value = hfid },
