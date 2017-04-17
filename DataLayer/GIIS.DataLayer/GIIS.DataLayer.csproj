@@ -191,6 +191,7 @@
     <Compile Include="ConfigurationsReports.cs" />
     <Compile Include="CoverRageReportEntity.cs" />
     <Compile Include="Cohort.cs" />
+    <Compile Include="HealthFacilitiesDropouts.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Library\Mono.Security.dll" />

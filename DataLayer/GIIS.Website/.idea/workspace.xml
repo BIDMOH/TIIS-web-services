@@ -5,8 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="530d796c-0780-454e-b5db-359b024888dd" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/GIIS.Website.iml" afterPath="$PROJECT_DIR$/.idea/GIIS.Website.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../GIIS.DataLayer/HealthFacilitiesDropouts.cs" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Pages/HealthFacilityDropout.aspx" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Pages/HealthFacilityDropout.aspx.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../GIIS.DataLayer/GIIS.DataLayer.csproj" afterPath="$PROJECT_DIR$/../GIIS.DataLayer/GIIS.DataLayer.csproj" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../GIIS.DataLayer/GIIS.DataLayer.userprefs" afterPath="$PROJECT_DIR$/../GIIS.DataLayer/GIIS.DataLayer.userprefs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pages/CoverageByPopulationReports.aspx.cs" afterPath="$PROJECT_DIR$/Pages/CoverageByPopulationReports.aspx.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/GIIS.Tanzania.WCF.userprefs" afterPath="$PROJECT_DIR$/../../Services/GIIS.Tanzania.WCF.userprefs" />
     </list>
     <ignored path="GIIS.Website.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,101 +34,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="HealthFacilityChildDefaultersReport.aspx" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityChildDefaultersReport.aspx">
+      <file leaf-file-name="HealthFacilityDropout.aspx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityDropout.aspx">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="17" column="31" selection-start-line="17" selection-start-column="31" selection-end-line="17" selection-end-column="31" />
+            <state vertical-scroll-proportion="47.5">
+              <caret line="17" column="135" selection-start-line="17" selection-start-column="135" selection-end-line="17" selection-end-column="135" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HealthFacilityChildFollowUp.aspx.cs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityChildFollowUp.aspx.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="66" column="0" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CoverageByScheduleReports.aspx.cs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Pages/CoverageByScheduleReports.aspx.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="95" column="30" selection-start-line="95" selection-start-column="30" selection-end-line="95" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CoverageByPopulationReports.aspx.cs" pinned="false" current-in-tab="false">
+      <file leaf-file-name="CoverageByPopulationReports.aspx.cs" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Pages/CoverageByPopulationReports.aspx.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="103" column="99" selection-start-line="103" selection-start-column="75" selection-end-line="103" selection-end-column="99" />
+            <state vertical-scroll-proportion="0.4811321">
+              <caret line="286" column="0" selection-start-line="286" selection-start-column="0" selection-end-line="286" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HealthFacilityChildDefaultersReport.aspx.cs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityChildDefaultersReport.aspx.cs">
+      <file leaf-file-name="HealthFacilityDropout.aspx.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityDropout.aspx.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="110" column="80" selection-start-line="110" selection-start-column="80" selection-end-line="110" selection-end-column="80" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HealthFacilityChildDefaultersReportByDistrict.aspx.cs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityChildDefaultersReportByDistrict.aspx.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="67" column="0" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HealthFacilitySpecificSessionReports.aspx.cs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Pages/HealthFacilitySpecificSessionReports.aspx.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="388" column="33" selection-start-line="388" selection-start-column="33" selection-end-line="388" selection-end-column="33" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HealthFacilitySessionDaysRatings.aspx" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Pages/HealthFacilitySessionDaysRatings.aspx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.33333334">
-              <caret line="101" column="8" selection-start-line="101" selection-start-column="8" selection-end-line="101" selection-end-column="8" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HealthFacilitySessionDaysRatings.aspx.cs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Pages/HealthFacilitySessionDaysRatings.aspx.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="277" column="117" selection-start-line="277" selection-start-column="117" selection-end-line="277" selection-end-column="117" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HealthFacilitySpecificSessionReports.aspx" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Pages/HealthFacilitySpecificSessionReports.aspx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="77" column="83" selection-start-line="77" selection-start-column="83" selection-end-line="77" selection-end-column="83" />
+            <state vertical-scroll-proportion="-3.3773584">
+              <caret line="27" column="69" selection-start-line="27" selection-start-column="69" selection-end-line="27" selection-end-column="69" />
               <folding />
             </state>
           </provider>
@@ -171,7 +107,6 @@
         <option value="$PROJECT_DIR$/Pages/CoverageReport.aspx.cs" />
         <option value="$PROJECT_DIR$/Pages/CoverageReports.aspx.cs" />
         <option value="$PROJECT_DIR$/Pages/CoverageReports.aspx" />
-        <option value="$PROJECT_DIR$/Pages/CoverageByPopulationReports.aspx.cs" />
         <option value="$PROJECT_DIR$/Pages/CoverageByPopulationReports.aspx" />
         <option value="$PROJECT_DIR$/Pages/CoverageByScheduleReports.aspx" />
         <option value="$PROJECT_DIR$/Pages/HealthFacilityChildDefaultersReportByDefaulters.aspx.cs" />
@@ -183,6 +118,12 @@
         <option value="$PROJECT_DIR$/Pages/CoverageByScheduleReports.aspx.cs" />
         <option value="$PROJECT_DIR$/Pages/HealthFacilityChildDefaultersReport.aspx.cs" />
         <option value="$PROJECT_DIR$/Pages/HealthFacilitySessionDaysRatings.aspx" />
+        <option value="$PROJECT_DIR$/Pages/CoverageByPopulationReports.aspx.cs" />
+        <option value="$PROJECT_DIR$/Pages/DefaulterList.aspx" />
+        <option value="$PROJECT_DIR$/Pages/HealthFacilityDefaulterList.aspx" />
+        <option value="$PROJECT_DIR$/Pages/HealthFacilityDefaulterList.aspx.cs" />
+        <option value="$PROJECT_DIR$/Pages/HealthFacilityDropout.aspx.cs" />
+        <option value="$PROJECT_DIR$/Pages/HealthFacilityDropout.aspx" />
       </list>
     </option>
   </component>
@@ -196,9 +137,8 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="y" value="23" />
     <option name="width" value="1680" />
-    <option name="height" value="985" />
+    <option name="height" value="1050" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -225,8 +165,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -261,17 +199,20 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js-jscs-nodeInterpreter" value="/usr/local/bin/node" />
     <property name="js.eslint.eslintPackage" value="" />
+    <property name="FullScreen" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Kency\workspace\TIIS-web-services\DataLayer\GIIS.Website\Pages" />
       <recent name="$PROJECT_DIR$/Pages" />
+      <recent name="C:\Users\Kency\workspace\TIIS-web-services\DataLayer\GIIS.Website\Pages" />
     </key>
   </component>
   <component name="RunManager">
@@ -330,16 +271,16 @@
     <option name="totallyTimeSpent" value="45409000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1680" height="985" extended-state="6" />
-    <editor active="false" />
+    <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24114774" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24420024" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.47135842" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.47032475" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3538634" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32244897" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -371,57 +312,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Pages/CoverageByScheduleReports.aspx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Pages/CoverageByScheduleReports.aspx.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="272" column="60" selection-start-line="272" selection-start-column="60" selection-end-line="272" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Pages/CoverageByScheduleReports.aspx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Pages/CoverageByScheduleReports.aspx.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="267" column="18" selection-start-line="267" selection-start-column="18" selection-end-line="267" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilitySpecificSessionReports.aspx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilitySpecificSessionReports.aspx.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityChildRegistrationsRatings.aspx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="85" column="41" selection-start-line="85" selection-start-column="37" selection-end-line="85" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Pages/HealthFacilitySpecificSessionReports.aspx">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -635,25 +525,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityChildDefaultersReportByDistrict.aspx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="17" column="230" selection-start-line="17" selection-start-column="230" selection-end-line="17" selection-end-column="230" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Pages/CoverageByPopulationReports.aspx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="149" column="6" selection-start-line="149" selection-start-column="6" selection-end-line="149" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityChildDefaultersReport.aspx">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="17" column="31" selection-start-line="17" selection-start-column="31" selection-end-line="17" selection-end-column="31" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -661,23 +536,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="66" column="0" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Pages/CoverageByPopulationReports.aspx.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="103" column="99" selection-start-line="103" selection-start-column="75" selection-end-line="103" selection-end-column="99" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Pages/CoverageByScheduleReports.aspx.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="95" column="30" selection-start-line="95" selection-start-column="30" selection-end-line="95" selection-end-column="30" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -685,15 +543,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="110" column="80" selection-start-line="110" selection-start-column="80" selection-end-line="110" selection-end-column="80" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityChildDefaultersReportByDistrict.aspx.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="67" column="0" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -701,7 +550,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="77" column="83" selection-start-line="77" selection-start-column="83" selection-end-line="77" selection-end-column="83" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -709,7 +557,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="388" column="33" selection-start-line="388" selection-start-column="33" selection-end-line="388" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -717,14 +564,104 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="277" column="117" selection-start-line="277" selection-start-column="117" selection-end-line="277" selection-end-column="117" />
-          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pages/AutoComplete.asmx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Pages/HealthFacilitySessionDaysRatings.aspx">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334">
-          <caret line="101" column="8" selection-start-line="101" selection-start-column="8" selection-end-line="101" selection-end-column="8" />
+        <state vertical-scroll-proportion="8.25">
+          <caret line="15" column="64" selection-start-line="15" selection-start-column="15" selection-end-line="15" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pages/DefaulterList.aspx.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pages/CoverageByScheduleReports.aspx.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.962963">
+          <caret line="276" column="126" selection-start-line="276" selection-start-column="126" selection-end-line="277" selection-end-column="95" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pages/DefaulterList.aspx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-15.0">
+          <caret line="27" column="32" selection-start-line="27" selection-start-column="32" selection-end-line="27" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pages/RunReport.aspx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pages/RunReport.aspx.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="71" column="47" selection-start-line="71" selection-start-column="37" selection-end-line="71" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pages/CoverageByPopulationReports.aspx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.75">
+          <caret line="149" column="6" selection-start-line="0" selection-start-column="0" selection-end-line="165" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityChildDefaultersReportByDistrict.aspx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6617647">
+          <caret line="43" column="10" selection-start-line="0" selection-start-column="0" selection-end-line="143" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityChildDefaultersReportByDistrict.aspx.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8490566">
+          <caret line="102" column="64" selection-start-line="0" selection-start-column="0" selection-end-line="299" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityDropout.aspx.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.3773584">
+          <caret line="27" column="69" selection-start-line="27" selection-start-column="69" selection-end-line="27" selection-end-column="69" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityDropout.aspx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="47.5">
+          <caret line="17" column="135" selection-start-line="17" selection-start-column="135" selection-end-line="17" selection-end-column="135" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pages/CoverageByPopulationReports.aspx.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4811321">
+          <caret line="286" column="0" selection-start-line="286" selection-start-column="0" selection-end-line="286" selection-end-column="0" />
           <folding />
         </state>
       </provider>
