@@ -157,17 +157,68 @@ namespace GIIS.DataLayer
 					o.Penta3Vaccinations = 0;
 				}
 				o.BCG_MR1 = o.BCGVaccinations - o.MR1Vaccinations;
-				o.BCG_MR1_Percentage = o.BCG_MR1 * 1.0 / o.BCGVaccinations;
+				o.BCG_MR1_Percentage = Math.Round((o.BCG_MR1 * 100.0 / o.BCGVaccinations),1);
+
+
 				o.PENTA1_PENTA3 = o.Penta1Vaccinations - o.Penta3Vaccinations;
-				o.PENTA1_PENTA3_Percentage = o.PENTA1_PENTA3 * 1.0 / o.Penta1Vaccinations;
-				o.Month = "January";
+				o.PENTA1_PENTA3_Percentage =Math.Round((o.PENTA1_PENTA3 * 100.0 / o.Penta1Vaccinations), 1);
+
+
+					if (Helper.ConvertToInt(row["Month"]) == 1)
+					{
+						o.Month = "January";
+					}
+					else if (Helper.ConvertToInt(row["Month"]) == 2)
+					{
+						o.Month = "February";
+					}
+					else if (Helper.ConvertToInt(row["Month"]) == 3)
+					{
+						o.Month = "March";
+					}
+					else if (Helper.ConvertToInt(row["Month"]) == 4)
+					{
+						o.Month = "April";
+					}
+					else if (Helper.ConvertToInt(row["Month"]) == 5)
+					{
+						o.Month = "May";
+					}
+					else if (Helper.ConvertToInt(row["Month"]) == 6)
+					{
+						o.Month = "June";
+					}
+					else if (Helper.ConvertToInt(row["Month"]) == 7)
+					{
+						o.Month = "July";
+					}
+					else if (Helper.ConvertToInt(row["Month"]) == 8)
+					{
+						o.Month = "August";
+					}
+					else if (Helper.ConvertToInt(row["Month"]) == 9)
+					{
+						o.Month = "September";
+					}
+					else if (Helper.ConvertToInt(row["Month"]) == 10)
+					{
+						o.Month = "October";
+					}
+					else if (Helper.ConvertToInt(row["Month"]) == 11)
+					{
+						o.Month = "November";
+					}
+					else if (Helper.ConvertToInt(row["Month"]) == 12)
+					{
+						o.Month = "December";
+					}
 				oList.Add(o);
-	                }
-	                catch (Exception ex)
-	                {
-	                    Log.InsertEntity("HealthFacilityDropout", "GetHealthFacilityDropoutsAsList", 1, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
-	                    throw ex;
-	                }
+                }
+                catch (Exception ex)
+                {
+                    Log.InsertEntity("HealthFacilityDropout", "GetHealthFacilityDropoutsAsList", 1, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+                    throw ex;
+                }
 	            }
 	            return oList;
 	        }

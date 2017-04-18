@@ -1,7 +1,8 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workbench ActiveDocument="HealthFacilitiesDropouts.cs">
     <Files>
-      <File FileName="HealthFacilitiesDropouts.cs" Line="67" Column="14" />
+      <File FileName="Child.cs" Line="1" Column="1" />
+      <File FileName="HealthFacilitiesDropouts.cs" Line="160" Column="5" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
@@ -9,5 +10,4 @@
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MultiItemStartupConfigurations />
 </Properties>

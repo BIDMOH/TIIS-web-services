@@ -7,3 +7,5 @@
 /Users/coze/Workspace/TIIS-web-services/Services/GIIS.Tanzania.WCF/obj/Debug/GIIS.Tanzania.WCF.dll
 /Users/coze/Workspace/TIIS-web-services/Services/GIIS.Tanzania.WCF/obj/Debug/GIIS.Tanzania.WCF.dll.mdb
 /Users/coze/Workspace/TIIS-web-services/Services/GIIS.Tanzania.WCF/bin/Newtonsoft.Json.dll
+/Users/coze/Workspace/TIIS-web-services/Services/GIIS.Tanzania.WCF/bin/GIIS.Tanzania.WCF.pdb
+/Users/coze/Workspace/TIIS-web-services/Services/GIIS.Tanzania.WCF/obj/Debug/GIIS.Tanzania.WCF.pdb

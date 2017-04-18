@@ -4,3 +4,5 @@
 /Users/coze/Workspace/TIIS-web-services/DataLayer/GIIS.DataLayer/obj/Debug/GIIS.DataLayer.dll
 /Users/coze/Workspace/TIIS-web-services/DataLayer/GIIS.DataLayer/obj/Debug/GIIS.DataLayer.dll.mdb
 /Users/coze/Workspace/TIIS-web-services/DataLayer/GIIS.DataLayer/bin/Debug/Npgsql.dll
+/Users/coze/Workspace/TIIS-web-services/DataLayer/GIIS.DataLayer/obj/Debug/GIIS.DataLayer.pdb
+/Users/coze/Workspace/TIIS-web-services/DataLayer/GIIS.DataLayer/bin/Debug/GIIS.DataLayer.pdb

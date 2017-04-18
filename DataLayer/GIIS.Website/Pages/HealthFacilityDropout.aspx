@@ -15,7 +15,7 @@
    limitations under the License.
  ******************************************************************************
 --%>
-<%@ Page Title="View Session Report" EnableEventValidation="false" Language="C#" AutoEventWireup="true" CodeFile="HealthFacilityDropout.aspx.cs" Inherits="Pages_HealthFacilityChildrenRegistrationsDefaulters" MasterPageFile="~/Pages/MasterPage.master" %>
+<%@ Page Title="View Session Report" EnableEventValidation="false" Language="C#" AutoEventWireup="true" CodeFile="HealthFacilityDropout.aspx.cs" Inherits="Pages_HealthFacilityDropout" MasterPageFile="~/Pages/MasterPage.master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <style type="text/css">
@@ -76,22 +76,22 @@
                         <%#Eval("Month")%>
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:TemplateField HeaderText="BCG_MR1">
+                <asp:TemplateField HeaderText="BCG - MR1 Number">
                    <ItemTemplate>
                         <%#Eval("BCG_MR1")%>
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:TemplateField HeaderText="BCG_MR1_Percentage">
+                <asp:TemplateField HeaderText="BCG - MR1 Percentage">
                 <ItemTemplate>
                     <%#Eval("BCG_MR1_Percentage")%>
                 </ItemTemplate>
                 </asp:TemplateField>
-                <asp:TemplateField HeaderText="PENTA1_PENTA3">
+                <asp:TemplateField HeaderText="PENTA1 - PENTA3 Number">
                     <ItemTemplate>
                         <%#Eval("PENTA1_PENTA3")%>
                     </ItemTemplate>
                     </asp:TemplateField>
-                <asp:TemplateField HeaderText="PENTA1_PENTA3_Percentage">
+                <asp:TemplateField HeaderText="PENTA1 - PENTA3 Percentage">
                      <ItemTemplate>
                         <%#Eval("PENTA1_PENTA3_Percentage")%>
                      </ItemTemplate>

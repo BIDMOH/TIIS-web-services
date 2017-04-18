@@ -111,7 +111,7 @@ public partial class Pages_HealthFacilityListVaccinationSummary : System.Web.UI.
         {
             command = "SELECT \"ID\", \"NAME\" FROM \"HEALTH_FACILITY\" WHERE  \"ID\" = "+CurrentEnvironment.LoggedUser.HealthFacilityId;
         }else{
-            command = "SELECT \"ID\", \"NAME\" FROM \"HEALTH_FACILITY\" 
+            command = "SELECT \"ID\", \"NAME\" FROM \"HEALTH_FACILITY\" ";
         }
 
 
