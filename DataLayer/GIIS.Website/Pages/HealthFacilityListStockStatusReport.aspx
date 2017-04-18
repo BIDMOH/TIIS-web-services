@@ -15,7 +15,7 @@
    limitations under the License.
  ******************************************************************************
 --%>
-<%@ Page Title="View Defaulters Report" EnableEventValidation="false" Language="C#" AutoEventWireup="true" CodeFile="HealthFacilityChildDefaultersReport.aspx.cs" Inherits="Pages_HealthFacilityChildrenRegistrationsDefaulters" MasterPageFile="~/Pages/MasterPage.master" %>
+<%@ Page Title="View Stock Status Report" EnableEventValidation="false" Language="C#" AutoEventWireup="true" CodeFile="HealthFacilityListStockStatusReport.aspx.cs" Inherits="Pages_HealthFacilityListStockStatusReport" MasterPageFile="~/Pages/MasterPage.master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <style type="text/css">
@@ -32,19 +32,19 @@
                 <li class="active">
                     <a href="Report.aspx">Reports</a></li>
                 <li class="active">
-                    <asp:Label ID="lblTitle" runat="server" Text="Defaulters Report" /></li>
+                    <asp:Label ID="lblTitle" runat="server" Text="Stock Status Report" /></li>
             </ol>
         </div>
     </div>
     
     <div class="row">
         <div class="col-md-12">
-            <h2><asp:Label ID="lblReportName" Text="Health Facilities Defaulters " runat="server" /></h2>
+            <h2><asp:Label ID="lblReportName" Text="Health Facilities Stock Status " runat="server" /></h2>
         </div>
     </div>
     <div class="row">
         <div class="col-md-12">
-            <em><asp:Label runat="server" ID="lblReportDescription" Text="This report shows the number and list of children who missed at least one immunization schedules. "  /></em>
+            <em><asp:Label runat="server" ID="lblReportDescription" Text="This report shows the number of doses of vaccine received, adjusted by reasons of adjustment, physically counted at the end of particular month in a facility. "  /></em>
         </div>
     </div>
     <br />
@@ -67,45 +67,45 @@
     <div class="row">
         <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12 clearfix" style="overflow:auto">
             
-       <asp:GridView ID="gvHealthFacilityDefaulters" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered table-hover table-responsive" AllowPaging="True" OnRowDataBound="gvHealthFacilityDefaulters_DataBound" OnPageIndexChanging="gvHealthFacilityDefaulters_PageIndexChanging" PageSize="25">
+       <asp:GridView ID="gvHealthFacilityListStockStatusReport" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered table-hover table-responsive" AllowPaging="True" OnRowDataBound="gvHealthFacilityListStockStatusReport_DataBound" OnPageIndexChanging="gvHealthFacilityListStockStatusReport_PageIndexChanging" PageSize="25">
                 <PagerSettings Position="Top" Mode="NumericFirstLast" />
                 <PagerStyle CssClass="pagination" HorizontalAlign="Left" VerticalAlign="Top" />
             <Columns>
-                <asp:TemplateField HeaderText="Child name">
+                <asp:TemplateField HeaderText="Antigen">
                    <ItemTemplate>
-                        <%#Eval("childName")%>
+                        <%#Eval("antigen")%>
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:TemplateField HeaderText="Child Barcode Id">
+                <asp:TemplateField HeaderText="Received">
                    <ItemTemplate>
-                        <%#Eval("childBarcodeId")%>
+                        <%#Eval("dosesReceived")%>
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:TemplateField HeaderText="Mother/Guardian name">
+                <asp:TemplateField HeaderText="Consumed">
                 <ItemTemplate> 
-                    <%#Eval("gudianName")%>
+                    <%#Eval("childrenImmunized")%>
                 </ItemTemplate>
                 </asp:TemplateField>   
-                <asp:TemplateField HeaderText="Mother/Guardian contact">
+                <asp:TemplateField HeaderText="Balance">
                     <ItemTemplate>
-                        <%#Eval("gudianContact")%>
+                        <%#Eval("stockOnHand")%>
                     </ItemTemplate>
                     </asp:TemplateField>
-                <asp:TemplateField HeaderText="Village">
+                <asp:TemplateField HeaderText="Adjusted">
                      <ItemTemplate>
-                        <%#Eval("village")%>
+                        <%#Eval("dosesDiscardedUnopened")%>
                      </ItemTemplate>
-                     </asp:TemplateField>
+                 </asp:TemplateField>
             </Columns>
         </asp:GridView>
         <!--
             data binding of the gridview is done in connection to the Datalayer methods that queries the data EnablePaging="false"
         -->
-        <asp:ObjectDataSource ID="odsHealthFacilityDefaulters" runat="server" SelectMethod="GetHealthFacilityDefaultersList" TypeName="GIIS.DataLayer.HealthFacilityDefaulters">
+        <asp:ObjectDataSource ID="odsHealthFacilityListStockStatusReport" runat="server" SelectMethod="GetHealthFacilityCurrentStockByDose" TypeName="GIIS.Tanzania.WCF.StockManagement">
             <SelectParameters>
                  <asp:Parameter Name="hfid" Type="String"/>
-                 <asp:Parameter Name="fromDate" Type="DateTime" />
-                 <asp:Parameter Name="toDate" Type="DateTime" />
+                 <asp:Parameter Name="fromDate" Type="DateTime"/>
+                 <asp:Parameter Name="toDate" Type="DateTime"/>
             </SelectParameters>
         </asp:ObjectDataSource>
 
