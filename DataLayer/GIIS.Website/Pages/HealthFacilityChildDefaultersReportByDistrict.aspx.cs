@@ -158,7 +158,7 @@ public partial class Pages_HealthFacilityChildrenRegistrationsDefaultersReportBy
             string monthString = d.ToString("MMM")+ " - " + d.Year;
             var opt = new HtmlGenericControl("option");
             inputControl6.Controls.Add(opt);
-            opt.Attributes.Add("value", currentDateTime.ToString());
+            opt.Attributes.Add("value", d.ToString());
             opt.InnerText = monthString;
 
             if(selectedHealthFacilityID.Equals(currentDateTime.ToString())){
@@ -171,7 +171,7 @@ public partial class Pages_HealthFacilityChildrenRegistrationsDefaultersReportBy
         inputControl6.Attributes.Add("id", "selectReportingPeriod");
         inputControl6.Attributes.Add("type", "text");
         inputControl6.Attributes.Add("style", "z-index:8");
-        inputControl6.Attributes.Add("name", "selectHealthFacility");
+        inputControl6.Attributes.Add("name", "selectReportingPeriod");
         inputControl6.Attributes.Add("Visible", "false");
         inputControl6.Attributes.Add("title", "Health Facility option description");
 
@@ -269,11 +269,15 @@ public partial class Pages_HealthFacilityChildrenRegistrationsDefaultersReportBy
             Session[sessionvar] = s;
         }
 
-        string strFromDate = String.Format("{0}", Request.Form["dateFrom"]);
-        string strToDate = String.Format("{0}", Request.Form["dateTo"]);
 
-        datefromString  = strFromDate;
-        datetoString    = strToDate;
+        string ToDate = Request.Form["selectReportingPeriod"];
+
+        DateTime oDate = DateTime.Parse(ToDate);
+        DateTime fromDateTime = new DateTime(oDate.Year, 1,1, 1, 1, 1);
+        DateTime toDateTime = new DateTime(oDate.Year, oDate.Month,1, 1, 1, 1);
+
+        string strToDate = toDateTime.ToString();
+        string strFromDate = fromDateTime.ToString();
 
         selectedHealthFacilityID = Request.Form["selectHealthFacility"];
 
