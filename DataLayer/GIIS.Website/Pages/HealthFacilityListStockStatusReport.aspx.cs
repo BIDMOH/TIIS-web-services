@@ -107,7 +107,7 @@ public partial class Pages_HealthFacilityListStockStatusReport : System.Web.UI.P
                     if(role.Role.Name.Equals("Middle Level Officer"))
                     if(role.Role.Name.Equals("Middle Level Officer"))
                     {
-                        command = "SELECT \"ID\", \"NAME\" FROM \"HEALTH_FACILITY\" WHERE  \"PARENT_ID\" = "+CurrentEnvironment.LoggedUser.HealthFacilityId + " ORDER BY \"NAME\" ";
+                        command = "SELECT \"ID\", \"NAME\" FROM \"HEALTH_FACILITY\" WHERE \"ID\" =  "+CurrentEnvironment.LoggedUser.HealthFacilityId+" OR  \"PARENT_ID\" = "+CurrentEnvironment.LoggedUser.HealthFacilityId+" ORDER BY \"NAME\" ";
                     }else{
                         command = "SELECT \"ID\", \"NAME\" FROM \"HEALTH_FACILITY\" ORDER BY \"NAME\" ";
                     }
