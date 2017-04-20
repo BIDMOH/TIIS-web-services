@@ -40,10 +40,10 @@ namespace GIIS.DataLayer
 		{
 			try
 			{
-				string query = @"select COUNT(""CHILD"".""ID"") AS REGISTERED from ""CHILD"" 				
+				string query = @"select ""CHILD"".""HEALTHCENTER_ID"", COUNT(""CHILD"".""ID"") AS REGISTERED from ""CHILD"" 				
                                 inner join ""HEALTH_FACILITY"" ON ""CHILD"".""HEALTHCENTER_ID"" = ""HEALTH_FACILITY"".""ID"" 
 					            WHERE
-					            (""HEALTH_FACILITY"".""ID"" = @hfid or ""HEALTH_FACILITY"".""PARENT_ID"" = @hfid) AND ""CHILD"".""MODIFIED_ON"" >=@fromDate AND ""CHILD"".""MODIFIED_ON"" <= @toDate ";
+					            (""HEALTH_FACILITY"".""ID"" = @hfid or ""HEALTH_FACILITY"".""PARENT_ID"" = @hfid) AND ""CHILD"".""MODIFIED_ON"" >=@fromDate AND ""CHILD"".""MODIFIED_ON"" <= @toDate group by ""CHILD"".""HEALTHCENTER_ID"" order by ""CHILD"".""HEALTHCENTER_ID"" ";
 				
 				List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
 					{
@@ -74,7 +74,7 @@ namespace GIIS.DataLayer
 								inner join ""SCHEDULED_VACCINATION"" on ""DOSE"".""SCHEDULED_VACCINATION_ID"" = ""SCHEDULED_VACCINATION"".""ID""
 								inner join ""HEALTH_FACILITY"" ON ""VACCINATION_EVENT"".""HEALTH_FACILITY_ID"" = ""HEALTH_FACILITY"".""ID""
 								WHERE
-								""VACCINATION_STATUS"" = true AND ""SCHEDULED_DATE"" <= NOW() AND (""HEALTH_FACILITY"".""ID"" = @hfid or ""HEALTH_FACILITY"".""PARENT_ID"" = @hfid) AND ""VACCINATION_EVENT"".""VACCINATION_DATE"" >=@fromDate AND ""VACCINATION_EVENT"".""VACCINATION_DATE"" <= @toDate ORDER BY ""CHILD"".""HEALTHCENTER_ID"" ";
+								""VACCINATION_STATUS"" = true AND ""SCHEDULED_DATE"" <= NOW() AND (""HEALTH_FACILITY"".""ID"" = @hfid or ""HEALTH_FACILITY"".""PARENT_ID"" = @hfid) AND ""VACCINATION_EVENT"".""VACCINATION_DATE"" >=@fromDate AND ""VACCINATION_EVENT"".""VACCINATION_DATE"" <= @toDate GROUP BY ""CHILD"".""HEALTHCENTER_ID"" ORDER BY ""CHILD"".""HEALTHCENTER_ID"" ";
 
 				List<NpgsqlParameter> parameters1 = new List<NpgsqlParameter>()
 					{
