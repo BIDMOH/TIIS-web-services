@@ -92,17 +92,19 @@ public partial class _Report : System.Web.UI.Page
                                         NavigateUrl = "~/Pages/" + rdr["JASPER_ID"].ToString()
                                     }
                                 );
-                            }else{
-                                // Link to the report
-                                var li = new HtmlGenericControl("li");
-                                currentGroup.Controls.Add(li);
-                                li.Controls.Add(new HyperLink()
-                                    {
-                                        Text = rdr["REPORT_NAME"].ToString(),
-                                        NavigateUrl = "~/Pages/RunReport.aspx?reportId=" + rdr["ID"].ToString()
-                                    }
-                                );
                             }
+                            //Commented to hide all Jasper Reports
+//                            else{
+//                                // Link to the report
+//                                var li = new HtmlGenericControl("li");
+//                                currentGroup.Controls.Add(li);
+//                                li.Controls.Add(new HyperLink()
+//                                    {
+//                                        Text = rdr["REPORT_NAME"].ToString(),
+//                                        NavigateUrl = "~/Pages/RunReport.aspx?reportId=" + rdr["ID"].ToString()
+//                                    }
+//                                );
+//                            }
 
 
                         }

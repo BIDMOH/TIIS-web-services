@@ -1,7 +1,7 @@
 ﻿<Properties StartupConfiguration="{9A92CA0A-5B83-4E9D-8EDD-BB59683F9A98}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="GIIS.Tanzania.WCF/HealthFacilityManagement.svc.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="GIIS.Tanzania.WCF/StockManagement.svc.cs">
     <Files>
-      <File FileName="GIIS.Tanzania.WCF/HealthFacilityManagement.svc.cs" Line="62" Column="4" />
+      <File FileName="GIIS.Tanzania.WCF/StockManagement.svc.cs" Line="68" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
