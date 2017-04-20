@@ -39,12 +39,12 @@
     
     <div class="row">
         <div class="col-md-12">
-            <h2><asp:Label ID="lblReportName" Text="Health Facilities Defaulters " runat="server" /></h2>
+            <h2><asp:Label ID="lblReportName" Text="Health Facilities Vaccination Summary " runat="server" /></h2>
         </div>
     </div>
     <div class="row">
         <div class="col-md-12">
-            <em><asp:Label runat="server" ID="lblReportDescription" Text="This report shows the number and list of children who missed at least one immunization schedules. "  /></em>
+            <em><asp:Label runat="server" ID="lblReportDescription" Text="This report shows the number and list of children registered, born at home, born in the health facility and total children vaccinated in the facility. "  /></em>
         </div>
     </div>
     <br />
