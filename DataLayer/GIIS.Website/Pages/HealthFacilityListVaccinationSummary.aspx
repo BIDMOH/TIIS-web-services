@@ -71,80 +71,37 @@
                 <PagerSettings Position="Top" Mode="NumericFirstLast" />
                 <PagerStyle CssClass="pagination" HorizontalAlign="Left" VerticalAlign="Top" />
             <Columns>
-                <asp:TemplateField HeaderText="Health Facility Name">
+                <asp:TemplateField HeaderText="Children Registered">
                    <ItemTemplate>
-                        <%#Eval("HealthFacility")%>
+                        <%#Eval("registered")%>
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:TemplateField HeaderText="January">
+                <asp:TemplateField HeaderText="Birth At Home">
                    <ItemTemplate>
-                        <%#Eval("January")%>
+                        <%#Eval("home")%>
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:TemplateField HeaderText="February">
+                <asp:TemplateField HeaderText="Birth At Facility">
                 <ItemTemplate> 
-                    <%#Eval("February")%>
+                    <%#Eval("facility")%>
                 </ItemTemplate>
                 </asp:TemplateField>   
-                <asp:TemplateField HeaderText="March">
+                <asp:TemplateField HeaderText="Vaccinated">
                     <ItemTemplate>
-                        <%#Eval("March")%>
+                        <%#Eval("vaccinated")%>
                     </ItemTemplate>
                     </asp:TemplateField>
-                <asp:TemplateField HeaderText="April">
-                     <ItemTemplate>
-                        <%#Eval("April")%>
-                     </ItemTemplate>
-                 </asp:TemplateField>
-                 <asp:TemplateField HeaderText="May">
-                      <ItemTemplate>
-                         <%#Eval("May")%>
-                      </ItemTemplate>
-                  </asp:TemplateField>
-               <asp:TemplateField HeaderText="June">
-                    <ItemTemplate>
-                       <%#Eval("June")%>
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:TemplateField HeaderText="July">
-                    <ItemTemplate>
-                       <%#Eval("July")%>
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:TemplateField HeaderText="August">
-                    <ItemTemplate>
-                       <%#Eval("August")%>
-                    </ItemTemplate>
-                </asp:TemplateField>
-                 <asp:TemplateField HeaderText="September">
-                    <ItemTemplate>
-                       <%#Eval("September")%>
-                    </ItemTemplate>
-                </asp:TemplateField>
-                 <asp:TemplateField HeaderText="October">
-                        <ItemTemplate>
-                           <%#Eval("October")%>
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                    <asp:TemplateField HeaderText="November">
-                        <ItemTemplate>
-                           <%#Eval("November")%>
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                    <asp:TemplateField HeaderText="December">
-                        <ItemTemplate>
-                           <%#Eval("December")%>
-                        </ItemTemplate>
-                    </asp:TemplateField>
+
             </Columns>
         </asp:GridView>
         <!--
             data binding of the gridview is done in connection to the Datalayer methods that queries the data EnablePaging="false"
         -->
-        <asp:ObjectDataSource ID="odsHealthFacilityListVaccinationSummary" runat="server" SelectMethod="GetHealthFacilityListVaccinationSummaryList" TypeName="GIIS.DataLayer.HealthFacilityVaccinationSummary">
+        <asp:ObjectDataSource ID="odsHealthFacilityListVaccinationSummary" runat="server" SelectMethod="HealthFacilityVaccinationSummaryList" TypeName="GIIS.DataLayer.HealthFacilityVaccinationSummary">
             <SelectParameters>
-                 <asp:Parameter Name="districtCouncilId" Type="String"/>
-                 <asp:Parameter Name="reportPeriod" Type="DateTime" />
+                 <asp:Parameter Name="hfid" Type="String"/>
+                  <asp:Parameter Name="fromDate" Type="DateTime" />
+                  <asp:Parameter Name="toDate" Type="DateTime" />
             </SelectParameters>
         </asp:ObjectDataSource>
 
