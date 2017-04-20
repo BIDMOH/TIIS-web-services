@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="530d796c-0780-454e-b5db-359b024888dd" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pages/HealthFacilityListVaccinationSummary.aspx" afterPath="$PROJECT_DIR$/Pages/HealthFacilityListVaccinationSummary.aspx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pages/HealthFacilityListVaccinationSummary.aspx.cs" afterPath="$PROJECT_DIR$/Pages/HealthFacilityListVaccinationSummary.aspx.cs" />
     </list>
     <ignored path="GIIS.Website.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -64,7 +62,7 @@
         <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityChildDefaultersReport.aspx">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="102">
-              <caret line="105" column="19" lean-forward="true" selection-start-line="105" selection-start-column="17" selection-end-line="107" selection-end-column="64" />
+              <caret line="105" column="19" lean-forward="false" selection-start-line="105" selection-start-column="17" selection-end-line="107" selection-end-column="64" />
               <folding />
             </state>
           </provider>
@@ -94,7 +92,7 @@
         <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityChildDefaultersReportByDistrict.aspx.cs">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="165">
-              <caret line="298" column="9" lean-forward="true" selection-start-line="298" selection-start-column="9" selection-end-line="298" selection-end-column="9" />
+              <caret line="298" column="9" lean-forward="false" selection-start-line="298" selection-start-column="9" selection-end-line="298" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -311,10 +309,8 @@
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
           <PATH vcs="Git" revision="">$PROJECT_DIR$/../GIIS.DataLayer/GIIS.DataLayer.userprefs</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/../GIIS.DataLayer/HealthFacilitiesDropouts.cs</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/GIIS.Website.iml</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/Pages/HealthFacilityChildDefaultersReportByDistrict.aspx.cs</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Pages/Report.aspx.cs</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/../../Services/GIIS.Tanzania.WCF.userprefs</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/../../Services/GIIS.Tanzania.WCF/bin/GIIS.DataLayer.dll</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/../../Services/GIIS.Tanzania.WCF/bin/GIIS.Tanzania.WCF.dll</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/../../Services/GIIS.Tanzania.WCF/bin/GIIS.Tanzania.WCF.pdb</PATH>
@@ -327,7 +323,6 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="CREATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/../TIIS.SQL.UPDATES/ReportsUpdatesSQL.sql</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Deleted" />
@@ -498,16 +493,16 @@
       <workItem from="1491888362574" duration="11394000" />
       <workItem from="1492249420260" duration="12162000" />
       <workItem from="1492388059179" duration="25171000" />
-      <workItem from="1492601712899" duration="8840000" />
+      <workItem from="1492601712899" duration="12395000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="98595000" />
+    <option name="totallyTimeSpent" value="102150000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="2" width="1292" height="733" extended-state="0" />
-    <editor active="true" />
+    <frame x="-7" y="2" width="1292" height="733" extended-state="1" />
+    <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29951298" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -515,7 +510,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25333333" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.42" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.41833332" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -881,7 +876,7 @@
     <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityChildDefaultersReportByDistrict.aspx.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
-          <caret line="298" column="9" lean-forward="true" selection-start-line="298" selection-start-column="9" selection-end-line="298" selection-end-column="9" />
+          <caret line="298" column="9" lean-forward="false" selection-start-line="298" selection-start-column="9" selection-end-line="298" selection-end-column="9" />
           <folding />
         </state>
       </provider>
@@ -899,7 +894,7 @@
     <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityChildDefaultersReport.aspx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
-          <caret line="105" column="19" lean-forward="true" selection-start-line="105" selection-start-column="17" selection-end-line="107" selection-end-column="64" />
+          <caret line="105" column="19" lean-forward="false" selection-start-line="105" selection-start-column="17" selection-end-line="107" selection-end-column="64" />
           <folding />
         </state>
       </provider>

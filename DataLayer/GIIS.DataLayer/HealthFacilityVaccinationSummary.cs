@@ -54,12 +54,12 @@ namespace GIIS.DataLayer
 				DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, parameters);
 
 
-				string query0 = "select * from crosstab($$ select t1.registered,t1.\"NAME\", t1.place from (select COUNT(\"CHILD\".\"HEALTHCENTER_ID\") AS REGISTERED, \"BIRTHPLACE\".\"NAME\",COUNT(\"BIRTHPLACE\".\"NAME\") AS PLACE from \"CHILD\" " +
+				string query0 = "select * from crosstab($$ select t1.registered,t1.\"NAME\", t1.place from (select \"CHILD\".\"HEALTHCENTER_ID\" AS REGISTERED, \"BIRTHPLACE\".\"NAME\",COUNT(\"BIRTHPLACE\".\"NAME\") AS PLACE from \"CHILD\" " +
 								"inner join \"BIRTHPLACE\" on \"CHILD\".\"BIRTHPLACE_ID\" = \"BIRTHPLACE\".\"ID\"  " +
 								"inner join \"HEALTH_FACILITY\" ON \"CHILD\".\"HEALTHCENTER_ID\" = \"HEALTH_FACILITY\".\"ID\" " +
 					            "WHERE "+
-								" (\"HEALTH_FACILITY\".\"ID\" = "+ hfid + " or \"HEALTH_FACILITY\".\"PARENT_ID\" = " + hfid + ") AND \"CHILD\".\"MODIFIED_ON\" >= '" + fromDate + "' AND \"CHILD\".\"MODIFIED_ON\" <= '"+ toDate + "'  AND(\"BIRTHPLACE\".\"NAME\" = 'Home' OR \"BIRTHPLACE\".\"NAME\" = 'Health Facility') GROUP BY \"BIRTHPLACE\".\"NAME\",\"CHILD\".\"HEALTHCENTER_ID\" )  as t1 $$) as final_result(\"id\" int, \"facility\" bigint, \"home\" bigint ) ";
-
+								" (\"HEALTH_FACILITY\".\"ID\" = "+ hfid + " or \"HEALTH_FACILITY\".\"PARENT_ID\" = " + hfid + ") AND \"CHILD\".\"MODIFIED_ON\" >= '" + fromDate + "' AND \"CHILD\".\"MODIFIED_ON\" <= '"+ toDate + "'  AND(\"BIRTHPLACE\".\"NAME\" = 'Home' OR \"BIRTHPLACE\".\"NAME\" = 'Health Facility') GROUP BY \"CHILD\".\"HEALTHCENTER_ID\",\"BIRTHPLACE\".\"NAME\" order by \"CHILD\".\"HEALTHCENTER_ID\",\"BIRTHPLACE\".\"NAME\"  )  as t1 $$) as final_result(\"id\" int, \"facility\" bigint, \"home\" bigint ) ";
+				
 				List<NpgsqlParameter> parameters0 = new List<NpgsqlParameter>()
 					{
 					new NpgsqlParameter("@hfid", DbType.Int32) { Value = hfid },
@@ -68,9 +68,13 @@ namespace GIIS.DataLayer
 					};
 				DataTable dt0 = DBManager.ExecuteReaderCommand(query0, CommandType.Text, parameters0);
 
-				string query1 = @"select COUNT(""CHILD"".""ID"") AS REGISTERED from ""CHILD""  			
-								inner join ""HEALTH_FACILITY"" ON ""CHILD"".""HEALTHCENTER_ID"" = ""HEALTH_FACILITY"".""ID"" 
-							    (""HEALTH_FACILITY"".""ID"" = @hfid or ""HEALTH_FACILITY"".""PARENT_ID"" = @hfid) AND ""CHILD"".""MODIFIED_ON"" >=@fromDate AND ""CHILD"".""MODIFIED_ON"" <= @toDate ";
+				string query1 = @"select ""CHILD"".""HEALTHCENTER_ID"",COUNT(""CHILD"".""ID"") AS vaccinated from ""VACCINATION_EVENT""
+								inner join ""CHILD"" on ""VACCINATION_EVENT"".""CHILD_ID"" = ""CHILD"".""ID""
+								inner join ""DOSE"" on ""VACCINATION_EVENT"".""DOSE_ID"" = ""DOSE"".""ID""
+								inner join ""SCHEDULED_VACCINATION"" on ""DOSE"".""SCHEDULED_VACCINATION_ID"" = ""SCHEDULED_VACCINATION"".""ID""
+								inner join ""HEALTH_FACILITY"" ON ""VACCINATION_EVENT"".""HEALTH_FACILITY_ID"" = ""HEALTH_FACILITY"".""ID""
+								WHERE
+								""VACCINATION_STATUS"" = true AND ""SCHEDULED_DATE"" <= NOW() AND (""HEALTH_FACILITY"".""ID"" = @hfid or ""HEALTH_FACILITY"".""PARENT_ID"" = @hfid) AND ""VACCINATION_EVENT"".""VACCINATION_DATE"" >=@fromDate AND ""VACCINATION_EVENT"".""VACCINATION_DATE"" <= @toDate ORDER BY ""CHILD"".""HEALTHCENTER_ID"" ";
 
 				List<NpgsqlParameter> parameters1 = new List<NpgsqlParameter>()
 					{
@@ -118,8 +122,7 @@ namespace GIIS.DataLayer
 			foreach (DataRow row in dt0.Rows)
 			{
 				try
-				{
-					
+				{					
 					o.home = Helper.ConvertToInt(row["home"]);
 					o.facility = Helper.ConvertToInt(row["facility"]);
 					
