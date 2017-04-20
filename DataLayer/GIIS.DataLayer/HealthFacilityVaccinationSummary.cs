@@ -22,20 +22,21 @@ using Npgsql;
 
 namespace GIIS.DataLayer
 {
-	public partial class HealthFacilityPMTCTstatus
+	public partial class HealthFacilityVaccinationSummary
 	{
 
 		#region Properties
 
-		public string status { get; set; }
+		public Int32 registerted { get; set; }
 		public Int32 female { get; set; }
 		public Int32 male { get; set; }
+		public Int32 vaccinated { get; set; }
 
 
 
 		#endregion
 
-		public static List<HealthFacilityPMTCTstatus> GetAllChildrenPMTCTstatus(string hfid, DateTime fromDate, DateTime toDate)
+		public static List<HealthFacilityPMTCTstatus> HealthFacilityPMTCTstatus(string hfid, DateTime fromDate, DateTime toDate)
 		{
 			try
 			{

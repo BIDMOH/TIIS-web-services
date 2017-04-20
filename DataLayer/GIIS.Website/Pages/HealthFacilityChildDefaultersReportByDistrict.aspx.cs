@@ -286,6 +286,35 @@ public partial class Pages_HealthFacilityChildrenRegistrationsDefaultersReportBy
         odsHealthFacilityDefaultersByDistrict.SelectParameters.Add("fromDate", strFromDate);
         odsHealthFacilityDefaultersByDistrict.SelectParameters.Add("toDate", strToDate);
         odsHealthFacilityDefaultersByDistrict.DataBind();
+
+        if(ToDate == "Mar"){
+            gvHealthFacilityDefaultersByDistrict.Columns.RemoveAt(4);
+            gvHealthFacilityDefaultersByDistrict.Columns.RemoveAt(5);
+            gvHealthFacilityDefaultersByDistrict.Columns.RemoveAt(5);
+            gvHealthFacilityDefaultersByDistrict.Columns.RemoveAt(6);
+            gvHealthFacilityDefaultersByDistrict.Columns.RemoveAt(7);
+            gvHealthFacilityDefaultersByDistrict.Columns.RemoveAt(8);
+            gvHealthFacilityDefaultersByDistrict.Columns.RemoveAt(9);
+            gvHealthFacilityDefaultersByDistrict.Columns.RemoveAt(10);
+        }
+        if(ToDate == "Apr"){
+            gvHealthFacilityDefaultersByDistrict.Columns.RemoveAt(5);
+            gvHealthFacilityDefaultersByDistrict.Columns.RemoveAt(5);
+            gvHealthFacilityDefaultersByDistrict.Columns.RemoveAt(6);
+            gvHealthFacilityDefaultersByDistrict.Columns.RemoveAt(7);
+            gvHealthFacilityDefaultersByDistrict.Columns.RemoveAt(8);
+            gvHealthFacilityDefaultersByDistrict.Columns.RemoveAt(9);
+            gvHealthFacilityDefaultersByDistrict.Columns.RemoveAt(10);
+        }
+
+         if(ToDate == "May"){
+             gvHealthFacilityDefaultersByDistrict.Columns.RemoveAt(5);
+             gvHealthFacilityDefaultersByDistrict.Columns.RemoveAt(6);
+             gvHealthFacilityDefaultersByDistrict.Columns.RemoveAt(7);
+             gvHealthFacilityDefaultersByDistrict.Columns.RemoveAt(8);
+             gvHealthFacilityDefaultersByDistrict.Columns.RemoveAt(9);
+             gvHealthFacilityDefaultersByDistrict.Columns.RemoveAt(10);
+         }
         gvHealthFacilityDefaultersByDistrict.DataSourceID = "odsHealthFacilityDefaultersByDistrict";
         gvHealthFacilityDefaultersByDistrict.DataBind();
 

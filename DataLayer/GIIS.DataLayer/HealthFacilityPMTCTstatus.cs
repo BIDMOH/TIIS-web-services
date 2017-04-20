@@ -41,7 +41,7 @@ namespace GIIS.DataLayer
 			{
 				string query = "SELECT * FROM   crosstab($$ SELECT t1.status, t1.\"GENDER\", t1.count FROM " +
 							   "(select \"MOTHER_HIV_STATUS\" as status, \"GENDER\", count(\"GENDER\") as count from \"CHILD\"" +
-							   "inner join \"HEALTH_FACILITY\" on \"CHILD\".\"HEALTHCENTER_ID\" = \"HEALTH_FACILITY\".\"ID\" where  (\"HEALTH_FACILITY\".\"ID\" = " + hfid + " OR \"HEALTH_FACILITY\".\"PARENT_ID\" = " + hfid + ")  AND (\"CHILD\".\"BIRTHDATE\" >='" + fromDate + "' and \"CHILD\".\"BIRTHDATE\"<='" + toDate + "')  GROUP BY \"MOTHER_HIV_STATUS\", \"GENDER\" order by \"MOTHER_HIV_STATUS\")AS t1  $$)" +
+							   "inner join \"HEALTH_FACILITY\" on \"CHILD\".\"HEALTHCENTER_ID\" = \"HEALTH_FACILITY\".\"ID\" where  (\"CHILD\".\"HEALTHCENTER_ID\" = " + hfid + " OR \"HEALTH_FACILITY\".\"PARENT_ID\" = " + hfid + ")  AND (\"CHILD\".\"BIRTHDATE\" >='" + fromDate + "' and \"CHILD\".\"BIRTHDATE\"<='" + toDate + "')  GROUP BY \"MOTHER_HIV_STATUS\", \"GENDER\" order by \"MOTHER_HIV_STATUS\")AS t1  $$)" +
 							   "as final_result(\"status\" text, \"female\" bigint,\"male\" bigint) ";
 				
 				List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()

@@ -99,9 +99,9 @@ public partial class Pages_CoverageByTargetPopulationReport : System.Web.UI.Page
             UserRole role = UserRole.GetUserRoleByUserId(userId);
             if(role.Role.Name.Equals("Middle Level Officer"))
             {
-                command = "SELECT \"ID\", \"NAME\" FROM \"HEALTH_FACILITY\" WHERE   \"ID\" = "+CurrentEnvironment.LoggedUser.HealthFacilityId;
+                command = "SELECT \"ID\", \"NAME\" FROM \"HEALTH_FACILITY\" WHERE   \"ID\" = "+CurrentEnvironment.LoggedUser.HealthFacilityId +" ORDER BY \"NAME\" ";
             }else{
-                command = "SELECT \"ID\", \"NAME\" FROM \"HEALTH_FACILITY\"  ";
+                command = "SELECT \"ID\", \"NAME\" FROM \"HEALTH_FACILITY\" ORDER BY \"NAME\"  ";
             }
 
 
