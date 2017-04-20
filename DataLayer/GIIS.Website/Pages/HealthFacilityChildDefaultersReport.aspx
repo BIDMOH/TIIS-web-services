@@ -96,6 +96,11 @@
                         <%#Eval("village")%>
                      </ItemTemplate>
                      </asp:TemplateField>
+                 <asp:TemplateField HeaderText="Vaccines Missed">
+                     <ItemTemplate>
+                        <%#Eval("MissedVaccines")%>
+                     </ItemTemplate>
+                 </asp:TemplateField>
             </Columns>
         </asp:GridView>
         <!--

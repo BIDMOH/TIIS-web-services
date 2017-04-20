@@ -99,7 +99,7 @@ public partial class Pages_CoverageReport : System.Web.UI.Page
             UserRole role = UserRole.GetUserRoleByUserId(userId);
             if(role.Role.Name.Equals("Middle Level Officer"))
             {
-                command = "SELECT \"ID\", \"NAME\" FROM \"HEALTH_FACILITY\" WHERE \"TYPE_ID\" = 2  AND \"ID\" = "+CurrentEnvironment.LoggedUser.HealthFacilityId;
+                command = "SELECT \"ID\", \"NAME\" FROM \"HEALTH_FACILITY\" WHERE  \"PARENT_ID\" = "+CurrentEnvironment.LoggedUser.HealthFacilityId;
             }else{
                 command = "SELECT \"ID\", \"NAME\" FROM \"HEALTH_FACILITY\" WHERE \"TYPE_ID\" = "+2;
             }

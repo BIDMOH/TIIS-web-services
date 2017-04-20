@@ -32,6 +32,7 @@ namespace GIIS.DataLayer
 		public string gudianName { get; set; }
         public string gudianContact { get; set; }
 		public string village { get; set; }
+		public string MissedVaccines { get; set; }
 		public string HealthFacility { get; set; }
 		public Int32 January { get; set; }
 		public Int32 February { get; set; }
@@ -56,10 +57,13 @@ namespace GIIS.DataLayer
 			{
 				string query = @"SELECT ""CHILD"".""ID"",""FIRSTNAME1"", ""FIRSTNAME2"", ""LASTNAME1"", ""LASTNAME2"", 
                              ""HEALTHCENTER_ID"", ""PLACE"".""NAME"" AS village, 
-                               ""PHONE"", ""MOBILE"", ""EMAIL"", ""MOTHER_FIRSTNAME"", ""MOTHER_LASTNAME"",""CHILD"".""MODIFIED_ON"",""CHILD"".""MODIFIED_BY"", ""BARCODE_ID"" 
-                               FROM ""CHILD"" inner join ""VACCINATION_EVENT"" on ""CHILD"".""ID"" = ""VACCINATION_EVENT"".""CHILD_ID"" LEFT JOIN 				     ""NONVACCINATION_REASON"" ON ""VACCINATION_EVENT"".""NONVACCINATION_REASON_ID"" = ""NONVACCINATION_REASON"".""ID""
-                                inner join  ""PLACE"" on ""CHILD"".""DOMICILE_ID"" = ""PLACE"".""ID""
-								WHERE ""CHILD"".""STATUS_ID"" = 1 and ""HEALTHCENTER_ID"" = @hfid and ""VACCINATION_EVENT"".""SCHEDULED_DATE"" <= NOW() AND""VACCINATION_EVENT"".""SCHEDULED_DATE"" >= @fromDate  AND ""VACCINATION_EVENT"".""SCHEDULED_DATE"" <= @toDate and ""VACCINATION_STATUS"" = false GROUP BY ""CHILD"".""ID"",""PLACE"".""NAME""   ORDER BY ""CHILD"".""ID"",""PLACE"".""NAME""";
+                               ""PHONE"", ""MOBILE"", ""EMAIL"", ""MOTHER_FIRSTNAME"", ""MOTHER_LASTNAME"",""CHILD"".""MODIFIED_ON"",""CHILD"".""MODIFIED_BY"", ""BARCODE_ID"",array_to_string(array_agg(""FULLNAME""), ',') AS MISSED_VACCINES 
+                               FROM ""CHILD"" 
+									INNER JOIN ""VACCINATION_EVENT"" on ""CHILD"".""ID"" = ""VACCINATION_EVENT"".""CHILD_ID"" 
+									LEFT JOIN   ""NONVACCINATION_REASON"" ON ""VACCINATION_EVENT"".""NONVACCINATION_REASON_ID"" = ""NONVACCINATION_REASON"".""ID""
+									INNER JOIN ""DOSE"" ON ""VACCINATION_EVENT"".""DOSE_ID""=""DOSE"".""ID"" 
+	                                inner join  ""PLACE"" on ""CHILD"".""DOMICILE_ID"" = ""PLACE"".""ID""
+										WHERE ""CHILD"".""STATUS_ID"" = 1 and ""HEALTHCENTER_ID"" = @hfid and ""VACCINATION_EVENT"".""SCHEDULED_DATE"" <= NOW() AND""VACCINATION_EVENT"".""SCHEDULED_DATE"" >= @fromDate  AND ""VACCINATION_EVENT"".""SCHEDULED_DATE"" <= @toDate and ""VACCINATION_STATUS"" = false GROUP BY ""CHILD"".""ID"",""PLACE"".""NAME""   ORDER BY ""CHILD"".""ID"",""PLACE"".""NAME""";
 				;
 				List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
 					{
@@ -169,6 +173,7 @@ namespace GIIS.DataLayer
 					o.gudianName = row["MOTHER_FIRSTNAME"].ToString() + " " + row["MOTHER_LASTNAME"].ToString();
 					o.gudianContact = row["PHONE"].ToString()+" "+ row["MOBILE"].ToString()+" "+ row["EMAIL"].ToString();   
 					o.village = row["village"].ToString();
+					o.MissedVaccines = row["MISSED_VACCINES"].ToString();
 					oList.Add(o);
                 }
                 catch (Exception ex)

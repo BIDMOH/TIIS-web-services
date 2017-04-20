@@ -106,7 +106,7 @@ public partial class Pages_HealthFacilityChildrenRegistrationsDefaulters : Syste
                 UserRole role = UserRole.GetUserRoleByUserId(userId);
                  if(role.Role.Name.Equals("Middle Level Officer"))
                 {
-                    command = "SELECT \"ID\", \"NAME\" FROM \"HEALTH_FACILITY\" ORDER BY \"NAME\" ";
+                    command = "SELECT \"ID\", \"NAME\" FROM \"HEALTH_FACILITY\" WHERE  \"PARENT_ID\" = "+CurrentEnvironment.LoggedUser.HealthFacilityId;
                 }else{
                     command = "SELECT \"ID\", \"NAME\" FROM \"HEALTH_FACILITY\" ORDER BY \"NAME\" ";
                 }

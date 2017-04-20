@@ -1,4 +1,4 @@
-//*******************************************************************************
+﻿//*******************************************************************************
 //Copyright 2015 TIIS - Tanzania Immunization Information System
 //
 //    Licensed under the Apache License, Version 2.0 (the "License");
@@ -86,6 +86,7 @@ namespace GIIS.DataLayer
 					" (\"HEALTH_FACILITY\".\"ID\" = " + healthFacilityId + " OR \"HEALTH_FACILITY\".\"PARENT_ID\" = " + healthFacilityId +") AND " +
 					" \"CHILD\".\"HEALTHCENTER_ID\" = \"VACCINATION_EVENT\".\"HEALTH_FACILITY_ID\"  AND \"VACCINATION_DATE\">='"+fromDate.ToString()+"' AND \"VACCINATION_DATE\"<='"+toDate.ToString()+"' GROUP BY \"FULLNAME\") " +
 				" AS table3 ON table1.\"dose\" = table3.\"dose\" ";
+
 
 			try
             {

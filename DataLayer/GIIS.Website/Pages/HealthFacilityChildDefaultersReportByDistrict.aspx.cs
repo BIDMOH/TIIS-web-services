@@ -31,6 +31,7 @@ public partial class Pages_HealthFacilityChildrenRegistrationsDefaultersReportBy
     public static String datetoString = "";
     public String userID = "";
     public String selectedHealthFacilityID = "";
+    string ToDate="";
     public int hfParentID = 0;
     public int userSelectedIndex = 0;
     public HtmlGenericControl inputControl3,inputControl6;
@@ -161,7 +162,7 @@ public partial class Pages_HealthFacilityChildrenRegistrationsDefaultersReportBy
             opt.Attributes.Add("value", d.ToString());
             opt.InnerText = monthString;
 
-            if(selectedHealthFacilityID.Equals(currentDateTime.ToString())){
+            if(ToDate.Equals(d.ToString())){
                 opt.Attributes.Add("selected","true");
             }
 
@@ -270,7 +271,7 @@ public partial class Pages_HealthFacilityChildrenRegistrationsDefaultersReportBy
         }
 
 
-        string ToDate = Request.Form["selectReportingPeriod"];
+        ToDate = Request.Form["selectReportingPeriod"];
 
         DateTime oDate = DateTime.Parse(ToDate);
         DateTime fromDateTime = new DateTime(oDate.Year, 1,1, 1, 1, 1);
@@ -287,79 +288,79 @@ public partial class Pages_HealthFacilityChildrenRegistrationsDefaultersReportBy
         odsHealthFacilityDefaultersByDistrict.SelectParameters.Add("toDate", strToDate);
         odsHealthFacilityDefaultersByDistrict.DataBind();
 
-        if(oDate.Month == 3){
-            gvHealthFacilityDefaultersByDistrict.Columns.RemoveAt(4);
-            gvHealthFacilityDefaultersByDistrict.Columns.RemoveAt(5);
-            gvHealthFacilityDefaultersByDistrict.Columns.RemoveAt(5);
-            gvHealthFacilityDefaultersByDistrict.Columns.RemoveAt(6);
-            gvHealthFacilityDefaultersByDistrict.Columns.RemoveAt(7);
-            gvHealthFacilityDefaultersByDistrict.Columns.RemoveAt(8);
-            gvHealthFacilityDefaultersByDistrict.Columns.RemoveAt(9);
-            gvHealthFacilityDefaultersByDistrict.Columns.RemoveAt(10);
-        }
-        if(oDate.Month == 4){
-            gvHealthFacilityDefaultersByDistrict.Columns.RemoveAt(5);
-            gvHealthFacilityDefaultersByDistrict.Columns.RemoveAt(5);
-            gvHealthFacilityDefaultersByDistrict.Columns.RemoveAt(6);
-            gvHealthFacilityDefaultersByDistrict.Columns.RemoveAt(7);
-            gvHealthFacilityDefaultersByDistrict.Columns.RemoveAt(8);
-            gvHealthFacilityDefaultersByDistrict.Columns.RemoveAt(9);
-            gvHealthFacilityDefaultersByDistrict.Columns.RemoveAt(10);
-        }
-
-         if(oDate.Month == 5){
-             gvHealthFacilityDefaultersByDistrict.Columns.RemoveAt(6);
-             gvHealthFacilityDefaultersByDistrict.Columns.RemoveAt(7);
-             gvHealthFacilityDefaultersByDistrict.Columns.RemoveAt(8);
-             gvHealthFacilityDefaultersByDistrict.Columns.RemoveAt(9);
-             gvHealthFacilityDefaultersByDistrict.Columns.RemoveAt(10);
-         }
-
-         if(oDate.Month == 6){
-              gvHealthFacilityDefaultersByDistrict.Columns.RemoveAt(7);
-              gvHealthFacilityDefaultersByDistrict.Columns.RemoveAt(8);
-              gvHealthFacilityDefaultersByDistrict.Columns.RemoveAt(9);
-              gvHealthFacilityDefaultersByDistrict.Columns.RemoveAt(10);
-         }
-
-         if(oDate.Month == 7){
-            gvHealthFacilityDefaultersByDistrict.Columns.RemoveAt(8);
-            gvHealthFacilityDefaultersByDistrict.Columns.RemoveAt(9);
-            gvHealthFacilityDefaultersByDistrict.Columns.RemoveAt(10);
-            gvHealthFacilityDefaultersByDistrict.Columns.RemoveAt(11);
-            gvHealthFacilityDefaultersByDistrict.Columns.RemoveAt(12);
-         }
-
-        if(oDate.Month == 8){
-            gvHealthFacilityDefaultersByDistrict.Columns.RemoveAt(9);
-            gvHealthFacilityDefaultersByDistrict.Columns.RemoveAt(10);
-            gvHealthFacilityDefaultersByDistrict.Columns.RemoveAt(11);
-            gvHealthFacilityDefaultersByDistrict.Columns.RemoveAt(12);
-        }
-
-        if(oDate.Month == 9){
-            gvHealthFacilityDefaultersByDistrict.Columns.RemoveAt(10);
-            gvHealthFacilityDefaultersByDistrict.Columns.RemoveAt(11);
-            gvHealthFacilityDefaultersByDistrict.Columns.RemoveAt(12);
-        }
-
-
-        if(oDate.Month == 10){
-            gvHealthFacilityDefaultersByDistrict.Columns.RemoveAt(9);
-            gvHealthFacilityDefaultersByDistrict.Columns.RemoveAt(10);
-            gvHealthFacilityDefaultersByDistrict.Columns.RemoveAt(11);
-            gvHealthFacilityDefaultersByDistrict.Columns.RemoveAt(12);
-        }
-
-        if(oDate.Month == 11){
-            gvHealthFacilityDefaultersByDistrict.Columns.RemoveAt(12);
-        }
-
 
         gvHealthFacilityDefaultersByDistrict.DataSourceID = "odsHealthFacilityDefaultersByDistrict";
         gvHealthFacilityDefaultersByDistrict.DataBind();
 
         createInputControls();
+
+
+            if(oDate.Month == 2){
+                gvHealthFacilityDefaultersByDistrict.Columns[3].Visible = false;
+                gvHealthFacilityDefaultersByDistrict.Columns[4].Visible = false;
+                gvHealthFacilityDefaultersByDistrict.Columns[5].Visible = false;
+                gvHealthFacilityDefaultersByDistrict.Columns[6].Visible = false;
+                gvHealthFacilityDefaultersByDistrict.Columns[7].Visible = false;
+                gvHealthFacilityDefaultersByDistrict.Columns[8].Visible = false;
+                gvHealthFacilityDefaultersByDistrict.Columns[9].Visible = false;
+                gvHealthFacilityDefaultersByDistrict.Columns[10].Visible = false;
+                gvHealthFacilityDefaultersByDistrict.Columns[11].Visible = false;
+                gvHealthFacilityDefaultersByDistrict.Columns[12].Visible = false;
+            }else if(oDate.Month == 3){
+                gvHealthFacilityDefaultersByDistrict.Columns[4].Visible = false;
+                gvHealthFacilityDefaultersByDistrict.Columns[5].Visible = false;
+                gvHealthFacilityDefaultersByDistrict.Columns[6].Visible = false;
+                gvHealthFacilityDefaultersByDistrict.Columns[7].Visible = false;
+                gvHealthFacilityDefaultersByDistrict.Columns[8].Visible = false;
+                gvHealthFacilityDefaultersByDistrict.Columns[9].Visible = false;
+                gvHealthFacilityDefaultersByDistrict.Columns[10].Visible = false;
+                gvHealthFacilityDefaultersByDistrict.Columns[11].Visible = false;
+                gvHealthFacilityDefaultersByDistrict.Columns[12].Visible = false;
+            }else if(oDate.Month == 4){
+                gvHealthFacilityDefaultersByDistrict.Columns[5].Visible = false;
+                gvHealthFacilityDefaultersByDistrict.Columns[6].Visible = false;
+                gvHealthFacilityDefaultersByDistrict.Columns[7].Visible = false;
+                gvHealthFacilityDefaultersByDistrict.Columns[8].Visible = false;
+                gvHealthFacilityDefaultersByDistrict.Columns[9].Visible = false;
+                gvHealthFacilityDefaultersByDistrict.Columns[10].Visible = false;
+                gvHealthFacilityDefaultersByDistrict.Columns[11].Visible = false;
+                gvHealthFacilityDefaultersByDistrict.Columns[12].Visible = false;
+            }else if(oDate.Month == 5){
+                 gvHealthFacilityDefaultersByDistrict.Columns[6].Visible = false;
+                 gvHealthFacilityDefaultersByDistrict.Columns[7].Visible = false;
+                 gvHealthFacilityDefaultersByDistrict.Columns[8].Visible = false;
+                 gvHealthFacilityDefaultersByDistrict.Columns[9].Visible = false;
+                 gvHealthFacilityDefaultersByDistrict.Columns[10].Visible = false;
+                 gvHealthFacilityDefaultersByDistrict.Columns[11].Visible = false;
+                 gvHealthFacilityDefaultersByDistrict.Columns[12].Visible = false;
+            }else if(oDate.Month == 6){
+                gvHealthFacilityDefaultersByDistrict.Columns[7].Visible = false;
+                gvHealthFacilityDefaultersByDistrict.Columns[8].Visible = false;
+                gvHealthFacilityDefaultersByDistrict.Columns[9].Visible = false;
+                gvHealthFacilityDefaultersByDistrict.Columns[10].Visible = false;
+                gvHealthFacilityDefaultersByDistrict.Columns[11].Visible = false;
+                gvHealthFacilityDefaultersByDistrict.Columns[12].Visible = false;
+            }else if(oDate.Month == 7){
+                gvHealthFacilityDefaultersByDistrict.Columns[8].Visible = false;
+                gvHealthFacilityDefaultersByDistrict.Columns[9].Visible = false;
+                gvHealthFacilityDefaultersByDistrict.Columns[10].Visible = false;
+                gvHealthFacilityDefaultersByDistrict.Columns[11].Visible = false;
+                gvHealthFacilityDefaultersByDistrict.Columns[12].Visible = false;
+            }else if(oDate.Month == 8){
+                gvHealthFacilityDefaultersByDistrict.Columns[9].Visible = false;
+                gvHealthFacilityDefaultersByDistrict.Columns[10].Visible = false;
+                gvHealthFacilityDefaultersByDistrict.Columns[11].Visible = false;
+                gvHealthFacilityDefaultersByDistrict.Columns[12].Visible = false;
+            }else if(oDate.Month == 9){
+                gvHealthFacilityDefaultersByDistrict.Columns[10].Visible = false;
+                gvHealthFacilityDefaultersByDistrict.Columns[11].Visible = false;
+                gvHealthFacilityDefaultersByDistrict.Columns[12].Visible = false;
+            }else if(oDate.Month == 10){
+                gvHealthFacilityDefaultersByDistrict.Columns[11].Visible = false;
+                gvHealthFacilityDefaultersByDistrict.Columns[12].Visible = false;
+            }else if(oDate.Month == 11){
+                gvHealthFacilityDefaultersByDistrict.Columns[12].Visible = false;
+            }
         
     }
 
