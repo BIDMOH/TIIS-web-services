@@ -104,11 +104,20 @@ namespace GIIS.DataLayer
 		{
 			HealthFacilityVaccinationSummary o = new HealthFacilityVaccinationSummary();
 			List<HealthFacilityVaccinationSummary> oList = new List<HealthFacilityVaccinationSummary>();
+
+
+			int count = dt.Rows.Count;
+
+			for (int i = 0; i < count;i++)
 			foreach (DataRow row in dt.Rows)
 			{
 				try
 				{					
-				    o.registered = Helper.ConvertToInt(row["registered"]);
+				    o.registered = Helper.ConvertToInt(dt.Rows[i]["registered"]);
+
+					o.home = Helper.ConvertToInt(dt0.Rows[i]["home"]);
+					o.facility = Helper.ConvertToInt(dt0.Rows[i]["facility"]);
+					o.vaccinated = Helper.ConvertToInt(dt1.Rows[i]["vaccinated"]);
 					
 
 					oList.Add(o);
@@ -119,37 +128,8 @@ namespace GIIS.DataLayer
 					throw ex;
 				}
 			}
-			foreach (DataRow row in dt0.Rows)
-			{
-				try
-				{					
-					o.home = Helper.ConvertToInt(row["home"]);
-					o.facility = Helper.ConvertToInt(row["facility"]);
-					
 
-					oList.Add(o);
-				}
-				catch (Exception ex)
-				{
-					Log.InsertEntity("HealthFacilityVaccinationSummary", "HealthFacilityVaccinationSummaryAsList", 1, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
-					throw ex;
-				}
-			}
-			foreach (DataRow row in dt1.Rows)
-			{
-				try
-				{
-					
-					o.vaccinated = Helper.ConvertToInt(row["vaccinated"]);
 
-					oList.Add(o);
-				}
-				catch (Exception ex)
-				{
-					Log.InsertEntity("HealthFacilityVaccinationSummary", "HealthFacilityVaccinationSummaryAsList", 1, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
-					throw ex;
-				}
-			}
 			return oList;
 		}
 

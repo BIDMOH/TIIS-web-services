@@ -1,10 +1,7 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workbench ActiveDocument="CoverRageReportEntity.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="HealthFacilityVaccinationSummary.cs">
     <Files>
-      <File FileName="Child.cs" Line="1" Column="1" />
-      <File FileName="HealthFacilitiesDropouts.cs" Line="67" Column="20" />
-      <File FileName="HealthFacilitiesDefaulters.cs" Line="176" Column="22" />
-      <File FileName="CoverRageReportEntity.cs" Line="89" Column="4" />
+      <File FileName="HealthFacilityVaccinationSummary.cs" Line="133" Column="17" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
