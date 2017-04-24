@@ -297,4 +297,47 @@ public partial class Pages_HealthFacilityDropout : System.Web.UI.Page
 
 
     }
+
+    protected void btnExcel_Click(object sender, EventArgs e)
+    {
+
+        selectedHealthFacilityID = Request.Form["selectHealthFacility"];
+        string strFromDate = String.Format("{0}", Request.Form["dateFrom"]);
+        string strToDate = String.Format("{0}", Request.Form["dateTo"]);
+
+        odsExport.SelectParameters.Clear();
+        odsExport.SelectParameters.Add("hfid", selectedHealthFacilityID);
+        odsExport.SelectParameters.Add("fromDate", strFromDate);
+        odsExport.SelectParameters.Add("toDate", strToDate);
+        odsExport.DataBind();
+
+        gvExport.DataSourceID = "odsExport";
+        gvExport.DataBind();
+
+        Response.Clear();
+        Response.AddHeader("content-disposition", "attachment;filename=DefaulterList.xls");
+        Response.Charset = "";
+
+        Response.ContentType = "application/ms-excel";
+        System.IO.StringWriter stringWrite = new System.IO.StringWriter();
+        System.Web.UI.HtmlTextWriter htmlWrite = new HtmlTextWriter(stringWrite);
+
+
+        gvExport.RenderControl(htmlWrite);
+        Response.Write(stringWrite.ToString());
+        Response.End();
+    }
+
+    public override void VerifyRenderingInServerForm(Control control)
+    {
+       return;
+    }
+
+    protected void gvOn_DataBound(object sender, EventArgs e)
+    {
+        if (gvHealthFacilityListPMTCTstatus.Rows.Count > 0)
+            btnExcel.Visible = true;
+        else
+            btnExcel.Visible = false;
+    }
 }

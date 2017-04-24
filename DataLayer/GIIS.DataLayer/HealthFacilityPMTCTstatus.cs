@@ -37,6 +37,10 @@ namespace GIIS.DataLayer
 
 		public static List<HealthFacilityPMTCTstatus> GetAllChildrenPMTCTstatus(string hfid, DateTime fromDate, DateTime toDate)
 		{
+			if (hfid.Equals(""))
+			{
+				return null;
+			}
 			try
 			{
 				string query = "SELECT * FROM   crosstab($$ SELECT t1.status, t1.\"GENDER\", t1.count FROM " +

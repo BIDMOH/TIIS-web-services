@@ -36,6 +36,7 @@ public partial class Pages_HealthFacilityListPMTCTstatus : System.Web.UI.Page
     public HtmlGenericControl inputControl3,inputControl6;
     protected void Page_Load(object sender, EventArgs e)
     {
+    Page.Header.DataBind();
         if (!this.Page.IsPostBack)
         {
             List<string> actionList = null;
@@ -262,34 +263,57 @@ public partial class Pages_HealthFacilityListPMTCTstatus : System.Web.UI.Page
 
     protected void gvHealthFacilityListPMTCTstatus_DataBound(object sender, EventArgs e)
     {
-        // if (gvHealthFacilitySessions.Rows.Count == 0)
-        //     // lblWarning.Visible = true;
-        // else
-        //     // lblWarning.Visible = false;
+        if (gvHealthFacilityListPMTCTstatus.Rows.Count > 0)
+            btnExcel.Visible = true;
+        else
+            btnExcel.Visible = false;
     }
 
     protected void gvHealthFacilityListPMTCTstatus_DataBound(object sender, GridViewRowEventArgs e)
     {
 
-	
-//		if (e.Row.RowType != DataControlRowType.Header)
-//		{
-//			if (Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "ChildrenRegistrationsMaximumThreshold")) != null && Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "ChildrenRegistrationsMinimumThreshold")) != null)
-//			{
-//				if (Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "ChildrenRegistrationsMaximumThreshold")) != 0 && Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "ChildrenRegistrationsMinimumThreshold")) != 0)
-//				{
-//					if (Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "SessionsCount")) > Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "ChildrenRegistrationsMaximumThreshold")))
-//					{
-//						e.Row.ForeColor = System.Drawing.Color.Green;
-//					}
-//					else if (Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "SessionsCount")) < Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "ChildrenRegistrationsMinimumThreshold")))
-//					{
-//						e.Row.ForeColor = System.Drawing.Color.Red;
-//					}
-//				}
-//			}
-//		}
-	
+    }
+
+
+    protected void btnExcel_Click(object sender, EventArgs e)
+    {
+
+
+
+        selectedHealthFacilityID = Request.Form["selectHealthFacility"];
+        string strFromDate = String.Format("{0}", Request.Form["dateFrom"]);
+        string strToDate = String.Format("{0}", Request.Form["dateTo"]);
+
+        odsExport.SelectParameters.Clear();
+        odsExport.SelectParameters.Add("hfid", selectedHealthFacilityID);
+        odsExport.SelectParameters.Add("fromDate", strFromDate);
+        odsExport.SelectParameters.Add("toDate", strToDate);
+        odsExport.DataBind();
+
+        gvExport.DataSourceID = "odsExport";
+        gvExport.DataBind();
+
+        Response.Clear();
+        Response.AddHeader("content-disposition", "attachment;filename=DefaulterList.xls");
+        Response.Charset = "";
+
+        Response.ContentType = "application/ms-excel";
+        System.IO.StringWriter stringWrite = new System.IO.StringWriter();
+        System.Web.UI.HtmlTextWriter htmlWrite = new HtmlTextWriter(stringWrite);
+
+
+        gvExport.RenderControl(htmlWrite);
+        Response.Write(stringWrite.ToString());
+        Response.End();
+
 
     }
+
+    public override void
+       VerifyRenderingInServerForm(Control control)
+    {
+       return;
+    }
+
+
 }

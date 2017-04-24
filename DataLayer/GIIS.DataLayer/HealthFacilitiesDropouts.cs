@@ -42,9 +42,13 @@ namespace GIIS.DataLayer
 
 		#region GetData
 		public static List<HealthFacilityDropout> GetHealthFacilityDropout(string hfid, DateTime fromDate, DateTime toDate)
-	        {
-	            try
-	            {
+        {
+			if (hfid.Equals(""))
+			{
+				return null;
+			}
+            try
+            {
 			string query = @"SELECT * FROM
 				(SELECT EXTRACT(MONTH FROM ""VACCINATION_DATE"") AS MONTH,COUNT (DISTINCT ""VACCINATION_EVENT"".""ID"") AS BCG FROM ""VACCINATION_EVENT""
 					INNER JOIN ""HEALTH_FACILITY"" on ""VACCINATION_EVENT"".""HEALTH_FACILITY_ID"" = ""HEALTH_FACILITY"".""ID""
