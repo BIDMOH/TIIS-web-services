@@ -71,6 +71,11 @@
                 <PagerSettings Position="Top" Mode="NumericFirstLast" />
                 <PagerStyle CssClass="pagination" HorizontalAlign="Left" VerticalAlign="Top" />
             <Columns>
+                <asp:TemplateField HeaderText="Facility Name">
+                               <ItemTemplate>
+                                    <%#Eval("facilityName")%>
+                                </ItemTemplate>
+                            </asp:TemplateField>
                 <asp:TemplateField HeaderText="Children Registered">
                    <ItemTemplate>
                         <%#Eval("registered")%>

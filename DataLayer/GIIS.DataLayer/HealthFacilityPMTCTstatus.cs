@@ -80,14 +80,12 @@ namespace GIIS.DataLayer
 					if (!row["status"].ToString().Equals(""))
 					{
 						o.status = row["status"].ToString();
-					}
-					else {
-						o.status = "not assigned";
-					}					
-					o.female = Helper.ConvertToInt(row["female"]);
-					o.male = Helper.ConvertToInt(row["male"]);
+						o.female = Helper.ConvertToInt(row["female"]);
+						o.male = Helper.ConvertToInt(row["male"]);
 
-					oList.Add(o);
+						oList.Add(o);
+					}					
+
 				}
 				catch (Exception ex)
 				{
@@ -95,6 +93,32 @@ namespace GIIS.DataLayer
 					throw ex;
 				}
 			}
+
+
+			foreach (DataRow row in dt.Rows)
+			{
+				try
+				{
+					if (row["status"].ToString().Equals(""))
+					{
+						var healthFacilityPMTCTstatus = oList.Where(p => p.status == "U");
+						foreach (var h in healthFacilityPMTCTstatus)
+						{
+							h.female += Helper.ConvertToInt(row["female"]);
+							h.male += Helper.ConvertToInt(row["male"]);
+						}
+					}
+
+				}
+				catch (Exception ex)
+				{
+					Log.InsertEntity("HealthFacilityDefaulters", "HealthFacilityDefaultersAsList", 1, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+					throw ex;
+				}
+			}
+
+
+
 			return oList;
 		}
 

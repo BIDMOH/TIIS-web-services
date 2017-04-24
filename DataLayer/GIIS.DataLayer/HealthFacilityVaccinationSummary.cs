@@ -26,7 +26,7 @@ namespace GIIS.DataLayer
 	{
 
 		#region Properties
-
+		public String facilityName { get; set; }
 		public Int32 registered { get; set; }
 		public Int32 home { get; set; }
 		public Int32 facility { get; set; }
@@ -40,11 +40,40 @@ namespace GIIS.DataLayer
 		{
 			try
 			{
-				string query = @"select ""CHILD"".""HEALTHCENTER_ID"", COUNT(""CHILD"".""ID"") AS REGISTERED from ""CHILD"" 				
-                                inner join ""HEALTH_FACILITY"" ON ""CHILD"".""HEALTHCENTER_ID"" = ""HEALTH_FACILITY"".""ID"" 
-					            WHERE
-					            (""HEALTH_FACILITY"".""ID"" = @hfid or ""HEALTH_FACILITY"".""PARENT_ID"" = @hfid) AND ""CHILD"".""MODIFIED_ON"" >=@fromDate AND ""CHILD"".""MODIFIED_ON"" <= @toDate group by ""CHILD"".""HEALTHCENTER_ID"" order by ""CHILD"".""HEALTHCENTER_ID"" ";
-				
+				string query = "SELECT COALESCE(T1.\"NAME\", T2.\"NAME\",T3.\"NAME\") as \"NAME\", T1.REGISTERED,T2.VACCINATED, T3.\"REGISTERED_FACILITY\",T3.\"REGISTERED_HOME\" FROM (select \"HEALTH_FACILITY\".\"NAME\", COUNT(\"CHILD\".\"ID\") AS REGISTERED \n" +
+								"   from \"CHILD\"     \n" +
+								"   inner join \"HEALTH_FACILITY\" ON \"CHILD\".\"HEALTHCENTER_ID\" = \"HEALTH_FACILITY\".\"ID\" \n" +
+								"   WHERE\n" +
+								"       (\"HEALTH_FACILITY\".\"ID\" = "+hfid+" or \"HEALTH_FACILITY\".\"PARENT_ID\" = "+hfid+") AND \n" +
+								"       \"CHILD\".\"MODIFIED_ON\" >='"+fromDate+"' AND \n" +
+								"       \"CHILD\".\"MODIFIED_ON\" <= '"+toDate+"' \n" +
+								"      group by \"HEALTH_FACILITY\".\"NAME\" order by \"HEALTH_FACILITY\".\"NAME\"\n" +
+								"  ) AS T1\n" +
+								"  FULL JOIN (\n" +
+								"   select \"HEALTH_FACILITY\".\"NAME\",COUNT(\"CHILD\".\"ID\") AS vaccinated \n" +
+								"   from \"VACCINATION_EVENT\"\n" +
+								"    inner join \"CHILD\" on \"VACCINATION_EVENT\".\"CHILD_ID\" = \"CHILD\".\"ID\"\n" +
+								"    inner join \"HEALTH_FACILITY\" ON \"VACCINATION_EVENT\".\"HEALTH_FACILITY_ID\" = \"HEALTH_FACILITY\".\"ID\"\n" +
+								"    WHERE\n" +
+								"     \"VACCINATION_STATUS\" = true AND \n" +
+								"     \"SCHEDULED_DATE\" <= NOW() AND \n" +
+								"     (\"HEALTH_FACILITY\".\"ID\" = "+hfid+" or \"HEALTH_FACILITY\".\"PARENT_ID\" = "+hfid+" ) AND \n" +
+								"     \"VACCINATION_EVENT\".\"VACCINATION_DATE\" >='"+fromDate+"' AND \n" +
+								"     \"VACCINATION_EVENT\".\"VACCINATION_DATE\" <= '"+toDate+"' \n" +
+								"     GROUP BY \"HEALTH_FACILITY\".\"NAME\" ORDER BY \"HEALTH_FACILITY\".\"NAME\" \n" +
+								"   )AS T2 ON T1.\"NAME\"=T2.\"NAME\"\n" +
+								"  FULL JOIN (\n" +
+								"   select * from crosstab($$ select t1.registered,t1.\"NAME\", t1.place \n" +
+								"    from ( \n" +
+								"    select \"HEALTH_FACILITY\".\"NAME\" AS REGISTERED, \"BIRTHPLACE\".\"NAME\",COUNT(\"BIRTHPLACE\".\"NAME\") AS PLACE from \"CHILD\" \n" +
+								"     inner join \"BIRTHPLACE\" on \"CHILD\".\"BIRTHPLACE_ID\" = \"BIRTHPLACE\".\"ID\" \n" +
+								"     inner join \"HEALTH_FACILITY\" ON \"CHILD\".\"HEALTHCENTER_ID\" = \"HEALTH_FACILITY\".\"ID\" \n" +
+								"    WHERE \n" +
+								"      (\"HEALTH_FACILITY\".\"ID\" = "+hfid+" or \"HEALTH_FACILITY\".\"PARENT_ID\" = "+hfid+" ) AND \"CHILD\".\"MODIFIED_ON\" >= '"+fromDate+"' AND \"CHILD\".\"MODIFIED_ON\" <= '"+toDate+"'  AND(\"BIRTHPLACE\".\"NAME\" = 'Home' OR \"BIRTHPLACE\".\"NAME\" = 'Health Facility') \n" +
+								"      GROUP BY \"HEALTH_FACILITY\".\"NAME\",\"BIRTHPLACE\".\"NAME\" order by \"HEALTH_FACILITY\".\"NAME\",\"BIRTHPLACE\".\"NAME\"  \n" +
+								"            \n" +
+								"    )  as t1 $$) as final_result(\"NAME\" text, \"REGISTERED_FACILITY\" bigint, \"REGISTERED_HOME\" bigint ) \n" +
+								"   ) AS T3 ON T1.\"NAME\" = T3.\"NAME\"";
 				List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
 					{
 					new NpgsqlParameter("@hfid", DbType.Int32) { Value = hfid },
@@ -54,37 +83,9 @@ namespace GIIS.DataLayer
 				DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, parameters);
 
 
-				string query0 = "select * from crosstab($$ select t1.registered,t1.\"NAME\", t1.place from (select \"CHILD\".\"HEALTHCENTER_ID\" AS REGISTERED, \"BIRTHPLACE\".\"NAME\",COUNT(\"BIRTHPLACE\".\"NAME\") AS PLACE from \"CHILD\" " +
-								"inner join \"BIRTHPLACE\" on \"CHILD\".\"BIRTHPLACE_ID\" = \"BIRTHPLACE\".\"ID\"  " +
-								"inner join \"HEALTH_FACILITY\" ON \"CHILD\".\"HEALTHCENTER_ID\" = \"HEALTH_FACILITY\".\"ID\" " +
-					            "WHERE "+
-								" (\"HEALTH_FACILITY\".\"ID\" = "+ hfid + " or \"HEALTH_FACILITY\".\"PARENT_ID\" = " + hfid + ") AND \"CHILD\".\"MODIFIED_ON\" >= '" + fromDate + "' AND \"CHILD\".\"MODIFIED_ON\" <= '"+ toDate + "'  AND(\"BIRTHPLACE\".\"NAME\" = 'Home' OR \"BIRTHPLACE\".\"NAME\" = 'Health Facility') GROUP BY \"CHILD\".\"HEALTHCENTER_ID\",\"BIRTHPLACE\".\"NAME\" order by \"CHILD\".\"HEALTHCENTER_ID\",\"BIRTHPLACE\".\"NAME\"  )  as t1 $$) as final_result(\"id\" int, \"facility\" bigint, \"home\" bigint ) ";
-				
-				List<NpgsqlParameter> parameters0 = new List<NpgsqlParameter>()
-					{
-					new NpgsqlParameter("@hfid", DbType.Int32) { Value = hfid },
-					new NpgsqlParameter("@fromDate", DbType.DateTime) { Value = fromDate },
-					new NpgsqlParameter("@toDate", DbType.DateTime) { Value = toDate }
-					};
-				DataTable dt0 = DBManager.ExecuteReaderCommand(query0, CommandType.Text, parameters0);
 
-				string query1 = @"select ""CHILD"".""HEALTHCENTER_ID"",COUNT(""CHILD"".""ID"") AS vaccinated from ""VACCINATION_EVENT""
-								inner join ""CHILD"" on ""VACCINATION_EVENT"".""CHILD_ID"" = ""CHILD"".""ID""
-								inner join ""DOSE"" on ""VACCINATION_EVENT"".""DOSE_ID"" = ""DOSE"".""ID""
-								inner join ""SCHEDULED_VACCINATION"" on ""DOSE"".""SCHEDULED_VACCINATION_ID"" = ""SCHEDULED_VACCINATION"".""ID""
-								inner join ""HEALTH_FACILITY"" ON ""VACCINATION_EVENT"".""HEALTH_FACILITY_ID"" = ""HEALTH_FACILITY"".""ID""
-								WHERE
-								""VACCINATION_STATUS"" = true AND ""SCHEDULED_DATE"" <= NOW() AND (""HEALTH_FACILITY"".""ID"" = @hfid or ""HEALTH_FACILITY"".""PARENT_ID"" = @hfid) AND ""VACCINATION_EVENT"".""VACCINATION_DATE"" >=@fromDate AND ""VACCINATION_EVENT"".""VACCINATION_DATE"" <= @toDate GROUP BY ""CHILD"".""HEALTHCENTER_ID"" ORDER BY ""CHILD"".""HEALTHCENTER_ID"" ";
 
-				List<NpgsqlParameter> parameters1 = new List<NpgsqlParameter>()
-					{
-					new NpgsqlParameter("@hfid", DbType.Int32) { Value = hfid },
-					new NpgsqlParameter("@fromDate", DbType.DateTime) { Value = fromDate },
-					new NpgsqlParameter("@toDate", DbType.DateTime) { Value = toDate }
-					};
-				DataTable dt1 = DBManager.ExecuteReaderCommand(query1, CommandType.Text, parameters1);
-
-				return GetHealthFacilityVaccinationSummaryAsList(dt,dt0,dt1);
+				return GetHealthFacilityVaccinationSummaryAsList(dt);
 			}
 			catch (Exception ex)
 			{
@@ -100,24 +101,22 @@ namespace GIIS.DataLayer
 
 		#region Helper Methods       
 
-		public static List<HealthFacilityVaccinationSummary> GetHealthFacilityVaccinationSummaryAsList(DataTable dt, DataTable dt0, DataTable dt1)
+		public static List<HealthFacilityVaccinationSummary> GetHealthFacilityVaccinationSummaryAsList(DataTable dt)
 		{
-			HealthFacilityVaccinationSummary o = new HealthFacilityVaccinationSummary();
+			
 			List<HealthFacilityVaccinationSummary> oList = new List<HealthFacilityVaccinationSummary>();
 
 
-			int count = dt.Rows.Count;
-
-			for (int i = 0; i < count;i++)
 			foreach (DataRow row in dt.Rows)
 			{
 				try
-				{					
-				    o.registered = Helper.ConvertToInt(dt.Rows[i]["registered"]);
-
-					o.home = Helper.ConvertToInt(dt0.Rows[i]["home"]);
-					o.facility = Helper.ConvertToInt(dt0.Rows[i]["facility"]);
-					o.vaccinated = Helper.ConvertToInt(dt1.Rows[i]["vaccinated"]);
+				{
+					HealthFacilityVaccinationSummary o = new HealthFacilityVaccinationSummary();
+					o.facilityName = row["NAME"].ToString();
+				    o.registered = Helper.ConvertToInt(row["registered"]);
+					o.home = Helper.ConvertToInt(row["REGISTERED_HOME"]);
+					o.facility = Helper.ConvertToInt(row["REGISTERED_FACILITY"]);
+					o.vaccinated = Helper.ConvertToInt(row["vaccinated"]);
 					
 
 					oList.Add(o);
