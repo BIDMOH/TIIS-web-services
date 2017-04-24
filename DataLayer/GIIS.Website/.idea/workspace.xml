@@ -5,10 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="530d796c-0780-454e-b5db-359b024888dd" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../GIIS.DataLayer/bin/Debug/GIIS.DataLayer.pdb" afterPath="$PROJECT_DIR$/../GIIS.DataLayer/bin/Debug/GIIS.DataLayer.pdb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../GIIS.DataLayer/obj/Debug/GIIS.DataLayer.pdb" afterPath="$PROJECT_DIR$/../GIIS.DataLayer/obj/Debug/GIIS.DataLayer.pdb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/GIIS.Tanzania.WCF/bin/GIIS.DataLayer.dll" afterPath="$PROJECT_DIR$/../../Services/GIIS.Tanzania.WCF/bin/GIIS.DataLayer.dll" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/GIIS.Tanzania.WCF/bin/GIIS.Tanzania.WCF.dll" afterPath="$PROJECT_DIR$/../../Services/GIIS.Tanzania.WCF/bin/GIIS.Tanzania.WCF.dll" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/GIIS.Tanzania.WCF/bin/GIIS.Tanzania.WCF.pdb" afterPath="$PROJECT_DIR$/../../Services/GIIS.Tanzania.WCF/bin/GIIS.Tanzania.WCF.pdb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/GIIS.Tanzania.WCF/obj/Debug/GIIS.Tanzania.WCF.dll" afterPath="$PROJECT_DIR$/../../Services/GIIS.Tanzania.WCF/obj/Debug/GIIS.Tanzania.WCF.dll" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/GIIS.Tanzania.WCF/obj/Debug/GIIS.Tanzania.WCF.pdb" afterPath="$PROJECT_DIR$/../../Services/GIIS.Tanzania.WCF/obj/Debug/GIIS.Tanzania.WCF.pdb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../GIIS.DataLayer/GIIS.DataLayer.userprefs" afterPath="$PROJECT_DIR$/../GIIS.DataLayer/GIIS.DataLayer.userprefs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../GIIS.DataLayer/HealthFacilitiesDropouts.cs" afterPath="$PROJECT_DIR$/../GIIS.DataLayer/HealthFacilitiesDropouts.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pages/HealthFacilityDropout.aspx" afterPath="$PROJECT_DIR$/Pages/HealthFacilityDropout.aspx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pages/HealthFacilityDropout.aspx.cs" afterPath="$PROJECT_DIR$/Pages/HealthFacilityDropout.aspx.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pages/HealthFacilityListPMTCTstatusReport.aspx" afterPath="$PROJECT_DIR$/Pages/HealthFacilityListPMTCTstatusReport.aspx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pages/HealthFacilityListPMTCTstatusReport.aspx.cs" afterPath="$PROJECT_DIR$/Pages/HealthFacilityListPMTCTstatusReport.aspx.cs" />
     </list>
     <ignored path="GIIS.Website.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -55,23 +63,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HealthFacilityDropout.aspx" pinned="false" current-in-tab="false">
+      <file leaf-file-name="HealthFacilityDropout.aspx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityDropout.aspx">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-15.666667">
-              <caret line="129" column="210" selection-start-line="129" selection-start-column="196" selection-end-line="129" selection-end-column="210" />
+            <state vertical-scroll-proportion="0.4859914">
+              <caret line="65" column="81" selection-start-line="65" selection-start-column="81" selection-end-line="65" selection-end-column="81" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HealthFacilityDropout.aspx.cs" pinned="false" current-in-tab="true">
+      <file leaf-file-name="HealthFacilityDropout.aspx.cs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityDropout.aspx.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.1260505">
-              <caret line="303" column="8" selection-start-line="303" selection-start-column="8" selection-end-line="303" selection-end-column="8" />
+            <state vertical-scroll-proportion="-9.814815">
+              <caret line="251" column="89" selection-start-line="251" selection-start-column="89" selection-end-line="251" selection-end-column="89" />
               <folding>
-                <element signature="e#0#13798#0" expanded="false" />
+                <element signature="e#0#13790#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -193,8 +201,8 @@
         <option value="$PROJECT_DIR$/Pages/DefaulterList.aspx.cs" />
         <option value="$PROJECT_DIR$/Pages/HealthFacilityListPMTCTstatusReport.aspx" />
         <option value="$PROJECT_DIR$/Pages/HealthFacilityListPMTCTstatusReport.aspx.cs" />
-        <option value="$PROJECT_DIR$/Pages/HealthFacilityDropout.aspx" />
         <option value="$PROJECT_DIR$/Pages/HealthFacilityDropout.aspx.cs" />
+        <option value="$PROJECT_DIR$/Pages/HealthFacilityDropout.aspx" />
       </list>
     </option>
   </component>
@@ -769,21 +777,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityDropout.aspx">
+    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityDropout.aspx.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.666667">
-          <caret line="129" column="210" selection-start-line="129" selection-start-column="196" selection-end-line="129" selection-end-column="210" />
-          <folding />
+        <state vertical-scroll-proportion="-9.814815">
+          <caret line="251" column="89" selection-start-line="251" selection-start-column="89" selection-end-line="251" selection-end-column="89" />
+          <folding>
+            <element signature="e#0#13790#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityDropout.aspx.cs">
+    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityDropout.aspx">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.1260505">
-          <caret line="303" column="8" selection-start-line="303" selection-start-column="8" selection-end-line="303" selection-end-column="8" />
-          <folding>
-            <element signature="e#0#13798#0" expanded="false" />
-          </folding>
+        <state vertical-scroll-proportion="0.4859914">
+          <caret line="65" column="81" selection-start-line="65" selection-start-column="81" selection-end-line="65" selection-end-column="81" />
+          <folding />
         </state>
       </provider>
     </entry>

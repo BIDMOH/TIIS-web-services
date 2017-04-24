@@ -335,7 +335,7 @@ public partial class Pages_HealthFacilityDropout : System.Web.UI.Page
 
     protected void gvOn_DataBound(object sender, EventArgs e)
     {
-        if (gvHealthFacilityListPMTCTstatus.Rows.Count > 0)
+        if (gvHealthFacilityDropout.Rows.Count > 0)
             btnExcel.Visible = true;
         else
             btnExcel.Visible = false;
