@@ -47,8 +47,8 @@
             <em><asp:Label runat="server" ID="lblReportDescription" Text="This report shows the number and list of children who missed at least one immunization schedules. "  /></em>
         </div>
     </div>
-    <br />
-    <form class="form" method="get" action="" id="launchReport" >
+
+
     <div class="row">
         <div class="col-md-9">        
             <asp:TextBox ID="hack" runat="server" Visible="false" />
@@ -62,7 +62,14 @@
             <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn btn-primary btn-raised" OnClick="btnSearch_Click" />
         </div>
     </div>
-    <br />
+    <div class="row">
+                <div class="col-md-10 col-xs-10 col-sm-10 col-lg-10 clearfix"></div>
+                <div class="col-md-1 col-xs-1 col-sm-1 col-lg-1 clearfix">
+                    <asp:Button ID="btnExcel" runat="server" Visible="false" Text="Excel" CssClass="btn btn-success btn-raised" OnClick="btnExcel_Click" />
+                </div>
+                <div class="col-md-1 col-xs-1 col-sm-1 col-lg-1 clearfix"></div>
+            </div>
+        <br />
 
     <div class="row">
         <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12 clearfix" style="overflow:auto">
@@ -154,21 +161,86 @@
 
     </div>
 </div>
-
-    <!--<div class="row">
-        <div class="col-md-12">
-            <input type="submit" class="btn btn-primary" value="Download <%=Request.QueryString["format"] %>" />
-        </div>
-    </div>-->
-
-    </form>
-
-    <br />
     <div class="row">
-        <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12 clearfix" style="overflow:auto">
+        <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12 clearfix">
+            <asp:GridView ID="gvExport" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover table-responsive"  OnDataBound="gvOn_DataBound">
+                <Columns>
+                                <asp:TemplateField HeaderText="Health Facility Name">
+                                   <ItemTemplate>
+                                        <%#Eval("HealthFacility")%>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="January">
+                                   <ItemTemplate>
+                                        <%#Eval("January")%>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="February">
+                                <ItemTemplate>
+                                    <%#Eval("February")%>
+                                </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="March">
+                                    <ItemTemplate>
+                                        <%#Eval("March")%>
+                                    </ItemTemplate>
+                                    </asp:TemplateField>
+                                <asp:TemplateField HeaderText="April">
+                                     <ItemTemplate>
+                                        <%#Eval("April")%>
+                                     </ItemTemplate>
+                                 </asp:TemplateField>
+                                 <asp:TemplateField HeaderText="May">
+                                      <ItemTemplate>
+                                         <%#Eval("May")%>
+                                      </ItemTemplate>
+                                  </asp:TemplateField>
+                               <asp:TemplateField HeaderText="June">
+                                    <ItemTemplate>
+                                       <%#Eval("June")%>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="July">
+                                    <ItemTemplate>
+                                       <%#Eval("July")%>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="August">
+                                    <ItemTemplate>
+                                       <%#Eval("August")%>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                 <asp:TemplateField HeaderText="September">
+                                    <ItemTemplate>
+                                       <%#Eval("September")%>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                 <asp:TemplateField HeaderText="October">
+                                        <ItemTemplate>
+                                           <%#Eval("October")%>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="November">
+                                        <ItemTemplate>
+                                           <%#Eval("November")%>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="December">
+                                        <ItemTemplate>
+                                           <%#Eval("December")%>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                            </Columns>
+            </asp:GridView>
+            <asp:ObjectDataSource ID="odsExport" runat="server" SelectMethod="GetHealthFacilityDefaultersByDistrictList" TypeName="GIIS.DataLayer.HealthFacilityDefaulters">
+                <SelectParameters>
+                     <asp:Parameter Name="hfid" Type="String"/>
+                     <asp:Parameter Name="fromDate" Type="DateTime" />
+                     <asp:Parameter Name="toDate" Type="DateTime" />
+                </SelectParameters>
+            </asp:ObjectDataSource>
         </div>
     </div>
-    <br />
 
     <ajaxToolkit:CalendarExtender TargetControlID="hack" ID="ceMain" runat="server" />
    

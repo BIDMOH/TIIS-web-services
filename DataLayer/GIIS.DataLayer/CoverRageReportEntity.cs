@@ -42,7 +42,7 @@ namespace GIIS.DataLayer
         #region GetData
 		public static List<CoverageReportEntity> GetDistrictCoverageReport(string scheduledVaccinationName, int healthFacilityId, DateTime fromDate, DateTime toDate, bool isSchedule)
         {
-
+			
 			string query = "SELECT * FROM " +
 					"(SELECT * FROM CROSSTAB($$ SELECT T2.\"FULLNAME\", T2.\"GENDER\", T2.\"count\" FROM(" +
 					"SELECT T1.\"GENDER\", T1.\"FULLNAME\", COUNT(T1.\"CHILD_ID\") FROM " +

@@ -62,7 +62,13 @@
             <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn btn-primary btn-raised" OnClick="btnSearch_Click" />
         </div>
     </div>
-    <br />
+    <div class="row">
+           <div class="col-md-9 col-xs-10 col-sm-10 col-lg-10 clearfix"></div>
+           <div class="col-md-3 col-xs-1 col-sm-1 col-lg-1 clearfix">
+               <asp:Button ID="btnExcel" runat="server" Visible="false" Text="Excel " CssClass="btn btn-success btn-raised" OnClick="btnExcel_Click" />
+           </div>
+           <div class="col-md-1 col-xs-1 col-sm-1 col-lg-1 clearfix"></div>
+    </div>
 
     <div class="row">
         <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12 clearfix" style="overflow:auto">
@@ -115,20 +121,46 @@
     </div>
 </div>
 
-    <!--<div class="row">
-        <div class="col-md-12">
-            <input type="submit" class="btn btn-primary" value="Download <%=Request.QueryString["format"] %>" />
-        </div>
-    </div>-->
-
-    </form>
-
-    <br />
-    <div class="row">
-        <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12 clearfix" style="overflow:auto">
-        </div>
-    </div>
-    <br />
+   <div class="row">
+               <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12 clearfix">
+                   <asp:GridView ID="gvExport" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover table-responsive"  OnDataBound="gvOn_DataBound">
+                     <Columns>
+                                     <asp:TemplateField HeaderText="Antigen">
+                                        <ItemTemplate>
+                                             <%#Eval("antigen")%>
+                                         </ItemTemplate>
+                                     </asp:TemplateField>
+                                     <asp:TemplateField HeaderText="Received">
+                                        <ItemTemplate>
+                                             <%#Eval("dosesReceived")%>
+                                         </ItemTemplate>
+                                     </asp:TemplateField>
+                                     <asp:TemplateField HeaderText="Consumed">
+                                     <ItemTemplate>
+                                         <%#Eval("childrenImmunized")%>
+                                     </ItemTemplate>
+                                     </asp:TemplateField>
+                                     <asp:TemplateField HeaderText="Balance">
+                                         <ItemTemplate>
+                                             <%#Eval("stockOnHand")%>
+                                         </ItemTemplate>
+                                         </asp:TemplateField>
+                                     <asp:TemplateField HeaderText="Adjusted">
+                                          <ItemTemplate>
+                                             <%#Eval("dosesDiscardedUnopened")%>
+                                          </ItemTemplate>
+                                      </asp:TemplateField>
+                                 </Columns>
+                   </asp:GridView>
+                   <asp:ObjectDataSource ID="odsExport" runat="server" SelectMethod="GetHealthFacilityCurrentStockByDose" TypeName="GIIS.Tanzania.WCF.StockManagement">
+                       <SelectParameters>
+                            <asp:Parameter Name="hfid" Type="String"/>
+                            <asp:Parameter Name="fromDate" Type="DateTime" />
+                            <asp:Parameter Name="toDate" Type="DateTime" />
+                       </SelectParameters>
+                   </asp:ObjectDataSource>
+               </div>
+       </div>
 
     <ajaxToolkit:CalendarExtender TargetControlID="hack" ID="ceMain" runat="server" />
    

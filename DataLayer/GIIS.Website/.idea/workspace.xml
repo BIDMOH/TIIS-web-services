@@ -5,18 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="530d796c-0780-454e-b5db-359b024888dd" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../GIIS.DataLayer/.vs/GIIS.DataLayer1/v15/.suo" afterPath="$PROJECT_DIR$/../GIIS.DataLayer/.vs/GIIS.DataLayer1/v15/.suo" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../GIIS.DataLayer/bin/Debug/GIIS.DataLayer.pdb" afterPath="$PROJECT_DIR$/../GIIS.DataLayer/bin/Debug/GIIS.DataLayer.pdb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../GIIS.DataLayer/obj/Debug/GIIS.DataLayer.pdb" afterPath="$PROJECT_DIR$/../GIIS.DataLayer/obj/Debug/GIIS.DataLayer.pdb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/GIIS.Tanzania.WCF/bin/GIIS.DataLayer.dll" afterPath="$PROJECT_DIR$/../../Services/GIIS.Tanzania.WCF/bin/GIIS.DataLayer.dll" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/GIIS.Tanzania.WCF/bin/GIIS.Tanzania.WCF.dll" afterPath="$PROJECT_DIR$/../../Services/GIIS.Tanzania.WCF/bin/GIIS.Tanzania.WCF.dll" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/GIIS.Tanzania.WCF/bin/GIIS.Tanzania.WCF.pdb" afterPath="$PROJECT_DIR$/../../Services/GIIS.Tanzania.WCF/bin/GIIS.Tanzania.WCF.pdb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/GIIS.Tanzania.WCF/obj/Debug/GIIS.Tanzania.WCF.dll" afterPath="$PROJECT_DIR$/../../Services/GIIS.Tanzania.WCF/obj/Debug/GIIS.Tanzania.WCF.dll" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/GIIS.Tanzania.WCF/obj/Debug/GIIS.Tanzania.WCF.pdb" afterPath="$PROJECT_DIR$/../../Services/GIIS.Tanzania.WCF/obj/Debug/GIIS.Tanzania.WCF.pdb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../GIIS.DataLayer/GIIS.DataLayer.userprefs" afterPath="$PROJECT_DIR$/../GIIS.DataLayer/GIIS.DataLayer.userprefs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../GIIS.DataLayer/CoverRageReportEntity.cs" afterPath="$PROJECT_DIR$/../GIIS.DataLayer/CoverRageReportEntity.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../GIIS.DataLayer/HealthFacilitiesDefaulters.cs" afterPath="$PROJECT_DIR$/../GIIS.DataLayer/HealthFacilitiesDefaulters.cs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../GIIS.DataLayer/HealthFacilitiesDropouts.cs" afterPath="$PROJECT_DIR$/../GIIS.DataLayer/HealthFacilitiesDropouts.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../GIIS.DataLayer/HealthFacilityVaccinationSummary.cs" afterPath="$PROJECT_DIR$/../GIIS.DataLayer/HealthFacilityVaccinationSummary.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../GIIS.DataLayer/obj/Debug/CoreCompileInputs.cache" afterPath="$PROJECT_DIR$/../GIIS.DataLayer/obj/Debug/CoreCompileInputs.cache" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/GIIS.Website.iml" afterPath="$PROJECT_DIR$/.idea/GIIS.Website.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pages/HealthFacilityChildDefaultersReport.aspx" afterPath="$PROJECT_DIR$/Pages/HealthFacilityChildDefaultersReport.aspx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pages/HealthFacilityChildDefaultersReport.aspx.cs" afterPath="$PROJECT_DIR$/Pages/HealthFacilityChildDefaultersReport.aspx.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pages/HealthFacilityChildDefaultersReportByDistrict.aspx" afterPath="$PROJECT_DIR$/Pages/HealthFacilityChildDefaultersReportByDistrict.aspx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pages/HealthFacilityChildDefaultersReportByDistrict.aspx.cs" afterPath="$PROJECT_DIR$/Pages/HealthFacilityChildDefaultersReportByDistrict.aspx.cs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pages/HealthFacilityDropout.aspx" afterPath="$PROJECT_DIR$/Pages/HealthFacilityDropout.aspx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pages/HealthFacilityDropout.aspx.cs" afterPath="$PROJECT_DIR$/Pages/HealthFacilityDropout.aspx.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pages/HealthFacilityListStockStatusReport.aspx" afterPath="$PROJECT_DIR$/Pages/HealthFacilityListStockStatusReport.aspx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pages/HealthFacilityListStockStatusReport.aspx.cs" afterPath="$PROJECT_DIR$/Pages/HealthFacilityListStockStatusReport.aspx.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pages/HealthFacilityListVaccinationSummary.aspx" afterPath="$PROJECT_DIR$/Pages/HealthFacilityListVaccinationSummary.aspx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pages/HealthFacilityListVaccinationSummary.aspx.cs" afterPath="$PROJECT_DIR$/Pages/HealthFacilityListVaccinationSummary.aspx.cs" />
     </list>
     <ignored path="GIIS.Website.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,7 +35,6 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
@@ -38,15 +44,101 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="DefaulterList.aspx" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Pages/DefaulterList.aspx">
+      <file leaf-file-name="HealthFacilityDropout.aspx.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityDropout.aspx.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-15.313725">
-              <caret line="135" column="12" selection-start-line="114" selection-start-column="4" selection-end-line="135" selection-end-column="12" />
+            <state relative-caret-position="549">
+              <caret line="327" column="9" lean-forward="true" selection-start-line="327" selection-start-column="9" selection-end-line="327" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HealthFacilityChildDefaultersReport.aspx.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityChildDefaultersReport.aspx.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="5083">
+              <caret line="299" column="4" lean-forward="false" selection-start-line="299" selection-start-column="4" selection-end-line="299" selection-end-column="4" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HealthFacilityChildDefaultersReport.aspx" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityChildDefaultersReport.aspx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="169">
+              <caret line="64" column="21" lean-forward="true" selection-start-line="64" selection-start-column="21" selection-end-line="64" selection-end-column="21" />
               <folding>
-                <element signature="n#asp:GridView#0;n#div#0;n#div#7;n#asp:Content#1;n#!!top" expanded="false" />
-                <element signature="n#asp:ObjectDataSource#0;n#div#0;n#div#7;n#asp:Content#1;n#!!top" expanded="false" />
+                <element signature="n#div#5;n#asp:Content#1;n#!!top" expanded="false" />
+                <element signature="n#div#6;n#asp:Content#1;n#!!top" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HealthFacilityChildDefaultersReportByDistrict.aspx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityChildDefaultersReportByDistrict.aspx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="319">
+              <caret line="71" column="14" lean-forward="false" selection-start-line="71" selection-start-column="14" selection-end-line="71" selection-end-column="14" />
+              <folding>
+                <element signature="n#div#5;n#asp:Content#1;n#!!top" expanded="false" />
+                <element signature="n#div#6;n#asp:Content#1;n#!!top" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HealthFacilityListVaccinationSummary.aspx.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityListVaccinationSummary.aspx.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="549">
+              <caret line="339" column="1" lean-forward="true" selection-start-line="339" selection-start-column="1" selection-end-line="339" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HealthFacilityDropout.aspx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityDropout.aspx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2193">
+              <caret line="129" column="158" lean-forward="false" selection-start-line="129" selection-start-column="158" selection-end-line="129" selection-end-column="158" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HealthFacilityListVaccinationSummary.aspx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityListVaccinationSummary.aspx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="248">
+              <caret line="64" column="5" lean-forward="false" selection-start-line="64" selection-start-column="5" selection-end-line="71" selection-end-column="10" />
+              <folding>
+                <element signature="n#div#5;n#asp:Content#1;n#!!top" expanded="false" />
+                <element signature="n#div#6;n#asp:Content#1;n#!!top" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HealthFacilityChildDefaultersReportByDistrict.aspx.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityChildDefaultersReportByDistrict.aspx.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="446" column="64" lean-forward="false" selection-start-line="446" selection-start-column="64" selection-end-line="446" selection-end-column="64" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HealthFacilityListStockStatusReport.aspx.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityListStockStatusReport.aspx.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="549">
+              <caret line="293" column="5" lean-forward="true" selection-start-line="293" selection-start-column="5" selection-end-line="293" selection-end-column="5" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -54,57 +146,8 @@
       <file leaf-file-name="DefaulterList.aspx.cs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Pages/DefaulterList.aspx.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-12.518518">
-              <caret line="166" column="30" selection-start-line="166" selection-start-column="12" selection-end-line="166" selection-end-column="30" />
-              <folding>
-                <element signature="e#0#9282#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HealthFacilityDropout.aspx" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityDropout.aspx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4859914">
-              <caret line="65" column="81" selection-start-line="65" selection-start-column="81" selection-end-line="65" selection-end-column="81" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HealthFacilityDropout.aspx.cs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityDropout.aspx.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.814815">
-              <caret line="251" column="89" selection-start-line="251" selection-start-column="89" selection-end-line="251" selection-end-column="89" />
-              <folding>
-                <element signature="e#0#13790#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HealthFacilityListPMTCTstatusReport.aspx" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityListPMTCTstatusReport.aspx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.372549">
-              <caret line="62" column="0" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
-              <folding>
-                <element signature="n#div#0;n#asp:Content#1;n#!!top" expanded="false" />
-                <element signature="n#div#1;n#asp:Content#1;n#!!top" expanded="false" />
-                <element signature="n#div#2;n#asp:Content#1;n#!!top" expanded="false" />
-                <element signature="n#style#0;n#div#0;n#div#5;n#asp:Content#1;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HealthFacilityListPMTCTstatusReport.aspx.cs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityListPMTCTstatusReport.aspx.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-18.703703">
-              <caret line="269" column="5" selection-start-line="263" selection-start-column="3" selection-end-line="269" selection-end-column="5" />
+            <state relative-caret-position="476">
+              <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -114,7 +157,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>gvCoverageReport</find>
       <find>gvCoverageReport_DataBound</find>
       <find>TotalVaccinations</find>
       <find>odsHealthFacilityDefaulters</find>
@@ -139,6 +181,12 @@
       <find>hfid</find>
       <find>selectedHealthFacilityID</find>
       <find>12</find>
+      <find>order</find>
+      <find>OnDataBound=&quot;gvOn_DataBound&quot;</find>
+      <find>excel</find>
+      <find>gvHealthFacilityDefaultersByDistrict</find>
+      <find>oDate</find>
+      <find>form</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -147,6 +195,7 @@
       <replace>HealthFacilityListStockStatusReport</replace>
       <replace>HealthFacilityListVaccinationSummary</replace>
       <replace>HealthFacilityListPMTCTstatus</replace>
+      <replace>gvExport</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -162,6 +211,7 @@
         <option value="$PROJECT_DIR$/Pages/HealthFacilitySessionLengthRatings.aspx" />
         <option value="$USER_HOME$/Downloads/Shared/Report.aspx" />
         <option value="$PROJECT_DIR$/Pages/Report.aspx" />
+        <option value="$PROJECT_DIR$/Pages/Report.aspx.cs" />
         <option value="$PROJECT_DIR$/Pages/HealthFacilityChildRegistrationsRatings.aspx" />
         <option value="$PROJECT_DIR$/Pages/ReportsConfiguration.aspx.cs" />
         <option value="$PROJECT_DIR$/Pages/ReportsConfiguration.aspx" />
@@ -175,59 +225,46 @@
         <option value="$PROJECT_DIR$/Pages/CoverageReport.aspx.cs" />
         <option value="$PROJECT_DIR$/Pages/CoverageReports.aspx.cs" />
         <option value="$PROJECT_DIR$/Pages/CoverageReports.aspx" />
+        <option value="$PROJECT_DIR$/Pages/CoverageByPopulationReports.aspx.cs" />
         <option value="$PROJECT_DIR$/Pages/CoverageByPopulationReports.aspx" />
         <option value="$PROJECT_DIR$/Pages/CoverageByScheduleReports.aspx" />
         <option value="$PROJECT_DIR$/Pages/HealthFacilityChildDefaultersReportByDefaulters.aspx.cs" />
         <option value="$PROJECT_DIR$/Pages/HealthFacilityChildFollowUp.aspx" />
         <option value="$PROJECT_DIR$/Pages/HealthFacilitySessionDaysRatings.aspx" />
         <option value="$PROJECT_DIR$/Pages/HealthFacilityChildFollowUp.aspx.cs" />
-        <option value="$PROJECT_DIR$/Pages/HealthFacilityChildDefaultersReportByDistrict.aspx" />
         <option value="$USER_HOME$/Documents/QUERY.txt" />
         <option value="$PROJECT_DIR$/Pages/HealthFacilityLIstStockStatusReport.aspx.cs" />
-        <option value="$PROJECT_DIR$/Pages/HealthFacilityListStockStatusReport.aspx" />
-        <option value="$PROJECT_DIR$/Pages/HealthFacilityListVaccinationSummary.aspx.cs" />
-        <option value="$PROJECT_DIR$/Pages/Report.aspx.cs" />
-        <option value="$PROJECT_DIR$/Pages/HealthFacilityChildDefaultersReport.aspx" />
-        <option value="$PROJECT_DIR$/Pages/HealthFacilityChildDefaultersReport.aspx.cs" />
-        <option value="$PROJECT_DIR$/Pages/CoverageByScheduleReports.aspx.cs" />
-        <option value="$PROJECT_DIR$/Pages/CoverageByPopulationReports.aspx.cs" />
-        <option value="$PROJECT_DIR$/Pages/HealthFacilityListStockStatusReport.aspx.cs" />
-        <option value="$PROJECT_DIR$/Pages/AutoComplete.asmx" />
-        <option value="$PROJECT_DIR$/Pages/HealthFacilityListVaccinationSummary.aspx" />
-        <option value="$PROJECT_DIR$/Pages/HealthFacilityChildDefaultersReportByDistrict.aspx.cs" />
-        <option value="$PROJECT_DIR$/Pages/HealthFacilityCoverageByAntigen.aspx.cs" />
-        <option value="$PROJECT_DIR$/Pages/HealthFacilityCoverageByAntigen.aspx" />
-        <option value="$PROJECT_DIR$/Pages/DefaulterList.aspx" />
-        <option value="$PROJECT_DIR$/Pages/DefaulterList.aspx.cs" />
         <option value="$PROJECT_DIR$/Pages/HealthFacilityListPMTCTstatusReport.aspx" />
-        <option value="$PROJECT_DIR$/Pages/HealthFacilityListPMTCTstatusReport.aspx.cs" />
         <option value="$PROJECT_DIR$/Pages/HealthFacilityDropout.aspx.cs" />
+        <option value="$PROJECT_DIR$/Pages/HealthFacilityListPMTCTstatusReport.aspx.cs" />
+        <option value="$PROJECT_DIR$/Pages/CoverageByTargetPopulationReports.aspx.cs" />
+        <option value="$PROJECT_DIR$/Pages/CoverageByScheduleReports.aspx.cs" />
+        <option value="$PROJECT_DIR$/Pages/HealthFacilityChildDefaultersReport.aspx.cs" />
+        <option value="$PROJECT_DIR$/Pages/HealthFacilityChildDefaultersReportByDistrict.aspx.cs" />
+        <option value="$PROJECT_DIR$/Pages/HealthFacilityListVaccinationSummary.aspx" />
+        <option value="$PROJECT_DIR$/Pages/HealthFacilityListVaccinationSummary.aspx.cs" />
+        <option value="$PROJECT_DIR$/Pages/HealthFacilityListStockStatusReport.aspx" />
         <option value="$PROJECT_DIR$/Pages/HealthFacilityDropout.aspx" />
+        <option value="$PROJECT_DIR$/Pages/HealthFacilityListStockStatusReport.aspx.cs" />
+        <option value="$PROJECT_DIR$/Pages/HealthFacilityChildDefaultersReportByDistrict.aspx" />
+        <option value="$PROJECT_DIR$/Pages/HealthFacilityChildDefaultersReport.aspx" />
       </list>
     </option>
   </component>
-  <component name="JsBuildToolGruntFileManager" detection-done="true" />
-  <component name="JsBuildToolPackageJson" detection-done="true" />
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="PhpServers">
     <servers />
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="width" value="1680" />
-    <option name="height" value="1050" />
-  </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
-    <OptionsSetting value="true" id="Add" />
-    <OptionsSetting value="true" id="Remove" />
-    <OptionsSetting value="true" id="Checkout" />
-    <OptionsSetting value="true" id="Update" />
-    <OptionsSetting value="true" id="Status" />
-    <OptionsSetting value="true" id="Edit" />
-    <ConfirmationsSetting value="0" id="Add" />
-    <ConfirmationsSetting value="0" id="Remove" />
+    <option name="x" value="-8" />
+    <option name="width" value="1370" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -252,15 +289,9 @@
               <option name="myItemId" value="GIIS.Website" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
-          </PATH>
-          <PATH>
             <PATH_ELEMENT>
               <option name="myItemId" value="GIIS.Website" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GIIS.Website" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -270,11 +301,11 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="GIIS.Website" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Pages" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -286,16 +317,24 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js-jscs-nodeInterpreter" value="/usr/local/bin/node" />
     <property name="js.eslint.eslintPackage" value="" />
-    <property name="FullScreen" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/Pages" />
       <recent name="C:\Users\Kency\workspace\TIIS-web-services\DataLayer\GIIS.Website\Pages" />
+      <recent name="$PROJECT_DIR$/Pages" />
     </key>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="JavaScriptTestRunnerProtractor" factoryName="Protractor">
+      <config-file value="" />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" working-dir="">
       <method />
     </configuration>
     <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -309,7 +348,12 @@
     <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console">
       <method />
     </configuration>
+    <configuration default="true" type="PhpSpecConfigurationType" factoryName="PHPSpec">
+      <PhpTestRunnerSettings />
+      <method />
+    </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
       <node-options />
       <gulpfile />
       <tasks />
@@ -318,13 +362,29 @@
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.npm" factoryName="npm">
-      <command value="run-script" />
+      <command value="run" />
       <scripts />
+      <node-interpreter value="project" />
       <envs />
       <method />
     </configuration>
+    <configuration default="true" type="mocha-javascript-test-runner" factoryName="Mocha">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <working-directory />
+      <pass-parent-env>true</pass-parent-env>
+      <envs />
+      <ui />
+      <extra-mocha-options />
+      <test-kind>DIRECTORY</test-kind>
+      <test-directory />
+      <recursive>false</recursive>
+      <method />
+    </configuration>
   </component>
-  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -333,6 +393,7 @@
       <changelist id="530d796c-0780-454e-b5db-359b024888dd" name="Default" comment="" />
       <created>1482822008162</created>
       <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
       <updated>1482822008162</updated>
       <workItem from="1491187589882" duration="6426000" />
       <workItem from="1491197254691" duration="4746000" />
@@ -344,24 +405,34 @@
       <workItem from="1491748300896" duration="19588000" />
       <workItem from="1491888362574" duration="11394000" />
       <workItem from="1492249420260" duration="12162000" />
-      <workItem from="1492388059179" duration="22332000" />
+      <workItem from="1492388059179" duration="25171000" />
+      <workItem from="1492601712899" duration="14310000" />
+      <workItem from="1493047460255" duration="5666000" />
+      <workItem from="1493059981630" duration="912000" />
+      <workItem from="1493065505088" duration="5414000" />
+      <workItem from="1493122786953" duration="2163000" />
+      <workItem from="1493125316833" duration="5630000" />
+      <workItem from="1493136791720" duration="2542000" />
+      <workItem from="1493143183324" duration="132000" />
+      <workItem from="1493145375455" duration="1177000" />
+      <workItem from="1493181442041" duration="1179000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="86916000" />
+    <option name="totallyTimeSpent" value="128880000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
+    <frame x="-8" y="0" width="1370" height="744" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18437119" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21984732" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.055646483" sideWeight="0.5091603" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.63010204" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.055646483" sideWeight="0.4908397" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.51403064" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15166667" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -378,12 +449,12 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.055646483" sideWeight="0.5091603" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.63010204" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.055646483" sideWeight="0.4908397" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.51403064" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18437119" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15166667" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20763358" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.272449" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -407,391 +478,386 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
-  <component name="VcsManagerConfiguration">
-    <option name="UPDATE_GROUP_BY_PACKAGES" value="true" />
-  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityList.aspx.cs">
+    <entry file="file://$PROJECT_DIR$/Pages/SessionChildrenRegistrationsReport.aspx">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityListForBalance.aspx.cs">
+    <entry file="file://$PROJECT_DIR$/Pages/SessionReport.aspx">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="63" column="98" selection-start-line="63" selection-start-column="98" selection-end-line="63" selection-end-column="98" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Pages/Country.aspx.cs">
+    <entry file="file://$PROJECT_DIR$/Pages/TotalSessionDays.aspx">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="167" column="23" selection-start-line="167" selection-start-column="23" selection-end-line="167" selection-end-column="23" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityChildRegistrationsRatings.aspx">
+    <entry file="file://$PROJECT_DIR$/Pages/TotalSessionDays.aspx.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="97" column="46" selection-start-line="97" selection-start-column="38" selection-end-line="97" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityChildFollowUp.aspx.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="27" column="70" selection-start-line="27" selection-start-column="70" selection-end-line="27" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityBalance.aspx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityBalance.aspx.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityBalanceByLot.aspx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Pages/RunReport.aspx.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="70" column="47" selection-start-line="70" selection-start-column="37" selection-end-line="70" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityChildFollowUp.aspx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="17" column="139" selection-start-line="17" selection-start-column="133" selection-end-line="17" selection-end-column="141" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Pages/StockTally.aspx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Pages/StockCount.aspx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Pages/ItemLotBalanceInHealthFacilities.aspx.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityListForBalance.aspx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Pages/CoverageByPopulationReports.aspx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="149" column="6" selection-start-line="149" selection-start-column="6" selection-end-line="149" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Pages/CoverageByTargetPopulationReports.aspx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Pages/CoverageByTargetPopulationReports.aspx.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="79" column="14" selection-start-line="79" selection-start-column="7" selection-end-line="215" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilitySessionDaysRatings.aspx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="122" column="3" selection-start-line="122" selection-start-column="3" selection-end-line="122" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityListForStockCount.aspx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="30" column="10" selection-start-line="30" selection-start-column="10" selection-end-line="30" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilitySpecificSessionReports.aspx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="77" column="83" selection-start-line="77" selection-start-column="83" selection-end-line="77" selection-end-column="83" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilitySpecificSessionReports.aspx.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="388" column="33" selection-start-line="388" selection-start-column="33" selection-end-line="388" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilitySessionDaysRatings.aspx.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="277" column="117" selection-start-line="277" selection-start-column="117" selection-end-line="277" selection-end-column="117" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityChildVaccinationsRatings.aspx.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="267" column="53" selection-start-line="267" selection-start-column="19" selection-end-line="267" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityChildVaccinationsRatings.aspx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="90" column="16" selection-start-line="90" selection-start-column="16" selection-end-line="90" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityListStockStatusReport.aspx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="85" column="46" selection-start-line="85" selection-start-column="29" selection-end-line="85" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityListVaccinationSummary.aspx.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="114" column="11" selection-start-line="114" selection-start-column="11" selection-end-line="114" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Pages/Report.aspx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.89298457">
-          <caret line="79" column="0" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Pages/Report.aspx.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5225434">
-          <caret line="91" column="71" selection-start-line="91" selection-start-column="71" selection-end-line="91" selection-end-column="71" />
+        <state relative-caret-position="0">
+          <caret line="98" column="37" lean-forward="false" selection-start-line="98" selection-start-column="37" selection-end-line="98" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pages/ReportsConfiguration.aspx.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="71" column="16" lean-forward="false" selection-start-line="71" selection-start-column="16" selection-end-line="71" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pages/ReportsConfiguration.aspx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="106" column="88" lean-forward="false" selection-start-line="106" selection-start-column="88" selection-end-line="106" selection-end-column="88" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityList.aspx.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityListForBalance.aspx.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-111">
+          <caret line="63" column="98" lean-forward="true" selection-start-line="63" selection-start-column="98" selection-end-line="63" selection-end-column="98" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pages/Country.aspx.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="824">
+          <caret line="167" column="23" lean-forward="false" selection-start-line="167" selection-start-column="23" selection-end-line="167" selection-end-column="23" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Pages/CoverageByScheduleReports.aspx">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.625">
-          <caret line="23" column="8" selection-start-line="23" selection-start-column="8" selection-end-line="23" selection-end-column="8" />
+        <state relative-caret-position="289">
+          <caret line="23" column="8" lean-forward="false" selection-start-line="23" selection-start-column="8" selection-end-line="23" selection-end-column="8" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityChildRegistrationsRatings.aspx.cs">
+    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityChildRegistrationsRatings.aspx">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="112" column="8" selection-start-line="112" selection-start-column="8" selection-end-line="117" selection-end-column="9" />
+        <state relative-caret-position="680">
+          <caret line="97" column="46" lean-forward="false" selection-start-line="97" selection-start-column="38" selection-end-line="97" selection-end-column="55" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityChildDefaultersReport.aspx">
+    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityChildFollowUp.aspx.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="114" column="31" selection-start-line="114" selection-start-column="31" selection-end-line="114" selection-end-column="31" />
+        <state relative-caret-position="153">
+          <caret line="27" column="70" lean-forward="false" selection-start-line="27" selection-start-column="70" selection-end-line="27" selection-end-column="70" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityChildDefaultersReport.aspx.cs">
+    <entry file="file://$USER_HOME$/Documents/QUERY.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="108" column="238" selection-start-line="108" selection-start-column="238" selection-end-line="108" selection-end-column="238" />
+        <state relative-caret-position="17">
+          <caret line="1" column="2" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="4" selection-end-column="54" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Pages/CoverageByScheduleReports.aspx.cs">
+    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityBalance.aspx">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="101" column="234" selection-start-line="101" selection-start-column="234" selection-end-line="101" selection-end-column="234" />
+        <state relative-caret-position="-510">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Pages/CoverageByPopulationReports.aspx.cs">
+    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityBalance.aspx.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="101" column="234" selection-start-line="101" selection-start-column="234" selection-end-line="101" selection-end-column="234" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Pages/AutoComplete.asmx">
+    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityBalanceByLot.aspx">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityListStockStatusReport.aspx.cs">
+    <entry file="file://$PROJECT_DIR$/Pages/RunReport.aspx.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="109" column="242" selection-start-line="109" selection-start-column="242" selection-end-line="109" selection-end-column="242" />
+        <state relative-caret-position="17">
+          <caret line="70" column="47" lean-forward="false" selection-start-line="70" selection-start-column="37" selection-end-line="70" selection-end-column="47" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityListVaccinationSummary.aspx">
+    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityChildFollowUp.aspx">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-17.0">
-          <caret line="75" column="57" selection-start-line="75" selection-start-column="57" selection-end-line="75" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityChildDefaultersReportByDistrict.aspx.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-20.11111">
-          <caret line="114" column="71" selection-start-line="114" selection-start-column="71" selection-end-line="114" selection-end-column="96" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityChildDefaultersReportByDistrict.aspx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="27" column="3" selection-start-line="27" selection-start-column="3" selection-end-line="63" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Pages/Default.aspx.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="61" column="95" selection-start-line="61" selection-start-column="8" selection-end-line="61" selection-end-column="95" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityCoverageByAntigen.aspx.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="149" column="112" selection-start-line="149" selection-start-column="112" selection-end-line="149" selection-end-column="112" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityCoverageByAntigen.aspx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.25">
-          <caret line="43" column="56" selection-start-line="43" selection-start-column="56" selection-end-line="43" selection-end-column="99" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Pages/Default.aspx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-17.375">
-          <caret line="37" column="33" selection-start-line="37" selection-start-column="27" selection-end-line="37" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Pages/MonthlyPlan.aspx.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.44852942">
-          <caret line="332" column="0" selection-start-line="332" selection-start-column="0" selection-end-line="332" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="-1411">
+          <caret line="17" column="139" lean-forward="false" selection-start-line="17" selection-start-column="133" selection-end-line="17" selection-end-column="141" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Pages/MonthlyPlan.aspx">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="-1887">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pages/StockTally.aspx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-663">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pages/StockCount.aspx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-918">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pages/ItemLotBalanceInHealthFacilities.aspx.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-561">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityListForBalance.aspx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1530">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pages/CoverageByPopulationReports.aspx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="458">
+          <caret line="149" column="6" lean-forward="false" selection-start-line="149" selection-start-column="6" selection-end-line="149" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pages/CoverageByTargetPopulationReports.aspx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-510">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilitySessionDaysRatings.aspx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="377">
+          <caret line="122" column="3" lean-forward="true" selection-start-line="122" selection-start-column="3" selection-end-line="122" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityListForStockCount.aspx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-153">
+          <caret line="30" column="10" lean-forward="true" selection-start-line="30" selection-start-column="10" selection-end-line="30" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilitySpecificSessionReports.aspx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-544">
+          <caret line="77" column="83" lean-forward="false" selection-start-line="77" selection-start-column="83" selection-end-line="77" selection-end-column="83" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilitySpecificSessionReports.aspx.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="388" column="33" lean-forward="false" selection-start-line="388" selection-start-column="33" selection-end-line="388" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilitySessionDaysRatings.aspx.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1243">
+          <caret line="277" column="117" lean-forward="false" selection-start-line="277" selection-start-column="117" selection-end-line="277" selection-end-column="117" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityChildVaccinationsRatings.aspx.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="267" column="53" lean-forward="false" selection-start-line="267" selection-start-column="19" selection-end-line="267" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityChildVaccinationsRatings.aspx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="90" column="16" lean-forward="false" selection-start-line="90" selection-start-column="16" selection-end-line="90" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityChildRegistrationsRatings.aspx.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="68" column="17" lean-forward="true" selection-start-line="68" selection-start-column="17" selection-end-line="68" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityListPMTCTstatusReport.aspx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="95" column="21" lean-forward="false" selection-start-line="95" selection-start-column="16" selection-end-line="97" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pages/DefaulterList.aspx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1530">
+          <caret line="90" column="20" lean-forward="false" selection-start-line="90" selection-start-column="20" selection-end-line="90" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pages/CoverageByScheduleReports.aspx.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1717">
+          <caret line="101" column="162" lean-forward="false" selection-start-line="101" selection-start-column="162" selection-end-line="101" selection-end-column="162" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityListPMTCTstatusReport.aspx.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="279" column="0" lean-forward="true" selection-start-line="277" selection-start-column="0" selection-end-line="315" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pages/CoverageByPopulationReports.aspx.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1751">
+          <caret line="103" column="99" lean-forward="false" selection-start-line="103" selection-start-column="75" selection-end-line="103" selection-end-column="99" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pages/CoverageByTargetPopulationReports.aspx.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2493">
+          <caret line="93" column="0" lean-forward="true" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityListStockStatusReport.aspx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2125">
+          <caret line="125" column="165" lean-forward="false" selection-start-line="125" selection-start-column="165" selection-end-line="125" selection-end-column="165" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityChildDefaultersReport.aspx.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5083">
+          <caret line="299" column="4" lean-forward="false" selection-start-line="299" selection-start-column="4" selection-end-line="299" selection-end-column="4" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Pages/DefaulterList.aspx.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.518518">
-          <caret line="166" column="30" selection-start-line="166" selection-start-column="12" selection-end-line="166" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#9282#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="476">
+          <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Pages/DefaulterList.aspx">
+    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityDropout.aspx">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.313725">
-          <caret line="135" column="12" selection-start-line="114" selection-start-column="4" selection-end-line="135" selection-end-column="12" />
-          <folding>
-            <element signature="n#asp:GridView#0;n#div#0;n#div#7;n#asp:Content#1;n#!!top" expanded="false" />
-            <element signature="n#asp:ObjectDataSource#0;n#div#0;n#div#7;n#asp:Content#1;n#!!top" expanded="false" />
-          </folding>
+        <state relative-caret-position="2193">
+          <caret line="129" column="158" lean-forward="false" selection-start-line="129" selection-start-column="158" selection-end-line="129" selection-end-column="158" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityListPMTCTstatusReport.aspx">
+    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityListStockStatusReport.aspx.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.372549">
-          <caret line="62" column="0" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
-          <folding>
-            <element signature="n#div#0;n#asp:Content#1;n#!!top" expanded="false" />
-            <element signature="n#div#1;n#asp:Content#1;n#!!top" expanded="false" />
-            <element signature="n#div#2;n#asp:Content#1;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#div#5;n#asp:Content#1;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityListPMTCTstatusReport.aspx.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-18.703703">
-          <caret line="269" column="5" selection-start-line="263" selection-start-column="3" selection-end-line="269" selection-end-column="5" />
+        <state relative-caret-position="549">
+          <caret line="293" column="5" lean-forward="true" selection-start-line="293" selection-start-column="5" selection-end-line="293" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityDropout.aspx.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.814815">
-          <caret line="251" column="89" selection-start-line="251" selection-start-column="89" selection-end-line="251" selection-end-column="89" />
+        <state relative-caret-position="549">
+          <caret line="327" column="9" lean-forward="true" selection-start-line="327" selection-start-column="9" selection-end-line="327" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityChildDefaultersReportByDistrict.aspx.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="446" column="64" lean-forward="false" selection-start-line="446" selection-start-column="64" selection-end-line="446" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityListVaccinationSummary.aspx.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="549">
+          <caret line="339" column="1" lean-forward="true" selection-start-line="339" selection-start-column="1" selection-end-line="339" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityListVaccinationSummary.aspx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="248">
+          <caret line="64" column="5" lean-forward="false" selection-start-line="64" selection-start-column="5" selection-end-line="71" selection-end-column="10" />
           <folding>
-            <element signature="e#0#13790#0" expanded="false" />
+            <element signature="n#div#5;n#asp:Content#1;n#!!top" expanded="false" />
+            <element signature="n#div#6;n#asp:Content#1;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityDropout.aspx">
+    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityChildDefaultersReportByDistrict.aspx">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4859914">
-          <caret line="65" column="81" selection-start-line="65" selection-start-column="81" selection-end-line="65" selection-end-column="81" />
-          <folding />
+        <state relative-caret-position="319">
+          <caret line="71" column="14" lean-forward="false" selection-start-line="71" selection-start-column="14" selection-end-line="71" selection-end-column="14" />
+          <folding>
+            <element signature="n#div#5;n#asp:Content#1;n#!!top" expanded="false" />
+            <element signature="n#div#6;n#asp:Content#1;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityChildDefaultersReport.aspx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="64" column="21" lean-forward="true" selection-start-line="64" selection-start-column="21" selection-end-line="64" selection-end-column="21" />
+          <folding>
+            <element signature="n#div#5;n#asp:Content#1;n#!!top" expanded="false" />
+            <element signature="n#div#6;n#asp:Content#1;n#!!top" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

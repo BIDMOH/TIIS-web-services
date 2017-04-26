@@ -47,8 +47,8 @@
             <em><asp:Label runat="server" ID="lblReportDescription" Text="This report shows the number and list of children registered, born at home, born in the health facility and total children vaccinated in the facility. "  /></em>
         </div>
     </div>
-    <br />
-    <form class="form" method="get" action="" id="launchReport" >
+
+
     <div class="row">
         <div class="col-md-9">        
             <asp:TextBox ID="hack" runat="server" Visible="false" />
@@ -62,12 +62,19 @@
             <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn btn-primary btn-raised" OnClick="btnSearch_Click" />
         </div>
     </div>
+     <div class="row">
+            <div class="col-md-10 col-xs-10 col-sm-10 col-lg-10 clearfix"></div>
+            <div class="col-md-1 col-xs-1 col-sm-1 col-lg-1 clearfix">
+                <asp:Button ID="btnExcel" runat="server" Visible="false" Text="Excel" CssClass="btn btn-success btn-raised" OnClick="btnExcel_Click" />
+            </div>
+            <div class="col-md-1 col-xs-1 col-sm-1 col-lg-1 clearfix"></div>
+        </div>
     <br />
 
     <div class="row">
         <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12 clearfix" style="overflow:auto">
             
-       <asp:GridView ID="gvHealthFacilityListVaccinationSummary" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered table-hover table-responsive" AllowPaging="True" OnRowDataBound="gvHealthFacilityListVaccinationSummary_DataBound" OnPageIndexChanging="gvHealthFacilityListVaccinationSummary_PageIndexChanging" PageSize="25">
+       <asp:GridView ID="gvHealthFacilityListVaccinationSummary" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered table-hover table-responsive" AllowPaging="True" OnRowDataBound="gvHealthFacilityListVaccinationSummary_DataBound" OnDataBound="gvOn_DataBound" OnPageIndexChanging="gvHealthFacilityListVaccinationSummary_PageIndexChanging" PageSize="25">
                 <PagerSettings Position="Top" Mode="NumericFirstLast" />
                 <PagerStyle CssClass="pagination" HorizontalAlign="Left" VerticalAlign="Top" />
             <Columns>
@@ -116,22 +123,50 @@
     </div>
 </div>
 
-    <!--<div class="row">
-        <div class="col-md-12">
-            <input type="submit" class="btn btn-primary" value="Download <%=Request.QueryString["format"] %>" />
-        </div>
-    </div>-->
 
-    </form>
 
-    <br />
-    <div class="row">
-        <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12 clearfix" style="overflow:auto">
-        </div>
-    </div>
-    <br />
+      <div class="row">
+           <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12 clearfix">
+               <asp:GridView ID="gvExport" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover table-responsive"  OnDataBound="gvOn_DataBound" >
+                   <Columns>
+                       <asp:TemplateField HeaderText="Facility Name">
+                          <ItemTemplate>
+                               <%#Eval("facilityName")%>
+                           </ItemTemplate>
+                       </asp:TemplateField>
+                       <asp:TemplateField HeaderText="Children Registered">
+                          <ItemTemplate>
+                               <%#Eval("registered")%>
+                           </ItemTemplate>
+                       </asp:TemplateField>
+                       <asp:TemplateField HeaderText="Birth At Home">
+                          <ItemTemplate>
+                               <%#Eval("home")%>
+                           </ItemTemplate>
+                       </asp:TemplateField>
+                       <asp:TemplateField HeaderText="Birth At Facility">
+                       <ItemTemplate>
+                           <%#Eval("facility")%>
+                       </ItemTemplate>
+                       </asp:TemplateField>
+                       <asp:TemplateField HeaderText="Vaccinated">
+                           <ItemTemplate>
+                               <%#Eval("vaccinated")%>
+                           </ItemTemplate>
+                           </asp:TemplateField>
+
+                   </Columns>
+               </asp:GridView>
+               <asp:ObjectDataSource ID="odsExport" runat="server" SelectMethod="HealthFacilityVaccinationSummaryList" TypeName="GIIS.DataLayer.HealthFacilityVaccinationSummary">
+                   <SelectParameters>
+                       <asp:Parameter Name="hfid" Type="String"/>
+                        <asp:Parameter Name="fromDate" Type="DateTime" />
+                        <asp:Parameter Name="toDate" Type="DateTime" />
+                  </SelectParameters>
+               </asp:ObjectDataSource>
+           </div>
+       </div>
 
     <ajaxToolkit:CalendarExtender TargetControlID="hack" ID="ceMain" runat="server" />
-   
 </asp:Content>
 

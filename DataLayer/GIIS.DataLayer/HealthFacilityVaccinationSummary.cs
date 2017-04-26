@@ -38,6 +38,10 @@ namespace GIIS.DataLayer
 
 		public static List<HealthFacilityVaccinationSummary> HealthFacilityVaccinationSummaryList(string hfid, DateTime fromDate, DateTime toDate)
 		{
+			if (hfid.Equals(""))
+			{
+				return new List<HealthFacilityVaccinationSummary>();
+			}
 			try
 			{
 				string query = "SELECT COALESCE(T1.\"NAME\", T2.\"NAME\",T3.\"NAME\") as \"NAME\", T1.REGISTERED,T2.VACCINATED, T3.\"REGISTERED_FACILITY\",T3.\"REGISTERED_HOME\" FROM (select \"HEALTH_FACILITY\".\"NAME\", COUNT(\"CHILD\".\"ID\") AS REGISTERED \n" +
