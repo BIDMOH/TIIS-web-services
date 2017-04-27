@@ -309,4 +309,75 @@ public partial class Pages_CoverageByTargetPopulationReport : System.Web.UI.Page
             }
         }
     }
+
+       protected void btnExcel_Click(object sender, EventArgs e)
+            {
+
+                selectedHealthFacilityID = Request.Form["selectHealthFacility"];
+                string strFromDate = String.Format("{0}", Request.Form["dateFrom"]);
+                string strToDate = String.Format("{0}", Request.Form["dateTo"]);
+
+                odsExport.SelectParameters.Clear();
+                odsExport.DataBind();
+
+                gvExport.DataSourceID = "odsExport";
+                gvExport.DataBind();
+
+                Response.Clear();
+                Response.AddHeader("content-disposition", "attachment;filename=CoveragePopulation.xls");
+                Response.Charset = "";
+
+                Response.ContentType = "application/ms-excel";
+                System.IO.StringWriter stringWrite = new System.IO.StringWriter();
+                System.Web.UI.HtmlTextWriter htmlWrite = new HtmlTextWriter(stringWrite);
+
+
+                gvExport.RenderControl(htmlWrite);
+                Response.Write(stringWrite.ToString());
+                Response.End();
+            }
+
+            public override void VerifyRenderingInServerForm(Control control)
+            {
+               return;
+            }
+            protected void gvOn_DataBound(object sender, EventArgs e)
+            {
+                if (gvCoverageReport.Rows.Count > 0)
+                    btnExcel.Visible = true;
+                else
+                    btnExcel.Visible = false;
+
+
+            }
+            protected void gvRowOn_DataBound(object sender, GridViewRowEventArgs e)
+            {
+
+                 if (e.Row.RowType == DataControlRowType.DataRow)
+                         {
+                             string scheduledVaccinationName = e.Row.Cells[0].Text;
+                             GridView gvExport = (GridView)e.Row.FindControl("gvExportDetails");
+
+                              ObjectDataSource objds = new ObjectDataSource();
+
+
+                              //Adding the typename property and the SelectMethod that will return data
+                              objds.TypeName = "GIIS.DataLayer.CoverageReportEntity";
+                              objds.SelectMethod = "GetDistrictCoverageReport";
+
+
+                              //Setting the select method parameters
+                              objds.SelectParameters.Add(new Parameter("fromDate", TypeCode.String, datefromString));
+                              objds.SelectParameters.Add(new Parameter("toDate", TypeCode.String, datetoString));
+                              objds.SelectParameters.Add(new Parameter("healthFacilityId", TypeCode.String, selectedHealthFacilityID));
+                              objds.SelectParameters.Add(new Parameter("scheduledVaccinationName", TypeCode.String, scheduledVaccinationName));
+                              objds.SelectParameters.Add(new Parameter("isSchedule", TypeCode.Boolean, "true"));
+                              objds.DataBind();
+
+                             gvExport.DataSource = objds;
+                             gvExport.DataBind();
+
+
+                         }
+            }
 }
