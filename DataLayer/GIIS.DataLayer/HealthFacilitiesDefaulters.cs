@@ -53,6 +53,10 @@ namespace GIIS.DataLayer
 		#region GetData
 		public static List<HealthFacilityDefaulters> GetHealthFacilityDefaultersList(string hfid, DateTime fromDate, DateTime toDate)
         {
+			if (hfid.Equals(""))
+			{
+				return new List<HealthFacilityDefaulters>();
+			}
 			try
 			{
 				string query = @"SELECT ""CHILD"".""ID"",""FIRSTNAME1"", ""FIRSTNAME2"", ""LASTNAME1"", ""LASTNAME2"", 
@@ -90,6 +94,10 @@ namespace GIIS.DataLayer
 
 		public static List<HealthFacilityDefaulters> GetHealthFacilityDefaultersByDistrictList(int districtCouncilId, DateTime fromDate, DateTime toDate)
 		{
+			if (districtCouncilId.Equals(""))
+			{
+				return new List<HealthFacilityDefaulters>();
+			}
 			try
 			{
 				string query = @"SELECT * "+

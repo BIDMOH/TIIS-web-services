@@ -127,7 +127,7 @@
 
     <div class="row">
         <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12 clearfix">
-            <asp:GridView ID="gvExport" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover table-responsive" DataSourceID="odsExport" OnDataBound="gvOn_DataBound">
+            <asp:GridView ID="gvExport" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover table-responsive"  OnDataBound="gvOn_DataBound">
                 <Columns>
                     <asp:TemplateField HeaderText="Month">
                        <ItemTemplate>
