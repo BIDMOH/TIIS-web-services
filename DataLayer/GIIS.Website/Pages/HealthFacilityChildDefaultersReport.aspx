@@ -63,8 +63,8 @@
         </div>
     </div>
     <div class="row">
-                <div class="col-md-10 col-xs-10 col-sm-10 col-lg-10 clearfix"></div>
-                <div class="col-md-1 col-xs-1 col-sm-1 col-lg-1 clearfix">
+                <div class="col-md-9 col-xs-10 col-sm-10 col-lg-10 clearfix"></div>
+                <div class="col-md-3 col-xs-1 col-sm-1 col-lg-1 clearfix">
                     <asp:Button ID="btnExcel" runat="server" Visible="false" Text="Excel" CssClass="btn btn-success btn-raised" OnClick="btnExcel_Click" />
                 </div>
                 <div class="col-md-1 col-xs-1 col-sm-1 col-lg-1 clearfix"></div>
@@ -74,7 +74,7 @@
     <div class="row">
         <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12 clearfix" style="overflow:auto">
             
-       <asp:GridView ID="gvHealthFacilityDefaulters" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered table-hover table-responsive" AllowPaging="True" OnRowDataBound="gvHealthFacilityDefaulters_DataBound" OnPageIndexChanging="gvHealthFacilityDefaulters_PageIndexChanging" PageSize="25">
+       <asp:GridView ID="gvHealthFacilityDefaulters" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered table-hover table-responsive" AllowPaging="True" OnRowDataBound="gvHealthFacilityDefaulters_RowDataBound" OnDataBound="gvOn_DataBound"  OnPageIndexChanging="gvHealthFacilityDefaulters_PageIndexChanging" PageSize="25">
                 <PagerSettings Position="Top" Mode="NumericFirstLast" />
                 <PagerStyle CssClass="pagination" HorizontalAlign="Left" VerticalAlign="Top" />
             <Columns>

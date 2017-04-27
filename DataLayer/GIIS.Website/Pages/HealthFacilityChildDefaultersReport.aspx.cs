@@ -262,60 +262,52 @@ public partial class Pages_HealthFacilityChildrenRegistrationsDefaulters : Syste
         gvHealthFacilityDefaulters.PageIndex = e.NewPageIndex;
     }
 
-    protected void gvHealthFacilityDefaulters_DataBound(object sender, EventArgs e)
+    protected void gvHealthFacilityDefaulters_RowDataBound(object sender, EventArgs e)
     {
-        // if (gvHealthFacilitySessions.Rows.Count == 0)
-        //     // lblWarning.Visible = true;
-        // else
-        //     // lblWarning.Visible = false;
-    }
-
-    protected void gvHealthFacilityDefaulters_DataBound(object sender, GridViewRowEventArgs e)
-    {
-
 
     }
 
-       protected void btnExcel_Click(object sender, EventArgs e)
-        {
 
-            selectedHealthFacilityID = Request.Form["selectHealthFacility"];
-            string strFromDate = String.Format("{0}", Request.Form["dateFrom"]);
-            string strToDate = String.Format("{0}", Request.Form["dateTo"]);
+   protected void btnExcel_Click(object sender, EventArgs e)
+    {
 
-            odsExport.SelectParameters.Clear();
-            odsExport.SelectParameters.Add("hfid", selectedHealthFacilityID);
-            odsExport.SelectParameters.Add("fromDate", strFromDate);
-            odsExport.SelectParameters.Add("toDate", strToDate);
-            odsExport.DataBind();
+        selectedHealthFacilityID = Request.Form["selectHealthFacility"];
+        string strFromDate = String.Format("{0}", Request.Form["dateFrom"]);
+        string strToDate = String.Format("{0}", Request.Form["dateTo"]);
 
-            gvExport.DataSourceID = "odsExport";
-            gvExport.DataBind();
+        odsExport.SelectParameters.Clear();
+        odsExport.SelectParameters.Add("hfid", selectedHealthFacilityID);
+        odsExport.SelectParameters.Add("fromDate", strFromDate);
+        odsExport.SelectParameters.Add("toDate", strToDate);
+        odsExport.DataBind();
 
-            Response.Clear();
-            Response.AddHeader("content-disposition", "attachment;filename=DefaulterList.xls");
-            Response.Charset = "";
+        gvExport.DataSourceID = "odsExport";
+        gvExport.DataBind();
 
-            Response.ContentType = "application/ms-excel";
-            System.IO.StringWriter stringWrite = new System.IO.StringWriter();
-            System.Web.UI.HtmlTextWriter htmlWrite = new HtmlTextWriter(stringWrite);
+        Response.Clear();
+        Response.AddHeader("content-disposition", "attachment;filename=DefaulterList.xls");
+        Response.Charset = "";
+
+        Response.ContentType = "application/ms-excel";
+        System.IO.StringWriter stringWrite = new System.IO.StringWriter();
+        System.Web.UI.HtmlTextWriter htmlWrite = new HtmlTextWriter(stringWrite);
 
 
-            gvExport.RenderControl(htmlWrite);
-            Response.Write(stringWrite.ToString());
-            Response.End();
-        }
+        gvExport.RenderControl(htmlWrite);
+        Response.Write(stringWrite.ToString());
+        Response.End();
+    }
 
-        public override void VerifyRenderingInServerForm(Control control)
-        {
-           return;
-        }
+    public override void VerifyRenderingInServerForm(Control control)
+    {
+       return;
+    }
 
-        protected void gvOn_DataBound(object sender, EventArgs e)
-        {
-            if (gvHealthFacilityDefaulters.Rows.Count > 0)
-                btnExcel.Visible = true;
-            else
-                btnExcel.Visible = false;
-        }
+    protected void gvOn_DataBound(object sender, EventArgs e)
+    {
+        if (gvHealthFacilityDefaulters.Rows.Count > 0)
+            btnExcel.Visible = true;
+        else
+            btnExcel.Visible = false;
+    }
 }

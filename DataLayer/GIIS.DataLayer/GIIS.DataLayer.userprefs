@@ -4,7 +4,7 @@
       <File FileName="CoverRageReportByAntigensEntity.cs" Line="59" Column="52" />
       <File FileName="HealthFacilityPMTCTstatus.cs" Line="36" Column="13" />
       <File FileName="HealthFacilitiesDropouts.cs" Line="46" Column="5" />
-      <File FileName="HealthFacilitiesDefaulters.cs" Line="71" Column="55" />
+      <File FileName="HealthFacilitiesDefaulters.cs" Line="71" Column="43" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
