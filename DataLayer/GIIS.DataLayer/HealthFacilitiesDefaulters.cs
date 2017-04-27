@@ -63,7 +63,12 @@ namespace GIIS.DataLayer
 									LEFT JOIN   ""NONVACCINATION_REASON"" ON ""VACCINATION_EVENT"".""NONVACCINATION_REASON_ID"" = ""NONVACCINATION_REASON"".""ID""
 									INNER JOIN ""DOSE"" ON ""VACCINATION_EVENT"".""DOSE_ID""=""DOSE"".""ID"" 
 	                                inner join  ""PLACE"" on ""CHILD"".""DOMICILE_ID"" = ""PLACE"".""ID""
-										WHERE ""CHILD"".""STATUS_ID"" = 1 and ""HEALTHCENTER_ID"" = @hfid and ""VACCINATION_EVENT"".""SCHEDULED_DATE"" <= NOW() AND""VACCINATION_EVENT"".""SCHEDULED_DATE"" >= @fromDate  AND ""VACCINATION_EVENT"".""SCHEDULED_DATE"" <= @toDate and ""VACCINATION_STATUS"" = false GROUP BY ""CHILD"".""ID"",""PLACE"".""NAME""   ORDER BY ""CHILD"".""ID"",""PLACE"".""NAME""";
+										WHERE 
+										""CHILD"".""STATUS_ID"" = 1 and 
+										""HEALTHCENTER_ID"" = @hfid AND 
+										""VACCINATION_EVENT"".""SCHEDULED_DATE"" >= @fromDate  AND ""VACCINATION_EVENT"".""SCHEDULED_DATE"" <= @toDate and 
+										""VACCINATION_STATUS"" = false AND ""VACCINATION_EVENT"".""IS_ACTIVE"" = true 
+										GROUP BY ""CHILD"".""ID"",""PLACE"".""NAME""   ORDER BY ""CHILD"".""ID"",""PLACE"".""NAME""";
 				;
 				List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
 					{

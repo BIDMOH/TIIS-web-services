@@ -315,7 +315,7 @@ public partial class Pages_HealthFacilityDropout : System.Web.UI.Page
         gvExport.DataBind();
 
         Response.Clear();
-        Response.AddHeader("content-disposition", "attachment;filename=DefaulterList.xls");
+        Response.AddHeader("content-disposition", "attachment;filename=DropoutReport.xls");
         Response.Charset = "";
 
         Response.ContentType = "application/ms-excel";
