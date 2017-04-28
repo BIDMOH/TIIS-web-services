@@ -48,7 +48,7 @@
         </div>
     </div>
     <br />
-    <form class="form" method="get" action="" id="launchReport" >
+
     <div class="row">
         <div class="col-md-9">        
             <asp:TextBox ID="hack" runat="server" Visible="false" />
@@ -62,12 +62,18 @@
             <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn btn-primary btn-raised" OnClick="btnSearch_Click" />
         </div>
     </div>
-    <br />
+    <div class="row">
+                        <div class="col-md-9 col-xs-10 col-sm-10 col-lg-10 clearfix"></div>
+                        <div class="col-md-3 col-xs-1 col-sm-1 col-lg-1 clearfix">
+                            <asp:Button ID="btnExcel" runat="server" Visible="false" Text="Excel" CssClass="btn btn-success btn-raised" OnClick="btnExcel_Click" />
+                        </div>
+                        <div class="col-md-1 col-xs-1 col-sm-1 col-lg-1 clearfix"></div>
+                    </div>
 
     <div class="row">
         <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12 clearfix" style="overflow:auto">
             
-        <asp:GridView ID="gvCoverageReport" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered table-hover table-responsive" AllowPaging="True" OnRowDataBound="gvCoverageReport_DataBound" OnPageIndexChanging="gvCoverageReport_PageIndexChanging" PageSize="25">
+        <asp:GridView ID="gvCoverageReport" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered table-hover table-responsive" AllowPaging="True" OnRowDataBound="gvCoverageReport_DataBound" OnDataBound="gvOn_DataBound" OnPageIndexChanging="gvCoverageReport_PageIndexChanging" PageSize="25">
                 <PagerSettings Position="Top" Mode="NumericFirstLast" />
                 <PagerStyle CssClass="pagination" HorizontalAlign="Left" VerticalAlign="Top" />
 
@@ -102,7 +108,7 @@
                                  <td width="10%" align="center"> COV(%) </td>
                               </tr>
                          </table>
-                    </HeaderStyle>
+                 </HeaderStyle>
 
                 </HeaderTemplate>
                 <ItemTemplate>
@@ -150,14 +156,79 @@
 </div>
 
 
-    </form>
+     <div class="row">
+                <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12 clearfix">
+                    <asp:GridView ID="gvExport" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover table-responsive" OnRowDataBound="gvRowOn_DataBound" OnDataBound="gvOn_DataBound">
+                      <Columns>
+                                    <asp:BoundField DataField="Name" HeaderText="Antigen" />
 
-    <br />
-    <div class="row">
-        <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12 clearfix" style="overflow:auto">
+                                    <asp:TemplateField>
+
+                                    <HeaderTemplate>
+                                        <HeaderStyle HorizontalAlign="Center">
+                                            <table width="100%" border="1px" >
+                                                  <tr>
+                                                    <td rowspan="4" width="20%" align="center"> Doses </td>
+                                                   </tr>
+                                                  <tr>
+                                                     <td colspan="8" align="center">Health Facility Coverage Report </td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td colspan="3" align="center" > Within Catchment</td>
+                                                    <td colspan="3" align="center" > Outside Catchment</td>
+                                                    <td colspan="2" align="center"> Total Vaccination</td>
+                                                  </tr>
+
+                                                  <tr>
+                                                     <td width="10%" align="center"> Male </td>
+                                                     <td width="10%" align="center"> Female </td>
+                                                     <td width="10%" align="center"> Total </td>
+                                                     <td width="10%" align="center"> Male </td>
+                                                     <td width="10%" align="center"> Female </td>
+                                                     <td width="10%" align="center"> Total  </td>
+                                                     <td width="10%" align="center"> Total  </td>
+                                                     <td width="10%" align="center"> COV(%) </td>
+                                                  </tr>
+                                             </table>
+                                        </HeaderStyle>
+
+                                    </HeaderTemplate>
+                                    <ItemTemplate>
+                                        <asp:GridView ID="gvExportDetails" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered table-responsive" ShowHeader="False" AllowPaging="false" OnRowDataBound="gvCoverageReportDetails_DataBound" OnPageIndexChanging="gvCoverageReportDetails_PageIndexChanging" PageSize="25">
+                                            <PagerSettings Position="Top" Mode="NumericFirstLast" />
+                                            <PagerStyle CssClass="pagination" HorizontalAlign="Left" VerticalAlign="Top" />
+                                            <Columns>
+                                                 <asp:BoundField HeaderText="DoseName" DataField="DoseName" ItemStyle-Width="20%" />
+                                                 <asp:BoundField HeaderText="MaleWithinCatchment" DataField="MaleWithinCatchment" ItemStyle-Width="10%" />
+                                                 <asp:BoundField HeaderText="FemaleWithinCatchment" DataField="FemaleWithinCatchment" ItemStyle-Width="10%" />
+                                                 <asp:BoundField HeaderText="TotalWithinCatchment" DataField="TotalWithinCatchment" ItemStyle-Width="10%" />
+                                                 <asp:BoundField HeaderText="MaleOutsideCatchment" DataField="MaleOutsideCatchment" ItemStyle-Width="10%" />
+                                                 <asp:BoundField HeaderText="FemaleOutsideCatchment" DataField="FemaleOutsideCatchment" ItemStyle-Width="10%" />
+                                                 <asp:BoundField HeaderText="TotalOutsideCatchment" DataField="TotalOutsideCatchment" ItemStyle-Width="10%" />
+                                                 <asp:BoundField HeaderText="TotalVaccinations" DataField="TotalVaccinations" ItemStyle-Width="10%" />
+                                                 <asp:BoundField HeaderText="CoveragePercentage" DataField="CoveragePercentage" ItemStyle-Width="10%" />
+                                            </Columns>
+                                        </asp:GridView>
+                                    </ItemTemplate>
+                                    </asp:TemplateField>
+                                </Columns>
+                    </asp:GridView>
+                  <asp:ObjectDataSource ID="odsExport" runat="server" SelectMethod="GetScheduledVaccinationList" TypeName="GIIS.DataLayer.ScheduledVaccination">
+                    <SelectParameters>
+                    </SelectParameters>
+                </asp:ObjectDataSource>
+
+                <asp:ObjectDataSource ID="odsExportDetails" runat="server" SelectMethod="GetDistrictCoverageReport" TypeName="GIIS.DataLayer.CoverageReportEntity">
+                    <SelectParameters>
+                         <asp:Parameter Name="scheduledVaccinationName" Type="String" />
+                         <asp:Parameter Name="healthFacilityId" Type="String"/>
+                         <asp:Parameter Name="fromDate" Type="DateTime" />
+                         <asp:Parameter Name="toDate" Type="DateTime" />
+                         <asp:Parameter Name="isSchedule" Type="Boolean" />
+                    </SelectParameters>
+                </asp:ObjectDataSource>
+                </div>
         </div>
-    </div>
-    <br />
 
     <ajaxToolkit:CalendarExtender TargetControlID="hack" ID="ceMain" runat="server" />
    
