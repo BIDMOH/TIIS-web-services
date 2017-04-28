@@ -42,6 +42,7 @@ namespace GIIS.DataLayer
 			{
 				return new List<HealthFacilityVaccinationSummary>();
 			}
+			toDate = toDate.AddDays(1);
 			try
 			{
 				string query = "SELECT COALESCE(T1.\"NAME\", T2.\"NAME\",T3.\"NAME\") as \"NAME\", T1.REGISTERED,T2.VACCINATED, T3.\"REGISTERED_FACILITY\",T3.\"REGISTERED_HOME\" FROM (select \"HEALTH_FACILITY\".\"NAME\", COUNT(\"CHILD\".\"ID\") AS REGISTERED \n" +
@@ -50,11 +51,11 @@ namespace GIIS.DataLayer
 								"   WHERE\n" +
 					"       (\"HEALTH_FACILITY\".\"ID\" IN (SELECT DISTINCT A.\"ID\" FROM \"HEALTH_FACILITY\" AS A\nLEFT JOIN \"HEALTH_FACILITY\" AS B ON A.\"ID\" = B.\"PARENT_ID\"\nLEFT JOIN \"HEALTH_FACILITY\" AS C ON B.\"ID\" = C.\"PARENT_ID\"\nLEFT JOIN \"HEALTH_FACILITY\" AS D ON C.\"ID\" = D.\"PARENT_ID\"\nWHERE \nA.\"ID\" = "+hfid+"\nUNION\nSELECT DISTINCT B.\"ID\" FROM \"HEALTH_FACILITY\" AS A\nLEFT JOIN \"HEALTH_FACILITY\" AS B ON A.\"ID\" = B.\"PARENT_ID\"\nLEFT JOIN \"HEALTH_FACILITY\" AS C ON B.\"ID\" = C.\"PARENT_ID\"\nLEFT JOIN \"HEALTH_FACILITY\" AS D ON C.\"ID\" = D.\"PARENT_ID\"\nWHERE \nA.\"ID\" = "+hfid+"\nUNION\nSELECT DISTINCT C.\"ID\" FROM \"HEALTH_FACILITY\" AS A\nLEFT JOIN \"HEALTH_FACILITY\" AS B ON A.\"ID\" = B.\"PARENT_ID\"\nLEFT JOIN \"HEALTH_FACILITY\" AS C ON B.\"ID\" = C.\"PARENT_ID\"\nLEFT JOIN \"HEALTH_FACILITY\" AS D ON C.\"ID\" = D.\"PARENT_ID\"\nWHERE \nA.\"ID\" = "+hfid+"\nUNION\nSELECT DISTINCT D.\"ID\" FROM \"HEALTH_FACILITY\" AS A\nLEFT JOIN \"HEALTH_FACILITY\" AS B ON A.\"ID\" = B.\"PARENT_ID\"\nLEFT JOIN \"HEALTH_FACILITY\" AS C ON B.\"ID\" = C.\"PARENT_ID\"\nLEFT JOIN \"HEALTH_FACILITY\" AS D ON C.\"ID\" = D.\"PARENT_ID\"\nWHERE \nA.\"ID\" = "+hfid+")) AND \n" +
 								"       \"CHILD\".\"MODIFIED_ON\" >='"+fromDate+"' AND \n" +
-								"       \"CHILD\".\"MODIFIED_ON\" <= '"+toDate+"' \n" +
+								"       \"CHILD\".\"MODIFIED_ON\" < '"+toDate+"' \n" +
 								"      group by \"HEALTH_FACILITY\".\"NAME\" order by \"HEALTH_FACILITY\".\"NAME\"\n" +
 								"  ) AS T1\n" +
 								"  FULL JOIN (\n" +
-								"   select \"HEALTH_FACILITY\".\"NAME\",COUNT(\"CHILD\".\"ID\") AS vaccinated \n" +
+								"   select \"HEALTH_FACILITY\".\"NAME\",COUNT(DISTINCT \"CHILD\".\"ID\") AS vaccinated \n" +
 								"   from \"VACCINATION_EVENT\"\n" +
 								"    inner join \"CHILD\" on \"VACCINATION_EVENT\".\"CHILD_ID\" = \"CHILD\".\"ID\"\n" +
 								"    inner join \"HEALTH_FACILITY\" ON \"VACCINATION_EVENT\".\"HEALTH_FACILITY_ID\" = \"HEALTH_FACILITY\".\"ID\"\n" +
@@ -63,7 +64,7 @@ namespace GIIS.DataLayer
 								"     \"SCHEDULED_DATE\" <= NOW() AND \n" +
 								"     (\"HEALTH_FACILITY\".\"ID\" IN (SELECT DISTINCT A.\"ID\" FROM \"HEALTH_FACILITY\" AS A\nLEFT JOIN \"HEALTH_FACILITY\" AS B ON A.\"ID\" = B.\"PARENT_ID\"\nLEFT JOIN \"HEALTH_FACILITY\" AS C ON B.\"ID\" = C.\"PARENT_ID\"\nLEFT JOIN \"HEALTH_FACILITY\" AS D ON C.\"ID\" = D.\"PARENT_ID\"\nWHERE \nA.\"ID\" = "+hfid+"\nUNION\nSELECT DISTINCT B.\"ID\" FROM \"HEALTH_FACILITY\" AS A\nLEFT JOIN \"HEALTH_FACILITY\" AS B ON A.\"ID\" = B.\"PARENT_ID\"\nLEFT JOIN \"HEALTH_FACILITY\" AS C ON B.\"ID\" = C.\"PARENT_ID\"\nLEFT JOIN \"HEALTH_FACILITY\" AS D ON C.\"ID\" = D.\"PARENT_ID\"\nWHERE \nA.\"ID\" = "+hfid+"\nUNION\nSELECT DISTINCT C.\"ID\" FROM \"HEALTH_FACILITY\" AS A\nLEFT JOIN \"HEALTH_FACILITY\" AS B ON A.\"ID\" = B.\"PARENT_ID\"\nLEFT JOIN \"HEALTH_FACILITY\" AS C ON B.\"ID\" = C.\"PARENT_ID\"\nLEFT JOIN \"HEALTH_FACILITY\" AS D ON C.\"ID\" = D.\"PARENT_ID\"\nWHERE \nA.\"ID\" = "+hfid+"\nUNION\nSELECT DISTINCT D.\"ID\" FROM \"HEALTH_FACILITY\" AS A\nLEFT JOIN \"HEALTH_FACILITY\" AS B ON A.\"ID\" = B.\"PARENT_ID\"\nLEFT JOIN \"HEALTH_FACILITY\" AS C ON B.\"ID\" = C.\"PARENT_ID\"\nLEFT JOIN \"HEALTH_FACILITY\" AS D ON C.\"ID\" = D.\"PARENT_ID\"\nWHERE \nA.\"ID\" = "+hfid+") ) AND \n" +
 								"     \"VACCINATION_EVENT\".\"VACCINATION_DATE\" >='"+fromDate+"' AND \n" +
-								"     \"VACCINATION_EVENT\".\"VACCINATION_DATE\" <= '"+toDate+"' \n" +
+								"     \"VACCINATION_EVENT\".\"VACCINATION_DATE\" < '"+toDate+"' \n" +
 								"     GROUP BY \"HEALTH_FACILITY\".\"NAME\" ORDER BY \"HEALTH_FACILITY\".\"NAME\" \n" +
 								"   )AS T2 ON T1.\"NAME\"=T2.\"NAME\"\n" +
 								"  FULL JOIN (\n" +
@@ -73,7 +74,7 @@ namespace GIIS.DataLayer
 								"     inner join \"BIRTHPLACE\" on \"CHILD\".\"BIRTHPLACE_ID\" = \"BIRTHPLACE\".\"ID\" \n" +
 								"     inner join \"HEALTH_FACILITY\" ON \"CHILD\".\"HEALTHCENTER_ID\" = \"HEALTH_FACILITY\".\"ID\" \n" +
 								"    WHERE \n" +
-								"      (\"HEALTH_FACILITY\".\"ID\" IN (SELECT DISTINCT A.\"ID\" FROM \"HEALTH_FACILITY\" AS A\nLEFT JOIN \"HEALTH_FACILITY\" AS B ON A.\"ID\" = B.\"PARENT_ID\"\nLEFT JOIN \"HEALTH_FACILITY\" AS C ON B.\"ID\" = C.\"PARENT_ID\"\nLEFT JOIN \"HEALTH_FACILITY\" AS D ON C.\"ID\" = D.\"PARENT_ID\"\nWHERE \nA.\"ID\" = "+hfid+"\nUNION\nSELECT DISTINCT B.\"ID\" FROM \"HEALTH_FACILITY\" AS A\nLEFT JOIN \"HEALTH_FACILITY\" AS B ON A.\"ID\" = B.\"PARENT_ID\"\nLEFT JOIN \"HEALTH_FACILITY\" AS C ON B.\"ID\" = C.\"PARENT_ID\"\nLEFT JOIN \"HEALTH_FACILITY\" AS D ON C.\"ID\" = D.\"PARENT_ID\"\nWHERE \nA.\"ID\" = "+hfid+"\nUNION\nSELECT DISTINCT C.\"ID\" FROM \"HEALTH_FACILITY\" AS A\nLEFT JOIN \"HEALTH_FACILITY\" AS B ON A.\"ID\" = B.\"PARENT_ID\"\nLEFT JOIN \"HEALTH_FACILITY\" AS C ON B.\"ID\" = C.\"PARENT_ID\"\nLEFT JOIN \"HEALTH_FACILITY\" AS D ON C.\"ID\" = D.\"PARENT_ID\"\nWHERE \nA.\"ID\" = "+hfid+"\nUNION\nSELECT DISTINCT D.\"ID\" FROM \"HEALTH_FACILITY\" AS A\nLEFT JOIN \"HEALTH_FACILITY\" AS B ON A.\"ID\" = B.\"PARENT_ID\"\nLEFT JOIN \"HEALTH_FACILITY\" AS C ON B.\"ID\" = C.\"PARENT_ID\"\nLEFT JOIN \"HEALTH_FACILITY\" AS D ON C.\"ID\" = D.\"PARENT_ID\"\nWHERE \nA.\"ID\" = "+hfid+")  ) AND \"CHILD\".\"MODIFIED_ON\" >= '"+fromDate+"' AND \"CHILD\".\"MODIFIED_ON\" <= '"+toDate+"'  AND(\"BIRTHPLACE\".\"NAME\" = 'Home' OR \"BIRTHPLACE\".\"NAME\" = 'Health Facility') \n" +
+								"      (\"HEALTH_FACILITY\".\"ID\" IN (SELECT DISTINCT A.\"ID\" FROM \"HEALTH_FACILITY\" AS A\nLEFT JOIN \"HEALTH_FACILITY\" AS B ON A.\"ID\" = B.\"PARENT_ID\"\nLEFT JOIN \"HEALTH_FACILITY\" AS C ON B.\"ID\" = C.\"PARENT_ID\"\nLEFT JOIN \"HEALTH_FACILITY\" AS D ON C.\"ID\" = D.\"PARENT_ID\"\nWHERE \nA.\"ID\" = "+hfid+"\nUNION\nSELECT DISTINCT B.\"ID\" FROM \"HEALTH_FACILITY\" AS A\nLEFT JOIN \"HEALTH_FACILITY\" AS B ON A.\"ID\" = B.\"PARENT_ID\"\nLEFT JOIN \"HEALTH_FACILITY\" AS C ON B.\"ID\" = C.\"PARENT_ID\"\nLEFT JOIN \"HEALTH_FACILITY\" AS D ON C.\"ID\" = D.\"PARENT_ID\"\nWHERE \nA.\"ID\" = "+hfid+"\nUNION\nSELECT DISTINCT C.\"ID\" FROM \"HEALTH_FACILITY\" AS A\nLEFT JOIN \"HEALTH_FACILITY\" AS B ON A.\"ID\" = B.\"PARENT_ID\"\nLEFT JOIN \"HEALTH_FACILITY\" AS C ON B.\"ID\" = C.\"PARENT_ID\"\nLEFT JOIN \"HEALTH_FACILITY\" AS D ON C.\"ID\" = D.\"PARENT_ID\"\nWHERE \nA.\"ID\" = "+hfid+"\nUNION\nSELECT DISTINCT D.\"ID\" FROM \"HEALTH_FACILITY\" AS A\nLEFT JOIN \"HEALTH_FACILITY\" AS B ON A.\"ID\" = B.\"PARENT_ID\"\nLEFT JOIN \"HEALTH_FACILITY\" AS C ON B.\"ID\" = C.\"PARENT_ID\"\nLEFT JOIN \"HEALTH_FACILITY\" AS D ON C.\"ID\" = D.\"PARENT_ID\"\nWHERE \nA.\"ID\" = "+hfid+")  ) AND \"CHILD\".\"MODIFIED_ON\" >= '"+fromDate+"' AND \"CHILD\".\"MODIFIED_ON\" < '"+toDate+"'  AND(\"BIRTHPLACE\".\"NAME\" = 'Home' OR \"BIRTHPLACE\".\"NAME\" = 'Health Facility') \n" +
 								"      GROUP BY \"HEALTH_FACILITY\".\"NAME\",\"BIRTHPLACE\".\"NAME\" order by \"HEALTH_FACILITY\".\"NAME\",\"BIRTHPLACE\".\"NAME\"  \n" +
 								"            \n" +
 								"    )  as t1 $$) as final_result(\"NAME\" text, \"REGISTERED_FACILITY\" bigint, \"REGISTERED_HOME\" bigint ) \n" +

@@ -105,12 +105,12 @@ public partial class Pages_HealthFacilityListStockStatusReport : System.Web.UI.P
                     int userId = CurrentEnvironment.LoggedUser.Id;
                     UserRole role = UserRole.GetUserRoleByUserId(userId);
                     if(role.Role.Name.Equals("Middle Level Officer"))
-                    if(role.Role.Name.Equals("Middle Level Officer"))
                     {
-                        command = "SELECT \"ID\", \"NAME\" FROM \"HEALTH_FACILITY\" WHERE \"ID\" =  "+CurrentEnvironment.LoggedUser.HealthFacilityId+" OR  \"PARENT_ID\" = "+CurrentEnvironment.LoggedUser.HealthFacilityId+" ORDER BY \"NAME\" ";
-                    }else{
-                        command = "SELECT \"ID\", \"NAME\" FROM \"HEALTH_FACILITY\" ORDER BY \"NAME\" ";
-                    }
+                               command = "SELECT \"ID\", \"NAME\" FROM \"HEALTH_FACILITY\" WHERE \"ID\" =  "+CurrentEnvironment.LoggedUser.HealthFacilityId+" OR  \"PARENT_ID\" = "+CurrentEnvironment.LoggedUser.HealthFacilityId+" ORDER BY \"NAME\" ";
+                           }else{
+                               command = "SELECT \"ID\", \"NAME\" FROM \"HEALTH_FACILITY\" ORDER BY \"NAME\" ";
+                           }
+
 
                     using (var idt = DBManager.ExecuteReaderCommand(command, System.Data.CommandType.Text, contextParms))
                     {
@@ -252,7 +252,7 @@ public partial class Pages_HealthFacilityListStockStatusReport : System.Web.UI.P
         gvHealthFacilityListStockStatusReport.DataBind();
 
         createInputControls();
-        
+
     }
 
     protected void gvHealthFacilityListStockStatusReport_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -271,7 +271,7 @@ public partial class Pages_HealthFacilityListStockStatusReport : System.Web.UI.P
     protected void gvHealthFacilityListStockStatusReport_DataBound(object sender, GridViewRowEventArgs e)
     {
 
-	
+
 //		if (e.Row.RowType != DataControlRowType.Header)
 //		{
 //			if (Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "ChildrenRegistrationsMaximumThreshold")) != null && Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "ChildrenRegistrationsMinimumThreshold")) != null)
@@ -289,50 +289,50 @@ public partial class Pages_HealthFacilityListStockStatusReport : System.Web.UI.P
 //				}
 //			}
 //		}
-	
+
 
     }
 
-     protected void btnExcel_Click(object sender, EventArgs e)
-        {
+       protected void btnExcel_Click(object sender, EventArgs e)
+            {
 
-            selectedHealthFacilityID = Request.Form["selectHealthFacility"];
-            string strFromDate = String.Format("{0}", Request.Form["dateFrom"]);
-            string strToDate = String.Format("{0}", Request.Form["dateTo"]);
+                selectedHealthFacilityID = Request.Form["selectHealthFacility"];
+                string strFromDate = String.Format("{0}", Request.Form["dateFrom"]);
+                string strToDate = String.Format("{0}", Request.Form["dateTo"]);
 
-            odsExport.SelectParameters.Clear();
-            odsExport.SelectParameters.Add("hfid", selectedHealthFacilityID);
-            odsExport.SelectParameters.Add("fromDate", strFromDate);
-            odsExport.SelectParameters.Add("toDate", strToDate);
-            odsExport.DataBind();
+                odsExport.SelectParameters.Clear();
+                odsExport.SelectParameters.Add("hfid", selectedHealthFacilityID);
+                odsExport.SelectParameters.Add("fromDate", strFromDate);
+                odsExport.SelectParameters.Add("toDate", strToDate);
+                odsExport.DataBind();
 
-            gvExport.DataSourceID = "odsExport";
-            gvExport.DataBind();
+                gvExport.DataSourceID = "odsExport";
+                gvExport.DataBind();
 
-            Response.Clear();
-            Response.AddHeader("content-disposition", "attachment;filename=StockStatusReport.xls");
-            Response.Charset = "";
+                Response.Clear();
+                Response.AddHeader("content-disposition", "attachment;filename=StockStatusReport.xls");
+                Response.Charset = "";
 
-            Response.ContentType = "application/ms-excel";
-            System.IO.StringWriter stringWrite = new System.IO.StringWriter();
-            System.Web.UI.HtmlTextWriter htmlWrite = new HtmlTextWriter(stringWrite);
+                Response.ContentType = "application/ms-excel";
+                System.IO.StringWriter stringWrite = new System.IO.StringWriter();
+                System.Web.UI.HtmlTextWriter htmlWrite = new HtmlTextWriter(stringWrite);
 
 
-            gvExport.RenderControl(htmlWrite);
-            Response.Write(stringWrite.ToString());
-            Response.End();
-        }
+                gvExport.RenderControl(htmlWrite);
+                Response.Write(stringWrite.ToString());
+                Response.End();
+            }
 
-        public override void VerifyRenderingInServerForm(Control control)
-        {
-           return;
-        }
+            public override void VerifyRenderingInServerForm(Control control)
+            {
+               return;
+            }
 
-        protected void gvOn_DataBound(object sender, EventArgs e)
-        {
-            if (gvHealthFacilityListStockStatusReport.Rows.Count > 0)
-                btnExcel.Visible = true;
-            else
-                btnExcel.Visible = false;
-        }
+            protected void gvOn_DataBound(object sender, EventArgs e)
+            {
+                if (gvHealthFacilityListStockStatusReport.Rows.Count > 0)
+                    btnExcel.Visible = true;
+                else
+                    btnExcel.Visible = false;
+            }
 }

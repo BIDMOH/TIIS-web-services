@@ -73,7 +73,7 @@
     <div class="row">
         <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12 clearfix" style="overflow:auto">
             
-       <asp:GridView ID="gvHealthFacilityListStockStatusReport" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered table-hover table-responsive" AllowPaging="True" OnRowDataBound="gvHealthFacilityListStockStatusReport_DataBound" OnPageIndexChanging="gvHealthFacilityListStockStatusReport_PageIndexChanging" PageSize="25">
+       <asp:GridView ID="gvHealthFacilityListStockStatusReport" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered table-hover table-responsive" AllowPaging="True" OnRowDataBound="gvHealthFacilityListStockStatusReport_DataBound" OnDataBound="gvOn_DataBound" OnPageIndexChanging="gvHealthFacilityListStockStatusReport_PageIndexChanging" PageSize="25">
                 <PagerSettings Position="Top" Mode="NumericFirstLast" />
                 <PagerStyle CssClass="pagination" HorizontalAlign="Left" VerticalAlign="Top" />
             <Columns>
