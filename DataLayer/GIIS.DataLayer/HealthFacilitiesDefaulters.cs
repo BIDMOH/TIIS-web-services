@@ -69,7 +69,33 @@ namespace GIIS.DataLayer
 	                                inner join  ""PLACE"" on ""CHILD"".""DOMICILE_ID"" = ""PLACE"".""ID""
 										WHERE 
 										""CHILD"".""STATUS_ID"" = 1 and 
-										""HEALTHCENTER_ID"" = @hfid AND 
+										""HEALTHCENTER_ID"" IN (SELECT DISTINCT A.""ID"" FROM ""HEALTH_FACILITY"" AS A
+							LEFT JOIN ""HEALTH_FACILITY"" AS B ON A.""ID"" = B.""PARENT_ID""
+							LEFT JOIN ""HEALTH_FACILITY"" AS C ON B.""ID"" = C.""PARENT_ID""
+							LEFT JOIN ""HEALTH_FACILITY"" AS D ON C.""ID"" = D.""PARENT_ID""
+							WHERE 
+							A.""ID"" = @hfid
+							UNION
+							SELECT DISTINCT B.""ID"" FROM ""HEALTH_FACILITY"" AS A
+							LEFT JOIN ""HEALTH_FACILITY"" AS B ON A.""ID"" = B.""PARENT_ID""
+							LEFT JOIN ""HEALTH_FACILITY"" AS C ON B.""ID"" = C.""PARENT_ID""
+							LEFT JOIN ""HEALTH_FACILITY"" AS D ON C.""ID"" = D.""PARENT_ID""
+							WHERE 
+							A.""ID"" = @hfid
+							UNION
+							SELECT DISTINCT C.""ID"" FROM ""HEALTH_FACILITY"" AS A
+							LEFT JOIN ""HEALTH_FACILITY"" AS B ON A.""ID"" = B.""PARENT_ID""
+							LEFT JOIN ""HEALTH_FACILITY"" AS C ON B.""ID"" = C.""PARENT_ID""
+							LEFT JOIN ""HEALTH_FACILITY"" AS D ON C.""ID"" = D.""PARENT_ID""
+							WHERE 
+							A.""ID"" = @hfid
+							UNION
+							SELECT DISTINCT D.""ID"" FROM ""HEALTH_FACILITY"" AS A
+							LEFT JOIN ""HEALTH_FACILITY"" AS B ON A.""ID"" = B.""PARENT_ID""
+							LEFT JOIN ""HEALTH_FACILITY"" AS C ON B.""ID"" = C.""PARENT_ID""
+							LEFT JOIN ""HEALTH_FACILITY"" AS D ON C.""ID"" = D.""PARENT_ID""
+							WHERE 
+							A.""ID"" = @hfid) AND 
 										""VACCINATION_EVENT"".""SCHEDULED_DATE"" >= @fromDate  AND ""VACCINATION_EVENT"".""SCHEDULED_DATE"" <= @toDate and 
 										""VACCINATION_STATUS"" = false AND ""VACCINATION_EVENT"".""IS_ACTIVE"" = true 
 										GROUP BY ""CHILD"".""ID"",""PLACE"".""NAME""   ORDER BY ""CHILD"".""ID"",""PLACE"".""NAME""";
