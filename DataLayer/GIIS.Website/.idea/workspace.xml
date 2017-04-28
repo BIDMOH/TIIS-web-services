@@ -4,11 +4,7 @@
     <bookmark url="file://$PROJECT_DIR$/Pages/CoverageByScheduleReports.aspx" description="Columns" line="127" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="530d796c-0780-454e-b5db-359b024888dd" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/GIIS.Website.iml" afterPath="$PROJECT_DIR$/.idea/GIIS.Website.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pages/HealthFacilityListStockStatusReport.aspx" afterPath="$PROJECT_DIR$/Pages/HealthFacilityListStockStatusReport.aspx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pages/HealthFacilityListStockStatusReport.aspx.cs" afterPath="$PROJECT_DIR$/Pages/HealthFacilityListStockStatusReport.aspx.cs" />
-    </list>
+    <list default="true" id="530d796c-0780-454e-b5db-359b024888dd" name="Default" comment="" />
     <ignored path="GIIS.Website.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -52,7 +48,7 @@
       <file leaf-file-name="HealthFacilityListStockStatusReport.aspx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityListStockStatusReport.aspx">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7153931">
+            <state vertical-scroll-proportion="0.7169811">
               <caret line="154" column="120" selection-start-line="154" selection-start-column="85" selection-end-line="154" selection-end-column="120" />
               <folding />
             </state>
@@ -723,7 +719,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityListStockStatusReport.aspx">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7153931">
+        <state vertical-scroll-proportion="0.7169811">
           <caret line="154" column="120" selection-start-line="154" selection-start-column="85" selection-end-line="154" selection-end-column="120" />
           <folding />
         </state>
