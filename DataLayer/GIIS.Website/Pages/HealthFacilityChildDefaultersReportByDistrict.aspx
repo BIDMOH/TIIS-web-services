@@ -77,6 +77,11 @@
                 <PagerSettings Position="Top" Mode="NumericFirstLast" />
                 <PagerStyle CssClass="pagination" HorizontalAlign="Left" VerticalAlign="Top" />
             <Columns>
+               <asp:TemplateField HeaderText="SrNo">
+                   <ItemTemplate>
+                       <%#Container.DataItemIndex+1%>
+                   </ItemTemplate>
+                </asp:TemplateField>
                 <asp:TemplateField HeaderText="Health Facility Name">
                    <ItemTemplate>
                         <%#Eval("HealthFacility")%>
@@ -155,6 +160,14 @@
             </SelectParameters>
         </asp:ObjectDataSource>
 
+         <asp:ObjectDataSource ID="odsHealthFacilityDefaultersByDistrictAndDose" runat="server" SelectMethod="GetHealthFacilityDefaultersByDistrictListAndDose" TypeName="GIIS.DataLayer.HealthFacilityDefaulters">
+            <SelectParameters>
+                 <asp:Parameter Name="districtCouncilId" Type="String"/>
+                 <asp:Parameter Name="doseName" Type="String"/>
+                 <asp:Parameter Name="fromDate" Type="DateTime" />
+                 <asp:Parameter Name="toDate" Type="DateTime" />
+            </SelectParameters>
+        </asp:ObjectDataSource>
 
 
 
@@ -164,6 +177,7 @@
         <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12 clearfix">
             <asp:GridView ID="gvExport" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover table-responsive"  OnDataBound="gvOn_DataBound">
                 <Columns>
+
                                 <asp:TemplateField HeaderText="Health Facility Name">
                                    <ItemTemplate>
                                         <%#Eval("HealthFacility")%>
@@ -234,6 +248,15 @@
             <asp:ObjectDataSource ID="odsExport" runat="server" SelectMethod="GetHealthFacilityDefaultersByDistrictList" TypeName="GIIS.DataLayer.HealthFacilityDefaulters">
                 <SelectParameters>
                      <asp:Parameter Name="hfid" Type="String"/>
+                     <asp:Parameter Name="fromDate" Type="DateTime" />
+                     <asp:Parameter Name="toDate" Type="DateTime" />
+                </SelectParameters>
+            </asp:ObjectDataSource>
+
+            <asp:ObjectDataSource ID="odsExportByDose" runat="server" SelectMethod="GetHealthFacilityDefaultersByDistrictListAndDose" TypeName="GIIS.DataLayer.HealthFacilityDefaulters">
+                <SelectParameters>
+                     <asp:Parameter Name="hfid" Type="String"/>
+                     <asp:Parameter Name="doseName" Type="String"/>
                      <asp:Parameter Name="fromDate" Type="DateTime" />
                      <asp:Parameter Name="toDate" Type="DateTime" />
                 </SelectParameters>

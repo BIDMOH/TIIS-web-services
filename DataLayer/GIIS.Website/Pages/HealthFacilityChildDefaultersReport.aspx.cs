@@ -31,9 +31,10 @@ public partial class Pages_HealthFacilityChildrenRegistrationsDefaulters : Syste
     public static String datetoString = "";
     public String userID = "";
     public String selectedHealthFacilityID = "";
+    public String selectedVillage = "";
     public int hfParentID = 0;
     public int userSelectedIndex = 0;
-    public HtmlGenericControl inputControl3;
+    public HtmlGenericControl inputControl3,inputControl4,inputControl2;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!this.Page.IsPostBack)
@@ -85,6 +86,7 @@ public partial class Pages_HealthFacilityChildrenRegistrationsDefaulters : Syste
     }
 
     protected void createInputControls(){
+
                 //date-from controls
                 inputControl3 = new HtmlGenericControl("select");
 
@@ -142,6 +144,46 @@ public partial class Pages_HealthFacilityChildrenRegistrationsDefaulters : Syste
                 inputControl3.Attributes.Add("Visible", "false");
                 inputControl3.Attributes.Add("title", "Health Facility option description");
 
+                //vilage-form control
+                inputControl4 = new HtmlGenericControl("select");
+                inputControl4.Attributes.Add("class", "form-control");
+                string query = "SELECT  \"NAME\" FROM \"PLACE\" ORDER BY \"NAME\" ";
+
+                var opt1 = new HtmlGenericControl("option");
+                inputControl4.Controls.Add(opt1);
+                opt1.Attributes.Add("value", "all");
+                opt1.InnerText = "all";
+
+                if(selectedVillage.Equals("all")){
+                    opt1.Attributes.Add("selected","true");
+                }
+                using (var idt2 = DBManager.ExecuteReaderCommand(query, System.Data.CommandType.Text, null))
+                {
+                    using (var irdr1 = idt2.CreateDataReader())
+                    {
+
+                        while (irdr1.Read())
+                        {
+
+                            var opt = new HtmlGenericControl("option");
+                            inputControl4.Controls.Add(opt);
+                            opt.Attributes.Add("value", irdr1[0].ToString());
+                            opt.InnerText = irdr1[0].ToString();
+
+                            if(selectedVillage.Equals(irdr1[0].ToString())){
+                                opt.Attributes.Add("selected","true");
+                            }
+                        }
+                    }
+                }
+
+                inputControl4.Attributes.Add("id", "selectVillage");
+                inputControl4.Attributes.Add("type", "text");
+                inputControl4.Attributes.Add("style", "z-index:8");
+                inputControl4.Attributes.Add("name", "selectVillage");
+                inputControl4.Attributes.Add("Visible", "false");
+                inputControl4.Attributes.Add("title", "Dose");
+
                 //date-from controls
                 var inputControl = new HtmlGenericControl("input");
                 inputControl.Attributes.Add("class", "form-control");
@@ -180,6 +222,11 @@ public partial class Pages_HealthFacilityChildrenRegistrationsDefaulters : Syste
                     Text = "Health Facility"
                 };
 
+                 var labelControl4 = new Label()
+                {
+                    Text = "Village"
+                };
+
                 var row = new HtmlGenericControl("div");
                 row.Attributes.Add("class", "row");
                 // row.Attributes.Add("style", "margin:5px");
@@ -191,12 +238,17 @@ public partial class Pages_HealthFacilityChildrenRegistrationsDefaulters : Syste
                 var colMd43 = new HtmlGenericControl("div");
                 colMd43.Attributes.Add("class", "col-md-1");
 
+                var colMd44 = new HtmlGenericControl("div");
+                colMd44.Attributes.Add("class", "col-md-1");
+
                 var colMd8 = new HtmlGenericControl("div");
-                colMd8.Attributes.Add("class", "col-md-3");
+                colMd8.Attributes.Add("class", "col-md-2");
                 var colMd82 = new HtmlGenericControl("div");
-                colMd82.Attributes.Add("class", "col-md-3");
+                colMd82.Attributes.Add("class", "col-md-2");
                 var colMd83 = new HtmlGenericControl("div");
-                colMd83.Attributes.Add("class", "col-md-3");
+                colMd83.Attributes.Add("class", "col-md-2");
+                var colMd84 = new HtmlGenericControl("div");
+                colMd84.Attributes.Add("class", "col-md-2");
 
                 row.Controls.Add(colMd4);
                 row.Controls.Add(colMd8);
@@ -204,6 +256,8 @@ public partial class Pages_HealthFacilityChildrenRegistrationsDefaulters : Syste
                 row.Controls.Add(colMd82);
                 row.Controls.Add(colMd43);
                 row.Controls.Add(colMd83);
+                row.Controls.Add(colMd44);
+                row.Controls.Add(colMd84);
 
                 colMd4.Controls.Add(labelControl);
                 colMd8.Controls.Add(inputControl);
@@ -211,6 +265,8 @@ public partial class Pages_HealthFacilityChildrenRegistrationsDefaulters : Syste
                 colMd82.Controls.Add(inputControl2);
                 colMd43.Controls.Add(labelControl3);
                 colMd83.Controls.Add(inputControl3);
+                colMd44.Controls.Add(labelControl4);
+                colMd84.Controls.Add(inputControl4);
 
                 this.reportInputs.Controls.Add(row);
 
@@ -244,13 +300,27 @@ public partial class Pages_HealthFacilityChildrenRegistrationsDefaulters : Syste
                 datetoString    = strToDate;
 
         selectedHealthFacilityID = Request.Form["selectHealthFacility"];
+        selectedVillage = Request.Form["selectVillage"];
 
-        odsHealthFacilityDefaulters.SelectParameters.Clear();
-        odsHealthFacilityDefaulters.SelectParameters.Add("hfid", selectedHealthFacilityID);
-        odsHealthFacilityDefaulters.SelectParameters.Add("fromDate", strFromDate);
-        odsHealthFacilityDefaulters.SelectParameters.Add("toDate", strToDate);
-        odsHealthFacilityDefaulters.DataBind();
-        gvHealthFacilityDefaulters.DataSourceID = "odsHealthFacilityDefaulters";
+        if(selectedVillage != "all"){
+                odsHealthFacilityDefaultersByVillage.SelectParameters.Clear();
+                odsHealthFacilityDefaultersByVillage.SelectParameters.Add("hfid", selectedHealthFacilityID);
+                odsHealthFacilityDefaultersByVillage.SelectParameters.Add("village", selectedVillage);
+                odsHealthFacilityDefaultersByVillage.SelectParameters.Add("fromDate", strFromDate);
+                odsHealthFacilityDefaultersByVillage.SelectParameters.Add("toDate", strToDate);
+                odsHealthFacilityDefaultersByVillage.DataBind();
+                gvHealthFacilityDefaulters.DataSourceID = "odsHealthFacilityDefaultersByVillage";
+        }
+        else{
+                odsHealthFacilityDefaulters.SelectParameters.Clear();
+                odsHealthFacilityDefaulters.SelectParameters.Add("hfid", selectedHealthFacilityID);
+                odsHealthFacilityDefaulters.SelectParameters.Add("fromDate", strFromDate);
+                odsHealthFacilityDefaulters.SelectParameters.Add("toDate", strToDate);
+                odsHealthFacilityDefaulters.DataBind();
+                gvHealthFacilityDefaulters.DataSourceID = "odsHealthFacilityDefaulters";
+        }
+
+
         gvHealthFacilityDefaulters.DataBind();
 
         createInputControls();
@@ -272,16 +342,31 @@ public partial class Pages_HealthFacilityChildrenRegistrationsDefaulters : Syste
     {
 
         selectedHealthFacilityID = Request.Form["selectHealthFacility"];
+        selectedVillage = Request.Form["selectVillage"];
         string strFromDate = String.Format("{0}", Request.Form["dateFrom"]);
         string strToDate = String.Format("{0}", Request.Form["dateTo"]);
 
-        odsExport.SelectParameters.Clear();
-        odsExport.SelectParameters.Add("hfid", selectedHealthFacilityID);
-        odsExport.SelectParameters.Add("fromDate", strFromDate);
-        odsExport.SelectParameters.Add("toDate", strToDate);
-        odsExport.DataBind();
+         if(selectedVillage != "all"){
+         odsExportByVillage.SelectParameters.Clear();
+         odsExportByVillage.SelectParameters.Add("hfid", selectedHealthFacilityID);
+         odsExportByVillage.SelectParameters.Add("village", selectedVillage);
+         odsExportByVillage.SelectParameters.Add("fromDate", strFromDate);
+         odsExportByVillage.SelectParameters.Add("toDate", strToDate);
+         odsExport.DataBind();
 
-        gvExport.DataSourceID = "odsExport";
+         gvExport.DataSourceID = "odsExportByVillage";
+         }
+         else{
+         odsExport.SelectParameters.Clear();
+         odsExport.SelectParameters.Add("hfid", selectedHealthFacilityID);
+         odsExport.SelectParameters.Add("fromDate", strFromDate);
+         odsExport.SelectParameters.Add("toDate", strToDate);
+         odsExport.DataBind();
+
+         gvExport.DataSourceID = "odsExport";
+         }
+
+
         gvExport.DataBind();
 
         Response.Clear();
