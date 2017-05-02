@@ -181,16 +181,16 @@ public partial class Pages_HealthFacilityChildrenRegistrationsDefaultersReportBy
         inputControl6.Attributes.Add("title", "Health Facility option description");
 
 
-        //date-from controls
+        //antigen controls
         var inputControl = new HtmlGenericControl("input");
         inputControl.Attributes.Add("class", "form-control");
 
-        inputControl.Attributes.Add("id", "dateFrom");
+        inputControl.Attributes.Add("id", "selectAntigen");
         inputControl.Attributes.Add("type", "text");
         inputControl.Attributes.Add("style", "z-index:8");
-        inputControl.Attributes.Add("name", "dateFrom");
-        inputControl.Attributes.Add("value", datefromString);
-        inputControl.Attributes.Add("title", "Defaulters Report Description");
+        inputControl.Attributes.Add("name", "selectAntigen");
+        inputControl.Attributes.Add("Visible", "false");
+        inputControl.Attributes.Add("title", "Antigen option description");
 
         //date-to Controls
         var inputControl2 = new HtmlGenericControl("input");
@@ -211,7 +211,7 @@ public partial class Pages_HealthFacilityChildrenRegistrationsDefaultersReportBy
 
             var labelControl2 = new Label()
         {
-            Text = "To"
+            Text = "Antigen"
         };
 
             var labelControl3 = new Label()
@@ -226,7 +226,7 @@ public partial class Pages_HealthFacilityChildrenRegistrationsDefaultersReportBy
         var colMd4 = new HtmlGenericControl("div");
         colMd4.Attributes.Add("class", "col-md-3");
         var colMd42 = new HtmlGenericControl("div");
-        colMd42.Attributes.Add("class", "col-md-1");
+        colMd42.Attributes.Add("class", "col-md-3");
         var colMd43 = new HtmlGenericControl("div");
         colMd43.Attributes.Add("class", "col-md-1");
 
@@ -239,7 +239,7 @@ public partial class Pages_HealthFacilityChildrenRegistrationsDefaultersReportBy
 
         row.Controls.Add(colMd4);
         row.Controls.Add(colMd8);
-        row.Controls.Add(colMd43);
+        row.Controls.Add(colMd42);
         row.Controls.Add(colMd83);
 
         colMd4.Controls.Add(labelControl);
@@ -311,7 +311,8 @@ public partial class Pages_HealthFacilityChildrenRegistrationsDefaultersReportBy
                 gvHealthFacilityDefaultersByDistrict.Columns[10].Visible = false;
                 gvHealthFacilityDefaultersByDistrict.Columns[11].Visible = false;
                 gvHealthFacilityDefaultersByDistrict.Columns[12].Visible = false;
-            }else if(d.Month == 3){
+            }
+            else if(d.Month == 3){
                 gvHealthFacilityDefaultersByDistrict.Columns[4].Visible = false;
                 gvHealthFacilityDefaultersByDistrict.Columns[5].Visible = false;
                 gvHealthFacilityDefaultersByDistrict.Columns[6].Visible = false;
@@ -321,7 +322,8 @@ public partial class Pages_HealthFacilityChildrenRegistrationsDefaultersReportBy
                 gvHealthFacilityDefaultersByDistrict.Columns[10].Visible = false;
                 gvHealthFacilityDefaultersByDistrict.Columns[11].Visible = false;
                 gvHealthFacilityDefaultersByDistrict.Columns[12].Visible = false;
-            }else if(d.Month == 4){
+            }
+            else if(d.Month == 4){
                 gvHealthFacilityDefaultersByDistrict.Columns[5].Visible = false;
                 gvHealthFacilityDefaultersByDistrict.Columns[6].Visible = false;
                 gvHealthFacilityDefaultersByDistrict.Columns[7].Visible = false;
@@ -330,7 +332,8 @@ public partial class Pages_HealthFacilityChildrenRegistrationsDefaultersReportBy
                 gvHealthFacilityDefaultersByDistrict.Columns[10].Visible = false;
                 gvHealthFacilityDefaultersByDistrict.Columns[11].Visible = false;
                 gvHealthFacilityDefaultersByDistrict.Columns[12].Visible = false;
-            }else if(d.Month == 5){
+            }
+            else if(d.Month == 5){
                  gvHealthFacilityDefaultersByDistrict.Columns[6].Visible = false;
                  gvHealthFacilityDefaultersByDistrict.Columns[7].Visible = false;
                  gvHealthFacilityDefaultersByDistrict.Columns[8].Visible = false;
@@ -338,25 +341,29 @@ public partial class Pages_HealthFacilityChildrenRegistrationsDefaultersReportBy
                  gvHealthFacilityDefaultersByDistrict.Columns[10].Visible = false;
                  gvHealthFacilityDefaultersByDistrict.Columns[11].Visible = false;
                  gvHealthFacilityDefaultersByDistrict.Columns[12].Visible = false;
-            }else if(d.Month == 6){
+            }
+            else if(d.Month == 6){
                 gvHealthFacilityDefaultersByDistrict.Columns[7].Visible = false;
                 gvHealthFacilityDefaultersByDistrict.Columns[8].Visible = false;
                 gvHealthFacilityDefaultersByDistrict.Columns[9].Visible = false;
                 gvHealthFacilityDefaultersByDistrict.Columns[10].Visible = false;
                 gvHealthFacilityDefaultersByDistrict.Columns[11].Visible = false;
                 gvHealthFacilityDefaultersByDistrict.Columns[12].Visible = false;
-            }else if(d.Month == 7){
+            }
+            else if(d.Month == 7){
                 gvHealthFacilityDefaultersByDistrict.Columns[8].Visible = false;
                 gvHealthFacilityDefaultersByDistrict.Columns[9].Visible = false;
                 gvHealthFacilityDefaultersByDistrict.Columns[10].Visible = false;
                 gvHealthFacilityDefaultersByDistrict.Columns[11].Visible = false;
                 gvHealthFacilityDefaultersByDistrict.Columns[12].Visible = false;
-            }else if(d.Month == 8){
+            }
+            else if(d.Month == 8){
                 gvHealthFacilityDefaultersByDistrict.Columns[9].Visible = false;
                 gvHealthFacilityDefaultersByDistrict.Columns[10].Visible = false;
                 gvHealthFacilityDefaultersByDistrict.Columns[11].Visible = false;
                 gvHealthFacilityDefaultersByDistrict.Columns[12].Visible = false;
-            }else if(d.Month == 9){
+            }
+            else if(d.Month == 9){
                 gvHealthFacilityDefaultersByDistrict.Columns[10].Visible = false;
                 gvHealthFacilityDefaultersByDistrict.Columns[11].Visible = false;
                 gvHealthFacilityDefaultersByDistrict.Columns[12].Visible = false;
