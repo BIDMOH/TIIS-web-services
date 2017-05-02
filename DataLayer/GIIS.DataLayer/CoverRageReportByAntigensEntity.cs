@@ -26,15 +26,16 @@ namespace GIIS.DataLayer
 
         #region Properties
         public String Month { get; set; }
+		public String DoseName { get; set; }
 		public Int32 vaccinations { get; set; }
 
         #endregion
 
         #region GetData
-		public static List<CoverageReportByAntigensEntity> GetCoverageByHealthFacilityAndAntigen(string scheduledVaccinationName, Int32 healthFacilityId, DateTime fromDate, DateTime toDate)
+		public static List<CoverageReportByAntigensEntity> GetCoverageByHealthFacilityAndDose(string doseName, Int32 healthFacilityId, DateTime fromDate, DateTime toDate)
         {
 
-			string query = @"select  to_char(""VACCINATION_DATE"",'Mon') as mon,extract(month from ""VACCINATION_DATE""),extract(year from ""VACCINATION_DATE"") as yyyy, COUNT(DISTINCT ""CHILD_ID"") 
+			string query = @"select  to_char(""VACCINATION_DATE"",'Mon') as mon,extract(month from ""VACCINATION_DATE""),extract(year from ""VACCINATION_DATE"") as yyyy, ""FULLNAME"",COUNT(DISTINCT ""CHILD_ID"") 
 							from ""VACCINATION_EVENT""
 							inner join ""CHILD"" on ""VACCINATION_EVENT"".""CHILD_ID"" = ""CHILD"".""ID"" 
 							inner join ""DOSE"" on ""VACCINATION_EVENT"".""DOSE_ID"" = ""DOSE"".""ID""
@@ -42,12 +43,12 @@ namespace GIIS.DataLayer
 							inner join ""HEALTH_FACILITY"" ON ""VACCINATION_EVENT"".""HEALTH_FACILITY_ID"" = ""HEALTH_FACILITY"".""ID"" 
 							WHERE 
 								""VACCINATION_STATUS"" = true AND 
-								""SCHEDULED_VACCINATION"".""NAME"" = @scheduledVaccinationName AND
+								""FULLNAME"" = @doseName AND
 								 (""HEALTH_FACILITY"".""ID"" = @healthFacilityId OR ""HEALTH_FACILITY"".""PARENT_ID"" = @healthFacilityId) AND 
 								""CHILD"".""HEALTHCENTER_ID"" = ""VACCINATION_EVENT"".""HEALTH_FACILITY_ID"" AND 
 								""VACCINATION_DATE"">=@fromDate AND 
 								""VACCINATION_DATE""<@toDate
-							GROUP BY 1,2,3
+							GROUP BY 1,2,3,4
 							ORDER BY 3,2 ASC";
 
 
@@ -56,7 +57,7 @@ namespace GIIS.DataLayer
 
 				List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
 				{
-					new NpgsqlParameter("@scheduledVaccinationName", DbType.String) { Value = scheduledVaccinationName },
+					new NpgsqlParameter("@doseName", DbType.String) { Value = doseName },
 					new NpgsqlParameter("@healthFacilityId", DbType.Int32) { Value = healthFacilityId },
 					new NpgsqlParameter("@fromDate", DbType.DateTime) { Value = fromDate },
 					new NpgsqlParameter("@toDate", DbType.DateTime) { Value = toDate }
@@ -73,6 +74,19 @@ namespace GIIS.DataLayer
             }
         }
 
+		public static List<List<CoverageReportByAntigensEntity>> GetCoverageByHealthFacilityAndScheduledVaccination(string scheduledVaccinationName, Int32 healthFacilityId, DateTime fromDate, DateTime toDate)
+		{
+			List<List<CoverageReportByAntigensEntity>> list = new List<List<CoverageReportByAntigensEntity>>();
+			List<Dose> doses = Dose.GetDoseByVaccinationName(scheduledVaccinationName);
+
+			foreach (Dose d in doses)
+			{
+				list.Add(GetCoverageByHealthFacilityAndDose(d.Fullname, healthFacilityId, fromDate, toDate));
+			}
+			return list;
+
+		}
+
 
 		public static List<CoverageReportByAntigensEntity> GetCoverageReport(DataTable dt)
         {
@@ -83,6 +97,7 @@ namespace GIIS.DataLayer
 				{
 					CoverageReportByAntigensEntity o = new CoverageReportByAntigensEntity();
 					o.Month = row["mon"].ToString();
+					o.DoseName = row["FULLNAME"].ToString();
 					o.vaccinations = Helper.ConvertToInt(row["count"]);
 
 					oList.Add(o);
