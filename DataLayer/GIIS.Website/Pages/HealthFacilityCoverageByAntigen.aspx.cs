@@ -211,23 +211,27 @@ public partial class Pages_HealthFacilityCoverageByFacilityAndAntigen : System.W
         Chart1.Titles.Add("Coverage Report By Antigen");
 
 
-        Series series = new Series();
+
         if(true)
         {
             try{
-                 DateTime d1 = DateTime.Parse(FromDate);
-                 DateTime d2 = DateTime.Parse(ToDate);
+                DateTime d1 = DateTime.Parse(FromDate);
+                DateTime d2 = DateTime.Parse(ToDate);
 
+                List<List<CoverageReportByAntigensEntity>>  coverages = CoverageReportByAntigensEntity.GetCoverageByHealthFacilityAndScheduledVaccination(selectedDose,Helper.ConvertToInt(selectedHealthFacilityID),d1,d2);
+                foreach(List<CoverageReportByAntigensEntity> list in coverages){
+                    Series series = new Series();
 
-                List<CoverageReportByAntigensEntity>  coverages = CoverageReportByAntigensEntity.GetCoverageByHealthFacilityAndAntigen(selectedDose,Helper.ConvertToInt(selectedHealthFacilityID),d1,d2);
-                foreach(CoverageReportByAntigensEntity c in coverages){
-                    series.Points.AddXY(c.Month, c.vaccinations);
-                    series.Name = "Coverage";
-                    series.IsValueShownAsLabel = true;
+                    foreach(CoverageReportByAntigensEntity c in list){
+                        series.Points.AddXY(c.Month, c.vaccinations);
+                        series.Name = c.DoseName;
+                        series.IsValueShownAsLabel = true;
+                    }
+
+                    series.ChartType = System.Web.UI.DataVisualization.Charting.SeriesChartType.Line;
+                    series.BorderWidth = 5;
+                    Chart1.Series.Add(series);
                 }
-                series.ChartType = System.Web.UI.DataVisualization.Charting.SeriesChartType.Line;
-                series.BorderWidth = 5;
-                Chart1.Series.Add(series);
             }catch(Exception ex){}
 
         }
@@ -333,6 +337,8 @@ public partial class Pages_HealthFacilityCoverageByFacilityAndAntigen : System.W
         selectedDose = Request.Form["selectDose"];
 
         createInputControls();
+
+
 
         
     }
