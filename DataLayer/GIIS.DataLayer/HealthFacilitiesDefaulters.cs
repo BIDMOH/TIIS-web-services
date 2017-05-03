@@ -195,12 +195,13 @@ namespace GIIS.DataLayer
 			{
 				string query = @"SELECT * "+
                                "FROM   crosstab($$ SELECT t1.\"NAME\",t1.Month,t1.defaulter FROM (SELECT T2.Month,T2.\"NAME\", COUNT(T2.\"ID\") as DEFAULTER FROM" +
-							   " (SELECT \"CHILD\".\"ID\",EXTRACT(MONTH FROM \"SCHEDULED_DATE\") AS Month,\"HEALTH_FACILITY\".\"NAME\",\"CHILD\".\"MODIFIED_BY\", \"BARCODE_ID\" "+
+							   " (SELECT \"CHILD\".\"ID\",EXTRACT(MONTH FROM \"SCHEDULED_DATE\") AS Month,\"HEALTH_FACILITY\".\"NAME\",\"CHILD\".\"MODIFIED_BY\", \"BARCODE_ID\", \"DOSE\".\"FULLNAME\" " +
 							   " FROM \"CHILD\" " +
 							   "inner join \"VACCINATION_EVENT\" on \"CHILD\".\"ID\" = \"VACCINATION_EVENT\".\"CHILD_ID\" LEFT JOIN \"NONVACCINATION_REASON\" ON \"VACCINATION_EVENT\".\"NONVACCINATION_REASON_ID\" = \"NONVACCINATION_REASON\".\"ID\" " +
 							   "inner join \"DOSE\" on \"VACCINATION_EVENT\".\"DOSE_ID\" = \"DOSE\".\"ID\" " +
+							   "inner join \"SCHEDULED_VACCINATION\" on \"DOSE\".\"SCHEDULED_VACCINATION_ID\" = \"SCHEDULED_VACCINATION\".\"ID\"" +
 							   "inner join \"HEALTH_FACILITY\" ON \"CHILD\".\"HEALTHCENTER_ID\" = \"HEALTH_FACILITY\".\"ID\" " +
-							   "WHERE \"CHILD\".\"STATUS_ID\" = 1 and (\"HEALTH_FACILITY\".\"ID\" = " + districtCouncilId + " OR \"HEALTH_FACILITY\".\"PARENT_ID\" = " + districtCouncilId + ") and \"FULLNAME\" = "+doseName+" and \"VACCINATION_EVENT\".\"SCHEDULED_DATE\" <= NOW() AND\"VACCINATION_EVENT\".\"SCHEDULED_DATE\" >= '" + fromDate.ToString() + "'  AND \"VACCINATION_EVENT\".\"SCHEDULED_DATE\" <= '"+toDate.ToString() + "' and \"VACCINATION_STATUS\" = false GROUP BY \"CHILD\".\"ID\",\"SCHEDULED_DATE\",\"HEALTH_FACILITY\".\"ID\",\"CHILD\".\"MODIFIED_BY\", \"BARCODE_ID\"  ) AS T2 GROUP BY T2.Month ,T2.\"NAME\" ORDER BY  \"NAME\",Month ) AS t1  $$) " +
+							   "WHERE \"CHILD\".\"STATUS_ID\" = 1 and (\"HEALTH_FACILITY\".\"ID\" = " + districtCouncilId + " OR \"HEALTH_FACILITY\".\"PARENT_ID\" = " + districtCouncilId + ") and \"DOSE\".\"SCHEDULED_VACCINATION_ID\" = '"+doseName+"' and \"VACCINATION_EVENT\".\"SCHEDULED_DATE\" <= NOW() AND\"VACCINATION_EVENT\".\"SCHEDULED_DATE\" >= '" + fromDate.ToString() + "'  AND \"VACCINATION_EVENT\".\"SCHEDULED_DATE\" <= '"+toDate.ToString() + "' and \"VACCINATION_STATUS\" = false GROUP BY \"CHILD\".\"ID\",\"SCHEDULED_DATE\",\"HEALTH_FACILITY\".\"ID\",\"CHILD\".\"MODIFIED_BY\", \"BARCODE_ID\",\"DOSE\".\"FULLNAME\"  ) AS T2 GROUP BY T2.Month ,T2.\"NAME\" ORDER BY  \"NAME\",Month ) AS t1  $$) " +
 							   " AS   final_result(\"NAME\" text, \"JAN\" bigint,\"FEB\" bigint,\"MAR\" bigint,\"APR\" bigint, \"MAY\" bigint,\"JUN\" bigint , \"JUL\" bigint , \"AUG\" bigint , \"SEP\" bigint, \"OCT\" bigint , \"NOV\" bigint, \"DEC\" bigint ) ";
 				
 				List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()

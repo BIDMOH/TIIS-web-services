@@ -145,7 +145,7 @@ public partial class Pages_HealthFacilityChildrenRegistrationsDefaultersReportBy
 
             inputControl4 = new HtmlGenericControl("select");
             inputControl4.Attributes.Add("class", "form-control");
-            string query = "SELECT  \"NAME\" FROM \"SCHEDULED_VACCINATION\"  WHERE \"IS_ACTIVE\" = true  ORDER BY \"NAME\" ";
+            string query = "SELECT \"ID\",\"NAME\" FROM \"SCHEDULED_VACCINATION\"  WHERE \"IS_ACTIVE\" = true  ORDER BY \"NAME\" ";
 
             using (var idt2 = DBManager.ExecuteReaderCommand(query, System.Data.CommandType.Text, null))
             {
@@ -166,7 +166,7 @@ public partial class Pages_HealthFacilityChildrenRegistrationsDefaultersReportBy
                         var opt = new HtmlGenericControl("option");
                         inputControl4.Controls.Add(opt);
                         opt.Attributes.Add("value", irdr1[0].ToString());
-                        opt.InnerText = irdr1[0].ToString();
+                        opt.InnerText = irdr1[1].ToString();
 
                         if(selectedDose.Equals(irdr1[0].ToString())){
                             opt.Attributes.Add("selected","true");
@@ -399,10 +399,12 @@ public partial class Pages_HealthFacilityChildrenRegistrationsDefaultersReportBy
                 gvHealthFacilityDefaultersByDistrict.Columns[10].Visible = false;
                 gvHealthFacilityDefaultersByDistrict.Columns[11].Visible = false;
                 gvHealthFacilityDefaultersByDistrict.Columns[12].Visible = false;
-            }else if(d.Month == 10){
+            }
+            else if(d.Month == 10){
                 gvHealthFacilityDefaultersByDistrict.Columns[11].Visible = false;
                 gvHealthFacilityDefaultersByDistrict.Columns[12].Visible = false;
-            }else if(d.Month == 11){
+            }
+            else if(d.Month == 11){
                 gvHealthFacilityDefaultersByDistrict.Columns[12].Visible = false;
             }
 
@@ -452,12 +454,7 @@ public partial class Pages_HealthFacilityChildrenRegistrationsDefaultersReportBy
 
             gvExport.DataSourceID = "odsExportByDose";
         }
-            odsHealthFacilityDefaultersByDistrict.SelectParameters.Clear();
-            odsHealthFacilityDefaultersByDistrict.SelectParameters.Add("districtCouncilId", selectedHealthFacilityID);
-            odsHealthFacilityDefaultersByDistrict.SelectParameters.Add("fromDate", strFromDate);
-            odsHealthFacilityDefaultersByDistrict.SelectParameters.Add("toDate", strToDate);
-            odsHealthFacilityDefaultersByDistrict.DataBind();
-            gvHealthFacilityDefaultersByDistrict.DataSourceID = "odsHealthFacilityDefaultersByDistrict";
+
 
 
             gvExport.DataBind();

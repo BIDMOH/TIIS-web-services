@@ -6,9 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="530d796c-0780-454e-b5db-359b024888dd" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pages/HealthFacilityChildDefaultersReport.aspx" afterPath="$PROJECT_DIR$/Pages/HealthFacilityChildDefaultersReport.aspx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pages/HealthFacilityChildDefaultersReport.aspx.cs" afterPath="$PROJECT_DIR$/Pages/HealthFacilityChildDefaultersReport.aspx.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pages/HealthFacilityChildDefaultersReportByDistrict.aspx" afterPath="$PROJECT_DIR$/Pages/HealthFacilityChildDefaultersReportByDistrict.aspx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pages/HealthFacilityChildDefaultersReportByDistrict.aspx.cs" afterPath="$PROJECT_DIR$/Pages/HealthFacilityChildDefaultersReportByDistrict.aspx.cs" />
     </list>
     <ignored path="GIIS.Website.iws" />
@@ -30,16 +27,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="CoverageByTargetPopulationReports.aspx" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Pages/CoverageByTargetPopulationReports.aspx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2618">
-              <caret line="154" column="10" lean-forward="false" selection-start-line="154" selection-start-column="10" selection-end-line="154" selection-end-column="10" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="CoverageByTargetPopulationReports.aspx.cs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Pages/CoverageByTargetPopulationReports.aspx.cs">
           <provider selected="true" editor-type-id="text-editor">
@@ -53,20 +40,40 @@
       <file leaf-file-name="HealthFacilityChildDefaultersReportByDistrict.aspx.cs" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityChildDefaultersReportByDistrict.aspx.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-562">
-              <caret line="452" column="52" lean-forward="false" selection-start-line="452" selection-start-column="52" selection-end-line="452" selection-end-column="52" />
+            <state relative-caret-position="-1768">
+              <caret line="168" column="47" lean-forward="false" selection-start-line="168" selection-start-column="47" selection-end-line="168" selection-end-column="47" />
               <folding>
-                <element signature="e#0#25921#0" expanded="false" />
-                <element signature="e#0#25921#0" expanded="false" />
-                <element signature="e#0#25921#0" expanded="false" />
-                <element signature="e#0#25921#0" expanded="false" />
-                <element signature="e#0#25921#0" expanded="false" />
-                <element signature="e#0#25921#0" expanded="false" />
-                <element signature="e#0#25921#0" expanded="false" />
-                <element signature="e#0#25921#0" expanded="false" />
-                <element signature="e#0#25921#0" expanded="false" />
-                <element signature="e#0#25921#0" expanded="false" />
+                <element signature="e#0#25402#0" expanded="false" />
+                <element signature="e#0#25402#0" expanded="false" />
+                <element signature="e#0#25402#0" expanded="false" />
+                <element signature="e#0#25402#0" expanded="false" />
+                <element signature="e#0#25402#0" expanded="false" />
+                <element signature="e#0#25402#0" expanded="false" />
+                <element signature="e#0#25402#0" expanded="false" />
+                <element signature="e#0#25402#0" expanded="false" />
+                <element signature="e#0#25402#0" expanded="false" />
+                <element signature="e#0#25402#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HealthFacilityChildRegistrationsRatings.aspx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityChildRegistrationsRatings.aspx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="689">
+              <caret line="97" column="46" lean-forward="false" selection-start-line="97" selection-start-column="38" selection-end-line="97" selection-end-column="55" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HealthFacilityChildRegistrationsRatings.aspx.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityChildRegistrationsRatings.aspx.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-453">
+              <caret line="68" column="17" lean-forward="true" selection-start-line="68" selection-start-column="17" selection-end-line="68" selection-end-column="17" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -114,8 +121,8 @@
       <file leaf-file-name="HealthFacilityCoverageByAntigen.aspx.cs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityCoverageByAntigen.aspx.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="381">
-              <caret line="336" column="8" lean-forward="true" selection-start-line="336" selection-start-column="8" selection-end-line="336" selection-end-column="50" />
+            <state relative-caret-position="306">
+              <caret line="331" column="29" lean-forward="false" selection-start-line="331" selection-start-column="17" selection-end-line="331" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -518,12 +525,12 @@
       <workItem from="1493181442041" duration="1453000" />
       <workItem from="1493320845840" duration="11636000" />
       <workItem from="1493366941092" duration="3140000" />
-      <workItem from="1493738037949" duration="12626000" />
+      <workItem from="1493738037949" duration="15364000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="156556000" />
+    <option name="totallyTimeSpent" value="159294000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -542,9 +549,9 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.055646483" sideWeight="0.5091603" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.03764321" sideWeight="0.4908397" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.03764321" sideWeight="0.4908397" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18821605" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18821605" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -608,13 +615,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="824">
           <caret line="167" column="23" lean-forward="false" selection-start-line="167" selection-start-column="23" selection-end-line="167" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityChildRegistrationsRatings.aspx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="680">
-          <caret line="97" column="46" lean-forward="false" selection-start-line="97" selection-start-column="38" selection-end-line="97" selection-end-column="55" />
         </state>
       </provider>
     </entry>
@@ -758,13 +758,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityChildRegistrationsRatings.aspx.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="68" column="17" lean-forward="true" selection-start-line="68" selection-start-column="17" selection-end-line="68" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityListPMTCTstatusReport.aspx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -904,14 +897,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityCoverageByAntigen.aspx.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="381">
-          <caret line="336" column="8" lean-forward="true" selection-start-line="336" selection-start-column="8" selection-end-line="336" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Pages/mfno.aspx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -944,21 +929,45 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityCoverageByAntigen.aspx.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="331" column="29" lean-forward="false" selection-start-line="331" selection-start-column="17" selection-end-line="331" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityChildRegistrationsRatings.aspx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="689">
+          <caret line="97" column="46" lean-forward="false" selection-start-line="97" selection-start-column="38" selection-end-line="97" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityChildRegistrationsRatings.aspx.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-453">
+          <caret line="68" column="17" lean-forward="true" selection-start-line="68" selection-start-column="17" selection-end-line="68" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityChildDefaultersReportByDistrict.aspx.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-562">
-          <caret line="452" column="52" lean-forward="false" selection-start-line="452" selection-start-column="52" selection-end-line="452" selection-end-column="52" />
+        <state relative-caret-position="-1768">
+          <caret line="168" column="47" lean-forward="false" selection-start-line="168" selection-start-column="47" selection-end-line="168" selection-end-column="47" />
           <folding>
-            <element signature="e#0#25921#0" expanded="false" />
-            <element signature="e#0#25921#0" expanded="false" />
-            <element signature="e#0#25921#0" expanded="false" />
-            <element signature="e#0#25921#0" expanded="false" />
-            <element signature="e#0#25921#0" expanded="false" />
-            <element signature="e#0#25921#0" expanded="false" />
-            <element signature="e#0#25921#0" expanded="false" />
-            <element signature="e#0#25921#0" expanded="false" />
-            <element signature="e#0#25921#0" expanded="false" />
-            <element signature="e#0#25921#0" expanded="false" />
+            <element signature="e#0#25402#0" expanded="false" />
+            <element signature="e#0#25402#0" expanded="false" />
+            <element signature="e#0#25402#0" expanded="false" />
+            <element signature="e#0#25402#0" expanded="false" />
+            <element signature="e#0#25402#0" expanded="false" />
+            <element signature="e#0#25402#0" expanded="false" />
+            <element signature="e#0#25402#0" expanded="false" />
+            <element signature="e#0#25402#0" expanded="false" />
+            <element signature="e#0#25402#0" expanded="false" />
+            <element signature="e#0#25402#0" expanded="false" />
           </folding>
         </state>
       </provider>
