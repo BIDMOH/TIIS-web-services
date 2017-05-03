@@ -118,7 +118,74 @@ namespace GIIS.DataLayer
             }
         }
 
-		public static List<HealthFacilityDefaulters> GetHealthFacilityDefaultersByDistrictList(int districtCouncilId, DateTime fromDate, DateTime toDate)
+		public static List<HealthFacilityDefaulters> GetHealthFacilityDefaultersListByVillage(string hfid, string village, DateTime fromDate, DateTime toDate)
+		{
+			if (hfid.Equals(""))
+			{
+				return new List<HealthFacilityDefaulters>();
+			}
+			try
+			{
+				string query = @"SELECT ""CHILD"".""ID"",""FIRSTNAME1"", ""FIRSTNAME2"", ""LASTNAME1"", ""LASTNAME2"", 
+                             ""HEALTHCENTER_ID"", ""PLACE"".""NAME"" AS village, 
+                               ""PHONE"", ""MOBILE"", ""EMAIL"", ""MOTHER_FIRSTNAME"", ""MOTHER_LASTNAME"",""CHILD"".""MODIFIED_ON"",""CHILD"".""MODIFIED_BY"", ""BARCODE_ID"",array_to_string(array_agg(""FULLNAME""), ',') AS MISSED_VACCINES 
+                               FROM ""CHILD"" 
+									INNER JOIN ""VACCINATION_EVENT"" on ""CHILD"".""ID"" = ""VACCINATION_EVENT"".""CHILD_ID"" 
+									LEFT JOIN   ""NONVACCINATION_REASON"" ON ""VACCINATION_EVENT"".""NONVACCINATION_REASON_ID"" = ""NONVACCINATION_REASON"".""ID""
+									INNER JOIN ""DOSE"" ON ""VACCINATION_EVENT"".""DOSE_ID""=""DOSE"".""ID"" 
+	                                inner join  ""PLACE"" on ""CHILD"".""DOMICILE_ID"" = ""PLACE"".""ID""
+										WHERE 
+										""CHILD"".""STATUS_ID"" = 1 and 
+										""HEALTHCENTER_ID"" IN (SELECT DISTINCT A.""ID"" FROM ""HEALTH_FACILITY"" AS A
+							LEFT JOIN ""HEALTH_FACILITY"" AS B ON A.""ID"" = B.""PARENT_ID""
+							LEFT JOIN ""HEALTH_FACILITY"" AS C ON B.""ID"" = C.""PARENT_ID""
+							LEFT JOIN ""HEALTH_FACILITY"" AS D ON C.""ID"" = D.""PARENT_ID""
+							WHERE 
+							A.""ID"" = @hfid
+							UNION
+							SELECT DISTINCT B.""ID"" FROM ""HEALTH_FACILITY"" AS A
+							LEFT JOIN ""HEALTH_FACILITY"" AS B ON A.""ID"" = B.""PARENT_ID""
+							LEFT JOIN ""HEALTH_FACILITY"" AS C ON B.""ID"" = C.""PARENT_ID""
+							LEFT JOIN ""HEALTH_FACILITY"" AS D ON C.""ID"" = D.""PARENT_ID""
+							WHERE 
+							A.""ID"" = @hfid
+							UNION
+							SELECT DISTINCT C.""ID"" FROM ""HEALTH_FACILITY"" AS A
+							LEFT JOIN ""HEALTH_FACILITY"" AS B ON A.""ID"" = B.""PARENT_ID""
+							LEFT JOIN ""HEALTH_FACILITY"" AS C ON B.""ID"" = C.""PARENT_ID""
+							LEFT JOIN ""HEALTH_FACILITY"" AS D ON C.""ID"" = D.""PARENT_ID""
+							WHERE 
+							A.""ID"" = @hfid
+							UNION
+							SELECT DISTINCT D.""ID"" FROM ""HEALTH_FACILITY"" AS A
+							LEFT JOIN ""HEALTH_FACILITY"" AS B ON A.""ID"" = B.""PARENT_ID""
+							LEFT JOIN ""HEALTH_FACILITY"" AS C ON B.""ID"" = C.""PARENT_ID""
+							LEFT JOIN ""HEALTH_FACILITY"" AS D ON C.""ID"" = D.""PARENT_ID""
+							WHERE 
+							A.""ID"" = @hfid) AND ""PLACE"".""NAME"" = @village AND
+										""VACCINATION_EVENT"".""SCHEDULED_DATE"" >= @fromDate  AND ""VACCINATION_EVENT"".""SCHEDULED_DATE"" <= @toDate and 
+										""VACCINATION_STATUS"" = false AND ""VACCINATION_EVENT"".""IS_ACTIVE"" = true 
+										GROUP BY ""CHILD"".""ID"",""PLACE"".""NAME""   ORDER BY ""CHILD"".""ID"",""PLACE"".""NAME""";
+				;
+				List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
+					{
+					new NpgsqlParameter("@hfid", DbType.Int32) { Value = hfid },
+					new NpgsqlParameter("@village", DbType.String) { Value = village },
+					new NpgsqlParameter("@fromDate", DbType.DateTime) { Value = fromDate },
+					new NpgsqlParameter("@toDate", DbType.DateTime) { Value = toDate }
+					};
+				DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, parameters);
+
+
+				return GetHealthFacilityDefaultersAsList(dt);
+			}
+			catch (Exception ex)
+			{
+				Log.InsertEntity("HealthFacility", "GetHealthFacilityList", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+				throw ex;
+			}
+		}
+		public static List<HealthFacilityDefaulters> GetHealthFacilityDefaultersByDistrictListAndDose(int districtCouncilId, string doseName, DateTime fromDate, DateTime toDate)
 		{
 			if (districtCouncilId.Equals(""))
 			{
@@ -128,17 +195,19 @@ namespace GIIS.DataLayer
 			{
 				string query = @"SELECT * "+
                                "FROM   crosstab($$ SELECT t1.\"NAME\",t1.Month,t1.defaulter FROM (SELECT T2.Month,T2.\"NAME\", COUNT(T2.\"ID\") as DEFAULTER FROM" +
-							   " (SELECT \"CHILD\".\"ID\",EXTRACT(MONTH FROM \"SCHEDULED_DATE\") AS Month,\"HEALTH_FACILITY\".\"NAME\",\"CHILD\".\"MODIFIED_BY\", \"BARCODE_ID\" "+
+							   " (SELECT \"CHILD\".\"ID\",EXTRACT(MONTH FROM \"SCHEDULED_DATE\") AS Month,\"HEALTH_FACILITY\".\"NAME\",\"CHILD\".\"MODIFIED_BY\", \"BARCODE_ID\", \"DOSE\".\"FULLNAME\" " +
 							   " FROM \"CHILD\" " +
 							   "inner join \"VACCINATION_EVENT\" on \"CHILD\".\"ID\" = \"VACCINATION_EVENT\".\"CHILD_ID\" LEFT JOIN \"NONVACCINATION_REASON\" ON \"VACCINATION_EVENT\".\"NONVACCINATION_REASON_ID\" = \"NONVACCINATION_REASON\".\"ID\" " +
-							  
+							   "inner join \"DOSE\" on \"VACCINATION_EVENT\".\"DOSE_ID\" = \"DOSE\".\"ID\" " +
+							   "inner join \"SCHEDULED_VACCINATION\" on \"DOSE\".\"SCHEDULED_VACCINATION_ID\" = \"SCHEDULED_VACCINATION\".\"ID\"" +
 							   "inner join \"HEALTH_FACILITY\" ON \"CHILD\".\"HEALTHCENTER_ID\" = \"HEALTH_FACILITY\".\"ID\" " +
-							   "WHERE \"CHILD\".\"STATUS_ID\" = 1 and (\"HEALTH_FACILITY\".\"ID\" = " + districtCouncilId + " OR \"HEALTH_FACILITY\".\"PARENT_ID\" = " + districtCouncilId +") and \"VACCINATION_EVENT\".\"SCHEDULED_DATE\" <= NOW() AND\"VACCINATION_EVENT\".\"SCHEDULED_DATE\" >= '"+ fromDate.ToString() + "'  AND \"VACCINATION_EVENT\".\"SCHEDULED_DATE\" <= '"+toDate.ToString() + "' and \"VACCINATION_STATUS\" = false GROUP BY \"CHILD\".\"ID\",\"SCHEDULED_DATE\",\"HEALTH_FACILITY\".\"ID\",\"CHILD\".\"MODIFIED_BY\", \"BARCODE_ID\"  ) AS T2 GROUP BY T2.Month ,T2.\"NAME\" ORDER BY  \"NAME\",Month ) AS t1  $$) " +
+							   "WHERE \"CHILD\".\"STATUS_ID\" = 1 and (\"HEALTH_FACILITY\".\"ID\" = " + districtCouncilId + " OR \"HEALTH_FACILITY\".\"PARENT_ID\" = " + districtCouncilId + ") and \"DOSE\".\"SCHEDULED_VACCINATION_ID\" = '"+doseName+"' and \"VACCINATION_EVENT\".\"SCHEDULED_DATE\" <= NOW() AND\"VACCINATION_EVENT\".\"SCHEDULED_DATE\" >= '" + fromDate.ToString() + "'  AND \"VACCINATION_EVENT\".\"SCHEDULED_DATE\" <= '"+toDate.ToString() + "' and \"VACCINATION_STATUS\" = false GROUP BY \"CHILD\".\"ID\",\"SCHEDULED_DATE\",\"HEALTH_FACILITY\".\"ID\",\"CHILD\".\"MODIFIED_BY\", \"BARCODE_ID\",\"DOSE\".\"FULLNAME\"  ) AS T2 GROUP BY T2.Month ,T2.\"NAME\" ORDER BY  \"NAME\",Month ) AS t1  $$) " +
 							   " AS   final_result(\"NAME\" text, \"JAN\" bigint,\"FEB\" bigint,\"MAR\" bigint,\"APR\" bigint, \"MAY\" bigint,\"JUN\" bigint , \"JUL\" bigint , \"AUG\" bigint , \"SEP\" bigint, \"OCT\" bigint , \"NOV\" bigint, \"DEC\" bigint ) ";
 				
 				List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
 					{
 					new NpgsqlParameter("@districtCouncilId", DbType.Int32) { Value = districtCouncilId },
+					new NpgsqlParameter("@doseName", DbType.String) { Value = doseName },
 					new NpgsqlParameter("@fromDate", DbType.DateTime) { Value = fromDate },
 					new NpgsqlParameter("@toDate", DbType.DateTime) { Value = toDate }
 					};
@@ -156,27 +225,29 @@ namespace GIIS.DataLayer
 			}
 		}
 
-		public static List<HealthFacilityDefaulters> GetHealthFacilityFollowUpList(string hfid, DateTime fromDate, DateTime toDate)
+		public static List<HealthFacilityDefaulters> GetHealthFacilityDefaultersByDistrictList(string districtCouncilId, DateTime fromDate, DateTime toDate)
 		{
 			try
 			{
-				string query = String.Format(@"SELECT ""CHILD"".""ID"", ""SYSTEM_ID"",""CHILD_CUMULATIVE_SN"",""CHILD_REGISTRY_YEAR"", ""FIRSTNAME1"", ""FIRSTNAME2"", ""LASTNAME1"", ""LASTNAME2"", 
-                               ""BIRTHDATE"", ""GENDER"", ""HEALTHCENTER_ID"", ""BIRTHPLACE_ID"", ""COMMUNITY_ID"", 
-                               ""DOMICILE_ID"", ""STATUS_ID"", ""ADDRESS"", ""PHONE"", ""MOBILE"", ""EMAIL"", ""MOTHER_FIRSTNAME"", ""MOTHER_LASTNAME"",""MOTHER_HIV_STATUS"",""MOTHER_TT2_STATUS"", ""FATHER_ID"", 
-                               ""FATHER_FIRSTNAME"", ""FATHER_LASTNAME"", ""CARETAKER_ID"", ""CARETAKER_FIRSTNAME"", 
-                               ""CARETAKER_LASTNAME"", ""NONVACCINATION_REASON"".""NAME"" as ""NOTES"", ""CHILD"".""IS_ACTIVE"", ""CHILD"".""MODIFIED_ON"", ""CHILD"".""MODIFIED_BY"", ""BARCODE_ID"", ""TEMP_ID""
-                                FROM ""CHILD"" inner join ""VACCINATION_EVENT"" on ""CHILD"".""ID"" = ""VACCINATION_EVENT"".""CHILD_ID"" LEFT JOIN ""NONVACCINATION_REASON"" ON ""VACCINATION_EVENT"".""NONVACCINATION_REASON_ID"" = ""NONVACCINATION_REASON"".""ID""
-                                WHERE ""CHILD"".""STATUS_ID"" = 1 and ""VACCINATION_STATUS"" = false {0} and ""HEALTHCENTER_ID"" = @hfid AND ""MODIFIED_ON"" >= @fromDate OR ""MODIFIED_ON"" <= @toDate  ORDER BY ""BIRTHDATE"",""LASTNAME1"" OFFSET {1} LIMIT {2} ");
+				string query = @"SELECT * " +
+							   "FROM   crosstab($$ SELECT t1.\"NAME\",t1.Month,t1.defaulter FROM (SELECT T2.Month,T2.\"NAME\", COUNT(T2.\"ID\") as DEFAULTER FROM" +
+							   " (SELECT \"CHILD\".\"ID\",EXTRACT(MONTH FROM \"SCHEDULED_DATE\") AS Month,\"HEALTH_FACILITY\".\"NAME\",\"CHILD\".\"MODIFIED_BY\", \"BARCODE_ID\" " +
+							   " FROM \"CHILD\" " +
+							   "inner join \"VACCINATION_EVENT\" on \"CHILD\".\"ID\" = \"VACCINATION_EVENT\".\"CHILD_ID\" LEFT JOIN \"NONVACCINATION_REASON\" ON \"VACCINATION_EVENT\".\"NONVACCINATION_REASON_ID\" = \"NONVACCINATION_REASON\".\"ID\" " +
+
+							   "inner join \"HEALTH_FACILITY\" ON \"CHILD\".\"HEALTHCENTER_ID\" = \"HEALTH_FACILITY\".\"ID\" " +
+							   "WHERE \"CHILD\".\"STATUS_ID\" = 1 and (\"HEALTH_FACILITY\".\"ID\" = " + districtCouncilId + " OR \"HEALTH_FACILITY\".\"PARENT_ID\" = " + districtCouncilId + ") and \"VACCINATION_EVENT\".\"SCHEDULED_DATE\" <= NOW() AND\"VACCINATION_EVENT\".\"SCHEDULED_DATE\" >= '" + fromDate.ToString() + "'  AND \"VACCINATION_EVENT\".\"SCHEDULED_DATE\" <= '" + toDate.ToString() + "' and \"VACCINATION_STATUS\" = false GROUP BY \"CHILD\".\"ID\",\"SCHEDULED_DATE\",\"HEALTH_FACILITY\".\"ID\",\"CHILD\".\"MODIFIED_BY\", \"BARCODE_ID\"  ) AS T2 GROUP BY T2.Month ,T2.\"NAME\" ORDER BY  \"NAME\",Month ) AS t1  $$) " +
+							   " AS   final_result(\"NAME\" text, \"JAN\" bigint,\"FEB\" bigint,\"MAR\" bigint,\"APR\" bigint, \"MAY\" bigint,\"JUN\" bigint , \"JUL\" bigint , \"AUG\" bigint , \"SEP\" bigint, \"OCT\" bigint , \"NOV\" bigint, \"DEC\" bigint ) ";
 				List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
 					{
-					new NpgsqlParameter("@hfid", DbType.Int32) { Value = hfid },
+					new NpgsqlParameter("@hfid", DbType.Int32) { Value = districtCouncilId },
 					new NpgsqlParameter("@fromDate", DbType.DateTime) { Value = fromDate },
 					new NpgsqlParameter("@toDate", DbType.DateTime) { Value = toDate }
 					};
 				DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, parameters);
 
 
-				return GetHealthFacilityDefaultersAsList(dt);
+				return GetHealthFacilityDefaultersByDistrictAsList(dt);
 			}
 			catch (Exception ex)
 			{
