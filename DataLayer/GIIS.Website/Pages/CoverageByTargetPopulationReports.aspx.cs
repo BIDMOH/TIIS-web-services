@@ -307,6 +307,8 @@ public partial class Pages_CoverageByTargetPopulationReport : System.Web.UI.Page
             {
                 e.Row.Cells[8].ForeColor = System.Drawing.Color.Red;
             }
+
+            targetPopulation.Text = "Target Population : "+Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "TargetPopulation"));
         }
     }
 

@@ -20,7 +20,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <style type="text/css">
         .ajax__calendar_container { z-index : 1000 ; }
-        
+
     </style>
 </asp:Content>
 
@@ -32,11 +32,11 @@
                 <li class="active">
                     <a href="Report.aspx">Reports</a></li>
                 <li class="active">
-                    <asp:Label ID="lblTitle" runat="server" Text="Coverage Report By Target Population" /></li>
+                    <asp:Label ID="lblTitle" runat="server" Text="Coverage Report By Schedule" /></li>
             </ol>
         </div>
     </div>
-    
+
     <div class="row">
         <div class="col-md-12">
             <h2><asp:Label ID="lblReportName" Text="Coverage Report By Target Population" runat="server" /></h2>
@@ -44,35 +44,38 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <em><asp:Label runat="server" ID="lblReportDescription" Text="This report shows the measure of percentage difference between number of children immunized with third dose and first dose for each antigen against pre-determined target population "  /></em>
+            <em><asp:Label runat="server" ID="lblReportDescription" Text="This report shows the measure of percentage difference between number of children immunized with third dose and first dose for each antigen against pre-determined target population"  /></em>
         </div>
     </div>
-    <br />
 
     <div class="row">
-        <div class="col-md-9">        
-            <asp:TextBox ID="hack" runat="server" Visible="false" />
-                    <input type="hidden" name="j_username" value="<%=ConfigurationManager.AppSettings["JasperUser"]%>" />
-                    <input type="hidden" name="j_password" value="<%=ConfigurationManager.AppSettings["JasperPassword"]%>" />
-            <div class="container-fluid" runat="server" id="reportInputs">
+            <div class="col-md-9">
+                <asp:TextBox ID="hack" runat="server" Visible="false" />
+                        <input type="hidden" name="j_username" value="<%=ConfigurationManager.AppSettings["JasperUser"]%>" />
+                        <input type="hidden" name="j_password" value="<%=ConfigurationManager.AppSettings["JasperPassword"]%>" />
+                <div class="container-fluid" runat="server" id="reportInputs">
+                </div>
+            </div>
+
+            <div class="col-md-3 col-lg-3 clearfix">
+                <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn btn-primary btn-raised" OnClick="btnSearch_Click" />
             </div>
         </div>
-
-        <div class="col-md-3 col-lg-3 clearfix">
-            <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn btn-primary btn-raised" OnClick="btnSearch_Click" />
-        </div>
-    </div>
-    <div class="row">
-                        <div class="col-md-9 col-xs-10 col-sm-10 col-lg-10 clearfix"></div>
-                        <div class="col-md-3 col-xs-1 col-sm-1 col-lg-1 clearfix">
-                            <asp:Button ID="btnExcel" runat="server" Visible="false" Text="Excel" CssClass="btn btn-success btn-raised" OnClick="btnExcel_Click" />
-                        </div>
-                        <div class="col-md-1 col-xs-1 col-sm-1 col-lg-1 clearfix"></div>
+        <div class="row">
+                    <div class="col-md-9 col-xs-9 col-sm-9 col-lg-9 clearfix"></div>
+                    <div class="col-md-9 col-xs-9 col-sm-9 col-lg-9 clearfix">
+                         <h5><asp:Label ID="targetPopulation" Text="Target Population = 0" runat="server"/></h5>
                     </div>
+                    <div class="col-md-3 col-xs-3 col-sm-3 col-lg-3 clearfix">
+                        <asp:Button ID="btnExcel" runat="server" Visible="false" Text="Excel" CssClass="btn btn-success btn-raised" OnClick="btnExcel_Click" />
+                    </div>
+                    <div class="col-md-1 col-xs-1 col-sm-1 col-lg-1 clearfix"></div>
+                </div>
+            <br />
 
     <div class="row">
         <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12 clearfix" style="overflow:auto">
-            
+
         <asp:GridView ID="gvCoverageReport" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered table-hover table-responsive" AllowPaging="True" OnRowDataBound="gvCoverageReport_DataBound" OnDataBound="gvOn_DataBound" OnPageIndexChanging="gvCoverageReport_PageIndexChanging" PageSize="25">
                 <PagerSettings Position="Top" Mode="NumericFirstLast" />
                 <PagerStyle CssClass="pagination" HorizontalAlign="Left" VerticalAlign="Top" />
@@ -108,7 +111,7 @@
                                  <td width="10%" align="center"> COV(%) </td>
                               </tr>
                          </table>
-                 </HeaderStyle>
+                    </HeaderStyle>
 
                 </HeaderTemplate>
                 <ItemTemplate>
@@ -134,7 +137,7 @@
         <!--
             data binding of the gridview is done in connection to the Datalayer methods that queries the data EnablePaging="false"
         -->
-        <asp:ObjectDataSource ID="odsAntigens" runat="server" SelectMethod="GetScheduledVaccinationList" TypeName="GIIS.DataLayer.ScheduledVaccination">
+        <asp:ObjectDataSource ID="odsAntigens" runat="server" SelectMethod="GetScheduledVaccinationsWithoutTTandMeasles" TypeName="GIIS.DataLayer.CoverageReportEntity">
             <SelectParameters>
             </SelectParameters>
         </asp:ObjectDataSource>
@@ -154,6 +157,7 @@
 
     </div>
 </div>
+
 
 
      <div class="row">

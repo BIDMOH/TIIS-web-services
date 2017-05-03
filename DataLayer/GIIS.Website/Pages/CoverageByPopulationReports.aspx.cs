@@ -248,6 +248,19 @@ public partial class Pages_CoverageReport : System.Web.UI.Page
     }
 
 
+    public override void VerifyRenderingInServerForm(Control control)
+    {
+       return;
+    }
+    protected void gvOn_DataBound(object sender, EventArgs e)
+    {
+        if (gvCoverageReport.Rows.Count > 0)
+            btnExcel.Visible = true;
+        else
+            btnExcel.Visible = false;
+
+
+    }
      protected void gvCoverageReport_PageIndexChanging(object sender, GridViewPageEventArgs e)
      {
          gvCoverageReport.PageIndex = e.NewPageIndex;
@@ -285,6 +298,32 @@ public partial class Pages_CoverageReport : System.Web.UI.Page
 
         }
 
+    }
+    protected void btnExcel_Click(object sender, EventArgs e)
+    {
+
+        selectedHealthFacilityID = Request.Form["selectHealthFacility"];
+        string strFromDate = String.Format("{0}", Request.Form["dateFrom"]);
+        string strToDate = String.Format("{0}", Request.Form["dateTo"]);
+
+        odsExport.SelectParameters.Clear();
+        odsExport.DataBind();
+
+        gvExport.DataSourceID = "odsExport";
+        gvExport.DataBind();
+
+        Response.Clear();
+        Response.AddHeader("content-disposition", "attachment;filename=CoverageSchedule.xls");
+        Response.Charset = "";
+
+        Response.ContentType = "application/ms-excel";
+        System.IO.StringWriter stringWrite = new System.IO.StringWriter();
+        System.Web.UI.HtmlTextWriter htmlWrite = new HtmlTextWriter(stringWrite);
+
+
+        gvExport.RenderControl(htmlWrite);
+        Response.Write(stringWrite.ToString());
+        Response.End();
     }
 
 

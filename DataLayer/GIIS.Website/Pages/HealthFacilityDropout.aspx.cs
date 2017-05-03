@@ -277,23 +277,24 @@ public partial class Pages_HealthFacilityDropout : System.Web.UI.Page
     {
 
 
-//		if (e.Row.RowType != DataControlRowType.Header)
-//		{
-//			if (Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "ChildrenRegistrationsMaximumThreshold")) != null && Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "ChildrenRegistrationsMinimumThreshold")) != null)
-//			{
-//				if (Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "ChildrenRegistrationsMaximumThreshold")) != 0 && Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "ChildrenRegistrationsMinimumThreshold")) != 0)
-//				{
-//					if (Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "SessionsCount")) > Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "ChildrenRegistrationsMaximumThreshold")))
-//					{
-//						e.Row.ForeColor = System.Drawing.Color.Green;
-//					}
-//					else if (Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "SessionsCount")) < Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "ChildrenRegistrationsMinimumThreshold")))
-//					{
-//						e.Row.ForeColor = System.Drawing.Color.Red;
-//					}
-//				}
-//			}
-//		}
+		if (e.Row.RowType != DataControlRowType.Header)
+		{
+			if (Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "BCG_MR1_Percentage")) > 10)
+            {
+                e.Row.ForeColor = System.Drawing.Color.Green;
+            }
+            else {
+                e.Row.ForeColor = System.Drawing.Color.Red;
+            }
+
+            if (Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "PENTA1_PENTA3_Percentage")) > 10)
+            {
+                e.Row.ForeColor = System.Drawing.Color.Green;
+            }
+            else {
+                e.Row.ForeColor = System.Drawing.Color.Red;
+            }
+		}
 
 
     }

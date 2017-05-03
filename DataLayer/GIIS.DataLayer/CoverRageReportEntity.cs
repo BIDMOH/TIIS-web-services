@@ -37,6 +37,8 @@ namespace GIIS.DataLayer
 		public String CoveragePercentage { get; set; }
 		public Double CoveragePercentageValue { get; set; }
 
+		public Int32 TargetPopulation { get; set; }
+
         #endregion
 
         #region GetData
@@ -112,7 +114,6 @@ namespace GIIS.DataLayer
             }
         }
 
-
 		public static List<CoverageReportEntity> GetCoverageReport(DataTable dt,string vaccinationName)
         {
 			List<CoverageReportEntity> oList = new List<CoverageReportEntity>();
@@ -122,23 +123,26 @@ namespace GIIS.DataLayer
 				{
 					try
 					{
-						CoverageReportEntity o = new CoverageReportEntity();
-						o.DoseName = row["dose"].ToString();
-						o.MaleWithinCatchment = Helper.ConvertToInt(row["malewithin"]);
-						o.FemaleWithinCatchment = Helper.ConvertToInt(row["femalewithin"]);
-						o.FemaleOutsideCatchment = Helper.ConvertToInt(row["femaleoutside"]);
-						o.MaleOutsideCatchment = Helper.ConvertToInt(row["maleoutside"]);
+						if (!row["dose"].ToString().ToLower().Equals("tt") && !row["dose"].ToString().ToLower().Equals("measles"))
+						{
+							CoverageReportEntity o = new CoverageReportEntity();
+							o.DoseName = row["dose"].ToString();
+							o.MaleWithinCatchment = Helper.ConvertToInt(row["malewithin"]);
+							o.FemaleWithinCatchment = Helper.ConvertToInt(row["femalewithin"]);
+							o.FemaleOutsideCatchment = Helper.ConvertToInt(row["femaleoutside"]);
+							o.MaleOutsideCatchment = Helper.ConvertToInt(row["maleoutside"]);
 
-						o.ExpectedTotalCatchmentsVaccinations = Helper.ConvertToInt(row["expected_total"]);
+							o.ExpectedTotalCatchmentsVaccinations = Helper.ConvertToInt(row["expected_total"]);
 
-						o.TotalWithinCatchment = o.MaleWithinCatchment + o.FemaleWithinCatchment;
-						o.TotalOutsideCatchment = o.MaleOutsideCatchment + o.FemaleOutsideCatchment;
-						o.TotalVaccinations = o.TotalWithinCatchment + o.TotalOutsideCatchment;
+							o.TotalWithinCatchment = o.MaleWithinCatchment + o.FemaleWithinCatchment;
+							o.TotalOutsideCatchment = o.MaleOutsideCatchment + o.FemaleOutsideCatchment;
+							o.TotalVaccinations = o.TotalWithinCatchment + o.TotalOutsideCatchment;
 
-						o.CoveragePercentage = ((o.TotalWithinCatchment * 100) / o.ExpectedTotalCatchmentsVaccinations)+"%";
-						o.CoveragePercentageValue = ((o.TotalWithinCatchment * 100) / o.ExpectedTotalCatchmentsVaccinations);
+							o.CoveragePercentage = ((o.TotalWithinCatchment * 100) / o.ExpectedTotalCatchmentsVaccinations) + "%";
+							o.CoveragePercentageValue = ((o.TotalWithinCatchment * 100) / o.ExpectedTotalCatchmentsVaccinations);
 
-						oList.Add(o);
+							oList.Add(o);
+						}
 					}
 					catch (Exception ex)
 					{
@@ -153,21 +157,24 @@ namespace GIIS.DataLayer
 				List<Dose> doses = Dose.GetDoseByVaccinationName(vaccinationName);
 				foreach (Dose dose in doses)
 				{
-					CoverageReportEntity o = new CoverageReportEntity();
-					o.DoseName =dose.Fullname;
-					o.MaleWithinCatchment = 0;
-					o.FemaleWithinCatchment = 0;
-					o.FemaleOutsideCatchment = 0;
-					o.MaleOutsideCatchment = 0;
+					if (!dose.Fullname.ToLower().Equals("tt") && !dose.Fullname.ToLower().Equals("measles"))
+					{
+						CoverageReportEntity o = new CoverageReportEntity();
+						o.DoseName = dose.Fullname;
+						o.MaleWithinCatchment = 0;
+						o.FemaleWithinCatchment = 0;
+						o.FemaleOutsideCatchment = 0;
+						o.MaleOutsideCatchment = 0;
 
-					o.ExpectedTotalCatchmentsVaccinations = 0;
+						o.ExpectedTotalCatchmentsVaccinations = 0;
 
-					o.TotalWithinCatchment = 0;
-					o.TotalOutsideCatchment = 0;
-					o.TotalVaccinations = 0;
-					o.CoveragePercentage = " - ";
-					o.CoveragePercentageValue =0;
-					oList.Add(o);
+						o.TotalWithinCatchment = 0;
+						o.TotalOutsideCatchment = 0;
+						o.TotalVaccinations = 0;
+						o.CoveragePercentage = " - ";
+						o.CoveragePercentageValue = 0;
+						oList.Add(o);
+					}
 				}
 			}
     
@@ -184,36 +191,40 @@ namespace GIIS.DataLayer
 				{
 					try
 					{
-						CoverageReportEntity o = new CoverageReportEntity();
-						o.DoseName = row["dose"].ToString();
-						o.MaleWithinCatchment = Helper.ConvertToInt(row["malewithin"]);
-						o.FemaleWithinCatchment = Helper.ConvertToInt(row["femalewithin"]);
-						o.FemaleOutsideCatchment = Helper.ConvertToInt(row["femaleoutside"]);
-						o.MaleOutsideCatchment = Helper.ConvertToInt(row["maleoutside"]);
-
-						o.ExpectedTotalCatchmentsVaccinations = Helper.ConvertToInt(row["expected_total"]);
-
-						o.TotalWithinCatchment = o.MaleWithinCatchment + o.FemaleWithinCatchment;
-						o.TotalOutsideCatchment = o.MaleOutsideCatchment + o.FemaleOutsideCatchment;
-						o.TotalVaccinations = o.TotalWithinCatchment + o.TotalOutsideCatchment;
-
-						DateTime date = DateTime.Now;
-
-						Cohort c = Cohort.GetCohortDataByHealthFacilityAndYear(healthFacilityId, date.Year);
-
-						if (c.CohortValue == 0)
+						if (!row["dose"].ToString().ToLower().Equals("tt") && !row["dose"].ToString().ToLower().Equals("measles"))
 						{
-							o.CoveragePercentage = " - ";
-							o.CoveragePercentageValue = 0;
-						}
-						else
-						{
-							o.CoveragePercentage = ((o.TotalWithinCatchment * 100.0) / c.CohortValue)+"%";
-							o.CoveragePercentageValue = ((o.TotalWithinCatchment * 100.0) / c.CohortValue);
-						}
+							CoverageReportEntity o = new CoverageReportEntity();
+							o.DoseName = row["dose"].ToString();
+							o.MaleWithinCatchment = Helper.ConvertToInt(row["malewithin"]);
+							o.FemaleWithinCatchment = Helper.ConvertToInt(row["femalewithin"]);
+							o.FemaleOutsideCatchment = Helper.ConvertToInt(row["femaleoutside"]);
+							o.MaleOutsideCatchment = Helper.ConvertToInt(row["maleoutside"]);
+
+							o.ExpectedTotalCatchmentsVaccinations = Helper.ConvertToInt(row["expected_total"]);
+
+							o.TotalWithinCatchment = o.MaleWithinCatchment + o.FemaleWithinCatchment;
+							o.TotalOutsideCatchment = o.MaleOutsideCatchment + o.FemaleOutsideCatchment;
+							o.TotalVaccinations = o.TotalWithinCatchment + o.TotalOutsideCatchment;
+
+							DateTime date = DateTime.Now;
+
+							Cohort c = Cohort.GetCohortDataByHealthFacilityAndYear(healthFacilityId, date.Year);
+							o.TargetPopulation = c.CohortValue;
+
+							if (c.CohortValue == 0)
+							{
+								o.CoveragePercentage = " - ";
+								o.CoveragePercentageValue = 0;
+							}
+							else
+							{
+								o.CoveragePercentage = ((o.TotalWithinCatchment * 100.0) / c.CohortValue) + "%";
+								o.CoveragePercentageValue = ((o.TotalWithinCatchment * 100.0) / c.CohortValue);
+							}
 
 
-						oList.Add(o);
+							oList.Add(o);
+						}
 					}
 					catch (Exception ex)
 					{
@@ -228,24 +239,80 @@ namespace GIIS.DataLayer
 				List<Dose> doses = Dose.GetDoseByVaccinationName(vaccinationName);
 				foreach (Dose dose in doses)
 				{
-					CoverageReportEntity o = new CoverageReportEntity();
-					o.DoseName = dose.Fullname;
-					o.MaleWithinCatchment = 0;
-					o.FemaleWithinCatchment = 0;
-					o.FemaleOutsideCatchment = 0;
-					o.MaleOutsideCatchment = 0;
+					if (!dose.Fullname.ToLower().Equals("tt") && !dose.Fullname.ToLower().Equals("measles"))
+					{
+						CoverageReportEntity o = new CoverageReportEntity();
+						o.DoseName = dose.Fullname;
+						o.MaleWithinCatchment = 0;
+						o.FemaleWithinCatchment = 0;
+						o.FemaleOutsideCatchment = 0;
+						o.MaleOutsideCatchment = 0;
 
-					o.ExpectedTotalCatchmentsVaccinations = 0;
+						o.ExpectedTotalCatchmentsVaccinations = 0;
 
-					o.TotalWithinCatchment = 0;
-					o.TotalOutsideCatchment = 0;
-					o.TotalVaccinations = 0;
-					o.CoveragePercentage = " - ";
-					o.CoveragePercentageValue = 0;
-					oList.Add(o);
+						o.TotalWithinCatchment = 0;
+						o.TotalOutsideCatchment = 0;
+						o.TotalVaccinations = 0;
+						o.CoveragePercentage = " - ";
+						o.CoveragePercentageValue = 0;
+
+						oList.Add(o);
+					}
 				}
 			}
 
+			return oList;
+		}
+
+
+
+		//This method is used by coverage reports which does not require TT and Measles
+		public static List<ScheduledVaccination> GetScheduledVaccinationsWithoutTTandMeasles()
+		{
+			try
+			{
+				string query = @"SELECT * FROM ""SCHEDULED_VACCINATION"";";
+				DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, null);
+				return GetScheduledVaccinationAsList(dt);
+			}
+			catch (Exception ex)
+			{
+				Log.InsertEntity("ScheduledVaccination", "GetScheduledVaccinationList", 4, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+				throw ex;
+			}
+		}
+
+		public static List<ScheduledVaccination> GetScheduledVaccinationAsList(DataTable dt)
+		{
+			List<ScheduledVaccination> oList = new List<ScheduledVaccination>();
+			foreach (DataRow row in dt.Rows)
+			{
+				try
+				{
+					if (!row["NAME"].ToString().ToLower().Equals("tt") && !row["NAME"].ToString().ToLower().Equals("measles"))
+					{
+						ScheduledVaccination o = new ScheduledVaccination();
+						o.Id = Helper.ConvertToInt(row["ID"]);
+						o.Name = row["NAME"].ToString();
+						o.Code = row["CODE"].ToString();
+						o.ItemId = Helper.ConvertToInt(row["ITEM_ID"]);
+						o.EntryDate = Helper.ConvertToDate(row["ENTRY_DATE"]);
+						o.ExitDate = Helper.ConvertToDate(row["EXIT_DATE"]);
+						o.Status = Helper.ConvertToBoolean(row["STATUS"]);
+						o.Deseases = row["DESEASES"].ToString();
+						o.Notes = row["NOTES"].ToString();
+						o.IsActive = Helper.ConvertToBoolean(row["IS_ACTIVE"]);
+						o.ModifiedOn = Helper.ConvertToDate(row["MODIFIED_ON"]);
+						o.ModifiedBy = Helper.ConvertToInt(row["MODIFIED_BY"]);
+						oList.Add(o);
+					}
+				}
+				catch (Exception ex)
+				{
+					Log.InsertEntity("ScheduledVaccination", "GetScheduledVaccinationAsList", 1, ex.StackTrace.Replace("'", ""), ex.Message.Replace("'", ""));
+					throw ex;
+				}
+			}
 			return oList;
 		}
 
