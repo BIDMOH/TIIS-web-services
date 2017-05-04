@@ -111,6 +111,13 @@ namespace GIIS.DataLayer
 			
 			List<HealthFacilityVaccinationSummary> oList = new List<HealthFacilityVaccinationSummary>();
 
+			HealthFacilityVaccinationSummary total = new HealthFacilityVaccinationSummary();
+			total.facilityName = "TOTAL";
+			total.registered = 0;
+			total.home = 0;
+			total.facility = 0;
+			total.vaccinated = 0;
+
 
 			foreach (DataRow row in dt.Rows)
 			{
@@ -122,7 +129,12 @@ namespace GIIS.DataLayer
 					o.home = Helper.ConvertToInt(row["REGISTERED_HOME"]);
 					o.facility = Helper.ConvertToInt(row["REGISTERED_FACILITY"]);
 					o.vaccinated = Helper.ConvertToInt(row["vaccinated"]);
-					
+
+
+					total.registered += o.registered;
+					total.home += o.home;
+					total.facility += o.facility;
+					total.vaccinated += o.vaccinated;
 
 					oList.Add(o);
 				}
@@ -132,6 +144,7 @@ namespace GIIS.DataLayer
 					throw ex;
 				}
 			}
+			oList.Add(total);
 
 
 			return oList;

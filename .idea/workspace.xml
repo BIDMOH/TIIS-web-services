@@ -10,12 +10,10 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Services/GIIS.Tanzania.WCF/obj/Debug/GIIS.Tanzania.WCF.dll" afterPath="$PROJECT_DIR$/Services/GIIS.Tanzania.WCF/obj/Debug/GIIS.Tanzania.WCF.dll" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Services/GIIS.Tanzania.WCF/obj/Debug/GIIS.Tanzania.WCF.pdb" afterPath="$PROJECT_DIR$/Services/GIIS.Tanzania.WCF/obj/Debug/GIIS.Tanzania.WCF.pdb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DataLayer/GIIS.DataLayer/Cohort.cs" afterPath="$PROJECT_DIR$/DataLayer/GIIS.DataLayer/Cohort.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DataLayer/GIIS.DataLayer/CoverRageReportEntity.cs" afterPath="$PROJECT_DIR$/DataLayer/GIIS.DataLayer/CoverRageReportEntity.cs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DataLayer/GIIS.DataLayer/GIIS.DataLayer.userprefs" afterPath="$PROJECT_DIR$/DataLayer/GIIS.DataLayer/GIIS.DataLayer.userprefs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/CoverageByTargetPopulationReports.aspx" afterPath="$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/CoverageByTargetPopulationReports.aspx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/CoverageByTargetPopulationReports.aspx.cs" afterPath="$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/CoverageByTargetPopulationReports.aspx.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilityCohortData.aspx.cs" afterPath="$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilityCohortData.aspx.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DataLayer/GIIS.DataLayer/HealthFacilityVaccinationSummary.cs" afterPath="$PROJECT_DIR$/DataLayer/GIIS.DataLayer/HealthFacilityVaccinationSummary.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilityChildDefaultersReportByDistrict.aspx.cs" afterPath="$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilityChildDefaultersReportByDistrict.aspx.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilityListVaccinationSummary.aspx.cs" afterPath="$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilityListVaccinationSummary.aspx.cs" />
     </list>
     <ignored path="TIIS-web-services.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -40,31 +38,41 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="CoverageByTargetPopulationReports.aspx.cs" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/CoverageByTargetPopulationReports.aspx.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7692308">
-              <caret line="250" column="55" selection-start-line="250" selection-start-column="55" selection-end-line="250" selection-end-column="55" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CoverageByTargetPopulationReports.aspx" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/CoverageByTargetPopulationReports.aspx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.6666667">
-              <caret line="66" column="68" selection-start-line="66" selection-start-column="68" selection-end-line="66" selection-end-column="68" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HealthFacilityChildVaccinationsRatings.aspx.cs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilityChildVaccinationsRatings.aspx.cs">
+      <file leaf-file-name="HealthFacilityListVaccinationSummary.aspx.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilityListVaccinationSummary.aspx.cs">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="271" column="31" selection-start-line="271" selection-start-column="16" selection-end-line="271" selection-end-column="31" />
+              <caret line="108" column="174" selection-start-line="108" selection-start-column="174" selection-end-line="108" selection-end-column="174" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HealthFacilityListVaccinationSummary.aspx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilityListVaccinationSummary.aspx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-19.5">
+              <caret line="159" column="117" selection-start-line="159" selection-start-column="81" selection-end-line="159" selection-end-column="117" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HealthFacilityChildDefaultersReportByDistrict.aspx.cs" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilityChildDefaultersReportByDistrict.aspx.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.75980395">
+              <caret line="345" column="81" selection-start-line="345" selection-start-column="81" selection-end-line="345" selection-end-column="81" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CoverageByTargetPopulationReports.aspx.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/CoverageByTargetPopulationReports.aspx.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="101" column="165" selection-start-line="101" selection-start-column="15" selection-end-line="101" selection-end-column="165" />
               <folding />
             </state>
           </provider>
@@ -86,6 +94,8 @@
         <option value="$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilityCohortData.aspx.cs" />
         <option value="$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/CoverageByTargetPopulationReports.aspx" />
         <option value="$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/CoverageByTargetPopulationReports.aspx.cs" />
+        <option value="$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilityListVaccinationSummary.aspx.cs" />
+        <option value="$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilityChildDefaultersReportByDistrict.aspx.cs" />
       </list>
     </option>
   </component>
@@ -427,8 +437,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/CoverageByTargetPopulationReports.aspx.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7692308">
-          <caret line="250" column="55" selection-start-line="250" selection-start-column="55" selection-end-line="250" selection-end-column="55" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="101" column="165" selection-start-line="101" selection-start-column="15" selection-end-line="101" selection-end-column="165" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilityListVaccinationSummary.aspx.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="108" column="174" selection-start-line="108" selection-start-column="174" selection-end-line="108" selection-end-column="174" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilityListVaccinationSummary.aspx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-19.5">
+          <caret line="159" column="117" selection-start-line="159" selection-start-column="81" selection-end-line="159" selection-end-column="117" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilityChildDefaultersReportByDistrict.aspx.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.75980395">
+          <caret line="345" column="81" selection-start-line="345" selection-start-column="81" selection-end-line="345" selection-end-column="81" />
           <folding />
         </state>
       </provider>
