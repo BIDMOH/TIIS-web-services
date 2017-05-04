@@ -2,18 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d32c8675-416f-4a19-8602-be7e586c3dd2" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DataLayer/GIIS.DataLayer/bin/Debug/GIIS.DataLayer.pdb" afterPath="$PROJECT_DIR$/DataLayer/GIIS.DataLayer/bin/Debug/GIIS.DataLayer.pdb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DataLayer/GIIS.DataLayer/obj/Debug/GIIS.DataLayer.pdb" afterPath="$PROJECT_DIR$/DataLayer/GIIS.DataLayer/obj/Debug/GIIS.DataLayer.pdb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Services/GIIS.Tanzania.WCF/bin/GIIS.DataLayer.dll" afterPath="$PROJECT_DIR$/Services/GIIS.Tanzania.WCF/bin/GIIS.DataLayer.dll" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Services/GIIS.Tanzania.WCF/bin/GIIS.Tanzania.WCF.dll" afterPath="$PROJECT_DIR$/Services/GIIS.Tanzania.WCF/bin/GIIS.Tanzania.WCF.dll" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Services/GIIS.Tanzania.WCF/bin/GIIS.Tanzania.WCF.pdb" afterPath="$PROJECT_DIR$/Services/GIIS.Tanzania.WCF/bin/GIIS.Tanzania.WCF.pdb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Services/GIIS.Tanzania.WCF/obj/Debug/GIIS.Tanzania.WCF.dll" afterPath="$PROJECT_DIR$/Services/GIIS.Tanzania.WCF/obj/Debug/GIIS.Tanzania.WCF.dll" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Services/GIIS.Tanzania.WCF/obj/Debug/GIIS.Tanzania.WCF.pdb" afterPath="$PROJECT_DIR$/Services/GIIS.Tanzania.WCF/obj/Debug/GIIS.Tanzania.WCF.pdb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DataLayer/GIIS.DataLayer/GIIS.DataLayer.userprefs" afterPath="$PROJECT_DIR$/DataLayer/GIIS.DataLayer/GIIS.DataLayer.userprefs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DataLayer/GIIS.DataLayer/HealthFacilityVaccinationSummary.cs" afterPath="$PROJECT_DIR$/DataLayer/GIIS.DataLayer/HealthFacilityVaccinationSummary.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/CoverageByScheduleReports.aspx" afterPath="$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/CoverageByScheduleReports.aspx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/CoverageByScheduleReports.aspx.cs" afterPath="$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/CoverageByScheduleReports.aspx.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilityChildDefaultersReportByDistrict.aspx" afterPath="$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilityChildDefaultersReportByDistrict.aspx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilityChildDefaultersReportByDistrict.aspx.cs" afterPath="$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilityChildDefaultersReportByDistrict.aspx.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilityListVaccinationSummary.aspx.cs" afterPath="$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilityListVaccinationSummary.aspx.cs" />
     </list>
     <ignored path="TIIS-web-services.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -38,41 +30,47 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="HealthFacilityListVaccinationSummary.aspx.cs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilityListVaccinationSummary.aspx.cs">
+      <file leaf-file-name="HealthFacilityChildDefaultersReportByDistrict.aspx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilityChildDefaultersReportByDistrict.aspx">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="108" column="174" selection-start-line="108" selection-start-column="174" selection-end-line="108" selection-end-column="174" />
-              <folding />
+            <state vertical-scroll-proportion="-18.958334">
+              <caret line="265" column="3" selection-start-line="265" selection-start-column="3" selection-end-line="273" selection-end-column="14" />
+              <folding>
+                <element signature="n#div#4;n#asp:Content#1;n#!!top" expanded="false" />
+                <element signature="n#div#5;n#asp:Content#1;n#!!top" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HealthFacilityListVaccinationSummary.aspx" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilityListVaccinationSummary.aspx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-19.5">
-              <caret line="159" column="117" selection-start-line="159" selection-start-column="81" selection-end-line="159" selection-end-column="117" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HealthFacilityChildDefaultersReportByDistrict.aspx.cs" pinned="false" current-in-tab="true">
+      <file leaf-file-name="HealthFacilityChildDefaultersReportByDistrict.aspx.cs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilityChildDefaultersReportByDistrict.aspx.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.75980395">
-              <caret line="345" column="81" selection-start-line="345" selection-start-column="81" selection-end-line="345" selection-end-column="81" />
+            <state vertical-scroll-proportion="-7.4074073">
+              <caret line="696" column="53" selection-start-line="696" selection-start-column="51" selection-end-line="696" selection-end-column="53" />
+              <folding>
+                <element signature="e#0#34700#0" expanded="false" />
+                <element signature="e#0#34700#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CoverageByScheduleReports.aspx" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/CoverageByScheduleReports.aspx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.51085716">
+              <caret line="162" column="86" selection-start-line="162" selection-start-column="86" selection-end-line="162" selection-end-column="86" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CoverageByTargetPopulationReports.aspx.cs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/CoverageByTargetPopulationReports.aspx.cs">
+      <file leaf-file-name="CoverageByScheduleReports.aspx.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/CoverageByScheduleReports.aspx.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="101" column="165" selection-start-line="101" selection-start-column="15" selection-end-line="101" selection-end-column="165" />
+            <state vertical-scroll-proportion="-15.62963">
+              <caret line="391" column="0" selection-start-line="391" selection-start-column="0" selection-end-line="391" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -90,12 +88,14 @@
         <option value="$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/CoverageByPopulationReports.aspx.cs" />
         <option value="$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/CoverageByPopulationReports.aspx" />
         <option value="$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilityDropout.aspx.cs" />
-        <option value="$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/CoverageByScheduleReports.aspx" />
         <option value="$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilityCohortData.aspx.cs" />
         <option value="$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/CoverageByTargetPopulationReports.aspx" />
         <option value="$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/CoverageByTargetPopulationReports.aspx.cs" />
         <option value="$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilityListVaccinationSummary.aspx.cs" />
         <option value="$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilityChildDefaultersReportByDistrict.aspx.cs" />
+        <option value="$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilityChildDefaultersReportByDistrict.aspx" />
+        <option value="$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/CoverageByScheduleReports.aspx.cs" />
+        <option value="$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/CoverageByScheduleReports.aspx" />
       </list>
     </option>
   </component>
@@ -219,6 +219,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="FullScreen" value="true" />
+    <property name="js-jscs-nodeInterpreter" value="/usr/local/bin/node" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
@@ -266,9 +267,10 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34725052" sideWeight="0.504884" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32959184" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32857144" sideWeight="0.497558" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3469388" sideWeight="0.495116" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3469388" sideWeight="0.495116" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -276,7 +278,6 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
@@ -376,14 +377,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/CoverageByScheduleReports.aspx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-52.625">
-          <caret line="194" column="0" selection-start-line="194" selection-start-column="0" selection-end-line="194" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilityCohortData.aspx">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-3.6666667">
@@ -407,14 +400,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5948718">
           <caret line="281" column="68" selection-start-line="281" selection-start-column="68" selection-end-line="281" selection-end-column="68" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/CoverageByScheduleReports.aspx.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="346" column="40" selection-start-line="346" selection-start-column="40" selection-end-line="346" selection-end-column="40" />
           <folding />
         </state>
       </provider>
@@ -459,10 +444,88 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/AdjustmentReason.aspx.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="297" column="12" selection-start-line="297" selection-start-column="12" selection-end-line="297" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/Forms.aspx.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="123" column="39" selection-start-line="123" selection-start-column="31" selection-end-line="123" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/Default.aspx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.0196079">
+          <caret line="22" column="39" selection-start-line="22" selection-start-column="37" selection-end-line="22" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/Default.aspx.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.4074073">
+          <caret line="30" column="34" selection-start-line="30" selection-start-column="31" selection-end-line="30" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataLayer/GIIS.Website/MasterPage.master">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="39" column="47" selection-start-line="39" selection-start-column="30" selection-end-line="39" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/MasterPage.master">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="43" column="41" selection-start-line="43" selection-start-column="41" selection-end-line="43" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilityChildDefaultersReportByDistrict.aspx.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.75980395">
-          <caret line="345" column="81" selection-start-line="345" selection-start-column="81" selection-end-line="345" selection-end-column="81" />
+        <state vertical-scroll-proportion="-7.4074073">
+          <caret line="696" column="53" selection-start-line="696" selection-start-column="51" selection-end-line="696" selection-end-column="53" />
+          <folding>
+            <element signature="e#0#34700#0" expanded="false" />
+            <element signature="e#0#34700#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/CoverageByScheduleReports.aspx.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-15.62963">
+          <caret line="391" column="0" selection-start-line="391" selection-start-column="0" selection-end-line="391" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilityChildDefaultersReportByDistrict.aspx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-18.958334">
+          <caret line="265" column="3" selection-start-line="265" selection-start-column="3" selection-end-line="273" selection-end-column="14" />
+          <folding>
+            <element signature="n#div#4;n#asp:Content#1;n#!!top" expanded="false" />
+            <element signature="n#div#5;n#asp:Content#1;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/CoverageByScheduleReports.aspx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.51085716">
+          <caret line="162" column="86" selection-start-line="162" selection-start-column="86" selection-end-line="162" selection-end-column="86" />
           <folding />
         </state>
       </provider>

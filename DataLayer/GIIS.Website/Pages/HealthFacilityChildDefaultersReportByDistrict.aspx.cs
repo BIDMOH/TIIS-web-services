@@ -20,10 +20,13 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Web;
-
+using System.IO;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using iTextSharp.text.html.simpleparser;
 
 public partial class Pages_HealthFacilityChildrenRegistrationsDefaultersReportByDistrict : System.Web.UI.Page
 {
@@ -278,279 +281,279 @@ public partial class Pages_HealthFacilityChildrenRegistrationsDefaultersReportBy
 
         }
 
-    protected void btnSearch_Click(object sender, EventArgs e)
-    {
-
-        string sessionvar = "_healthfacility_" + CurrentEnvironment.LoggedUser.HealthFacilityId.ToString();
-        string s;
-        if (Session[sessionvar] != null)
-            s = Session[sessionvar].ToString();
-        else
+        protected void btnSearch_Click(object sender, EventArgs e)
         {
-            s = HealthFacility.GetAllChildsForOneHealthFacility(CurrentEnvironment.LoggedUser.HealthFacilityId);
-            Session[sessionvar] = s;
+
+            string sessionvar = "_healthfacility_" + CurrentEnvironment.LoggedUser.HealthFacilityId.ToString();
+            string s;
+            if (Session[sessionvar] != null)
+                s = Session[sessionvar].ToString();
+            else
+            {
+                s = HealthFacility.GetAllChildsForOneHealthFacility(CurrentEnvironment.LoggedUser.HealthFacilityId);
+                Session[sessionvar] = s;
+            }
+
+
+            ToDate = Request.Form["selectReportingPeriod"];
+
+            DateTime oDate = DateTime.Parse(ToDate);
+            DateTime fromDateTime = new DateTime(oDate.Year, 1,1, 1, 1, 1);
+            DateTime toDateTime = new DateTime(oDate.Year, oDate.Month,1, 1, 1, 1);
+
+            string strToDate = toDateTime.ToString();
+            string strFromDate = fromDateTime.ToString();
+
+            selectedHealthFacilityID = Request.Form["selectHealthFacility"];
+            selectedDose = Request.Form["selectDose"];
+
+
+
+            if(selectedDose == "all"){
+                    odsHealthFacilityDefaultersByDistrict.SelectParameters.Clear();
+                    odsHealthFacilityDefaultersByDistrict.SelectParameters.Add("districtCouncilId", selectedHealthFacilityID);
+                    odsHealthFacilityDefaultersByDistrict.SelectParameters.Add("fromDate", strFromDate);
+                    odsHealthFacilityDefaultersByDistrict.SelectParameters.Add("toDate", strToDate);
+                    odsHealthFacilityDefaultersByDistrict.DataBind();
+                    gvHealthFacilityDefaultersByDistrict.DataSourceID = "odsHealthFacilityDefaultersByDistrict";
+            }else{
+                    odsHealthFacilityDefaultersByDistrictAndDose.SelectParameters.Clear();
+                    odsHealthFacilityDefaultersByDistrictAndDose.SelectParameters.Add("districtCouncilId", selectedHealthFacilityID);
+                    odsHealthFacilityDefaultersByDistrictAndDose.SelectParameters.Add("doseName", selectedDose);
+                    odsHealthFacilityDefaultersByDistrictAndDose.SelectParameters.Add("fromDate", strFromDate);
+                    odsHealthFacilityDefaultersByDistrictAndDose.SelectParameters.Add("toDate", strToDate);
+                    odsHealthFacilityDefaultersByDistrictAndDose.DataBind();
+                    gvHealthFacilityDefaultersByDistrict.DataSourceID = "odsHealthFacilityDefaultersByDistrictAndDose";
+            }
+
+
+
+
+            gvHealthFacilityDefaultersByDistrict.DataBind();
+
+            createInputControls();
+
+
+                DateTime d = oDate.AddMonths(-1);
+                if(d.Month == 2){
+                    gvHealthFacilityDefaultersByDistrict.Columns[3].Visible = false;
+                    gvHealthFacilityDefaultersByDistrict.Columns[4].Visible = false;
+                    gvHealthFacilityDefaultersByDistrict.Columns[5].Visible = false;
+                    gvHealthFacilityDefaultersByDistrict.Columns[6].Visible = false;
+                    gvHealthFacilityDefaultersByDistrict.Columns[7].Visible = false;
+                    gvHealthFacilityDefaultersByDistrict.Columns[8].Visible = false;
+                    gvHealthFacilityDefaultersByDistrict.Columns[9].Visible = false;
+                    gvHealthFacilityDefaultersByDistrict.Columns[10].Visible = false;
+                    gvHealthFacilityDefaultersByDistrict.Columns[11].Visible = false;
+                    gvHealthFacilityDefaultersByDistrict.Columns[12].Visible = false;
+                    gvHealthFacilityDefaultersByDistrict.Columns[13].Visible = false;
+                }
+                else if(d.Month == 3){
+                    gvHealthFacilityDefaultersByDistrict.Columns[4].Visible = false;
+                    gvHealthFacilityDefaultersByDistrict.Columns[5].Visible = false;
+                    gvHealthFacilityDefaultersByDistrict.Columns[6].Visible = false;
+                    gvHealthFacilityDefaultersByDistrict.Columns[7].Visible = false;
+                    gvHealthFacilityDefaultersByDistrict.Columns[8].Visible = false;
+                    gvHealthFacilityDefaultersByDistrict.Columns[9].Visible = false;
+                    gvHealthFacilityDefaultersByDistrict.Columns[10].Visible = false;
+                    gvHealthFacilityDefaultersByDistrict.Columns[11].Visible = false;
+                    gvHealthFacilityDefaultersByDistrict.Columns[12].Visible = false;
+                    gvHealthFacilityDefaultersByDistrict.Columns[13].Visible = false;
+                }
+                else if(d.Month == 4){
+                    gvHealthFacilityDefaultersByDistrict.Columns[5].Visible = false;
+                    gvHealthFacilityDefaultersByDistrict.Columns[6].Visible = false;
+                    gvHealthFacilityDefaultersByDistrict.Columns[7].Visible = false;
+                    gvHealthFacilityDefaultersByDistrict.Columns[8].Visible = false;
+                    gvHealthFacilityDefaultersByDistrict.Columns[9].Visible = false;
+                    gvHealthFacilityDefaultersByDistrict.Columns[10].Visible = false;
+                    gvHealthFacilityDefaultersByDistrict.Columns[11].Visible = false;
+                    gvHealthFacilityDefaultersByDistrict.Columns[12].Visible = false;
+                    gvHealthFacilityDefaultersByDistrict.Columns[13].Visible = false;
+                }
+                else if(d.Month == 5){
+                     gvHealthFacilityDefaultersByDistrict.Columns[6].Visible = false;
+                     gvHealthFacilityDefaultersByDistrict.Columns[7].Visible = false;
+                     gvHealthFacilityDefaultersByDistrict.Columns[8].Visible = false;
+                     gvHealthFacilityDefaultersByDistrict.Columns[9].Visible = false;
+                     gvHealthFacilityDefaultersByDistrict.Columns[10].Visible = false;
+                     gvHealthFacilityDefaultersByDistrict.Columns[11].Visible = false;
+                     gvHealthFacilityDefaultersByDistrict.Columns[12].Visible = false;
+                    gvHealthFacilityDefaultersByDistrict.Columns[13].Visible = false;
+                }
+                else if(d.Month == 6){
+                    gvHealthFacilityDefaultersByDistrict.Columns[7].Visible = false;
+                    gvHealthFacilityDefaultersByDistrict.Columns[8].Visible = false;
+                    gvHealthFacilityDefaultersByDistrict.Columns[9].Visible = false;
+                    gvHealthFacilityDefaultersByDistrict.Columns[10].Visible = false;
+                    gvHealthFacilityDefaultersByDistrict.Columns[11].Visible = false;
+                    gvHealthFacilityDefaultersByDistrict.Columns[12].Visible = false;
+                    gvHealthFacilityDefaultersByDistrict.Columns[13].Visible = false;
+                }
+                else if(d.Month == 7){
+                    gvHealthFacilityDefaultersByDistrict.Columns[8].Visible = false;
+                    gvHealthFacilityDefaultersByDistrict.Columns[9].Visible = false;
+                    gvHealthFacilityDefaultersByDistrict.Columns[10].Visible = false;
+                    gvHealthFacilityDefaultersByDistrict.Columns[11].Visible = false;
+                    gvHealthFacilityDefaultersByDistrict.Columns[12].Visible = false;
+                    gvHealthFacilityDefaultersByDistrict.Columns[13].Visible = false;
+                }
+                else if(d.Month == 8){
+                    gvHealthFacilityDefaultersByDistrict.Columns[9].Visible = false;
+                    gvHealthFacilityDefaultersByDistrict.Columns[10].Visible = false;
+                    gvHealthFacilityDefaultersByDistrict.Columns[11].Visible = false;
+                    gvHealthFacilityDefaultersByDistrict.Columns[12].Visible = false;
+                    gvHealthFacilityDefaultersByDistrict.Columns[13].Visible = false;
+                }
+                else if(d.Month == 9){
+                    gvHealthFacilityDefaultersByDistrict.Columns[10].Visible = false;
+                    gvHealthFacilityDefaultersByDistrict.Columns[11].Visible = false;
+                    gvHealthFacilityDefaultersByDistrict.Columns[12].Visible = false;
+                    gvHealthFacilityDefaultersByDistrict.Columns[13].Visible = false;
+                }
+                else if(d.Month == 10){
+                    gvHealthFacilityDefaultersByDistrict.Columns[11].Visible = false;
+                    gvHealthFacilityDefaultersByDistrict.Columns[12].Visible = false;
+                    gvHealthFacilityDefaultersByDistrict.Columns[13].Visible = false;
+                }
+                else if(d.Month == 11){
+                    gvHealthFacilityDefaultersByDistrict.Columns[12].Visible = false;
+                    gvHealthFacilityDefaultersByDistrict.Columns[13].Visible = false;
+                }
+
+
+
         }
 
-
-        ToDate = Request.Form["selectReportingPeriod"];
-
-        DateTime oDate = DateTime.Parse(ToDate);
-        DateTime fromDateTime = new DateTime(oDate.Year, 1,1, 1, 1, 1);
-        DateTime toDateTime = new DateTime(oDate.Year, oDate.Month,1, 1, 1, 1);
-
-        string strToDate = toDateTime.ToString();
-        string strFromDate = fromDateTime.ToString();
-
-        selectedHealthFacilityID = Request.Form["selectHealthFacility"];
-        selectedDose = Request.Form["selectDose"];
-
-
-
-        if(selectedDose == "all"){
-                odsHealthFacilityDefaultersByDistrict.SelectParameters.Clear();
-                odsHealthFacilityDefaultersByDistrict.SelectParameters.Add("districtCouncilId", selectedHealthFacilityID);
-                odsHealthFacilityDefaultersByDistrict.SelectParameters.Add("fromDate", strFromDate);
-                odsHealthFacilityDefaultersByDistrict.SelectParameters.Add("toDate", strToDate);
-                odsHealthFacilityDefaultersByDistrict.DataBind();
-                gvHealthFacilityDefaultersByDistrict.DataSourceID = "odsHealthFacilityDefaultersByDistrict";
-        }else{
-                odsHealthFacilityDefaultersByDistrictAndDose.SelectParameters.Clear();
-                odsHealthFacilityDefaultersByDistrictAndDose.SelectParameters.Add("districtCouncilId", selectedHealthFacilityID);
-                odsHealthFacilityDefaultersByDistrictAndDose.SelectParameters.Add("doseName", selectedDose);
-                odsHealthFacilityDefaultersByDistrictAndDose.SelectParameters.Add("fromDate", strFromDate);
-                odsHealthFacilityDefaultersByDistrictAndDose.SelectParameters.Add("toDate", strToDate);
-                odsHealthFacilityDefaultersByDistrictAndDose.DataBind();
-                gvHealthFacilityDefaultersByDistrict.DataSourceID = "odsHealthFacilityDefaultersByDistrictAndDose";
+        protected void gvHealthFacilityDefaultersByDistrict_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvHealthFacilityDefaultersByDistrict.PageIndex = e.NewPageIndex;
         }
 
+        protected void gvHealthFacilityDefaultersByDistrict_DataBound(object sender, GridViewRowEventArgs e)
+        {
 
-
-
-        gvHealthFacilityDefaultersByDistrict.DataBind();
-
-        createInputControls();
-
-
-            DateTime d = oDate.AddMonths(-1);
-            if(d.Month == 2){
-                gvHealthFacilityDefaultersByDistrict.Columns[3].Visible = false;
-                gvHealthFacilityDefaultersByDistrict.Columns[4].Visible = false;
-                gvHealthFacilityDefaultersByDistrict.Columns[5].Visible = false;
-                gvHealthFacilityDefaultersByDistrict.Columns[6].Visible = false;
-                gvHealthFacilityDefaultersByDistrict.Columns[7].Visible = false;
-                gvHealthFacilityDefaultersByDistrict.Columns[8].Visible = false;
-                gvHealthFacilityDefaultersByDistrict.Columns[9].Visible = false;
-                gvHealthFacilityDefaultersByDistrict.Columns[10].Visible = false;
-                gvHealthFacilityDefaultersByDistrict.Columns[11].Visible = false;
-                gvHealthFacilityDefaultersByDistrict.Columns[12].Visible = false;
-                gvHealthFacilityDefaultersByDistrict.Columns[13].Visible = false;
-            }
-            else if(d.Month == 3){
-                gvHealthFacilityDefaultersByDistrict.Columns[4].Visible = false;
-                gvHealthFacilityDefaultersByDistrict.Columns[5].Visible = false;
-                gvHealthFacilityDefaultersByDistrict.Columns[6].Visible = false;
-                gvHealthFacilityDefaultersByDistrict.Columns[7].Visible = false;
-                gvHealthFacilityDefaultersByDistrict.Columns[8].Visible = false;
-                gvHealthFacilityDefaultersByDistrict.Columns[9].Visible = false;
-                gvHealthFacilityDefaultersByDistrict.Columns[10].Visible = false;
-                gvHealthFacilityDefaultersByDistrict.Columns[11].Visible = false;
-                gvHealthFacilityDefaultersByDistrict.Columns[12].Visible = false;
-                gvHealthFacilityDefaultersByDistrict.Columns[13].Visible = false;
-            }
-            else if(d.Month == 4){
-                gvHealthFacilityDefaultersByDistrict.Columns[5].Visible = false;
-                gvHealthFacilityDefaultersByDistrict.Columns[6].Visible = false;
-                gvHealthFacilityDefaultersByDistrict.Columns[7].Visible = false;
-                gvHealthFacilityDefaultersByDistrict.Columns[8].Visible = false;
-                gvHealthFacilityDefaultersByDistrict.Columns[9].Visible = false;
-                gvHealthFacilityDefaultersByDistrict.Columns[10].Visible = false;
-                gvHealthFacilityDefaultersByDistrict.Columns[11].Visible = false;
-                gvHealthFacilityDefaultersByDistrict.Columns[12].Visible = false;
-                gvHealthFacilityDefaultersByDistrict.Columns[13].Visible = false;
-            }
-            else if(d.Month == 5){
-                 gvHealthFacilityDefaultersByDistrict.Columns[6].Visible = false;
-                 gvHealthFacilityDefaultersByDistrict.Columns[7].Visible = false;
-                 gvHealthFacilityDefaultersByDistrict.Columns[8].Visible = false;
-                 gvHealthFacilityDefaultersByDistrict.Columns[9].Visible = false;
-                 gvHealthFacilityDefaultersByDistrict.Columns[10].Visible = false;
-                 gvHealthFacilityDefaultersByDistrict.Columns[11].Visible = false;
-                 gvHealthFacilityDefaultersByDistrict.Columns[12].Visible = false;
-                gvHealthFacilityDefaultersByDistrict.Columns[13].Visible = false;
-            }
-            else if(d.Month == 6){
-                gvHealthFacilityDefaultersByDistrict.Columns[7].Visible = false;
-                gvHealthFacilityDefaultersByDistrict.Columns[8].Visible = false;
-                gvHealthFacilityDefaultersByDistrict.Columns[9].Visible = false;
-                gvHealthFacilityDefaultersByDistrict.Columns[10].Visible = false;
-                gvHealthFacilityDefaultersByDistrict.Columns[11].Visible = false;
-                gvHealthFacilityDefaultersByDistrict.Columns[12].Visible = false;
-                gvHealthFacilityDefaultersByDistrict.Columns[13].Visible = false;
-            }
-            else if(d.Month == 7){
-                gvHealthFacilityDefaultersByDistrict.Columns[8].Visible = false;
-                gvHealthFacilityDefaultersByDistrict.Columns[9].Visible = false;
-                gvHealthFacilityDefaultersByDistrict.Columns[10].Visible = false;
-                gvHealthFacilityDefaultersByDistrict.Columns[11].Visible = false;
-                gvHealthFacilityDefaultersByDistrict.Columns[12].Visible = false;
-                gvHealthFacilityDefaultersByDistrict.Columns[13].Visible = false;
-            }
-            else if(d.Month == 8){
-                gvHealthFacilityDefaultersByDistrict.Columns[9].Visible = false;
-                gvHealthFacilityDefaultersByDistrict.Columns[10].Visible = false;
-                gvHealthFacilityDefaultersByDistrict.Columns[11].Visible = false;
-                gvHealthFacilityDefaultersByDistrict.Columns[12].Visible = false;
-                gvHealthFacilityDefaultersByDistrict.Columns[13].Visible = false;
-            }
-            else if(d.Month == 9){
-                gvHealthFacilityDefaultersByDistrict.Columns[10].Visible = false;
-                gvHealthFacilityDefaultersByDistrict.Columns[11].Visible = false;
-                gvHealthFacilityDefaultersByDistrict.Columns[12].Visible = false;
-                gvHealthFacilityDefaultersByDistrict.Columns[13].Visible = false;
-            }
-            else if(d.Month == 10){
-                gvHealthFacilityDefaultersByDistrict.Columns[11].Visible = false;
-                gvHealthFacilityDefaultersByDistrict.Columns[12].Visible = false;
-                gvHealthFacilityDefaultersByDistrict.Columns[13].Visible = false;
-            }
-            else if(d.Month == 11){
-                gvHealthFacilityDefaultersByDistrict.Columns[12].Visible = false;
-                gvHealthFacilityDefaultersByDistrict.Columns[13].Visible = false;
-            }
-
-
-        
-    }
-
-    protected void gvHealthFacilityDefaultersByDistrict_PageIndexChanging(object sender, GridViewPageEventArgs e)
-    {
-        gvHealthFacilityDefaultersByDistrict.PageIndex = e.NewPageIndex;
-    }
-
-    protected void gvHealthFacilityDefaultersByDistrict_DataBound(object sender, GridViewRowEventArgs e)
-    {
-
-    }
-
-    protected void btnExcel_Click(object sender, EventArgs e)
-    {
-
-        ToDate = Request.Form["selectReportingPeriod"];
-        selectedDose = Request.Form["selectDose"];
-        selectedHealthFacilityID = Request.Form["selectHealthFacility"];
-
-        DateTime oDate = DateTime.Parse(ToDate);
-        DateTime fromDateTime = new DateTime(oDate.Year, 1,1, 1, 1, 1);
-        DateTime toDateTime = new DateTime(oDate.Year, oDate.Month,1, 1, 1, 1);
-
-        string strToDate = toDateTime.ToString();
-        string strFromDate = fromDateTime.ToString();
-
-        if(selectedDose == "all"){
-            odsExport.SelectParameters.Clear();
-            odsExport.SelectParameters.Add("districtCouncilId", selectedHealthFacilityID);
-            odsExport.SelectParameters.Add("fromDate", strFromDate);
-            odsExport.SelectParameters.Add("toDate", strToDate);
-            odsExport.DataBind();
-
-            gvExport.DataSourceID = "odsExport";
-        }else{
-            odsExportByDose.SelectParameters.Clear();
-            odsExportByDose.SelectParameters.Add("districtCouncilId", selectedHealthFacilityID);
-            odsExportByDose.SelectParameters.Add("doseName", selectedDose);
-            odsExportByDose.SelectParameters.Add("fromDate", strFromDate);
-            odsExportByDose.SelectParameters.Add("toDate", strToDate);
-            odsExportByDose.DataBind();
-
-            gvExport.DataSourceID = "odsExportByDose";
         }
 
+        protected void btnExcel_Click(object sender, EventArgs e)
+        {
 
+            ToDate = Request.Form["selectReportingPeriod"];
+            selectedDose = Request.Form["selectDose"];
+            selectedHealthFacilityID = Request.Form["selectHealthFacility"];
 
-            gvExport.DataBind();
+            DateTime oDate = DateTime.Parse(ToDate);
+            DateTime fromDateTime = new DateTime(oDate.Year, 1,1, 1, 1, 1);
+            DateTime toDateTime = new DateTime(oDate.Year, oDate.Month,1, 1, 1, 1);
 
-            DateTime d = oDate.AddMonths(-1);
+            string strToDate = toDateTime.ToString();
+            string strFromDate = fromDateTime.ToString();
 
-            if(d.Month == 2){
-                gvExport.Columns[3].Visible = false;
-                gvExport.Columns[4].Visible = false;
-                gvExport.Columns[5].Visible = false;
-                gvExport.Columns[6].Visible = false;
-                gvExport.Columns[7].Visible = false;
-                gvExport.Columns[8].Visible = false;
-                gvExport.Columns[9].Visible = false;
-                gvExport.Columns[10].Visible = false;
-                gvExport.Columns[11].Visible = false;
-                gvExport.Columns[12].Visible = false;
-            }else if(d.Month == 3){
-                gvExport.Columns[4].Visible = false;
-                gvExport.Columns[5].Visible = false;
-                gvExport.Columns[6].Visible = false;
-                gvExport.Columns[7].Visible = false;
-                gvExport.Columns[8].Visible = false;
-                gvExport.Columns[9].Visible = false;
-                gvExport.Columns[10].Visible = false;
-                gvExport.Columns[11].Visible = false;
-                gvExport.Columns[12].Visible = false;
-            }else if(d.Month == 4){
-                gvExport.Columns[5].Visible = false;
-                gvExport.Columns[6].Visible = false;
-                gvExport.Columns[7].Visible = false;
-                gvExport.Columns[8].Visible = false;
-                gvExport.Columns[9].Visible = false;
-                gvExport.Columns[10].Visible = false;
-                gvExport.Columns[11].Visible = false;
-                gvExport.Columns[12].Visible = false;
-            }else if(d.Month == 5){
-                 gvExport.Columns[6].Visible = false;
-                 gvExport.Columns[7].Visible = false;
-                 gvExport.Columns[8].Visible = false;
-                 gvExport.Columns[9].Visible = false;
-                 gvExport.Columns[10].Visible = false;
-                 gvExport.Columns[11].Visible = false;
-                 gvExport.Columns[12].Visible = false;
-            }else if(d.Month == 6){
-                gvExport.Columns[7].Visible = false;
-                gvExport.Columns[8].Visible = false;
-                gvExport.Columns[9].Visible = false;
-                gvExport.Columns[10].Visible = false;
-                gvExport.Columns[11].Visible = false;
-                gvExport.Columns[12].Visible = false;
-            }else if(d.Month == 7){
-                gvExport.Columns[8].Visible = false;
-                gvExport.Columns[9].Visible = false;
-                gvExport.Columns[10].Visible = false;
-                gvExport.Columns[11].Visible = false;
-                gvExport.Columns[12].Visible = false;
-            }else if(d.Month == 8){
-                gvExport.Columns[9].Visible = false;
-                gvExport.Columns[10].Visible = false;
-                gvExport.Columns[11].Visible = false;
-                gvExport.Columns[12].Visible = false;
-            }else if(d.Month == 9){
-                gvExport.Columns[10].Visible = false;
-                gvExport.Columns[11].Visible = false;
-                gvExport.Columns[12].Visible = false;
-            }else if(d.Month == 10){
-                gvExport.Columns[11].Visible = false;
-                gvExport.Columns[12].Visible = false;
-            }else if(d.Month == 11){
-                gvExport.Columns[12].Visible = false;
+            if(selectedDose == "all"){
+                odsExport.SelectParameters.Clear();
+                odsExport.SelectParameters.Add("districtCouncilId", selectedHealthFacilityID);
+                odsExport.SelectParameters.Add("fromDate", strFromDate);
+                odsExport.SelectParameters.Add("toDate", strToDate);
+                odsExport.DataBind();
+
+                gvExport.DataSourceID = "odsExport";
+            }else{
+                odsExportByDose.SelectParameters.Clear();
+                odsExportByDose.SelectParameters.Add("districtCouncilId", selectedHealthFacilityID);
+                odsExportByDose.SelectParameters.Add("doseName", selectedDose);
+                odsExportByDose.SelectParameters.Add("fromDate", strFromDate);
+                odsExportByDose.SelectParameters.Add("toDate", strToDate);
+                odsExportByDose.DataBind();
+
+                gvExport.DataSourceID = "odsExportByDose";
             }
 
-            Response.Clear();
-            Response.AddHeader("content-disposition", "attachment;filename=DefaultersByDistrict.xls");
-            Response.Charset = "";
-
-            Response.ContentType = "application/ms-excel";
-            System.IO.StringWriter stringWrite = new System.IO.StringWriter();
-            System.Web.UI.HtmlTextWriter htmlWrite = new HtmlTextWriter(stringWrite);
 
 
-            gvExport.RenderControl(htmlWrite);
-            Response.Write(stringWrite.ToString());
-            Response.End();
-        }
+                gvExport.DataBind();
+
+                DateTime d = oDate.AddMonths(-1);
+
+                if(d.Month == 2){
+                    gvExport.Columns[3].Visible = false;
+                    gvExport.Columns[4].Visible = false;
+                    gvExport.Columns[5].Visible = false;
+                    gvExport.Columns[6].Visible = false;
+                    gvExport.Columns[7].Visible = false;
+                    gvExport.Columns[8].Visible = false;
+                    gvExport.Columns[9].Visible = false;
+                    gvExport.Columns[10].Visible = false;
+                    gvExport.Columns[11].Visible = false;
+                    gvExport.Columns[12].Visible = false;
+                }else if(d.Month == 3){
+                    gvExport.Columns[4].Visible = false;
+                    gvExport.Columns[5].Visible = false;
+                    gvExport.Columns[6].Visible = false;
+                    gvExport.Columns[7].Visible = false;
+                    gvExport.Columns[8].Visible = false;
+                    gvExport.Columns[9].Visible = false;
+                    gvExport.Columns[10].Visible = false;
+                    gvExport.Columns[11].Visible = false;
+                    gvExport.Columns[12].Visible = false;
+                }else if(d.Month == 4){
+                    gvExport.Columns[5].Visible = false;
+                    gvExport.Columns[6].Visible = false;
+                    gvExport.Columns[7].Visible = false;
+                    gvExport.Columns[8].Visible = false;
+                    gvExport.Columns[9].Visible = false;
+                    gvExport.Columns[10].Visible = false;
+                    gvExport.Columns[11].Visible = false;
+                    gvExport.Columns[12].Visible = false;
+                }else if(d.Month == 5){
+                     gvExport.Columns[6].Visible = false;
+                     gvExport.Columns[7].Visible = false;
+                     gvExport.Columns[8].Visible = false;
+                     gvExport.Columns[9].Visible = false;
+                     gvExport.Columns[10].Visible = false;
+                     gvExport.Columns[11].Visible = false;
+                     gvExport.Columns[12].Visible = false;
+                }else if(d.Month == 6){
+                    gvExport.Columns[7].Visible = false;
+                    gvExport.Columns[8].Visible = false;
+                    gvExport.Columns[9].Visible = false;
+                    gvExport.Columns[10].Visible = false;
+                    gvExport.Columns[11].Visible = false;
+                    gvExport.Columns[12].Visible = false;
+                }else if(d.Month == 7){
+                    gvExport.Columns[8].Visible = false;
+                    gvExport.Columns[9].Visible = false;
+                    gvExport.Columns[10].Visible = false;
+                    gvExport.Columns[11].Visible = false;
+                    gvExport.Columns[12].Visible = false;
+                }else if(d.Month == 8){
+                    gvExport.Columns[9].Visible = false;
+                    gvExport.Columns[10].Visible = false;
+                    gvExport.Columns[11].Visible = false;
+                    gvExport.Columns[12].Visible = false;
+                }else if(d.Month == 9){
+                    gvExport.Columns[10].Visible = false;
+                    gvExport.Columns[11].Visible = false;
+                    gvExport.Columns[12].Visible = false;
+                }else if(d.Month == 10){
+                    gvExport.Columns[11].Visible = false;
+                    gvExport.Columns[12].Visible = false;
+                }else if(d.Month == 11){
+                    gvExport.Columns[12].Visible = false;
+                }
+
+                Response.Clear();
+                Response.AddHeader("content-disposition", "attachment;filename=DefaultersByDistrict.xls");
+                Response.Charset = "";
+
+                Response.ContentType = "application/ms-excel";
+                System.IO.StringWriter stringWrite = new System.IO.StringWriter();
+                System.Web.UI.HtmlTextWriter htmlWrite = new HtmlTextWriter(stringWrite);
+
+
+                gvExport.RenderControl(htmlWrite);
+                Response.Write(stringWrite.ToString());
+                Response.End();
+            }
 
         public override void VerifyRenderingInServerForm(Control control)
         {
@@ -560,8 +563,174 @@ public partial class Pages_HealthFacilityChildrenRegistrationsDefaultersReportBy
         protected void gvOn_DataBound(object sender, EventArgs e)
         {
             if (gvHealthFacilityDefaultersByDistrict.Rows.Count > 0)
+            {
                 btnExcel.Visible = true;
+                btnPdf.Visible = true;
+            }
             else
+            {
                 btnExcel.Visible = false;
+                btnPdf.Visible = false;
+            }
         }
+
+
+
+        protected void btnPdf_Click(object sender, EventArgs e)
+        {
+            ToDate = Request.Form["selectReportingPeriod"];
+            selectedDose = Request.Form["selectDose"];
+            selectedHealthFacilityID = Request.Form["selectHealthFacility"];
+
+            DateTime oDate = DateTime.Parse(ToDate);
+            DateTime fromDateTime = new DateTime(oDate.Year, 1,1, 1, 1, 1);
+            DateTime toDateTime = new DateTime(oDate.Year, oDate.Month,1, 1, 1, 1);
+
+            string strToDate = toDateTime.ToString();
+            string strFromDate = fromDateTime.ToString();
+
+            if(selectedDose == "all"){
+                odsExport.SelectParameters.Clear();
+                odsExport.SelectParameters.Add("districtCouncilId", selectedHealthFacilityID);
+                odsExport.SelectParameters.Add("fromDate", strFromDate);
+                odsExport.SelectParameters.Add("toDate", strToDate);
+                odsExport.DataBind();
+
+                gvExport.DataSourceID = "odsExport";
+            }else{
+                odsExportByDose.SelectParameters.Clear();
+                odsExportByDose.SelectParameters.Add("districtCouncilId", selectedHealthFacilityID);
+                odsExportByDose.SelectParameters.Add("doseName", selectedDose);
+                odsExportByDose.SelectParameters.Add("fromDate", strFromDate);
+                odsExportByDose.SelectParameters.Add("toDate", strToDate);
+                odsExportByDose.DataBind();
+
+                gvExport.DataSourceID = "odsExportByDose";
+            }
+
+
+
+                gvExport.DataBind();
+
+                DateTime d = oDate.AddMonths(-1);
+
+                if(d.Month == 2){
+                    gvExport.Columns[3].Visible = false;
+                    gvExport.Columns[4].Visible = false;
+                    gvExport.Columns[5].Visible = false;
+                    gvExport.Columns[6].Visible = false;
+                    gvExport.Columns[7].Visible = false;
+                    gvExport.Columns[8].Visible = false;
+                    gvExport.Columns[9].Visible = false;
+                    gvExport.Columns[10].Visible = false;
+                    gvExport.Columns[11].Visible = false;
+                    gvExport.Columns[12].Visible = false;
+                }else if(d.Month == 3){
+                    gvExport.Columns[4].Visible = false;
+                    gvExport.Columns[5].Visible = false;
+                    gvExport.Columns[6].Visible = false;
+                    gvExport.Columns[7].Visible = false;
+                    gvExport.Columns[8].Visible = false;
+                    gvExport.Columns[9].Visible = false;
+                    gvExport.Columns[10].Visible = false;
+                    gvExport.Columns[11].Visible = false;
+                    gvExport.Columns[12].Visible = false;
+                }else if(d.Month == 4){
+                    gvExport.Columns[5].Visible = false;
+                    gvExport.Columns[6].Visible = false;
+                    gvExport.Columns[7].Visible = false;
+                    gvExport.Columns[8].Visible = false;
+                    gvExport.Columns[9].Visible = false;
+                    gvExport.Columns[10].Visible = false;
+                    gvExport.Columns[11].Visible = false;
+                    gvExport.Columns[12].Visible = false;
+                }else if(d.Month == 5){
+                     gvExport.Columns[6].Visible = false;
+                     gvExport.Columns[7].Visible = false;
+                     gvExport.Columns[8].Visible = false;
+                     gvExport.Columns[9].Visible = false;
+                     gvExport.Columns[10].Visible = false;
+                     gvExport.Columns[11].Visible = false;
+                     gvExport.Columns[12].Visible = false;
+                }else if(d.Month == 6){
+                    gvExport.Columns[7].Visible = false;
+                    gvExport.Columns[8].Visible = false;
+                    gvExport.Columns[9].Visible = false;
+                    gvExport.Columns[10].Visible = false;
+                    gvExport.Columns[11].Visible = false;
+                    gvExport.Columns[12].Visible = false;
+                }else if(d.Month == 7){
+                    gvExport.Columns[8].Visible = false;
+                    gvExport.Columns[9].Visible = false;
+                    gvExport.Columns[10].Visible = false;
+                    gvExport.Columns[11].Visible = false;
+                    gvExport.Columns[12].Visible = false;
+                }else if(d.Month == 8){
+                    gvExport.Columns[9].Visible = false;
+                    gvExport.Columns[10].Visible = false;
+                    gvExport.Columns[11].Visible = false;
+                    gvExport.Columns[12].Visible = false;
+                }else if(d.Month == 9){
+                    gvExport.Columns[10].Visible = false;
+                    gvExport.Columns[11].Visible = false;
+                    gvExport.Columns[12].Visible = false;
+                }else if(d.Month == 10){
+                    gvExport.Columns[11].Visible = false;
+                    gvExport.Columns[12].Visible = false;
+                }else if(d.Month == 11){
+                    gvExport.Columns[12].Visible = false;
+                }
+
+
+
+                Response.ContentType = "application/pdf";
+                Response.AddHeader("content-disposition", "attachment;filename=Health Facility Children Defaulters By District.pdf");
+                Response.Cache.SetCacheability(HttpCacheability.NoCache);
+                StringWriter sw = new StringWriter();
+                HtmlTextWriter hw = new HtmlTextWriter(sw);
+                gvExport.RenderControl(hw);
+
+                BaseFont bfTimes = BaseFont.CreateFont(BaseFont.TIMES_ROMAN, BaseFont.CP1252, false);
+                iTextSharp.text.Font font20 = iTextSharp.text.FontFactory.GetFont
+                (iTextSharp.text.FontFactory.HELVETICA,2);
+
+                StringReader sr = new StringReader(sw.ToString());
+                Document pdfDoc = new Document(PageSize.A4, 10f, 10f, 10f, 0f);
+
+                var style = new StyleSheet();
+                style.LoadTagStyle("body", "size", "8px");
+
+
+                HTMLWorker htmlparser = new HTMLWorker(pdfDoc);
+                htmlparser.SetStyleSheet(style);
+                PdfWriter.GetInstance(pdfDoc, Response.OutputStream);
+                pdfDoc.Open();
+
+                Paragraph paragraph = new Paragraph("Health Facility Child Defaulters Report By District");
+                Paragraph paragraph2 = new Paragraph("Reporting Period : "+ToDate);
+                paragraph2.SpacingAfter = 10f;
+
+                string imageURL = Server.MapPath("..") + "/img/logo_tiis_.png";
+                iTextSharp.text.Image jpg = iTextSharp.text.Image.GetInstance(imageURL);
+                jpg.ScaleToFit(570f, 120f);
+
+                jpg.SpacingBefore = 10f;
+                //Give some space after the image
+                jpg.SpacingAfter = 1f;
+
+                pdfDoc.Add(jpg);
+                pdfDoc.Add(paragraph);
+                pdfDoc.Add(paragraph2);
+
+
+                htmlparser.Parse(sr);
+
+                pdfDoc.Close();
+                Response.Write(pdfDoc);
+                Response.End();
+
+                gvExport.AllowPaging = true;
+                gvExport.DataBind();
+            }
+
 }

@@ -50,7 +50,7 @@
 
 
     <div class="row">
-        <div class="col-md-9">        
+        <div class="col-md-9">
             <asp:TextBox ID="hack" runat="server" Visible="false" />
                     <input type="hidden" name="j_username" value="<%=ConfigurationManager.AppSettings["JasperUser"]%>" />
                     <input type="hidden" name="j_password" value="<%=ConfigurationManager.AppSettings["JasperPassword"]%>" />
@@ -62,13 +62,7 @@
             <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn btn-primary btn-raised" OnClick="btnSearch_Click" />
         </div>
     </div>
-    <div class="row">
-                <div class="col-md-9 col-xs-9 col-sm-9 col-lg-10 clearfix"></div>
-                <div class="col-md-3 col-xs-3 col-sm-3 col-lg-1 clearfix">
-                    <asp:Button ID="btnExcel" runat="server" Visible="false" Text="Excel" CssClass="btn btn-success btn-raised" OnClick="btnExcel_Click" />
-                </div>
-    </div>
-        <br />
+    <br />
 
     <div class="row">
         <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12 clearfix" style="overflow:auto">
@@ -77,7 +71,7 @@
                 <PagerSettings Position="Top" Mode="NumericFirstLast" />
                 <PagerStyle CssClass="pagination" HorizontalAlign="Left" VerticalAlign="Top" />
             <Columns>
-               <asp:TemplateField HeaderText="SrNo">
+               <asp:TemplateField HeaderText="S/N">
                    <ItemTemplate>
                        <%#Container.DataItemIndex+1%>
                    </ItemTemplate>
@@ -177,73 +171,78 @@
         <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12 clearfix">
             <asp:GridView ID="gvExport" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover table-responsive"  OnDataBound="gvOn_DataBound">
                 <Columns>
-
-                                <asp:TemplateField HeaderText="Health Facility Name">
-                                   <ItemTemplate>
-                                        <%#Eval("HealthFacility")%>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="January">
-                                   <ItemTemplate>
-                                        <%#Eval("January")%>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="February">
-                                <ItemTemplate>
-                                    <%#Eval("February")%>
-                                </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="March">
-                                    <ItemTemplate>
-                                        <%#Eval("March")%>
-                                    </ItemTemplate>
-                                    </asp:TemplateField>
-                                <asp:TemplateField HeaderText="April">
-                                     <ItemTemplate>
-                                        <%#Eval("April")%>
-                                     </ItemTemplate>
-                                 </asp:TemplateField>
-                                 <asp:TemplateField HeaderText="May">
-                                      <ItemTemplate>
-                                         <%#Eval("May")%>
-                                      </ItemTemplate>
-                                  </asp:TemplateField>
-                               <asp:TemplateField HeaderText="June">
-                                    <ItemTemplate>
-                                       <%#Eval("June")%>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="July">
-                                    <ItemTemplate>
-                                       <%#Eval("July")%>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="August">
-                                    <ItemTemplate>
-                                       <%#Eval("August")%>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                 <asp:TemplateField HeaderText="September">
-                                    <ItemTemplate>
-                                       <%#Eval("September")%>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                 <asp:TemplateField HeaderText="October">
-                                        <ItemTemplate>
-                                           <%#Eval("October")%>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="November">
-                                        <ItemTemplate>
-                                           <%#Eval("November")%>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="December">
-                                        <ItemTemplate>
-                                           <%#Eval("December")%>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                            </Columns>
+                    <asp:TemplateField HeaderText="S/N">
+                       <ItemTemplate>
+                        <ControlStyle Height="10px" Width="20px" />
+                           <%#Container.DataItemIndex+1%>
+                       </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Health Facility Name">
+                       <ItemTemplate>
+                            <%#Eval("HealthFacility")%>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="January">
+                       <ItemTemplate>
+                            <%#Eval("January")%>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="February">
+                    <ItemTemplate>
+                        <%#Eval("February")%>
+                    </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="March">
+                        <ItemTemplate>
+                            <%#Eval("March")%>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="April">
+                         <ItemTemplate>
+                            <%#Eval("April")%>
+                         </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="May">
+                          <ItemTemplate>
+                             <%#Eval("May")%>
+                          </ItemTemplate>
+                      </asp:TemplateField>
+                   <asp:TemplateField HeaderText="June">
+                        <ItemTemplate>
+                           <%#Eval("June")%>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="July">
+                        <ItemTemplate>
+                           <%#Eval("July")%>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="August">
+                        <ItemTemplate>
+                           <%#Eval("August")%>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                     <asp:TemplateField HeaderText="September">
+                        <ItemTemplate>
+                           <%#Eval("September")%>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                     <asp:TemplateField HeaderText="October">
+                            <ItemTemplate>
+                               <%#Eval("October")%>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="November">
+                            <ItemTemplate>
+                               <%#Eval("November")%>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="December">
+                            <ItemTemplate>
+                               <%#Eval("December")%>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                </Columns>
             </asp:GridView>
             <asp:ObjectDataSource ID="odsExport" runat="server" SelectMethod="GetHealthFacilityDefaultersByDistrictList" TypeName="GIIS.DataLayer.HealthFacilityDefaulters">
                 <SelectParameters>
@@ -263,6 +262,16 @@
             </asp:ObjectDataSource>
         </div>
     </div>
+
+    <div class="row">
+                    <div class="col-md-8 col-xs-6 col-sm-6 col-lg-6 clearfix"></div>
+                    <div class="col-md-2">
+                        <asp:Button ID="btnPdf" runat="server" Visible="false" Text="PDF" CssClass="btn btn-success btn-raised" OnClick="btnPdf_Click" />
+                    </div>
+                    <div class="col-md-2">
+                        <asp:Button ID="btnExcel" runat="server" Visible="false" Text="Excel" CssClass="btn btn-success btn-raised" OnClick="btnExcel_Click" />
+                    </div>
+        </div>
 
     <ajaxToolkit:CalendarExtender TargetControlID="hack" ID="ceMain" runat="server" />
    

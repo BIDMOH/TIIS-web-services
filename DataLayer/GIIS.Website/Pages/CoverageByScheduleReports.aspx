@@ -61,14 +61,7 @@
                 <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn btn-primary btn-raised" OnClick="btnSearch_Click" />
             </div>
         </div>
-        <div class="row">
-                    <div class="col-md-9 col-xs-9 col-sm-9 col-lg-9 clearfix"></div>
-                    <div class="col-md-3 col-xs-3 col-sm-3 col-lg-3 clearfix">
-                        <asp:Button ID="btnExcel" runat="server" Visible="false" Text="Excel" CssClass="btn btn-success btn-raised" OnClick="btnExcel_Click" />
-                    </div>
-                    <div class="col-md-1 col-xs-1 col-sm-1 col-lg-1 clearfix"></div>
-                </div>
-            <br />
+        <br />
 
     <div class="row">
         <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12 clearfix" style="overflow:auto">
@@ -160,59 +153,56 @@
      <div class="row">
                 <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12 clearfix">
                     <asp:GridView ID="gvExport" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover table-responsive" OnRowDataBound="gvRowOn_DataBound" OnDataBound="gvOn_DataBound">
-                      <Columns>
-                                    <asp:BoundField DataField="Name" HeaderText="Antigen" />
+                        <Columns>
+                            <asp:BoundField DataField="Name" HeaderText="Antigen" />
+                            <asp:TemplateField>
+                            <HeaderTemplate>
+                                <HeaderStyle HorizontalAlign="Center">
+                                    <table width="100%" style="border-width: 1px" >
+                                          <tr>
+                                            <td rowspan="4" width="20%" align="center"> Doses </td>
+                                           </tr>
+                                          <tr>
+                                             <td colspan="8" align="center">Health Facility Coverage Report </td>
+                                          </tr>
+                                          <tr>
+                                            <td colspan="3" align="center" > Within Catchment</td>
+                                            <td colspan="3" align="center" > Outside Catchment</td>
+                                            <td colspan="2" align="center"> Total Vaccination</td>
+                                          </tr>
 
-                                    <asp:TemplateField>
-
-                                    <HeaderTemplate>
-                                        <HeaderStyle HorizontalAlign="Center">
-                                            <table width="100%" border="1px" >
-                                                  <tr>
-                                                    <td rowspan="4" width="20%" align="center"> Doses </td>
-                                                   </tr>
-                                                  <tr>
-                                                     <td colspan="8" align="center">Health Facility Coverage Report </td>
-                                                  </tr>
-                                                  <tr>
-                                                    <td colspan="3" align="center" > Within Catchment</td>
-                                                    <td colspan="3" align="center" > Outside Catchment</td>
-                                                    <td colspan="2" align="center"> Total Vaccination</td>
-                                                  </tr>
-
-                                                  <tr>
-                                                     <td width="10%" align="center"> Male </td>
-                                                     <td width="10%" align="center"> Female </td>
-                                                     <td width="10%" align="center"> Total </td>
-                                                     <td width="10%" align="center"> Male </td>
-                                                     <td width="10%" align="center"> Female </td>
-                                                     <td width="10%" align="center"> Total  </td>
-                                                     <td width="10%" align="center"> Total  </td>
-                                                     <td width="10%" align="center"> COV(%) </td>
-                                                  </tr>
-                                             </table>
-                                        </HeaderStyle>
-
-                                    </HeaderTemplate>
-                                    <ItemTemplate>
-                                        <asp:GridView ID="gvExportDetails" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered table-responsive" ShowHeader="False" AllowPaging="false" OnRowDataBound="gvCoverageReportDetails_DataBound" OnPageIndexChanging="gvCoverageReportDetails_PageIndexChanging" PageSize="25">
-                                            <PagerSettings Position="Top" Mode="NumericFirstLast" />
-                                            <PagerStyle CssClass="pagination" HorizontalAlign="Left" VerticalAlign="Top" />
-                                            <Columns>
-                                                 <asp:BoundField HeaderText="DoseName" DataField="DoseName" ItemStyle-Width="20%" />
-                                                 <asp:BoundField HeaderText="MaleWithinCatchment" DataField="MaleWithinCatchment" ItemStyle-Width="10%" />
-                                                 <asp:BoundField HeaderText="FemaleWithinCatchment" DataField="FemaleWithinCatchment" ItemStyle-Width="10%" />
-                                                 <asp:BoundField HeaderText="TotalWithinCatchment" DataField="TotalWithinCatchment" ItemStyle-Width="10%" />
-                                                 <asp:BoundField HeaderText="MaleOutsideCatchment" DataField="MaleOutsideCatchment" ItemStyle-Width="10%" />
-                                                 <asp:BoundField HeaderText="FemaleOutsideCatchment" DataField="FemaleOutsideCatchment" ItemStyle-Width="10%" />
-                                                 <asp:BoundField HeaderText="TotalOutsideCatchment" DataField="TotalOutsideCatchment" ItemStyle-Width="10%" />
-                                                 <asp:BoundField HeaderText="TotalVaccinations" DataField="TotalVaccinations" ItemStyle-Width="10%" />
-                                                 <asp:BoundField HeaderText="CoveragePercentage" DataField="CoveragePercentage" ItemStyle-Width="10%" />
-                                            </Columns>
-                                        </asp:GridView>
-                                    </ItemTemplate>
-                                    </asp:TemplateField>
-                                </Columns>
+                                          <tr>
+                                             <td width="10%" align="center"> Male </td>
+                                             <td width="10%" align="center"> Female </td>
+                                             <td width="10%" align="center"> Total </td>
+                                             <td width="10%" align="center"> Male </td>
+                                             <td width="10%" align="center"> Female </td>
+                                             <td width="10%" align="center"> Total  </td>
+                                             <td width="10%" align="center"> Total  </td>
+                                             <td width="10%" align="center"> COV(%) </td>
+                                          </tr>
+                                     </table>
+                                </HeaderStyle>
+                            </HeaderTemplate>
+                            <ItemTemplate>
+                                <asp:GridView ID="gvExportDetails" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered table-responsive" ShowHeader="False" AllowPaging="false" OnRowDataBound="gvCoverageReportDetails_DataBound" OnPageIndexChanging="gvCoverageReportDetails_PageIndexChanging" PageSize="25">
+                                    <PagerSettings Position="Top" Mode="NumericFirstLast" />
+                                    <PagerStyle CssClass="pagination" HorizontalAlign="Left" VerticalAlign="Top" />
+                                    <Columns>
+                                         <asp:BoundField HeaderText="DoseName" DataField="DoseName" ItemStyle-Width="20%" />
+                                         <asp:BoundField HeaderText="MaleWithinCatchment" DataField="MaleWithinCatchment" ItemStyle-Width="10%" />
+                                         <asp:BoundField HeaderText="FemaleWithinCatchment" DataField="FemaleWithinCatchment" ItemStyle-Width="10%" />
+                                         <asp:BoundField HeaderText="TotalWithinCatchment" DataField="TotalWithinCatchment" ItemStyle-Width="10%" />
+                                         <asp:BoundField HeaderText="MaleOutsideCatchment" DataField="MaleOutsideCatchment" ItemStyle-Width="10%" />
+                                         <asp:BoundField HeaderText="FemaleOutsideCatchment" DataField="FemaleOutsideCatchment" ItemStyle-Width="10%" />
+                                         <asp:BoundField HeaderText="TotalOutsideCatchment" DataField="TotalOutsideCatchment" ItemStyle-Width="10%" />
+                                         <asp:BoundField HeaderText="TotalVaccinations" DataField="TotalVaccinations" ItemStyle-Width="10%" />
+                                         <asp:BoundField HeaderText="CoveragePercentage" DataField="CoveragePercentage" ItemStyle-Width="10%" />
+                                    </Columns>
+                                </asp:GridView>
+                            </ItemTemplate>
+                            </asp:TemplateField>
+                        </Columns>
                     </asp:GridView>
                   <asp:ObjectDataSource ID="odsExport" runat="server" SelectMethod="GetScheduledVaccinationsWithoutTTandMeasles" TypeName="GIIS.DataLayer.CoverageReportEntity">
                     <SelectParameters>
@@ -229,6 +219,16 @@
                     </SelectParameters>
                 </asp:ObjectDataSource>
                 </div>
+        </div>
+
+         <div class="row">
+                    <div class="col-md-8 col-xs-6 col-sm-6 col-lg-6 clearfix"></div>
+                    <div class="col-md-2">
+                        <asp:Button ID="btnPdf" runat="server" Visible="false" Text="PDF" CssClass="btn btn-success btn-raised" OnClick="btnPdf_Click" />
+                    </div>
+                    <div class="col-md-2">
+                        <asp:Button ID="btnExcel" runat="server" Visible="false" Text="Excel" CssClass="btn btn-success btn-raised" OnClick="btnExcel_Click" />
+                    </div>
         </div>
 
     <ajaxToolkit:CalendarExtender TargetControlID="hack" ID="ceMain" runat="server" />

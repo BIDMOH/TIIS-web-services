@@ -21,9 +21,13 @@ using System.Configuration;
 using System.Linq;
 using System.Web;
 
+using System.IO;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using iTextSharp.text.html.simpleparser;
 
 public partial class Pages_CoverageReport : System.Web.UI.Page
 {
@@ -310,7 +314,7 @@ public partial class Pages_CoverageReport : System.Web.UI.Page
         }
     }
 
-     protected void btnExcel_Click(object sender, EventArgs e)
+        protected void btnExcel_Click(object sender, EventArgs e)
         {
 
             selectedHealthFacilityID = Request.Form["selectHealthFacility"];
@@ -337,6 +341,65 @@ public partial class Pages_CoverageReport : System.Web.UI.Page
             Response.End();
         }
 
+        protected void btnPdf_Click(object sender, EventArgs e)
+        {
+
+            selectedHealthFacilityID = Request.Form["selectHealthFacility"];
+            string strFromDate = String.Format("{0}", Request.Form["dateFrom"]);
+            string strToDate = String.Format("{0}", Request.Form["dateTo"]);
+
+            odsExport.SelectParameters.Clear();
+            odsExport.DataBind();
+
+            gvExport.DataSourceID = "odsExport";
+            gvExport.DataBind();
+
+            Response.ContentType = "application/pdf";
+            Response.AddHeader("content-disposition", "attachment;filename=Coverage Report by Schedule.pdf");
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            StringWriter sw = new StringWriter();
+            HtmlTextWriter hw = new HtmlTextWriter(sw);
+            gvExport.RenderControl(hw);
+
+            StringReader sr = new StringReader(sw.ToString());
+            Document pdfDoc = new Document(PageSize.A4, 10f, 10f, 10f, 0f);
+
+            var style = new StyleSheet();
+            style.LoadTagStyle("body", "size", "8px");
+
+
+            HTMLWorker htmlparser = new HTMLWorker(pdfDoc);
+            htmlparser.SetStyleSheet(style);
+            PdfWriter.GetInstance(pdfDoc, Response.OutputStream);
+            pdfDoc.Open();
+
+            Paragraph paragraph = new Paragraph("Coverage Report by Schedule");
+            Paragraph paragraph2 = new Paragraph("Reporting Period : ");
+            paragraph2.SpacingAfter = 10f;
+
+            string imageURL = Server.MapPath("..") + "/img/logo_tiis_.png";
+            iTextSharp.text.Image jpg = iTextSharp.text.Image.GetInstance(imageURL);
+            jpg.ScaleToFit(570f, 120f);
+
+            jpg.SpacingBefore = 10f;
+            //Give some space after the image
+            jpg.SpacingAfter = 1f;
+
+            pdfDoc.Add(jpg);
+            pdfDoc.Add(paragraph);
+            pdfDoc.Add(paragraph2);
+
+
+            htmlparser.Parse(sr);
+
+            pdfDoc.Close();
+            Response.Write(pdfDoc);
+            Response.End();
+
+            gvExport.AllowPaging = true;
+            gvExport.DataBind();
+        }
+
         public override void VerifyRenderingInServerForm(Control control)
         {
            return;
@@ -344,9 +407,15 @@ public partial class Pages_CoverageReport : System.Web.UI.Page
         protected void gvOn_DataBound(object sender, EventArgs e)
         {
             if (gvCoverageReport.Rows.Count > 0)
+            {
                 btnExcel.Visible = true;
+                btnPdf.Visible = true;
+            }
             else
+            {
                 btnExcel.Visible = false;
+                btnPdf.Visible = false;
+            }
 
 
         }
@@ -354,30 +423,30 @@ public partial class Pages_CoverageReport : System.Web.UI.Page
         {
 
              if (e.Row.RowType == DataControlRowType.DataRow)
-                     {
-                         string scheduledVaccinationName = e.Row.Cells[0].Text;
-                         GridView gvExport = (GridView)e.Row.FindControl("gvExportDetails");
+             {
+                 string scheduledVaccinationName = e.Row.Cells[0].Text;
+                 GridView gvExport = (GridView)e.Row.FindControl("gvExportDetails");
 
-                          ObjectDataSource objds = new ObjectDataSource();
-
-
-                          //Adding the typename property and the SelectMethod that will return data
-                          objds.TypeName = "GIIS.DataLayer.CoverageReportEntity";
-                          objds.SelectMethod = "GetDistrictCoverageReport";
+                  ObjectDataSource objds = new ObjectDataSource();
 
 
-                          //Setting the select method parameters
-                          objds.SelectParameters.Add(new Parameter("fromDate", TypeCode.String, datefromString));
-                          objds.SelectParameters.Add(new Parameter("toDate", TypeCode.String, datetoString));
-                          objds.SelectParameters.Add(new Parameter("healthFacilityId", TypeCode.String, selectedHealthFacilityID));
-                          objds.SelectParameters.Add(new Parameter("scheduledVaccinationName", TypeCode.String, scheduledVaccinationName));
-                          objds.SelectParameters.Add(new Parameter("isSchedule", TypeCode.Boolean, "true"));
-                          objds.DataBind();
-
-                         gvExport.DataSource = objds;
-                         gvExport.DataBind();
+                  //Adding the typename property and the SelectMethod that will return data
+                  objds.TypeName = "GIIS.DataLayer.CoverageReportEntity";
+                  objds.SelectMethod = "GetDistrictCoverageReport";
 
 
-                     }
+                  //Setting the select method parameters
+                  objds.SelectParameters.Add(new Parameter("fromDate", TypeCode.String, datefromString));
+                  objds.SelectParameters.Add(new Parameter("toDate", TypeCode.String, datetoString));
+                  objds.SelectParameters.Add(new Parameter("healthFacilityId", TypeCode.String, selectedHealthFacilityID));
+                  objds.SelectParameters.Add(new Parameter("scheduledVaccinationName", TypeCode.String, scheduledVaccinationName));
+                  objds.SelectParameters.Add(new Parameter("isSchedule", TypeCode.Boolean, "true"));
+                  objds.DataBind();
+
+                 gvExport.DataSource = objds;
+                 gvExport.DataBind();
+
+
+             }
         }
 }
