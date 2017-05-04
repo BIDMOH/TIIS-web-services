@@ -276,25 +276,27 @@ public partial class Pages_HealthFacilityDropout : System.Web.UI.Page
     protected void gvHealthFacilityDefaultersByDistrict_DataBound(object sender, GridViewRowEventArgs e)
     {
 
+        try{
 
 		if (e.Row.RowType != DataControlRowType.Header)
 		{
-			if (Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "BCG_MR1_Percentage")) > 10)
+			if (Convert.ToDecimal(DataBinder.Eval(e.Row.DataItem, "BCG_MR1_Percentage")) > 10)
             {
-                e.Row.ForeColor = System.Drawing.Color.Green;
+                e.Row.Cells[2].ForeColor = System.Drawing.Color.Red;
             }
             else {
-                e.Row.ForeColor = System.Drawing.Color.Red;
+                e.Row.Cells[2].ForeColor = System.Drawing.Color.Green;
             }
 
-            if (Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "PENTA1_PENTA3_Percentage")) > 10)
+            if (Convert.ToDecimal(DataBinder.Eval(e.Row.DataItem, "PENTA1_PENTA3_Percentage")) > 10)
             {
-                e.Row.ForeColor = System.Drawing.Color.Green;
+                e.Row.Cells[4].ForeColor = System.Drawing.Color.Red;
             }
             else {
-                e.Row.ForeColor = System.Drawing.Color.Red;
+                e.Row.Cells[4].ForeColor = System.Drawing.Color.Green;
             }
 		}
+		}catch(Exception v){}
 
 
     }

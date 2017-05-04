@@ -134,7 +134,7 @@
         <!--
             data binding of the gridview is done in connection to the Datalayer methods that queries the data EnablePaging="false"
         -->
-        <asp:ObjectDataSource ID="odsAntigens" runat="server" SelectMethod="GetScheduledVaccinationList" TypeName="GIIS.DataLayer.ScheduledVaccination">
+        <asp:ObjectDataSource ID="odsAntigens" runat="server" SelectMethod="GetScheduledVaccinationsWithoutTTandMeasles" TypeName="GIIS.DataLayer.CoverageReportEntity">
             <SelectParameters>
             </SelectParameters>
         </asp:ObjectDataSource>
@@ -214,7 +214,7 @@
                                     </asp:TemplateField>
                                 </Columns>
                     </asp:GridView>
-                  <asp:ObjectDataSource ID="odsExport" runat="server" SelectMethod="GetScheduledVaccinationList" TypeName="GIIS.DataLayer.ScheduledVaccination">
+                  <asp:ObjectDataSource ID="odsExport" runat="server" SelectMethod="GetScheduledVaccinationsWithoutTTandMeasles" TypeName="GIIS.DataLayer.CoverageReportEntity">
                     <SelectParameters>
                     </SelectParameters>
                 </asp:ObjectDataSource>
