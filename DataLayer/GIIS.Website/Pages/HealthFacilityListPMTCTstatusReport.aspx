@@ -61,13 +61,7 @@
         </div>
     </div>
 
-    <div class="row">
-            <div class="col-md-9 col-xs-10 col-sm-10 col-lg-10 clearfix"></div>
-            <div class="col-md-3 col-xs-1 col-sm-1 col-lg-1 clearfix">
-                <asp:Button ID="btnExcel" runat="server" Visible="false" Text="Excel" CssClass="btn btn-success btn-raised" OnClick="btnExcel_Click" />
-            </div>
-            <div class="col-md-1 col-xs-1 col-sm-1 col-lg-1 clearfix"></div>
-    </div>
+
     <div class="row">
          <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12 clearfix" style="overflow:auto">
             <asp:GridView ID="gvHealthFacilityListPMTCTstatus" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered table-hover table-responsive" AllowPaging="True" OnDataBound="gvHealthFacilityListPMTCTstatus_DataBound" OnPageIndexChanging="gvHealthFacilityListPMTCTstatus_PageIndexChanging" PageSize="25">
@@ -134,7 +128,15 @@
             </asp:ObjectDataSource>
         </div>
     </div>
-
+    <div class="row">
+        <div class="col-md-8 col-xs-6 col-sm-6 col-lg-6 clearfix"></div>
+        <div class="col-md-2">
+            <asp:Button ID="btnPdf" runat="server" Visible="false" Text="PDF" CssClass="btn btn-success btn-raised" OnClick="btnPdf_Click" />
+        </div>
+        <div class="col-md-2">
+            <asp:Button ID="btnExcel" runat="server" Visible="false" Text="Excel" CssClass="btn btn-success btn-raised" OnClick="btnExcel_Click" />
+        </div>
+    </div>
     <ajaxToolkit:CalendarExtender TargetControlID="hack" ID="ceMain" runat="server" />
    
 </asp:Content>

@@ -62,14 +62,7 @@
             <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn btn-primary btn-raised" OnClick="btnSearch_Click" />
         </div>
     </div>
-     <div class="row">
-            <div class="col-md-9 col-xs-9 col-sm-9 col-lg-9 clearfix"></div>
-            <div class="col-md-3 col-xs-3 col-sm-3 col-lg-3 clearfix">
-                <asp:Button ID="btnExcel" runat="server" Visible="false" Text="Excel" CssClass="btn btn-success btn-raised" OnClick="btnExcel_Click" />
-            </div>
-            <div class="col-md-1 col-xs-1 col-sm-1 col-lg-1 clearfix"></div>
-        </div>
-    <br />
+
 
     <div class="row">
         <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12 clearfix" style="overflow:auto">
@@ -166,7 +159,15 @@
                </asp:ObjectDataSource>
            </div>
        </div>
-
+        <div class="row">
+                    <div class="col-md-8 col-xs-6 col-sm-6 col-lg-6 clearfix"></div>
+                    <div class="col-md-2">
+                        <asp:Button ID="btnPdf" runat="server" Visible="false" Text="PDF" CssClass="btn btn-success btn-raised" OnClick="btnPdf_Click" />
+                    </div>
+                    <div class="col-md-2">
+                        <asp:Button ID="btnExcel" runat="server" Visible="false" Text="Excel" CssClass="btn btn-success btn-raised" OnClick="btnExcel_Click" />
+                    </div>
+        </div>
     <ajaxToolkit:CalendarExtender TargetControlID="hack" ID="ceMain" runat="server" />
 </asp:Content>
 
