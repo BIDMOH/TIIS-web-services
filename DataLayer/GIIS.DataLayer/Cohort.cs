@@ -30,6 +30,7 @@ namespace GIIS.DataLayer
         public string Year { get; set; }
         public int CohortValue { get; set; }
         public string Notes { get; set; }
+
        
         #endregion
 

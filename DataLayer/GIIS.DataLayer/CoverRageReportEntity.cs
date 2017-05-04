@@ -185,6 +185,12 @@ namespace GIIS.DataLayer
 		public static List<CoverageReportEntity> GetCoverageReportByTargetPopulation(DataTable dt, string vaccinationName,int healthFacilityId)
 		{
 			List<CoverageReportEntity> oList = new List<CoverageReportEntity>();
+
+			DateTime date = DateTime.Now;
+			Cohort c = Cohort.GetCohortDataByHealthFacilityAndYear(healthFacilityId, date.Year);
+
+
+
 			if (dt.Rows.Count != 0)
 			{
 				foreach (DataRow row in dt.Rows)
@@ -206,9 +212,6 @@ namespace GIIS.DataLayer
 							o.TotalOutsideCatchment = o.MaleOutsideCatchment + o.FemaleOutsideCatchment;
 							o.TotalVaccinations = o.TotalWithinCatchment + o.TotalOutsideCatchment;
 
-							DateTime date = DateTime.Now;
-
-							Cohort c = Cohort.GetCohortDataByHealthFacilityAndYear(healthFacilityId, date.Year);
 							o.TargetPopulation = c.CohortValue;
 
 							if (c.CohortValue == 0)

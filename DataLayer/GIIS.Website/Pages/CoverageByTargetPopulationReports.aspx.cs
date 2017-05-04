@@ -245,6 +245,11 @@ public partial class Pages_CoverageByTargetPopulationReport : System.Web.UI.Page
 
         createInputControls();
 
+        DateTime date = DateTime.Now;
+        Cohort c = Cohort.GetCohortDataByHealthFacilityAndYear(Convert.ToInt32(selectedHealthFacilityID), date.Year);
+
+        targetPopulation.Text = "Target Population : "+c.CohortValue;
+
     }
 
 
@@ -282,7 +287,6 @@ public partial class Pages_CoverageByTargetPopulationReport : System.Web.UI.Page
             gvCoverageDetails.DataSource = objds;
             gvCoverageDetails.DataBind();
 
-
         }
 
     }
@@ -307,8 +311,6 @@ public partial class Pages_CoverageByTargetPopulationReport : System.Web.UI.Page
             {
                 e.Row.Cells[8].ForeColor = System.Drawing.Color.Red;
             }
-
-            targetPopulation.Text = "Target Population : "+Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "TargetPopulation"));
         }
     }
 

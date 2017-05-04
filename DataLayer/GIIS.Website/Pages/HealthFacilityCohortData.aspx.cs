@@ -201,8 +201,8 @@ public partial class _HealthFacilityCohortData : System.Web.UI.Page
 
                 HealthFacilityCohortData o = HealthFacilityCohortData.GetHealthFacilityCohortDataById(id);
 
-                if (yearExists(int.Parse(ddlYear.SelectedValue)) && (o.Year != int.Parse(ddlYear.SelectedValue)))
-                    return;
+//                if (yearExists(int.Parse(ddlYear.SelectedValue)) && (o.Year != int.Parse(ddlYear.SelectedValue)))
+//                    return;
 
                // o.HealthFacilityId = CurrentEnvironment.LoggedUser.HealthFacilityId;
                 o.Year = int.Parse(ddlYear.SelectedValue);
