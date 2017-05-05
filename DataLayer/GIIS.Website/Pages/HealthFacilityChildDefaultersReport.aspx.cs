@@ -395,10 +395,8 @@ public partial class Pages_HealthFacilityChildrenRegistrationsDefaulters : Syste
             string facilityName = HealthFacility.GetHealthFacilityById(Convert.ToInt32(selectedHealthFacilityID)).Name;
             string ParentName = HealthFacility.GetHealthFacilityById(hfParentID).Name;
             selectedVillage = Request.Form["selectVillage"];
-            string VillageName ="";
-            if(selectedVillage != "all"){
-            VillageName = Place.GetPlaceById(Convert.ToInt32(selectedVillage)).Name;
-            }
+            string VillageName =selectedVillage;
+
             string strFromDate = String.Format("{0}", Request.Form["dateFrom"]);
             string strToDate = String.Format("{0}", Request.Form["dateTo"]);
 
@@ -479,8 +477,8 @@ public partial class Pages_HealthFacilityChildrenRegistrationsDefaulters : Syste
 
             }else{
                 Paragraph paragraph = new Paragraph("Health Facility Child Defaulters List");
-                Paragraph paragraph2 = new Paragraph("Region : "+ ParentName);
-                Paragraph paragraph3 = new Paragraph("District : "+facilityName);
+                Paragraph paragraph2 = new Paragraph("Region/District : "+ ParentName);
+                Paragraph paragraph3 = new Paragraph("Health Facility : "+facilityName);
                 Paragraph paragraph4 = new Paragraph("Village : All");
                 Paragraph paragraph5 = new Paragraph("Reporting Period : "+strFromDate +" to "+strToDate);
                 paragraph.Alignment = Element.ALIGN_CENTER;

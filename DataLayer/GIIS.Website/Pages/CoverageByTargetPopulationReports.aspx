@@ -85,7 +85,7 @@
 
                 <HeaderTemplate>
                     <HeaderStyle HorizontalAlign="Center">
-                        <table width="100%" border="1px" >
+                        <table width="100%" style="border-width: 1px" >
                               <tr>
                                 <td rowspan="4" width="20%" align="center"> Doses </td>
                                </tr>
@@ -232,14 +232,14 @@
                 </div>
         </div>
      <div class="row">
-                    <div class="col-md-8 col-xs-6 col-sm-6 col-lg-6 clearfix"></div>
-                    <div class="col-md-2">
-                        <asp:Button ID="btnPdf" runat="server" Visible="false" Text="PDF" CssClass="btn btn-success btn-raised" OnClick="btnPdf_Click" />
-                    </div>
-                    <div class="col-md-2">
-                        <asp:Button ID="btnExcel" runat="server" Visible="false" Text="Excel" CssClass="btn btn-success btn-raised" OnClick="btnExcel_Click" />
-                    </div>
+            <div class="col-md-8 col-xs-6 col-sm-6 col-lg-6 clearfix"></div>
+            <div class="col-md-2">
+                <asp:Button ID="btnPdf" runat="server" Visible="false" Text="PDF" CssClass="btn btn-success btn-raised" OnClick="btnPdf_Click" />
             </div>
+            <div class="col-md-2">
+                <asp:Button ID="btnExcel" runat="server" Visible="false" Text="Excel" CssClass="btn btn-success btn-raised" OnClick="btnExcel_Click" />
+            </div>
+     </div>
      <ajaxToolkit:CalendarExtender TargetControlID="hack" ID="ceMain" runat="server" />
    
 </asp:Content>
