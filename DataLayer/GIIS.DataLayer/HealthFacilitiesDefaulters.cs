@@ -298,6 +298,8 @@ namespace GIIS.DataLayer
 		public static List<HealthFacilityDefaulters> GetHealthFacilityDefaultersByDistrictAsList(DataTable dt)
 		{
 			List<HealthFacilityDefaulters> oList = new List<HealthFacilityDefaulters>();
+			HealthFacilityDefaulters total = new HealthFacilityDefaulters();
+			total.HealthFacility = "TOTAL";
 			foreach (DataRow row in dt.Rows)
 			{
 				try
@@ -308,51 +310,63 @@ namespace GIIS.DataLayer
 
 					if (!row["JAN"].ToString().Equals("")) {
 						o.January = Helper.ConvertToInt(row["JAN"]);
+						total.January += o.January;
 					}
 
 					if (!row["FEB"].ToString().Equals(""))
 					{
 						o.February = Helper.ConvertToInt(row["FEB"]);
+						total.February += o.February;
 					}
 					 if (!row["MAR"].ToString().Equals(""))
 					{
 						o.March = Helper.ConvertToInt(row["MAR"]);
+						total.March += o.March;
 					}
 					if (!row["APR"].ToString().Equals(""))
 					{
 						o.April = Helper.ConvertToInt(row["APR"]);
+						total.April += o.April;
 					}
 					if (!row["MAY"].ToString().Equals(""))
 					{
 						o.May = Helper.ConvertToInt(row["MAY"]);
+						total.May += o.May;
 					}
 					if (!row["JUN"].ToString().Equals(""))
 					{
 						o.June = Helper.ConvertToInt(row["JUN"]);
+						total.June += o.June;
 					}
 					 if (!row["JUL"].ToString().Equals(""))
 					{
 						o.July = Helper.ConvertToInt(row["JUL"]);
+						total.July += o.July;
 					}
 					if (!row["AUG"].ToString().Equals(""))
 					{
 						o.August = Helper.ConvertToInt(row["AUG"]);
+						total.August += o.August;
 					}
 					if (!row["SEP"].ToString().Equals(""))
 					{
 						o.September = Helper.ConvertToInt(row["SEP"]);
+						total.September += o.September;
 					}
 					 if (!row["OCT"].ToString().Equals(""))
 					{
 						o.October = Helper.ConvertToInt(row["OCT"]);
+						total.October += o.October;
 					}
 					if (!row["NOV"].ToString().Equals(""))
 					{
 						o.November = Helper.ConvertToInt(row["NOV"]);
+						total.November += o.November;
 					}
 					 if (!row["DEC"].ToString().Equals(""))
 					{
 						o.December = Helper.ConvertToInt(row["DEC"]);
+						total.December += o.December;
 					}
 
 					oList.Add(o);
@@ -363,6 +377,7 @@ namespace GIIS.DataLayer
 					throw ex;
 				}
 			}
+			oList.Add(total);
 			return oList;
 		}
 

@@ -2,8 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d32c8675-416f-4a19-8602-be7e586c3dd2" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DataLayer/GIIS.DataLayer/bin/Debug/GIIS.DataLayer.pdb" afterPath="$PROJECT_DIR$/DataLayer/GIIS.DataLayer/bin/Debug/GIIS.DataLayer.pdb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DataLayer/GIIS.DataLayer/obj/Debug/GIIS.DataLayer.pdb" afterPath="$PROJECT_DIR$/DataLayer/GIIS.DataLayer/obj/Debug/GIIS.DataLayer.pdb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Services/GIIS.Tanzania.WCF/bin/GIIS.DataLayer.dll" afterPath="$PROJECT_DIR$/Services/GIIS.Tanzania.WCF/bin/GIIS.DataLayer.dll" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Services/GIIS.Tanzania.WCF/bin/GIIS.Tanzania.WCF.dll" afterPath="$PROJECT_DIR$/Services/GIIS.Tanzania.WCF/bin/GIIS.Tanzania.WCF.dll" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Services/GIIS.Tanzania.WCF/bin/GIIS.Tanzania.WCF.pdb" afterPath="$PROJECT_DIR$/Services/GIIS.Tanzania.WCF/bin/GIIS.Tanzania.WCF.pdb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Services/GIIS.Tanzania.WCF/obj/Debug/GIIS.Tanzania.WCF.dll" afterPath="$PROJECT_DIR$/Services/GIIS.Tanzania.WCF/obj/Debug/GIIS.Tanzania.WCF.dll" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Services/GIIS.Tanzania.WCF/obj/Debug/GIIS.Tanzania.WCF.pdb" afterPath="$PROJECT_DIR$/Services/GIIS.Tanzania.WCF/obj/Debug/GIIS.Tanzania.WCF.pdb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilityCohortData.aspx.cs" afterPath="$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilityCohortData.aspx.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DataLayer/GIIS.DataLayer/GIIS.DataLayer.userprefs" afterPath="$PROJECT_DIR$/DataLayer/GIIS.DataLayer/GIIS.DataLayer.userprefs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DataLayer/GIIS.DataLayer/HealthFacilitiesDefaulters.cs" afterPath="$PROJECT_DIR$/DataLayer/GIIS.DataLayer/HealthFacilitiesDefaulters.cs" />
     </list>
     <ignored path="TIIS-web-services.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,11 +36,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="HealthFacilityCohortData.aspx.cs" pinned="false" current-in-tab="true">
+      <file leaf-file-name="HealthFacilityCohortData.aspx.cs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilityCohortData.aspx.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.2771318">
-              <caret line="151" column="22" selection-start-line="151" selection-start-column="22" selection-end-line="152" selection-end-column="33" />
+            <state vertical-scroll-proportion="-8.185185">
+              <caret line="50" column="31" selection-start-line="50" selection-start-column="20" selection-end-line="50" selection-end-column="31" />
               <folding>
                 <element signature="e#0#13704#0" expanded="false" />
               </folding>
@@ -40,11 +48,31 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="HealthFacilitySpecificSessionReports.aspx" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilitySpecificSessionReports.aspx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.023762377">
+              <caret line="86" column="166" selection-start-line="86" selection-start-column="151" selection-end-line="86" selection-end-column="166" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HealthFacilitySpecificSessionReports.aspx.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilitySpecificSessionReports.aspx.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="HealthFacilityCohortData.aspx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilityCohortData.aspx">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.2156863">
-              <caret line="126" column="121" selection-start-line="126" selection-start-column="109" selection-end-line="126" selection-end-column="121" />
+            <state vertical-scroll-proportion="-3.8235295">
+              <caret line="34" column="46" selection-start-line="34" selection-start-column="27" selection-end-line="34" selection-end-column="46" />
               <folding>
                 <element signature="n#style#0;n#span#0;n#div#1;n#div#2;n#asp:Content#0;n#!!top" expanded="true" />
               </folding>
@@ -376,9 +404,9 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34725052" sideWeight="0.504884" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32959184" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3605823" sideWeight="0.497558" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3605823" sideWeight="0.497558" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3469388" sideWeight="0.495116" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34602463" sideWeight="0.495116" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -645,8 +673,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilityCohortData.aspx">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.2156863">
-          <caret line="126" column="121" selection-start-line="126" selection-start-column="109" selection-end-line="126" selection-end-column="121" />
+        <state vertical-scroll-proportion="-3.8235295">
+          <caret line="34" column="46" selection-start-line="34" selection-start-column="27" selection-end-line="34" selection-end-column="46" />
           <folding>
             <element signature="n#style#0;n#span#0;n#div#1;n#div#2;n#asp:Content#0;n#!!top" expanded="true" />
           </folding>
@@ -655,11 +683,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilityCohortData.aspx.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.2771318">
-          <caret line="151" column="22" selection-start-line="151" selection-start-column="22" selection-end-line="152" selection-end-column="33" />
+        <state vertical-scroll-proportion="-8.185185">
+          <caret line="50" column="31" selection-start-line="50" selection-start-column="20" selection-end-line="50" selection-end-column="31" />
           <folding>
             <element signature="e#0#13704#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilitySpecificSessionReports.aspx.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilitySpecificSessionReports.aspx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.023762377">
+          <caret line="86" column="166" selection-start-line="86" selection-start-column="151" selection-end-line="86" selection-end-column="166" />
+          <folding />
         </state>
       </provider>
     </entry>
