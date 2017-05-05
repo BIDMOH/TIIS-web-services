@@ -204,7 +204,7 @@ public partial class _HealthFacilityCohortData : System.Web.UI.Page
 //                if (yearExists(int.Parse(ddlYear.SelectedValue)) && (o.Year != int.Parse(ddlYear.SelectedValue)))
 //                    return;
 
-               // o.HealthFacilityId = CurrentEnvironment.LoggedUser.HealthFacilityId;
+                o.HealthFacilityId = CurrentEnvironment.LoggedUser.HealthFacilityId;
                 o.Year = int.Parse(ddlYear.SelectedValue);
                 o.Cohort = int.Parse(txtCohort.Text);
                 o.Notes = txtNotes.Text.Replace("'", @"''");
