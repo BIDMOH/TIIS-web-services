@@ -301,6 +301,9 @@ public partial class Pages_HealthFacilityListVaccinationSummary : System.Web.UI.
         {
 
             selectedHealthFacilityID = Request.Form["selectHealthFacility"];
+            hfParentID = HealthFacility.GetHealthFacilityById(Convert.ToInt32(selectedHealthFacilityID)).ParentId;
+            string facilityName = HealthFacility.GetHealthFacilityById(Convert.ToInt32(selectedHealthFacilityID)).Name;
+            string ParentName = HealthFacility.GetHealthFacilityById(hfParentID).Name;
             string strFromDate = String.Format("{0}", Request.Form["dateFrom"]);
             string strToDate = String.Format("{0}", Request.Form["dateTo"]);
 
@@ -338,8 +341,15 @@ public partial class Pages_HealthFacilityListVaccinationSummary : System.Web.UI.
             pdfDoc.Open();
 
             Paragraph paragraph = new Paragraph("Health Facility Vaccination Summary Report");
-            Paragraph paragraph2 = new Paragraph("Reporting Period : ");
-            paragraph2.SpacingAfter = 10f;
+            Paragraph paragraph2 = new Paragraph("Region/District : "+ ParentName);
+            Paragraph paragraph3 = new Paragraph("Health Facility : "+facilityName);
+            Paragraph paragraph4 = new Paragraph("Reporting Period : "+strFromDate+" to "+strToDate);
+
+            paragraph4.SpacingAfter = 20f;
+            paragraph.Alignment = Element.ALIGN_CENTER;
+            paragraph2.Alignment = Element.ALIGN_CENTER;
+            paragraph3.Alignment = Element.ALIGN_CENTER;
+            paragraph4.Alignment = Element.ALIGN_CENTER;
 
             string imageURL = Server.MapPath("..") + "/img/logo_tiis_.png";
             iTextSharp.text.Image jpg = iTextSharp.text.Image.GetInstance(imageURL);
@@ -347,11 +357,13 @@ public partial class Pages_HealthFacilityListVaccinationSummary : System.Web.UI.
 
             jpg.SpacingBefore = 10f;
             //Give some space after the image
-            jpg.SpacingAfter = 1f;
+            jpg.SpacingAfter = 5f;
 
             pdfDoc.Add(jpg);
             pdfDoc.Add(paragraph);
             pdfDoc.Add(paragraph2);
+            pdfDoc.Add(paragraph3);
+            pdfDoc.Add(paragraph4);
 
 
             htmlparser.Parse(sr);

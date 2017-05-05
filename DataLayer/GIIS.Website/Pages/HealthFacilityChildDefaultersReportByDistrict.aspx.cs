@@ -578,9 +578,17 @@ public partial class Pages_HealthFacilityChildrenRegistrationsDefaultersReportBy
 
         protected void btnPdf_Click(object sender, EventArgs e)
         {
+            selectedHealthFacilityID = Request.Form["selectHealthFacility"];
+            hfParentID = HealthFacility.GetHealthFacilityById(Convert.ToInt32(selectedHealthFacilityID)).ParentId;
+            string facilityName = HealthFacility.GetHealthFacilityById(Convert.ToInt32(selectedHealthFacilityID)).Name;
+            string ParentName = HealthFacility.GetHealthFacilityById(hfParentID).Name;
             ToDate = Request.Form["selectReportingPeriod"];
             selectedDose = Request.Form["selectDose"];
-            selectedHealthFacilityID = Request.Form["selectHealthFacility"];
+            if(selectedDose != "all"){
+            string DoseName = ScheduledVaccination.GetScheduledVaccinationById(Convert.ToInt32(selectedDose)).Name;
+
+            }
+
 
             DateTime oDate = DateTime.Parse(ToDate);
             DateTime fromDateTime = new DateTime(oDate.Year, 1,1, 1, 1, 1);
@@ -705,10 +713,25 @@ public partial class Pages_HealthFacilityChildrenRegistrationsDefaultersReportBy
                 htmlparser.SetStyleSheet(style);
                 PdfWriter.GetInstance(pdfDoc, Response.OutputStream);
                 pdfDoc.Open();
-
-                Paragraph paragraph = new Paragraph("Health Facility Child Defaulters Report By District");
-                Paragraph paragraph2 = new Paragraph("Reporting Period : "+ToDate);
-                paragraph2.SpacingAfter = 10f;
+                if(selectedDose == "all"){
+                     Paragraph paragraph = new Paragraph("Health Facility Child Defaulters Report By District");
+                    Paragraph paragraph2 = new Paragraph("Region : "+ ParentName);
+                    Paragraph paragraph3 = new Paragraph("District : "+facilityName);
+                    Paragraph paragraph4 = new Paragraph("Antigen : All");
+                    Paragraph paragraph5 = new Paragraph("Reporting Period : "+ToDate);
+                }else{
+                    Paragraph paragraph = new Paragraph("Health Facility Child Defaulters Report By District");
+                    Paragraph paragraph2 = new Paragraph("Region : "+ ParentName);
+                    Paragraph paragraph3 = new Paragraph("District : "+facilityName);
+                    Paragraph paragraph4 = new Paragraph("Antigen : "+DoseName);
+                    Paragraph paragraph5 = new Paragraph("Reporting Period : "+ToDate);
+                }
+                paragraph5.SpacingAfter = 20f;
+                paragraph.Alignment = Element.ALIGN_CENTER;
+                paragraph2.Alignment = Element.ALIGN_CENTER;
+                paragraph3.Alignment = Element.ALIGN_CENTER;
+                paragraph4.Alignment = Element.ALIGN_CENTER;
+                paragraph5.Alignment = Element.ALIGN_CENTER;
 
                 string imageURL = Server.MapPath("..") + "/img/logo_tiis_.png";
                 iTextSharp.text.Image jpg = iTextSharp.text.Image.GetInstance(imageURL);
@@ -716,11 +739,14 @@ public partial class Pages_HealthFacilityChildrenRegistrationsDefaultersReportBy
 
                 jpg.SpacingBefore = 10f;
                 //Give some space after the image
-                jpg.SpacingAfter = 1f;
+                jpg.SpacingAfter = 5f;
 
                 pdfDoc.Add(jpg);
                 pdfDoc.Add(paragraph);
                 pdfDoc.Add(paragraph2);
+                pdfDoc.Add(paragraph3);
+                pdfDoc.Add(paragraph4);
+                pdfDoc.Add(paragraph5);
 
 
                 htmlparser.Parse(sr);
