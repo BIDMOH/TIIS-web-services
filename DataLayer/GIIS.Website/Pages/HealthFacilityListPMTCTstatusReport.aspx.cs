@@ -20,10 +20,13 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Web;
-
+using System.IO;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using iTextSharp.text.html.simpleparser;
 
 public partial class Pages_HealthFacilityListPMTCTstatus : System.Web.UI.Page
 {
@@ -261,13 +264,20 @@ public partial class Pages_HealthFacilityListPMTCTstatus : System.Web.UI.Page
         gvHealthFacilityListPMTCTstatus.PageIndex = e.NewPageIndex;
     }
 
-    protected void gvHealthFacilityListPMTCTstatus_DataBound(object sender, EventArgs e)
-    {
-        if (gvHealthFacilityListPMTCTstatus.Rows.Count > 0)
-            btnExcel.Visible = true;
-        else
-            btnExcel.Visible = false;
-    }
+
+      protected void gvHealthFacilityListPMTCTstatus_DataBound(object sender, EventArgs e)
+            {
+                if (gvHealthFacilityListPMTCTstatus.Rows.Count > 0)
+                {
+                    btnExcel.Visible = true;
+                    btnPdf.Visible = true;
+                }
+                else
+                {
+                    btnExcel.Visible = false;
+                    btnPdf.Visible = false;
+                }
+            }
 
     protected void gvHealthFacilityListPMTCTstatus_DataBound(object sender, GridViewRowEventArgs e)
     {
@@ -305,6 +315,76 @@ public partial class Pages_HealthFacilityListPMTCTstatus : System.Web.UI.Page
         gvExport.RenderControl(htmlWrite);
         Response.Write(stringWrite.ToString());
         Response.End();
+
+
+    }
+
+    protected void btnPdf_Click(object sender, EventArgs e)
+    {
+
+        selectedHealthFacilityID = Request.Form["selectHealthFacility"];
+        string strFromDate = String.Format("{0}", Request.Form["dateFrom"]);
+        string strToDate = String.Format("{0}", Request.Form["dateTo"]);
+
+        odsExport.SelectParameters.Clear();
+        odsExport.SelectParameters.Add("hfid", selectedHealthFacilityID);
+        odsExport.SelectParameters.Add("fromDate", strFromDate);
+        odsExport.SelectParameters.Add("toDate", strToDate);
+        odsExport.DataBind();
+
+        gvExport.DataSourceID = "odsExport";
+        gvExport.DataBind();
+
+        Response.Clear();
+
+        Response.ContentType = "application/pdf";
+        Response.AddHeader("content-disposition", "attachment;filename=Health Facility PMTCT Status Report.pdf");
+        Response.Cache.SetCacheability(HttpCacheability.NoCache);
+        StringWriter sw = new StringWriter();
+        HtmlTextWriter hw = new HtmlTextWriter(sw);
+        gvExport.RenderControl(hw);
+
+        BaseFont bfTimes = BaseFont.CreateFont(BaseFont.TIMES_ROMAN, BaseFont.CP1252, false);
+        iTextSharp.text.Font font20 = iTextSharp.text.FontFactory.GetFont
+        (iTextSharp.text.FontFactory.HELVETICA,2);
+
+        StringReader sr = new StringReader(sw.ToString());
+        Document pdfDoc = new Document(PageSize.A4, 10f, 10f, 10f, 0f);
+
+        var style = new StyleSheet();
+        style.LoadTagStyle("body", "size", "8px");
+
+
+        HTMLWorker htmlparser = new HTMLWorker(pdfDoc);
+        htmlparser.SetStyleSheet(style);
+        PdfWriter.GetInstance(pdfDoc, Response.OutputStream);
+        pdfDoc.Open();
+
+        Paragraph paragraph = new Paragraph("Health Facility PMTCT Status Report");
+        Paragraph paragraph2 = new Paragraph("Reporting Period : ");
+        paragraph2.SpacingAfter = 10f;
+
+        string imageURL = Server.MapPath("..") + "/img/logo_tiis_.png";
+        iTextSharp.text.Image jpg = iTextSharp.text.Image.GetInstance(imageURL);
+        jpg.ScaleToFit(570f, 120f);
+
+        jpg.SpacingBefore = 10f;
+        //Give some space after the image
+        jpg.SpacingAfter = 1f;
+
+        pdfDoc.Add(jpg);
+        pdfDoc.Add(paragraph);
+        pdfDoc.Add(paragraph2);
+
+
+        htmlparser.Parse(sr);
+
+        pdfDoc.Close();
+        Response.Write(pdfDoc);
+        Response.End();
+
+        gvExport.AllowPaging = true;
+        gvExport.DataBind();
 
 
     }
