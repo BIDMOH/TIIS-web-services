@@ -149,8 +149,8 @@ public partial class _HealthFacilityCohortData : System.Web.UI.Page
                 {
                     hfId = int.Parse(_hfId);
                     HealthFacilityCohortData o = new HealthFacilityCohortData();
-                    if (yearExists(int.Parse(ddlYear.SelectedValue)))
-                        return;
+//                    if (yearExists(int.Parse(ddlYear.SelectedValue)))
+//                        return;
 
                     o.HealthFacilityId = hfId;
                     o.Year = int.Parse(ddlYear.SelectedValue);

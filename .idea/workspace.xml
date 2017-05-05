@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d32c8675-416f-4a19-8602-be7e586c3dd2" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilityChildDefaultersReport.aspx" afterPath="$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilityChildDefaultersReport.aspx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilityChildDefaultersReport.aspx.cs" afterPath="$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilityChildDefaultersReport.aspx.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilityCohortData.aspx.cs" afterPath="$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilityCohortData.aspx.cs" />
     </list>
     <ignored path="TIIS-web-services.iws" />
@@ -29,54 +28,35 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="HealthFacilityChildDefaultersReportByDistrict.aspx" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilityChildDefaultersReportByDistrict.aspx">
+      <file leaf-file-name="HealthFacilityCohortData.aspx.cs" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilityCohortData.aspx.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-26.166666">
-              <caret line="265" column="3" selection-start-line="265" selection-start-column="3" selection-end-line="273" selection-end-column="14" />
+            <state vertical-scroll-proportion="-0.2771318">
+              <caret line="151" column="22" selection-start-line="151" selection-start-column="22" selection-end-line="152" selection-end-column="33" />
               <folding>
-                <element signature="n#div#4;n#asp:Content#1;n#!!top" expanded="false" />
-                <element signature="n#div#5;n#asp:Content#1;n#!!top" expanded="false" />
+                <element signature="e#0#13704#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HealthFacilityChildDefaultersReportByDistrict.aspx.cs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilityChildDefaultersReportByDistrict.aspx.cs">
+      <file leaf-file-name="HealthFacilityCohortData.aspx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilityCohortData.aspx">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="365.74075">
-              <caret line="21" column="17" selection-start-line="21" selection-start-column="17" selection-end-line="22" selection-end-column="16" />
-              <folding />
+            <state vertical-scroll-proportion="-3.2156863">
+              <caret line="126" column="121" selection-start-line="126" selection-start-column="109" selection-end-line="126" selection-end-column="121" />
+              <folding>
+                <element signature="n#style#0;n#span#0;n#div#1;n#div#2;n#asp:Content#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HealthFacilityChildDefaultersReport.aspx.cs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilityChildDefaultersReport.aspx.cs">
+      <file leaf-file-name="HealthFacilityCohortData.aspx" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/Downloads/Shared/HealthFacilityCohortData.aspx">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-18.148148">
-              <caret line="419" column="0" selection-start-line="419" selection-start-column="0" selection-end-line="419" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HealthFacilityCohortData.aspx.cs" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilityCohortData.aspx.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.37815127">
-              <caret line="203" column="18" selection-start-line="203" selection-start-column="18" selection-end-line="204" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HealthFacilityChildDefaultersReport.aspx" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilityChildDefaultersReport.aspx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-18.529411">
-              <caret line="63" column="10" selection-start-line="63" selection-start-column="10" selection-end-line="63" selection-end-column="10" />
+            <state vertical-scroll-proportion="-1.8235294">
+              <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -117,8 +97,9 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
+    <option name="y" value="23" />
     <option name="width" value="1680" />
-    <option name="height" value="1050" />
+    <option name="height" value="985" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -226,9 +207,127 @@
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="FullScreen" value="true" />
     <property name="js-jscs-nodeInterpreter" value="/usr/local/bin/node" />
     <property name="SearchEverywhereHistoryKey" value="HealthFacilityCohortData&#9;FILE&#9;file:///Users/coze/Workspace/TIIS-web-services/DataLayer/GIIS.Website/Pages/HealthFacilityCohortData.aspx.cs" />
+  </component>
+  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
+    <UpdatedFiles>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Updated from server" />
+        <option name="myStatusName" value="Changed on server" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="CHANGED_ON_SERVER" />
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Updated" />
+          <option name="myStatusName" value="Changed" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="UPDATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/DataLayer/GIIS.DataLayer/.vs/GIIS.DataLayer1/v15/.suo</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/DataLayer/GIIS.Website/.idea/workspace.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilityDropout.aspx</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilityDropout.aspx.cs</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilityListPMTCTstatusReport.aspx</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilityListPMTCTstatusReport.aspx.cs</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilityListStockStatusReport.aspx</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilityListStockStatusReport.aspx.cs</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilityListVaccinationSummary.aspx</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilityListVaccinationSummary.aspx.cs</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Created" />
+          <option name="myStatusName" value="Created" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="CREATED" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Deleted" />
+          <option name="myStatusName" value="Deleted" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="true" />
+          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Restored" />
+          <option name="myStatusName" value="Will be restored" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="RESTORED" />
+        </FILE-GROUP>
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Modified" />
+        <option name="myStatusName" value="Modified" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MODIFIED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Skipped" />
+        <option name="myStatusName" value="Skipped" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SKIPPED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with conflicts" />
+        <option name="myStatusName" value="Will be merged with conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_CONFLICTS" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with tree conflicts" />
+        <option name="myStatusName" value="Merged with tree conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with property conflicts" />
+        <option name="myStatusName" value="Will be merged with property conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged" />
+        <option name="myStatusName" value="Will be merged" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Not in repository" />
+        <option name="myStatusName" value="Not in repository" />
+        <option name="mySupportsDeletion" value="true" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="UNKNOWN" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally added" />
+        <option name="myStatusName" value="Locally added" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_ADDED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally removed" />
+        <option name="myStatusName" value="Locally removed" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_REMOVED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Switched" />
+        <option name="myStatusName" value="Switched" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SWITCHED" />
+      </FILE-GROUP>
+    </UpdatedFiles>
   </component>
   <component name="RunManager">
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
@@ -269,7 +368,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
+    <frame x="0" y="23" width="1680" height="985" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26678878" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -277,7 +376,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34725052" sideWeight="0.504884" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32959184" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32857144" sideWeight="0.497558" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3605823" sideWeight="0.497558" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3469388" sideWeight="0.495116" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -382,14 +481,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="295" column="29" selection-start-line="295" selection-start-column="29" selection-end-line="295" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilityCohortData.aspx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.6666667">
-          <caret line="126" column="23" selection-start-line="126" selection-start-column="17" selection-end-line="126" selection-end-column="23" />
           <folding />
         </state>
       </provider>
@@ -544,11 +635,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/Downloads/Shared/HealthFacilityCohortData.aspx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.8235294">
+          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilityCohortData.aspx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.2156863">
+          <caret line="126" column="121" selection-start-line="126" selection-start-column="109" selection-end-line="126" selection-end-column="121" />
+          <folding>
+            <element signature="n#style#0;n#span#0;n#div#1;n#div#2;n#asp:Content#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/DataLayer/GIIS.Website/Pages/HealthFacilityCohortData.aspx.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.37815127">
-          <caret line="203" column="18" selection-start-line="203" selection-start-column="18" selection-end-line="204" selection-end-column="29" />
-          <folding />
+        <state vertical-scroll-proportion="-0.2771318">
+          <caret line="151" column="22" selection-start-line="151" selection-start-column="22" selection-end-line="152" selection-end-column="33" />
+          <folding>
+            <element signature="e#0#13704#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
