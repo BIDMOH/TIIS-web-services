@@ -485,6 +485,7 @@ public partial class Pages_HealthFacilityChildrenRegistrationsDefaultersReportBy
                     gvExport.Columns[10].Visible = false;
                     gvExport.Columns[11].Visible = false;
                     gvExport.Columns[12].Visible = false;
+                    gvExport.Columns[13].Visible = false;
                 }else if(d.Month == 3){
                     gvExport.Columns[4].Visible = false;
                     gvExport.Columns[5].Visible = false;
@@ -495,6 +496,7 @@ public partial class Pages_HealthFacilityChildrenRegistrationsDefaultersReportBy
                     gvExport.Columns[10].Visible = false;
                     gvExport.Columns[11].Visible = false;
                     gvExport.Columns[12].Visible = false;
+                    gvExport.Columns[13].Visible = false;
                 }else if(d.Month == 4){
                     gvExport.Columns[5].Visible = false;
                     gvExport.Columns[6].Visible = false;
@@ -504,6 +506,7 @@ public partial class Pages_HealthFacilityChildrenRegistrationsDefaultersReportBy
                     gvExport.Columns[10].Visible = false;
                     gvExport.Columns[11].Visible = false;
                     gvExport.Columns[12].Visible = false;
+                    gvExport.Columns[13].Visible = false;
                 }else if(d.Month == 5){
                      gvExport.Columns[6].Visible = false;
                      gvExport.Columns[7].Visible = false;
@@ -512,6 +515,7 @@ public partial class Pages_HealthFacilityChildrenRegistrationsDefaultersReportBy
                      gvExport.Columns[10].Visible = false;
                      gvExport.Columns[11].Visible = false;
                      gvExport.Columns[12].Visible = false;
+                     gvExport.Columns[13].Visible = false;
                 }else if(d.Month == 6){
                     gvExport.Columns[7].Visible = false;
                     gvExport.Columns[8].Visible = false;
@@ -519,30 +523,36 @@ public partial class Pages_HealthFacilityChildrenRegistrationsDefaultersReportBy
                     gvExport.Columns[10].Visible = false;
                     gvExport.Columns[11].Visible = false;
                     gvExport.Columns[12].Visible = false;
+                    gvExport.Columns[13].Visible = false;
                 }else if(d.Month == 7){
                     gvExport.Columns[8].Visible = false;
                     gvExport.Columns[9].Visible = false;
                     gvExport.Columns[10].Visible = false;
                     gvExport.Columns[11].Visible = false;
                     gvExport.Columns[12].Visible = false;
+                    gvExport.Columns[13].Visible = false;
                 }else if(d.Month == 8){
                     gvExport.Columns[9].Visible = false;
                     gvExport.Columns[10].Visible = false;
                     gvExport.Columns[11].Visible = false;
                     gvExport.Columns[12].Visible = false;
+                    gvExport.Columns[13].Visible = false;
                 }else if(d.Month == 9){
                     gvExport.Columns[10].Visible = false;
                     gvExport.Columns[11].Visible = false;
                     gvExport.Columns[12].Visible = false;
+                    gvExport.Columns[13].Visible = false;
                 }else if(d.Month == 10){
                     gvExport.Columns[11].Visible = false;
                     gvExport.Columns[12].Visible = false;
+                    gvExport.Columns[13].Visible = false;
                 }else if(d.Month == 11){
                     gvExport.Columns[12].Visible = false;
+                    gvExport.Columns[13].Visible = false;
                 }
 
                 Response.Clear();
-                Response.AddHeader("content-disposition", "attachment;filename=DefaultersByDistrict.xls");
+                Response.AddHeader("content-disposition", "attachment;filename=DefaultersSummary.xls");
                 Response.Charset = "";
 
                 Response.ContentType = "application/ms-excel";
@@ -584,9 +594,9 @@ public partial class Pages_HealthFacilityChildrenRegistrationsDefaultersReportBy
             string ParentName = HealthFacility.GetHealthFacilityById(hfParentID).Name;
             ToDate = Request.Form["selectReportingPeriod"];
             selectedDose = Request.Form["selectDose"];
+            string DoseName ="";
             if(selectedDose != "all"){
-            string DoseName = ScheduledVaccination.GetScheduledVaccinationById(Convert.ToInt32(selectedDose)).Name;
-
+            DoseName = ScheduledVaccination.GetScheduledVaccinationById(Convert.ToInt32(selectedDose)).Name;
             }
 
 
@@ -622,77 +632,87 @@ public partial class Pages_HealthFacilityChildrenRegistrationsDefaultersReportBy
 
                 DateTime d = oDate.AddMonths(-1);
 
-                if(d.Month == 2){
-                    gvExport.Columns[3].Visible = false;
-                    gvExport.Columns[4].Visible = false;
-                    gvExport.Columns[5].Visible = false;
-                    gvExport.Columns[6].Visible = false;
-                    gvExport.Columns[7].Visible = false;
-                    gvExport.Columns[8].Visible = false;
-                    gvExport.Columns[9].Visible = false;
-                    gvExport.Columns[10].Visible = false;
-                    gvExport.Columns[11].Visible = false;
-                    gvExport.Columns[12].Visible = false;
-                }else if(d.Month == 3){
-                    gvExport.Columns[4].Visible = false;
-                    gvExport.Columns[5].Visible = false;
-                    gvExport.Columns[6].Visible = false;
-                    gvExport.Columns[7].Visible = false;
-                    gvExport.Columns[8].Visible = false;
-                    gvExport.Columns[9].Visible = false;
-                    gvExport.Columns[10].Visible = false;
-                    gvExport.Columns[11].Visible = false;
-                    gvExport.Columns[12].Visible = false;
-                }else if(d.Month == 4){
-                    gvExport.Columns[5].Visible = false;
-                    gvExport.Columns[6].Visible = false;
-                    gvExport.Columns[7].Visible = false;
-                    gvExport.Columns[8].Visible = false;
-                    gvExport.Columns[9].Visible = false;
-                    gvExport.Columns[10].Visible = false;
-                    gvExport.Columns[11].Visible = false;
-                    gvExport.Columns[12].Visible = false;
-                }else if(d.Month == 5){
-                     gvExport.Columns[6].Visible = false;
-                     gvExport.Columns[7].Visible = false;
-                     gvExport.Columns[8].Visible = false;
-                     gvExport.Columns[9].Visible = false;
-                     gvExport.Columns[10].Visible = false;
-                     gvExport.Columns[11].Visible = false;
-                     gvExport.Columns[12].Visible = false;
-                }else if(d.Month == 6){
-                    gvExport.Columns[7].Visible = false;
-                    gvExport.Columns[8].Visible = false;
-                    gvExport.Columns[9].Visible = false;
-                    gvExport.Columns[10].Visible = false;
-                    gvExport.Columns[11].Visible = false;
-                    gvExport.Columns[12].Visible = false;
-                }else if(d.Month == 7){
-                    gvExport.Columns[8].Visible = false;
-                    gvExport.Columns[9].Visible = false;
-                    gvExport.Columns[10].Visible = false;
-                    gvExport.Columns[11].Visible = false;
-                    gvExport.Columns[12].Visible = false;
-                }else if(d.Month == 8){
-                    gvExport.Columns[9].Visible = false;
-                    gvExport.Columns[10].Visible = false;
-                    gvExport.Columns[11].Visible = false;
-                    gvExport.Columns[12].Visible = false;
-                }else if(d.Month == 9){
-                    gvExport.Columns[10].Visible = false;
-                    gvExport.Columns[11].Visible = false;
-                    gvExport.Columns[12].Visible = false;
-                }else if(d.Month == 10){
-                    gvExport.Columns[11].Visible = false;
-                    gvExport.Columns[12].Visible = false;
-                }else if(d.Month == 11){
-                    gvExport.Columns[12].Visible = false;
-                }
+                 if(d.Month == 2){
+                                    gvExport.Columns[3].Visible = false;
+                                    gvExport.Columns[4].Visible = false;
+                                    gvExport.Columns[5].Visible = false;
+                                    gvExport.Columns[6].Visible = false;
+                                    gvExport.Columns[7].Visible = false;
+                                    gvExport.Columns[8].Visible = false;
+                                    gvExport.Columns[9].Visible = false;
+                                    gvExport.Columns[10].Visible = false;
+                                    gvExport.Columns[11].Visible = false;
+                                    gvExport.Columns[12].Visible = false;
+                                    gvExport.Columns[13].Visible = false;
+                                }else if(d.Month == 3){
+                                    gvExport.Columns[4].Visible = false;
+                                    gvExport.Columns[5].Visible = false;
+                                    gvExport.Columns[6].Visible = false;
+                                    gvExport.Columns[7].Visible = false;
+                                    gvExport.Columns[8].Visible = false;
+                                    gvExport.Columns[9].Visible = false;
+                                    gvExport.Columns[10].Visible = false;
+                                    gvExport.Columns[11].Visible = false;
+                                    gvExport.Columns[12].Visible = false;
+                                    gvExport.Columns[13].Visible = false;
+                                }else if(d.Month == 4){
+                                    gvExport.Columns[5].Visible = false;
+                                    gvExport.Columns[6].Visible = false;
+                                    gvExport.Columns[7].Visible = false;
+                                    gvExport.Columns[8].Visible = false;
+                                    gvExport.Columns[9].Visible = false;
+                                    gvExport.Columns[10].Visible = false;
+                                    gvExport.Columns[11].Visible = false;
+                                    gvExport.Columns[12].Visible = false;
+                                    gvExport.Columns[13].Visible = false;
+                                }else if(d.Month == 5){
+                                     gvExport.Columns[6].Visible = false;
+                                     gvExport.Columns[7].Visible = false;
+                                     gvExport.Columns[8].Visible = false;
+                                     gvExport.Columns[9].Visible = false;
+                                     gvExport.Columns[10].Visible = false;
+                                     gvExport.Columns[11].Visible = false;
+                                     gvExport.Columns[12].Visible = false;
+                                     gvExport.Columns[13].Visible = false;
+                                }else if(d.Month == 6){
+                                    gvExport.Columns[7].Visible = false;
+                                    gvExport.Columns[8].Visible = false;
+                                    gvExport.Columns[9].Visible = false;
+                                    gvExport.Columns[10].Visible = false;
+                                    gvExport.Columns[11].Visible = false;
+                                    gvExport.Columns[12].Visible = false;
+                                    gvExport.Columns[13].Visible = false;
+                                }else if(d.Month == 7){
+                                    gvExport.Columns[8].Visible = false;
+                                    gvExport.Columns[9].Visible = false;
+                                    gvExport.Columns[10].Visible = false;
+                                    gvExport.Columns[11].Visible = false;
+                                    gvExport.Columns[12].Visible = false;
+                                    gvExport.Columns[13].Visible = false;
+                                }else if(d.Month == 8){
+                                    gvExport.Columns[9].Visible = false;
+                                    gvExport.Columns[10].Visible = false;
+                                    gvExport.Columns[11].Visible = false;
+                                    gvExport.Columns[12].Visible = false;
+                                    gvExport.Columns[13].Visible = false;
+                                }else if(d.Month == 9){
+                                    gvExport.Columns[10].Visible = false;
+                                    gvExport.Columns[11].Visible = false;
+                                    gvExport.Columns[12].Visible = false;
+                                    gvExport.Columns[13].Visible = false;
+                                }else if(d.Month == 10){
+                                    gvExport.Columns[11].Visible = false;
+                                    gvExport.Columns[12].Visible = false;
+                                    gvExport.Columns[13].Visible = false;
+                                }else if(d.Month == 11){
+                                    gvExport.Columns[12].Visible = false;
+                                    gvExport.Columns[13].Visible = false;
+                                }
 
 
 
                 Response.ContentType = "application/pdf";
-                Response.AddHeader("content-disposition", "attachment;filename=Health Facility Children Defaulters By District.pdf");
+                Response.AddHeader("content-disposition", "attachment;filename=Health Facility Children Defaulters Summary.pdf");
                 Response.Cache.SetCacheability(HttpCacheability.NoCache);
                 StringWriter sw = new StringWriter();
                 HtmlTextWriter hw = new HtmlTextWriter(sw);
@@ -714,39 +734,66 @@ public partial class Pages_HealthFacilityChildrenRegistrationsDefaultersReportBy
                 PdfWriter.GetInstance(pdfDoc, Response.OutputStream);
                 pdfDoc.Open();
                 if(selectedDose == "all"){
-                     Paragraph paragraph = new Paragraph("Health Facility Child Defaulters Report By District");
+                    Paragraph paragraph = new Paragraph("Health Facility Child Defaulters Summary");
                     Paragraph paragraph2 = new Paragraph("Region : "+ ParentName);
                     Paragraph paragraph3 = new Paragraph("District : "+facilityName);
                     Paragraph paragraph4 = new Paragraph("Antigen : All");
-                    Paragraph paragraph5 = new Paragraph("Reporting Period : "+ToDate);
+                    Paragraph paragraph5 = new Paragraph("Reporting Period : "+strFromDate +" to "+strToDate);
+
+                    paragraph.Alignment = Element.ALIGN_CENTER;
+                    paragraph2.Alignment = Element.ALIGN_CENTER;
+                    paragraph3.Alignment = Element.ALIGN_CENTER;
+                    paragraph4.Alignment = Element.ALIGN_CENTER;
+                    paragraph5.Alignment = Element.ALIGN_CENTER;
+                    paragraph5.SpacingAfter = 20f;
+
+                    string imageURL = Server.MapPath("..") + "/img/logo_tiis_.png";
+                    iTextSharp.text.Image jpg = iTextSharp.text.Image.GetInstance(imageURL);
+                    jpg.ScaleToFit(570f, 120f);
+
+                    jpg.SpacingBefore = 10f;
+                    //Give some space after the image
+                    jpg.SpacingAfter = 5f;
+
+                    pdfDoc.Add(jpg);
+                    pdfDoc.Add(paragraph);
+                    pdfDoc.Add(paragraph2);
+                    pdfDoc.Add(paragraph3);
+                    pdfDoc.Add(paragraph4);
+                    pdfDoc.Add(paragraph5);
+
                 }else{
-                    Paragraph paragraph = new Paragraph("Health Facility Child Defaulters Report By District");
+                    Paragraph paragraph = new Paragraph("Health Facility Child Defaulters Summary");
                     Paragraph paragraph2 = new Paragraph("Region : "+ ParentName);
                     Paragraph paragraph3 = new Paragraph("District : "+facilityName);
                     Paragraph paragraph4 = new Paragraph("Antigen : "+DoseName);
-                    Paragraph paragraph5 = new Paragraph("Reporting Period : "+ToDate);
+                    Paragraph paragraph5 = new Paragraph("Reporting Period : "+strFromDate +" to "+strToDate);
+
+                    paragraph.Alignment = Element.ALIGN_CENTER;
+                    paragraph2.Alignment = Element.ALIGN_CENTER;
+                    paragraph3.Alignment = Element.ALIGN_CENTER;
+                    paragraph4.Alignment = Element.ALIGN_CENTER;
+                    paragraph5.Alignment = Element.ALIGN_CENTER;
+                    paragraph5.SpacingAfter = 20f;
+
+                    string imageURL = Server.MapPath("..") + "/img/logo_tiis_.png";
+                    iTextSharp.text.Image jpg = iTextSharp.text.Image.GetInstance(imageURL);
+                    jpg.ScaleToFit(570f, 120f);
+
+                    jpg.SpacingBefore = 10f;
+                    //Give some space after the image
+                    jpg.SpacingAfter = 5f;
+
+                    pdfDoc.Add(jpg);
+                    pdfDoc.Add(paragraph);
+                    pdfDoc.Add(paragraph2);
+                    pdfDoc.Add(paragraph3);
+                    pdfDoc.Add(paragraph4);
+                    pdfDoc.Add(paragraph5);
                 }
-                paragraph5.SpacingAfter = 20f;
-                paragraph.Alignment = Element.ALIGN_CENTER;
-                paragraph2.Alignment = Element.ALIGN_CENTER;
-                paragraph3.Alignment = Element.ALIGN_CENTER;
-                paragraph4.Alignment = Element.ALIGN_CENTER;
-                paragraph5.Alignment = Element.ALIGN_CENTER;
 
-                string imageURL = Server.MapPath("..") + "/img/logo_tiis_.png";
-                iTextSharp.text.Image jpg = iTextSharp.text.Image.GetInstance(imageURL);
-                jpg.ScaleToFit(570f, 120f);
 
-                jpg.SpacingBefore = 10f;
-                //Give some space after the image
-                jpg.SpacingAfter = 5f;
 
-                pdfDoc.Add(jpg);
-                pdfDoc.Add(paragraph);
-                pdfDoc.Add(paragraph2);
-                pdfDoc.Add(paragraph3);
-                pdfDoc.Add(paragraph4);
-                pdfDoc.Add(paragraph5);
 
 
                 htmlparser.Parse(sr);

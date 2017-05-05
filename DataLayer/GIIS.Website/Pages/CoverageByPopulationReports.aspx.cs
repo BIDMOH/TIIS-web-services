@@ -21,10 +21,13 @@ using System.Configuration;
 using System.Linq;
 using System.Web;
 
+using System.IO;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
-
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using iTextSharp.text.html.simpleparser;
 public partial class Pages_CoverageReport : System.Web.UI.Page
 {
     public static String datefromString = "";
@@ -252,12 +255,19 @@ public partial class Pages_CoverageReport : System.Web.UI.Page
     {
        return;
     }
+
     protected void gvOn_DataBound(object sender, EventArgs e)
     {
         if (gvCoverageReport.Rows.Count > 0)
+        {
             btnExcel.Visible = true;
+            btnPdf.Visible = true;
+        }
         else
+        {
             btnExcel.Visible = false;
+            btnPdf.Visible = false;
+        }
 
 
     }
@@ -326,7 +336,75 @@ public partial class Pages_CoverageReport : System.Web.UI.Page
         Response.End();
     }
 
+    protected void btnPdf_Click(object sender, EventArgs e)
+    {
 
+        selectedHealthFacilityID = Request.Form["selectHealthFacility"];
+        hfParentID = HealthFacility.GetHealthFacilityById(Convert.ToInt32(selectedHealthFacilityID)).ParentId;
+        string facilityName = HealthFacility.GetHealthFacilityById(Convert.ToInt32(selectedHealthFacilityID)).Name;
+        string ParentName = HealthFacility.GetHealthFacilityById(hfParentID).Name;
+        string strFromDate = String.Format("{0}", Request.Form["dateFrom"]);
+        string strToDate = String.Format("{0}", Request.Form["dateTo"]);
+
+        odsExport.SelectParameters.Clear();
+        odsExport.DataBind();
+
+        gvExport.DataSourceID = "odsExport";
+        gvExport.DataBind();
+
+        Response.ContentType = "application/pdf";
+        Response.AddHeader("content-disposition", "attachment;filename=Coverage Report by Target Population.pdf");
+        Response.Cache.SetCacheability(HttpCacheability.NoCache);
+        StringWriter sw = new StringWriter();
+        HtmlTextWriter hw = new HtmlTextWriter(sw);
+        gvExport.RenderControl(hw);
+
+        StringReader sr = new StringReader(sw.ToString());
+        Document pdfDoc = new Document(PageSize.A4, 10f, 10f, 10f, 0f);
+
+        var style = new StyleSheet();
+        style.LoadTagStyle("body", "size", "8px");
+
+
+        HTMLWorker htmlparser = new HTMLWorker(pdfDoc);
+        htmlparser.SetStyleSheet(style);
+        PdfWriter.GetInstance(pdfDoc, Response.OutputStream);
+        pdfDoc.Open();
+
+        Paragraph paragraph = new Paragraph("Coverage Report by Schedule");
+        Paragraph paragraph2 = new Paragraph("Region/District : "+ ParentName);
+        Paragraph paragraph3 = new Paragraph("Health Facility : "+facilityName);
+        Paragraph paragraph4 = new Paragraph("Reporting Period : "+strFromDate+" to "+strToDate);
+
+        paragraph4.SpacingAfter = 20f;
+        paragraph.Alignment = Element.ALIGN_CENTER;
+        paragraph2.Alignment = Element.ALIGN_CENTER;
+        paragraph3.Alignment = Element.ALIGN_CENTER;
+
+        string imageURL = Server.MapPath("..") + "/img/logo_tiis_.png";
+        iTextSharp.text.Image jpg = iTextSharp.text.Image.GetInstance(imageURL);
+        jpg.ScaleToFit(570f, 120f);
+
+        jpg.SpacingBefore = 10f;
+        //Give some space after the image
+        jpg.SpacingAfter = 5f;
+
+        pdfDoc.Add(jpg);
+        pdfDoc.Add(paragraph);
+        pdfDoc.Add(paragraph2);
+        pdfDoc.Add(paragraph3);
+        pdfDoc.Add(paragraph4);
+
+
+        htmlparser.Parse(sr);
+
+        pdfDoc.Close();
+        Response.Write(pdfDoc);
+        Response.End();
+
+        gvExport.AllowPaging = true;
+        gvExport.DataBind();
+    }
      protected void gvCoverageReportDetails_PageIndexChanging(object sender, GridViewPageEventArgs e)
      {
 //         gvCoverageReportDetails.PageIndex = e.NewPageIndex;

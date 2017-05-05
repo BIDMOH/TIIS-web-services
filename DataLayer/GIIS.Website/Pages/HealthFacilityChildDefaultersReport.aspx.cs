@@ -391,7 +391,14 @@ public partial class Pages_HealthFacilityChildrenRegistrationsDefaulters : Syste
         {
 
             selectedHealthFacilityID = Request.Form["selectHealthFacility"];
+            hfParentID = HealthFacility.GetHealthFacilityById(Convert.ToInt32(selectedHealthFacilityID)).ParentId;
+            string facilityName = HealthFacility.GetHealthFacilityById(Convert.ToInt32(selectedHealthFacilityID)).Name;
+            string ParentName = HealthFacility.GetHealthFacilityById(hfParentID).Name;
             selectedVillage = Request.Form["selectVillage"];
+            string VillageName ="";
+            if(selectedVillage != "all"){
+            VillageName = Place.GetPlaceById(Convert.ToInt32(selectedVillage)).Name;
+            }
             string strFromDate = String.Format("{0}", Request.Form["dateFrom"]);
             string strToDate = String.Format("{0}", Request.Form["dateTo"]);
 
@@ -420,7 +427,7 @@ public partial class Pages_HealthFacilityChildrenRegistrationsDefaulters : Syste
 
 
             Response.ContentType = "application/pdf";
-            Response.AddHeader("content-disposition", "attachment;filename=Health Facility Children Defaulters.pdf");
+            Response.AddHeader("content-disposition", "attachment;filename=Health Facility Children Defaulters List.pdf");
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
             StringWriter sw = new StringWriter();
             HtmlTextWriter hw = new HtmlTextWriter(sw);
@@ -441,22 +448,66 @@ public partial class Pages_HealthFacilityChildrenRegistrationsDefaulters : Syste
             htmlparser.SetStyleSheet(style);
             PdfWriter.GetInstance(pdfDoc, Response.OutputStream);
             pdfDoc.Open();
+            if(selectedVillage != "all"){
+                Paragraph paragraph = new Paragraph("Health Facility Child Defaulters List");
+                Paragraph paragraph2 = new Paragraph("Region : "+ ParentName);
+                Paragraph paragraph3 = new Paragraph("District : "+facilityName);
+                Paragraph paragraph4 = new Paragraph("Village : "+VillageName);
+                Paragraph paragraph5 = new Paragraph("Reporting Period : "+strFromDate +" to "+strToDate);
 
-            Paragraph paragraph = new Paragraph("Health Facility Child Defaulters");
-            Paragraph paragraph2 = new Paragraph("Reporting Date : "+DateTime.Now);
-            paragraph2.SpacingAfter = 10f;
+                paragraph.Alignment = Element.ALIGN_CENTER;
+                paragraph2.Alignment = Element.ALIGN_CENTER;
+                paragraph3.Alignment = Element.ALIGN_CENTER;
+                paragraph4.Alignment = Element.ALIGN_CENTER;
+                paragraph5.Alignment = Element.ALIGN_CENTER;
+                paragraph5.SpacingAfter = 20f;
 
-            string imageURL = Server.MapPath("..") + "/img/logo_tiis_.png";
-            iTextSharp.text.Image jpg = iTextSharp.text.Image.GetInstance(imageURL);
-            jpg.ScaleToFit(570f, 120f);
+                string imageURL = Server.MapPath("..") + "/img/logo_tiis_.png";
+                iTextSharp.text.Image jpg = iTextSharp.text.Image.GetInstance(imageURL);
+                jpg.ScaleToFit(570f, 120f);
 
-            jpg.SpacingBefore = 10f;
-            //Give some space after the image
-            jpg.SpacingAfter = 1f;
+                jpg.SpacingBefore = 10f;
+                //Give some space after the image
+                jpg.SpacingAfter = 5f;
 
-            pdfDoc.Add(jpg);
-            pdfDoc.Add(paragraph);
-            pdfDoc.Add(paragraph2);
+                pdfDoc.Add(jpg);
+                pdfDoc.Add(paragraph);
+                pdfDoc.Add(paragraph2);
+                pdfDoc.Add(paragraph3);
+                pdfDoc.Add(paragraph4);
+                pdfDoc.Add(paragraph5);
+
+            }else{
+                Paragraph paragraph = new Paragraph("Health Facility Child Defaulters List");
+                Paragraph paragraph2 = new Paragraph("Region : "+ ParentName);
+                Paragraph paragraph3 = new Paragraph("District : "+facilityName);
+                Paragraph paragraph4 = new Paragraph("Village : All");
+                Paragraph paragraph5 = new Paragraph("Reporting Period : "+strFromDate +" to "+strToDate);
+                paragraph.Alignment = Element.ALIGN_CENTER;
+                paragraph2.Alignment = Element.ALIGN_CENTER;
+                paragraph3.Alignment = Element.ALIGN_CENTER;
+                paragraph4.Alignment = Element.ALIGN_CENTER;
+                paragraph5.Alignment = Element.ALIGN_CENTER;
+                paragraph5.SpacingAfter = 20f;
+
+                string imageURL = Server.MapPath("..") + "/img/logo_tiis_.png";
+                iTextSharp.text.Image jpg = iTextSharp.text.Image.GetInstance(imageURL);
+                jpg.ScaleToFit(570f, 120f);
+
+                jpg.SpacingBefore = 10f;
+                //Give some space after the image
+                jpg.SpacingAfter = 5f;
+
+                pdfDoc.Add(jpg);
+                pdfDoc.Add(paragraph);
+                pdfDoc.Add(paragraph2);
+                pdfDoc.Add(paragraph3);
+                pdfDoc.Add(paragraph4);
+                pdfDoc.Add(paragraph5);
+            }
+
+
+
 
 
             htmlparser.Parse(sr);

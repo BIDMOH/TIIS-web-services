@@ -385,6 +385,7 @@ public partial class Pages_CoverageReport : System.Web.UI.Page
             paragraph.Alignment = Element.ALIGN_CENTER;
             paragraph2.Alignment = Element.ALIGN_CENTER;
             paragraph3.Alignment = Element.ALIGN_CENTER;
+            paragraph4.Alignment = Element.ALIGN_CENTER;
 
             string imageURL = Server.MapPath("..") + "/img/logo_tiis_.png";
             iTextSharp.text.Image jpg = iTextSharp.text.Image.GetInstance(imageURL);
@@ -397,6 +398,8 @@ public partial class Pages_CoverageReport : System.Web.UI.Page
             pdfDoc.Add(jpg);
             pdfDoc.Add(paragraph);
             pdfDoc.Add(paragraph2);
+            pdfDoc.Add(paragraph3);
+            pdfDoc.Add(paragraph4);
 
 
             htmlparser.Parse(sr);
