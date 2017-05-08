@@ -15,7 +15,7 @@
    limitations under the License.
  ******************************************************************************
 --%>
-<%@ Page Title="View Session Report" EnableEventValidation="false" Language="C#" AutoEventWireup="true" CodeFile="HealthFacilityChildDefaultersReportByDistrict.aspx.cs" Inherits="Pages_HealthFacilityChildrenRegistrationsDefaultersReportByDistrict" MasterPageFile="~/Pages/MasterPage.master" %>
+<%@ Page Title="View Defaulter Summary" EnableEventValidation="false" Language="C#" AutoEventWireup="true" CodeFile="HealthFacilityChildDefaultersReportByDistrict.aspx.cs" Inherits="Pages_HealthFacilityChildrenRegistrationsDefaultersReportByDistrict" MasterPageFile="~/Pages/MasterPage.master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <style type="text/css">

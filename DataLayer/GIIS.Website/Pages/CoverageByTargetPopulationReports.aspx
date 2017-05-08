@@ -15,7 +15,7 @@
    limitations under the License.
  ******************************************************************************
 --%>
-<%@ Page Title="View Coverage By Schedule Report" EnableEventValidation="false" Language="C#" AutoEventWireup="true" CodeFile="CoverageByTargetPopulationReports.aspx.cs" Inherits="Pages_CoverageByTargetPopulationReport" MasterPageFile="~/Pages/MasterPage.master" %>
+<%@ Page Title="View Coverage By Target Report" EnableEventValidation="false" Language="C#" AutoEventWireup="true" CodeFile="CoverageByTargetPopulationReports.aspx.cs" Inherits="Pages_CoverageByTargetPopulationReport" MasterPageFile="~/Pages/MasterPage.master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <style type="text/css">
@@ -85,7 +85,7 @@
 
                 <HeaderTemplate>
                     <HeaderStyle HorizontalAlign="Center">
-                        <table width="100%" style="border-width: 1px" >
+                        <table width="100%" border="1px" >
                               <tr>
                                 <td rowspan="4" width="20%" align="center"> Doses </td>
                                </tr>
@@ -168,7 +168,7 @@
 
                                     <HeaderTemplate>
                                         <HeaderStyle HorizontalAlign="Center">
-                                            <table width="100%" border="1px" >
+                                            <table width="100%" style="border-width: 1px">
                                                   <tr>
                                                     <td rowspan="4" width="20%" align="center"> Doses </td>
                                                    </tr>

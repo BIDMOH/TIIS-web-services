@@ -92,9 +92,9 @@ namespace GIIS.DataLayer
             {
                 string query = @"SELECT * FROM ""PLACE"" WHERE ""ID"" = @ParamValue ";
                 List<NpgsqlParameter> parameters = new List<NpgsqlParameter>()
-{
-new NpgsqlParameter("@ParamValue", DbType.Int32) { Value = i }
-};
+			{
+			new NpgsqlParameter("@ParamValue", DbType.Int32) { Value = i }
+			};
                 DataTable dt = DBManager.ExecuteReaderCommand(query, CommandType.Text, parameters);
                 AuditTable.InsertEntity("Place", i.ToString(), 4, DateTime.Now, 1);
                 return GetPlaceAsObject(dt);
