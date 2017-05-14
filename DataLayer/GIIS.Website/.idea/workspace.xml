@@ -5,14 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="530d796c-0780-454e-b5db-359b024888dd" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../GIIS.DataLayer/.vs/GIIS.DataLayer1/v15/.suo" afterPath="$PROJECT_DIR$/../GIIS.DataLayer/.vs/GIIS.DataLayer1/v15/.suo" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../GIIS.DataLayer/bin/Debug/GIIS.DataLayer.pdb" afterPath="$PROJECT_DIR$/../GIIS.DataLayer/bin/Debug/GIIS.DataLayer.pdb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../GIIS.DataLayer/obj/Debug/GIIS.DataLayer.pdb" afterPath="$PROJECT_DIR$/../GIIS.DataLayer/obj/Debug/GIIS.DataLayer.pdb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../GIIS.DataLayer/Place.cs" afterPath="$PROJECT_DIR$/../GIIS.DataLayer/Place.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../GIIS.DataLayer/HealthFacilitiesDefaulters.cs" afterPath="$PROJECT_DIR$/../GIIS.DataLayer/HealthFacilitiesDefaulters.cs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pages/CoverageByScheduleReports.aspx" afterPath="$PROJECT_DIR$/Pages/CoverageByScheduleReports.aspx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pages/CoverageByTargetPopulationReports.aspx" afterPath="$PROJECT_DIR$/Pages/CoverageByTargetPopulationReports.aspx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pages/HealthFacilityChildDefaultersReport.aspx" afterPath="$PROJECT_DIR$/Pages/HealthFacilityChildDefaultersReport.aspx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pages/HealthFacilityChildDefaultersReportByDistrict.aspx" afterPath="$PROJECT_DIR$/Pages/HealthFacilityChildDefaultersReportByDistrict.aspx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pages/HealthFacilityListPMTCTstatusReport.aspx" afterPath="$PROJECT_DIR$/Pages/HealthFacilityListPMTCTstatusReport.aspx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pages/CoverageByTargetPopulationReports.aspx.cs" afterPath="$PROJECT_DIR$/Pages/CoverageByTargetPopulationReports.aspx.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pages/HealthFacilityCoverageByAntigen.aspx.cs" afterPath="$PROJECT_DIR$/Pages/HealthFacilityCoverageByAntigen.aspx.cs" />
     </list>
     <ignored path="GIIS.Website.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -36,21 +37,33 @@
       <file leaf-file-name="HealthFacilityChildDefaultersReportByDistrict.aspx.cs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityChildDefaultersReportByDistrict.aspx.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
+            <state relative-caret-position="-1309">
               <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#39886#0" expanded="false" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CoverageByTargetPopulationReports.aspx" pinned="false" current-in-tab="true">
+      <file leaf-file-name="HealthFacilityChildDefaultersReport.aspx.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityChildDefaultersReport.aspx.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2905">
+              <caret line="486" column="60" lean-forward="true" selection-start-line="486" selection-start-column="60" selection-end-line="486" selection-end-column="60" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CoverageByTargetPopulationReports.aspx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Pages/CoverageByTargetPopulationReports.aspx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="109" column="35" lean-forward="true" selection-start-line="109" selection-start-column="35" selection-end-line="109" selection-end-column="35" />
-              <folding />
+            <state relative-caret-position="160">
+              <caret line="169" column="43" lean-forward="false" selection-start-line="169" selection-start-column="40" selection-end-line="195" selection-end-column="54" />
+              <folding>
+                <element signature="n#HeaderStyle#0;n#HeaderTemplate#0;n#asp:TemplateField#0;n#Columns#0;n#asp:GridView#0;n#div#0;n#div#6;n#asp:Content#1;n#!!top" expanded="false" />
+                <element signature="n#style#0;n#table#1;n#HeaderStyle#0;n#HeaderTemplate#0;n#asp:TemplateField#0;n#Columns#0;n#asp:GridView#0;n#div#0;n#div#6;n#asp:Content#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#table#2;n#HeaderStyle#0;n#HeaderTemplate#0;n#asp:TemplateField#0;n#Columns#0;n#asp:GridView#0;n#div#0;n#div#6;n#asp:Content#1;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -58,21 +71,43 @@
       <file leaf-file-name="CoverageByTargetPopulationReports.aspx.cs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Pages/CoverageByTargetPopulationReports.aspx.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
-              <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#19235#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="202">
+              <caret line="105" column="145" lean-forward="false" selection-start-line="105" selection-start-column="145" selection-end-line="105" selection-end-column="145" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CoverageByScheduleReports.aspx" pinned="false" current-in-tab="false">
+      <file leaf-file-name="HealthFacilityCoverageByAntigen.aspx.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityCoverageByAntigen.aspx.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="287">
+              <caret line="114" column="213" lean-forward="false" selection-start-line="114" selection-start-column="213" selection-end-line="114" selection-end-column="213" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CoverageByScheduleReports.aspx.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Pages/CoverageByScheduleReports.aspx.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1785">
+              <caret line="105" column="149" lean-forward="true" selection-start-line="105" selection-start-column="143" selection-end-line="105" selection-end-column="212" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CoverageByScheduleReports.aspx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Pages/CoverageByScheduleReports.aspx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1343">
-              <caret line="79" column="44" lean-forward="true" selection-start-line="79" selection-start-column="44" selection-end-line="79" selection-end-column="56" />
-              <folding />
+            <state relative-caret-position="42">
+              <caret line="185" column="86" lean-forward="false" selection-start-line="185" selection-start-column="86" selection-end-line="185" selection-end-column="86" />
+              <folding>
+                <element signature="n#HeaderStyle#0;n#HeaderTemplate#0;n#asp:TemplateField#0;n#Columns#0;n#asp:GridView#0;n#div#0;n#div#5;n#asp:Content#1;n#!!top" expanded="false" />
+                <element signature="n#style#0;n#table#1;n#HeaderStyle#0;n#HeaderTemplate#0;n#asp:TemplateField#0;n#Columns#0;n#asp:GridView#0;n#div#0;n#div#5;n#asp:Content#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#table#2;n#HeaderStyle#0;n#HeaderTemplate#0;n#asp:TemplateField#0;n#Columns#0;n#asp:GridView#0;n#div#0;n#div#5;n#asp:Content#1;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -159,7 +194,6 @@
         <option value="$PROJECT_DIR$/Pages/HealthFacilityChildFollowUp.aspx.cs" />
         <option value="$USER_HOME$/Documents/QUERY.txt" />
         <option value="$PROJECT_DIR$/Pages/HealthFacilityLIstStockStatusReport.aspx.cs" />
-        <option value="$PROJECT_DIR$/Pages/CoverageByScheduleReports.aspx" />
         <option value="$PROJECT_DIR$/../GIIS.DataLayer/CoverRageReportByAntigensEntity.cs" />
         <option value="$PROJECT_DIR$/Pages/mfno.aspx" />
         <option value="$PROJECT_DIR$/Pages/HealthFacilityListVaccinationSummary.aspx" />
@@ -173,12 +207,14 @@
         <option value="$PROJECT_DIR$/Pages/CoverageByPopulationReports.aspx" />
         <option value="$PROJECT_DIR$/Pages/CoverageByPopulationReports.aspx.cs" />
         <option value="$PROJECT_DIR$/Pages/HealthFacilityChildDefaultersReportByDistrict.aspx.cs" />
-        <option value="$PROJECT_DIR$/Pages/CoverageByTargetPopulationReports.aspx.cs" />
         <option value="$PROJECT_DIR$/Pages/HealthFacilityChildDefaultersReport.aspx.cs" />
-        <option value="$PROJECT_DIR$/Pages/CoverageByTargetPopulationReports.aspx" />
         <option value="$PROJECT_DIR$/Pages/HealthFacilityChildDefaultersReport.aspx" />
         <option value="$PROJECT_DIR$/Pages/HealthFacilityChildDefaultersReportByDistrict.aspx" />
         <option value="$PROJECT_DIR$/Pages/HealthFacilityListPMTCTstatusReport.aspx" />
+        <option value="$PROJECT_DIR$/Pages/CoverageByTargetPopulationReports.aspx.cs" />
+        <option value="$PROJECT_DIR$/Pages/HealthFacilityCoverageByAntigen.aspx.cs" />
+        <option value="$PROJECT_DIR$/Pages/CoverageByTargetPopulationReports.aspx" />
+        <option value="$PROJECT_DIR$/Pages/CoverageByScheduleReports.aspx" />
       </list>
     </option>
   </component>
@@ -195,8 +231,8 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1382" />
-    <option name="height" value="744" />
+    <option name="width" value="1370" />
+    <option name="height" value="772" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -213,7 +249,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -242,7 +278,7 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -356,12 +392,15 @@
       <workItem from="1493915836846" duration="22000" />
       <workItem from="1493927649400" duration="6374000" />
       <workItem from="1493971950595" duration="24057000" />
-      <workItem from="1494229579994" duration="63000" />
+      <workItem from="1494229579994" duration="1995000" />
+      <workItem from="1494420762677" duration="1901000" />
+      <workItem from="1494653584616" duration="598000" />
+      <workItem from="1494786608283" duration="5022000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="193478000" />
+    <option name="totallyTimeSpent" value="202931000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -373,16 +412,16 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1370" height="772" extended-state="0" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24357034" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25725192" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.055646483" sideWeight="0.5091603" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.03764321" sideWeight="0.4908397" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18821605" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18779343" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -414,13 +453,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityChildVaccinationsRatings.aspx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="90" column="16" lean-forward="false" selection-start-line="90" selection-start-column="16" selection-end-line="90" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Pages/DefaulterList.aspx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1530">
@@ -450,13 +482,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Pages/mfno.aspx" />
-    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityCoverageByAntigen.aspx.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="331" column="29" lean-forward="false" selection-start-line="331" selection-start-column="17" selection-end-line="331" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityChildRegistrationsRatings.aspx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="689">
@@ -681,48 +706,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityChildDefaultersReportByDistrict.aspx.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#39886#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Pages/CoverageByScheduleReports.aspx.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="343" column="10" lean-forward="false" selection-start-line="343" selection-start-column="8" selection-end-line="412" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityChildDefaultersReport.aspx.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1032">
-          <caret line="486" column="60" lean-forward="true" selection-start-line="486" selection-start-column="60" selection-end-line="486" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Pages/CoverageByScheduleReports.aspx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1343">
-          <caret line="79" column="44" lean-forward="true" selection-start-line="79" selection-start-column="44" selection-end-line="79" selection-end-column="56" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Pages/CoverageByTargetPopulationReports.aspx.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#19235#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityChildDefaultersReport.aspx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
@@ -765,11 +748,72 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Packages/Microsoft.SkypeApp_kzf8qxf38zg5c/LocalState/Downloads/preview.gif">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pages/CoverageByScheduleReports.aspx.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1785">
+          <caret line="105" column="149" lean-forward="true" selection-start-line="105" selection-start-column="143" selection-end-line="105" selection-end-column="212" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityChildDefaultersReport.aspx.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2905">
+          <caret line="486" column="60" lean-forward="true" selection-start-line="486" selection-start-column="60" selection-end-line="486" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityChildDefaultersReportByDistrict.aspx.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1309">
+          <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pages/HealthFacilityCoverageByAntigen.aspx.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="287">
+          <caret line="114" column="213" lean-forward="false" selection-start-line="114" selection-start-column="213" selection-end-line="114" selection-end-column="213" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pages/CoverageByTargetPopulationReports.aspx.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="105" column="145" lean-forward="false" selection-start-line="105" selection-start-column="145" selection-end-line="105" selection-end-column="145" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Pages/CoverageByTargetPopulationReports.aspx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="109" column="35" lean-forward="true" selection-start-line="109" selection-start-column="35" selection-end-line="109" selection-end-column="35" />
-          <folding />
+        <state relative-caret-position="160">
+          <caret line="169" column="43" lean-forward="false" selection-start-line="169" selection-start-column="40" selection-end-line="195" selection-end-column="54" />
+          <folding>
+            <element signature="n#HeaderStyle#0;n#HeaderTemplate#0;n#asp:TemplateField#0;n#Columns#0;n#asp:GridView#0;n#div#0;n#div#6;n#asp:Content#1;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#table#1;n#HeaderStyle#0;n#HeaderTemplate#0;n#asp:TemplateField#0;n#Columns#0;n#asp:GridView#0;n#div#0;n#div#6;n#asp:Content#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#table#2;n#HeaderStyle#0;n#HeaderTemplate#0;n#asp:TemplateField#0;n#Columns#0;n#asp:GridView#0;n#div#0;n#div#6;n#asp:Content#1;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pages/CoverageByScheduleReports.aspx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="185" column="86" lean-forward="false" selection-start-line="185" selection-start-column="86" selection-end-line="185" selection-end-column="86" />
+          <folding>
+            <element signature="n#HeaderStyle#0;n#HeaderTemplate#0;n#asp:TemplateField#0;n#Columns#0;n#asp:GridView#0;n#div#0;n#div#5;n#asp:Content#1;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#table#1;n#HeaderStyle#0;n#HeaderTemplate#0;n#asp:TemplateField#0;n#Columns#0;n#asp:GridView#0;n#div#0;n#div#5;n#asp:Content#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#table#2;n#HeaderStyle#0;n#HeaderTemplate#0;n#asp:TemplateField#0;n#Columns#0;n#asp:GridView#0;n#div#0;n#div#5;n#asp:Content#1;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
