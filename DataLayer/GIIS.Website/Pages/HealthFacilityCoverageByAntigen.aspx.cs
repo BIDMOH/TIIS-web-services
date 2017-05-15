@@ -112,9 +112,9 @@ public partial class Pages_HealthFacilityCoverageByFacilityAndAntigen : System.W
         UserRole role = UserRole.GetUserRoleByUserId(userId);
         if(role.Role.Name.Equals("Middle Level Officer"))
         {
-            command = "SELECT \"ID\", \"NAME\" FROM \"HEALTH_FACILITY\" WHERE  \"TYPE_ID\" = 3 AND \"PARENT_ID\" = "+CurrentEnvironment.LoggedUser.HealthFacilityId + " ORDER BY \"NAME\" ";
+            command = "SELECT \"ID\", \"NAME\" FROM \"HEALTH_FACILITY\" WHERE  (\"ID\" = "+CurrentEnvironment.LoggedUser.HealthFacilityId +" or \"PARENT_ID\" = "+CurrentEnvironment.LoggedUser.HealthFacilityId + ") ORDER BY \"NAME\" ";
         }else{
-            command = "SELECT \"ID\", \"NAME\" FROM \"HEALTH_FACILITY\"  WHERE \"TYPE_ID\" = 3  ORDER BY \"NAME\" ";
+            command = "SELECT \"ID\", \"NAME\" FROM \"HEALTH_FACILITY\"   ORDER BY \"NAME\" ";
         }
 
         using (var idt = DBManager.ExecuteReaderCommand(command, System.Data.CommandType.Text, contextParms))

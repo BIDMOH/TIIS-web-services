@@ -158,31 +158,32 @@
                             <asp:TemplateField>
                             <HeaderTemplate>
                                 <HeaderStyle HorizontalAlign="Center">
-                                    <table width="100%" style="border-width: 1px" >
-                                          <tr>
-                                            <td rowspan="4" width="20%" align="center"> Doses </td>
-                                           </tr>
-                                          <tr>
-                                             <td colspan="8" align="center">Health Facility Coverage Report </td>
-                                          </tr>
-                                          <tr>
-                                            <td colspan="3" align="center" > Within Catchment</td>
-                                            <td colspan="3" align="center" > Outside Catchment</td>
-                                            <td colspan="2" align="center"> Total Vaccination</td>
-                                          </tr>
-
-                                          <tr>
-                                             <td width="10%" align="center"> Male </td>
-                                             <td width="10%" align="center"> Female </td>
-                                             <td width="10%" align="center"> Total </td>
-                                             <td width="10%" align="center"> Male </td>
-                                             <td width="10%" align="center"> Female </td>
-                                             <td width="10%" align="center"> Total  </td>
-                                             <td width="10%" align="center"> Total  </td>
-                                             <td width="10%" align="center"> COV(%) </td>
-                                          </tr>
-                                     </table>
-                                </HeaderStyle>
+                                                                            <table width="100%" >
+                                                                                <tr>
+                                                                                 <td colspan="8" align="center">Healthy Facility Coverage Report </td>
+                                                                              </tr>
+                                                                            </table>
+                                                                            <table width="100%" style="border-width: 1px">
+                                                                             <tr>
+                                                                                <td colspan="4" width="50%" align="center" > Within Catchment</td>
+                                                                                <td colspan="3" width="30%" align="center" > Outside Catchment</td>
+                                                                                <td colspan="2" width="10%" align="center"> Total Vaccination</td>
+                                                                              </tr>
+                                                                            </table>
+                                                                            <table width="100%" style="border-width: 1px">
+                                                                                    <tr>
+                                                                                     <td width="10%" align="center"> Dose </td>
+                                                                                     <td width="10%" align="center"> M </td>
+                                                                                     <td width="10%" align="center"> F </td>
+                                                                                     <td width="10%" align="center"> Sum </td>
+                                                                                     <td width="10%" align="center"> M </td>
+                                                                                     <td width="10%" align="center"> F </td>
+                                                                                     <td width="10%" align="center"> Sum  </td>
+                                                                                     <td width="10%" align="center"> Sum  </td>
+                                                                                     <td width="10%" align="center"> COV(%) </td>
+                                                                                  </tr>
+                                                                             </table>
+                                                                        </HeaderStyle>
                             </HeaderTemplate>
                             <ItemTemplate>
                                 <asp:GridView ID="gvExportDetails" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered table-responsive" ShowHeader="False" AllowPaging="false" OnRowDataBound="gvCoverageReportDetails_DataBound" OnPageIndexChanging="gvCoverageReportDetails_PageIndexChanging" PageSize="25">
