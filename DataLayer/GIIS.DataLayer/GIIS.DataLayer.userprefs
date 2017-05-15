@@ -1,14 +1,7 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workbench ActiveDocument="CoverRageReportByAntigensEntity.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="HealthFacilitiesDefaulters.cs">
     <Files>
-      <File FileName="CoverRageReportByAntigensEntity.cs" Line="47" Column="41" />
-      <File FileName="CoverRageReportEntity.cs" Line="88" Column="8" />
-      <File FileName="ScheduledVaccination.cs" Line="325" Column="10" />
-      <File FileName="ScheduledVaccinationEntity.cs" Line="18" Column="19" />
-      <File FileName="Cohort.cs" Line="33" Column="3" />
-      <File FileName="HealthFacilityCohortData.cs" Line="160" Column="121" />
-      <File FileName="HealthFacilityVaccinationSummary.cs" Line="147" Column="21" />
-      <File FileName="HealthFacilitiesDefaulters.cs" Line="380" Column="19" />
+      <File FileName="HealthFacilitiesDefaulters.cs" Line="292" Column="60" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
