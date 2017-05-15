@@ -1,7 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workbench ActiveDocument="HealthFacilitiesDefaulters.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="CoverRageReportEntity.cs">
     <Files>
-      <File FileName="HealthFacilitiesDefaulters.cs" Line="292" Column="60" />
+      <File FileName="HealthFacilitiesDefaulters.cs" Line="38" Column="38" />
+      <File FileName="CoverRageReportEntity.cs" Line="45" Column="69" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

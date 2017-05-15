@@ -61,7 +61,7 @@ namespace GIIS.DataLayer
 					"AS T1 GROUP BY T1.\"FULLNAME\", T1.\"GENDER\" ORDER BY T1.\"FULLNAME\", T1.\"GENDER\"  " +
 
 					")AS T2  $$) AS final_result(DOSE TEXT, FEMALEWithin BIGINT, MALEwithin BIGINT) " +
-					") AS table1  INNER JOIN " +
+					") AS table1  RIGHT JOIN " +
 					"(SELECT * FROM CROSSTAB($$ SELECT T2.\"FULLNAME\", T2.\"GENDER\", T2.\"count\" FROM( " +
 					"SELECT T1.\"GENDER\", T1.\"FULLNAME\", COUNT(T1.\"CHILD_ID\") FROM " +
 					"(select * from \"VACCINATION_EVENT\"  " +
@@ -77,8 +77,8 @@ namespace GIIS.DataLayer
 					"AS T1 GROUP BY T1.\"FULLNAME\", T1.\"GENDER\" ORDER BY T1.\"FULLNAME\", T1.\"GENDER\" " +
 					")AS T2  $$) AS final_result(DOSE TEXT, FEMALEoutside BIGINT, MALEoutside BIGINT) " +
 					") AS table2 " +
-					"ON table1.\"dose\" = table2.\"dose\" " +
-					" INNER JOIN(select \"FULLNAME\" AS dose, COUNT(DISTINCT \"VACCINATION_EVENT\".\"ID\") AS EXPECTED_TOTAL from \"VACCINATION_EVENT\" " +
+			                                                                                                                        " USING (\"dose\") " +
+					" RIGHT JOIN(select \"FULLNAME\" AS dose, COUNT(DISTINCT \"VACCINATION_EVENT\".\"ID\") AS EXPECTED_TOTAL from \"VACCINATION_EVENT\" " +
 					" inner join \"CHILD\" on \"VACCINATION_EVENT\".\"CHILD_ID\" = \"CHILD\".\"ID\" " +
 					" inner join \"DOSE\" on \"VACCINATION_EVENT\".\"DOSE_ID\" = \"DOSE\".\"ID\" " +
 					 " inner join \"SCHEDULED_VACCINATION\" on \"DOSE\".\"SCHEDULED_VACCINATION_ID\" = \"SCHEDULED_VACCINATION\".\"ID\" " +
@@ -87,7 +87,7 @@ namespace GIIS.DataLayer
 					" \"SCHEDULED_VACCINATION\".\"NAME\" = '" + scheduledVaccinationName +"' AND " +
 					" (\"HEALTH_FACILITY\".\"ID\" IN (SELECT DISTINCT A.\"ID\" FROM \"HEALTH_FACILITY\" AS A\nLEFT JOIN \"HEALTH_FACILITY\" AS B ON A.\"ID\" = B.\"PARENT_ID\"\nLEFT JOIN \"HEALTH_FACILITY\" AS C ON B.\"ID\" = C.\"PARENT_ID\"\nLEFT JOIN \"HEALTH_FACILITY\" AS D ON C.\"ID\" = D.\"PARENT_ID\"\nWHERE \nA.\"ID\" = " + healthFacilityId + "\nUNION\nSELECT DISTINCT B.\"ID\" FROM \"HEALTH_FACILITY\" AS A\nLEFT JOIN \"HEALTH_FACILITY\" AS B ON A.\"ID\" = B.\"PARENT_ID\"\nLEFT JOIN \"HEALTH_FACILITY\" AS C ON B.\"ID\" = C.\"PARENT_ID\"\nLEFT JOIN \"HEALTH_FACILITY\" AS D ON C.\"ID\" = D.\"PARENT_ID\"\nWHERE \nA.\"ID\" = " + healthFacilityId + "\nUNION\nSELECT DISTINCT C.\"ID\" FROM \"HEALTH_FACILITY\" AS A\nLEFT JOIN \"HEALTH_FACILITY\" AS B ON A.\"ID\" = B.\"PARENT_ID\"\nLEFT JOIN \"HEALTH_FACILITY\" AS C ON B.\"ID\" = C.\"PARENT_ID\"\nLEFT JOIN \"HEALTH_FACILITY\" AS D ON C.\"ID\" = D.\"PARENT_ID\"\nWHERE \nA.\"ID\" = " + healthFacilityId + "\nUNION\nSELECT DISTINCT D.\"ID\" FROM \"HEALTH_FACILITY\" AS A\nLEFT JOIN \"HEALTH_FACILITY\" AS B ON A.\"ID\" = B.\"PARENT_ID\"\nLEFT JOIN \"HEALTH_FACILITY\" AS C ON B.\"ID\" = C.\"PARENT_ID\"\nLEFT JOIN \"HEALTH_FACILITY\" AS D ON C.\"ID\" = D.\"PARENT_ID\"\nWHERE \nA.\"ID\" = " + healthFacilityId + ")) AND " +
 					" \"CHILD\".\"HEALTHCENTER_ID\" = \"VACCINATION_EVENT\".\"HEALTH_FACILITY_ID\"  AND \"VACCINATION_DATE\">='"+fromDate.ToString()+"' AND \"VACCINATION_DATE\"<='"+toDate.ToString()+"' GROUP BY \"FULLNAME\") " +
-				" AS table3 ON table1.\"dose\" = table3.\"dose\" ";
+			                                                                                                                        " AS table3 USING (\"dose\") ";
 
 
 			try

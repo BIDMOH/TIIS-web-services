@@ -60,44 +60,44 @@ namespace GIIS.DataLayer
 			try
 			{
 				string query = @"SELECT ""CHILD"".""ID"",""FIRSTNAME1"", ""FIRSTNAME2"", ""LASTNAME1"", ""LASTNAME2"", 
-                             ""HEALTHCENTER_ID"", ""PLACE"".""NAME"" AS village, 
-                               ""PHONE"", ""MOBILE"", ""EMAIL"", ""MOTHER_FIRSTNAME"", ""MOTHER_LASTNAME"",""CHILD"".""MODIFIED_ON"",""CHILD"".""MODIFIED_BY"", ""BARCODE_ID"",array_to_string(array_agg(""FULLNAME""), ',') AS MISSED_VACCINES 
-                               FROM ""CHILD"" 
+                             	""HEALTHCENTER_ID"", ""PLACE"".""NAME"" AS village, 
+                               	""PHONE"", ""MOBILE"", ""EMAIL"", ""MOTHER_FIRSTNAME"", ""MOTHER_LASTNAME"",""CHILD"".""MODIFIED_ON"",""CHILD"".""MODIFIED_BY"", ""BARCODE_ID"",array_to_string(array_agg(""FULLNAME""), ',') AS MISSED_VACCINES 
+                               	FROM ""CHILD"" 
 									INNER JOIN ""VACCINATION_EVENT"" on ""CHILD"".""ID"" = ""VACCINATION_EVENT"".""CHILD_ID"" 
 									LEFT JOIN   ""NONVACCINATION_REASON"" ON ""VACCINATION_EVENT"".""NONVACCINATION_REASON_ID"" = ""NONVACCINATION_REASON"".""ID""
 									INNER JOIN ""DOSE"" ON ""VACCINATION_EVENT"".""DOSE_ID""=""DOSE"".""ID"" 
 	                                inner join  ""PLACE"" on ""CHILD"".""DOMICILE_ID"" = ""PLACE"".""ID""
 										WHERE 
-										""CHILD"".""STATUS_ID"" = 1 and 
-										""VACCINATION_EVENT"".""HEALTH_FACILITY_ID"" IN (SELECT DISTINCT A.""ID"" FROM ""HEALTH_FACILITY"" AS A
-							LEFT JOIN ""HEALTH_FACILITY"" AS B ON A.""ID"" = B.""PARENT_ID""
-							LEFT JOIN ""HEALTH_FACILITY"" AS C ON B.""ID"" = C.""PARENT_ID""
-							LEFT JOIN ""HEALTH_FACILITY"" AS D ON C.""ID"" = D.""PARENT_ID""
-							WHERE 
-							A.""ID"" = @hfid
-							UNION
-							SELECT DISTINCT B.""ID"" FROM ""HEALTH_FACILITY"" AS A
-							LEFT JOIN ""HEALTH_FACILITY"" AS B ON A.""ID"" = B.""PARENT_ID""
-							LEFT JOIN ""HEALTH_FACILITY"" AS C ON B.""ID"" = C.""PARENT_ID""
-							LEFT JOIN ""HEALTH_FACILITY"" AS D ON C.""ID"" = D.""PARENT_ID""
-							WHERE 
-							A.""ID"" = @hfid
-							UNION
-							SELECT DISTINCT C.""ID"" FROM ""HEALTH_FACILITY"" AS A
-							LEFT JOIN ""HEALTH_FACILITY"" AS B ON A.""ID"" = B.""PARENT_ID""
-							LEFT JOIN ""HEALTH_FACILITY"" AS C ON B.""ID"" = C.""PARENT_ID""
-							LEFT JOIN ""HEALTH_FACILITY"" AS D ON C.""ID"" = D.""PARENT_ID""
-							WHERE 
-							A.""ID"" = @hfid
-							UNION
-							SELECT DISTINCT D.""ID"" FROM ""HEALTH_FACILITY"" AS A
-							LEFT JOIN ""HEALTH_FACILITY"" AS B ON A.""ID"" = B.""PARENT_ID""
-							LEFT JOIN ""HEALTH_FACILITY"" AS C ON B.""ID"" = C.""PARENT_ID""
-							LEFT JOIN ""HEALTH_FACILITY"" AS D ON C.""ID"" = D.""PARENT_ID""
-							WHERE 
-							A.""ID"" = @hfid) AND 
+											""CHILD"".""STATUS_ID"" = 1 and 
+											""VACCINATION_EVENT"".""HEALTH_FACILITY_ID"" IN (SELECT DISTINCT A.""ID"" FROM ""HEALTH_FACILITY"" AS A
+											LEFT JOIN ""HEALTH_FACILITY"" AS B ON A.""ID"" = B.""PARENT_ID""
+											LEFT JOIN ""HEALTH_FACILITY"" AS C ON B.""ID"" = C.""PARENT_ID""
+											LEFT JOIN ""HEALTH_FACILITY"" AS D ON C.""ID"" = D.""PARENT_ID""
+											WHERE 
+											A.""ID"" = @hfid
+											UNION
+											SELECT DISTINCT B.""ID"" FROM ""HEALTH_FACILITY"" AS A
+											LEFT JOIN ""HEALTH_FACILITY"" AS B ON A.""ID"" = B.""PARENT_ID""
+											LEFT JOIN ""HEALTH_FACILITY"" AS C ON B.""ID"" = C.""PARENT_ID""
+											LEFT JOIN ""HEALTH_FACILITY"" AS D ON C.""ID"" = D.""PARENT_ID""
+											WHERE 
+											A.""ID"" = @hfid
+											UNION
+											SELECT DISTINCT C.""ID"" FROM ""HEALTH_FACILITY"" AS A
+											LEFT JOIN ""HEALTH_FACILITY"" AS B ON A.""ID"" = B.""PARENT_ID""
+											LEFT JOIN ""HEALTH_FACILITY"" AS C ON B.""ID"" = C.""PARENT_ID""
+											LEFT JOIN ""HEALTH_FACILITY"" AS D ON C.""ID"" = D.""PARENT_ID""
+											WHERE 
+											A.""ID"" = @hfid
+											UNION
+											SELECT DISTINCT D.""ID"" FROM ""HEALTH_FACILITY"" AS A
+											LEFT JOIN ""HEALTH_FACILITY"" AS B ON A.""ID"" = B.""PARENT_ID""
+											LEFT JOIN ""HEALTH_FACILITY"" AS C ON B.""ID"" = C.""PARENT_ID""
+											LEFT JOIN ""HEALTH_FACILITY"" AS D ON C.""ID"" = D.""PARENT_ID""
+											WHERE 
+											A.""ID"" = @hfid) AND 
 										""VACCINATION_EVENT"".""SCHEDULED_DATE"" >= @fromDate  AND ""VACCINATION_EVENT"".""SCHEDULED_DATE"" <= @toDate and 
-										""VACCINATION_STATUS"" = false AND ""VACCINATION_EVENT"".""IS_ACTIVE"" = true 
+										""VACCINATION_STATUS"" = false
 										GROUP BY ""CHILD"".""ID"",""PLACE"".""NAME""   ORDER BY ""CHILD"".""ID"",""PLACE"".""NAME""";
 				;
 				
